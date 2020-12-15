@@ -1,0 +1,16 @@
+<!--pages/invitation_web/invitation_web.wxml-->
+<wxs module="util" src="../../utils/util.wxs" />
+<view class="container" style='background:#ea1b39 url({{util.HTTP}}mobile/small/invite_pic.png) no-repeat;background-size:contain;'>
+  <view class="wrap">
+    <view class="item">
+      <input class="input" placeholder='请输入手机号领取' maxlength='11' type='number' bindinput='phoneInput' value='{{phone}}'></input>
+    </view>
+    <view class='item'>
+      <input class="input" placeholder='请输入验证码' maxlength='6' type='number' bindinput='codeInput'></input>
+      <view class="codebtn" hover-class='hover-class' hover-stay-time='400' bindtap='getCode'>{{code_intro}}</view>
+    </view>
+  </view>
+  <view class="submit-con">
+    <button class='submit' open-type='getUserInfo' bindgetuserinfo="getUserInfo"></button>
+  </view>
+</view>

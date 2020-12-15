@@ -1,0 +1,192 @@
+@import "/utils/iconfont.wxss";
+.trans {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 13;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0);
+}
+
+.board {
+  background: rgba(0, 0, 0, 0);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  z-index: 14;
+}
+
+.board > view {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.board .head {
+  width: 100%;
+  background: white;
+  position: relative;
+}
+
+.board .head view {
+  font-size: 36rpx;
+  line-height: 120rpx;
+  text-align: center;
+}
+
+.board .head image {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  padding: 10rpx;
+  top: 50%;
+  margin-top: -25rpx;
+  right: 12rpx;
+}
+
+.board .nearby-pick {
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8f8f8;
+}
+
+.board .nearby-pick .nearby-title {
+  font-size: 30rpx;
+  margin-left: 64rpx;
+}
+
+.board .nearby-pick .nearby-area {
+  margin-right: 40rpx;
+  padding: 0 10rpx;
+  display: flex;
+  align-items: center;
+  color: #f23030;
+}
+
+.board .nearby-pick .nearby-area view {
+  font-size: 30rpx;
+}
+
+.board .nearby-pick .nearby-area image {
+  width: 16rpx;
+  height: 8rpx;
+  margin-left: 12rpx;
+}
+
+.pickup-list {
+  background: white;
+  max-height: 582rpx;
+}
+
+.pickup-item {
+  height: 264rpx;
+  position: relative;
+}
+
+.pickup-item .select-img {
+  width: 86rpx;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.pickup-item .select-img .imager {
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  margin: 0 auto;
+  margin-top: 70rpx;
+  color: #9ea3a9;
+  font-size: 40rpx;
+}
+
+.pickup-item .pickup-info {
+  padding-left: 86rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2rpx solid #f6f6f6;
+}
+
+.pickup-item .pickup-info > view {
+  width: 630rpx;
+}
+
+.pickup-item .pickup-name {
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pickup-item .pickup-tip {
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.pickup-item .pickup-tip image {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.pickup-item .pickup-tip .time {
+  font-size: 28rpx;
+  color: #646a6f;
+  margin-left: 20rpx;
+}
+
+.pickup-item .pickup-tip .distance {
+  font-size: 26rpx;
+  line-height: 32rpx;
+  color: white;
+  border-radius: 6rpx;
+  background: #f23030;
+  padding: 0 10rpx;
+  margin-left: 20rpx;
+}
+
+.pickup-item .pickup-address {
+  overflow: hidden;
+  margin-top: 20rpx;
+}
+
+.pickup-item .pickup-address image {
+  width: 28rpx;
+  height: 34rpx;
+  float: left;
+}
+
+.pickup-item .pickup-address view {
+  color: #646a6f;
+  font-size: 28rpx;
+  float: left;
+  width: 578rpx;
+  margin-left: 20rpx;
+}
+
+.finish {
+  color: white;
+  width: 100%;
+  font-size: 32rpx;
+  line-height: 100rpx;
+  text-align: center;
+  background: #f23030;
+}
+
+.no-list{
+  width: 100%;
+  height: 400rpx;
+  text-align: center;
+  font-size: 30rpx;
+  line-height: 400rpx;
+}

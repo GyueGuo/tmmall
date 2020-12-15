@@ -1,0 +1,12 @@
+{
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "cart": "/components/cart/cart",
+    "good_list": "/components/good_list/good_list",
+    "go_top": "/components/go_top/go_top",
+    "shop_cart": "/components/shop_cart/shop_cart",
+    "buy": "/components/buy/buy",
+    "load_more": "/components/load_more/load_more"
+  }
+}

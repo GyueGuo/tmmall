@@ -1,0 +1,15 @@
+<!--nearby_shops/shop_audit/shop_audit.wxml-->
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='warp'>
+  <view class='warpbg' style='background: linear-gradient(to right, {{diy_color.z_color}}, {{diy_color.f_color_6}});'>
+    <image class='bg-2' src='{{util.HTTP}}mobile/small/image/bank/icon_100.png'></image>
+    <!-- <image class='bg-2' src='{{util.HTTP}}mobile/small/image/fx/dysh-q.png'></image> -->
+    <image class='bg-3' src='{{util.HTTP}}mobile/small/image/fx/dysh-bj.png'></image>
+  </view>
+  <view class='warp_con'>
+    <view class='title' style='{{util.diy_color(diy_color.z_color,"","")}}'>{{data.arr[0]}}</view>
+    <view class='tip'>{{data.arr[1]}}</view>
+    <view class='tip'>*注登录账号为您绑定会员手机号</view>
+  </view>
+  <text class='goHome' hover-class='hover-class' hover-stay-time='400' bindtap='copy' style='{{util.diy_color("",diy_color.z_color,"")}}'>复制网址</text>
+</view>

@@ -1,0 +1,11 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='psw'>
+  <image src='{{util.HTTP}}mobile/small/image/mm.png'></image>
+  <input placeholder='{{type=="login"?"请输入6位-20位密码":"请输入6位数字支付密码"}}' maxlength='{{type!="login"?"6":"20"}}' type='{{type!="login"?"number":"text"}}' password='{{isPsw}}' bindinput='pswInput'></input>
+  <view class='pswBtn' hover-class='hover-class' hover-stay-time='400' bindtap='onPswShow'>
+    <image src='{{util.HTTP}}{{!isPsw?"mobile/small/image/show.png":"mobile/small/image/hide.png"}}'></image>
+  </view>
+</view>
+<view class='tip' wx:if='{{type=="login"}}'>密码由6-20位字母、数字组合</view>
+
+<view class="finish {{able?'bg':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='{{type=="login"?"login":"finish"}}' style='{{able?util.diy_color("",diy_color.z_color,""):""}}'>完成</view>

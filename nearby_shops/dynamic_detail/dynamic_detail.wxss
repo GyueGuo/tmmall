@@ -1,0 +1,181 @@
+page {
+  background: white;
+}
+
+.wrap {
+  width: 94%;
+  padding: 0 3%;
+  padding-bottom: 100rpx;
+}
+
+.shop-info {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.shop-info .shop-avatar {
+  width: 65rpx;
+  height: 65rpx;
+}
+
+.shop-info text {
+  font-size: 30rpx;
+  margin-left: 8rpx;
+  flex: 1;
+}
+
+.shop-info .attention {
+  width: 116rpx;
+  height: 44rpx;
+  background-color: #efefef;
+  border-radius: 50px 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shop-info .attention image{
+  width: 26rpx;
+  height: 22rpx;
+  margin-right: 5rpx;
+}
+.shop-info .attention text{
+  font-size: 22rpx;
+  color: #999999;
+  flex: none;
+}
+
+.wrap .title {
+  font-size: 34rpx;
+  font-weight: bold;
+  margin-top: 40rpx;
+}
+
+.wrap .look {
+  overflow: hidden;
+  margin: 40rpx 0;
+}
+
+.wrap .look image {
+  float: left;
+  width: 34rpx;
+  height: 34rpx;
+}
+
+.wrap .look text {
+  float: left;
+  font-size: 22rpx;
+  line-height: 34rpx;
+  margin-left: 8rpx;
+  color: #989898;
+}
+
+.dynamic {
+  padding-bottom: 30rpx;
+}
+
+.dynamic .content {
+  font-size: 30rpx;
+  line-height: 60rpx;
+}
+
+.dynamic .pic {
+  position: relative;
+  height: 700rpx;
+}
+
+.dynamic .pic image {
+  background: lightcoral;
+  width: 100%;
+  height: 700rpx;
+}
+
+.dynamic .pic view {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: white;
+  background: rgba(0, 0, 0, 0.3);
+  font-size: 26rpx;
+  padding: 10rpx 14rpx;
+}
+
+.dynamic-footer {
+  width: 100%;
+  height: 100rpx;
+  background: white;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+.dynamic-footer .add-comment {
+  width: 61%;
+  height: 100%;
+  float: left;
+}
+
+.dynamic-footer .dynamic-operation {
+  width: 39%;
+  float: left;
+  height: 100%;
+  overflow: hidden;
+}
+
+.add-comment > view {
+  width: 90%;
+  height: 66rpx;
+  margin: 17rpx 5%;
+  background: #f3f3f3;
+  border-radius: 6rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.add-comment > view image {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  left: 15rpx;
+  top: 50%;
+  margin-top: -20rpx;
+}
+
+.add-comment > view input {
+  padding-left: 60rpx;
+  font-size: 26rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+}
+
+.dynamic-operation > view {
+  float: left;
+  width: 33.3%;
+}
+
+.dynamic-operation > view image {
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  margin: 0 auto;
+  margin-top: 22rpx;
+}
+
+.dynamic-operation > view > view {
+  font-size: 22rpx;
+  text-align: center;
+}
+
+.good-nums {
+  font-size: 30rpx;
+  line-height: 80rpx;
+  color: white;
+  padding: 0 40rpx;
+  display: inline-block;
+  border-radius: 40rpx;
+  position: fixed;
+  right: 30rpx;
+  bottom: 30rpx;
+}

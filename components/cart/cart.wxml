@@ -1,0 +1,6 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<!--购物车  -->
+<view class='go-cart' hover-class='hover-class' hover-stay-time='300' bindtap='onCart' hidden='{{number == 0}}'>
+  <image src='{{util.HTTP}}mobile/small/image/home-dd-01/home-cart-icon-01.png'></image>
+  <text class='bg' style='{{util.diy_color("",diy_color.z_color,"")}}'>{{number < 99?number: "..."}}</text>
+</view>

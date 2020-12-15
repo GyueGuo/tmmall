@@ -1,0 +1,283 @@
+page {
+  overflow-y: hidden;
+}
+
+.wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 13;
+}
+
+.trans {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 14;
+  background: rgb(0, 0, 0);
+}
+
+.board {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.list-title {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  font-size: 26rpx;
+  line-height: 80rpx;
+  background: #fff;
+}
+
+.list-title .list {
+  width: 75%;
+  overflow: hidden;
+}
+
+.list-title .list .title {
+  width: 33.3%;
+  font-size: 30rpx;
+  float: left;
+  line-height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.list-title .list .title view {
+  width: 20rpx;
+}
+
+.list-title .choose {
+  position: relative;
+  width: 25%;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-title .choose .choose-icon {
+  font-size: 26rpx;
+  line-height: 78rpx;
+  margin-left: 6rpx;
+}
+
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 4rpx;
+  vertical-align: middle;
+  border-top: 8rpx solid rgb(174, 174, 174);
+  border-right: 8rpx solid transparent;
+  border-left: 8rpx solid transparent;
+  float: left;
+}
+
+.caret.up {
+  transform: rotate(180deg);
+  margin-bottom: 2px;
+}
+
+.cur-bg {
+  border-top: 8rpx solid #f23030;
+}
+
+.board .content {
+  width: 90%;
+  left: 10%;
+  top: 0;
+  height: 100%;
+  background: white;
+  position: absolute;
+  overflow: hidden;
+}
+
+.good-list {
+  padding-top: 188rpx;
+}
+
+.filtrate-item {
+  padding: 50rpx 40rpx 0;
+}
+
+.filtrate-item .filtrate-title {
+  font-size: 30rpx;
+}
+
+.filtrate-item .filtrate-content {
+  overflow: hidden;
+  width: 100%;
+  margin-top: 16rpx;
+}
+
+.filtrate-item .filtrate-content > view {
+  margin-top: 20rpx;
+  width: 31%;
+  margin-left: 3%;
+  float: left;
+  text-align: center;
+  font-size: 26rpx;
+  line-height: 70rpx;
+  background: #f7f7f7;
+  border-radius: 6rpx;
+}
+
+.filtrate-item .filtrate-content > view:nth-child(3n + 1) {
+  margin-left: 0;
+}
+
+.filtrate-item .filtrate-price {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  margin-top: 36rpx;
+}
+
+.filtrate-item .filtrate-price input {
+  width: 260rpx;
+  text-align: center;
+  font-size: 26rpx;
+  line-height: 70rpx;
+  height: 70rpx;
+  float: left;
+  background: #f7f7f7;
+  border-radius: 6rpx;
+}
+
+.filtrate-item .filtrate-price .line {
+  width: 2%;
+  margin: 0 4%;
+  display: inline-block;
+  height: 2rpx;
+  background: #a9a9a9;
+}
+
+.board .content .footer {
+  width: 100%;
+  height: 90rpx;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  border-top: 2rpx solid #eaeaea;
+  z-index: 110;
+  background: white;
+}
+
+.board .content .footer > view {
+  width: 50%;
+  float: left;
+  text-align: center;
+  font-size: 28rpx;
+  line-height: 90rpx;
+}
+
+.board .content .footer > view:last-child {
+  background: #f23030;
+  color: white;
+}
+
+.block {
+  width: 100%;
+  height: 110rpx;
+}
+
+.no-order {
+  margin-top: 170rpx;
+  height: calc(100vh - 170rpx);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-order > view {
+  width: 100%;
+}
+
+.no-order image {
+  width: 100%;
+  height: 260rpx;
+}
+
+.no-order .no-order-head {
+  font-size: 32rpx;
+  text-align: center;
+}
+
+.no-order .no-order-content {
+  font-size: 26rpx;
+  text-align: center;
+  margin-top: 10rpx;
+  color: #8d8d8d;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  padding: 10rpx 0 30rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: white;
+}
+
+.search .search-bg {
+  width: 610rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  margin-left: 23rpx;
+  border-radius: 8rpx;
+  background-color: #f6f6f6;
+}
+
+.search .search-bg input {
+  flex: 1;
+  height: 25rpx;
+  margin-left: 20rpx;
+  font-size: 25rpx;
+}
+
+.search .search-bg view {
+  font-size: 32rpx;
+  color: #c9c9c9;
+}
+
+.search .clear {
+  padding: 20rpx;
+}
+
+.search .search-title {
+  flex: 1;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 64rpx;
+  padding: 0 4rpx;
+  color: #666;
+}
+
+.search-icon {
+  padding: 6rpx;
+  margin: 0 10rpx;
+}
+
+.search > image {
+  width: 46rpx;
+  height: 46rpx;
+  position: absolute;
+  top: 12rpx;
+  right: 30rpx;
+  padding: 8rpx;
+}

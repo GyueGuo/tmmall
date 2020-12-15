@@ -1,0 +1,16 @@
+{
+  "usingComponents": {
+    "Parser": "/components/Parser/index",
+    "good_parameter": "/components/good_parameter/good_parameter",
+    "brand_label": "/components/brand_label/brand_label",
+    "delivery_info": "/components/delivery_info/delivery_info",
+    "sale_promotion": "/components/sale_promotion/sale_promotion",
+    "buy": "/components/buy/buy",
+    "receive_coupon": "/components/receive_coupon/receive_coupon",
+    "bargain_rule": "/components/bargain_rule/bargain_rule",
+    "video_swiper": "/components/video_swiper/video_swiper",
+    "share_board": "/components/share_board/share_board",
+    "poster": "/components/poster/poster",
+    "cart": "/components/cart/cart"
+  }
+}

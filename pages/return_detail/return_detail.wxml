@@ -1,0 +1,114 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='detail-wrap' hidden='{{!info.order_goods_status}}'>
+  <view class='head bg' style='{{util.diy_color("",diy_color.z_color,"")}}'>
+    <view class='title' wx:if="{{info.order_goods_status == 4.2 || info.order_goods_status == 4.3}}">退款成功</view>
+    <view class='title' wx:elif="{{info.order_goods_status == 5.1 || info.order_goods_status == 5.2}}">申请退款中</view>
+    <view class='title' wx:elif="{{info.order_goods_status == 5.3}}">请退货并填写物流信息</view>
+    <view class='title' wx:elif="{{info.order_goods_status == 5.4}}">申请退货中</view>
+    <view class='title' wx:elif="{{info.order_goods_status == 5.5 || info.order_goods_status == 5.7}}">退款失败</view>
+    <view class='title' wx:elif="{{info.order_goods_status == 5.6}}">退款退货失败</view>
+    <view class='content' wx:if="{{info.order_goods_status == 5.1 || info.order_goods_status == 5.2|| info.order_goods_status == 5.4}}">还剩{{info.day}}天{{info.hour}}时{{info.min}}分</view>
+    <view class='content' wx:else>{{info.update_time_format}}</view>
+  </view>
+  <view wx:if='{{info.order_goods_status != 5.5 && info.order_goods_status != 5.6 && info.order_goods_status != 5.7}}'>
+    <view class='address-wrap'>
+      <view class='address' hidden='{{info.order_goods_status != 5.3}}'>
+        <image src='{{util.HTTP}}mobile/small/image/wd-tkxq-shdz.png'></image>
+        <view>
+          <view class='consignee'>
+            <view>收货人: {{info.store_name}}</view>
+            <view>{{info.phone}}</view>
+          </view>
+          <view class='address-detail'>{{info.address}}</view>
+        </view>
+      </view>
+      <view class='logistics' hidden='{{info.order_goods_status != 5.3}}'>
+        <view>
+          <view class='circle'></view>
+          <view class='logistics-tip'>请填写真实物流信息,逾期未填写,退货申请将撤销</view>
+        </view>
+        <view class='logistics-operation'>
+          <view hover-class='hover-class' hover-stay-time='400' bindtap='onRevocation'>撤销申请</view>
+          <view hover-class='hover-class' hover-stay-time='400' bindtap='fillLogistics'>填写物流单号</view>
+        </view>
+      </view>
+      <view class='logistics' wx:if="{{info.order_goods_status == 5.1 || info.order_goods_status == 5.2}}">
+        <view class='launched'>您已成功发起退款申请,请耐心等待商家处理。</view>
+        <view>
+          <view class='circle'></view>
+          <view class='logistics-tip'>商家同意,系统将退款给你</view>
+        </view>
+        <view>
+          <view class='circle'></view>
+          <view class='logistics-tip'>如果商家拒绝,您可以修改申请后再次发起,商家会重新处理</view>
+        </view>
+        <view class='logistics-operation'>
+          <view hover-class='hover-class' hover-stay-time='400' bindtap='showModal' data-confirmType='0'>撤销申请</view>
+          <view class='cur border-cur' hover-class='hover-class' hover-stay-time='400' bindtap='changeApply' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>修改申请</view>
+        </view>
+      </view>
+    </view>
+    <view class='refund-way'>
+      <view>退款总金额</view>
+      <view class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥{{info.refund_amount}}</view>
+    </view>
+    <view class='refund-way'>
+      <view>退款路径</view>
+      <view wx:if="{{info.pay_channel == 1}}">微信</view>
+      <view wx:elif="{{info.pay_channel == 2}}">支付宝</view>
+      <view wx:elif="{{info.pay_channel == 3}}">余额</view>
+      <view wx:elif="{{info.pay_channel == 4}}">银行卡</view>
+      <view wx:elif="{{info.pay_channel == 5}}">线下</view>
+    </view>
+
+    <view class='return-logistics' hidden='{{info.express_details == null}}'>
+      <view class='return-head'>
+        <image src='{{util.HTTP}}mobile/small/image/ddxq-psxx.png'></image>
+        <view>
+          <view class='logistics-company'>退货物流: {{info.express_name}}({{info.express_number}})</view>
+          <view class='logistics-info'>{{info.express_details.context}}</view>
+          <view class='logistics-time'>{{info.express_details.time}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='refund-info'>
+      <view class='refund-head'>退款信息</view>
+      <view class='good-wrap'>
+        <image src='{{info.file}}'></image>
+        <view>
+          <view class='good-name'>{{info.goods_name}}</view>
+          <view class='good-attr'>{{info.attr}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='refund-detail'>
+      <view>退款原因: {{info.reason}}</view>
+      <view>退款金额: ￥{{info.refund_amount}}</view>
+      <view>申请件数: {{info.quantity}}</view>
+      <view>退款时间: {{info.update_time_format}}</view>
+      <view>退款编号: {{info.order_goods_refund_number}}</view>
+    </view>
+  </view>
+  <view wx:else>
+    <view class='refuse'>
+      <view class='refuse-title'>失败原因</view>
+      <view class='refuse-reason'>{{info.refuse_reason}}</view>
+    </view>
+    <view class='change-apply border-cur' hover-class='hover-class' hover-stay-time='400' bindtap='amend' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>修改申请</view>
+  </view>
+</view>
+<view class='footer'>
+  <button hover-class='hover-class' hover-stay-time='400' open-type="{{configSwitch.version_info.one_more==1?'':'contact'}}" bindcontact="handleContact" bindtap="{{configSwitch.version_info.one_more==1?'callPhone':''}}">
+    <image src='{{util.HTTP}}mobile/small/image/ddxq-lxmj.png'></image>
+    <view>联系卖家</view>
+  </button>
+  <button hover-class='hover-class' hover-stay-time='400' bindtap='callPtPhone'>
+    <image src='{{util.HTTP}}mobile/small/image/ddxq-bdd.png'></image>
+    <view>平台电话</view>
+  </button>
+  <!-- <view hover-class='hover-class' hover-stay-time='400' bindtap='service_pt'>
+    <image src='{{util.HTTP}}mobile/small/image/wd-pj-zxkf.png'></image>
+    <view>咨询平台</view>
+  </view> -->
+</view>
+<modal title="{{modal_confirm[showModal].title}}" content="{{modal_confirm[showModal].content}}" tip="{{modal_confirm[showModal].tip}}" id="modal" bind:confirm="{{modal_confirm[showModal].callback}}" />

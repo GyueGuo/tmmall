@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "兑换商品",
+  "usingComponents": {
+    "Parser": "/components/Parser/index",
+    "video_swiper": "/components/video_swiper/video_swiper",
+    "modal": "/components/modal/modal"
+  }
+}

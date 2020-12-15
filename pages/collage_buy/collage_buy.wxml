@@ -1,0 +1,70 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='tab-view'>
+  <scroll-view scroll-x class='tab-sroll' scroll-into-view="{{sroll_id}}" scroll-with-animation>
+    <view class='tab-item ' wx:for="{{classify}}" hover-class='hover-class' hover-stay-time='400' bindtap='onClassify' data-id='{{item.group_classify_id}}' data-subset='{{item.subset}}' id='a-{{index}}'>
+      <text class="{{current_tab==item.group_classify_id?'cur':''}}" style='{{current_tab==item.group_classify_id?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{item.title}}</text>
+    </view>
+  </scroll-view>
+  <view class='more' hover-class='hover-class' hover-stay-time='400' bindtap='onMore'>
+    <view></view>
+    <image src='{{util.HTTP}}mobile/small/image/fl2_x.png'></image>
+  </view>
+</view>
+
+<view class='tab-more' hidden="{{!more_board}}" hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'>
+  <view catchtap='none'>
+    <view class='tab-more-head'>
+      <view>全部分类</view>
+      <image src='{{util.HTTP}}mobile/small/image/tsczz-sl.png' hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'></image>
+    </view>
+    <view class='tab-more-wrap'>
+      <view wx:for="{{classify}}" hover-class='hover-class' hover-stay-time='400' bindtap='onTabMoreItem' data-index='{{index}}' data-id='{{item.group_classify_id}}' data-subset='{{item.subset}}' style='{{item.group_classify_id == current_tab?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{item.title}}</view>
+    </view>
+  </view>
+</view>
+
+<view class='second-tab' hidden='{{current_tab == -1}}'>
+  <scroll-view scroll-x class='second-scroll'>
+    <view class="second-tab-item {{item.group_classify_id == sub_tab?'bg':''}}" wx:for="{{subset}}" hover-class='hover-class' hover-stay-time='400' bindtap='onSubClassify' data-id='{{item.group_classify_id}}' style='{{item.group_classify_id == sub_tab?util.diy_color("",diy_color.z_color,""):""}}'>{{item.title}}</view>
+  </scroll-view>
+</view>
+
+<scroll-view scroll-y class="collage-list {{current_tab==-1?'':'second'}}" bindscrolltolower="loadMore" hidden='{{good_list.length == 0}}'>
+  <view class='good-item' wx:for="{{good_list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goods_id}}'>
+    <view class='collage-pic' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
+      <image class='collage-pic' src='{{item.file}}'></image>
+    </view>
+    <view class='collage-name'>{{item.goods_name}}</view>
+    <view class='collage-info'>
+      <view class='collage-num bg' style='{{util.diy_color("",diy_color.z_color,diy_color.z_color)}}'>{{item.group_num}}人拼</view>
+      <view class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+        <text class='unit'>￥</text>
+        <text class='integer'>{{util.integer(item.group_price)}}</text>
+        <text class='decimals'>.{{util.decimals(item.group_price)}}</text>
+      </view>
+    </view>
+    <view class='single-price'>￥{{item.shop_price}}</view>
+    <view class='collage-logo' style='background:linear-gradient(to right,{{diy_color.z_color}},{{diy_color.f_color}});box-shadow:0 2rpx 10rpx 0 {{diy_color.z_color}};'>
+      <image src='{{util.HTTP}}mobile/small/image/pg-wd-pim.png'></image>
+    </view>
+  </view>
+  <load_more show="{{loading}}" />
+</scroll-view>
+
+<view class='empty-view' hidden='{{good_list.length != 0 || loading}}'>
+  <view>
+    <image src='{{util.HTTP}}mobile/small/image/zwsp.png'></image>
+    <view>暂无相关商品</view>
+  </view>
+</view>
+
+<view class='footer'>
+  <view>
+    <view class='font_family shop-icon icon-pg-ptsc-1' style='{{util.diy_color(diy_color.z_color,"","")}}'></view>
+    <view class='title' style='{{util.diy_color(diy_color.z_color,"","")}}'>拼团商城</view>
+  </view>
+  <view hover-class='hover-class' hover-stay-time='400' bindtap='onMyCollage'>
+    <view class='font_family my-icon icon-pg-wd'></view>
+    <view class='title'>我的拼团</view>
+  </view>
+</view>

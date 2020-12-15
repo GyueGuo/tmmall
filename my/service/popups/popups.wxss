@@ -1,0 +1,87 @@
+/* my/service/popups/popups.wxss */
+.popups{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vh;
+  height: 100vh;
+}
+.active{
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.popups .t-warp{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  transform: translateY(100%);
+}
+
+.popups .t-warp .con{
+  background-color: #fff;
+}
+.popups .header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25rpx;
+  box-sizing: border-box;
+  border-top: 1px solid #f6f6f6;
+  border-bottom: 1px solid #f6f6f6;
+}
+.popups .header .title{
+  font-size: 28rpx;
+  color: #979ca3;
+}
+.popups .header .close{
+  width: 26rpx;
+  height: 26rpx;
+  padding: 0 0 0 30rpx;
+}
+.popups .order{
+  height: 65vh;
+}
+.popups .order .row{}
+.popups .order .row .header{}
+.popups .order .row .header .name{
+  font-size: 28rpx;
+  font-weight: bold;
+}
+.popups .order .row .header .status{
+  font-size: 26rpx;
+}
+.popups .order .row .section{
+  padding: 0 25rpx;
+}
+.popups .order .row .section .goodsList{
+  display: flex;
+  padding: 20rpx 0;
+}
+.popups .order .row .section .goods{
+  width: 180rpx;
+  height: 180rpx;
+  flex-shrink: 0;
+}
+.popups .order .row .section .info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20rpx;
+  flex: 1;
+}
+.popups .order .row .info .name{
+  font-size: 26rpx;
+}
+.popups .order .row .info .attr{
+  font-size: 24rpx;
+}
+.popups .order .row .info .con{
+  display: flex;
+  justify-content: space-between;
+}
+.popups .order .row .info .con .price{
+  font-size: 24rpx;
+}
+.popups .order .row .info .con .sum{
+  font-size: 23rpx;
+}

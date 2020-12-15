@@ -1,0 +1,202 @@
+.wrap{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.tab-view {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height: 80rpx;
+  background: white;
+  box-shadow: 0 0 5rpx 2rpx rgba(150, 150, 150, 0.1);
+}
+
+.tab-view > view {
+  width: 25%;
+  height: 100%;
+  text-align: center;
+  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-view > view view {
+  position: relative;
+  height: 100%;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  border-bottom: 6rpx solid #fff;
+}
+
+/* .tab-view .cur::after {
+  width: 100%;
+  height: 4rpx;
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: #f20230;
+} */
+
+.collage-list {
+  position: relative;
+  flex:1;
+  margin:80rpx 0 100rpx;
+}
+
+.collage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0 22rpx;
+  box-sizing: border-box;
+}
+
+.collage-item {
+  position: relative;
+  margin-top: 16rpx;
+  background: white;
+}
+.collage-item:last-child{
+  margin-bottom: 16rpx;
+}
+
+
+.collage-item > image {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 116rpx;
+  height: 116rpx;
+}
+
+.collage-info {
+  padding: 26rpx;
+  overflow: hidden;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+
+.collage-info > .c-img {
+  width: 174rpx;
+  height: 174rpx;
+  float: left;
+}
+.collage-info > .c-img image{
+  width: 174rpx;
+  height: 174rpx;
+}
+
+.collage-info > .c-info {
+  width: 436rpx;
+  float: left;
+  margin-left: 26rpx;
+}
+
+.collage-info .collage-name {
+  width: 75%;
+  font-size: 28rpx;
+  line-height: 36rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  min-height: 72rpx;
+}
+
+.collage-info .collage-tip {
+  display: flex;
+  align-items: flex-end;
+  margin-top: 46rpx;
+}
+
+.collage-info .collage-person {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 4rpx;
+  border: 2rpx solid transparent; 
+}
+
+.collage-info .collage-person .collage-icon{
+  position: absolute;
+  left: -3rpx;
+  top: -3rpx;
+  font-size: 34rpx;
+}
+
+.collage-info .collage-person .collage-tit {
+  font-size: 22rpx;
+  line-height: 30rpx;
+  padding: 0 10rpx 0 40rpx;
+}
+
+.collage-info .collage-price {
+  line-height: 1;
+  margin-left: 20rpx;
+}
+
+.collage-item .collage-operation {
+  width: 100%;
+  height: 94rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.collage-item .collage-operation > view {
+  width: 170rpx;
+  font-size: 30rpx;
+  line-height: 54rpx;
+  border-radius: 30rpx;
+  text-align: center;
+  margin-right: 36rpx;
+  border: 1px solid #f0f0f0;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100rpx;
+  background: white;
+  box-shadow: 0 0 5rpx 2rpx rgba(150, 150, 150, 0.1);
+}
+
+.footer > view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+}
+
+.footer > view .title {
+  font-size: 32rpx;
+  margin-left: 20rpx;
+  color: #6e7479;
+}
+
+.footer > view .shop-icon {
+  font-size: 36rpx;
+  color: #6e7479;
+}
+
+.footer > view .my-icon {
+  font-size: 40rpx;
+}
+
+.empty-view {
+  height: calc(100vh - 200rpx);
+}

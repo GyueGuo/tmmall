@@ -1,0 +1,63 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<!--背景   -->
+<view class='trans' hidden='{{!isShow}}' style='opacity:{{opacity}}'></view>
+<view class='board' hover-class='hover-class' hover-stay-time='400' bindtap='closeDelivery' animation="{{animation}}">
+  <!--配送说明  -->
+  <view class='delivery-info' catchtap="none">
+    <view class='delivery-head'>配送说明</view>
+    <view class='delivery-content'>
+      <view wx:if='{{info.is_city == 1}}'>
+        <view style='{{util.diy_imgbox(42)}}'>
+          <image src='{{util.HTTP}}mobile/small/image/xq-ps-tc.png' style='{{util.diy_imgcolor(diy_color.z_color,42,42)}}' class='delivery-content-logo'></image>
+        </view>
+        <view class='delivery-content-detail'>
+          <view class='delivery-content-title'>
+            <text>同城配送</text>
+            <text class='freight_tip' wx:if='{{data.city_post_list[0].discount_postage_rules==1}}'>满{{data.city_post_list[0].discount}}元{{data.city_post_list[0].postage=='0.00'?'包邮':'邮费'+data.city_post_list[0].postage+'元'}}</text>
+            <text class='freight_tip' wx:elif='{{data.city_post_list[0].discount_postage_rules==2}}'>满{{util.integer(data.city_post_list[0].discount)}}件{{data.city_post_list[0].postage=='0.00'?'包邮':'邮费'+data.city_post_list[0].postage+'元'}}</text>
+            <text class='freight_tip' wx:elif='{{data.city_post_list[0].discount_postage_rules==3}}'>满{{data.city_post_list[0].discount}}公斤{{data.city_post_list[0].postage=='0.00'?'包邮':'邮费'+data.city_post_list[0].postage+'元'}}</text>
+          </view>
+          <view class='delivery-content-area'>{{result.city_explain}}</view>
+
+        </view>
+      </view>
+      <view hover-class='hover-class' hover-stay-time='400' bindtap='_onPickup' wx:if='{{info.is_shop == 1}}'>
+        <view style='{{util.diy_imgbox(42)}}'>
+          <image src='{{util.HTTP}}mobile/small/image/xq-ps-zt.png' style='{{util.diy_imgcolor(diy_color.z_color,42,42)}}' class='delivery-content-logo'></image>
+        </view>
+        <view class='delivery-content-detail'>
+          <view class='delivery-content-title'>门店自提</view>
+          <view class='delivery-content-area'>查看离您最近的自提点</view>
+        </view>
+        <image src='{{util.HTTP}}mobile/small/image/xq-gd.png' class='next'></image>
+      </view>
+      <view wx:if='{{info.is_delivery == 1}}'>
+        <view style='{{util.diy_imgbox(42)}}'>
+          <image src='{{util.HTTP}}mobile/small/image/xq-ps-qg.png' style='{{util.diy_imgcolor(diy_color.z_color,42,42)}}' class='delivery-content-logo'></image>
+        </view>
+        <view class='delivery-content-detail'>
+          <view class='delivery-content-title'>全国邮寄</view>
+          <view class='deliver'>
+            <text class='title'>送至</text>
+            <view class='font_family icon-gwc-sl-dw' style='{{util.diy_color(diy_color.z_color,"","")}}margin:0 10rpx 0 30rpx;'></view>
+            <image class='loading' src='{{util.HTTP}}mobile/small/image/xcx-jz.png' hidden='{{isLoading}}'></image>
+            <view hidden='{{!isLoading}}'>
+              <text>{{address.province}}</text>
+              <text>>{{address.city}}</text>
+              <text>>{{address.area}}</text>
+            </view>
+          </view>
+          <view class='deliver'>
+            <text class='title'>运费</text>
+            <text class='freight'>{{express_freight_price}}元</text>
+            <text class='freight_tip' wx:if='{{data.express_post_list[0].discount_postage_rules==1}}'>满{{data.express_post_list[0].discount}}元{{data.express_post_list[0].postage=='0.00'?'包邮':'邮费'+data.express_post_list[0].postage+'元'}}</text>
+            <text class='freight_tip' wx:elif='{{data.express_post_list[0].discount_postage_rules==2}}'>满{{util.integer(data.express_post_list[0].discount)}}件{{data.express_post_list[0].postage=='0.00'?'包邮':'邮费'+data.express_post_list[0].postage+'元'}}</text>
+            <text class='freight_tip' wx:elif='{{data.express_post_list[0].discount_postage_rules==3}}'>满{{data.express_post_list[0].discount}}公斤{{data.express_post_list[0].postage=='0.00'?'包邮':'邮费'+data.express_post_list[0].postage+'元'}}</text>
+          </view>
+        </view>
+        <!-- <image src='{{util.HTTP}}mobile/small/image/xq-gd.png' class='next'></image> -->
+      </view>
+    </view>
+    <view class='delivery-finish' hover-class='hover-class' hover-stay-time='400' bindtap='closeDelivery' style='{{util.diy_color("",diy_color.z_color,"")}}'>完成</view>
+  </view>
+</view>

@@ -1,0 +1,55 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view hidden='{{!info.result}}'>
+  <view class='wrap'>
+    <view class='shop-info'>
+      <image class='shop-avatar' src='{{info.result.shop.logo}}'></image>
+      <text>{{info.result.shop.store_name}}</text>
+      <view class='attention' style="{{info.result.shop.state == 0?util.diy_color('',diy_color.z_color,''):''}}" hover-class='hover-class' hover-stay-time='400' bindtap='collectStore'>
+        <image src='{{util.HTTP}}mobile/small/image/dp-sydtgz.png' hidden='{{info.result.shop.state != 0}}'></image>
+        <text style="{{info.result.shop.state == 0?'color:#fff':''}}">{{info.result.shop.state == 0?'关注':'已关注'}}</text>
+      </view>
+    </view>
+
+    <view class='title'>{{info.result.title}}</view>
+    <view class='look'>
+      <image src='{{util.HTTP}}mobile/small/image/dp-sydtlll.png'></image>
+      <text>{{info.result.hits}}</text>
+    </view>
+    <!-- <view class='dynamic'>
+    <view class='content'>公众平台是为微信用户提供服务的平台,而公众平台开发接口则是提供服务的公众平台是为微信用户提供服务的平台,而公众平台开发接口则是提供服务的公众平台是为微信用户提供服务的平台,而公众平台开发接口则是提供服务的</view>
+    <view class='pic'>
+      <image></image>
+      <view>￥129.00</view>
+    </view>
+  </view> -->
+    <view class="wxParse">
+      <Parser html='{{web_content}}' bindparse='parse' />
+    </view>
+  </view>
+
+  <view class='good-nums bg' hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' hidden='{{info.goods_num == 0}}' style="{{util.diy_color('',diy_color.z_color,'')}}">商品({{info.goods_num}})</view>
+
+  <article_goods isShow="{{isShow}}" good_list="{{info.result.goods}}" />
+  <!-- <view class='dynamic-footer'>
+  <view class='add-comment'>
+    <view>
+      <image src='/image/dp-dtxqtjdd.png'></image>
+      <input placeholder='添加你的评论' type='text' bindconfirm='onConfirm' />
+    </view>
+  </view>
+  <view class='dynamic-operation'>
+    <view>
+      <image src='/image/dp-dtxqxx.png'></image>
+      <view>8</view>
+    </view>
+    <view>
+      <image src='/image/dp-dtxqsc1.png'></image>
+      <view>收藏</view>
+    </view>
+    <view>
+      <image src='/image/dp-dtxqdz1.png'></image>
+      <view>2</view>
+    </view>
+  </view>
+</view> -->
+</view>

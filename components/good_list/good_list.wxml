@@ -1,0 +1,104 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<!--列表  -->
+<view class="good-list {{columns == 2?'good-list-one':''}}">
+  <view wx:for="{{list}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' data-id='{{item.goods_id}}'>
+    <view class='pic-wrap' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
+      <image class='pic' lazy-load src='{{item.file}}'></image>
+      <image class='dy' wx:if='{{item.is_distributor==1}}' src='{{util.HTTP}}mobile/small/image/fx/fx_dybq.png'></image>
+      <image class='dy' wx:elif='{{item.is_distribution==1}}' src='{{util.HTTP}}mobile/small/image/fx/fx_dybq.png'></image>
+      <view class='sale-num'>销量 {{item.sales_volume}}</view>
+      <view class='rank' hidden='{{!rank}}'>
+        <image src='{{index>2?util.HTTP+"mobile/small/image/pmm.png":util.HTTP+"mobile/small/image/pm.png"}}'></image>
+        <view class='top'>TOP</view>
+        <view class='rank-num'>{{index+1}}</view>
+      </view>
+    </view>
+    <view class='good-detail'>
+      <view class='good-name'>{{item.goods_name}}</view>
+      <view class='goods-info' wx:if='{{item.is_group == 1}}'>
+        <view class='good-tips-con'>
+          <text class='good-tips cur' wx:if='{{item.shop==0&&util.isShops==0}}' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>自营</text>
+          <view class='label'>
+            <view wx:for='{{item.relevaTagList}}' wx:for-item='label' wx:key='{{index}}' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}' data-id='{{label.tag_bind_goods_id}}' hover-class='hover-class' hover-stay-time='400' data-goods_id='{{item.goods_id}}' catchtap='onLabel'>{{label.name}}</view>
+          </view>
+        </view>
+        <view class='good-tips-list'>
+          <view class='good-group-info'>
+            <view class='bg' style='{{util.diy_color("",diy_color.z_color,"")}}'>{{item.group_num}}人拼</view>
+            <view class='price-con' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+              <text class='unit'>￥</text>
+              <text class='integer'>{{util.integer(item.group_price)}}</text>
+              <text class='decimals'>.{{util.decimals(item.group_price)}}</text>
+            </view>
+          </view>
+          <view class='good-group-one'>
+            <text>￥{{item.shop_price}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class='goods-info' wx:elif='{{item.is_bargain == 1}}'>
+        <view class='good-tips-con'>
+          <text class='good-tips cur' wx:if='{{item.shop==0&&util.isShops==0}}' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>自营</text>
+          <!-- <text class='tag' wx:for='{{item.relevaTagList}}' wx:for-item="tag">{{tag.name}}</text> -->
+          <view class='label'>
+            <view wx:for='{{item.relevaTagList}}' wx:for-item='label' wx:key='{{index}}' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}' data-id='{{label.tag_bind_goods_id}}' hover-class='hover-class' hover-stay-time='400' data-goods_id='{{item.goods_id}}' catchtap='onLabel'>{{label.name}}</view>
+          </view>
+        </view>
+        <view class='good-tips-list'>
+          <view class='cur base-price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+            <text class='base-title'>底价￥</text>
+            <text class='integer'>{{util.integer(item.cut_price)}}</text>
+            <text class='decimals'>.{{util.decimals(item.cut_price)}}</text>
+          </view>
+          <view class='good-group-one'>
+            <text>原价</text>
+            <text>￥{{item.shop_price}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class='goods-info' wx:elif="{{item.is_limit == 1}}">
+        <view class='good-tips-con'>
+          <text class='good-tips' wx:if='{{item.shop==0&&util.isShops==0}}' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>自营</text>
+          <view class='label'>
+            <view wx:for='{{item.relevaTagList}}' wx:for-item='label' wx:key='{{index}}' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}' data-id='{{label.tag_bind_goods_id}}' hover-class='hover-class' hover-stay-time='400' data-goods_id='{{item.goods_id}}' catchtap='onLabel'>{{label.name}}</view>
+          </view>
+        </view>
+        <view class='price' style='{{util.diy_color(diy_color.z_color,"","")}}{{!item.store_name?"top:190rpx;":""}}margin-top:0;'>
+          <text class='unit'>￥</text>
+          <text class='integer'>{{util.integer(item.time_limit_price)}}</text>
+          <text class='decimals'>.{{util.decimals(item.time_limit_price)}}</text>
+        </view>
+        <view class='good-tips-list'>
+          <view class='good-group-one'>
+            <text>￥{{item.shop_price}}</text>
+          </view>
+        </view>
+      </view>
+      <view class='goods-info' wx:else>
+        <view class='good-tips-con'>
+          <text class='good-tips' wx:if='{{item.shop==0&&util.isShops==0}}' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>自营</text>
+          <!-- <text class='tag' wx:for='{{item.relevaTagList}}' wx:for-item="tag">{{tag.name}}</text> -->
+          <view class='label'>
+            <view wx:for='{{item.relevaTagList}}' wx:for-item='label' wx:key='{{index}}' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}' data-id='{{label.tag_bind_goods_id}}' hover-class='hover-class' hover-stay-time='400' data-goods_id='{{item.goods_id}}' catchtap='onLabel'>{{label.name}}</view>
+          </view>
+        </view>
+        <view class='price' style="{{!item.store_name?'top:190rpx':''}}" style='{{util.diy_color(diy_color.z_color,"","")}}'>
+          <text class='unit'>￥</text>
+          <text class='integer'>{{util.integer(item.shop_price)}}</text>
+          <text class='decimals'>.{{util.decimals(item.shop_price)}}</text>
+        </view>
+      </view>
+      <!-- <view class='shop' wx:if='{{util.isShops==0&&configSwitch.version_info.one_more==1&&(item.is_group != 1 && item.is_bargain != 1 && item.is_limit != 1 && item.store_name!=""&& item.store_name)}}' catchtap='onShop' data-id='{{item.store_id}}'>{{item.store_name}}
+        <text class='go-shop'>进店></text>
+      </view> -->
+      <view class='add-cart font_family icon-pt' style='{{util.diy_color(diy_color.z_color,"","")}}' wx:if="{{item.is_group==1}}"></view>
+      <view class='add-cart font_family icon-kj' style='{{util.diy_color(diy_color.z_color,"","")}}' wx:elif="{{item.is_bargain==1}}"></view>
+      <view class='add-cart font_family icon-xs' style='{{util.diy_color(diy_color.z_color,"","")}}' wx:elif="{{item.is_limit==1}}"></view>
+      <view class='add-cart font_family icon-guc' style='{{util.diy_color(diy_color.z_color,"","")}}' data-item='{{item}}' wx:else catchtap='addCart'></view>
+    </view>
+  </view>
+</view>
+
+<!-- <buy catchtap="none" id="buy_board" bind:closeBuy="closeBuy" type="{{buy_type}}" info="{{info}}" discount="{{discount}}" group_buy="{{false}}" /> -->

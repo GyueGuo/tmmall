@@ -1,0 +1,23 @@
+<!--my/bank_list/bank_list.wxml-->
+<wxs module="util" src="../../utils/util.wxs" />
+<view class="list">
+  <view class="item" wx:for="{{list}}" wx:key="index" data-item="{{item}}" bindtap="select" hover-class='hover-class' hover-stay-time='400'>
+    <view class="list_info">
+      <view class="bank_title">{{item.card_remark}}</view>
+      <view class="bank_number">**** **** **** {{item.card_number_enc}}</view>
+    </view>
+    <image class="list_bg" src="{{util.HTTP}}mobile/small/image/bank/1.png"></image>
+  </view>
+  <view class='empty-view' hidden='{{list.length != 0 || loading}}'>
+    <view>
+      <image src='{{util.HTTP}}mobile/small/image/bank/bank_bg.png'></image>
+      <view>暂无银行卡</view>
+    </view>
+  </view>
+</view>
+<view class="submit">
+  <button bindtap="addCard" hover-class='hover-class' hover-stay-time='400' style='{{util.diy_color("",diy_color.z_color,"")}}'>
+    <image src="{{util.HTTP}}mobile/small/image/bank/icon.png"></image>
+    <view>添加银行卡</view>
+  </button>
+</view>

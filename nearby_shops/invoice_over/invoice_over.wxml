@@ -1,0 +1,7 @@
+<!--nearby_shops/invoice_over/invoice_over.wxml-->
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='warp'>
+  <image src='{{util.HTTP}}mobile/small/image/invoice_icon1.png'></image>
+  <view class='p'>发票开具中，请注意查收系统消息</view>
+  <view class='btn' style='{{util.diy_color("",diy_color.z_color,"")}}' hover-class='hover-class' hover-stay-time='400' bindtap='back'>返回我的</view>
+</view>

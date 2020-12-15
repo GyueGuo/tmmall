@@ -1,0 +1,209 @@
+.swiper {
+  width: 100%;
+  height: 360rpx;
+  background: white;
+}
+
+.swiper-item {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: scaleX(0.9) scaleY(0.8);
+  transition: all 0.3s ease;
+}
+
+.swiper-item.scale {
+  transform: scaleX(0.98) scaleY(0.9);
+  transition: all 0.3s ease;
+}
+
+.swiper-item > image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.swiper-item > view {
+  position: relative;
+  z-index: 2;
+  margin-left: 40rpx;
+  color: white;
+}
+
+.swiper-item .charge-money {
+  padding-top: 138rpx;
+}
+
+.swiper-item .exact-money {
+  font-size: 64rpx;
+  line-height: 64rpx;
+}
+
+.swiper-item .exact-unit {
+  font-size: 30rpx;
+}
+
+.swiper-item .charge-tips {
+  display: inline-block;
+  font-size: 26rpx;
+  line-height: 55rpx;
+  padding: 0 40rpx 0 20rpx;
+  margin-top: 36rpx;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.scroll {
+  width: 100%;
+  height: 94rpx;
+  background: white;
+  white-space: nowrap;
+}
+
+.scroll .scroll-item {
+  display: inline-block;
+  width: 20%;
+  text-align: center;
+  color: #8d8d8d;
+}
+
+.scroll .scroll-item text {
+  font-size: 26rpx;
+  line-height: 90rpx;
+  display: inline-block;
+  position: relative;
+  border-bottom: 4rpx solid #fff;
+}
+
+.scroll .select {
+  color: black;
+}
+
+/* .scroll .select::after {
+  width: 100%;
+  height: 4rpx;
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: #f20320;
+} */
+
+.pay-way {
+  padding: 0 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  height: 88rpx;
+  margin-top: 18rpx;
+}
+
+.pay-way .pay-left {
+  font-size: 32rpx;
+}
+
+.pay-way .pay-right {
+  display: flex;
+  align-items: center;
+}
+
+.pay-way .pay-right text {
+  font-size: 26rpx;
+  color: #8d8d8d;
+}
+
+.pay-way .pay-right image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-left: 10rpx;
+}
+
+.wx-pay {
+  height: 116rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+}
+
+.wx-pay > image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+
+.wx-pay > view {
+  display: flex;
+  align-items: center;
+}
+
+.wx-pay > view view {
+  font-size: 30rpx;
+  margin-left: 36rpx;
+}
+
+.wx-pay > view image {
+  width: 48rpx;
+  height: 48rpx;
+  margin-left: 36rpx;
+}
+.wx-pay > .imager {
+  font-size: 44rpx;
+  margin-right:36rpx;
+}
+
+.overpayment {
+  width: 100%;
+  height: 100rpx;
+  text-align: center;
+  font-size: 34rpx;
+  line-height: 100rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  color: white;
+}
+
+.charge-info {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.charge-info > view {
+  position: relative;
+  width: 624rpx;
+  height: 780rpx;
+  border-radius: 10rpx;
+  background: white;
+}
+
+.charge-info .title {
+  font-size: 36rpx;
+  margin-top: 44rpx;
+  font-weight: bold;
+  text-align: center;
+}
+
+.charge-info .content {
+  font-size: 28rpx;
+  width: 490rpx;
+  margin: 0 auto;
+  margin-top: 50rpx;
+}
+
+.charge-info  > view .close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 80rpx;
+  height: 80rpx;
+}

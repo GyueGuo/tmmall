@@ -1,0 +1,48 @@
+.trans {
+  background: rgb(0, 0, 0);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 14;
+}
+
+.rise {
+  bottom: 0 !important;
+  transition: all 0.5s ease;
+}
+
+.board {
+  position: fixed;
+  left: 0;
+  bottom: -100%;
+  z-index: 60;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s ease;
+}
+
+.board > view {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: #f6f6f6;
+}
+
+.board > view > .btn {
+  width: 100%;
+  font-size: 28rpx;
+  line-height: 100rpx;
+  text-align: center;
+  background: white;
+}
+
+.man {
+  margin-bottom: 2rpx;
+}
+
+.woman {
+  margin-bottom: 10rpx;
+}

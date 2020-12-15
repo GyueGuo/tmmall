@@ -1,0 +1,116 @@
+.trans {
+  background: rgb(0, 0, 0);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 14;
+}
+
+.rise {
+  bottom: 0 !important;
+  transition: all 0.5s ease;
+}
+
+.board {
+  position: fixed;
+  left: 0;
+  bottom: -100%;
+  width: 100%;
+  height: 100%;
+  transition: all 0.5s ease;
+  z-index: 20;
+}
+
+.board > view {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.head {
+  width: 100%;
+  background: white;
+  position: relative;
+}
+
+.head view {
+  text-align: center;
+  font-size: 30rpx;
+  line-height: 100rpx;
+  color: #676767;
+}
+
+.head image {
+  width: 28rpx;
+  height: 28rpx;
+  position: absolute;
+  right: 24rpx;
+  top: 50%;
+  margin-top: -24rpx;
+  padding: 10rpx;
+}
+
+.address-head {
+  width: 100%;
+  height: 84rpx;
+  background: white;
+  border-top: 2rpx solid #f6f6f6;
+  border-bottom: 2rpx solid #f6f6f6;
+  display: flex;
+  align-items: center;
+}
+
+.address-head > view {
+  width: 140rpx;
+  padding: 0 10rpx;
+  font-size: 30rpx;
+  line-height: 84rpx;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-bottom: 2rpx solid #fff;
+}
+
+.address-list {
+  width: 100%;
+  height: 800rpx;
+  background: white;
+  overflow: auto;
+}
+
+.address {
+  width: 100%;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+}
+
+.address > view {
+  font-size: 28rpx;
+  margin-left: 24rpx;
+}
+
+.address > image {
+  width: 28rpx;
+  height: 20rpx;
+  margin-left: 20rpx;
+}
+
+.cur {
+  color: #f23020;
+}
+
+/* .address-head .cur::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2rpx;
+  background: #f23020;
+} */

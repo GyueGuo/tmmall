@@ -1,0 +1,63 @@
+<!--my/fx_earnings/fx_earnings.wxml-->
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='warp'>
+  <view class='sy-exhibition' style='background: linear-gradient(to right, {{diy_color.z_color}}, {{diy_color.f_color_6}});'>
+    <view class='con'>
+      <view class='sy-row'>
+        <view class='sy-title'>当前收益（元）</view>
+        <image class='sy-explain' src='{{util.HTTP}}mobile/small/image/fx/sy-sm.png' hover-class='hover-class' hover-stay-time='400' bindtap='goExplain'></image>
+      </view>
+      <view class='sy-price'>{{info.close_pro}}</view>
+      <view class='sy-balance'>
+        <view class='sy-title'>账户余额：￥{{info.usable_money}}</view>
+        <view class='sy-btn' hover-class='hover-class' hover-stay-time='400' bindtap='fx_withdrawal'>立即提现</view>
+      </view>
+    </view>
+    <image src='{{util.HTTP}}mobile/small/image/fx/sy-bsf.png'></image>
+  </view>
+
+  <view class='sy-con sy-ljsy'>
+    <view class='sy-title'>
+      <image class='icon' src='{{util.HTTP}}mobile/small/image/fx/sy-lj.png'></image>
+      <text>累计收益</text>
+    </view>
+    <view class='sy-details'>
+      <view class='line' data-type='0' data-title='total' hover-class='hover-class' hover-stay-time='400' bindtap='fx_earnings_list'>
+        <view class='price'>￥{{info.total_close_brokerage==null?'0.00':info.total_close_brokerage}}</view>
+        <view class='name'>已结算</view>
+      </view>
+      <view class='line' data-type='1' data-title='total' hover-class='hover-class' hover-stay-time='400' bindtap='fx_earnings_list'>
+        <view class='price'>￥{{info.wait_pro==null?'0.00':info.wait_pro}}</view>
+        <view class='name'>未结算</view>
+      </view>
+    </view>
+  </view>
+
+  <view class='sy-con sy-jrsy'>
+    <view class='sy-title'>
+      <image class='icon' src='{{util.HTTP}}mobile/small/image/fx/sy-jr.png'></image>
+      <text>今日收益</text>
+    </view>
+    <view class='sy-details'>
+      <view class='line' data-type='0' data-title='today' hover-class='hover-class' hover-stay-time='400' bindtap='fx_earnings_list'>
+        <view class='price'>￥{{info.today_close_pro==null?'0.00':info.today_close_pro}}</view>
+        <view class='name'>已结算</view>
+      </view>
+      <view class='line' data-type='1' data-title='today' hover-class='hover-class' hover-stay-time='400' bindtap='fx_earnings_list'>
+        <view class='price'>￥{{info.today_wait_pro==null?'0.00':info.today_wait_pro}}</view>
+        <view class='name'>未结算</view>
+      </view>
+    </view>
+  </view>
+
+  <view class='sy-con sy-qtsy'>
+    <view class='sy-title'>
+      <image class='icon' src='{{util.HTTP}}mobile/small/image/fx/sy-qt.png'></image>
+      <text>最近七天收益</text>
+    </view>
+    <view class='sy-details'>
+      <ff-canvas id="area" canvas-id="area" opts="{{ opts }}"></ff-canvas>
+    </view>
+  </view>
+
+</view>

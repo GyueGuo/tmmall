@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "下单成功",
+  "usingComponents": {
+    "cart": "/components/cart/cart",
+    "good_list": "/components/good_list/good_list",
+    "buy": "/components/buy/buy"
+  }
+}

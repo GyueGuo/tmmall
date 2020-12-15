@@ -1,0 +1,15 @@
+<!--nearby_shops/shop_intro/shop_code.wxml-->
+<view class='warp' hidden='{{!isShow}}' animation="{{animation}}" hover-class='hover-class' hover-stay-time='400' bindtap='_close'>
+  <!-- <view class='mu'></view> -->
+  <view class='warp-con'>
+    <view class='title'>{{info.store_name}}</view>
+    <view class='code-con'>
+      <image class='code' src='{{info.applet_code}}'></image>
+      <view class='shop-logo'>
+        <image class='logo' src='{{info.logo}}'></image>
+      </view>
+      
+    </view>
+    <view class='tip'>邀请好友来扫一扫 分享店铺给TA</view>
+  </view>
+</view>

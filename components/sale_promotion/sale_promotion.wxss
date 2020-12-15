@@ -1,0 +1,73 @@
+.trans {
+  background: rgb(0, 0, 0);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 13;
+}
+
+.board {
+  background: rgba(0, 0, 0, 0);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  z-index: 14;
+}
+
+.cur {
+  color: #f23030;
+}
+
+.sale-promotion {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-radius: 50rpx 50rpx 0 0;
+  z-index: 3;
+}
+
+.sale-promotion .head {
+  font-size: 34rpx;
+  font-weight: bold;
+  line-height: 120rpx;
+  text-align: center;
+}
+
+.sale-promotion .sale-info {
+  overflow: hidden;
+  height: 700rpx;
+}
+
+.sale-promotion .sale-info .left {
+  width: 66rpx;
+  text-align: center;
+  font-size: 26rpx;
+  line-height: 30rpx;
+  border: 2rpx solid #f23030;
+  color: #f23030;
+  float: left;
+  margin: 0 26rpx;
+  border-radius: 6rpx;
+}
+
+.sale-promotion .sale-info .right {
+  float: left;
+  width: 570rpx;
+  font-size: 28rpx;
+}
+
+.finish {
+  width: 100%;
+  height: 100rpx;
+  font-size: 32rpx;
+  line-height: 100rpx;
+  background: #f23030;
+  color: white;
+  text-align: center;
+}

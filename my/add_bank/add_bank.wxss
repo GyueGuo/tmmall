@@ -1,0 +1,38 @@
+/* my/add_bank/add_bank.wxss */
+.item{
+  display: flex;
+  align-items: center;
+  height: 92rpx;
+  font-size: 28rpx;
+  padding: 0 35rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+  color: #333;
+  border-top: 1px solid #f6f6f6;
+}
+.item .item-title{
+  flex-shrink: 0;
+  width: 180rpx;
+}
+.item input{
+  flex: 1;
+}
+
+.submit{
+  width: 100%;
+  height: 114rpx;
+  padding: 0 25rpx;
+  box-sizing: border-box;
+  margin-top: 60rpx;
+  background-color: #f6f6f6;
+}
+.submit button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 88rpx;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  color: #fff;
+}

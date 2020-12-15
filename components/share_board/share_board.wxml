@@ -1,0 +1,10 @@
+<!--背景   -->
+<view class='trans' hidden='{{!isShow}}' style='opacity:{{opacity}}'></view>
+
+<view class="board {{isShow?'rise':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'>
+  <view>
+    <button open-type='share' class='man btn'>{{info[0]}}</button>
+    <view class='woman btn' catchtap='onShareCircle' hidden='{{info[1]==undefined}}'>分享到{{info[1]}}</view>
+    <view class='cancel btn'>取消</view>
+  </view>
+</view>

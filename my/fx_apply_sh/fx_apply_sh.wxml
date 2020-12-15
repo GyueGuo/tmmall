@@ -1,0 +1,15 @@
+<!--my/fx_apply_sh/fx_apply_sh.wxml-->
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='warp'>
+  <view class='warpbg' style='background: linear-gradient(to right, {{diy_color.z_color}}, {{diy_color.f_color_6}});'>
+    <image class='bg-1' src='{{util.HTTP}}mobile/small/image/fx/dysh-shz.png'></image>
+    <image class='bg-2' src='{{util.HTTP}}mobile/small/image/fx/dysh-q.png'></image>
+    <image class='bg-3' src='{{util.HTTP}}mobile/small/image/fx/dysh-bj.png'></image>
+  </view>
+  <view class='warp_con'>
+    <view class='title'>感谢您的代言申请</view>
+    <view class='tip'>正在积极评审中，请及时关注</view>
+    <view class='tip'>系统消息查看评审结果</view>
+  </view>
+  <text class='goHome' hover-class='hover-class' hover-stay-time='400' bindtap='goHome' style='{{util.diy_color("",diy_color.z_color,"")}}'>再逛逛</text>
+</view>

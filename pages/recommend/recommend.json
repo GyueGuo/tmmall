@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "好物推荐",
+  "usingComponents": {
+    "buy": "/components/buy/buy"
+  }
+}

@@ -1,0 +1,138 @@
+.history-list {
+  margin-top: 15rpx;
+}
+
+.history-head {
+  font-size: 28rpx;
+  line-height: 72rpx;
+  padding-left: 16rpx;
+  color: #8d8d8d;
+  border-bottom: 2rpx solid #f6f6f6;
+  background: white;
+}
+
+.history-item {
+  overflow: hidden;
+  margin-bottom: 10rpx;
+  background: white;
+}
+
+.history-item > image {
+  width: 250rpx;
+  height: 250rpx;
+  float: left;
+}
+
+.history-item > view {
+  width: calc(100% - 298rpx);
+  float: left;
+  padding: 24rpx;
+}
+
+.history-item .good-name {
+  height: 72rpx;
+  line-height: 36rpx;
+  font-size: 28rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.good-list-one .good-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.good-list-one .good-name {
+  position: static;
+  height: 72rpx;
+  margin: 0;
+}
+
+.good-list .good-group-info .bg {
+  margin-left: 0;
+}
+
+.good-list .price {
+  margin-left: 0;
+}
+
+.good-list-one .good-tips-list {
+  position: static;
+}
+
+.good-list-one .base-price {
+  margin-top: 0;
+}
+
+.good-list .good-group-one {
+  margin-left: 0;
+  margin-top: 10rpx;
+}
+
+.good-list-one .price {
+  position: static;
+}
+
+.good-list .base-price .base-title {
+  margin-left: 0;
+}
+
+.good-list .good-group-info {
+  display: flex;
+  align-items: center;
+}
+
+.history-item .price {
+  line-height: normal;
+  margin-top: 40rpx;
+}
+
+.history-item .add-cart {
+  overflow: hidden;
+}
+
+.history-item .add-cart image {
+  width: 56rpx;
+  height: 56rpx;
+  float: right;
+}
+
+.depreciate-info {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.invalid_type {
+  background-color: #f6f6f6;
+}
+.invalid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30rpx;
+  padding: 10rpx 18rpx;
+  border-radius: 30rpx;
+  background-color: #e3e3e3;
+}
+
+.invalid .icon {
+  width: 23rpx;
+  height: 23rpx;
+}
+
+.invalid text {
+  margin-left: 10rpx;
+  font-size: 22rpx;
+  color: #999;
+}
+
+
+.invalid_type .good-name {
+  color: #999fa5;
+}

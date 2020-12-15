@@ -1,0 +1,31 @@
+<!--my/fx_cwdy/fx_cwdy.wxml-->
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='warp' wx:if='{{info!=null}}'>
+  <view class='rule' wx:for='{{info}}'>
+    <view class='title'>
+      <view class='icon' style='{{util.diy_color("",diy_color.z_color,"")}}'></view>
+      <view>{{item.title}}</view>
+    </view>
+    <view class='rule_tip' wx:for='{{item.rule}}' wx:for-index="idx" wx:for-item="itemName">
+      <view class='left'>
+        <view class='tit' wx:if='{{itemName.keyword=="apply"}}'>申请代言</view>
+        <view class='tit' wx:elif='{{itemName.keyword=="special_area"}}'>购买指定商品</view>
+        <view class='tit' wx:else='{{itemName.keyword=="full"}}'>商城购买商品</view>
+        <view class='text' wx:if='{{itemName.keyword=="apply"}}'>请点击<text style='{{util.diy_color(diy_color.z_color,"","")}}'>“申请代言”</text>按钮，审核通过后即可代言</view>
+        <view class='text' wx:elif='{{itemName.keyword=="special_area"}}'>前往<text style='{{util.diy_color(diy_color.z_color,"","")}}'>代言专区</text>购买指定商品，下单后即可成为代言人，不可退货，不可取消</view>
+        <view class='text' wx:else='{{itemName.keyword=="full"}}'>在商城任意下单<text style='{{util.diy_color(diy_color.z_color,"","")}}'>满{{itemName.condition}}元</text>即可成为代言人</view>
+      </view>
+      <view class='right'>
+        <view hover-class='hover-class' hover-stay-time='400' bindtap='goDY' wx:if='{{itemName.keyword=="apply"}}' style='background:linear-gradient(to right, {{diy_color.z_color}}, {{diy_color.f_color_6}});box-shadow:0 0 20rpx 0 {{diy_color.z_color}};'>申请代言</view>
+        <view hover-class='hover-class' hover-stay-time='400' bindtap='goDyzq' wx:elif='{{itemName.keyword=="special_area"}}' style='background:linear-gradient(to right, {{diy_color.z_color}}, {{diy_color.f_color_6}});box-shadow:0 0 20rpx 0 {{diy_color.z_color}};'>代言专区</view>
+        <view hover-class='hover-class' hover-stay-time='400' bindtap='goHome' wx:else='{{itemName.keyword=="full"}}' style='background:linear-gradient(to right, {{diy_color.z_color}}, {{diy_color.f_color_6}});box-shadow:0 0 20rpx 0 {{diy_color.z_color}};'>去逛逛</view>
+      </view>
+    </view>
+  </view>
+  <view class='apply' hidden='{{info.length!=0}}'>
+    <image class='sqdy-icon' wx:if='{{distribution.cur==null}}' src='{{util.HTTP}}mobile/small/image/fx/fx-sqdy-icon.png'></image>
+    <image class='sqdy-icon' wx:elif='{{distribution.cur!=null}}' src='{{util.HTTP}}mobile/small/image/fx/fx-sqdy-cg.png'></image>
+    <text class='tip' wx:if='{{distribution.cur!=null}}'>恭喜您,已成为代言人</text>
+    <view class='btn' style='{{util.diy_color("",diy_color.z_color,"")}}' hover-class='hover-class' hover-stay-time='400' bindtap='{{distribution.cur==null?"vipTurnDist":"goDyzq"}}'>{{distribution.cur==null?"申请成为代言人":"去代言"}}</view>
+  </view>
+</view>

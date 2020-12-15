@@ -1,0 +1,46 @@
+.order-status {
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 2rpx solid #f5f5f5;
+}
+
+.order-status image {
+  width: 40rpx;
+  height: 40rpx;
+  /* margin-left: 24rpx; */
+}
+
+.order-status  view {
+  font-size: 28rpx;
+  margin-left: 16rpx;
+}
+
+.no-order {
+  margin-top: 170rpx;
+  height: calc(100vh - 170rpx);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-order > view {
+  width: 100%;
+}
+
+.no-order image {
+  width: 100%;
+  height: 260rpx;
+}
+
+.no-order .no-order-head {
+  font-size: 32rpx;
+  text-align: center;
+}
+
+.no-order .no-order-content {
+  font-size: 26rpx;
+  color: #8d8d8d;
+  text-align: center;
+  margin-top: 10rpx;
+}

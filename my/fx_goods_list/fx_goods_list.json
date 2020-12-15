@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "代言专区",
+  "usingComponents": {
+    "filtrate": "/components/filtrate/filtrate",
+    "cart": "/components/cart/cart",
+    "go_top": "/components/go_top/go_top",
+    "load_more": "/components/load_more/load_more",
+    "good_list": "/components/good_list/good_list",
+    "buy": "/components/buy/buy"
+  }
+}

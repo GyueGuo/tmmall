@@ -1,0 +1,8 @@
+<!--components/banner_swiper/banner_swiper.wxml-->
+<view class='_warp'>
+  <view class='p-banner' bindtouchstart='popularity_start' bindtouchmove='popularity_move' bindtouchend='popularity_end' hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{popularity[popularity_index].goods_id}}'>
+    <view class='imgwarp' style='transform: translateX(-{{popularity_index*popularity_space}}rpx);'>
+      <image src='{{item.file}}' wx:for='{{popularity}}' style='left:{{popularity_space*index}}rpx;z-index:{{10-index}};transform: scale({{1-(index-popularity_index)*0.2}});{{index-popularity_index>2||index-popularity_index<0?"opacity:1":""}}'></image>
+    </view>
+  </view>
+</view>

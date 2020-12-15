@@ -1,0 +1,95 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='logistics-con' hidden='{{info.goods_name==undefined}}'>
+  <view class='good-info'>
+    <image src='{{info.file}}'></image>
+    <view>
+      <view class='good-name'>{{info.goods_name}}</view>
+      <view class='price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+        <block wx:if='{{info.single_price!=0}}'>
+          <text class='single_price'>{{info.single_price}}</text>
+          <text class='single_title'>积分</text>
+        </block>
+        <text class='single_title' wx:if='{{info.price!=0&&info.single_price!=0}}'>+</text>
+        <block wx:if='{{info.price!=0}}'>
+          <text class='unit'>￥</text>
+          <text class='integer'>{{util.integer(info.price)}}</text>
+          <text class='decimals'>.{{util.decimals(info.price)}}</text>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <view class='signed' style='background:linear-gradient(to right, {{diy_color.f_color_8}}, {{diy_color.z_color}});'>
+    <view class='signed-title' wx:if='{{state==0}}'>物流状态:在途中</view>
+    <view class='signed-title' wx:elif='{{state==1}}'>物流状态:已揽收</view>
+    <view class='signed-title' wx:elif='{{state==2}}'>物流状态:疑难</view>
+    <view class='signed-title' wx:elif='{{state==3}}'>物流状态:已签收</view>
+    <view class='signed-title' wx:elif='{{state==4}}'>物流状态:退签</view>
+    <view class='signed-title' wx:elif='{{state==5}}'>物流状态:同城派送中</view>
+    <view class='signed-title' wx:elif='{{state==6}}'>物流状态:退回</view>
+    <view class='signed-title' wx:elif='{{state==7}}'>物流状态:转单</view>
+    <view class='signed-title' wx:elif='{{state!=null}}'>查询无结果，请隔段时间再查</view>
+    <!-- <view class='signed-content'>签收时间为06-28</view> -->
+  </view>
+
+  <!-- <view class='logistics-star'>
+  <view class='logistics-company'>物流员姓名/配送公司</view>
+  <view class='star-level'>
+    <image src='/image/wd-wl-pj-tx.png'></image>
+    <view>
+      <image src='/image/wd-pj-x1.png'></image>
+      <image src='/image/wd-pj-x1.png'></image>
+      <image src='/image/wd-pj-x1.png'></image>
+      <image src='/image/wd-pj-x1.png'></image>
+      <image src='/image/wd-pj-x1.png'></image>
+    </view>
+  </view>
+  <view class='express-num'>韵达快递39212312315641123</view>
+</view> -->
+
+  <view class='logistics-star'>
+    <view class='address' wx:if='{{list.length != 0}}'>
+      <view class='icon'></view>
+      <view class='address-info' style='{{util.diy_color("","",diy_color.z_color)}}'>
+        <text style='{{util.diy_color("",diy_color.z_color,"")}}'>收</text>
+        <view class='detail'>
+          <view>[收货地址]{{address}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='logistics-con' wx:if='{{list.length != 0}}'>
+
+      <view class='logistics-info' wx:if='{{state==3}}'>
+        <view class='date-left'>
+          <view class='date-day'>{{list[0].date}}</view>
+          <view class='date-time'>{{list[0].timer}}</view>
+        </view>
+        <view class='address-info'>
+          <view class='circle' style='{{util.diy_color("",diy_color.z_color,"")}}'></view>
+          <view class='detail' style='height:60rpx;'>
+            <view>已签收</view>
+            <view>快件已被签收</view>
+          </view>
+        </view>
+      </view>
+      <view class='logistics-info' wx:for="{{list}}" wx:key='{{index}}'>
+        <view class='date-left'>
+          <view class='date-day'>{{item.date}}</view>
+          <view class='date-time'>{{item.timer}}</view>
+        </view>
+        <view class='address-info'>
+          <view class='circle' style='{{index==0&&state!=3?util.diy_color("",diy_color.z_color,""):""}}'></view>
+          <view class='detail'>
+            <view>{{item.context}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='empty-view' wx:elif='{{list.length == 0}}'>
+      <view>
+        <image src='{{util.HTTP}}{{"mobile/small/image/kby-zwwl.png"}}'></image>
+        <view>暂无物流信息</view>
+      </view>
+    </view>
+  </view>
+</view>

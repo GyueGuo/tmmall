@@ -1,0 +1,307 @@
+.integral-head {
+  width: 100%;
+  height: 210rpx;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-top: 1rpx;
+  background: white;
+}
+
+.integral-head > image {
+  width: 126rpx;
+  height: 126rpx;
+  border-radius: 50%;
+  margin-left: 20rpx;
+  background-color: #f6f6f6;
+}
+
+.integral-head .member-info {
+  margin-left: 30rpx;
+}
+.integral-head .member-info-login {
+  margin-left: 30rpx;
+  font-size: 34rpx;
+}
+
+.integral-head .member-info image {
+  width: 42rpx;
+  height: 36rpx;
+}
+
+.integral-head .member-info .head {
+  font-size: 32rpx;
+}
+
+.integral-head .member-info .content {
+  margin-top: 20rpx;
+}
+
+.integral-head .member-info .content text {
+  font-size: 30rpx;
+  margin-left: 14rpx;
+}
+
+.integral-head .sign-in {
+  position: absolute;
+  right: 20rpx;
+  top: 50%;
+  width: 170rpx;
+  border: 1rpx solid;
+  font-size: 30rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 30rpx;
+  margin-top: -30rpx;
+  color: white;
+}
+
+.integral-head .my-integral {
+  margin-left: 26rpx;
+}
+
+.integral-head .my-integral:first-child {
+  font-size: 34rpx;
+  line-height: 1;
+}
+
+.integral-head .my-integral .sign-day {
+  font-size: 30rpx;
+  line-height: 1;
+  margin-top: 26rpx;
+  color: #8d8d8d;
+}
+
+.integral-head .my-integral .integer-info {
+  display: flex;
+  align-items: center;
+}
+
+.integral-head .my-integral image {
+  width: 32rpx;
+  height: 32rpx;
+  margin-left: 10rpx;
+  padding: 6rpx;
+}
+
+.ad {
+  width: 100%;
+  height: 200rpx;
+  margin-top: 16rpx;
+}
+
+.content-list {
+  width: 100%;
+  height: 216rpx;
+  display: flex;
+  flex-warp: warp;
+  overflow: hidden;
+}
+
+.content-list > view {
+  flex: 1;
+  width: 25%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content-list > view > view image {
+  width: 112rpx;
+  height: 112rpx;
+}
+
+.content-list > view > view view {
+  font-size: 26rpx;
+  text-align: center;
+}
+
+.integer-list {
+  overflow: hidden;
+  padding: 22rpx;
+  background: white;
+}
+
+.integer-list .list-head {
+  width: 100%;
+  height: 58rpx;
+  display: flex;
+  overflow: hidden;
+  border-radius: 6rpx;
+  border: 2rpx solid transparent;
+}
+
+.integer-list .list-head > view {
+  flex: 1;
+  text-align: center;
+  font-size: 30rpx;
+  line-height: 58rpx;
+}
+
+.integer-list .list-head .bg {
+  color: white;
+}
+
+.tab-scroll {
+  height: 84rpx;
+  white-space: nowrap;
+  margin-top: 2rpx;
+  background: white;
+  box-shadow: 0px 4rpx 4rpx rgba(155, 155, 155, 0.1);
+}
+
+.tab-scroll .tab {
+  width: 25%;
+  display: inline-block;
+  text-align: center;
+}
+
+.tab-scroll .tab text {
+  font-size: 30rpx;
+  display: inline-block;
+  line-height: 78rpx;
+  box-sizing: border-box;
+  border-bottom: 6rpx solid transparent;
+}
+
+.exchange-list {
+  overflow: hidden;
+  margin-top: 16rpx;
+}
+
+.exchange-list > view {
+  position: relative;
+  width: 370rpx;
+  padding-bottom: 20rpx;
+  margin-bottom: 16rpx;
+  float: left;
+  background: white;
+}
+
+.exchange-list > view:nth-child(2n) {
+  margin-left: 10rpx;
+}
+
+.exchange-list > view .exchange-image {
+  width: 370rpx;
+  height: 370rpx;
+  display: block;
+}
+
+.exchange-list > view .exchange-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 28rpx;
+  margin-left: 14rpx;
+}
+
+.exchange-list .cur {
+  font-size: 32rpx;
+}
+
+.exchange-list .integral-price {
+  position: relative;
+  font-size: 24rpx;
+  margin-top: 20rpx;
+  margin-left: 14rpx;
+  display: flex;
+  line-height: 36rpx;
+  align-items: flex-end;
+  color: #989898;
+}
+.exchange-list .integral-price .price{
+  height: 100%;
+  line-height: 32rpx;
+}
+
+.exchange-list .exchange-img {
+  position: relative;
+  overflow: hidden;
+}
+
+.exchange-list .exchange-img .cut-money {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 22rpx;
+  padding: 0 4rpx;
+  color: #fff;
+  background-color: #28cd92;
+}
+
+.exchange-list .go-exchange {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 114rpx;
+  height: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.exchange-list .go-exchange image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 114rpx;
+  height: 50rpx;
+}
+
+.exchange-list .go-exchange text {
+  z-index: 2;
+  font-size: 26rpx;
+  color: white;
+}
+
+.integral-board {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.lack-integral {
+  width: 540rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+  background: white;
+}
+
+.lack-integral .title {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin: 45rpx 0;
+  text-align: center;
+}
+
+.lack-integral .content {
+  font-size: 28rpx;
+  text-align: center;
+  color: #989898;
+}
+
+.lack-integral .opertation {
+  margin-top: 45rpx;
+  overflow: hidden;
+  border-top: 2rpx solid #f6f6f6;
+}
+
+.lack-integral .opertation view {
+  width: 50%;
+  float: left;
+  font-size: 30rpx;
+  line-height: 86rpx;
+  text-align: center;
+}
+
+.lack-integral .opertation .cancel {
+  color: white;
+}

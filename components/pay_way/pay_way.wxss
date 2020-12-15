@@ -1,0 +1,110 @@
+.trans {
+  background: rgb(0, 0, 0);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 13;
+}
+
+.board {
+  background: rgba(0, 0, 0, 0);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  z-index: 14;
+}
+
+.board > view {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: white;
+}
+
+.pay-way {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.pay-way view {
+  font-size: 36rpx;
+  line-height: 36rpx;
+  font-weight: bold;
+  margin-left: 28rpx;
+  margin-top: 40rpx;
+}
+
+.pay-way image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 26rpx;
+  margin-top: 36rpx;
+  display: block;
+}
+
+.scrolly {
+  height: 700rpx;
+  white-space: nowrap;
+  margin-top: 40rpx;
+}
+
+.scrolly .item {
+  border-bottom: 1rpx solid #f6f6f6;
+  margin-top: 40rpx;
+}
+
+.scrollx {
+  width: 700rpx;
+  margin: 0 auto;
+  white-space: nowrap;
+}
+
+.scrolly .item:first-child {
+  margin-top: 0!important;
+}
+
+.good-image {
+  width: 134rpx;
+  height: 134rpx;
+  display: inline-block;
+  margin-left: 10rpx;
+}
+
+.good-image:first-child {
+  margin-left: 0;
+}
+
+.choose-way {
+  overflow: hidden;
+  margin-top: 20rpx;
+  margin-bottom: 40rpx;
+}
+
+.choose-way > view {
+  width: 166rpx;
+  font-size: 26rpx;
+  line-height: 60rpx;
+  float: left;
+  text-align: center;
+  margin-left: 26rpx;
+  border-radius: 8rpx;
+  border: 1px solid #e5e5e5;
+}
+
+.confirm {
+  width: 100%;
+  font-size: 34rpx;
+  line-height: 100rpx;
+  text-align: center;
+  color: white;
+}
+
+.select{
+  border: 1rpx solid transparent;
+}

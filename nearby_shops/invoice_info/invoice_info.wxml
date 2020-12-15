@@ -1,0 +1,61 @@
+<!--nearby_shops/invoice_info/invoice_info.wxml-->
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='warp'>
+  <view class='section'>
+    <view class='row'>
+      <view class='title'>发票类型</view>
+      <view class='btn-con'>
+        <text style='{{item.type==invoice_type?util.diy_color(diy_color.z_color,diy_color.f_color_2,diy_color.z_color):""}}' wx:for='{{invoice_con}}' data-type='{{item.type}}' wx:if='{{item.status=="1"}}' hover-class='hover-class' hover-stay-time='400' bindtap='invoiceClick'>{{item.name}}</text>
+      </view>
+    </view>
+    <view class='row'>
+      <view class='title'>发票抬头</view>
+      <view class='btn-con'>
+        <text style='{{item.type==rise?util.diy_color(diy_color.z_color,diy_color.f_color_2,diy_color.z_color):""}}' wx:for='{{rise_con}}' data-type='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='riseClick'>{{item.name}}</text>
+      </view>
+    </view>
+    <!-- 个人 -->
+    <block wx:if='{{rise==1}}'>
+      <view class='row'>
+        <input bindinput='rise_name' value='{{rise_name}}' placeholder='请填写抬头名称' placeholder-style='color:#b2b8bf'></input>
+      </view>
+    </block>
+    <!-- 企业 -->
+    <block wx:elif='{{rise==2}}'>
+      <view class='row'>
+        <input bindinput='company' value='{{company}}' placeholder='请填写企业名称' placeholder-style='color:#b2b8bf'></input>
+        <input bindinput='identification' value='{{identification}}' placeholder='请填写纳税人识别码' placeholder-style='color:#b2b8bf'></input>
+        <input bindinput='invoice_address' value='{{invoice_address}}' placeholder='请填写注册地址(选填)' placeholder-style='color:#b2b8bf'></input>
+        <input bindinput='invoice_phone' value='{{invoice_phone}}' type='number' maxlength='11' placeholder='请填写注册电话(选填)' placeholder-style='color:#b2b8bf'></input>
+        <input bindinput='bank' value='{{bank}}' placeholder='请填写开户银行(选填)' placeholder-style='color:#b2b8bf'></input>
+        <input bindinput='account' value='{{account}}' type='number' placeholder='请填写银行账号(选填)' placeholder-style='color:#b2b8bf'></input>
+      </view>
+    </block>
+
+    <!-- 个人 -->
+    <block wx:if='{{invoice_type==1||invoice_type==3}}'>
+      <view class='row'>
+        <view class='title'>收票人信息</view>
+        <view class='info'>
+          <view class='name'>收票人手机</view>
+          <input type='number' value='{{person_mobile}}' bindinput='spPhone' maxlength='11' placeholder='可通过手机号在发票服务平台查询' placeholder-style='color:#71767b'></input>
+        </view>
+        <view class='info'>
+          <view class='name'>收票人邮箱</view>
+          <input value='{{person_mail}}' bindinput='spEmail' placeholder='用来接收电子发票邮箱，可选填' placeholder-style='color:#71767b'></input>
+        </view>
+      </view>
+    </block>
+
+    <view class='row'>
+      <view class='title'>发票内容</view>
+      <view class='btn-con'>
+        <text style='{{item.type==detail_type?util.diy_color(diy_color.z_color,diy_color.f_color_2,diy_color.z_color):""}}' wx:for='{{detail_con}}' data-type='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='detailClick'>{{item.name}}</text>
+      </view>
+    </view>
+    <view class='tip'>发票内容将显示商品所属类别与价格信息</view>
+  </view>
+
+  <view class='submit' style='{{util.diy_color("",diy_color.z_color,"")}}' hover-class='hover-class' hover-stay-time='400' bindtap='submit'>确定</view>
+
+</view>

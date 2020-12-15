@@ -1,0 +1,161 @@
+@import "/utils/iconfont.wxss";
+
+.trans {
+  background: rgb(0, 0, 0);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 13;
+}
+
+.wrap {
+  background: rgba(0, 0, 0, 0);
+  position: fixed;
+  left: 0;
+  bottom: calc(-100vh + 100rpx);
+  z-index: 14;
+  width: 100%;
+  height: 100vh;
+}
+
+.shop-cart {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: white;
+}
+
+.shop-cart-head {
+  width: 100%;
+  height: 94rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.head-left, .head-right {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+}
+
+.head-right {
+  color: #6e7479;
+}
+.head-left .selectAll {
+  margin: 0 18rpx;
+  font-size: 40rpx;
+  color: #9ea3a9;
+}
+/* .head-left .selectAll {
+  width: 38rpx;
+  height: 38rpx;
+  margin-top: 30rpx;
+} */
+
+.head-left, .head-right view {
+  font-size: 28rpx;
+  line-height: 94rpx;
+}
+
+.head-right .delete {
+  font-size: 32rpx;
+  margin-right: 8rpx;
+}
+
+.head-right > view {
+  margin-right: 20rpx;
+}
+
+.cart-good-wrap {
+  height: 250rpx;
+  position: relative;
+}
+
+.cart-good-wrap .select {
+  width: 76rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+}
+
+.cart-good-wrap .select view {
+  font-size: 40rpx;
+  color: #9ea3a9;
+}
+
+.cart-good-wrap .cart-good {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 30rpx;
+  border-top: 1px solid #f0f0f0;
+}
+
+.cart-good .good-detail {
+  position: relative;
+  width: 500rpx;
+  margin-left: 24rpx;
+}
+
+.cart-good .cart-good-image {
+  width: 170rpx;
+  height: 170rpx;
+}
+
+.good-detail .good-name {
+  font-size: 28rpx;
+  height: 72rpx;
+  line-height: 36rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.good-detail .good-attr {
+  height: 32rpx;
+  font-size: 24rpx;
+  color: #767b80;
+}
+
+.cart-number {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-number > image {
+  width: 46rpx;
+  height: 46rpx;
+}
+
+.cart-number > view {
+  margin: 0 26rpx;
+  font-size: 24rpx;
+}
+
+.cur {
+  color: #f20230;
+}
+
+.unit {
+  font-size: 22rpx;
+}
+
+.integer {
+  font-size: 28rpx;
+}
+
+.decimals {
+  font-size: 22rpx;
+}

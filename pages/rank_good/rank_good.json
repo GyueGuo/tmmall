@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "优品推荐",
+  "usingComponents": {
+    "load_more": "/components/load_more/load_more",
+    "good_list":"/components/good_list/good_list",
+    "buy":"/components/buy/buy",
+    "cart": "/components/cart/cart",
+    "go_top": "/components/go_top/go_top"
+  }
+}

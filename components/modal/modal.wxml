@@ -1,0 +1,15 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='board' hidden='{{!is_show}}' hover-class='hover-class' hover-stay-time='400' bindtap='_onCancel' bindtouchmove='none'>
+  <view catchtap='none'>
+    <view class='title'>{{title}}</view>
+    <view class='content'>{{content}}</view>
+    <view class='tip'>{{tip}}</view>
+    <view class='operation'>
+      <form report-submit='true' bindsubmit='formId'>
+        <button class='submit view' hover-class='hover-class' hover-stay-time='400' formType="submit" bindtap='_onConfirm' style='{{util.diy_color("",diy_color.z_color,"")}}'>确定</button>
+        <!-- <view hover-class='hover-class' hover-stay-time='400' bindtap='_onConfirm' style="{{util.diy_color('',diy_color.z_color,'')}}">确定</view> -->
+        <view class='view' hover-class='hover-class' hover-stay-time='400' bindtap='_onCancel'>取消</view>
+      </form>
+    </view>
+  </view>
+</view>

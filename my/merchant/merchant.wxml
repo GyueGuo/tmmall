@@ -1,0 +1,58 @@
+<wxs module="util" src="../../utils/util.wxs" />
+
+<view class='info' wx:if="{{show}}">
+  <view>
+    <view>店铺名称</view>
+    <form bindsubmit="saveFormId1" report-submit="true">
+      <button class="button" formType="submit">
+        <input placeholder='请输入店铺名称' bindinput='nameInput' maxlength='30' bindblur='bindblur'></input>
+      </button>
+    </form>
+  </view>
+  <view hover-class='hover-class' hover-stay-time='400' bindtap='onCategory'>
+    <view>主营类目</view>
+    <view class='content'>{{category}}</view>
+    <image src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+  </view>
+
+  <view hover-class='hover-class' hover-stay-time='400' bindtap='onArea'>
+    <view>所在地区</view>
+    <view class='content' wx:if="{{area.length != 0}}" style='width:480rpx;overflow: hidden;white-space: nowrap; text-overflow:ellipsis;'>{{province.area_name}} {{city.area_name}} {{area.area_name}}</view>
+    <view class='content' wx:else>请选择省市区</view>
+    <image src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+  </view>
+  <view>
+    <view>详细地址</view>
+    <input placeholder='请输入详细地址' bindinput='addressInput' maxlength='50' bindblur='bindblur'></input>
+  </view>
+  <view>
+    <view>联系人电话</view>
+    <input value='{{phone}}' disabled></input>
+  </view>
+  <view wx:if="{{info.password_state==0}}">
+    <view>店铺密码</view>
+    <input placeholder='请输入6-20位店铺密码' bindinput='pswInput' maxlength='20'></input>
+  </view>
+</view>
+
+<!-- <view class='tips'>
+  <text>主营类目及类目细项</text>
+  <text class='cur' hover-class='hover-class' hover-stay-time='400' bindtap='onWeb' data-id='1'>查看详情</text>
+</view> -->
+<view class='form_button'>
+  <form bindsubmit="createShop" report-submit="true">
+    <button class="set-up" formType="submit" style='{{create?util.diy_color("",diy_color.z_color,""):""}}'>创建店铺</button>
+  </form>
+
+</view>
+<view class='tips'>
+  <text>创建店铺代表您同意</text>
+  <text class='cur' hover-class='hover-class' hover-stay-time='400' bindtap='onWeb' data-id='2' style='{{util.diy_color(diy_color.z_color,"","")}}'>《店铺入驻协议》</text>
+</view>
+
+<view class='service-phone' hover-class='hover-class' hover-stay-time='400' bindtap='callPhone'>
+  <view class='con'>客服电话：
+    <text style='{{util.diy_color(diy_color.z_color,"","")}}'>{{configSwitch.app_info.contact}}</text>
+  </view>
+  <image src='{{util.HTTP}}mobile/small/image/cjdp-lxkf.png'></image>
+</view>

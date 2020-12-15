@@ -1,0 +1,136 @@
+.tab {
+  width: 100%;
+  height: 90rpx;
+  margin: 2rpx 0;
+  overflow: hidden;
+  background: white;
+}
+
+.tab > view {
+  position: relative;
+  width: 50%;
+  font-size: 30rpx;
+  line-height: 88rpx;
+  border-bottom: 3rpx solid white;
+  text-align: center;
+  float: left;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  padding: 10rpx 0 30rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: white;
+}
+
+.search .search-bg {
+  width: 590rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  margin-left: 23rpx;
+  border-radius: 8rpx;
+  background-color: #f6f6f6;
+}
+
+.search .search-bg input {
+  width: 510rpx;
+  height: 25rpx;
+  font-size: 25rpx;
+}
+
+.search .search-bg view {
+  font-size: 32rpx;
+  color: #c9c9c9;
+}
+
+.search .clear {
+  padding: 20rpx;
+}
+
+.search .search-title {
+  flex: 1;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 64rpx;
+  padding: 0 4rpx;
+  color: #666;
+}
+
+.search-icon {
+  padding: 6rpx;
+  margin: 0 10rpx;
+}
+
+.tab > view:first-child::after {
+  position: absolute;
+  right: 0;
+  top: 25rpx;
+  content: '';
+  width: 4rpx;
+  height: 40rpx;
+  background: #f5f5f5;
+}
+
+.tab .cur {
+  border-bottom: 3rpx solid #f23030;
+}
+
+.hot-search {
+  padding: 30rpx;
+  background: white;
+}
+
+.hot-search .title {
+  font-size: 30rpx;
+}
+
+.hot-search .hot-list {
+  height: 84rpx;
+  white-space: nowrap;
+}
+
+.hot-title {
+  display: inline-block;
+  max-width: 90%;
+  margin-top: 14rpx;
+  line-height: 60rpx;
+  padding: 0 20rpx;
+  border-radius: 40rpx;
+  margin-right: 26rpx;
+  font-size: 27rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  background: #f5f5f5;
+}
+
+.hot-title:last-child {
+  margin-right: 0;
+}
+
+.history-search {
+  position: relative;
+  margin-top: 16rpx;
+  padding: 55rpx 28rpx;
+  background: white;
+}
+
+.history-search .history-title {
+  font-size: 30rpx;
+}
+
+.history-search .delete {
+  position: absolute;
+  right: 25rpx;
+  top: 50rpx;
+  padding: 5rpx;
+  font-size: 34rpx;
+  color: #777;
+}
+
+.history-search .history-list {
+  margin-top: 20rpx;
+}

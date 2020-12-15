@@ -1,0 +1,104 @@
+.coupon-list {
+  width: 100%;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+.coupon-list .item{
+  border-radius: 20rpx;
+  overflow: hidden;
+}
+.coupon-list .item .coupon-top{
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 163rpx;
+}
+.coupon-list .item .coupon-top .info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  padding: 20rpx 20rpx 30rpx 20rpx;
+  box-sizing: border-box;
+}
+.coupon-list .item .coupon-top .info .title{
+  font-size: 24rpx;
+  color: #ff2a00;
+}
+.coupon-list .item .coupon-top .info .coupon-price{
+  display: flex;
+  align-items: baseline;
+  color: #ff5a00;
+}
+.coupon-list .item .coupon-top .info .coupon-price .money{
+  font-size: 22rpx;
+  font-weight: bold;
+}
+.coupon-list .item .coupon-top .info .coupon-price .price{
+  font-size: 45rpx;
+  font-weight: bold;
+}
+.coupon-list .item .coupon-top .info .coupon-price .coupon-tip{
+  font-size: 24rpx;
+  margin-left: 14rpx;
+  transform: translateY(-6rpx);
+}
+.coupon-list .item .coupon-top .btn{}
+.coupon-list .item .coupon-top .explain{
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  font-size: 19rpx;
+  padding: 6rpx 10rpx 6rpx 16rpx;
+  border-radius: 50px 50px 0 50px;
+  color: #ff630e;
+  background: #ffd1b8;
+}
+.coupon-list .item .coupon-top .explain .text{
+  margin-right: 6rpx;
+}
+.coupon-list .item .coupon-top .explain .icon-wd-zhye-sm{
+  font-size: 24rpx;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  width: 100%;
+  height: 100rpx;
+  background: white;
+  box-shadow: 0 0 5rpx 2rpx rgba(150, 150, 150, 0.1);
+  overflow: hidden;
+}
+
+.footer > view {
+  position: relative;
+  float: left;
+  width: 50%;
+}
+
+.footer > view image {
+  display: block;
+  width: 96rpx;
+  height: 96rpx;
+  margin: 0 auto;
+}
+
+.footer > view view {
+  position: absolute;
+  left: 50%;
+  bottom: 6rpx;
+  font-size: 24rpx;
+  margin-left: -24rpx;
+  color: #858a8e;
+}
+
+.empty-view {
+  height: calc(100vh - 182rpx);
+}

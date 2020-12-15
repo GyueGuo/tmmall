@@ -1,0 +1,89 @@
+/* my/fx_cwdy/fx_cwdy.wxss */
+page {
+  background-color: #fff;
+}
+
+.warp {
+  padding: 10rpx 30rpx;
+}
+
+.warp .rule .title {
+  display: flex;
+  align-items: center;
+  padding-top: 35rpx;
+}
+
+.warp .rule .title>.icon {
+  width: 16rpx;
+  height: 16rpx;
+  background-color: #f23030;
+  border-radius: 50%;
+}
+
+.warp .rule .title>view {
+  font-size: 28rpx;
+  margin-left: 18rpx;
+}
+
+.warp .rule .rule_tip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 0 20rpx 0 rgba(122, 122, 122, 0.1);
+  padding: 36rpx;
+  border-radius: 10rpx;
+  margin-top: 35rpx;
+}
+
+.warp .rule .rule_tip .left {
+  width: 70%;
+}
+
+.warp .rule .rule_tip .left .tit {
+  font-size: 28rpx;
+  font-weight: bold;
+  line-height: 45rpx;
+}
+
+.warp .rule .rule_tip .left .text {
+  font-size: 26rpx;
+  color: #838383;
+}
+.warp .rule .rule_tip .left .text text{
+  color: #f34444;
+}
+
+.warp .rule .rule_tip .right>view {
+  width: 150rpx;
+  height: 58rpx;
+  text-align: center;
+  line-height: 58rpx;
+  font-size: 26rpx;
+  color: #fff;
+  border-radius: 50px 50px;
+  background: linear-gradient(to right, #f7807d, #f7434f);
+  box-shadow: 0 0 20rpx 0 #f7807d;
+}
+.apply{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.apply .sqdy-icon{
+  width: 100%;
+  height: 310rpx;
+}
+.apply .tip{
+  font-size: 28rpx;
+  text-align: center;
+}
+.apply .btn{
+  width: 90%;
+  height: 95rpx;
+  line-height: 95rpx;
+  font-size: 31rpx;
+  text-align: center;
+  color: #fff;
+  margin-top: 70rpx;
+  border-radius: 10rpx;
+}

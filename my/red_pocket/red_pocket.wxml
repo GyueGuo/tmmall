@@ -1,0 +1,36 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='tab-list'>
+  <view wx:for="{{tab_list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onTab' data-index='{{index}}'>
+    <text class="{{tab == index?'cur':''}}" style='{{tab == index?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{item}}</text> </view>
+</view>
+
+<view class='wrap'>
+  <view class='red-pocket' wx:for="{{list}}">
+    <view class='pocket-logo'>
+      <image src="{{util.HTTP}}{{tab == 0?'mobile/small/image/hb-wsy.png':'mobile/small/image/hb-gq.png'}}"></image>
+      <view class="{{tab==0?'':'gray'}}">{{item.title}}</view>
+    </view>
+    <image src='{{util.HTTP}}mobile/small/image/line.png'></image>
+    <view class='pocket-tip'>
+      <view class="pocket-envir {{tab==0?'':'gray'}}">全网通用</view>
+      <view class="pocket-time {{tab==0?'':'gray'}}">{{util.cutDate(item.start_time)}}-{{util.cutDate(item.end_time)}}</view>
+      <!-- <view class="pocket-time {{tab==0?'':'gray'}}" style='margin-top:0'>{{item.end_time}}</view> -->
+    </view>
+    <view class="price cur {{tab==0?'':'gray'}}" style='{{tab==0?util.diy_color(diy_color.z_color,"",""):""}}'>
+      <text class='unit'>￥</text>
+      <text class='integer'>{{util.integer(item.actual_price)}}</text>
+      <text class='decimals'>.{{util.decimals(item.actual_price)}}</text>
+    </view>
+    <image class='logo' wx:if="{{tab == 1}}" src='{{util.HTTP}}mobile/small/image/hb-ysy.png'></image>
+    <image class='logo' wx:elif="{{tab == 2}}" src='{{util.HTTP}}mobile/small/image/hb-ygq.png'></image>
+  </view>
+</view>
+
+
+<view class='no-order' hidden="{{list.length != 0 || loading}}">
+  <view>
+    <image src='{{util.HTTP}}mobile/small/image/kby-zwhb.png'></image>
+    <view class='no-order-head'>暂无记录</view>
+  </view>
+</view>
+<load_more show="{{loading}}" />

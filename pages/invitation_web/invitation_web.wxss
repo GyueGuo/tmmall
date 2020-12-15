@@ -1,0 +1,47 @@
+/* pages/invitation_web/invitation_web.wxss */
+.container{
+  width: 100%;
+  height: 100vh;
+}
+.wrap{
+  padding: 600rpx 70rpx 0;
+}
+.item{
+  display: flex;
+  align-items: center;
+  height: 100rpx;
+  border-radius: 15rpx;
+  box-sizing: border-box;
+  margin-bottom: 40rpx;
+  background-color: #fff;
+  overflow: hidden;
+}
+.item .input{
+  flex: 1;
+  height: 100%;
+  font-size: 26rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.item .codebtn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 240rpx;
+  height: 100%;
+  font-size: 26rpx;
+  color: #fff;
+  background: linear-gradient(to right,#ffd332,#ff9a18);
+}
+.submit-con{
+  margin-top: 60rpx;
+}
+.submit-con .submit{
+  width: 250rpx;
+  height: 250rpx;
+  background:transparent;
+}
+.button-hover{
+  background: transparent;
+}

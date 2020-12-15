@@ -1,0 +1,39 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<!--背景   -->
+<view class='trans' hidden='{{!isShow}}' style='opacity:{{opacity}}'></view>
+<view class='board' animation="{{animation_packet}}" hover-class='hover-class' hover-stay-time='400' bindtap='closepacket'>
+  <!--红包  -->
+  <view class='good-coupon' catchtap="none">
+    <view class='coupon-head'>红包</view>
+    <scroll-view scroll-y class='coupon-scroll'>
+      <view class='coupon' wx:for="{{packet}}" hover-class='hover-class' hover-stay-time='400' bindtap='choosepacket' data-index='{{index}}'>
+        <view style='{{util.diy_imgbox(231)}}height:100%'>
+          <image src='{{util.HTTP}}mobile/small/image/wd-yhq-wsy.png' style='{{util.diy_imgcolor(diy_color.z_color,231,230)}}height:100%'></image>
+        </view>
+        <view class='coupon-con'>
+          <view class='coupon-left'>
+            <view>
+              <view class='coupon-price'>
+                <text>￥</text>
+                <text>{{util.integer(item.actual_price)}}</text>
+              </view>
+              <!-- <view class='coupon-used'>满{{util.integer(item.full_subtraction_price)}}元可用</view> -->
+            </view>
+          </view>
+          <view class='coupon-right'>
+            <view class='coupon-title'>{{item.title}}</view>
+            <view class='coupon-tip'>
+              <view class='coupon-time'>{{util.cutDate(item.start_time)}}-{{util.cutDate(item.end_time)}}</view>
+            </view>
+          </view>
+        </view>
+        <view class='choose-logo' style='{{util.diy_imgbox(40)}}'>
+          <image src="{{util.HTTP}}{{item.select?'mobile/small/image/syt-gx1.png':'mobile/small/image/syt-gx2.png'}}" style='{{util.diy_imgcolor(diy_color.z_color,40,40)}}'></image>
+          <!-- <image class='choose-logo' src="{{util.HTTP}}{{item.select?'mobile/small/image/syt-gx1.png':'mobile/small/image/syt-gx2.png'}}" style='{{util.diy_imgcolor(z_color,40,40)}}'></image> -->
+        </view>
+      </view>
+    </scroll-view>
+    <view class='coupon-finish' hover-class='hover-class' hover-stay-time='400' bindtap='confirm' style='{{util.diy_color("",diy_color.z_color,"")}}'>确定</view>
+  </view>
+
+</view>

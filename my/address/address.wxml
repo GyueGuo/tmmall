@@ -1,0 +1,29 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<scroll-view scroll-y class='wrap' bindscrolltolower="loadmore" hidden='{{list.length == 0}}'>
+  <view class='address' wx:for="{{list}}" catchlongtap='delAddress' data-item='{{item}}' data-index='{{index}}'>
+    <view class='address-detail' catchtap='confirmAddress' data-item='{{item}}' >
+      <view class='info'>
+        <view class='name'>{{item.name}}</view>
+        <view class='tel'>{{util.phoneEnc(item.phone)}}</view>
+        <view class='default bg' hidden='{{item.is_default == 0}}' style='{{util.diy_color("",diy_color.z_color,"")}}'>默认</view>
+      </view>
+      <view class='detail'>{{item.province}} {{item.city}} {{item.area}} {{item.street}} {{item.address}}</view>
+    </view>
+    <image src='{{util.HTTP}}mobile/small/image/gwc-sl-bj.png' catchtap='changeAddress' data-id='{{item.member_address_id}}' ></image>
+  </view>
+</scroll-view>
+
+<view class='empty-view' hidden='{{list.length != 0 || loading}}'>
+  <view>
+    <image src='{{util.HTTP}}mobile/small/image/kby-zwdz.png'></image>
+    <view>暂无收货地址</view>
+  </view>
+</view>
+
+
+<view class='increase' hover-class='hover-class' hover-stay-time='400' bindtap='increaseAddress' >
+  <view style='{{util.diy_color("",diy_color.z_color,"")}}'>+新增收货地址</view>
+</view>
+
+
+<modal id='modal' title="提示" content="是否删除此收货地址?" bind:confirm="confirmDelete" bind:cancel="confirmCancel" />

@@ -1,0 +1,69 @@
+page{
+  background: transparent;
+}
+.wrap {
+  overflow: hidden;
+}
+
+.wrap > view {
+  height: 100vh;
+  float: left;
+}
+.wrap > view scroll-view{
+  height: 100vh;
+}
+.wrap .province-con{
+  background: #efefef;
+}
+.wrap .city-con{
+  width: 290rpx;
+  background: #f7f7f7;
+}
+.wrap .area-con{
+  background: white;
+}
+
+.province {
+  width: 174rpx;
+  padding: 30rpx 0;
+}
+
+.province view {
+  padding: 0 30rpx;
+  font-size: 26rpx;
+  position: relative;
+  border-left: 4rpx solid #efefef;
+  box-sizing: border-box;
+}
+
+.city {
+  width: 290rpx;
+  padding: 30rpx 0;
+}
+
+.city view {
+  padding: 0 30rpx;
+  font-size: 26rpx;
+  position: relative;
+}
+
+.area {
+  width: 286rpx;
+  padding: 30rpx 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.area view {
+  width: 180rpx;
+  padding-left: 30rpx;
+  font-size: 26rpx;
+  position: relative;
+}
+
+.area image {
+  width: 28rpx;
+  height: 20rpx;
+  margin-right: 30rpx;
+}

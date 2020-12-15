@@ -1,0 +1,2 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<image class='back-top' hover-class='hover-class' hover-stay-time='400' bindtap='onBackTop' src='{{util.HTTP}}mobile/small/image/home-dd-01/home-top-icon-01.png' animation="{{animation_top}}"></image>

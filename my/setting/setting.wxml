@@ -1,0 +1,42 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='head' hover-class='hover-class' hover-stay-time='400' bindtap='onPersonal' >
+  <image class='head-img' src='{{info.avatar}}'></image>
+  <view>
+    <view class='nickname'>{{info.nickname}}</view>
+    <view class='username'>用户名:{{info.username}}</view>
+  </view>
+  <image class='next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+</view>
+
+<view class='wrap'>
+  <view class='content'  hover-class='hover-class' hover-stay-time='400' bindtap='onAddress' >
+    <view>收货地址</view>
+    <image class='next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+  </view>
+  <view class='content' hover-class='hover-class' hover-stay-time='400' bindtap='onAccount' >
+    <view>账号安全</view>
+    <image class='next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+  </view>
+</view>
+
+<view class='wrap'>
+  <!-- <view class='content' hover-class='hover-class' hover-stay-time='400' bindtap='onMessage'>
+    <view>音效与通知</view>
+    <image class='next' src='/image/xq-gd.png'></image>
+  </view> -->
+  <view class='content' hover-class='hover-class' hover-stay-time='400' bindtap='onFeedback' >
+    <view>问题反馈</view>
+    <image class='next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+  </view>
+  <view class='content' hover-class='hover-class' hover-stay-time='400' bindtap='onUs' >
+    <view>关于我们</view>
+    <image class='next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+  </view>
+</view>
+
+<view class='exit'>
+  <view class='content' hover-class='hover-class' hover-stay-time='400' bindtap='showModal' >
+    <view>退出当前账户</view>
+  </view>
+</view>
+<modal title="提示" content="确定要退出登录吗?" id="modal" bind:confirm="exit" />

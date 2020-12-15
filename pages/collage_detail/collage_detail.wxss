@@ -1,0 +1,407 @@
+.collage-head {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 136rpx;
+  margin-top: 2rpx;
+  background: white;
+}
+
+.collage-head .head-img {
+  width: 86rpx;
+  height: 86rpx;
+  border-radius: 50%;
+  margin: 0 24rpx;
+  overflow: hidden;
+}
+
+.collage-head .head-img image {
+  width: 86rpx;
+  height: 86rpx;
+}
+
+.collage-head .collage-initiator {
+  font-size: 28rpx;
+  line-height: 1;
+}
+
+.collage-head .collage-num {
+  font-size: 26rpx;
+  margin-top: 12rpx;
+  line-height: 1;
+  color: #909090;
+}
+
+.collage-success {
+  width: 100%;
+  height: 180rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rpx;
+  background: white;
+}
+
+.collage-success .collage-logo {
+  display: flex;
+  align-items: center;
+}
+
+.collage-success .collage-logo .icon {
+  font-size: 50rpx;
+}
+
+.collage-success .collage-logo text {
+  font-size: 32rpx;
+  line-height: 50rpx;
+  margin-left: 24rpx;
+}
+
+.collage-success .look-collage {
+  font-size: 26rpx;
+  margin-top: 20rpx;
+}
+
+.collage-success .look-collage text {
+  margin-left: 18rpx;
+}
+
+.collage-detail {
+  width: 100%;
+  margin: 16rpx 0;
+  padding-bottom: 34rpx;
+  background: white;
+  border-bottom: 1px solid white;
+}
+
+.collage-detail .good-info {
+  padding: 28rpx 24rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.collage-detail .good-info .good-pic {
+  float: left;
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.collage-detail .good-info .good-pic image {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.collage-detail .good-info .order-status {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 116rpx;
+  height: 116rpx;
+}
+
+.collage-detail .good-info > view {
+  width: 450rpx;
+  margin-left: 20rpx;
+  float: left;
+}
+
+.collage-detail .good-info .good-name {
+  font-size: 28rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.collage-detail .good-info .origin-price {
+  font-size: 26rpx;
+  text-decoration: line-through;
+  margin-left: 20rpx;
+  color: #aaa;
+}
+
+.collage-detail .good-info .good-tips {
+  display: flex;
+  align-items: center;
+  margin-top: 60rpx;
+}
+
+.collage-detail .good-info .good-tips .unit, .decimals {
+  font-size: 26rpx;
+}
+
+.collage-detail .good-info .good-tips .integer {
+  font-size: 40rpx;
+}
+
+.collage-detail .good-info .good-tips .good-sale {
+  overflow: hidden;
+  margin-left: 20rpx;
+}
+
+.collage-detail .good-info .good-tips .good-person, .good-save {
+  font-size: 22rpx;
+  line-height: 34rpx;
+  height: 34rpx;
+  padding: 0 10rpx;
+  margin-bottom: 10rpx;
+  float: left;
+}
+
+.collage-detail .good-info .good-tips .good-person {
+  margin-right: 10rpx;
+}
+
+.collage-detail .line-arrows {
+  width: 100%;
+  height: 14rpx;
+}
+
+.collage-info {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 34rpx;
+}
+
+.collage-info .info-head {
+  font-size: 30rpx;
+  font-weight: bold;
+  text-align: center;
+}
+
+.collage-info .info-count {
+  text-align: center;
+  margin-top: 10rpx;
+}
+
+.collage-info .info-count .text {
+  font-size: 26rpx;
+  line-height: 46rpx;
+  border-radius: 8rpx;
+  font-weight: bold;
+  padding: 0 10rpx;
+  margin-left: 4rpx;
+  background: black;
+  color: white;
+}
+
+.collage-info .info-count text:nth-child(3) {
+  margin-left: 0;
+}
+
+.collage-info .info-count text:nth-child(6) {
+  margin-left: 0;
+}
+
+.collage-info .info-member {
+  overflow: hidden;
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: center;
+}
+.collage-info .info-member .scroll-view{
+  width: auto;
+  max-width: 90vw;
+  height: 100rpx;
+  white-space: nowrap;
+}
+.collage-info .info-member .scroll-view .item {
+  position: relative;
+  display: inline-block;
+  width: 120rpx;
+  height: 96rpx;
+}
+
+.collage-info .info-member .scroll-view .item .avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.collage-info .info-member .scroll-view .item .avatar image {
+  width: 96rpx;
+  height: 96rpx;
+  background-color: #fff;
+}
+
+.collage-info .info-member .scroll-view .item .tip {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 18rpx;
+  padding: 0 15rpx;
+  line-height: 26rpx;
+  border-radius: 20rpx;
+  color: white;
+  border: 2rpx solid white;
+}
+
+.wanna-collage {
+  width: 702rpx;
+  font-size: 32rpx;
+  color: white;
+  line-height: 90rpx;
+  text-align: center;
+  margin: 44rpx auto 0rpx;
+  border-radius: 10rpx;
+}
+
+.other-collage {
+  width: 702rpx;
+  font-size: 32rpx;
+  line-height: 90rpx;
+  text-align: center;
+  margin: 20rpx auto 0;
+  border-radius: 10rpx;
+  border: 1px solid transparent;
+}
+
+.collage-rule {
+  background: white;
+  padding: 28rpx;
+}
+
+.collage-rule .rule-head {
+  overflow: hidden;
+}
+
+.collage-rule .rule-title {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  float: left;
+}
+
+.collage-rule .rule-detail {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  float: right;
+  color: #909090;
+}
+
+.collage-rule .rule-content {
+  display: flex;
+  align-items: center;
+  margin-top: 42rpx;
+}
+
+.collage-rule .rule-content > view {
+  font-size: 28rpx;
+  line-height: 28rpx;
+}
+
+.collage-rule .rule-content .rule-next {
+  width: 12rpx;
+  height: 22rpx;
+  margin: 0 56rpx;
+}
+
+.collage-rule .rule-tip {
+  font-size: 28rpx;
+  text-align: right;
+  color: #909090;
+  margin-top: 10rpx;
+}
+
+.hot-recommend {
+  margin-top: 16rpx;
+}
+
+.hot-recommend .hot-head {
+  width: 100%;
+  height: 86rpx;
+  overflow: hidden;
+  background: white;
+}
+
+.hot-recommend .hot-head .hot-left {
+  float: left;
+  font-size: 30rpx;
+  line-height: 86rpx;
+  margin-left: 28rpx;
+}
+
+.hot-recommend .hot-head .hot-right {
+  float: right;
+  font-size: 28rpx;
+  line-height: 86rpx;
+  margin-right: 28rpx;
+  color: #909090;
+}
+
+.hot-list {
+  background: #f7f7f7;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hot-list > view {
+  width: 370rpx;
+  height: 558rpx;
+  float: left;
+  padding-bottom: 30rpx;
+  margin-bottom: 10rpx;
+  background: white;
+}
+
+.hot-list > view:nth-child(2n) {
+  margin-left: 10rpx;
+}
+
+.hot-list .good-avatar {
+  width: 370rpx;
+  height: 370rpx;
+}
+
+.hot-list .good-avatar image {
+  width: 370rpx;
+  height: 370rpx;
+}
+
+.hot-list .good-name {
+  font-size: 28rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0 12rpx 0 16rpx;
+}
+
+.hot-list .good-price {
+  margin-left: 16rpx;
+  display: flex;
+  align-items: baseline;
+  margin-top: 26rpx;
+}
+
+.hot-list .good-person {
+  border-radius: 20rpx 0 20rpx 20rpx;
+  font-size: 24rpx;
+  margin-right: 20rpx;
+}
+
+.hot-list .present-price {
+  /* line-height: 1; */
+}
+
+.hot-list .good-tips {
+  overflow: hidden;
+  margin-top: 10rpx;
+}
+
+.hot-list .good-tips .origin-price {
+  float: left;
+  font-size: 20rpx;
+  text-decoration: line-through;
+  color: #8d8d8d;
+  margin-left: 16rpx;
+  margin-top: 6rpx;
+}
+
+.hot-list .good-tips .good-sales {
+  float: right;
+  font-size: 26rpx;
+  color: #6e7479;
+  margin-right: 12rpx;
+}

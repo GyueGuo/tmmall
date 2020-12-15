@@ -1,0 +1,46 @@
+在需要的页面 引入 response,request 文件
+
+const request = require('../../../utils/request.js');
+const response = require('../../../utils/response.js');
+
+
+test() {
+    console.log('start');
+    let json = { a:"hello word"};
+
+    let publicKey = "-----BEGIN PUBLIC KEY-----\n" +
+      "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDWDiHKGsWoyV79yFvygX/+Xi3D\n" +
+      "9Wa54rMQ1SUp1KDOsQchUWerLZvQrznNVp+8MSWS7dp8JN66YGvIGh07ZZgw6cTD\n" +
+      "XJkpb6cd/Ca73duceYWmluJl3sJz46zGWMuGfjlhApCj84HGS5xkPTVw4TJduHgp\n" +
+      "zucaAfmNUyb3BsDsxwIDAQAB\n" +
+      "-----END PUBLIC KEY-----\n";
+
+    let privateKey = "-----BEGIN PRIVATE KEY-----\n" +
+      "MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBANYOIcoaxajJXv3I\n" +
+      "W/KBf/5eLcP1ZrnisxDVJSnUoM6xByFRZ6stm9CvOc1Wn7wxJZLt2nwk3rpga8ga\n" +
+      "HTtlmDDpxMNcmSlvpx38Jrvd25x5haaW4mXewnPjrMZYy4Z+OWECkKPzgcZLnGQ9\n" +
+      "NXDhMl24eCnO5xoB+Y1TJvcGwOzHAgMBAAECgYAsrzyMhTQ3/PmQfu/62t/OSPjC\n" +
+      "zIrKSTHaVLRyXAnJvBjh8q1yhY3ebYXigK/NyHCwkGiou8WnIJO/bPwnNxki0s1/\n" +
+      "yEMo8+amyWn109a9SMfz15h6o6DPN749qsHgn8yb7ME4EQwBq8n2OIgE2WLUvl77\n" +
+      "u/V/gWz0PtXbyqvHgQJBANgPgYzOQDBphC3qPLfaJzbSW7lVjNnEXhKXmg6mB033\n" +
+      "98lAviRn6DrFBSRE7z4k0KuDA2Y9uGFGFf+xMR0z2AcCQQD9n7osGbQkGMgBKBiS\n" +
+      "lNA6nMBd9xct1SVkv/ge0Vwz9MWBS3ddhHAi2WRnBUA/1CiZskCbWSw0x6TWdh3s\n" +
+      "jZVBAkA0d9eDBRcraoRRzh8+mniJZJ4nrLHOtFQP+cbMpd8CPSRsOA+0sZMAqpWs\n" +
+      "EB11HuWZsPAjZPugi6+N7065A70DAkALmSNVYvOG9w8mZmQBSAbht0tgwKzxrp6g\n" +
+      "Jds95YsW4SmrCP1zbFwIa/KYd3gBsz0MEke8Eu7flwWlvQ8PQ0ZBAkBuPQP8DzC9\n" +
+      "h1tMdebXcAjNUDuxL4xhoRrVUWQBeuNrmMDuW8mHvQwseO00Q5yv/iE/R7x9CZDZ\n" +
+      "PbuJkjn/SGNp\n" +
+      "-----END PRIVATE KEY-----\n";
+
+    console.log('public key');
+    console.log(publicKey);
+    console.log('private key');
+    console.log(privateKey);
+
+    let encode = request.encode(json, publicKey);
+    console.log(encode);
+
+    console.log(response.decode(encode, privateKey));
+    console.log('end');
+
+  },

@@ -1,0 +1,284 @@
+.board {
+  background: rgba(0, 0, 0, 0.3);
+  bottom: 0;
+}
+
+.wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 13;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  padding: 10rpx 0 30rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: white;
+}
+
+.search .search-bg {
+  width: 610rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  margin-left: 23rpx;
+  border-radius: 8rpx;
+  background-color: #f6f6f6;
+}
+
+.search .search-bg input {
+  flex: 1;
+  height: 25rpx;
+  margin-left: 20rpx;
+  font-size: 25rpx;
+}
+
+.search .search-bg view {
+  font-size: 32rpx;
+  color: #c9c9c9;
+}
+
+.search .clear {
+  padding-right: 20rpx;
+}
+
+.search .search-title {
+  flex: 1;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 64rpx;
+  padding: 0 4rpx;
+  color: #666;
+}
+
+.search-icon {
+  padding: 6rpx;
+  margin: 0 10rpx;
+}
+
+.search text {
+  flex: 1;
+  text-align: center;
+  font-size: 28rpx;
+  line-height: 64rpx;
+  padding: 8rpx;
+}
+
+.list-title {
+  width: 100%;
+  overflow: hidden;
+  font-size: 26rpx;
+  line-height: 40rpx;
+  background: #fff;
+  border-top: 2rpx solid #f6f6f6;
+}
+
+.list-title .list {
+  width: 75%;
+  float: left;
+  overflow: hidden;
+  /* padding: 16rpx 0; */
+}
+
+.list-title .list .title {
+  width: 33.3%;
+  font-size: 30rpx;
+  float: left;
+  line-height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.list-title .list .title view {
+  width: 20rpx;
+}
+
+.list-title .choose {
+  width: 25%;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: left;
+  position: relative;
+}
+
+.list-title .choose image {
+  width: 18rpx;
+  height: 18rpx;
+  margin-left: 6rpx;
+}
+
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 4rpx;
+  vertical-align: middle;
+  border-top: 8rpx solid rgb(174, 174, 174);
+  border-right: 8rpx solid transparent;
+  border-left: 8rpx solid transparent;
+  float: left;
+}
+
+.caret.up {
+  transform: rotate(180deg);
+  margin-bottom: 2px;
+}
+
+.cur-bg {
+  border-top: 8rpx solid #f23030;
+}
+
+.shop-list {
+  padding-top: 186rpx;
+}
+
+.shop-list > view {
+  width: 96%;
+  margin: 20rpx auto 0;
+  background: white;
+}
+
+.shop-list .shop-intro {
+  margin-left: 20rpx;
+}
+
+.shop-head {
+  padding: 30rpx 2%;
+  width: 96%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.shop-head image {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.shop-head .shop-name {
+  font-size: 30rpx;
+}
+
+.shop-head .shop-attention {
+  font-size: 24rpx;
+  color: #767b80;
+  margin-top: 5rpx;
+}
+
+.shop-head .go-shop {
+  width: 100rpx;
+  line-height: 40rpx;
+  font-size: 26rpx;
+  border: 1px solid #f23030;
+  text-align: center;
+  border-radius: 8rpx;
+  position: absolute;
+  right: 20rpx;
+  top: 50%;
+  margin-top: -20rpx;
+}
+
+.shop-pic {
+  width: 96%;
+  padding: 25rpx 2%;
+  overflow: hidden;
+}
+
+.shop-pic > view {
+  width: 32%;
+  margin-left: 2%;
+  height: 214rpx;
+  float: left;
+  position: relative;
+}
+
+.shop-pic > view:first-child {
+  margin-left: 0;
+}
+
+.shop-pic > view image {
+  width: 100%;
+  height: 100%;
+}
+
+.shop-pic > view text {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 110rpx;
+  text-align: center;
+  font-size: 24rpx;
+  line-height: 36rpx;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.shop-tips {
+  overflow: hidden;
+  padding-right: 2%;
+}
+
+.shop-tips .shop-distance {
+  float: right;
+  font-size: 26rpx;
+  line-height: 32rpx;
+  color: #767b80;
+  margin-right: 30rpx;
+}
+
+.shop-tips image {
+  width: 32rpx;
+  height: 32rpx;
+  float: right;
+  margin-right: 10rpx;
+}
+
+.shop-tips .dh {
+  float: right;
+  font-size: 26rpx;
+  color: #238cee;
+  line-height: 32rpx;
+  overflow: hidden;
+  padding-bottom: 10rpx;
+}
+.no-order {
+  margin-top: 170rpx;
+  height: calc(100vh - 170rpx);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-order > view {
+  width: 100%;
+}
+
+.no-order image {
+  width: 100%;
+  height: 260rpx;
+}
+
+.no-order .no-order-head {
+  font-size: 32rpx;
+  text-align: center;
+}
+
+.no-order .no-order-content {
+  font-size: 26rpx;
+  text-align: center;
+  margin-top: 10rpx;
+  color: #8d8d8d;
+}
+

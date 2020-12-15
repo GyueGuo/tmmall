@@ -1,0 +1,5 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view hidden='{{!finish}}'>
+  <image class="bg" src='{{util.HTTP}}mobile/small/yqhy-mdmsm-2.png'></image>
+  <image class='code' src='{{code}}'></image>
+</view>

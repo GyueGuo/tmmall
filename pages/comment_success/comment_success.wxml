@@ -1,0 +1,46 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view hidden="{{total == -1}}">
+  <view class='head'>
+    <view class='imagebg' style='background-image: url({{util.HTTP}}mobile/small/image/ddxq-bj.png), linear-gradient({{diy_color.z_color}}, {{diy_color.z_color}});background-blend-mode: luminosity;background-size: cover;'>
+      <view style='{{util.diy_color("",diy_color.z_color,"")}}'></view>
+    </view>
+    <view>
+      <view class='slogan'>据说坚持写评价，经验值涨的快哦，加油!</view>
+      <view class='my-comment' hover-class='hover-class' hover-stay-time='400' bindtap='myComment'>查看我的评价</view>
+    </view>
+  </view>
+
+  <view class='then-comment'>
+    <view class='line'></view>
+    <view class='title' wx:if="{{total != 0}}">接着评下去吧</view>
+    <view class='title' wx:else>暂无可评价订单</view>
+    <view class='line'></view>
+  </view>
+
+  <view class='list'>
+    <view wx:for="{{list}}">
+      <view class='shop' data-id='{{item.store_id}}' wx:if='{{util.isShops==0}}'>
+        <image class='item-shop-icon' src='{{util.HTTP}}mobile/small/image/xq-dp.png'></image>
+        <view class='item-shop-name'>{{item.store_list.store_name}}</view>
+        <image class='item-shop-next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+      </view>
+      <view wx:for="{{item.order_goods_evaluate}}">
+        <view class='list-item'>
+          <image src='{{item.file}}'></image>
+          <view>
+            <view class='good-name'>{{item.goods_name}}</view>
+
+          </view>
+        </view>
+      </view>
+      <view class='comment'>
+        <view class='go-comment border-cur' hover-class='hover-class' hover-stay-time='400' bindtap='comment' data-item="{{item}}" data-index='{{index}}' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>
+        <view style='{{util.diy_imgbox(28)}}'>
+          <image src='{{util.HTTP}}mobile/small/image/wd-dpj-pj.png' style='{{util.diy_imgcolor(diy_color.z_color,28,28)}}'></image>
+        </view>
+          <view>去评价</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,63 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='tab-list'>
+  <view wx:for="{{tab_list}}" data-index='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='onTab'>
+    <text class="{{tab == item.type?'cur':''}}" style='{{tab == item.type?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{item.title}}</text>
+  </view>
+</view>
+
+<view class='logistics-list' hidden='{{tab != 1}}'>
+  <view wx:for="{{list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onMessage' data-item='{{item}}'>
+    <view class='head'>
+      <view class='title'>{{item.title}}</view>
+      <view class='time'>{{item.date_time}}</view>
+    </view>
+    <view class='content'>
+      <image src='{{item.file}}'></image>
+      <view>
+        <view class='name'>{{item.describe}}</view>
+        <!-- <view class='number' hidden='{{item.express_number==null}}'>运单编号:{{item.express_number}}</view> -->
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='logistics-list' hidden='{{tab != 0}}'>
+  <view wx:for="{{list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onMessage' data-item='{{item}}'>
+    <view class='head'>
+      <view class='title'>{{item.title}}</view>
+      <view class='time'>{{item.date_time}}</view>
+    </view>
+    <view class='content'>
+      <image src='{{item.file}}'></image>
+      <view>
+        <view class='name'>{{item.describe}}</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='discounts-list' hidden='{{tab != 2}}'>
+  <view wx:for="{{list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onMessage' data-item='{{item}}'>
+    <view class='discounts-head'>{{item.title}}</view>
+    <view>
+      <image src='{{item.file}}' class='discount-file'></image>
+      <view class='finished' style="{{item.finish?'':'display:none'}}">活动结束</view>
+    </view>
+    <view class='discounts-title'>{{item.describe}}</view>
+    <view class='discounts-tip'>
+      <view>{{item.date_time}}</view>
+      <view class='discounts-look'>
+        <view>点击查看</view>
+        <image src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<view class='empty-view' hidden='{{list.length != 0 || loading}}'>
+  <view>
+    <image src='{{util.HTTP}}mobile/small/image/kby-zwxx.png'></image>
+    <view>暂无消息</view>
+  </view>
+</view>

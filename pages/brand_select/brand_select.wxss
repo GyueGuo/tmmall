@@ -1,0 +1,200 @@
+.tab-view {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  width: calc(100% - 70rpx);
+  padding-right: 70rpx;
+  box-shadow: 0 0 5rpx 2rpx rgba(150, 150, 150, 0.1);
+  background: white;
+}
+
+.tab-sroll {
+  height: 82rpx;
+  white-space: nowrap;
+}
+
+.tab-sroll .tab-item {
+  display: inline-block;
+  padding: 0 30rpx;
+}
+
+.tab-sroll .tab-item text {
+  font-size: 28rpx;
+  line-height: 78rpx;
+  position: relative;
+  display: inline-block;
+  border-bottom: 4rpx solid #fff;
+}
+
+/* .tab-sroll .tab-item .cur::after {
+  width: 100%;
+  height: 4rpx;
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: #f23030;
+} */
+
+.tab-view .more {
+  width: 70rpx;
+  height: 82rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.tab-view .more::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 2rpx;
+  height: 34rpx;
+  margin-top: -17rpx;
+  background: #eee;
+}
+
+.tab-view .more image {
+  width: 22rpx;
+  height: 12rpx;
+}
+
+.wrap {
+  padding: 82rpx 20rpx 0;
+}
+
+.wrap > view {
+  margin-top: 22rpx;
+  background: white;
+}
+
+.shop {
+  width: 100%;
+  height: 320rpx;
+  position: relative;
+}
+
+.shop > image {
+  width: 100%;
+  height: 100%;
+}
+
+.shop .money-off {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 130rpx;
+  left: 0;
+  width: 100%;
+}
+
+.shop .money-off view {
+  font-size: 24rpx;
+  line-height: 44rpx;
+  font-weight: bold;
+  display: inline-block;
+  padding: 0 10rpx;
+  border-radius: 6rpx;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.shop .enter {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 120rpx;
+  height: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: -60rpx;
+  margin-top: -20rpx;
+  border-radius: 6rpx;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.shop .enter view {
+  font-size: 22rpx;
+  margin-right: 6rpx;
+}
+
+.shop .enter image {
+  width: 12rpx;
+  height: 14rpx;
+}
+
+.good-wrap {
+  overflow: hidden;
+  margin-top: 14rpx;
+}
+
+.good-wrap .good {
+  float: left;
+  width: 228rpx;
+  margin-right: 12rpx;
+}
+
+.good-wrap .good:last-child {
+  margin-right: 0;
+}
+
+.good-wrap .good-pic {
+  width: 100%;
+  height: 228rpx;
+}
+.good-wrap .good-pic image{
+  width: 100%;
+  height: 100%;
+}
+.good-wrap .good-name {
+  width: 200rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 28rpx;
+  margin-left: 10rpx;
+  text-align: center;
+}
+
+.good-wrap .price {
+  text-align: center;
+  margin-bottom: 10rpx;
+}
+
+.list-scroll{
+  height: 100vh;
+}
+.no-order {
+  height: calc(100vh - 170rpx);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-order > view {
+  width: 100%;
+}
+
+.no-order image {
+  width: 100%;
+  height: 260rpx;
+}
+
+.no-order .no-order-head {
+  font-size: 30rpx;
+  text-align: center;
+}
+
+.no-order .no-order-content {
+  font-size: 26rpx;
+  text-align: center;
+  margin-top: 10rpx;
+  color: #8d8d8d;
+}
+

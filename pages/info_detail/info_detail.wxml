@@ -1,0 +1,17 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view hidden='{{!info.title}}'>
+  <scroll-view class='wrap' scroll-y>
+    <view class='title'>{{info.title}}</view>
+    <view class='collect'>
+      <view class='border-cur' wx:if="{{attention_state == null||attention_state==''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onCollect' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>收藏</view>
+      <view class='border-cur' wx:else hover-class='hover-class' hover-stay-time='400' bindtap='onCancelCollect' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>已收藏</view>
+    </view>
+    <view class="wxParse">
+      <Parser html='{{info.web_content}}' bindparse='parse' />
+    </view>
+  </scroll-view>
+
+  <view class='good-nums bg' hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' hidden='{{info.goods.length == 0 || loading}}' style='{{util.diy_color("",diy_color.z_color,"")}}'>商品({{info.goods.length}})</view>
+</view>
+
+<article_goods isShow="{{isShow}}" good_list="{{info.goods}}" />

@@ -1,0 +1,213 @@
+/* my/fx_fans_list/fx_fans_list.wxss */
+page{
+  width: 100%;
+  height: 100%;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+.container .navTab{
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: 100%;
+  height: 80rpx;
+  font-size: 29rpx;
+  background-color: #fff;
+}
+.container .navTab>view{
+  height: 100%;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+.container .navTab>view>text{
+  padding: 20rpx 0;
+  border-bottom: 6rpx solid #fff;
+}
+/* .container .navTab>.on{
+  border-bottom: 4rpx solid #fff;
+} */
+
+.rank-warp {
+  flex-shrink: 0;
+  width: 100%;
+  height: 80rpx;
+  overflow: hidden;
+  font-size: 26rpx;
+  line-height: 76rpx;
+  box-sizing: border-box;
+  background: #fafafa;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.rank-warp .rankTab {
+  width: 75%;
+  float: left;
+  overflow: hidden;
+  /* padding: 16rpx 0; */
+}
+.rank-warp .fansNum{
+  width: 25%;
+  float: left;
+  text-align: center;
+  font-size: 30rpx;
+}
+
+.rank-warp .rankTab .title {
+  width: 33.3%;
+  font-size: 26rpx;
+  float: left;
+  line-height: 76rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.rank-warp .rankTab .title view {
+  width: 20rpx;
+  margin-left: 6rpx;
+}
+
+.rank-warp .choose {
+  width: 25%;
+  line-height: 76rpx;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: left;
+  position: relative;
+}
+
+.rank-warp .choose image {
+  width: 18rpx;
+  height: 18rpx;
+  /* margin-left: 6rpx; */
+}
+
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 4rpx;
+  vertical-align: middle;
+  border-top: 8rpx solid rgb(174, 174, 174);
+  border-right: 8rpx solid transparent;
+  border-left: 8rpx solid transparent;
+  float: left;
+}
+
+.caret.up {
+  transform: rotate(180deg);
+  margin-bottom: 2px;
+}
+.list{
+  flex: 1;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  /* height: cale(100vh - 160rpx); */
+}
+.list .list-item{
+  width: 85%;
+  height: 160rpx;
+  margin: 25rpx auto;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 10rpx;
+  background: #fff;
+}
+.list .list-item .left{
+  display: flex;
+  align-items: center;
+  transform: translateX(-20rpx);
+}
+.list .list-item .left .user_img{
+  width: 102rpx;
+  height: 102rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #ccc;
+}
+.list .list-item .left .user_img image{
+  width: 102rpx;
+  height: 102rpx;
+}
+.list .list-item .left .fx_info{
+  padding-left: 30rpx;
+}
+.list .list-item .left .fx_info .fx_name{
+  font-size: 29rpx;
+  margin-bottom: 20rpx;
+}
+.list .list-item .left .fx_info .fx_time{
+  font-size: 24rpx;
+  color: #999ea4;
+}
+.list .list-item .rigth{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  
+}
+.list .list-item .rigth .fx_pic{
+  text-align: right;
+  font-size: 26rpx;
+  padding-bottom: 10rpx;
+  padding-right: 10rpx;
+}
+.list .list-item .rigth .fx_num{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rpx 14rpx;
+  border-radius: 8rpx;
+  transform: translateX(20rpx);
+}
+.list .list-item .rigth .fx_num image{
+  width: 21rpx;
+  height: 27rpx;
+  margin-right: 10rpx;
+}
+.list .list-item .rigth .fx_num view{
+  color: #fff;
+  font-size: 21rpx;
+}
+.list .list-item .rigth .fx_num view text{
+  color: #fff;
+  font-size: 26rpx;
+}
+
+.no-order {
+  height: calc(100vh - 200rpx);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-order > view {
+  width: 100%;
+}
+
+.no-order image {
+  width: 100%;
+  height: 260rpx;
+}
+
+.no-order .no-order-head {
+  font-size: 32rpx;
+  text-align: center;
+}
+
+.no-order .no-order-content {
+  font-size: 26rpx;
+  color: #8d8d8d;
+  text-align: center;
+  margin-top: 10rpx;
+}

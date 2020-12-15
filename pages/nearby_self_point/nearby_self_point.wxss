@@ -1,0 +1,163 @@
+.head {
+  width: 100%;
+  background: white;
+  font-size: 30rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.head .head-title {
+  margin-left: 50rpx;
+}
+
+.head .head-area {
+  margin-right: 50rpx;
+  display: flex;
+  align-items: center;
+}
+
+.head .head-area image {
+  width: 16rpx;
+  height: 8rpx;
+  margin-left: 14rpx;
+}
+
+.pickup-wrap {
+  background: white;
+  margin-top: 16rpx;
+}
+
+.pickup-name {
+  height: 90rpx;
+  background: white;
+  font-size: 30rpx;
+  padding: 0 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pickup-tip {
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+  padding-left: 24rpx;
+}
+
+.pickup-tip image {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.pickup-tip .time {
+  font-size: 28rpx;
+  color: #646a6f;
+  margin-left: 20rpx;
+}
+
+.pickup-tip .distance {
+  font-size: 26rpx;
+  line-height: 32rpx;
+  border-radius: 6rpx;
+  padding: 0 10rpx;
+  margin-left: 20rpx;
+  color: white;
+}
+
+.pickup-address {
+  overflow: hidden;
+  margin-top: 20rpx;
+  padding-left: 24rpx;
+  padding-bottom: 30rpx;
+}
+
+.pickup-address image {
+  width: 28rpx;
+  height: 34rpx;
+  float: left;
+}
+
+.pickup-address view {
+  width: 660rpx;
+  font-size: 28rpx;
+  float: left;
+  margin-left: 20rpx;
+  color: #646a6f;
+}
+
+.no-order {
+  height: calc(100vh - 170rpx);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-order > view {
+  width: 100%;
+}
+
+.no-order image {
+  width: 100%;
+  height: 260rpx;
+}
+
+.no-order .no-order-head {
+  font-size: 32rpx;
+  text-align: center;
+}
+
+.no-order .no-order-content {
+  font-size: 26rpx;
+  text-align: center;
+  margin-top: 10rpx;
+  color: #8d8d8d;
+}
+.search {
+  display: flex;
+  align-items: center;
+  padding: 10rpx 0 30rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: white;
+}
+
+.search .search-bg {
+  width: 590rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  margin-left: 23rpx;
+  border-radius: 8rpx;
+  background-color: #f6f6f6;
+}
+
+.search .search-bg input {
+  width: 510rpx;
+  height: 25rpx;
+  font-size: 25rpx;
+}
+
+.search .search-bg view {
+  font-size: 32rpx;
+  color: #c9c9c9;
+}
+
+.search .clear {
+  padding-right: 20rpx;
+}
+
+.search .search-title {
+  flex: 1;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 64rpx;
+  padding: 0 4rpx;
+  color: #666;
+}
+
+.search-icon {
+  padding: 6rpx;
+  margin: 0 10rpx;
+}

@@ -1,0 +1,30 @@
+.go-cart {
+  position: fixed;
+  width: 80rpx;
+  height: 80rpx;
+  right: 30rpx;
+  bottom: 390rpx;
+  z-index: 12;
+}
+
+.go-cart image {
+  width: 100%;
+  height: 100%;
+}
+
+.go-cart text {
+  position: absolute;
+  right: 8rpx;
+  top: 10rpx;
+  width: 32rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  font-size: 26rpx;
+  text-align: center;
+  border-radius: 50%;
+  color: white;
+}
+
+.bg {
+  background: #f20230;
+}

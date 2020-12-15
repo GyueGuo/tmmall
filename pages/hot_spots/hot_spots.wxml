@@ -1,0 +1,13 @@
+<view class='wrap' >
+  <view wx:for="{{list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onDetail' data-id='{{item.article_id}}'>
+    <view class='left'>
+      <view class='title'>{{item.title}}</view>
+      <view class='num'>{{item.hits}}人看过</view>
+    </view>
+    <view class='right'>
+      <image src='{{item.file}}'></image>
+      <view>{{item.goods_number}}件商品</view>
+    </view>
+  </view>
+  <load_more show="{{loading}}"/>
+</view>

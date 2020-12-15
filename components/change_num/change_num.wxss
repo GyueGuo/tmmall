@@ -1,0 +1,92 @@
+.board {
+  background: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 11;
+}
+
+.board .change-num {
+  width: 540rpx;
+  background: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -205rpx;
+  margin-left: -270rpx;
+  border-radius: 10rpx;
+}
+
+.change-num .change-wrap {
+  width: 100%;
+  height: 270rpx;
+  border-bottom: 2rpx solid #f5f5f5;
+}
+
+.change-num .title {
+  font-size: 36rpx;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 40rpx;
+}
+
+.change-num .wrap-bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50rpx;
+}
+
+.change-num .change {
+  border: 2rpx solid #f5f5f5;
+  border-radius: 4rpx;
+  display: inline-block;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.change-num .change image {
+  width: 48rpx;
+  height: 48rpx;
+  float: left;
+}
+
+.change-num .change input {
+  width: 190rpx;
+  font-size: 34rpx;
+  float: left;
+  text-align: center;
+  border-left: 2rpx solid #f5f5f5;
+  border-right: 2rpx solid #f5f5f5;
+}
+
+.change-num .operation {
+  width: 100%;
+  height: 100rpx;
+  overflow: hidden;
+}
+
+.change-num .operation > view {
+  width: 50%;
+  font-size: 30rpx;
+  line-height: 100rpx;
+  float: left;
+  text-align: center;
+  position: relative;
+}
+
+.change-num .operation > view:last-child::after {
+  content: "";
+  width: 2rpx;
+  height: 100rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #f5f5f5;
+}
+
+.cur{
+  color: #f20230;
+}

@@ -1,0 +1,84 @@
+.search-head {
+  width: 100%;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-head .search-bg {
+  width: 540rpx;
+  height: 62rpx;
+  margin-left: 18rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+.search-head .search-bg image {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.search-head .search-bg view {
+  margin-left: 24rpx;
+  font-size: 28rpx;
+  color: #8d8d8d;
+}
+
+.search-head .after-sale-order {
+  font-size: 30rpx;
+  line-height: 88rpx;
+  width: 164rpx;
+  text-align: center;
+  color: #8d8d8d;
+}
+
+.tab-view {
+  width: 100%;
+  overflow: hidden;
+  height: 80rpx;
+  background: white;
+}
+
+.tab-view > view {
+  width: 25%;
+  text-align: center;
+  float: left;
+  line-height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-view > view view {
+  font-size: 28rpx;
+  position: relative;
+}
+
+.tab-view .cur::after {
+  width: 100%;
+  height: 4rpx;
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: #f20230;
+}
+
+.head {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  background: #f6f6f6;
+}
+
+.order-list {
+  margin-top: 170rpx;
+  height: calc(100vh - 170rpx);
+}
+
+

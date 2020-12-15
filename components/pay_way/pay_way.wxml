@@ -1,0 +1,23 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<!--背景   -->
+<view class='trans' hidden='{{!isShow}}' style='opacity:{{opacity}}'></view>
+<view class='board' hover-class='hover-class' hover-stay-time='400' bindtap='close' animation="{{animation_coupon}}">
+  <view catchtap='none'>
+    <view class='pay-way'>
+      <view>支付方式</view>
+      <image src='{{util.HTTP}}mobile/small/image/xq-gb.png' hover-class='hover-class' hover-stay-time='400' bindtap='close'></image>
+    </view>
+    <scroll-view scroll-y class='scrolly'>
+      <view class='item' wx:for="{{array}}">
+        <scroll-view scroll-x class='scrollx'>
+          <image class='good-image' wx:for="{{item.images}}" src='{{item}}'></image>
+        </scroll-view>
+        <view class='choose-way'>
+          <view class="{{item.way == 1?'select':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onlinePay' data-index='{{index}}' style='{{item.way == 1?util.diy_color(diy_color.z_color,diy_color.f_color,diy_color.z_color):""}}'>在线付款</view>
+          <view class="{{item.way == 2?'select':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='deliveryPay' data-index='{{index}}' wx:if='{{item.is_pay_delivery==1&&item.city_freight_sup==1}}' style='{{item.way == 2?util.diy_color(diy_color.z_color,diy_color.f_color,diy_color.z_color):""}}'>货到付款</view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class='confirm' hover-class='hover-class' hover-stay-time='400' bindtap='confirm' style='{{util.diy_color("",diy_color.z_color,"")}}'>确定</view>
+  </view>
+</view>

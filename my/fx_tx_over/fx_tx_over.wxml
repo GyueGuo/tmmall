@@ -1,0 +1,15 @@
+<!--my/fx_tx_over/fx_tx_over.wxml-->
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='container'>
+  <view class='tx_con' style='background:url({{util.HTTP}}mobile/small/image/fx/tx-bj2tm.png) no-repeat,linear-gradient({{diy_color.f_color_6}}, {{diy_color.z_color}}); background-size: 100% 100%;'>
+    <view class='tx_warp'>
+      <view class='title'>提交成功</view>
+      <view class='tip'>提现金额将在48小时内自动到账，请注意查收</view>
+    </view>
+    <image class='tx-bj' src='{{util.HTTP}}mobile/small/image/fx/tx-bj01.png'></image>
+    <image class='icon' src='{{util.HTTP}}mobile/small/image/fx/tx-g.png' style='{{util.diy_color("",diy_color.z_color,diy_color.z_color)}}'></image>
+  </view>
+  <!-- <view class='icon'> -->
+  <!-- </view> -->
+  <view class='submit' style='{{util.diy_color("",diy_color.z_color,"")}}' hover-class='hover-class' hover-stay-time='400' bindtap='submit'>提现记录</view>
+</view>

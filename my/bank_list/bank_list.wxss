@@ -1,0 +1,75 @@
+/* my/bank_list/bank_list.wxss */
+page{
+  padding: 25rpx;
+  box-sizing: border-box;
+}
+.list{
+  padding-bottom: 120rpx;
+}
+.item{
+  position: relative;
+  width: 100%;
+  height: 218rpx;
+  margin-bottom: 30rpx;
+}
+.item .list_info{
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: 35rpx 50rpx;
+  box-sizing: border-box;
+  color: #fff;
+}
+.item .list_info .bank_title{
+  font-size: 36rpx;
+  font-weight: bold;
+}
+.item .list_info .bank_number{
+  font-size: 30rpx;
+}
+.item .list_bg{
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  width: 100%;
+  height: 218rpx;
+}
+.submit{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 10;
+  width: 100%;
+  height: 114rpx;
+  padding: 0 25rpx;
+  box-sizing: border-box;
+  background-color: #f6f6f6;
+}
+.submit button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 88rpx;
+  border-radius: 10rpx;
+}
+.submit button image{
+  display: block;
+  width: 25rpx;
+  height: 25rpx;
+  margin-right: 16rpx;
+}
+.submit button view{
+  font-size: 28rpx;
+  color: #fff;
+}
+.empty-view {
+  height: calc(100vh - 182rpx)!important;
+}

@@ -1,0 +1,86 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<!-- <view class='tab-head'>
+  <view hover-class='hover-class' hover-stay-time='400' bindtap='onDefault' class="{{tab == 1?'cur':''}}">默认</view>
+  <view hover-class='hover-class' hover-stay-time='400' bindtap='onDepreciate' class="{{tab == 2?'cur':''}}">降价</view>
+  <view hover-class='hover-class' hover-stay-time='400' bindtap='onPromotion' class="{{tab == 3?'cur':''}}">促销</view>
+  <view hover-class='hover-class' hover-stay-time='400' bindtap='onInventory' class="{{tab == 4?'cur':''}}">
+    <text>库存</text>
+    <text class="triangle {{tab == 4?'cur':''}}"></text>
+  </view>
+</view> -->
+
+<view class='collect-list'>
+  <view wx:for="{{list}}" bindlongtap='deleteGood' catchtap='onGood' data-item='{{item}}' data-index='{{index}}'>
+    <image src='{{item.file}}'></image>
+    <view class='{{item.is_invalid==1?"invalid_type":""}}'>
+      <view class='good-name'>{{item.goods_name}}</view>
+      <!-- 团购价格 -->
+      <view class='price' wx:if="{{item.is_group == 1}}" style='{{item.is_invalid==0?util.diy_color(diy_color.z_color,"","")+"margin-top:110rpx;":"color:#999fa5;"}}'>
+        <text class='group bg' style='{{item.is_invalid==0?util.diy_color("",diy_color.z_color,""):"background-color:#999fa5;"}}'>{{item.group_num}}人拼</text>
+        <text class='unit'>￥</text>
+        <text class='integer'>{{util.integer(item.group_price)}}</text>
+        <text class='decimals'>.{{util.decimals(item.group_price)}}</text>
+        <text class='shop_price'>￥{{item.shop_price}}</text>
+      </view>
+      <view class='price' wx:elif="{{item.is_bargain == 1}}" style='{{item.is_invalid==0?util.diy_color(diy_color.z_color,"","")+"margin-top:110rpx;":"color:#999fa5;"}}'>
+        <text class='integer'>底价￥{{util.integer(item.cut_price)}}</text>
+        <text class='decimals'>.{{util.decimals(item.cut_price)}}</text>
+        <text class='shop_price'>原价￥{{item.shop_price}}</text>
+      </view>
+      <view class='price' wx:elif="{{item.is_limit == 1}}" style='{{item.is_invalid==0?util.diy_color(diy_color.z_color,"","")+"margin-top:110rpx;":"color:#999fa5;"}}'>
+        <text class='limit bg' style='{{item.is_invalid==0?util.diy_color("",diy_color.z_color,""):"background-color:#999fa5;"}}'>限时</text>
+        <text class='unit'>￥</text>
+        <text class='integer'>{{util.integer(item.time_limit_price)}}</text>
+        <text class='decimals'>.{{util.decimals(item.time_limit_price)}}</text>
+        <text class='shop_price'>￥{{item.shop_price}}</text>
+      </view>
+      <view class='price' wx:else style='{{item.is_invalid==0?util.diy_color(diy_color.z_color,"",""):"color:#999fa5;"}}'>
+        <text class='unit'>￥</text>
+        <text class='integer'>{{util.integer(item.shop_price)}}</text>
+        <text class='decimals'>.{{util.decimals(item.shop_price)}}</text>
+      </view>
+      <view class='depreciate-info'>
+        <view class='boder' wx:if="{{item.is_group != 1 && item.is_bargain != 1 && item.is_limit != 1&&item.price == 0&&item.is_invalid==0}}" catchtap='priceNotification' data-item='{{item}}' data-index='{{index}}'>降价通知</view>
+        <view class='boder' wx:elif='{{(item.is_group != 1 || item.is_bargain != 1 || item.is_limit != 1)&&item.price != "0.00"&&item.is_invalid==0}}' catchtap='priceNotification' data-item='{{item}}' data-index='{{index}}'>订阅价￥{{item.price}}</view>
+        <view class='invalid' wx:elif='{{item.is_invalid==1}}'>
+          <image class='icon' src='{{util.HTTP}}mobile/small/image/goods_sold_out.png'></image>
+          <text>已下架</text>
+        </view>
+        <block wx:if='{{item.is_invalid==0}}'>
+          <view class='icon_cart font_family icon-pt' style='{{util.diy_color(diy_color.z_color,"","")}}' wx:if="{{item.is_group==1}}"></view>
+          <view class='icon_cart font_family icon-kj' style='{{util.diy_color(diy_color.z_color,"","")}}' wx:elif="{{item.is_bargain==1}}"></view>
+          <view class='icon_cart font_family icon-xs' style='{{util.diy_color(diy_color.z_color,"","")}}' wx:elif="{{item.is_limit==1}}"></view>
+          <view class='icon_cart font_family icon-guc' style='{{util.diy_color(diy_color.z_color,"","")}}' data-item='{{item}}' wx:else catchtap='addCart'></view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='empty-view' hidden='{{list.length != 0 || loading}}'>
+  <view>
+    <image src='{{util.HTTP}}mobile/small/image/kby-zwsc.png'></image>
+    <view class='no-order-head'>暂无关注商品</view>
+    <view class='no-order-content'>"去逛一逛商城吧"</view>
+  </view>
+</view>
+
+<view class='inventory-board' catchtouchmove='none' hidden='{{!inventory_board}}' hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'>
+  <view catchtap='none'>
+    <view wx:for="['']" hover-class='hover-class' hover-stay-time='400' bindtap='onPromotionItem'>
+      <view>全部(10)</view>
+      <image src='{{util.HTTP}}mobile/small/image/arx.png'></image>
+    </view>
+  </view>
+
+</view>
+
+
+<!-- 购物车 -->
+<cart diy_color='{{diy_color}}'/>
+
+<!-- 弹窗 -->
+<modal id="modal" title="提示" content="您确定取消收藏吗?" bind:confirm="confirmDelete" />
+
+
+<buy catchtap="none" id="buy_board" type="3" info="{{info}}" discount="{{discount}}" group_buy="{{false}}" diy_color='{{diy_color}}'/>

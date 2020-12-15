@@ -1,0 +1,77 @@
+<!--my/service/popups/popups.wxml-->
+<wxs module="util" src="../../../utils/util.wxs" />
+<!-- 咨询订单 -->
+<template name="order">
+  <view class='t-warp' animation="{{animationData}}">
+    <view class='con'>
+      <view class='header'>
+        <view class='title'>选择咨询订单</view>
+        <image class='close' hover-class='hover-class' hover-stay-time='400' bindtap='popupsClose' src='{{util.HTTP}}mobile/small/image/service/close.png'></image>
+      </view>
+      <scroll-view class='order' scroll-y>
+        <view class='row' wx:for='{{orderList}}' wx:key='{{index}}'>
+          <view class='header'>
+            <view class='name'>{{item.store.store_name}}</view>
+            <view class='status' wx:if='{{item.status==0}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>等待付款</view>
+            <view class='status' wx:elif='{{item.status==1}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>买家已付款</view>
+            <view class='status' wx:elif='{{item.status==2}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>卖家已发货</view>
+            <view class='status' wx:elif='{{item.status==3}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>已完成</view>
+            <view class='status' wx:elif='{{item.status==4||item.status==6}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>交易关闭</view>
+            <view class='status' wx:elif='{{item.status==5}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>退款中</view>
+          </view>
+          <view class='section'>
+            <view class='goodsList' wx:for='{{item.order_goods}}' wx:for-index="idx" wx:for-item="itemName" wx:key='{{index}}'>
+              <image class='goods' src='{{itemName.file}}'></image>
+              <view class='info'>
+                <view class='name'>{{itemName.goods_name}}</view>
+                <view class='attr'>{{itemName.attr}}</view>
+                <view class='con'>
+                  <text class='price'>￥{{itemName.single_price}}</text>
+                  <text class='sum'>x{{itemName.quantity}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</template>
+
+<!-- 咨询商品 -->
+<template name="goods">
+  <view class='t-warp' animation="{{animationData}}">
+    <view class='con'>
+      <view class='header'>
+        <view class='title'>选择咨询商品</view>
+        <image class='close' hover-class='hover-class' hover-stay-time='400' bindtap='popupsClose' src='{{util.HTTP}}mobile/small/image/service/close.png'></image>
+      </view>
+      <scroll-view class='order' scroll-y>
+        <view class='row' wx:for='{{orderList}}' wx:key='{{index}}'>
+          <!-- <view class='header'>
+            <view class='name'>{{item.goods_name}}</view>
+            <view class='status' wx:if='{{item.status==0}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>等待付款</view>
+            <view class='status' wx:elif='{{item.status==1}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>买家已付款</view>
+            <view class='status' wx:elif='{{item.status==2}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>卖家已发货</view>
+            <view class='status' wx:elif='{{item.status==3}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>已完成</view>
+            <view class='status' wx:elif='{{item.status==4||item.status==6}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>交易关闭</view>
+            <view class='status' wx:elif='{{item.status==5}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>退款中</view>
+          </view> -->
+          <view class='section'>
+            <view class='goodsList'>
+              <image class='goods' src='{{item.file}}'></image>
+              <view class='info'>
+                <view class='name'>{{item.goods_name}}</view>
+                <!-- <view class='attr'>{{item.attr}}</view> -->
+                <view class='con'>
+                  <text class='price'>￥{{item.price}}</text>
+                  <!-- <text class='sum'>x{{item.quantity}}</text> -->
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</template>

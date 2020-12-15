@@ -1,0 +1,223 @@
+var util = {
+  /**
+   * 正式域名
+   */
+  HTTP: 'https://sc.tianmushenyang.cn/',
+
+
+  /**
+   * 多店，单店开关
+   * 多店：0，单店：1
+   */
+  isShops: 1,
+
+  /**
+   * 手机号加密
+   */
+  phoneEnc: function(phone) {
+    if (phone) {
+      var array = phone.split('')
+      array[3] = '*'
+      array[4] = '*'
+      array[5] = '*'
+      array[6] = '*'
+      return array.join('')
+    }
+  },
+  /**
+   * 整数
+   */
+  integer: function(value) {
+    value = Number(value).toFixed(2).toString()
+    if (value) {
+      var array = value.split(".")
+      return array[0]
+    }
+  },
+  /**
+   * 小数
+   */
+  decimals: function(value) {
+    value = Number(value).toFixed(2).toString()
+    if (value) {
+      var array = value.split(".")
+      return array[1]
+    }
+  },
+  /**
+   * 百分比1
+   */
+  percent: function(total, residue) {
+    var total = parseFloat(total)
+    var residue = parseFloat(residue)
+    var per = null
+    if (residue > 0) {
+      per = (((total - residue) / total) * 100).toFixed(0)
+    } else {
+      per = 100
+    }
+    return per
+  },
+  /**
+   * 百分比2
+   */
+  oPercent: function(total, residue) {
+    if (total) {
+      var per = (residue / total).toFixed(2) * 100
+      if (per > 100) {
+        per = 100
+      }
+      return per
+    }
+  },
+  /**
+   * vip价格
+   */
+  vip_price: function(price, discount) {
+    if (price) {
+      return parseFloat(price * discount * 0.01).toFixed(2)
+    }
+  },
+  /**
+   * 保留小数
+   */
+  toFixed: function(num) {
+    num = parseFloat(num)
+    if (num != 0) {
+      return num.toFixed(2)
+    } else {
+      return "0.00"
+    }
+  },
+  /**
+   * 截取字符串第一个字符
+   */
+  cutFirst: function(s) {
+    if (s) {
+      return s.split(':')[0]
+    }
+  },
+
+  /**
+   * 截取字符串第一个字符
+   */
+  cutDate: function(s) {
+    if (s) {
+      return s.split(' ')[0]
+    }
+  },
+  /**
+   * 积分省钱
+   */
+  cal: function(integral, radio) {
+    return Number(integral * Number(radio)).toFixed(2)
+  },
+  /**
+   * 每日最多
+   */
+  add: function(a, b) {
+    return parseInt(a) * parseInt(b)
+  },
+  /**
+   * 图片换色盒子
+   */
+  diy_imgbox: function(w) {
+    var box = 'display: block;' +
+      'width: ' + w + 'rpx!important;' +
+      'overflow: hidden;';
+    return box
+  },
+  /**
+   * 图片换色
+   */
+  diy_imgcolor: function(color, w, h, y) {
+    var y = y || 0
+    var style = 'position: relative;' +
+      'transform: translate(-' + w + 'rpx,' + y + 'px);' +
+      'width: ' + w + 'rpx!important;' +
+      'height: ' + h + 'rpx!important;' +
+      'border-right: ' + w + 'px solid transparent;' +
+      'filter: drop-shadow(' + w + 'rpx 0 0 ' + color + ');';
+    return style
+  },
+  /**
+   * 换色
+   */
+  diy_color: function(color, bg, border, opacity) {
+    var diy = ''
+    if (color) {
+      diy += 'color:' + color + ' !important;'
+    }
+    if (bg) {
+      if (opacity) {
+        diy += 'background-color:' + bg + ' !important;'
+      } else {
+        diy += 'background-color:' + bg + ' !important;'
+      }
+    }
+    if (border) {
+      diy += 'border-color:' + border + ' !important;'
+    }
+    return diy
+  },
+  /**
+   * 客服时间
+   */
+  service_time: function(TIME) {
+    // 消息时间
+    var time = getDate(parseInt(TIME));
+    var y = time.getFullYear();
+    var m = time.getMonth() + 1;
+    var d = time.getDate();
+    var hh = time.getHours();
+    var mm = time.getMinutes();
+    //当前时间
+    var new_time = getDate();
+    // var new_y = new_time.getFullYear();
+    // var new_m = new_time.getMonth() + 1;
+    var new_d = new_time.getDate();
+    // var new_mm = new_time.getMinutes();
+    hh = hh < 10 ? '0' + hh : hh
+    mm = mm < 10 ? '0' + mm : mm
+    if (d != new_d && new_d - d > 1) {
+      return y + '年' + m + '月' + d + '日 ' + hh + ':' + mm
+    } else if (d != new_d && new_d - d == 1) {
+      return '昨天' + hh + ':' + mm
+    } else {
+      return hh + ':' + mm
+    }
+  },
+  servicelist_time: function(TIME) {
+    // 消息时间
+    var time = getDate(parseInt(TIME));
+    var y = time.getFullYear();
+    var m = time.getMonth() + 1;
+    var d = time.getDate();
+    var hh = time.getHours();
+    var mm = time.getMinutes();
+    hh = hh < 10 ? '0' + hh : hh
+    mm = mm < 10 ? '0' + mm : mm
+    return y + '/' + m + '/' + d
+  },
+}
+
+module.exports = {
+  HTTP: util.HTTP,
+  isShops: util.isShops,
+  phoneEnc: util.phoneEnc,
+  integer: util.integer,
+  decimals: util.decimals,
+  percent: util.percent,
+  oPercent: util.oPercent,
+  vip_price: util.vip_price,
+  toFixed: util.toFixed,
+  cutFirst: util.cutFirst,
+  cutDate: util.cutDate,
+  cal: util.cal,
+  add: util.add,
+  diy_imgcolor: util.diy_imgcolor,
+  diy_color: util.diy_color,
+  diy_imgbox: util.diy_imgbox,
+  service_time: util.service_time,
+  servicelist_time: util.servicelist_time
+}

@@ -1,0 +1,15 @@
+.bg {
+  width: 100vw;
+  height: 100vh;
+  display: block;
+}
+
+.code {
+  width: 290rpx;
+  height: 290rpx;
+  display: block;
+  position: absolute;
+  bottom: 16%;
+  left: 50%;
+  margin-left: -145rpx;
+}

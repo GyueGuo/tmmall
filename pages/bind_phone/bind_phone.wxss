@@ -1,0 +1,84 @@
+page {
+  background: white;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100rpx;
+}
+
+.logo .icon-wx {
+  width: 168rpx;
+  height: 70rpx;
+}
+
+.logo .icon-logo {
+  width: 65rpx;
+  height: 65rpx;
+  margin-left: 20rpx;
+}
+
+.content-bg {
+  width: 646rpx;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  margin: 34rpx auto 0;
+  border: 4rpx;
+  background: #f8f8f8;
+}
+
+.content-bg image {
+  width: 38rpx;
+  height: 38rpx;
+  margin-left: 50rpx;
+}
+
+.content-bg text {
+  font-size: 26rpx;
+  margin-left: 32rpx;
+}
+
+.content-bg input {
+  font-size: 28rpx;
+  margin-left: 30rpx;
+  width: 350rpx;
+}
+
+.content-bg view {
+  font-size: 28rpx;
+  width: 200rpx;
+  line-height: 100rpx;
+  text-align: center;
+  position: relative;
+  color: #999;
+}
+
+.content-bg view::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 4rpx;
+  height: 28rpx;
+  margin-top: -14rpx;
+  background: #e5e5e5;
+}
+
+.tips {
+  font-size: 26rpx;
+  width: 646rpx;
+  margin: 0 auto;
+  margin-top: 34rpx;
+  color: #bec3c9;
+}
+
+.submit {
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}

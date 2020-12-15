@@ -1,0 +1,17 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<!--背景   -->
+<view class='trans' hidden='{{!isShow}}' style='opacity:{{opacity}}'></view>
+<!--商品参数  -->
+<view class='board' hover-class='hover-class' hover-stay-time='400' bindtap='closeParameter' animation="{{animation}}">
+  <view class='good-parameter' catchtap="none">
+    <view class='parameter-head'>产品参数</view>
+    <scroll-view scroll-y class='parameter-scroll'>
+      <view class='parameter' wx:for="{{parameter}}" wx:key='{{index}}'>
+        <view class='parameter-title'>{{item.parameter_name}}</view>
+        <view class='parameter-content'>{{item.parameter_val}}</view>
+      </view>
+    </scroll-view>
+    <view class='parameter-finish' hover-class='hover-class' hover-stay-time='400' bindtap='closeParameter' style='{{util.diy_color("",diy_color.z_color,"")}}'>完成</view>
+  </view>
+
+</view>

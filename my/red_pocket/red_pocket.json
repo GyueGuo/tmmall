@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "红包",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "load_more": "/components/load_more/load_more"
+  }
+}

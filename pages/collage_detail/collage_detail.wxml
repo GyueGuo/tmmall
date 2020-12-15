@@ -1,0 +1,159 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view hidden='{{!info.goods_id}}'>
+  <view class='collage-head' wx:if='{{info.status != 2}}'>
+    <view class='head-img' style='background:url({{util.HTTP}}mobile/small/image/placeholder_member.png) no-repeat center;background-size:100% 100%;'>
+      <image src='{{info.participant[0].avatar}}'></image>
+    </view>
+    <view>
+      <view class='collage-initiator'>{{info.participant[0].nickname}}</view>
+      <view class='collage-num'>发起了{{info.group_num}}人团</view>
+    </view>
+  </view>
+
+  <view class='collage-success' wx:if="{{member_id == info.owner&&info.status == 2&&info.state != 0}}">
+    <view>
+      <view class='collage-logo'>
+        <view class='font_family icon icon-wd-zhyaq-anq' style='{{util.diy_color(diy_color.z_color,"","")}}'></view>
+        <text>恭喜您拼团成功!</text>
+      </view>
+      <view class='look-collage'>
+        <text>可在我的</text>
+        <text hover-class='hover-class' hover-stay-time='400' bindtap='onMyCollage' style='{{util.diy_color(diy_color.z_color,"","")}}'>查看我的拼团></text>
+      </view>
+    </view>
+  </view>
+
+  <view class='collage-detail'>
+    <view class='good-info'>
+      <view style='{{util.diy_imgbox(116)}}position: absolute;right: 0;top: 0;' wx:if="{{info.status == 1}}">
+        <image class='order-status' src='{{util.HTTP}}mobile/small/image/pg-xq-jxz.png' style='{{util.diy_imgcolor(diy_color.z_color,116,116)}}'></image>
+      </view>
+      <view style='{{util.diy_imgbox(116)}}position: absolute;right: 0;top: 0;' wx:elif="{{info.status == 2}}">
+        <image class='order-status' src='{{util.HTTP}}mobile/small/image/pg-xq-chengg.png' style='{{util.diy_imgcolor(diy_color.z_color,116,116)}}'></image>
+      </view>
+      <image class='order-status' wx:elif="{{info.status == 3}}" src='{{util.HTTP}}mobile/small/image/pg-xq-shib.png'></image>
+      <view class='good-pic' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
+        <image src='{{info.file}}'></image>
+      </view>
+      <view>
+        <view class='good-name'>{{info.goods_name}}</view>
+        <view class='good-tips'>
+          <view class='present-price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+            <text class='unit'>￥</text>
+            <text class='integer'>{{util.integer(info.single_price)}}</text>
+            <text class='decimals'>.{{util.decimals(info.single_price)}}</text>
+          </view>
+          <view>
+            <view class='origin-price'>￥{{info.original_price}}</view>
+            <view class='good-sale'>
+              <view class='good-person' style='{{util.diy_color(diy_color.z_color,diy_color.f_color_2,"")}}'>{{info.group_num}}人团</view>
+              <view class='good-save' style='{{util.diy_color(diy_color.z_color,diy_color.f_color_2,"")}}'>拼团立省{{util.toFixed(info.original_price-info.single_price)}}元</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <image class='line-arrows' src='{{util.HTTP}}mobile/small/image/pg-x.png'></image>
+    <view class='collage-info'>
+      <view>
+        <view wx:if="{{info.status == 1}}">
+          <view class='info-head'>
+            <text>还差</text>
+            <text style='{{util.diy_color(diy_color.z_color,"","")}}'>{{info.need}}人</text>拼团成功,剩余时间</view>
+          <view class='info-count'>
+            <text class='text'>{{info.hour_first}}</text>
+            <text class='text'>{{info.hour_second}}</text>
+            <text>:</text>
+            <text class='text'>{{info.min_first}}</text>
+            <text class='text'>{{info.min_second}}</text>
+            <text>:</text>
+            <text class='text'>{{info.sec_first}}</text>
+            <text class='text'>{{info.sec_second}}</text>
+          </view>
+        </view>
+        <view wx:elif="{{info.status == 2}}">
+          <view class='info-head'>
+            <text>团长人气太高,已经拼团成功啦</text>
+          </view>
+        </view>
+        <view wx:elif="{{info.status == 3}}">
+          <view class='info-head'>
+            <text>该团未能按时凑齐人数,拼团失败</text>
+          </view>
+        </view>
+        <view class='info-member'>
+          <scroll-view class='scroll-view' scroll-x>
+            <view class='item' wx:for="{{info.participant}}" wx:key='{{index}}'>
+              <view class='avatar' style='background:url({{util.HTTP}}mobile/small/image/placeholder_member.png) no-repeat center;background-size:100% 100%;'>
+                <image src='{{item.avatar}}'></image>
+              </view>
+              <view class='tip' wx:if='{{index == 0}}' style='{{util.diy_color("",diy_color.z_color,"")}}'>团长</view>
+            </view>
+            <view class='item' wx:for="{{info.need}}">
+              <view class='avatar' style='background:url({{util.HTTP}}mobile/small/image/placeholder_member.png) no-repeat center;background-size:100% 100%;'>
+                <image src='{{util.HTTP}}mobile/small/image/placeholder_member.png'></image>
+              </view>
+            </view>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+    <!-- <view class='wanna-collage' wx:if="{{(member_id != info.owner&&info.state == 0&&info.status==1)||(member_id==''&&info.state == 0&&info.status==1)}}" hover-class='hover-class' hover-stay-time='400' bindtap='onOffered' style='{{util.diy_color("",diy_color.z_color,"")}}'>我要参团</view> -->
+    <block wx:if="{{(member_id != info.owner&&info.state == 0&&info.status==1)||(member_id==''&&info.state == 0&&info.status==1)}}">
+      <form report-submit='true' bindsubmit='formId'>
+        <button class='wanna-collage' hover-class='hover-class' hover-stay-time='400' formType="submit" bindtap='onOffered' style='{{util.diy_color("",diy_color.z_color,"")}}'>我要参团</button>
+      </form>
+    </block>
+    <button open-type='share' class='wanna-collage' wx:if="{{member_id == info.owner && info.status == 1 && info.state!=0}}" style='{{util.diy_color("",diy_color.z_color,"")}}'>邀请好友参团</button>
+    <view class='wanna-collage' wx:if="{{member_id == info.owner&&info.status == 3}}" hover-class='hover-class' hover-stay-time='400' bindtap='onAgainCollage' style='{{util.diy_color("",diy_color.z_color,"")}}'>再开一团</view>
+    <view class='other-collage' wx:if='{{info.status == 3}}' hover-class='hover-class' hover-stay-time='400' bindtap='onOtherCollage' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>去逛逛其他拼团</view>
+    <view class='other-collage' wx:if='{{info.status == 2}}' hover-class='hover-class' hover-stay-time='400' bindtap='onOtherCollage' style='{{util.diy_color("#fff",diy_color.z_color,"")}}'>去逛逛其他拼团</view>
+  </view>
+
+  <view class=' collage-rule'>
+    <view>
+      <view class='rule-head' hover-class='hover-class' hover-stay-time='400' bindtap='onCollageRule'>
+        <view class='rule-title'>拼团玩法</view>
+        <view class='rule-detail'>拼团规则></view>
+      </view>
+      <view class='rule-content'>
+        <view>①开团/参团</view>
+        <image class='rule-next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+        <view>②邀请好友</view>
+        <image class='rule-next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+        <view>③满员发货</view>
+      </view>
+      <view class='rule-tip'>(不满自动退款)</view>
+    </view>
+  </view>
+
+  <view class='hot-recommend'>
+    <view class='hot-head'>
+      <view class='hot-left'>热门推荐</view>
+      <view class='hot-right ' hover-class='hover-class' hover-stay-time='400' bindtap='onMoreGood'>更多火热拼团 ></view>
+    </view>
+    <view class='hot-list'>
+      <view wx:for="{{group_list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goods_id}}'>
+        <view class='good-avatar' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
+          <image src='{{item.file}}'></image>
+        </view>
+        <view class='good-name'>{{item.goods_name}}</view>
+        <view class='good-price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+          <view class='good-person'>{{item.group_num}}人拼</view>
+          <view class='present-price'>
+            <text class='unit'>￥</text>
+            <text class='integer'>{{util.integer(item.group_price)}}</text>
+            <text class='decimals'>.{{util.decimals(item.group_price)}}</text>
+          </view>
+        </view>
+        <view class='good-tips'>
+          <view class='origin-price'>￥{{item.shop_price}}</view>
+          <view class='good-sales'>已有{{item.group_success_num}}人拼</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!--立即购买  -->
+<buy isShow="{{buy_board}}" catchtap="none" id="buy_board" bind:closeBuy="closeBuy" order_type="2" type="2" info="{{goods_info}}" discount="{{discount}}" group_buy="{{true}}" group_activity_id="{{info.group_activity_id}}" diy_color='{{diy_color}}' />

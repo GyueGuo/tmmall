@@ -1,0 +1,89 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='coupon-list'>
+  <view hover-class='hover-class' hover-stay-time='400' bindtap='onExchange' wx:for="{{list}}" data-item='{{item}}'>
+    <image src='{{util.HTTP}}mobile/small/image/sy-hqzx-yhq2.png'></image>
+    <view class='coupon-item'>
+      <view class='left'>
+        <view>
+          <image class='coupon-img' src='{{item.file!=""?item.file:util.HTTP+"mobile/small/image/coupon_01.png"}}'></image>
+          <view class='coupon-info'>
+            <view class='coupon-title'>{{item.title}}</view>
+            <block wx:if="{{item.exchange_num!=0}}">
+              <view class='coupon-price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+                <text class='favourable-price'>￥{{item.actual_price}}</text>
+                <text class='off-price' style='{{util.diy_color("",diy_color.f_color_2,"")}}'>满{{item.full_subtraction_price}}使用</text>
+              </view>
+            </block>
+            <block wx:else>
+              <view class='coupon-price' style='color:#ccc;'>
+                <text class='favourable-price'>{{item.actual_price}}</text>
+                <text class='off-price' style='{{util.diy_color("","#f7f7f7","")}}'>满{{item.full_subtraction_price}}使用</text>
+              </view>
+            </block>
+          </view>
+        </view>
+      </view>
+      <view class='right'>
+        <view>
+          <view class='cost' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+            <view>消耗积分</view>
+            <view>
+              <image src='{{util.HTTP}}mobile/small/image/sy-hqzx-jf.png'></image>
+              {{item.integral}}
+            </view>
+          </view>
+          <view class='opertation bg' wx:if="{{item.exchange_num!=0}}" style='{{util.diy_color("",diy_color.z_color,"")}}box-shadow: 0 5rpx 10rpx 0 {{diy_color.f_color}};'>立即兑换</view>
+          <view class='opertation' wx:else>暂时抢光</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='empty-view' hidden='{{list.length != 0 || loading}}'>
+    <view>
+      <image src='{{util.HTTP}}mobile/small/image/kby-zwyh.png'></image>
+      <view>暂无优惠券</view>
+    </view>
+  </view>
+</view>
+
+<view class='exchange-board' catchtouchmove='none' hidden='{{!exchange_board}}' hover-class='hover-class' hover-stay-time='400' bindtap='onCloseExchange'>
+  <view class='exchange-detail' catchtap='none'>
+    <image src='{{util.HTTP}}mobile/small/image/shanchu.png' hover-class='hover-class' hover-stay-time='400' bindtap='onCloseExchange'></image>
+    <view class='exchange-bg'>
+      <!-- <image src='/image/sy-hqzx-dhjf.png'></image> -->
+      <view class='exchange-con' style='background:url({{util.HTTP}}mobile/small/image/coupon5.png) no-repeat;background-size:100% 100%;'>
+
+        <view class='exchange-info'>
+          <text class='exchange-off'>￥</text>
+          <text class='exchange-price'>{{info.actual_price}}</text>
+          <text class='exchange-off'>满{{info.full_subtraction_price}}使用</text>
+        </view>
+        <view class='exchange-fit'>{{info.title}}</view>
+
+      </view>
+      <view class='exchange-goods'>
+        <view class='used-good' hover-class='hover-class' hover-stay-time='400' bindtap='goUse' data-item='{{info}}'>
+          <image wx:for="{{info.goods_list}}" src='{{item.file}}'></image>
+        </view>
+        <view class='used-tips' hover-class='hover-class' hover-stay-time='400' bindtap='onChangeCouponList' data-data='{{info}}' wx:if='{{info.goods_list.length!=0}}'>查看全部适用商品></view>
+      </view>
+    </view>
+    <view class='integral-balance'>
+      <view class='exchange' hover-class='hover-class' hover-stay-time='400' bindtap='changeCoupon' style='{{util.diy_color("",diy_color.z_color,"")}}'>花{{info.integral}}积分兑换</view>
+      <view class='Integral' hover-class='hover-class' hover-stay-time='400' bindtap='onIntegral'>你的账号还有{{info.member_integral}}积分,去领积分></view>
+    </view>
+  </view>
+</view>
+
+<view class='footer'>
+  <view hover-class='hover-class' hover-stay-time='400' bindtap='onCouponCenter'>
+    <image src='{{util.HTTP}}mobile/small/image/sy-hqzx-da1.png'></image>
+    <view>领券</view>
+  </view>
+  <view>
+    <view style='{{util.diy_imgbox(96)}}'>
+      <image src='{{util.HTTP}}mobile/small/image/sy-hqzx-da2-2.png' style='{{util.diy_imgcolor(diy_color.z_color,96,96)}}transform:translateX(-60px);'></image>
+    </view>
+    <view class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>换券</view>
+  </view>
+</view>

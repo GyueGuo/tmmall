@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "邀新人,赚红包",
+  "usingComponents": {
+    "Parser": "/components/Parser/index"
+  }
+}

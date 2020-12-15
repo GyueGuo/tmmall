@@ -1,0 +1,95 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view hidden="{{total == -1}}">
+  <!--评价选择  -->
+  <view class="evaluate-head">
+    <view class="{{current_tab==1?'cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onAll' style='{{util.diy_color("",diy_color.f_color_2,"")}}{{current_tab==1?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>
+      <view style='{{util.diy_imgbox(18)}}margin-right:6rpx;' wx:if='{{current_tab==1}}'>
+        <image src='{{util.HTTP}}mobile/small/image/xq-pj-g.png' style='{{util.diy_imgcolor(diy_color.z_color,18,12)}}margin-right:0'></image>
+      </view>
+      <text>全部({{statistics.all}})</text>
+    </view>
+    <view class="{{current_tab==2?'cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onNewest' style='{{util.diy_color("",diy_color.f_color_2,"")}}{{current_tab==2?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>
+      <view style='{{util.diy_imgbox(18)}}margin-right:6rpx;' wx:if='{{current_tab==2}}'>
+        <image src='{{util.HTTP}}mobile/small/image/xq-pj-g.png' style='{{util.diy_imgcolor(diy_color.z_color,18,12)}}margin-right:0'></image>
+      </view>
+      <text>最新</text>
+    </view>
+    <view class="{{current_tab==3?'cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onGood' style='{{util.diy_color("",diy_color.f_color_2,"")}}{{current_tab==3?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>
+      <view style='{{util.diy_imgbox(18)}}margin-right:6rpx;' wx:if='{{current_tab==3}}'>
+        <image src='{{util.HTTP}}mobile/small/image/xq-pj-g.png' style='{{util.diy_imgcolor(diy_color.z_color,18,12)}}margin-right:0'></image>
+      </view>
+      <text>好评({{statistics.good}})</text>
+    </view>
+    <view class="{{current_tab==4?'cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onMedium' style='{{util.diy_color("",diy_color.f_color_2,"")}}{{current_tab==4?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>
+      <view style='{{util.diy_imgbox(18)}}margin-right:6rpx;' wx:if='{{current_tab==4}}'>
+        <image src='{{util.HTTP}}mobile/small/image/xq-pj-g.png' style='{{util.diy_imgcolor(diy_color.z_color,18,12)}}margin-right:0'></image>
+      </view>
+      <text>中评({{statistics.medium}})</text>
+    </view>
+    <view class="{{current_tab==5?'cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onNegative' style='{{util.diy_color("",diy_color.f_color_2,"")}}{{current_tab==5?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>
+      <view style='{{util.diy_imgbox(18)}}margin-right:6rpx;' wx:if='{{current_tab==5}}'>
+        <image src='{{util.HTTP}}mobile/small/image/xq-pj-g.png' style='{{util.diy_imgcolor(diy_color.z_color,18,12)}}margin-right:0'></image>
+      </view>
+      <text>差评({{statistics.negative}})</text>
+    </view>
+    <view class="{{current_tab==6?'cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onPicture' style='{{util.diy_color("",diy_color.f_color_2,"")}}{{current_tab==6?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>
+      <view style='{{util.diy_imgbox(18)}}margin-right:6rpx;' wx:if='{{current_tab==6}}'>
+        <image src='{{util.HTTP}}mobile/small/image/xq-pj-g.png' style='{{util.diy_imgcolor(diy_color.z_color,18,12)}}margin-right:0'></image>
+      </view>
+      <text>有图({{statistics.file}})</text>
+    </view>
+    <view class="{{current_tab==7?'cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onVideo' style='{{util.diy_color("",diy_color.f_color_2,"")}}{{current_tab==7?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>
+      <view style='{{util.diy_imgbox(18)}}margin-right:6rpx;' wx:if='{{current_tab==7}}'>
+        <image src='{{util.HTTP}}mobile/small/image/xq-pj-g.png' style='{{util.diy_imgcolor(diy_color.z_color,18,12)}}margin-right:0'></image>
+      </view>
+      <text>视频({{statistics.video}})</text>
+    </view>
+  </view>
+
+  <!--评价列表  -->
+  <view class='evaluate-list'>
+    <view class='evaluate-detail' wx:for="{{list}}">
+      <view class='detail-head'>
+        <view class='head1'>
+          <image src='{{item.avatar}}' class='avatar' wx:if='{{item.avatar!=""}}'></image>
+          <view class='avatar' style='background-color:#f6f6f6;' wx:else></view>
+          <view class='user-name' wx:if="{{item.is_anonymous == 0}}">{{item.nickname}}</view>
+          <view class='user-name' wx:else>匿名</view>
+        </view>
+        <view class='detail-grade'>
+          <view class='font_family star icon-dp-dtxqsc1' style='{{item.star_num >= 1?util.diy_color(diy_color.z_color,"",""):"color:#d2d3d5"}}'></view>
+          <view class='font_family star icon-dp-dtxqsc1' style='{{item.star_num >= 2?util.diy_color(diy_color.z_color,"",""):"color:#d2d3d5"}}'></view>
+          <view class='font_family star icon-dp-dtxqsc1' style='{{item.star_num >= 3?util.diy_color(diy_color.z_color,"",""):"color:#d2d3d5"}}'></view>
+          <view class='font_family star icon-dp-dtxqsc1' style='{{item.star_num >= 4?util.diy_color(diy_color.z_color,"",""):"color:#d2d3d5"}}'></view>
+          <view class='font_family star icon-dp-dtxqsc1' style='{{item.star_num >= 5?util.diy_color(diy_color.z_color,"",""):"color:#d2d3d5"}}'></view>
+        </view>
+      </view>
+      <view class='detail-content'>{{item.content}}</view>
+      <view class='pic-list'>
+        <image class='big' wx:if="{{(item.video == null || item.video == '') && item.multiple_file.length == 1}}" src='{{item.multiple_file[0]}}' hover-class='hover-class' hover-stay-time='400' bindtap='onPreview' data-index='{{index}}' data-idx='0'></image>
+        <view wx:else>
+          <view wx:if="{{item.video != ''}}" class="video-view {{item.video == ''?'pic-item':'video-item'}}" hover-class='hover-class' hover-stay-time='400' bindtap='onPreview' data-idx='-1' data-index='{{index}}'>
+            <image class='pic' src='{{item.video_img}}'></image>
+            <image src='{{util.HTTP}}mobile/small/image/pj-bf.png' class='play-pic'></image>
+          </view>
+          <view class="{{item.video == ''?'pic-item':'video-item'}}" wx:for="{{item.multiple_file}}" wx:for-index="idx">
+            <image class='pic' src='{{item}}' hover-class='hover-class' hover-stay-time='400' bindtap='onPreview' data-index='{{index}}' data-idx='{{idx}}'></image>
+          </view>
+        </view>
+      </view>
+      <view class='detail-time'>
+        <text>{{item.create_time}}</text>
+        <text hidden='{{item.attr == null}}'>{{item.attr}}</text>
+      </view>
+      <view class='reply' wx:if='{{item.reply != null}}'>回复: {{item.reply}}</view>
+    </view>
+  </view>
+  <!-- <view class='no-evaluate' hidden='{{total != 0}}'>暂无评论</view> -->
+  <view class='no-order' hidden="{{total != 0 || loading}}">
+    <view>
+      <image src='{{util.HTTP}}mobile/small/image/kby-zanwpj.png'></image>
+      <view class='no-order-head'>暂无评论</view>
+      <!-- <view class='no-order-content'>"快来忙里偷闲下一单吧"</view> -->
+    </view>
+  </view>
+</view>

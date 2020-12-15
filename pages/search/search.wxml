@@ -1,0 +1,32 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='search'>
+  <view class='search-bg'>
+    <!-- <input confirm-type="search" placeholder='搜索商品' value='{{search_key}}' bindinput='searchInput' bindconfirm='onSearch'></input> -->
+    <view class='font_family icon-ssk-ss search-icon'></view>
+    <input confirm-type="search" placeholder='{{current_tab==1?"搜索商品/品牌":"搜索店铺"}}' value='{{search_key}}' bindinput='searchInput' bindconfirm='onSearch' placeholder-style='color:#bdbfc1;'></input>
+    <view class='font_family icon-shanchu- clear' hover-class='hover-class' hover-stay-time='400' bindtap='onClearKey'></view>
+  </view>
+  <view class='search-title' hover-class='hover-class' hover-stay-time='400' bindtap='onSearch'>搜索</view>
+</view>
+
+
+<!-- <view class="tab" wx:if='{{util.isShops==0&&configSwitch.version_info.one_more==1}}'>
+  <view hover-class='hover-class' hover-stay-time='400' bindtap='onGood' style='{{current_tab == 1?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>商品</view>
+  <view hover-class='hover-class' hover-stay-time='400' bindtap='onShop' style='{{current_tab == 2?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>店铺</view>
+</view> -->
+
+
+<view class='hot-search' wx:if='{{current_tab==1}}'>
+  <view class='title'>热门搜索</view>
+  <!-- <scroll-view scroll-x class='hot-list'> -->
+    <view class='hot-title' wx:for="{{hot_search}}" hover-class='hover-class' hover-stay-time='400' bindtap='onSearch' hidden='{{item==""}}' data-item='{{item}}'>{{item}}</view>
+  <!-- </scroll-view> -->
+</view>
+
+<view class='history-search'>
+  <view class='history-title'>历史搜索</view>
+  <view class='delete font_family icon-sc-' hover-class='hover-class' hover-stay-time='400' bindtap='onClearHistory'></view>
+  <view class='history-list'>
+    <view class='hot-title' wx:for="{{history_list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onSearch' data-item='{{item}}'>{{item}}</view>
+  </view>
+</view>

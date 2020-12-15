@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "load_more": "/components/load_more/load_more",
+    "go_top":"/components/go_top/go_top",
+    "modal": "/components/modal/modal"
+  }
+}

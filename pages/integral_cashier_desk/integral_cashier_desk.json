@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "收银台",
+  "usingComponents": {
+    "integral_enter_psw": "/components/integral_enter_psw/integral_enter_psw"
+  }
+}

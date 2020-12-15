@@ -1,0 +1,6 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<image class='logo' src='{{configSwitch.app_info.logo}}'>
+</image>
+<view class='head'>{{configSwitch.app_info.title}}申请获得以下权限:</view>
+<view class='subhead'>获得你的公开信息(昵称,头像等)</view>
+<button class='submit' loading='{{loading}}' disabled='{{disabled}}' open-type='getUserInfo' bindgetuserinfo="getUserInfo" style='{{util.diy_color("",diy_color.z_color,"")}}'>确认授权</button>

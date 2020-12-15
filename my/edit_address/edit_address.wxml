@@ -1,0 +1,60 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='content'>
+  <view>
+    <view class='left'>收货人:</view>
+    <view class='right'>
+      <input type='text' bindinput='nameInput' value='{{name}}' maxlength="10" placeholder='请输入联系人' placeholder-class='input-class' />
+    </view>
+  </view>
+</view>
+<view class='content'>
+  <view>
+    <view class='left'>手机号码:</view>
+    <view class='right'>
+      <input type='number' maxlength='11' bindinput='phoneInput' value='{{phone}}' placeholder='请输入手机号码' placeholder-class='input-class' />
+    </view>
+  </view>
+</view>
+<view class='content' hover-class='hover-class' hover-stay-time='400' bindtap='onAddress' >
+  <view>
+    <view class='left'>所在地区: </view>
+    <view class='right'>
+      <view class='input-class' wx:if='{{address==""}}'>请选择所在地区</view>
+      <view wx:else>{{address.province}} {{address.city}} {{address.area}} {{address.street}}</view>
+    </view>
+  </view>
+</view>
+<view class='content' hover-class='hover-class' hover-stay-time='400' bindtap='onLocation' >
+  <view>
+    <view class='left'>收货地址:</view>
+    <view class='right'>
+      <view wx:if="{{location == ''}}">
+        <!-- <image src='{{util.HTTP}}mobile/small/image/xq-zt-dw.png'></image> -->
+        <text class='font_family icon-ddxq-dw'></text>
+        <text class='input-class'>点击选择</text>
+      </view>
+      <view wx:else>{{location}}</view>
+    </view>
+  </view>
+</view>
+<view class='content'>
+  <view>
+    <view>详细地址:</view>
+    <view class='right'>
+      <input type='text' value='{{detail}}' maxlength="40" placeholder='详细地址,例如: 16号楼5层301室' bindinput='detailInput' placeholder-class='input-class' />
+    </view>
+  </view>
+</view>
+<view class='content' hover-class='hover-class' hover-stay-time='400' bindtap='changeDefault' >
+  <view>
+    <view>设置为默认地址</view>
+  </view>
+  <view class='set' style='{{util.diy_imgbox(82)}}'>
+    <image src="{{util.HTTP}}{{is_default?'mobile/small/image/gwc-sl-k.png':'mobile/small/image/gwc-sl-gb.png'}}" style='{{is_default?util.diy_imgcolor(diy_color.z_color,82,48):""}}'></image>
+  </view>
+</view>
+
+<view class='save' hover-class='hover-class' hover-stay-time='400' bindtap='save' style='{{util.diy_color("",diy_color.z_color,"")}}' >保存并使用</view>
+
+
+<choose_address isShow="{{address_board}}" address="{{address}}" bind:confirmAddress="confirmAddress" />

@@ -1,0 +1,242 @@
+page {
+  background: #ff3a19;
+  padding-bottom: 30rpx;
+}
+
+.head {
+  position: relative;
+}
+
+.head > image {
+  width: 100%;
+  height: 700rpx;
+}
+
+.opertation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.opertation view {
+  width: 360rpx;
+  height: 140rpx;
+  position: relative;
+}
+
+.opertation image {
+  width: 360rpx;
+  height: 140rpx;
+}
+
+.opertation button {
+  width: 360rpx;
+  height: 140rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: white;
+  opacity: 0;
+}
+
+.wrap {
+  padding: 0 28rpx;
+}
+
+.statistics {
+  background: #fefbf6;
+  border-radius: 10rpx;
+  height: 294rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.statistics > view {
+  width: 632rpx;
+  height: 190rpx;
+  border-radius: 10rpx;
+  position: relative;
+}
+
+.statistics > view > image {
+  width: 100%;
+  height: 100%;
+}
+
+.statistics-info {
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.statistics-info > view {
+  width: 50%;
+  height: 100%;
+  float: left;
+  position: relative;
+}
+
+.statistics-info > view .title {
+  text-align: center;
+  color: #9f5402;
+  font-size: 26rpx;
+  margin-top: 44rpx;
+}
+
+.statistics-info > view .num {
+  text-align: center;
+  color: white;
+  font-size: 44rpx;
+  font-weight: bold;
+  margin-top: 18rpx;
+}
+
+.statistics-info > view image {
+  width: 2rpx;
+  height: 110rpx;
+  position: absolute;
+  top: 50%;
+  margin-top: -55rpx;
+  right: 0;
+}
+
+.record {
+  margin-top: 50rpx;
+  background: #fefbf6;
+  border-radius: 10rpx;
+  padding: 35rpx;
+}
+
+.record .record-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.record .record-head .line {
+  width: 158rpx;
+  height: 2rpx;
+}
+
+.record .record-head .cur {
+  font-size: 38rpx;
+  font-weight: bold;
+  margin: 0 34rpx;
+}
+
+.scroll {
+  max-height: 420rpx;
+}
+
+.invite-item {
+  margin-top: 20rpx;
+  height: 125rpx;
+  background: #ffecd9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.invite-item .left {
+  margin-left: 30rpx;
+}
+
+.invite-item .left .invite-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  width: 260rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.invite-item .left .invite-time {
+  font-size: 26rpx;
+  margin-top: 6rpx;
+}
+
+.invite-item .right {
+  margin-right: 30rpx;
+}
+
+.invite-item .right .invite-money {
+  width: 64rpx;
+  height: 74rpx;
+
+}
+
+.invite-item .right > view {
+  display: flex;
+  align-items: center;
+}
+
+.invite-item .right .invite-money {
+  position: relative;
+}
+
+.invite-item .right .invite-money > image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.invite-item .right .invite-money > view {
+  position: absolute;
+  width: 100%;
+  top: 3vw;
+  text-align: center;
+  /* margin-top: 0.4vw; */
+  left: 0;
+  /* margin-left: -20rpx; */
+  font-size: 24rpx;
+  line-height: 24rpx;
+  font-weight: bold;
+
+}
+
+/* .invite-item .right .invite-money .unit {
+  font-size: 18rpx;
+} */
+
+.invite-item .right .invite-money .money {
+  font-size: 24rpx;
+  font-weight: bold;
+}
+
+.invite-item .right .invite-from {
+  font-weight: bold;
+  font-size: 28rpx;
+  margin-left: 14rpx;
+}
+
+.rule {
+  margin-top: 50rpx;
+  background: #fefbf6;
+  border-radius: 10rpx;
+  padding: 35rpx;
+}
+
+.rule .rule-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rule .rule-head .line {
+  width: 198rpx;
+  height: 2rpx;
+}
+
+.rule .rule-head .cur {
+  font-size: 38rpx;
+  font-weight: bold;
+  margin: 0 34rpx;
+}
+
+.rule .content {
+  font-size: 30rpx;
+  padding-top: 20rpx;
+}

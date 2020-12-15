@@ -1,0 +1,62 @@
+/* my/fx_apply_sh/fx_apply_sh.wxss */
+page{
+  background-color: #fff;
+}
+.warp{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.warp .warpbg{
+  position: relative;
+  background-color: #fd532b;
+  width: 100%;
+  height: 450rpx;
+}
+.warp .warpbg .bg-1{
+  position: absolute;
+  left: 50%;
+  top: 90rpx;
+  width: 112rpx;
+  height: 117rpx;
+  margin-left: -56rpx;
+}
+.warp .warpbg .bg-2{
+  position: absolute;
+  left: 50%;
+  top: 50rpx;
+  width: 216rpx;
+  height: 216rpx;
+  margin-left: -108rpx;
+}
+.warp .warpbg .bg-3{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 109rpx;
+}
+.warp .warp_con{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.warp .warp_con .title{
+  font-size: 33rpx;
+  padding: 20rpx 0;
+}
+.warp .warp_con .tip{
+  font-size: 29rpx;
+  color: #666666;
+}
+.warp .goHome{
+  background-color: #fd532b;
+  color: #fff;
+  font-size: 30rpx;
+  border-radius: 50px 50px;
+  padding: 15rpx 80rpx;
+  text-align: center;
+  margin: 60rpx auto 0;
+}

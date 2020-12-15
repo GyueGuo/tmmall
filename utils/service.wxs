@@ -1,0 +1,293 @@
+var util = {
+  chat: function(text) {
+    var text = '阿斯蒂芬[皱眉]fasdf[无语]'
+    var a = text.split('[')
+    console.log(a)
+    a = a.split(']')
+    console.log(a)
+    return a
+  },
+  emoji: function(emoji) {
+    switch (emoji) {
+      case '[微笑]':
+        return 'mobile/small/image/emoji-icon/0.png'
+        break;
+      case '[撇嘴]':
+        return 'mobile/small/image/emoji-icon/1.png'
+        break;
+      case '[色]':
+        return 'mobile/small/image/emoji-icon/2.png'
+        break;
+      case '[发呆]':
+        return 'mobile/small/image/emoji-icon/3.png'
+        break;
+      case '[得意]':
+        return 'mobile/small/image/emoji-icon/4.png'
+        break;
+      case '[流泪]':
+        return 'mobile/small/image/emoji-icon/5.png'
+        break;
+      case '[害羞]':
+        return 'mobile/small/image/emoji-icon/6.png'
+        break;
+      case '[闭嘴]':
+        return 'mobile/small/image/emoji-icon/7.png'
+        break;
+      case '[睡]':
+        return 'mobile/small/image/emoji-icon/8.png'
+        break;
+      case '[大哭]':
+        return 'mobile/small/image/emoji-icon/9.png'
+        break;
+      case '[尴尬]':
+        return 'mobile/small/image/emoji-icon/10.png'
+        break;
+      case '[发怒]':
+        return 'mobile/small/image/emoji-icon/11.png'
+        break;
+      case '[调皮]':
+        return 'mobile/small/image/emoji-icon/12.png'
+        break;
+      case '[呲牙]':
+        return 'mobile/small/image/emoji-icon/13.png'
+        break;
+      case '[惊讶]':
+        return 'mobile/small/image/emoji-icon/14.png'
+        break;
+      case '[难过]':
+        return 'mobile/small/image/emoji-icon/15.png'
+        break;
+      case '[囧]':
+        return 'mobile/small/image/emoji-icon/16.png'
+        break;
+      case '[抓狂]':
+        return 'mobile/small/image/emoji-icon/17.png'
+        break;
+      case '[吐]':
+        return 'mobile/small/image/emoji-icon/18.png'
+        break;
+      case '[偷笑]':
+        return 'mobile/small/image/emoji-icon/19.png'
+        break;
+      case '[愉快]':
+        return 'mobile/small/image/emoji-icon/20.png'
+        break;
+      case '[白眼]':
+        return 'mobile/small/image/emoji-icon/21.png'
+        break;
+      case '[傲慢]':
+        return 'mobile/small/image/emoji-icon/22.png'
+        break;
+      case '[困]':
+        return 'mobile/small/image/emoji-icon/23.png'
+        break;
+      case '[惊恐]':
+        return 'mobile/small/image/emoji-icon/24.png'
+        break;
+      case '[流汗]':
+        return 'mobile/small/image/emoji-icon/25.png'
+        break;
+      case '[憨笑]':
+        return 'mobile/small/image/emoji-icon/26.png'
+        break;
+      case '[悠闲]':
+        return 'mobile/small/image/emoji-icon/27.png'
+        break;
+      case '[奋斗]':
+        return 'mobile/small/image/emoji-icon/28.png'
+        break;
+      case '[咒骂]':
+        return 'mobile/small/image/emoji-icon/29.png'
+        break;
+      case '[疑问]':
+        return 'mobile/small/image/emoji-icon/30.png'
+        break;
+      case '[嘘]':
+        return 'mobile/small/image/emoji-icon/31.png'
+        break;
+      case '[晕]':
+        return 'mobile/small/image/emoji-icon/32.png'
+        break;
+      case '[衰]':
+        return 'mobile/small/image/emoji-icon/33.png'
+        break;
+      case '[骷髅]':
+        return 'mobile/small/image/emoji-icon/34.png'
+        break;
+      case '[敲打]':
+        return 'mobile/small/image/emoji-icon/35.png'
+        break;
+      case '[再见]':
+        return 'mobile/small/image/emoji-icon/36.png'
+        break;
+      case '[擦汗]':
+        return 'mobile/small/image/emoji-icon/37.png'
+        break;
+      case '[抠鼻]':
+        return 'mobile/small/image/emoji-icon/38.png'
+        break;
+      case '[鼓掌]':
+        return 'mobile/small/image/emoji-icon/39.png'
+        break;
+      case '[坏笑]':
+        return 'mobile/small/image/emoji-icon/40.png'
+        break;
+      case '[左哼哼]':
+        return 'mobile/small/image/emoji-icon/41.png'
+        break;
+      case '[右哼哼]':
+        return 'mobile/small/image/emoji-icon/42.png'
+        break;
+      case '[哈欠]':
+        return 'mobile/small/image/emoji-icon/43.png'
+        break;
+      case '[鄙视]':
+        return 'mobile/small/image/emoji-icon/44.png'
+        break;
+      case '[委屈]':
+        return 'mobile/small/image/emoji-icon/45.png'
+        break;
+      case '[快哭了]':
+        return 'mobile/small/image/emoji-icon/46.png'
+        break;
+      case '[阴险]':
+        return 'mobile/small/image/emoji-icon/47.png'
+        break;
+      case '[亲亲]':
+        return 'mobile/small/image/emoji-icon/48.png'
+        break;
+      case '[可怜]':
+        return 'mobile/small/image/emoji-icon/49.png'
+        break;
+      case '[菜刀]':
+        return 'mobile/small/image/emoji-icon/50.png'
+        break;
+      case '[西瓜]':
+        return 'mobile/small/image/emoji-icon/51.png'
+        break;
+      case '[啤酒]':
+        return 'mobile/small/image/emoji-icon/52.png'
+        break;
+      case '[咖啡]':
+        return 'mobile/small/image/emoji-icon/53.png'
+        break;
+      case '[猪头]':
+        return 'mobile/small/image/emoji-icon/54.png'
+        break;
+      case '[玫瑰]':
+        return 'mobile/small/image/emoji-icon/55.png'
+        break;
+      case '[凋谢]':
+        return 'mobile/small/image/emoji-icon/56.png'
+        break;
+      case '[嘴唇]':
+        return 'mobile/small/image/emoji-icon/57.png'
+        break;
+      case '[爱心]':
+        return 'mobile/small/image/emoji-icon/58.png'
+        break;
+      case '[心碎]':
+        return 'mobile/small/image/emoji-icon/59.png'
+        break;
+      case '[蛋糕]':
+        return 'mobile/small/image/emoji-icon/60.png'
+        break;
+      case '[炸弹]':
+        return 'mobile/small/image/emoji-icon/61.png'
+        break;
+      case '[便便]':
+        return 'mobile/small/image/emoji-icon/62.png'
+        break;
+      case '[月亮]':
+        return 'mobile/small/image/emoji-icon/63.png'
+        break;
+      case '[太阳]':
+        return 'mobile/small/image/emoji-icon/64.png'
+        break;
+      case '[拥抱]':
+        return 'mobile/small/image/emoji-icon/65.png'
+        break;
+      case '[强]':
+        return 'mobile/small/image/emoji-icon/66.png'
+        break;
+      case '[弱]':
+        return 'mobile/small/image/emoji-icon/67.png'
+        break;
+      case '[握手]':
+        return 'mobile/small/image/emoji-icon/68.png'
+        break;
+      case '[胜利]':
+        return 'mobile/small/image/emoji-icon/69.png'
+        break;
+      case '[抱拳]':
+        return 'mobile/small/image/emoji-icon/70.png'
+        break;
+      case '[勾引]':
+        return 'mobile/small/image/emoji-icon/71.png'
+        break;
+      case '[拳头]':
+        return 'mobile/small/image/emoji-icon/72.png'
+        break;
+      case '[OK]':
+        return 'mobile/small/image/emoji-icon/73.png'
+        break;
+      case '[跳跳]':
+        return 'mobile/small/image/emoji-icon/74.png'
+        break;
+      case '[发抖]':
+        return 'mobile/small/image/emoji-icon/75.png'
+        break;
+      case '[怄火]':
+        return 'mobile/small/image/emoji-icon/76.png'
+        break;
+      case '[转圈]':
+        return 'mobile/small/image/emoji-icon/77.png'
+        break;
+      case '[笑脸]':
+        return 'mobile/small/image/emoji-icon/78.png'
+        break;
+      case '[生病]':
+        return 'mobile/small/image/emoji-icon/79.png'
+        break;
+      case '[破涕为笑]':
+        return 'mobile/small/image/emoji-icon/80.png'
+        break;
+      case '[吐舌]':
+        return 'mobile/small/image/emoji-icon/81.png'
+        break;
+      case '[脸红]':
+        return 'mobile/small/image/emoji-icon/82.png'
+        break;
+      case '[恐惧]':
+        return 'mobile/small/image/emoji-icon/83.png'
+        break;
+      case '[失望]':
+        return 'mobile/small/image/emoji-icon/84.png'
+        break;
+      case '[无语]':
+        return 'mobile/small/image/emoji-icon/85.png'
+        break;
+      case '[嘿哈]':
+        return 'mobile/small/image/emoji-icon/86.png'
+        break;
+      case '[捂脸]':
+        return 'mobile/small/image/emoji-icon/87.png'
+        break;
+      case '[奸笑]':
+        return 'mobile/small/image/emoji-icon/88.png'
+        break;
+      case '[机智]':
+        return 'mobile/small/image/emoji-icon/89.png'
+        break;
+      case '[皱眉]':
+        return 'mobile/small/image/emoji-icon/90.png'
+        break;
+    }
+  }
+
+}
+
+module.exports = {
+  chat: util.chat,
+  emoji: util.emoji,
+}

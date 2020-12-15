@@ -1,0 +1,12 @@
+.wrap {
+  margin-top: 2rpx;
+  padding-left: 24rpx;
+  background: white;
+}
+
+.wrap > view {
+  font-size: 30rpx;
+  line-height: 100rpx;
+  border-bottom: 2rpx solid #f6f6f6;
+  
+}

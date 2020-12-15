@@ -1,0 +1,21 @@
+<!-- <image src="https://lhy666.cn/mobile//act_img/pic45.png" class="logo"></image>
+
+<view class='content'>
+  <view>
+    <view class='rule' wx:for="['']">*k里的数据弗兰克的撒娇乐山大佛九分裤零售价的数量福建省大力开发讲述了肯德基</view>
+    <view>
+      <view class='discount-head'>
+        <view>会员等级</view>
+        <view>折扣率</view>
+      </view>
+      <view class='discount-content' wx:for="['']">
+        <view>铜牌会员</view>
+        <view>98折</view>
+      </view>
+
+    </view>
+    <view>
+    </view>
+  </view>
+</view> -->
+<web-view src="{{src}}"></web-view>

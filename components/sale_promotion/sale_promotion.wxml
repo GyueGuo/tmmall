@@ -1,0 +1,19 @@
+<!--背景   -->
+<view class='trans' hidden='{{!isShow}}' style='opacity:{{opacity}}'></view>
+<view class='board' hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard' animation="{{animation}}">
+  <!--优惠券  -->
+  <view class='sale-promotion' catchtap="none">
+    <view class='head'>促销</view>
+    <view class='sale-info'>
+      <view class='left'>满减</view>
+      <view class='right'>
+        <block wx:for="{{info}}" wx:key='{{index}}'>
+          <text>满{{item.full}}元减{{item.sub}}元</text>
+          <text style="{{index == info.length -1?'display:none':''}}">,</text>
+        </block>
+      </view>
+    </view>
+    <view class='finish' hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'>完成</view>
+  </view>
+
+</view>

@@ -1,0 +1,17 @@
+<!--components/navBar/navBar.wxml-->
+<wxs module="util" src="../../utils/util.wxs" />
+<template name="tabBar">
+  <view class="tabBar" style='{{model.phone=="iPhone X"?"height:130rpx;padding-bottom:30rpx;":""}}'>
+    <block wx:for="{{tabBar}}" wx:for-item="item" wx:key="tabBar">
+      <view class="tabBar-item">
+        <navigator open-type="switchTab" url="{{item.route}}" hover-class="none" data-item="{{item}}" bindtap="route">
+          <view class='box'>
+            <!-- <image class="icon" src='{{util.HTTP+item.img}}'></image> -->
+            <image class="icon" src='data:image/svg+xml;base64,{{item.iconPath}}'></image>
+          </view>
+          <view style="{{item.current== 1 ? util.diy_color(diy_color.z_color,'','') :''}}">{{item.title}}</view>
+        </navigator>
+      </view>
+    </block>
+  </view>
+</template>

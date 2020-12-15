@@ -1,0 +1,45 @@
+page {
+  background: white;
+}
+
+.wrap {
+  width: 96%;
+  margin: 0 auto;
+  height: 100vh;
+  background: white;
+}
+
+.title {
+  margin-top: 20rpx;
+  font-size: 44rpx;
+  font-weight: bold;
+}
+
+.collect {
+  overflow: hidden;
+}
+
+.collect > view {
+  float: right;
+  text-align: center;
+  width: 120rpx;
+  font-size: 28rpx;
+  line-height: 50rpx;
+  border-radius: 30rpx;
+  margin: 10rpx 0;
+}
+
+.good-nums {
+  font-size: 30rpx;
+  line-height: 80rpx;
+  color: white;
+  padding: 0 40rpx;
+  display: inline-block;
+  border-radius: 40rpx;
+  position: fixed;
+  right: 30rpx;
+  bottom: 30rpx;
+}
+.wxParse{
+  font-size: 26rpx;
+}

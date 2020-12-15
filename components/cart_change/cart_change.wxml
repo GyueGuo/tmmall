@@ -1,0 +1,41 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<!--背景   -->
+<view class='trans' hidden='{{!isShow}}' style='opacity:{{opacity}}'></view>
+<view class='board' hover-class='hover-class' hover-stay-time='400' bindtap='_close' animation="{{animation}}">
+  <view class='buy-bg' id='buy_bg' catchtap='none'>
+    <image class='good-pic' id='good_pic' src='{{good_image}}'></image>
+    <image src='{{util.HTTP}}mobile/small/image/xq-gb.png' class='close-bg' hover-class='hover-class' hover-stay-time='400' bindtap='_close'></image>
+    <!-- 正常购买 -->
+    <view class='good-info'>
+      <!-- <text class='unit cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>单买价</text> -->
+      <text class='unit cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥</text>
+      <text class='integer cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>{{util.integer(price)}}</text>
+      <text class='decimals cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>.{{util.decimals(price)}}</text>
+      <text class='inventory'>(库存{{info.inventory==null?0:info.inventory}})</text>
+    </view>
+    <view class='good-size'>{{attr}}</view>
+    <view class='good-property'>
+      <view>
+        <view wx:for="{{info.attrs}}" wx:for-index="idx" wx:key='{{idx}}'>
+          <view class='property-title'>
+            {{item.attr_name}}
+          </view>
+          <view class='property-option'>
+            <view wx:for="{{item.goods_attr}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='_onAttr' data-idx='{{idx}}' data-item='{{item}}' class="{{attr_array[idx] == item.attr_value?'cur-option':''}}" style='{{attr_array[idx] == item.attr_value?util.diy_color("",diy_color.z_color,""):""}}'>{{item.attr_value}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='buy-num'>
+      <view class='left'>购买数量</view>
+      <view class='right'>
+        <image hover-class='hover-class' hover-stay-time='400' bindtap='_reduceNum' src='{{util.HTTP}}mobile/small/image/xq-zj.png'></image>
+        <text class='num'>{{num}}</text>
+        <image hover-class='hover-class' hover-stay-time='400' bindtap='_increaseNum' src='{{util.HTTP}}mobile/small/image/xq-js.png'></image>
+      </view>
+    </view>
+    <view class='operation'>
+      <view class='confirm bg' hover-class='hover-class' hover-stay-time='400' bindtap='_onConfirm' style='{{util.diy_color("",diy_color.z_color,"")}}'>确定</view>
+    </view>
+  </view>
+</view>

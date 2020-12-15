@@ -1,0 +1,29 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<!--背景   -->
+<view class='trans' hidden='{{!isShow}}' style='opacity:{{opacity}}'></view>
+<!--筛选  -->
+<view class="board filtrate-board {{isShow?'filtrate-board-anim':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='closeTrans' style="left:{{move_distance}}rpx !important">
+  <view class='content' catchtap='none' bindtouchstart='filtrateStart' bindtouchmove='filtrateMove' bindtouchend='filtrateEnd'>
+    <view style='overflow:auto;height:100%'>
+      <view>
+        <view class='filtrate-item filtrate-head'>
+          <view class='title'>全部</view>
+          <view class='number'>7个</view>
+          <image src='{{util.HTTP}}{{"mobile/small/image/arx.png"}}'></image>
+        </view>
+
+        <view class='filtrate-item' wx:for="['']">
+          <view class='title'>全部</view>
+          <view class='number'>7个</view>
+          <image src='{{util.HTTP}}{{"mobile/small/image/arx.png"}}'></image>
+        </view>
+
+        <view class='block'></view>
+
+      </view>
+    </view>
+    <view class='footer'>
+      <view catchtap='onFiltrateConfirm'>确定</view>
+    </view>
+  </view>
+</view>

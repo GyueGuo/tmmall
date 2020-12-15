@@ -1,0 +1,11 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='head'>验证码已发送到绑定手机号</view>
+<view class='phone'>{{encrypt_phone}}</view>
+
+<view class='verification'>
+  <image src='{{util.HTTP}}mobile/small/image/yzm.png'></image>
+  <input placeholder='请输入验证码' maxlength='6' type='number' bindinput='codeInput'></input>
+  <view hover-class='hover-class' hover-stay-time='400' bindtap='getCode'>{{content}}</view>
+</view>
+
+<view class="next-step {{able?'bg':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onNext' style='{{able?util.diy_color("",diy_color.z_color,""):""}}'>下一步</view>

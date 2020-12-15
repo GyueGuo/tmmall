@@ -1,0 +1,10 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='head' wx:for="{{list}}">
+  <view class='title'>{{item.title}}</view>
+  <view class='content-wrap'>
+    <view wx:for="{{item.article}}" class='content' hover-class='hover-class' hover-stay-time='400' bindtap='onItem' data-item='{{item}}'>
+      <view>{{item.title}}</view>
+      <image src='{{util.HTTP}}{{"mobile/small/image/xq-gd.png"}}'></image>
+    </view>
+  </view>
+</view>

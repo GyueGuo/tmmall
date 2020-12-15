@@ -1,0 +1,173 @@
+/* my/fx_total_earnings/fx_total_earnings.wxss */
+page{
+  width: 100%;
+  height: 100%;
+}
+.container {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0 34rpx;
+  overflow: hidden;
+}
+.container .con_top{
+  width: 100%;
+  height: 8%;
+  margin-top: 3%;
+}
+.container .con_bottom{
+  widows: 100%;
+  height: calc(90% + 4rpx);
+}
+
+.container .navTab {
+  width: 100%;
+  display: flex;
+  border: 2rpx solid #f23030;
+  border-radius: 10rpx;
+  overflow: hidden;
+  font-size: 28rpx;
+  color: #f23030;
+  text-align: center;
+}
+
+.container .navTab>view {
+  flex: 1;
+  background-color: #fff;
+  padding: 16rpx 0;
+}
+
+.container .list-item>.info {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+}
+
+.container .list-item>.info .info_view {
+  font-size: 22rpx;
+  margin-left: 35rpx;
+}
+
+.container .list-item>.info .info_view>text {
+  font-size: 26rpx;
+}
+
+.container .fx_time {
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+  width: 85rpx;
+  height: 85rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+}
+.container .fx_time picker{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .fx_time .next{
+  padding-top: 10rpx;
+  width: 42rpx;
+  height: 42rpx;
+}
+
+.container .list-item>.list>.item{
+  background-color: #fff;
+  border-radius: 10rpx;
+  margin: 25rpx 0;
+}
+.container .list-item>.list>.item .top{
+  padding: 10rpx 25rpx;
+  border-bottom: 2rpx solid #f8f8f8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.container .list-item>.list>.item .top .userinfo{
+  display: flex;
+  align-items: center;
+}
+.container .list-item>.list>.item .top .userinfo .userimg{
+  width: 52rpx;
+  height: 52rpx;
+  border-radius: 50%;
+  background-color: #f6f6f6;
+  overflow: hidden;
+}
+.container .list-item>.list>.item .top .userinfo .username{
+  font-size: 27rpx;
+  color: #777;
+  padding-left: 15rpx;
+}
+.container .list-item>.list>.item .bottom{
+  padding: 25rpx;
+  display: flex;
+  align-items: center;
+}
+.container .list-item>.list>.item .bottom .goodsimg{
+  width: 113rpx;
+  height: 113rpx;
+  background-color: #f6f6f6;
+}
+.container .list-item>.list>.item .bottom .info{
+  width: auto;
+  height: 113rpx;
+  padding-left: 20rpx;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.container .list-item>.list>.item .bottom .info .goodstitle{
+  font-size: 25rpx;
+  line-height: 39rpx;
+}
+.container .list-item>.list>.item .bottom .info .goodsinfo{
+  font-size: 22rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.container .list-item>.list>.item .bottom .info .goodsinfo .goodstime{
+  color: #a7acb1;
+}
+
+.container .list-item>.list .info_view {
+  font-size: 22rpx;
+  margin-left: 35rpx;
+}
+
+.container .list-item>.list .info_view>text {
+  font-size: 25rpx;
+}
+
+.no-order {
+  height: calc(100vh - 300rpx);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-order > view {
+  width: 100%;
+}
+
+.no-order image {
+  width: 100%;
+  height: 260rpx;
+}
+
+.no-order .no-order-head {
+  font-size: 32rpx;
+  text-align: center;
+}
+
+.no-order .no-order-content {
+  font-size: 26rpx;
+  color: #8d8d8d;
+  text-align: center;
+  margin-top: 10rpx;
+}

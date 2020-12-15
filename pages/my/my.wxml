@@ -1,0 +1,94 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<import src="../../components/navBar/navBar.wxml" />
+<view class='wrap'>
+  <view class='head'>
+    <view class='head-set'>
+      <view class='set-con'>
+        <view class='set-btn' hover-stay-time='400' bindtap='onSetting'>
+          <image hover-class='hover-class' src='{{util.HTTP}}mobile/small/image/wd-sz.png'></image>
+        </view>
+        <view class='set-btn' hover-class='hover-class' hover-stay-time='400' bindtap='onMessage'>
+          <image src='{{util.HTTP}}mobile/small/image/wd-xx.png'></image>
+          <view wx:if='{{information!=0}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>{{information
+            < 99?information: "..."}}</view>
+          </view>
+        </view>
+      </view>
+      <view class='user-con'>
+        <view class='user-info'>
+          <view class='user-img'  class='user-img' hover-class='hover-class' hover-stay-time='400' bindtap='onInfo' style='background:url({{util.HTTP}}mobile/small/image/placeholder_member.png) no-repeat center;background-size:100% 100%;'>
+            <image src="{{info.userInfo.avatar}}" wx:if='{{info.userInfo.avatar}}'></image>
+          </view>
+          <view class='user-details'>
+            <view class='user-nickname {{!login_status?"no-login":""}}' hover-class='hover-class' hover-stay-time='400' bindtap='login_status'>{{login_status?info.userInfo.nickname:'登录/注册'}}</view>
+            <image class='rank' hover-class='hover-class' hover-stay-time='400' bindtap='onMember' src='{{info.userInfo.rank_img}}' wx:if='{{login_status}}'></image>
+          </view>
+          <view class='user-card' hover-class='hover-class' hover-stay-time='400' bindtap='onVipCard' hover-class='hover-class'>
+            <image class='card' src='{{util.HTTP}}mobile/small/image/wd-hyk.png'></image>
+          </view>
+        </view>
+        <view class='user-wallet'>
+          <view class='icon' style='{{util.diy_imgbox(38)}}'>
+            <image src='{{util.HTTP}}mobile/small/image/qb.png' style='{{util.diy_imgcolor(diy_color.z_color,38,38)}}'></image>
+          </view>
+          <view class='title' style='{{util.diy_color(diy_color.z_color,"","")}}'>查看我的钱包</view>
+          <view class='btn' hover-class='hover-class' hover-stay-time='400' bindtap='myWallet' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>立即进入</view>
+        </view>
+      </view>
+      <view class='head-bg' style='background: linear-gradient(to left, {{diy_color.z_color}}, {{diy_color.f_color_8}});'>
+        <view class='circle circle1'></view>
+        <view class='circle circle2'></view>
+      </view>
+    </view>
+    <view class='section'>
+      <view class='row order'>
+        <view class='title'>
+          <view class='h1'>我的订单</view>
+          <view class='next-btn' data-item='all' hover-class='hover-class' hover-stay-time='400' bindtap='order'>
+            <text>查看全部</text>
+            <image class='next' src='{{util.HTTP}}mobile/small/image/my_gd.png'></image>
+          </view>
+        </view>
+        <view class='section-con'>
+          <view class='li' wx:for='{{info.orderStat}}' wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='order' data-item='{{item.key}}'>
+            <image class='section-icon' src='{{util.HTTP+item.img}}'></image>
+            <view class='section-name'>{{item.title}}</view>
+            <view class='section-num' wx:if='{{item.count!=0}}' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>{{item.count
+              < 99?item.count: "..."}}</view>
+            </view>
+          </view>
+        </view>
+
+        <view class='row distribution' wx:if='{{info.distribution.distribution_status=="1"}}'>
+          <view class='title'>
+            <view class='h1'>代言中心</view>
+            <view class='dy_vicon' hover-class='hover-class' hover-stay-time='400' bindtap='goVicon' wx:if='{{login_status&&info.distribution.distribution_id!=0}}'>V{{info.distribution.level_pos}}{{info.distribution.level_title}}</view>
+          </view>
+          <view class='section-con'>
+            <view class='li' wx:for='{{aDistribution}}' wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='distribution' data-item='{{item.key}}'>
+              <image class='section-icon' src='{{util.HTTP+item.img}}'></image>
+              <view class='section-name'>{{item.title}}</view>
+            </view>
+          </view>
+        </view>
+
+        <view class='row tool'>
+          <view class='title'>
+            <view class='h1'>小助手</view>
+          </view>
+          <view class='section-con' style='margin-top:20rpx;'>
+            <view class='li' wx:for='{{info.assistant}}' wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='tool' data-item='{{item.key}}'>
+              <image class='section-icon' wx:if='{{item.img!=""}}' src='{{util.HTTP+item.img}}'></image>
+              <view class='count' wx:else>{{item.count}}</view>
+              <view class='section-name'>{{item.title}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- copyright -->
+      <view class='copyright'>
+        <!-- <view class='company'>{{configSwitch.app_info.business_name}}</view>
+        <view class='credentials' hover-class='hover-class' hover-stay-time='400' bindtap='credentials'>证照信息</view> -->
+      </view>
+    </view>
+    <template is="tabBar" data="{{tabBar:bindData.tabBar,diy_color:diy_color,model:model}}" />

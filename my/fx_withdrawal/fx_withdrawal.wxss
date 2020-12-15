@@ -1,0 +1,138 @@
+/* my/fx_withdrawal/fx_withdrawal.wxss */
+page{
+  background-color: #fff;
+}
+.container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 30rpx;
+}
+
+.container .withdrawal_num {
+  width: 90%;
+  margin-top: 30rpx;
+  background-color: #fff;
+  box-shadow: 0 0 20rpx 0rpx rgba(151, 111, 57, 0.2);
+  padding: 32rpx;
+  box-sizing: border-box;
+  border-radius: 10rpx;
+}
+
+.container .withdrawal_num .title {
+  font-size: 26rpx;
+}
+.container .withdrawal_num .input{
+  display: flex;
+  align-items: center;
+  padding: 48rpx 0 30rpx;
+}
+.container .withdrawal_num .input text {
+  font-size: 46rpx;
+  margin-right: 28rpx;
+}
+.container .withdrawal_num .input input {
+  font-size: 46rpx;
+  flex: 1;
+}
+
+.container .withdrawal_num .earnings {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 26rpx;
+  padding: 34rpx 0 0rpx;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.container .withdrawal_num .earnings .num {
+  color: #858585;
+}
+
+.container .withdrawal_num .earnings .record {
+  color: #3e71bc;
+}
+
+.container .withdrawal_way {
+  width: 90%;
+  margin-bottom: 50rpx;
+}
+
+.container .withdrawal_way .title {
+  font-size: 26rpx;
+  border-bottom: 1px dashed #e4e4e4;
+  padding: 25rpx 0;
+}
+
+.container .withdrawal_way .way {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #f1f1f1;
+  padding: 30rpx 0;
+}
+
+.container .withdrawal_way .way .icon {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.container .withdrawal_way .way .tit {
+  font-size: 28rpx;
+  margin-left: 30rpx;
+}
+
+.container .withdrawal_way .way .select {
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: auto;
+}
+.container .withdrawal_way .way .select>image{
+  width: 38rpx;
+  height: 38rpx;
+}
+
+.container .notice_list {
+  width: 90%;
+}
+
+.container .notice_list .title {
+  font-size: 26rpx;
+  color: #595f65;
+  line-height: 40rpx;
+}
+
+.container .notice_list .notice {
+  font-size: 25rpx;
+  color: #9da2a8;
+  line-height: 35rpx;
+}
+
+.container .submit {
+  width: 90%;
+  font-size: 29rpx;
+  padding: 30rpx 0;
+  text-align: center;
+  border-radius: 10rpx;
+  margin-top: 80rpx;
+  color: #fff;
+}
+.bankcard{
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  padding: 30rpx 0;
+  border-bottom: 1px solid #f6f6f6;
+  color: #333;
+}
+.bankcard .info{
+  margin-right: auto;
+}
+.bankcard text{
+  color: #666;
+}
+.next{
+  width: 20rpx;
+  height: 27rpx;
+  flex-shrink: 0;
+}

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "内容",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "load_more": "/components/load_more/load_more"
+  }
+}

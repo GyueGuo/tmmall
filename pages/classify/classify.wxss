@@ -1,0 +1,266 @@
+page {
+  background: white;
+}
+.wrap-search{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20rpx;
+  background: #981d0d;
+}
+.wrap-search .search-con{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 64rpx;
+  padding: 0 20rpx;
+  border-radius: 8rpx;
+  background-color: #f6f6f6;
+}
+.wrap-search .search-icon{
+  font-size: 36rpx;
+  color: #981d0d;
+}
+.wrap-search .search-title{
+  font-size: 24rpx;
+  margin-left: 20rpx;
+  color: #981d0d;
+}
+.wrap-search .scan{
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 64rpx;
+  height: 64rpx;
+  font-size: 46rpx;
+  color: #fff;
+}
+.wrap-search .msg{
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 64rpx;
+  height: 64rpx;
+  font-size: 46rpx;
+  color: #fff;
+}
+.wrap-search .msg .msg-num{
+  position: absolute;
+  right: -12rpx;
+  top: -8rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40rpx;
+  height: 40rpx;
+  font-size: 26rpx;
+  border-radius: 50%;
+  color: #fff;
+}
+
+
+.warp {
+  position: relative;
+  height: calc(100vh - 200rpx);
+}
+
+.classify {
+  overflow: hidden;
+}
+
+.left-classify {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24%;
+  height: 100%;
+  overflow: auto;
+  background-color: #f6f6f6;
+}
+
+.left-classify > view {
+  position: relative;
+  width: calc(100%-30rpx);
+  font-size: 26rpx;
+  line-height: 36rpx;
+  padding: 29rpx 0rpx;
+  text-align: center;
+  border-left: 6rpx solid transparent;
+  box-sizing: border-box;
+  color: #202224;
+}
+.left-classify > view::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #fff;
+}
+
+/* .left-classify .cur {
+  background: white;
+  position: relative;
+  border-left: 6rpx solid #f23030;
+  box-sizing: border-box;
+} */
+
+.classify-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 72%;
+  padding: 0 2% 2% 0;
+  background: white;
+  height: 100%;
+  overflow: auto;
+  box-sizing: border-box;
+  margin-bottom: 10rpx;
+}
+
+.classify-right .ad {
+  width: 100%;
+  height: 160rpx;
+}
+
+.classify-right .ad-title {
+  margin-top: 10rpx;
+  font-size: 26rpx;
+  color: white;
+  line-height: 68rpx;
+  text-align: center;
+  border-radius: 6rpx;
+}
+
+.classify-right .second-classify {
+  margin-top: 20rpx !important;
+}
+
+.classify-right .classify-specific {
+  margin-top: 60rpx;
+  width: 100%;
+  background: white;
+}
+
+.classify-right .classify-specific .classify-second {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.classify-right .classify-specific .classify-second .line {
+  width: 52rpx;
+  height: 1px;
+  background: #ddd;
+  display: inline-block;
+  margin: 0 16rpx;
+}
+
+.classify-right .classify-specific .classify-second .title {
+  font-size: 28rpx;
+  line-height: 40rpx;
+}
+
+.classify-right .classify-specific .classify-second .next {
+  position: absolute;
+  top: 6rpx;
+  right: 0;
+  font-size: 32rpx;
+  color: #bcb8b8;
+}
+
+.classify-detail {
+  overflow: hidden;
+}
+
+.classify-detail > view {
+  width: 33.3%;
+  margin-top: 40rpx;
+  overflow: hidden;
+  float: left;
+}
+
+.classify-detail .classify-icon {
+  width: 108rpx;
+  height: 108rpx;
+  margin: 0 auto;
+  display: block;
+}
+.classify-detail .classify-icon image{
+  width: 100%;
+  height: 100%;
+}
+.brand .classify-detail .classify-icon {
+  display: block;
+  width: 100%;
+  height: 75rpx;
+  padding: 8rpx 14rpx;
+  box-sizing: border-box;
+}
+.brand .classify-detail .classify-icon image{
+  width: 100%;
+  height: 100%;
+}
+
+.classify-detail .classify-name {
+  font-size: 24rpx;
+  margin: 0 auto;
+  margin-top: 20rpx;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.one-level {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  background-color: #f6f6f6;
+  overflow: hidden;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+.one-level .scroll-view{
+  height: 100%;
+  padding-top: 14rpx;
+  box-sizing:border-box;
+}
+.one-level .scroll-view .view{
+  margin-bottom: 14rpx;
+  width: 49%;
+  height: 145rpx;
+  background: white;
+  border-radius: 4rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  float: left;
+}
+
+.one-level .scroll-view .view:nth-child(2n) {
+  margin-left: 2%;
+}
+
+.one-level .scroll-view .view text {
+  font-size: 30rpx;
+  margin-left: 40rpx;
+  display: inline-block;
+  width: 120rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.one-level .scroll-view .view image {
+  width: 112rpx;
+  height: 112rpx;
+  position: absolute;
+  right: 30rpx;
+  top: 16rpx;
+}

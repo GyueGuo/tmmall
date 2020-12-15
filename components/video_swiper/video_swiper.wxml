@@ -1,0 +1,23 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='swiper-head'>
+  <!-- <video id='video' src='{{video}}' hidden="{{!video_board}}" autoplay enable-progress-gesture='{{false}}' bindended="_videoEnd" bindtouchmove="_videoMove" bindtouchstart="_videoStart"></video> -->
+  <swiper class='swiper' circular bindchange="bannerChange" current='{{current}}'>
+    <block wx:if="{{video != null && video != ''}}">
+      <swiper-item>
+        <video id='video' src='{{video}}' autoplay='{{video_autoplay}}' poster='{{video_snapshot}}' enable-progress-gesture='{{false}}' bindended="_videoEnd" bindtouchmove="_videoMove" bindtouchstart="_videoStart"></video>
+        <!-- <view class='video-wrap' wx:if='{{isPlay}}' hover-class='hover-class' hover-stay-time='400' bindtap='onPreview' data-index='-1' style='background:url({{info.file}}) no-repeat;background-size:100% 100%;'>
+        <image src='{{util.HTTP}}{{"mobile/small/image/pj-bf.png"}}' catchtap='_onVideo'></image>
+      </view> -->
+      </swiper-item>
+    </block>
+    <block wx:for="{{banner}}">
+      <swiper-item>
+        <image wx:if="{{item.type == 'image'}}" hover-class='hover-class' hover-stay-time='400' bindtap='onPreview' data-index='{{index}}' src='{{item.content}}'></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class='banner-num'>
+    <text>{{current_banner}}</text>
+    <text>/{{banner_length}}</text>
+  </view>
+</view>

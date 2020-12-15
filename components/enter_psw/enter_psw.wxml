@@ -1,0 +1,40 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<!--背景   -->
+<view class='trans' hidden='{{!isShow}}' style='opacity:{{opacity}}'></view>
+<view class='board' animation="{{animation}}">
+  <view catchtap='none'>
+    <view class='head'>
+      <view>请输入支付密码</view>
+      <image src='{{util.HTTP}}{{"mobile/small/image/close.png"}}' hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'></image>
+    </view>
+    <view class='content-title'>余额支付</view>
+    <view class='money'>￥{{order_info.total_price}}</view>
+    <view class='enter' hover-class='hover-class' hover-stay-time='400' bindtap='enterPassword'>
+      <input type='number' focus="{{focus}}" disabled='{{input_disabled}}' bindinput='pswInput' maxlength='6' adjust-position='{{adjust_position}}' value='{{password}}'></input>
+      <view>
+        <view class='num'>
+          <view class='dot' hidden='{{password.length < 1}}'></view>
+        </view>
+        <view class='num '>
+          <view class='dot' hidden='{{password.length < 2}}'></view>
+        </view>
+        <view class='num '>
+          <view class='dot' hidden='{{password.length < 3 }}'></view>
+        </view>
+        <view class='num '>
+          <view class='dot' hidden='{{password.length < 4}}'></view>
+        </view>
+        <view class='num '>
+          <view class='dot' hidden='{{password.length < 5}}'></view>
+        </view>
+        <view class='num '>
+          <view class='dot' hidden='{{password.length < 6}}'></view>
+        </view>
+      </view>
+    </view>
+    <view class='psw-btn'>
+      <view hover-class='hover-class' hover-stay-time='400' bindtap='change_psw'>修改密码</view>
+      <view hover-class='hover-class' hover-stay-time='400' bindtap='forget_psw'>忘记密码</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "动态详情",
+  "usingComponents": {
+    "Parser": "/components/Parser/index",
+    "article_goods": "/components/article_goods/article_goods"
+  }
+}

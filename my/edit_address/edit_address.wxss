@@ -1,0 +1,94 @@
+.content {
+  overflow: hidden;
+  border-top: 2rpx solid #fafafa;
+  position: relative;
+}
+
+.content > view {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-left: 35rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: white;
+}
+
+.content > view > view {
+  font-size: 28rpx;
+  line-height: 90rpx;
+}
+
+.content .left {
+  width: 120rpx;
+}
+
+.content .right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding-left: 24rpx;
+}
+
+.content .right image {
+  width: 28rpx;
+  height: 34rpx;
+}
+
+.content .right text {
+  font-size: 28rpx;
+  line-height: 90rpx;
+  margin-left: 8rpx;
+  color: #aaa;
+}
+.content .input-class{
+  font-weight: normal!important;
+  color: #aaa;
+}
+
+.content .right view {
+  width: 510rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  font-size: 28rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.content .right input {
+  font-size: 28rpx;
+  line-height: 90rpx;
+  height: 90rpx;
+  width: 510rpx;
+}
+
+.content > .set {
+  position: absolute;
+  right: 24rpx;
+  top: 50%;
+  width: 82rpx;
+  height: 48rpx;
+  padding:0;
+  margin-top: -24rpx;
+}
+
+.content > .set image {
+  width: 82rpx;
+  height: 48rpx;
+}
+
+.save {
+  position: fixed;
+  left: 3%;
+  bottom: 24rpx;
+  z-index: 2;
+  width: 94%;
+  height: 84rpx;
+  line-height: 84rpx;
+  font-size: 32rpx;
+  text-align: center;
+  border-radius: 6rpx;
+  background: white;
+  color: white;
+}

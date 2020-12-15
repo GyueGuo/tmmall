@@ -1,0 +1,201 @@
+.wrap-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.rule {
+  position: absolute;
+  right: 18rpx;
+  top: 14rpx;
+}
+
+.rule {
+  overflow: hidden;
+}
+
+.rule .vertical {
+  width: 4rpx;
+  height: 36rpx;
+  float: left;
+  background: #fff0ee;
+}
+
+.rule .cur {
+  width: 120rpx;
+  font-size: 26rpx;
+  line-height: 36rpx;
+  text-align: center;
+  float: left;
+  margin-left: 4rpx;
+  background: #fff0ee;
+  color: #f23230;
+}
+
+.gift-bag {
+  position: absolute;
+  left: 2%;
+  width: 96%;
+  bottom: 106rpx;
+}
+
+.gift-bag .gift-head {
+  position: relative;
+  width: 100%;
+  height: 60rpx;
+}
+
+.gift-bag .gift-head > image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.gift-bag .gift-head  view {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  font-size: 26rpx;
+  line-height: 60rpx;
+  color: #e6fcc3;
+}
+
+.gift-bag .gift-content {
+  padding: 5rpx 10rpx 25rpx 10rpx;
+  background: rgba(253, 210, 210, 0.6);
+}
+
+.gift-scroll {
+  overflow: hidden;
+  height: 470rpx;
+}
+
+.gift-scroll .gift-item {
+  float: left;
+  width: 49.5%;
+  margin-top: 10rpx;
+}
+
+.gift-scroll .gift-item:nth-child(2n) {
+  float: left;
+  width: 49.5%;
+  margin-left: 1%;
+}
+
+.gift-scroll .gift-item > view {
+  width: 100%;
+  height: 140rpx;
+  background: #fff;
+}
+
+.gift-scroll .gift-item > image {
+  width: 100%;
+  height: 8rpx;
+  display: block;
+}
+
+.gift-item > view {
+  position: relative;
+}
+
+.gift-item .unit {
+  position: absolute;
+  left: 30rpx;
+  top: 34rpx;
+  font-size: 28rpx;
+  color: #f23230;
+}
+
+.gift-item .price {
+  position: absolute;
+  top: 34rpx;
+  left: 58rpx;
+  font-size: 60rpx;
+  line-height: 60rpx;
+  color: #f23230;
+}
+
+.gift-item > view > view {
+  position: absolute;
+  left: 170rpx;
+  top: 30rpx;
+}
+
+.gift-item .gift-classify {
+  font-size: 30rpx;
+  line-height: 30rpx;
+  color: #f23230;
+}
+
+.gift-item .gift-range {
+  font-size: 24rpx;
+  line-height: 24rpx;
+  margin-top: 14rpx;
+}
+.gift-item .gift-range text{
+  color: #f23230;
+}
+
+.gift-item > view > image {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 8rpx;
+}
+
+.key-get {
+  width: 270rpx;
+  font-size: 34rpx;
+  line-height: 72rpx;
+  margin: 25rpx auto 0;
+  text-align: center;
+  border-radius: 34rpx;
+  color: #fffdc8;
+  background: linear-gradient(#f26630, #f23230);
+}
+
+.rule-board {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.rule-board > view {
+  position: relative;
+  width: 600rpx;
+  height: 780rpx;
+  padding: 12rpx 20rpx;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.rule-board .rule-title {
+  font-size: 36rpx;
+  line-height: 72rpx;
+  text-align: center;
+  font-weight: bold;
+}
+
+.rule-board > view > image {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 80rpx;
+  height: 80rpx;
+}
+.rule-board .wxParse .m-txt{
+  font-size: 28rpx;
+}

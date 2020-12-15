@@ -1,0 +1,17 @@
+.title {
+  background: #f6f6f6;
+  padding-left: 26rpx;
+  font-size: 30rpx;
+  line-height: 75rpx;
+}
+
+.content {
+  background: white;
+}
+
+.content > view {
+  padding-left: 26rpx;
+  font-size: 30rpx;
+  line-height: 90rpx;
+  border-bottom: 2rpx solid #f6f6f6;
+}

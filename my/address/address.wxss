@@ -1,0 +1,80 @@
+.wrap {
+  height: calc(100vh - 110rpx);
+}
+
+.address {
+  border-top: 2rpx solid #ededed;
+  background: white;
+  border-bottom: 2rpx solid white;
+  position: relative;
+}
+
+.address-detail {
+  padding: 30rpx 98rpx 30rpx 24rpx;
+  background: white;
+  border-bottom: 2rpx solid #f6f6f6;
+}
+
+.address-detail .info {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.address-detail .info > view {
+  float: left;
+}
+
+.address-detail .info .name, .tel {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.address-detail .info .tel {
+  margin-left: 54rpx;
+}
+
+.address-detail .info .default {
+  font-size: 24rpx;
+  color: white;
+  line-height: 36rpx;
+  width: 80rpx;
+  text-align: center;
+  border-radius: 40rpx;
+  margin-left: 24rpx;
+}
+
+.address-detail .detail {
+  font-size: 28rpx;
+  margin-top: 28rpx;
+}
+
+.wrap image {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  right: 24rpx;
+  bottom: 30rpx;
+  padding: 10rpx;
+}
+
+.increase {
+  position: fixed;
+  width: 94%;
+  left: 3%;
+  bottom: 0rpx;
+  z-index: 2;
+  border-bottom: 2rpx;
+  background: white;
+}
+
+.increase > view {
+  width: 100%;
+  height: 84rpx;
+  font-size: 32rpx;
+  color: white;
+  text-align: center;
+  line-height: 84rpx;
+  margin-bottom: 24rpx;
+  border-radius: 6rpx;
+}

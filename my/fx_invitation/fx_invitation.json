@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "邀请您代言",
+  "usingComponents": {
+    "share_board": "/components/share_board/share_board"
+  }
+}

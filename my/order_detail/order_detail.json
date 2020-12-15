@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "订单详情",
+  "usingComponents": {
+    "self_voucher": "/components/self_voucher/self_voucher",
+    "modal": "/components/modal/modal"
+  }
+}

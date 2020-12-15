@@ -1,0 +1,32 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='record' wx:for="{{list}}">
+  <view class='good-info' hover-class='hover-class' hover-stay-time='400' bindtap='onDetail' data-id='{{item.integral_order_id}}' data-index='{{index}}'>
+    <image src='{{item.file}}'></image>
+    <view class='good-detail'>
+      <view class='good-name'>{{item.integral_name}}</view>
+      <!-- <view class='good-attr'>/view> -->
+      <view class='good-integral'>
+        <text class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>{{item.integral}}</text>
+        <text class='unit'>积分</text>
+        <text hidden='{{item.price == 0}}'> + </text>
+        <text class='cur unit' hidden='{{item.price == 0}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥</text>
+        <text class='cur' hidden='{{item.price == 0}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>{{item.price}}</text>
+      </view>
+    </view>
+    <view class='shipping-state cur' hidden='{{item.status != 0}}' style='{{item.status == 0?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>待发货</view>
+    <view class='shipping-state cur' hidden='{{item.status != 1}}' style='{{item.status == 1?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>已发货</view>
+    <view class='shipping-state cur' hidden='{{item.status != 2}}' style='{{item.status == 2?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>已收货</view>
+  </view>
+  <view class='operation' hidden='{{item.status == 0}}'>
+    <view hover-class='hover-class' hover-stay-time='400' bindtap='onLogistics' data-item='{{item}}'>查看物流</view>
+    <view hover-class='hover-class' hover-stay-time='400' bindtap='onDelete' data-index='{{index}}' data-item='{{item}}' hidden='{{item.status != 2}}'>删除订单</view>
+    <view class='border-cur' hidden='{{item.status != 1}}' hover-class='hover-class' hover-stay-time='400' bindtap='confirmReceipt' data-index='{{index}}' data-item='{{item}}' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>确认收货</view>
+  </view>
+</view>
+
+<view class='empty-view' hidden='{{list.length != 0 || loading}}'>
+  <view>
+    <image src='{{util.HTTP}}mobile/small/image/kby-zwshjl.png'></image>
+    <view>暂无兑换记录</view>
+  </view>
+</view>

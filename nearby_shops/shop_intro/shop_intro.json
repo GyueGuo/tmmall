@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "店铺详情",
+  "usingComponents": {
+    "shop_code": "/nearby_shops/shop_intro/shop_code/shop_code"
+  }
+}

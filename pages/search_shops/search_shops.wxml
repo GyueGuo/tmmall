@@ -1,0 +1,64 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='wrap'>
+  <!--搜索头  -->
+  <view class='search'>
+    <view class='search-bg'>
+      <!-- <view class='font_family icon-ssk-ss search-icon'></view> -->
+      <input placeholder='搜索店铺' type='text' value='{{search_key}}' bindinput='searchInput' bindfocus="inputFocus" bindconfirm='onSearch'></input>
+      <view class='font_family icon-shanchu- clear' hover-class='hover-class' hover-stay-time='400' bindtap='onClearKey'></view>
+    </view>
+    <text hover-class='hover-class' hover-stay-time='400' bindtap='onSearch'>搜索</text>
+  </view>
+  <!--选项卡  -->
+  <view class='list-title'>
+    <view class='list'>
+      <view class="{{current_tab==1?'cur title':' title'}}" data-index='1' hover-class='hover-class' hover-stay-time='400' bindtap='onComposite' style='{{current_tab==1?util.diy_color(diy_color.z_color,"",""):""}}'>综合</view>
+      <view class="{{current_tab==2?'cur title':' title'}}" data-index='2' hover-class='hover-class' hover-stay-time='400' bindtap='onSale' style='{{current_tab==2?util.diy_color(diy_color.z_color,"",""):""}}'>销量最高</view>
+      <view class="{{current_tab==3?'cur title':' title'}}" data-index='3' hover-class='hover-class' hover-stay-time='400' bindtap='onDistance' style='{{current_tab==3?util.diy_color(diy_color.z_color,"",""):""}}'>距离最近
+      </view>
+    </view>
+    <view class="choose {{is_filtrate?'cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='OnChangeFilter' style='{{is_filtrate?util.diy_color(diy_color.z_color,"",""):""}}'>
+      筛选
+      <view style='{{util.diy_imgbox(19)}}'>
+        <image src="{{util.HTTP}}{{is_filtrate?'mobile/small/image/shaixuan-2.png':'mobile/small/image/shaixuan.png'}}" style='{{is_filtrate?util.diy_imgcolor(diy_color.z_color,18,18):""}}margin-left:0;'></image>
+      </view>
+    </view>
+  </view>
+</view>
+<scroll-view scroll-y style='height:100vh;' bindscrolltolower="loadMore" hidden="{{list.length == 0}}">
+  <view class='shop-list'>
+    <view wx:for="{{list}}">
+      <view class='shop-head'>
+        <image src='{{item.logo}}'></image>
+        <view class='shop-intro'>
+          <view class='shop-name'>{{item.store_name}}</view>
+          <view class='shop-attention'>{{item.collect}}人关注</view>
+        </view>
+        <view class='go-shop cur' hover-class='hover-class' hover-stay-time='400' bindtap='onShopDetail' data-id='{{item.store_id}}' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>进店</view>
+      </view>
+      <view class='shop-pic'>
+        <view wx:for="{{item.shop_goods}}" hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goods_id}}'>
+          <image src='{{item.file}}'></image>
+          <text>￥{{item.shop_price}}</text>
+        </view>
+      </view>
+      <view class='shop-tips'>
+        <view class='dh' hover-class='hover-class' hover-stay-time='400' bindtap='onNavigation' data-item='{{item}}'>
+          <view class='dh'>导航</view>
+          <image src='{{util.HTTP}}mobile/small/image/daoh.png'></image>
+        </view>
+        <view class='shop-distance'>{{item.distance==null?0:item.distance}}km</view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+<view class='no-order' hidden="{{list.length != 0 || loading}}">
+  <view>
+    <image src='{{util.HTTP}}mobile/small/image/zwsp.png'></image>
+    <view class='no-order-head'>暂无相关店铺</view>
+    <!-- <view class='no-order-content'>"换个词语搜搜看看吧"</view> -->
+  </view>
+</view>
+
+<!--筛选  -->
+<search_shop_filitrate id="search_shop_filitrate" isShow="{{filtrate_board}}" bind:onFiltrateReset="onFiltrateReset" bind:onFiltrateConfirm="onFiltrateConfirm" />

@@ -1,0 +1,142 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<import src="../../components/navBar/navBar.wxml" />
+<view class='warp-con' catchtouchmove="{{filtrate_board?true:''}}">
+  <view id='top' class='topbanner' style="{{banner.length == 0?'height:auto':''}}">
+    <view class='shops-search' wx:if="{{banner.length == 0}}" style="{{banner.length == 0?'background-color:#fff':''}}">
+      <view class='search-con' hover-class='hover-class' hover-stay-time='400' bindtap='onSearch' style="{{banner.length == 0?'background-color:rgba(188, 188, 188, 0.3);color:#bbb':''}}">
+        <view class='font_family icon-ssk-ss'></view>
+        <view class='s-title'>搜索店铺</view>
+      </view>
+    </view>
+    <view class='find-shop' wx:if="{{banner.length != 0}}">
+      <view class='shops-search'>
+        <view class='search-con' hover-class='hover-class' hover-stay-time='400' bindtap='onSearch'>
+          <view class='font_family icon-ssk-ss'></view>
+          <view class='s-title'>搜索店铺</view>
+        </view>
+      </view>
+      <swiper circular class='back-banner' current="{{current_banner}}" autoplay='{{isCurrent_banner}}'>
+        <block wx:for="{{banner}}" wx:key='{{index}}'>
+          <swiper-item catchtouchmove='true'>
+            <!-- <view class='banner-pic' style='background:url({{util.HTTP}}mobile/small/image/p_img_shops_480x480.png) no-repeat center;background-size:100% 100%;'> -->
+            <image src='{{item.good_image}}'></image>
+            <!-- </view> -->
+          </swiper-item>
+        </block>
+      </swiper>
+      <view>
+        <view class='find-head'>
+          <view class='title'>
+            <text/>
+            <view>发现好店</view>
+            <text/>
+          </view>
+          <view class='more' hover-class='hover-class' hover-stay-time='400' bindtap='onFindShops'>更多好店>></view>
+        </view>
+        <!--轮播图  -->
+        <swiper class='banner' autoplay='{{isBanner}}' circular previous-margin="150rpx" next-margin="150rpx" bindchange='bannerChange'>
+          <block wx:for="{{banner}}" wx:key='{{index}}'>
+            <swiper-item>
+              <view class="banner-item {{current_banner == index?'':'scale'}}" hover-class='hover-class' hover-stay-time='400' bindtap='goShop' data-id='{{item.store_id}}'>
+                <view class='banner-pic' style='background:url({{util.HTTP}}mobile/small/image/p_img_shops_480x480.png) no-repeat center;background-size:100% 100%;'>
+                  <image src='{{item.good_image}}'></image>
+                </view>
+                <view class='banner-avatar' style='background:url({{util.HTTP}}mobile/small/image/p_img_shops_180x180-2.png) no-repeat center;background-size:100% 100%;'>
+                  <image src='{{item.logo}}'></image>
+                </view>
+                <view class='banner-name'>{{item.store_name}}</view>
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+      <!-- <image class='slide_bg' src='{{util.HTTP}}mobile/small/image/slide_bg1.png'></image> -->
+    </view>
+    <view class='h-title-img' wx:if="{{banner.length != 0}}">
+      <view style='{{util.diy_imgbox(314)}}margin:0 auto;'>
+        <image src='{{util.HTTP}}mobile/small/image/sy-fjmd-fjmd.png' class='nearby-title' style='{{util.diy_imgcolor(diy_color.z_color,314,72)}}'></image>
+      </view>
+    </view>
+
+
+  </view>
+  <!--选项卡  -->
+  <view style="{{fixed?'height:80rpx;':''}}"></view>
+  <view class="list-title {{fixed?'fixed':''}}">
+    <view class='list'>
+      <view class="title" data-index='1' hover-class='hover-class' hover-stay-time='400' bindtap='onClassify' style='{{util.diy_color(diy_color.z_color,"","")}}'>{{classify}}
+        <view>
+          <text class="caret down" style='border-top:8rpx solid {{diy_color.z_color}};'></text>
+        </view>
+      </view>
+      <view class="title" data-index='3' hover-class='hover-class' hover-stay-time='400' bindtap='onSort' style='{{sort?util.diy_color(diy_color.z_color,"",""):""}}'>距离最近</view>
+      <view class="title" data-index='2' hover-class='hover-class' hover-stay-time='400' bindtap='onSale' style='{{sale?util.diy_color(diy_color.z_color,"",""):""}}'>销量最高</view>
+    </view>
+    <view class="choose" hover-class='hover-class' hover-stay-time='400' bindtap='OnChangeFilter' style='{{is_filtrate?util.diy_color(diy_color.z_color,"",""):""}}'>
+      筛选
+      <view class='font_family icon-shaixuan choose-icon' style="{{is_filtrate?util.diy_color(diy_color.z_color,'',''):'color:#6d6d6d'}}"></view>
+    </view>
+  </view>
+  <view class='shop-list'>
+    <view wx:for="{{nearby_list}}" wx:key='{{index}}'>
+      <view class='shop-head' hover-class='hover-class' hover-stay-time='400' bindtap='goShop' data-id='{{item.store_id}}'>
+        <view class='shop-logo' style='background:url({{util.HTTP}}mobile/small/image/p_img_shops_180x180-2.png) no-repeat center;background-size:100% 100%;'>
+          <image src='{{item.logo}}'></image>
+        </view>
+        <view class='shop-intro'>
+          <view class='shop-name'>{{item.store_name}}</view>
+          <!-- 分类（公司店铺 | 自营店铺） 0 普通店 1 旗舰店 2 专卖店 3 直营店 -->
+          <view class='shop-attention'>
+            <text>{{item.collect}}人关注</text>
+            <image wx:if='{{item.type!=null}}' src='{{util.HTTP}}mobile/small/image/shops/shop-icon{{item.type}}.png'></image>
+          </view>
+        </view>
+        <view class='go-shop cur' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>进店</view>
+      </view>
+      <view class='shop-pic' wx:if='{{item.shop_goods.length!=0}}'>
+        <view wx:for="{{item.shop_goods}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goods_id}}' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
+          <image src='{{item.file}}'></image>
+          <block wx:if='{{item.is_bargain==1}}'>
+            <text>￥{{item.cut_price}}</text>
+          </block>
+          <block wx:elif='{{item.is_group==1}}'>
+            <text>￥{{item.group_price}}</text>
+          </block>
+          <block wx:elif='{{item.is_limit==1}}'>
+            <text>￥{{item.time_limit_price}}</text>
+          </block>
+          <block wx:else>
+            <text>￥{{item.shop_price}}</text>
+          </block>
+        </view>
+      </view>
+      <view class='shop-tips'>
+        <view class='dh' hover-class='hover-class' hover-stay-time='400' bindtap='onNavigation' data-item='{{item}}'>
+          <view class='dh'>导航</view>
+          <image src='{{util.HTTP}}mobile/small/image/daoh.png'></image>
+        </view>
+        <view class='shop-distance'>{{item.distance!=null?item.distance:'0'}}km</view>
+      </view>
+    </view>
+    <load_more show="{{loading}}" />
+  </view>
+  <!--底部填充  -->
+  <view style='height:900rpx;' hidden='{{nearby_list.length > 2 || nearby_list.length == 0}}'></view>
+  <view style="height:1100rpx;display:flex;align-items: center;justify-content: center;{{nearby_list.length != 0?'display:none':''}}">
+    <view>
+      <image src='{{util.HTTP}}{{"mobile/small/image/kby-zwdp.png"}}' style='width:100vw;height:250rpx;'></image>
+      <view style='font-size:28rpx;text-align:center'>暂无数据</view>
+    </view>
+  </view>
+  <view class='all-board' catchtouchmove='true' hidden='{{!classify_board}}' hover-class='hover-class' hover-stay-time='400' bindtap='closeClassify'>
+    <scroll-view scroll-y class='board-first'>
+      <view class='board-classify' wx:for="{{classify_condition}}" wx:key='{{index}}' catchtap='selectClassify' data-item='{{item}}'>
+        <view style="{{item.title == classify?util.diy_color(diy_color.z_color,'',''):''}}">{{item.title}}</view>
+        <view class='select font_family icon-arx' style="{{util.diy_color(diy_color.z_color,'','')}}" wx:if='{{item.title == classify}}'></view>
+      </view>
+    </scroll-view>
+  </view>
+  <!--筛选  -->
+  <search_shop_filitrate isShow="{{filtrate_board}}" bind:onFiltrateReset="onFiltrateReset" bind:onFiltrateConfirm="onFiltrateConfirm" bind:closeFiltrate="closeFiltrate" />
+</view>
+<template is="tabBar" data="{{tabBar:bindData.tabBar,diy_color:diy_color,model:model}}" />

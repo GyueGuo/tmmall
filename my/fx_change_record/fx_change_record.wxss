@@ -1,0 +1,66 @@
+/* my/fx_change_record/fx_change_record.wxss */
+.warp{
+  padding: 23rpx 30rpx;
+}
+.warp .list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.warp .list .time{
+  font-size: 20rpx;
+  color: #fff;
+  background-color: #e3e1e1;
+  border-radius: 50px 50px;
+  padding: 10rpx 30rpx;
+  margin: 20rpx 0;
+}
+.warp .list .detils{
+  width: 100%;
+  background-color: #fff;
+  padding: 28rpx;
+  box-sizing: border-box;
+}
+.warp .list .type{
+  font-size: 33rpx;
+}
+.warp .list .info{
+  display: flex;
+  align-items: center;
+  padding-top: 20rpx;
+}
+.warp .list .info>image{
+  width: 94rpx;
+  height: 94rpx;
+}
+.warp .list .info>view{
+  word-break: break-all;
+  font-size: 28rpx;
+  flex: 1;
+  padding-left: 20rpx;
+  color: #3b3b3b;
+}
+
+.no-order {
+  height: calc(100vh - 170rpx);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.no-order > view {
+  width: 100%;
+}
+.no-order image {
+  width: 100%;
+  height: 260rpx;
+}
+.no-order .no-order-head {
+  font-size: 32rpx;
+  text-align: center;
+}
+.no-order .no-order-content {
+  font-size: 26rpx;
+  color: #8d8d8d;
+  text-align: center;
+  margin-top: 10rpx;
+}

@@ -1,0 +1,12 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class="wrap">
+  <view>
+    <input placeholder='输入手机号' maxlength='11' type='number' value='{{phone}}' disabled='{{phone_able}}' bindinput='phoneInput'></input>
+  </view>
+  <view class='code-wrap'>
+    <input placeholder='输入验证码' maxlength='6' type='number' bindinput='codeInput'></input>
+    <view class='cur' hover-class='hover-class' hover-stay-time='400' bindtap='getCode' style='{{util.diy_color(diy_color.z_color,"","")}}'>{{content}}</view>
+  </view>
+</view>
+
+<view class="next {{able?'bg':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onNext' style='{{able?util.diy_color("",diy_color.z_color,""):""}}'>{{finish}}</view>

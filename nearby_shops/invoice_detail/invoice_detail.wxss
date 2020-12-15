@@ -1,0 +1,83 @@
+/* nearby_shops/invoice_detail/invoice_detail.wxss */
+.warp{}
+.logistics{
+  box-sizing: border-box;
+  padding: 20rpx;
+  background-color: #fafafa;
+  margin-bottom: 18rpx;
+}
+.logistics .info{
+  display: flex;
+  align-items: center;
+}
+.logistics .info .icon{
+  width: 85rpx;
+  height: 85rpx;
+}
+.logistics .info .title{
+  font-size: 28rpx;
+  margin-left: 20rpx;
+  margin-right: auto;
+  color: #676d72;
+}
+.logistics .info .logistics_pic{
+  font-size: 28rpx;
+  color: #636a6f;
+}
+.logistics .btn_con{
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 28rpx;
+  height: 60rpx;
+  padding-top: 20rpx;
+}
+.logistics .btn{
+  border: 1px solid #efefef;
+  border-radius: 50px 50px;
+  padding: 8rpx 22rpx;
+  color: #191b1d;
+}
+
+.invoice_con{}
+.invoice_con .section{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  background-color: #fff;
+  margin-bottom: 18rpx;
+}
+.invoice_con .section .row{
+  display: flex;
+  font-size: 28rpx;
+  padding: 34rpx 0;
+  border-bottom: 1px solid #f6f6f6;
+}
+.invoice_con .section .row:last-child{
+  border:none;
+}
+.invoice_con .section .row .title{
+  color: #747a7e;
+  width: 250rpx;
+}
+.invoice_con .section .row .text{
+  word-break: break-all;
+  margin-left: auto;
+  flex: 1;
+}
+.invoice_con .section .row .invoice_type{
+  padding: 6rpx 20rpx;
+  color: #666d72;
+  border-radius: 50px 50px;
+  background-color: #eeecec;
+}
+.submit{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-size: 30rpx;
+  color: #fff;
+  padding: 35rpx 0;
+  text-align: center;
+  margin-top: 140rpx;
+}

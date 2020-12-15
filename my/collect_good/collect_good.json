@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "商品关注",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "cart": "/components/cart/cart",
+    "modal": "/components/modal/modal",
+    "buy":"/components/buy/buy"
+  }
+}

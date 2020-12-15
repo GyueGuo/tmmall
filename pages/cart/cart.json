@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "购物车",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "receive_coupon": "/components/receive_coupon/receive_coupon",
+    "cart_change": "/components/cart_change/cart_change",
+    "go_top": "/components/go_top/go_top",
+    "good_list":"/components/good_list/good_list",
+    "buy":"/components/buy/buy"
+  }
+}

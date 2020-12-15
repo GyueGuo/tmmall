@@ -1,0 +1,196 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view hidden='{{list.length == 0}}'>
+  <scroll-view scroll-y style='height:100vh'>
+    <view class='wrap'>
+      <view class='address' hover-class='hover-class' hover-stay-time='400' bindtap='chooseAddress' wx:if="{{address != null&&address.name!=undefined}}">
+        <view>
+          <view class='address-head'>
+            <view class='address-receiver'>收货人:{{address.name}}</view>
+            <view class='address-phone'>{{address.phone}}</view>
+          </view>
+          <view class='address-detail'>收货地址:{{address.province}}{{address.city}}{{address.area}}{{address.street}}{{address.address}}</view>
+          <image class='next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+        </view>
+      </view>
+      <view class='no-address' hover-class='hover-class' hover-stay-time='400' bindtap='chooseAddress' wx:else>
+        <image src='{{util.HTTP}}mobile/small/image/shdz-tjshdz.png'></image>
+        <view>添加收货地址</view>
+      </view>
+
+      <image class='bottom' src='{{util.HTTP}}mobile/small/image/qrsd-xf.png'></image>
+
+      <view class='pay-way' hover-class='hover-class' hover-stay-time='400' bindtap='onPayWay'>
+        <view>支付方式</view>
+        <view>{{pay_way}}</view>
+        <image src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+      </view>
+
+      <view class='order-detail' wx:for="{{list}}" wx:key='{{index}}'>
+        <view class='shop' wx:if='{{util.isShops==0}}'>
+          <image src='{{item.logo}}'></image>
+          <text>{{item.store_name}}</text>
+        </view>
+        <view class='good-detail' wx:for="{{item.list}}" wx:key='{{index}}'>
+          <view class='good-info'>
+            <image src='{{item.file}}'></image>
+            <view>
+              <view class='good-name'>{{item.goods_name}}</view>
+              <view class='good-attr'>{{item.attr}}</view>
+              <view class='good-tips'>
+                <view class='good-price cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+                  <text class='unit'>￥</text>
+                  <text class='integer'>{{util.integer(item.price)}}</text>
+                  <text class='decimals'>.{{util.decimals(item.price)}}</text>
+                </view>
+                <view class='good-num'>x{{item.number}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+
+        <view class='detail-operation'>
+          <view wx:if='{{item.freight != null&&(item.freight.express_freight_sup != 0||item.freight.city_freight_sup != 0||item.freight.take_freight_sup != 0)}}'>
+            <view class='delivery-method'>
+              <view class='no-bottom'>
+                <view class='left'>配送方式</view>
+                <view class='method'>
+                  <view class="item" wx:for="{{item.delivery_method}}" wx:key="{{index}}" wx:for-item="delivery_item" wx:for-index="idx" style="{{item.delivery_method_type==delivery_item.type?util.diy_color(diy_color.z_color,'',diy_color.z_color):''}}{{item.way!=1&&item.delivery_method_type == 1&&delivery_item.type!=1?util.diy_color('','#ccc',''):''}}" data-index='{{index}}' data-idx='{{idx}}' data-item="{{delivery_item}}" hover-class='hover-class' hover-stay-time='400' bindtap='onDeliveryWay'>{{delivery_item.title}}</view>
+                  <!-- <view class="{{item.delivery_method == 'is_express'? 'border-cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onDeliveryWay' data-method='is_express' data-index='{{index}}' wx:if="{{item.freight.express_freight_sup == 1}}" style='{{item.delivery_method == "is_express"?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}{{item.way!=1&&item.delivery_method == "is_city"?util.diy_color("","#ccc",""):""}}'>快递邮寄</view>
+                  <view class="{{item.delivery_method == 'is_city'? 'border-cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onDeliveryWay' data-method='is_city' data-index='{{index}}' wx:if="{{item.freight.city_freight_sup == 1}}" style='{{item.delivery_method == "is_city"?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>同城配送</view>
+                  <view class="{{item.delivery_method == 'is_shop'? 'border-cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onDeliveryWay' data-method='is_shop' data-index='{{index}}' wx:if="{{item.freight.take_freight_sup == 1}}" style='{{item.delivery_method == "is_shop"?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}{{item.way!=1&&item.delivery_method == "is_city"?util.diy_color("","#ccc",""):""}}'>预约自提</view> -->
+                </view>
+              </view>
+              <view class='freight' hidden="{{item.delivery_method_type != 0}}">运费￥{{item.freight.express_freight_price}}元</view>
+              <view class='freight' hidden="{{item.delivery_method_type != 1}}">运费￥{{item.freight.city_freight_price}}元</view>
+            </view>
+            <view class='pick-wrap' hidden="{{item.delivery_method_type != 2}}">
+              <view class='pick-up'>
+                <view class='point'>自提点:{{item.take_freight.area}}</view>
+                <view class='cur change' hover-class='hover-class' hover-stay-time='400' bindtap='changeTake' data-index='{{index}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>点击修改>></view>
+              </view>
+              <view class='pick-address'>{{item.take_freight.take_name}}</view>
+            </view>
+            <!-- <view class='pick-good' hidden="{{item.delivery_method != 'is_shop'}}">
+              <view class='pick-time-title'>提货时间:</view>
+              <view class='pick-time cur'>09-26立即自提>></view>
+            </view> -->
+          </view>
+
+          <view class='operation' data-index='{{index}}' data-item='{{item}}' hover-class='hover-class' hover-stay-time='400' bindtap='invoice'>
+            <view class='left'>发票</view>
+            <view class='right'>
+              <view class='info' wx:if='{{item.invoice.is_invoice==1}}'>
+                <text wx:if='{{item.invoice.is_invoice==1}}'>{{item.invoice.rise==1?"个人":item.invoice.company}}</text>
+                <text wx:if='{{item.invoice.invoice_type==0}}'>（普通发票）</text>
+                <text wx:elif='{{item.invoice.invoice_type==1}}'>（增值税专用发票发票）</text>
+              </view>
+              <view wx:else>开具发票</view>
+              <image class='next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+            </view>
+          </view>
+
+          <view class='detail-message'>
+            <view class='left'>买家留言:</view>
+            <input placeholder='选填:填写内容已和卖家协商确定' bindinput='messageInput' data-index='{{index}}'></input>
+          </view>
+
+          <view class='operation'>
+            <view class='right'>
+              <text>共{{item.total_number}}件商品 小计:</text>
+              <text class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥{{util.toFixed(item.total_price)}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class='detail-operation' hover-class='hover-class' hover-stay-time='400' bindtap='chooseCoupon' wx:if='{{configSwitch.show_switch.is_coupon==1}}'>
+        <view class='operation promotion'>
+          <view class='left'>优惠券</view>
+          <view class='right'>
+            <text>减{{coupon_price}}元</text>
+            <image class='next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+          </view>
+        </view>
+      </view>
+      <view class='detail-operation' hover-class='hover-class' hover-stay-time='400' bindtap='chooseRacket' wx:if='{{configSwitch.show_switch.is_red_packet==1}}'>
+        <view class='operation'>
+          <view class='left'>红包</view>
+          <view class='right'>
+            <text>减{{packet_price}}元</text>
+            <image class='next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+          </view>
+        </view>
+      </view>
+
+      <view class='detail-operation promotion'>
+        <view class='operation'>
+          <view class='left'>商品总额</view>
+          <view class='right'>
+            <text>￥{{util.toFixed(origin_total)}}</text>
+          </view>
+        </view>
+        <view class='operation'>
+          <view class='left'>运费</view>
+          <view class='right'>
+            <text>￥{{freight}}</text>
+          </view>
+        </view>
+        <view class='operation' wx:if='{{configSwitch.show_switch.is_coupon==1}}'>
+          <view class='left'>优惠券</view>
+          <view class='right'>
+            <text>-￥{{coupon_price}}</text>
+          </view>
+        </view>
+        <view class='operation' wx:if='{{configSwitch.show_switch.is_red_packet==1}}'>
+          <view class='left'>红包</view>
+          <view class='right'>
+            <text>-￥{{packet_price}}</text>
+          </view>
+        </view>
+        <wxs module="dp">
+          var dp_price = function(list) {
+            var price = 0
+            for (var i = 0; i < list.length; i++) {
+              for (var j = 0; j < list[i].list.length; j++) {
+                price += parseFloat(list[i].list[j].discount_price) * parseFloat(list[i].list[j].number)
+              }
+            }
+            price = price.toFixed(2)
+            return price
+          }
+          module.exports.discount = dp_price;
+        </wxs>
+        <view class='operation'>
+          <view class='left'>折扣</view>
+          <view class='right'>
+            <text>-￥{{dp.discount(list)}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class='footer'>
+    <!-- <view class='bg submit' hover-class='hover-class' hover-stay-time='400' bindtap='confirmOrder' style='{{util.diy_color("",diy_color.z_color,"")}}'>提交订单</view> -->
+    <form report-submit='true' bindsubmit='formId'>
+      <button class='bg submit' hover-class='hover-class' hover-stay-time='400' formType="submit" bindtap='confirmOrder' style='{{util.diy_color("",diy_color.z_color,"")}}'>提交订单</button>
+      <view>
+        <text class='content'>合计:</text>
+        <text class='price cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥{{util.toFixed(total)}}</text>
+      </view>
+    </form>
+  </view>
+  <!-- 优惠价 -->
+  <confirm_coupon id="choose_coupon" coupon="{{coupon}}" bind:confirm="confirmCoupon" />
+  <!-- 选择红包 -->
+  <confirm_packet id="choose_packet" packet="{{redpacket}}" bind:confirm="choosepacket" />
+  <!-- 发票 -->
+  <popup id="popup" bind:confirmWay="popup_invoice" invoice='{{list[popupIdx].invoice}}' />
+
+</view>
+
+<pay_way id="pay_way" bind:confirmWay="confirmWay" />
+
+<select_self_pick id="self_pick" bind:selectPick="selectPick" />
+
+<modal content="您还没有收货地址" tip='现在去添加收货地址吗?' id="modal" bind:confirm="chooseAddress" />

@@ -1,0 +1,40 @@
+.order-item .order-item-good .file {
+  width: 150rpx;
+  height: 150rpx;
+  float: left;
+}
+
+.order-item .order-item-good .file image {
+  width: 150rpx;
+  height: 150rpx;
+}
+.order-item .order-item-good > view {
+  width: 490rpx;
+}
+.no-order {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-order > view {
+  width: 100%;
+}
+
+.no-order image {
+  width: 100%;
+  height: 260rpx;
+}
+
+.no-order .no-order-head {
+  font-size: 32rpx;
+  text-align: center;
+}
+
+.no-order .no-order-content {
+  font-size: 26rpx;
+  color: #8d8d8d;
+  text-align: center;
+  margin-top: 10rpx;
+}

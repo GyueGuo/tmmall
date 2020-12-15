@@ -1,0 +1,49 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='head'>
+  <view class='head-left'>写评论,奖励积分哦!</view>
+  <view class='border-cur' hover-class='hover-class' hover-stay-time='400' bindtap='goComment' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>写评价</view>
+</view>
+
+<view class='comment-tab'>
+  <view hover-class='hover-class' hover-stay-time='400' bindtap='onAll'>
+    <view class="{{type == 0?'cur':''}}" style='{{type == 0?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>全部评价</view>
+  </view>
+  <view hover-class='hover-class' hover-stay-time='400' bindtap='onPhoto'>
+    <view class="{{type == 1?'cur':''}}" style='{{type == 1?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>有图评价</view>
+  </view>
+</view>
+
+<scroll-view class='scroll' hidden='{{list.length == 0}}' scroll-y bindscrolltolower="loadmore">
+  <view class='comment' wx:for="{{list}}" hidden='{{item.order_goods_my_evaluate==null}}'>
+    <view class='comment-time'>{{item.format_create_time}} {{item.order_goods_my_evaluate.attr}}</view>
+    <view class='comment-content'>{{item.content}}</view>
+    <view class='comment-img' wx:if="{{item.multiple_file.length == 1 && item.video == ''}}">
+      <image class='single-img' src='{{item.multiple_file[0]}}' hover-class='hover-class' hover-stay-time='400' bindtap='onPreview' data-index='{{index}}' data-idx='0'></image>
+    </view>
+    <view class='comment-img' wx:else>
+      <view hidden="{{item.video == null||item.video==''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onPreview' data-index='{{index}}' data-idx='-1' style='background:url({{item.video_snapshot}}) no-repeat center;background-size:100% 100%;'>
+        <image src='{{util.HTTP}}mobile/small/image/pj-bf.png'></image>
+      </view>
+      <image wx:for="{{item.multiple_file}}" wx:for-index="idx" src='{{item}}' hover-class='hover-class' hover-stay-time='400' bindtap='onPreview' data-index='{{index}}' data-idx='{{idx}}'></image>
+    </view>
+    <view class='good-info' data-item='{{item}}' bindtap='onGoods'>
+      <image src='{{item.order_goods_my_evaluate.file}}'></image>
+      <view>
+        <view class='good-name'>{{item.order_goods_my_evaluate.goods_name}}</view>
+        <view class='good-tips'>
+          <text>￥{{item.order_goods_my_evaluate.subtotal_price}}</text>
+          <text class='cur' wx:if="{{item.star_num == 1 || item.star_num == 2}}" style='{{util.diy_color(diy_color.z_color,"","")}}'>已差评</text>
+          <text class='cur' wx:elif="{{item.star_num == 3}}" style='{{util.diy_color(diy_color.z_color,"","")}}'>已中评</text>
+          <text class='cur' wx:elif="{{item.star_num == 4 || item.star_num == 5}}" style='{{util.diy_color(diy_color.z_color,"","")}}'>已好评</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<view class='empty-view' hidden='{{list.length != 0 || loading}}'>
+  <view>
+    <image src='{{util.HTTP}}mobile/small/image/kby-zanwpj.png'></image>
+    <view>暂无评价</view>
+  </view>
+</view>

@@ -1,0 +1,3 @@
+<view class='wrap'>
+  <view wx:for="{{list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onClassify' data-item='{{item}}'>{{item.title}}</view>
+</view>

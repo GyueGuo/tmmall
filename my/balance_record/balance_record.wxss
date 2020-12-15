@@ -1,0 +1,130 @@
+.head-wrap {
+  width: 100%;
+  height: 126rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.month-con {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.iconPar {
+  display: block;
+  width: 21rpx;
+  height: 12rpx;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.iconColor {
+  position: relative;
+  transform: translateX(-21rpx);
+  width: 21rpx;
+  height: 12rpx;
+  border-right: 21px solid transparent;
+  filter: drop-shadow(21rpx 0 0 #888);
+  display: block;
+}
+
+.month {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 30rpx 0;
+}
+
+.month text {
+  font-size: 28rpx;
+}
+
+.month>view {
+  width: 21rpx;
+  height: 12rpx;
+  margin-left: 4rpx;
+  border: 1px solid transparent;
+}
+
+.head {
+  width: 680rpx;
+  height: 66rpx;
+  overflow: hidden;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  border:1px solid transparent;
+}
+
+.head > view {
+  width: 33.3%;
+  font-size: 30rpx;
+  line-height: 66rpx;
+  text-align: center;
+  border-right: 1px solid transparent;
+}
+
+.head > view:last-child {
+  border-right: none;
+}
+
+.head .cur-head {
+  color: white;
+}
+
+.list {
+  padding: 0 30rpx;
+  background: white;
+}
+
+.list > view {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 120rpx;
+  border-bottom: 2rpx solid #f6f6f6;
+}
+
+.list .title {
+  font-size: 30rpx;
+  line-height: 30rpx;
+}
+
+.list .time {
+  font-size: 24rpx;
+  line-height: 24rpx;
+  margin-top: 20rpx;
+  color: #8d8d8d;
+}
+
+.list .money {
+  font-size: 30rpx;
+}
+
+.no-order {
+  height: calc(100vh - 170rpx);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-order > view {
+  width: 100%;
+}
+
+.no-order image {
+  width: 100%;
+  height: 260rpx;
+}
+
+.no-order .no-order-head {
+  font-size: 32rpx;
+  text-align: center;
+}
+
+.no-order .no-order-content {
+  font-size: 26rpx;
+  text-align: center;
+  margin-top: 10rpx;
+  color: #8d8d8d;
+}

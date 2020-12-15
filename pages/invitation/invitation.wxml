@@ -1,0 +1,75 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='head'>
+  <image src='{{util.HTTP}}mobile/act_img/pic46.png'></image>
+</view>
+<view class='wrap'>
+  <view class='opertation'>
+    <view>
+      <image src='{{util.HTTP}}mobile/small/image/yqxr-fxghy.png'></image>
+      <button hover-class='none' open-type='share'></button>
+    </view>
+    <image src='{{util.HTTP}}mobile/small/image/yqxr-mdmsm.png' hover-class='hover-class' hover-stay-time='400' bindtap='onFace'></image>
+  </view>
+
+  <view class='statistics'>
+    <view>
+      <image src='{{util.HTTP}}mobile/small/image/yqxr-yqhyslbj-2.png'></image>
+      <view class='statistics-info'>
+        <view>
+          <view class='title'>已邀请(人)</view>
+          <view class='num'>{{statistics.inviter}}</view>
+          <image src='{{util.HTTP}}mobile/small/image/yqxr-yqhyslbj-3.png'></image>
+        </view>
+        <!-- <view>
+          <view class='title'>成功下单(人)</view>
+          <view class='num'>{{statistics.order}}</view>
+          <image src='{{util.HTTP}}mobile/small/image/yqxr-yqhyslbj-3.png'></image>
+        </view> -->
+        <view>
+          <view class='title'>累计红包(个)</view>
+          <view class='num'>{{statistics.packet}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <view class='record' hidden='{{invite_list.length == 0}}'>
+    <view class='record-head'>
+      <view class='line bg'></view>
+      <view class='cur'>邀请好友记录</view>
+      <view class='line bg'></view>
+    </view>
+    <scroll-view scroll-y class='scroll'>
+      <view class='invite-item' wx:for="{{invite_list}}">
+        <view class='left'>
+          <view class='invite-name'>{{item.nickname}}</view>
+          <view class='invite-time'>受邀时间: {{item.date_time}}</view>
+        </view>
+        <view class='right'>
+          <view>
+            <view class='invite-money'>
+              <image src='{{util.HTTP}}mobile/small/image/yqxr-zshb.png'></image>
+              <view class='cur'>
+                <!-- <text class='unit'>￥</text> -->
+                <!-- {{item.price}} -->
+              </view>
+            </view>
+            <view class='invite-from cur'>￥{{item.price}}元</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class='rule'>
+    <view class='rule-head'>
+      <view class='line bg'></view>
+      <view class='cur'>活动规则</view>
+      <view class='line bg'></view>
+    </view>
+    <view class='content'>
+      <Parser html='{{web_content}}' bindparse='parse' />
+    </view>
+  </view>
+</view>

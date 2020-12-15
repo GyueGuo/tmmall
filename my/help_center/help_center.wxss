@@ -1,0 +1,31 @@
+.title {
+  background: #f6f6f6;
+  color: #676d72;
+  padding: 30rpx 0 18rpx 26rpx;
+  font-size: 28rpx;
+  line-height: 1;
+}
+
+.content-wrap {
+  background: white;
+  padding-left: 26rpx;
+}
+
+.content {
+  width: calc(100vw - 26rpx);
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2rpx solid #f6f6f6;
+}
+
+.content view {
+  font-size: 30rpx;
+}
+
+.content image {
+  width: 12rpx;
+  height: 22rpx;
+  margin-right: 26rpx;
+}

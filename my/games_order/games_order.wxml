@@ -1,0 +1,94 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view hidden='{{info.status == null}}'>
+  <view class='order-head'>
+
+    <view class='imagebg' style='background-image: url({{util.HTTP}}mobile/small/image/ddxq-bj.png), linear-gradient({{diy_color.z_color}}, {{diy_color.z_color}});background-blend-mode: luminosity;background-size: cover;'>
+      <view style='{{util.diy_color("",diy_color.z_color,"")}}'></view>
+    </view>
+    <!-- <image src='{{util.HTTP}}{{"mobile/small/image/ddxq-bj.png"}}'></image> -->
+    <view wx:if="{{info.status == 0}}">
+      <view>待领取</view>
+      <image src='{{util.HTTP}}mobile/small/image/ddxq-dlq.png'></image>
+    </view>
+    <view wx:elif="{{info.status == 1}}">
+      <view>待发货</view>
+      <image src='{{util.HTTP}}mobile/small/image/ddxq-mjyfk.png'></image>
+    </view>
+    <view wx:elif="{{info.status == 2}}">
+      <view>已发货</view>
+      <image src='{{util.HTTP}}mobile/small/image/ddxq-psz.png'></image>
+    </view>
+    <view wx:else>
+      <view>已收货</view>
+      <image src='{{util.HTTP}}mobile/small/image/ddxq-jycg.png'></image>
+    </view>
+  </view>
+
+  <view class='address-wrap' style="{{info.status == 0?'padding-top:20rpx':''}}">
+    <view class='logistics-info' hidden='{{info.status == 0}}' hover-class='hover-class' hover-stay-time='400' bindtap='onLogistics'>
+      <image class='logo' src='{{util.HTTP}}mobile/small/image/ddxq-psxx.png'></image>
+      <view>配送信息</view>
+      <image class='next' src='{{util.HTTP}}mobile/small/image/ddxq-gd.png'></image>
+    </view>
+    <view class='address'>
+      <image src='{{util.HTTP}}mobile/small/image/ddxq-dw.png'></image>
+      <block wx:if='{{info.status == 0}}'>
+        <view>
+          <view class='user-info'>
+            <text>填写收货地址</text>
+          </view>
+        </view>
+      </block>
+      <block wx:if='{{info.status != 0}}'>
+        <view>
+          <view class='user-info'>
+            <text>{{info.name}}</text>
+            <text>{{util.phoneEnc(info.phone)}}</text>
+          </view>
+          <view class='address-detail'>地址: {{info.province}}{{info.city}}{{info.area}}{{info.street}}{{info.address}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <view class='good-wrap'>
+    <view class='order-good-wrap'>
+      <view>
+        <image class='order-good-image' src='{{info.file}}'></image>
+        <view class='order-good-info'>
+          <view class='order-good-name'>{{info.prize_title}}</view>
+          <!-- <view class='order-good-attr'>颜色:白色 尺码:L</view> -->
+          <view class='order-good-tip'>
+            <view style='{{util.diy_color(diy_color.z_color,"","")}}'>
+              <!-- <text class='integer'>{{info.integral}}积分</text>
+              <text class='integer' hidden='{{info.price == 0}}'>+￥{{info.price}}</text> -->
+            </view>
+            <view class='order-good-num'>x{{info.quantity}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- <view class='actually-pay'>
+    <view>实付款:
+      <text style='{{util.diy_color(diy_color.z_color,"","")}}'>{{info.integral}}积分</text>
+      <text wx:if='{{info.price != 0}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>+￥{{info.price}}</text>
+    </view>
+  </view> -->
+
+  <view class='order-infor'>
+    <view>
+      <text>订单编号: {{info.order_number}}</text>
+      <text class='copy' hover-class='hover-class' hover-stay-time='400' bindtap='copyOrder'>复制</text>
+    </view>
+    <view class=' order-time'>抽奖时间: {{info.create_time}}</view>
+  </view>
+
+  <view class='logistics'>
+    <view hover-class='hover-class' hover-stay-time='400' bindtap='onLogistics' wx:if='{{info.status != 0&&info.status != 1}}'>查看物流</view>
+    <view style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}' wx:if='{{info.status == 0}}' hover-class='hover-class' hover-stay-time='400' bindtap='address'>填写地址</view>
+    <view style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}' wx:if='{{info.status == 2}}' hover-class='hover-class' hover-stay-time='400' bindtap='showModal' data-confirmType='0'>确认收货</view>
+  </view>
+</view>
+<modal title="{{modal_confirm[showModal].title}}" content="{{modal_confirm[showModal].content}}" id="modal" bind:confirm="{{modal_confirm[showModal].callback}}" />

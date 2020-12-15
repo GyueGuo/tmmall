@@ -1,0 +1,53 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view hidden='{{!classify}}'>
+  <view class='coupon-list'>
+    <view class='item' wx:for='{{list}}' wx:key='{{index}}'>
+      <view class='coupon-top' style='{{"background:url("+util.HTTP+"mobile/small/image/coupon/bg2.png) no-repeat center;background-size:100% 100%;"}}'>
+        <view class='info'>
+          <view class='title'>
+            <text>{{item.flag_name}}</text>
+            <text>{{item.type_name}}</text>
+          </view>
+          <view class='coupon-price'>
+            <view class='money'>￥</view>
+            <view class='price'>{{item.actual_price}}</view>
+            <block wx:if='{{item.full_subtraction_price==0}}'>
+              <view class='coupon-tip'>无门槛</view>
+            </block>
+            <block wx:else>
+              <view class='coupon-tip'>满<text>{{item.full_subtraction_price}}</text>元可用</view>
+            </block>
+          </view>
+        </view>
+        <view class='btn'>
+          <!-- <block>
+          <view></view> -->
+        </view>
+        <view class='explain'>
+          <view class='text'>使用说明</view>
+          <view class='font_family icon-wd-zhye-sm'></view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+  <view class='empty-view' hidden='{{list.length != 0 || loading}}'>
+    <view>
+      <image src='{{util.HTTP}}mobile/small/image/kby-zwyh.png'></image>
+      <view>暂无优惠券</view>
+    </view>
+  </view>
+  <view class='footer'>
+    <view>
+      <view style='{{util.diy_imgbox(96)}}'>
+        <image src='{{util.HTTP}}mobile/small/image/sy-hqzx-da1-2.png' style='{{util.diy_imgcolor(diy_color.z_color,96,96)}}transform:translateX(-58px);'></image>
+      </view>
+      <view style='{{util.diy_color(diy_color.z_color,"","")}}'>领券</view>
+    </view>
+    <view hover-class='hover-class' hover-stay-time='400' bindtap='onChangeCoupon'>
+      <image src='{{util.HTTP}}mobile/small/image/sy-hqzx-da2.png'></image>
+      <view>换券</view>
+    </view>
+  </view>
+</view>

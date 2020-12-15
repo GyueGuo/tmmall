@@ -1,0 +1,40 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='head'>
+  <view class='head-title'>问题类型</view>
+  <view class='head-content'>
+    <view hover-class='hover-class' hover-stay-time='400' bindtap='onSuggest' style='{{tab == 1?util.diy_color("#fff",diy_color.z_color,diy_color.z_color):"color:#8d8d8d;"}}' >
+      <image hidden='{{tab != 1}}' src='{{util.HTTP}}mobile/small/image/icon32.png'></image>
+      <view>提建议</view>
+    </view>
+    <view hover-class='hover-class' hover-stay-time='400' bindtap='onConsult' style='{{tab == 2?util.diy_color("#fff",diy_color.z_color,diy_color.z_color):"color:#8d8d8d;"}}' >
+      <image hidden='{{tab != 2}}' src='{{util.HTTP}}mobile/small/image/icon32.png'></image>
+      <view>想咨询</view>
+    </view>
+    <view hover-class='hover-class' hover-stay-time='400' bindtap='onComplain' style='{{tab == 3?util.diy_color("#fff",diy_color.z_color,diy_color.z_color):"color:#8d8d8d;"}}' >
+      <image hidden='{{tab != 3}}' src='{{util.HTTP}}mobile/small/image/icon32.png'></image>
+      <view>要投诉</view>
+    </view>
+  </view>
+</view>
+
+<textarea class='feedback' placeholder='输入您的反馈详情' bindinput='feedbackInput' value='{{feedback}}'></textarea>
+
+<view class='upload-wrap'>
+  <view class='upload-head'>添加图片(选填,最多三张)</view>
+  <view class='pic-list'>
+    <view wx:for="{{pic_list}}">
+      <image class='pic' src='{{item}}'></image>
+      <image class='delete' src='{{util.HTTP}}mobile/small/image/wd-pj-sc.png' hover-class='hover-class' hover-stay-time='400' bindtap='delectPic' data-index='{{index}}' ></image>
+    </view>
+    <view hidden='{{pic_list.length == 3}}'>
+      <image class='pic' src='{{util.HTTP}}mobile/small/image/wd-pj-sczp.png' hover-class='hover-class' hover-stay-time='400' bindtap='choosePic' ></image>
+    </view>
+  </view>
+</view>
+
+<view class='concact'>
+  <view>联系方式</view>
+  <input placeholder='手机或者邮箱都可以哦' bindinput='contactInput' value='{{contact}}'></input>
+</view>
+
+<view class='submit' hover-class='hover-class' hover-stay-time='400' bindtap='submit' style='{{util.diy_color("",diy_color.z_color,"")}}' >提交</view>

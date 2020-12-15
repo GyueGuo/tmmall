@@ -1,0 +1,397 @@
+.wrap {
+  padding-bottom: 100rpx;
+}
+
+.scroll {
+  height: 100%;
+}
+
+.trans {
+  background: rgb(0, 0, 0);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.address {
+  padding: 4% 10% 4% 4%;
+  width: 86%;
+  background: white;
+  position: relative;
+}
+
+.address-head {
+  overflow: hidden;
+  font-weight: bold;
+}
+
+.address-head .address-receiver {
+  float: left;
+  font-size: 34rpx;
+}
+
+.address-head .address-phone {
+  float: right;
+  font-size: 28rpx;
+}
+
+.address-detail {
+  font-size: 28rpx;
+  color: #666;
+  margin-top: 14rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.address .next {
+  width: 12rpx;
+  height: 22rpx;
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  margin-top: -6rpx;
+}
+
+.address .bottom {
+  width: 100%;
+  height: 10rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.no-address {
+  width: 100%;
+  height: 156rpx;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-address > image {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.no-address > view {
+  font-size: 28rpx;
+  color: #8a8a8a;
+  margin-left: 20rpx;
+}
+
+.wrap .bottom {
+  width: 100%;
+  height: 10rpx;
+  display: block;
+}
+
+.order-detail {
+  background: white;
+}
+
+.shop {
+  width: 100%;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+}
+
+.shop image {
+  width: 60rpx;
+  height: 60rpx;
+  margin-left: 4%;
+}
+
+.shop text {
+  font-size: 30rpx;
+  width: 550rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 20rpx;
+}
+
+.order-detail .good-detail {
+  width: 92%;
+  background: #fafafa;
+  padding: 10rpx 4%;
+}
+
+.order-detail .good-detail .good-info image {
+  width: 180rpx;
+  height: 180rpx;
+  display: block;
+}
+
+.order-detail .good-detail > .good-info {
+  display: flex;
+  align-items: center;
+}
+
+.order-detail .good-detail .good-info > view {
+  flex: 1;
+  margin-left: 20rpx;
+}
+
+.order-detail .good-detail .good-name {
+  font-size: 28rpx;
+  line-height: 36rpx;
+  width: 490rpx;
+  height: 72rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.order-detail .good-detail .good-attr {
+  font-size: 26rpx;
+  color: #8d8d8d;
+  margin-top: 10rpx;
+}
+
+.order-detail .good-detail .good-tips {
+  overflow: hidden;
+}
+
+.order-detail .good-detail .good-tips .good-price {
+  float: left;
+  line-height: 50rpx;
+}
+
+.order-detail .good-detail .good-tips .good-num {
+  float: right;
+  font-size: 24rpx;
+  line-height: 50rpx;
+}
+
+.good-price .unit {
+  font-size: 22rpx;
+}
+
+.good-price .integer {
+  font-size: 28rpx;
+}
+
+.good-price .decimals {
+  font-size: 22rpx;
+}
+
+.detail-operation {
+  background: white;
+}
+
+.detail-operation .operation {
+  overflow: hidden;
+  height: 110rpx;
+  border-bottom: 2rpx solid #f1f1f1;
+  padding: 0 4%;
+  width: 92%;
+}
+
+.promotion {
+  margin: 10rpx 0;
+}
+
+.detail-operation .left {
+  float: left;
+  font-size: 30rpx;
+  line-height: 110rpx;
+}
+
+.detail-operation .right {
+  float: right;
+  height: 100%;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.detail-operation .right .minus {
+  width: 88rpx;
+  height: 70rpx;
+}
+
+.detail-operation .right .add {
+  width: 88rpx;
+  height: 70rpx;
+}
+
+.detail-operation .right .num {
+  font-size: 26rpx;
+  text-align: center;
+  line-height: 112rpx;
+  margin: 0 20rpx;
+  width: 70rpx;
+}
+
+.detail-operation .right .next {
+  width: 12rpx;
+  height: 22rpx;
+  margin-left: 26rpx;
+}
+
+.detail-message {
+  overflow: hidden;
+  height: 110rpx;
+  border-bottom: 2rpx solid #f1f1f1;
+  padding: 0 4%;
+  width: 92%;
+}
+
+.detail-message input {
+  width: 500rpx;
+  overflow: hidden;
+  height: 110rpx;
+  border-bottom: 2rpx solid #f1f1f1;
+  font-size: 28rpx;
+  margin-left: 30rpx;
+  float: left;
+}
+
+.detail-message .left {
+  float: left;
+  font-size: 30rpx;
+  line-height: 110rpx;
+}
+
+.delivery-method {
+  border-bottom: 2rpx solid #f1f1f1;
+  height: auto !important;
+  padding: 0 4%;
+  width: 92%;
+}
+
+.delivery-method .no-bottom {
+  border-bottom: 0;
+  height: 110rpx;
+  overflow: hidden;
+}
+
+.delivery-method .method {
+  float: right;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.delivery-method .method > view {
+  font-size: 28rpx;
+  line-height: 52rpx;
+  border: 2rpx solid #f1f1f1;
+  width: 148rpx;
+  text-align: center;
+  margin-left: 16rpx;
+  border-radius: 6rpx;
+}
+
+.delivery-method .freight {
+  font-size: 28rpx;
+  line-height: 66rpx;
+  color: #8d8d8d;
+}
+
+.pick-wrap {
+  background: #fafafa;
+  padding: 0 4%;
+  width: 92%;
+}
+
+.pick-up {
+  overflow: hidden;
+  font-size: 30rpx;
+  line-height: 84rpx;
+}
+
+.pick-up .point {
+  float: left;
+  color: #8d8d8d;
+}
+
+.pick-up .change {
+  float: right;
+}
+
+.pick-address {
+  font-size: 30rpx;
+  padding-bottom: 28rpx;
+}
+
+.pick-good {
+  overflow: hidden;
+  font-size: 30rpx;
+  height: 84rpx;
+  line-height: 84rpx;
+  border-bottom: 2rpx solid #f1f1f1;
+  padding: 0 4%;
+  width: 92%;
+}
+
+.pick-good .pick-time-title {
+  float: left;
+}
+
+.pick-good .pick-time {
+  float: right;
+}
+
+.footer {
+  width: 100%;
+  height: 100rpx;
+  background: white;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  border-top: 2rpx solid #f1f1f1;
+}
+
+.footer > view {
+  float: right;
+  font-size: 30rpx;
+  line-height: 100rpx;
+}
+
+.footer .submit {
+  color: white;
+  width: 248rpx;
+  text-align: center;
+  margin-left: 30rpx;
+}
+
+.pay-way {
+  width: 100%;
+  height: 180rpx;
+  position: relative;
+  background: white;
+  border-top: 1rpx solid white;
+  margin: 15rpx 0;
+}
+
+.pay-way > view:first-child {
+  font-size: 28rpx;
+  margin-top: 30rpx;
+  margin-left: 30rpx;
+}
+
+.pay-way > view:nth-child(2) {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-top: 24rpx;
+  margin-left: 30rpx;
+}
+
+.pay-way image {
+  width: 12rpx;
+  height: 22rpx;
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  margin-top: -6rpx;
+}

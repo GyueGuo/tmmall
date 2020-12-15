@@ -1,0 +1,90 @@
+.trans {
+  background: rgb(0, 0, 0);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 13;
+}
+
+.board {
+  background: rgba(0, 0, 0, 0);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  z-index: 14;
+}
+
+.board > view {
+  background: rgba(238, 238, 238, 0.94);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-top-left-radius: 40rpx;
+  border-top-right-radius: 40rpx;
+  overflow: hidden;
+}
+
+.board .head {
+  font-size: 28rpx;
+  margin-top: 36rpx;
+  margin-left: 40rpx;
+  margin-bottom: 20rpx;
+}
+
+.board .scroll {
+  max-height: 820rpx;
+}
+
+.scroll .good-item {
+  overflow: hidden;
+  width: 704rpx;
+  background: white;
+  margin: 0 auto;
+  margin-bottom: 16rpx;
+}
+
+.scroll .good-item > image {
+  width: 200rpx;
+  height: 200rpx;
+  float: left;
+}
+
+.scroll .good-item > view {
+  width: 416rpx;
+  float: left;
+  margin-left: 30rpx;
+}
+
+.good-item .good-name {
+  font-size: 28rpx;
+  height: 76rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  margin-top: 36rpx;
+}
+
+.good-item .price{
+  color: #f20230;
+  margin-top: 10rpx;
+}
+
+.price .unit {
+  font-size: 22rpx;
+}
+
+.price .integer {
+  font-size: 28rpx;
+}
+
+.price .decimals {
+  font-size: 22rpx;
+
+}

@@ -1,0 +1,12 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<image class='logo' src='{{configSwitch.app_info.logo}}'></image>
+<view class='version'>当前版本号:2.0.0</view>
+
+<view class='content' hover-class='hover-class' hover-stay-time='400' bindtap='onHelp'>
+  <view>帮助中心</view>
+  <image src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+</view>
+<view class='content' hover-class='hover-class' hover-stay-time='400' bindtap='credentials'>
+  <view>证照信息</view>
+  <image src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+</view>

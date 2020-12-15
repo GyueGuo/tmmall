@@ -1,0 +1,79 @@
+.pay-head {
+  margin-top: 2rpx;
+  font-size: 28rpx;
+  line-height: 80rpx;
+  text-align: right;
+  background: #fafafa;
+  padding-right: 20rpx;
+}
+
+.pay-way-head {
+  font-size: 28rpx;
+  line-height: 88rpx;
+  padding-left: 4%;
+  background: white;
+  margin-top: 10rpx;
+}
+
+.pay-way {
+  background: white;
+  margin-top: 2rpx;
+  padding: 0 4%;
+  width: 92%;
+}
+
+.pay-way > view {
+  font-size: 30rpx;
+  line-height: 116rpx;
+  height: 116rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-bottom: 2rpx solid #fafafa;
+}
+
+.pay-way .logo {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+/* .pay-way .check {
+  width: 48rpx;
+  height: 48rpx;
+  padding: 12rpx;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -30rpx;
+} */
+
+.pay-way .check {
+  width: 48rpx;
+  height: 80rpx;
+  /* padding: 12rpx; */
+  /* position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -30rpx; */
+}
+.pay-way .check image{
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.pay-way > view text {
+  margin-left: 36rpx;
+  flex: 1;
+}
+
+.submit {
+  color: white;
+  height: 100rpx;
+  line-height: 100rpx;
+  width: 100%;
+  text-align: center;
+  font-size: 34rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}

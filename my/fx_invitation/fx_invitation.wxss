@@ -1,0 +1,73 @@
+/* my/fx_invitation/fx_invitation.wxss */
+page{
+  width: 100%;
+  height: 100%;  
+}
+.warp{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.warp .btn-con{
+  position: absolute;
+  bottom: 100rpx;
+  left: 0;
+  width: 100%;
+  padding: 0 60rpx;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.warp .btn{
+  width: 280rpx;
+  height: 88rpx;
+  margin: 0 30rpx;
+  line-height: 88rpx;
+  text-align: center;
+  font-size: 26rpx;
+  color: #fff;
+}
+
+.distribution{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 84rpx;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18rpx 22rpx;
+  box-sizing: border-box;
+}
+.distribution .left{
+  display: flex;
+  align-items: center;
+}
+.distribution .left .user_img{
+  width: 68rpx;
+  height: 68rpx;
+  border-radius: 50%;
+  background-color: #fff;
+}
+.distribution .left .distribution_text{
+  width: 440rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 26rpx;
+  color: #fbdc5d;
+  margin-left: 15rpx;
+}
+.distribution .right{
+  display: flex;
+}
+.distribution .right .distribution_btn{
+  font-size: 22rpx;
+  color: #5e3c0c;
+  background-color: #fde66e;
+  border-radius: 50px 50px;
+  padding: 10rpx 16rpx;
+}

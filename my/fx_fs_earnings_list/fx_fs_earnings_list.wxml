@@ -1,0 +1,75 @@
+<!--my/fx_total_earnings/fx_total_earnings.wxml-->
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='container'>
+  <view class='con_top'>
+    <view class='navTab' style='{{util.diy_color("","",diy_color.z_color)}}'>
+      <view style='{{navIndex==index?util.diy_color("#fff",diy_color.z_color,diy_color.z_color):util.diy_color(diy_color.z_color,"",diy_color.z_color)}}' wx:for='{{navTab}}' data-index='{{index}}' data-type='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='navTab'>{{item.name}}</view>
+    </view>
+  </view>
+  <view class='con_bottom'>
+    <scroll-view scroll-y style='height:100%;' bindscrolltolower="loadMore" bindscroll="scroll" scroll-top="{{scroll_top}}" hidden='{{good_list.length == 0 && !loading}}' scroll-with-animation>
+      <view class='order_info'>
+        <view class='num'>订单总量：{{data.total}}</view>
+        <view class='price'>累计收益：{{data.total_price}}</view>
+      </view>
+      <view class='list-item' wx:for='{{list}}'>
+        <view class='info'>
+          <view class='month'>{{item.date}}月</view>
+          <view class='info_view t_yjs' hidden='{{type!=0}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>+
+            <text>￥{{item.subtotal_price}}</text>
+          </view>
+          <view class='info_view t_wjs' hidden='{{type!=1}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>+
+            <text>￥{{item.subtotal_price}}</text>
+          </view>
+          <view class='info_view t_wjs' hidden='{{type!=2}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>预估
+            <text>￥{{item.subtotal_price}}</text>
+          </view>
+        </view>
+
+        <view class='list'>
+          <view class='item' wx:for='{{item.list}}' wx:for-index="idx" wx:for-item="cItem">
+            <view class='top'>
+              <view class='userinfo'>
+                <image class='userimg' src='{{cItem.avatar}}'></image>
+                <view class='username'>{{cItem.nickname}}</view>
+              </view>
+              <view class='info'>
+                <view class='info_view t_yjs' hidden='{{type!=0}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>+
+                  <text>￥{{cItem.brokerage}}</text>
+                </view>
+                <view class='info_view t_yjs' hidden='{{type!=1}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>+
+                  <text>￥{{cItem.brokerage}}</text>
+                </view>
+                <view class='info_view t_wjs' hidden='{{type!=2}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>预估
+                  <text>￥{{cItem.brokerage}}</text>
+                </view>
+              </view>
+            </view>
+            <view class='bottom'>
+              <image class='goodsimg' src='{{cItem.file}}'></image>
+              <view class='info'>
+                <view class='goodstitle'>{{cItem.goods_name}}</view>
+                <view class='goodsinfo'>
+                  <view class='goodsprice'>￥{{cItem.price}}</view>
+                  <view class='goodstime'>下单日{{cItem.underOrder_time}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class='no-order' hidden="{{list.length != 0 || loading}}">
+        <view>
+          <image src='{{util.HTTP}}mobile/small/image/wd-zwdd.png'></image>
+          <view class='no-order-head'>暂无收益</view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class='fx_time'>
+    <picker class='' mode="date" start="{{start}}" end="{{end}}" fields="month" bindchange="sy_time">
+      <image src='{{util.HTTP}}mobile/small/image/fx/sy-rl.png' class='next'></image>
+    </picker>
+  </view>
+</view>

@@ -1,0 +1,32 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<!-- 背景 -->
+<view class='trans' hidden='{{!isShow}}' style='opacity:{{opacity}}'></view>
+<!-- 筛选 -->
+<view class="board filtrate-board {{isShow?'filtrate-board-anim':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='closeTrans' style="left:{{move_distance}}!important" catchtouchmove='none'>
+  <view class='content' catchtap='none' bindtouchstart='filtrateStart' bindtouchmove='filtrateMove' bindtouchend='filtrateEnd'>
+    <view style='overflow:auto;height:100%'>
+      <view>
+        <view class='filtrate-item'>
+          <view class='filtrate-title'>店铺类型</view>
+          <view class='filtrate-content'>
+            <view hover-class='hover-class' hover-stay-time='400' bindtap='_onPlatform' class="{{platform?'cur':''}}" style='{{platform?util.diy_color(diy_color.z_color,diy_color.f_color,diy_color.z_color):""}}'>平台自营</view>
+            <view hover-class='hover-class' hover-stay-time='400' bindtap='_onPersonal' class="{{personal?'cur':''}}" style='{{personal?util.diy_color(diy_color.z_color,diy_color.f_color,diy_color.z_color):""}}'>个人店铺</view>
+            <view hover-class='hover-class' hover-stay-time='400' bindtap='_onCompany' class="{{company?'cur':''}}" style='{{company?util.diy_color(diy_color.z_color,diy_color.f_color,diy_color.z_color):""}}'>企业店铺</view>
+          </view>
+        </view>
+        <view class='filtrate-item'>
+          <view class='filtrate-title'>特色服务</view>
+          <view class='filtrate-content'>
+            <view hover-class='hover-class' hover-stay-time='400' bindtap='_onCity' class="{{city?'cur':''}}" style='{{city?util.diy_color(diy_color.z_color,diy_color.f_color,diy_color.z_color):""}}' wx:if='{{configSwitch.show_switch.is_city==1}}'>同城配送</view>
+            <view hover-class='hover-class' hover-stay-time='400' bindtap='_onPickup' class="{{pickup?'cur':''}}" style='{{pickup?util.diy_color(diy_color.z_color,diy_color.f_color,diy_color.z_color):""}}' wx:if='{{configSwitch.show_switch.is_shop==1}}'>门店自提</view>
+          </view>
+        </view>
+        <view class='block'></view>
+      </view>
+    </view>
+    <view class='footer'>
+      <view catchtap='onFiltrateReset'>重置</view>
+      <view catchtap='onFiltrateConfirm' style='{{util.diy_color("",diy_color.z_color,"")}}'>确定</view>
+    </view>
+  </view>
+</view>

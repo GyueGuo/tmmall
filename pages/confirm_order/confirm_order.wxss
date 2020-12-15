@@ -1,0 +1,434 @@
+button{
+  border-radius: unset;
+}
+.wrap {
+  padding-bottom: 120rpx;
+}
+
+.scroll {
+  height: 100%;
+}
+
+.trans {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0);
+}
+
+.address {
+  position: relative;
+  width: 86%;
+  padding: 4% 10% 4% 4%;
+  background: white;
+}
+
+.address-head {
+  overflow: hidden;
+  font-weight: bold;
+}
+
+.address-head .address-receiver {
+  float: left;
+  font-size: 34rpx;
+}
+
+.address-head .address-phone {
+  float: right;
+  font-size: 30rpx;
+}
+
+.address-detail {
+  font-size: 27rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin-top: 14rpx;
+  color: #666;
+}
+
+.address .next {
+  width: 12rpx;
+  height: 22rpx;
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  margin-top: -6rpx;
+}
+
+.address .bottom {
+  width: 100%;
+  height: 10rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.no-address {
+  width: 100%;
+  height: 156rpx;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-address > image {
+  width: 44rpx;
+  height: 44rpx;
+}
+
+.no-address > view {
+  font-size: 28rpx;
+  color: #8a8a8a;
+  margin-left: 20rpx;
+}
+
+.wrap .bottom {
+  width: 100%;
+  height: 10rpx;
+  display: block;
+}
+
+.order-detail {
+  background: white;
+}
+
+.shop {
+  width: 100%;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+}
+
+.shop image {
+  width: 60rpx;
+  height: 60rpx;
+  margin-left: 4%;
+}
+
+.shop text {
+  font-size: 30rpx;
+  width: 550rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-left: 20rpx;
+}
+
+.order-detail .good-detail {
+  width: 92%;
+  background-color: #fafafa;
+  padding: 10rpx 4%;
+}
+
+.order-detail .good-detail .good-info image {
+  width: 180rpx;
+  height: 180rpx;
+  display: block;
+}
+
+.order-detail .good-detail > .good-info {
+  display: flex;
+  align-items: center;
+}
+
+.order-detail .good-detail .good-info > view {
+  flex: 1;
+  margin-left: 20rpx;
+}
+
+.order-detail .good-detail .good-name {
+  width: 490rpx;
+  height: 72rpx;
+  font-size: 26rpx;
+  line-height: 36rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  color: #333;
+}
+
+.order-detail .good-detail .good-attr {
+  font-size: 26rpx;
+  margin-top: 10rpx;
+  color: #8d8d8d;
+}
+
+.order-detail .good-detail .good-tips {
+  overflow: hidden;
+}
+
+.order-detail .good-detail .good-tips .good-price {
+  float: left;
+  line-height: 50rpx;
+}
+
+.order-detail .good-detail .good-tips .good-num {
+  float: right;
+  font-size: 28rpx;
+  line-height: 50rpx;
+  color: #333;
+}
+
+.good-price .unit {
+  font-size: 24rpx;
+}
+
+.good-price .integer {
+  font-size: 34rpx;
+}
+
+.good-price .decimals {
+  font-size: 24rpx;
+}
+
+.detail-operation {
+  background: white;
+}
+
+.detail-operation .operation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 92%;
+  height: 120rpx;
+  padding: 0 4%;
+  overflow: hidden;
+  border-bottom: 1px solid #fafafa;
+}
+
+.promotion {
+  margin-top: 20rpx;
+}
+
+.detail-operation .left {
+  flex-shrink: 0;
+  font-size: 28rpx;
+  line-height: 110rpx;
+}
+
+.detail-operation .right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 70%;
+  height: 100%;
+  margin-left: auto;
+  font-size: 28rpx;
+  line-height: 110rpx;
+}
+.detail-operation .right .total-num{
+  margin-right: 40rpx;
+}
+
+.detail-operation .right .info {
+  width: 100%;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.detail-operation .right .info .invoice_text {
+  display: block;
+  max-width: 300rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.detail-operation .right .minus {
+  width: 88rpx;
+  height: 70rpx;
+}
+
+.detail-operation .right .add {
+  width: 88rpx;
+  height: 70rpx;
+}
+
+.detail-operation .right .num {
+  font-size: 26rpx;
+  text-align: center;
+  line-height: 112rpx;
+  margin: 0 20rpx;
+  width: 70rpx;
+}
+
+.detail-operation .right .next {
+  flex-shrink: 0;
+  width: 12rpx;
+  height: 22rpx;
+  margin-left: 26rpx;
+}
+
+.detail-message {
+  width: 92%;
+  height: 110rpx;
+  padding: 0 4%;
+  overflow: hidden;
+  border-bottom: 1px solid #fafafa;
+}
+
+.detail-message input {
+  width: 500rpx;
+  overflow: hidden;
+  height: 110rpx;
+  border-bottom: 2rpx solid #f1f1f1;
+  font-size: 28rpx;
+  margin-left: 30rpx;
+  float: left;
+}
+
+.detail-message .left {
+  float: left;
+  font-size: 30rpx;
+  line-height: 110rpx;
+}
+
+.delivery-method {
+  /* border-bottom: 2rpx solid #f1f1f1; */
+  height: auto !important;
+  padding: 0 4%;
+  width: 92%;
+}
+
+.delivery-method .no-bottom {
+  border-bottom: 0;
+  height: 110rpx;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+}
+
+.delivery-method .method {
+  float: right;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.delivery-method .method > view {
+  font-size: 26rpx;
+  line-height: 52rpx;
+  width: 148rpx;
+  text-align: center;
+  margin-left: 16rpx;
+  border-radius: 6rpx;
+  color: #666;
+  border: 1px solid #f1f1f1;
+}
+
+.delivery-method .freight {
+  font-size: 28rpx;
+  line-height: 66rpx;
+  color: #8d8d8d;
+}
+
+.pick-wrap {
+  background: #fafafa;
+  padding: 0 4%;
+  width: 92%;
+}
+
+.pick-up {
+  overflow: hidden;
+  font-size: 30rpx;
+  line-height: 84rpx;
+}
+
+.pick-up .point {
+  float: left;
+  color: #8d8d8d;
+}
+
+.pick-up .change {
+  float: right;
+}
+
+.pick-address {
+  font-size: 30rpx;
+  padding-bottom: 28rpx;
+}
+
+.pick-good {
+  overflow: hidden;
+  font-size: 30rpx;
+  height: 84rpx;
+  line-height: 84rpx;
+  border-bottom: 2rpx solid #f1f1f1;
+  padding: 0 4%;
+  width: 92%;
+}
+
+.pick-good .pick-time-title {
+  float: left;
+}
+
+.pick-good .pick-time {
+  float: right;
+}
+
+.footer {
+  width: 100%;
+  height: 100rpx;
+  background: white;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  border-top: 2rpx solid #f1f1f1;
+}
+
+.footer view {
+  float: right;
+  font-size: 30rpx;
+  line-height: 100rpx;
+}
+
+.footer .submit {
+  width: 248rpx;
+  float: right;
+  font-size: 30rpx;
+  line-height: 100rpx;
+  text-align: center;
+  margin-left: 30rpx;
+  color: white;
+}
+
+.pay-way {
+  position: relative;
+  width: 100%;
+  height: 180rpx;
+  margin: 20rpx 0;
+  background: white;
+  border-top: 1rpx solid white;
+}
+
+.pay-way > view:first-child {
+  font-size: 28rpx;
+  margin-top: 30rpx;
+  margin-left: 30rpx;
+}
+
+.pay-way > view:nth-child(2) {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-top: 24rpx;
+  margin-left: 30rpx;
+}
+
+.pay-way image {
+  width: 12rpx;
+  height: 22rpx;
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  margin-top: -6rpx;
+}

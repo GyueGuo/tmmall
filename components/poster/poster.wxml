@@ -1,0 +1,16 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<canvas canvas-id="poster" class='poster'></canvas>
+<!--背景   -->
+<view class='trans' hidden='{{!isShow}}' style='opacity:{{opacity}}'></view>
+<!--商品参数  -->
+<view class='board' hover-class='hover-class' hover-stay-time='400' bindtap='close' animation="{{animation}}">
+  <view catchtap='none'>
+    <view>
+      <view class='share-title'>分享到{{text}}</view>
+    </view>
+    <image class='share-poster' src='{{poster}}'></image>
+    <view class='save' hover-class='hover-class' hover-stay-time='400' bindtap='savePoster' wx:if="{{limit}}" style='{{util.diy_color("",diy_color.z_color,"")}}'>保存图片</view>
+    <button class='save' hover-class='hover-class' hover-stay-time='400' bindtap='savePoster' open-type='openSetting' style='{{util.diy_color("",diy_color.z_color,"")}}' wx:else>保存图片</button>
+    <view class='tips'>{{tip}}{{text}}</view>
+  </view>
+</view>

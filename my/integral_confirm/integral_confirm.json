@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "兑换商品",
+  "usingComponents": {
+    "modal": "/components/modal/modal"
+  }
+}

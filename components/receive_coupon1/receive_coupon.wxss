@@ -1,0 +1,227 @@
+.trans {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 13;
+  background: rgb(0, 0, 0);
+}
+
+.board {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  z-index: 60;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+}
+
+.cur{
+  color: #f23030;
+}
+
+.good-coupon {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  border-radius: 50rpx 50rpx 0 0;
+  background: white;
+}
+
+.good-coupon .coupon-head {
+  font-size: 34rpx;
+  font-weight: bold;
+  line-height: 120rpx;
+  text-align: center;
+}
+
+.good-coupon .coupon-scroll {
+  height: 720rpx;
+  /* padding: 10rpx 25rpx 0 35rpx; */
+  box-sizing: border-box;
+  background-color: #f8f8f8;
+}
+
+.good-coupon .coupon-scroll .coupon-con {
+  position: relative;
+  padding: 10rpx 0;
+  margin: 10rpx 25rpx 0 35rpx;
+}
+.good-coupon .coupon-scroll .coupon {
+  display: flex;
+  width: 100%;
+  height: 209rpx;
+  /* box-shadow: 0 0 10rpx 0 rgba(0, 0, 0, 0.2); */
+}
+.good-coupon .coupon-scroll .coupon-con>.tag{
+  position: absolute;
+  top: 22rpx;
+  left: -9rpx;
+}
+.good-coupon .coupon-scroll .coupon-con>.tag text{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 149rpx;
+  height: 42rpx;
+  font-size: 20rpx;
+  text-align: center;
+  color: #fff;
+}
+.good-coupon .coupon-scroll .coupon-con>.tag image{
+  width: 149rpx;
+  height: 42rpx;
+}
+.good-coupon .coupon-scroll .coupon .info {
+  display: flex;
+  flex: 1;
+  height: 209rpx;
+  padding: 20rpx 10rpx 20rpx 20rpx;
+  border-radius: 10rpx 0 0 10rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+.good-coupon .coupon-scroll .coupon .info .l-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 191rpx;
+  height: 100%;
+}
+.good-coupon .coupon-scroll .coupon .info .l-info .price-con{
+  height: 80rpx;
+  color: #676767;
+}
+.good-coupon .coupon-scroll .coupon .info .l-info .price-con .unit{
+  font-size: 28rpx;
+}
+.good-coupon .coupon-scroll .coupon .info .l-info .price-con .price{
+  font-size: 42rpx;
+  font-weight: 600;
+}
+.good-coupon .coupon-scroll .coupon .info .l-info .price-tag{
+  font-size: 26rpx;
+  color: #333;
+}
+.good-coupon .coupon-scroll .cannot .coupon .info .l-info .price-tag{
+  color: #676767;
+}
+.good-coupon .coupon-scroll .coupon .info .r-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
+  border-left: 1px dashed #e9e9e9;
+  padding-left: 20rpx;
+  box-sizing: border-box;
+}
+.good-coupon .coupon-scroll .coupon .info .r-info .tag{
+  height: 80rpx;
+}
+.good-coupon .coupon-scroll .coupon .info .r-info .tag text{
+  font-size: 24rpx;
+  padding: 4rpx 10rpx;
+  border-radius: 8rpx;
+  border: 1px solid transparent;
+}
+.good-coupon .coupon-scroll .coupon .info .r-info .time{
+  font-size: 24rpx;
+  color: #a6abb0;
+}
+.good-coupon .coupon-scroll .coupon .coupon-icon {
+  flex-shrink: 0;
+  width: 17rpx;
+  height: 209rpx;
+}
+.good-coupon .coupon-scroll .coupon .coupon-btn {
+  position: relative;
+  flex-shrink: 0;
+  width: 137rpx;
+  height: 209rpx;
+}
+.good-coupon .coupon-scroll .coupon .coupon-btn image{
+  width: 100%;
+  height: 100%;
+}
+.good-coupon .coupon-scroll .coupon .coupon-btn view{
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 27rpx;
+  padding: 50rpx 50rpx 50rpx 60rpx;
+  box-sizing: border-box;
+  color: #fff;
+}
+/* .good-coupon .coupon-scroll .coupon .coupon-bg-con{
+  display: flex;
+  align-items: center;
+} */
+
+/* .good-coupon .coupon .coupon-bg {
+  width: 674rpx;
+  height: 202rpx;
+}
+
+.good-coupon .coupon .coupon-info {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 35rpx 0 0 35rpx;
+} */
+
+/* .good-coupon .coupon .coupon-info .unit {
+  font-size: 28rpx;
+}
+
+.good-coupon .coupon .coupon-info .astrict {
+  font-size: 28rpx;
+  margin-left: 16rpx;
+}
+
+.good-coupon .coupon .coupon-info .price {
+  font-size: 46rpx;
+}
+
+.good-coupon .coupon .coupon-info .tips {
+  font-size: 28rpx;
+  margin-top: 10rpx;
+}
+
+.good-coupon .coupon .coupon-info .validity {
+  font-size: 26rpx;
+  margin-top: 10rpx;
+  color: #909090;
+}
+
+.good-coupon .coupon .get-now {
+  position: absolute;
+  right: 58rpx;
+  top: 30rpx;
+  font-size: 28rpx;
+  width: 30rpx;
+  color: white;
+} */
+
+.good-coupon .coupon-finish {
+  width: 100%;
+  height: 100rpx;
+  font-size: 32rpx;
+  line-height: 100rpx;
+  text-align: center;
+  color: white;
+}
+
+/* .gray{
+  color: #676767!important;
+} */

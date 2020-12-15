@@ -1,0 +1,215 @@
+.tab-view {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: calc(100% - 70rpx);
+  padding-right: 70rpx;
+  margin-top: 1rpx;
+  box-shadow: 0 0 5rpx 2rpx rgba(150, 150, 150, 0.1);
+  background: white;
+}
+
+.tab-sroll {
+  display: flex;
+  height: 82rpx;
+  white-space: nowrap;
+}
+
+.tab-sroll .tab-item {
+  display: inline-block;
+  height: 100%;
+  padding: 0 38rpx;
+  overflow: hidden;
+}
+
+.tab-sroll .tab-item text {
+  position: relative;
+  display: inline-block;
+  height: 100%;
+  font-size: 28rpx;
+  line-height: 82rpx;
+  box-sizing: border-box;
+  border-bottom: 6rpx solid #fff;
+}
+
+.tab-view .more {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70rpx;
+  height: 82rpx;
+}
+
+.tab-view .more::after {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  content: '';
+  width: 2rpx;
+  height: 34rpx;
+  margin-top: -17rpx;
+  background: #eee;
+}
+
+.tab-view .more image {
+  width: 22rpx;
+  height: 12rpx;
+}
+
+.second-tab {
+  position: fixed;
+  top: 85rpx;
+  left: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100rpx;
+  background: #f6f6f6;
+}
+
+.second-scroll {
+  height: 60rpx;
+  white-space: nowrap;
+}
+
+.second-tab-item:first-child {
+  margin-left: 34rpx;
+}
+
+.second-tab-item {
+  display: inline-block;
+  font-size: 26rpx;
+  line-height: 48rpx;
+  padding: 0 30rpx;
+  border-radius: 30rpx;
+  margin-right: 10rpx;
+  color: #656b70;
+  background: white;
+}
+
+.second-tab .bg {
+  color: white !important;
+}
+
+.collage-list {
+  height: calc(100vh - 182rpx);
+  overflow: hidden;
+  margin-bottom: 100rpx;
+  margin-top: 82rpx;
+}
+
+.collage-list.second{
+  height: calc(100vh - 292rpx);
+  margin-top: 192rpx;
+}
+
+.collage-list .good-item {
+  position: relative;
+  width: 370rpx;
+  float: left;
+  margin-top: 10rpx;
+  background: white;
+}
+
+.collage-list .good-item:nth-child(2n) {
+  margin-left: 10rpx;
+}
+
+.collage-list .collage-pic {
+  width: 370rpx;
+  height: 350rpx;
+}
+
+.collage-list .collage-name {
+  font-size: 28rpx;
+  line-height: 28rpx;
+  margin: 10rpx 15rpx 0rpx 15rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.collage-list .collage-info {
+  display: flex;
+  align-items: center;
+  margin-top: 30rpx;
+  margin-left: 14rpx;
+}
+
+.collage-list .collage-info .cur {
+  line-height: 1;
+  margin-left: 20rpx;
+}
+
+.collage-list .single-price {
+  font-size: 24rpx;
+  text-decoration:line-through;
+  line-height: 22rpx;
+  margin: 26rpx 20rpx;
+  color: #8d8d8d;
+}
+
+.collage-list .collage-num {
+  font-size: 20rpx;
+  line-height: 30rpx;
+  padding: 0 10rpx;
+  border-radius: 16rpx 0 16rpx 16rpx;
+  color: white;
+}
+
+.collage-list .collage-logo {
+  position: absolute;
+  right: 14rpx;
+  bottom: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+.collage-list .collage-logo image{
+  width: 35rpx;
+  height: 35rpx;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100rpx;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 5rpx 2rpx rgba(150, 150, 150, 0.1);
+}
+
+.footer > view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+
+.footer > view .title {
+  font-size: 32rpx;
+  margin-left: 20rpx;
+  color: #6e7479;
+}
+
+.footer > view .shop-icon {
+  font-size: 36rpx;
+}
+
+.footer > view .my-icon {
+  font-size: 40rpx;
+  color: #6e7479;
+}

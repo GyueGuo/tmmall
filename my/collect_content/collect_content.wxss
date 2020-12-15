@@ -1,0 +1,68 @@
+.content {
+  display: flex;
+  align-items: center;
+  height: 230rpx;
+  border-bottom: 1px solid #f6f6f6;
+  overflow: hidden;
+}
+
+.content > image {
+  flex-shrink: 0;
+  width: 230rpx;
+  height: 230rpx;
+  background-color: #fff;
+}
+
+.content > view {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  width: 476rpx;
+  height: 230rpx;
+  padding: 20rpx 20rpx 20rpx 34rpx;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+.content >.invalid_type{
+  background-color: #f6f6f6;
+}
+
+.content .name {
+  height: 84rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.content .tip {
+  display: flex;
+  justify-content: space-between;
+  /* display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 90rpx; */
+}
+
+.content .collect {
+  font-size: 26rpx;
+  color: #8d8d8d;
+}
+
+.content .time {
+  font-size: 24rpx;
+  color: #8d8d8d;
+}
+.invalid_type .name{
+  color: #aaa;
+}
+.invalid_type .collect{
+  padding: 6rpx 20rpx;
+  border-radius: 50px 50px;
+  background-color: #ddd;
+  overflow: hidden;
+}

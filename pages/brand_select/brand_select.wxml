@@ -1,0 +1,96 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='tab-view'>
+  <view class='tab-view'>
+    <scroll-view scroll-x class='tab-sroll' scroll-into-view="{{sroll_id}}" scroll-with-animation>
+      <view class='tab-item ' wx:for="{{classify}}" hover-class='hover-class' hover-stay-time='400' bindtap='onClassify' data-id='{{item.brand_classify_id}}' id='a-{{index}}'>
+        <text class="{{current_tab==item.brand_classify_id?'cur':''}}" style='{{current_tab==item.brand_classify_id?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{item.brand_classify_name}}</text>
+      </view>
+    </scroll-view>
+    <view class='more' hover-class='hover-class' hover-stay-time='400' bindtap='onMore'>
+      <view></view>
+      <image src='{{util.HTTP}}mobile/small/image/fl2_x.png'></image>
+    </view>
+  </view>
+</view>
+
+<view class='tab-more' hidden="{{!more_board}}" hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'>
+  <view catchtap='none'>
+    <view class='tab-more-head'>
+      <view>全部分类</view>
+      <image src='{{util.HTTP}}mobile/small/image/tsczz-sl.png' hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'></image>
+    </view>
+    <view class='tab-more-wrap'>
+      <view wx:for="{{classify}}" hover-class='hover-class' hover-stay-time='400' bindtap='onTabMoreItem' data-index='{{index}}' data-id='{{item.brand_classify_id}}' class="{{item.brand_classify_id == current_tab?'border-cur':''}}" style='{{item.brand_classify_id == current_tab?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{item.brand_classify_name}}</view>
+    </view>
+  </view>
+</view>
+
+<scroll-view class='list-scroll' scroll-y bindscrolltolower="loadMore" bindscroll="scroll" scroll-top="{{scroll_top}}">
+  <view class='wrap'>
+    <view wx:for="{{list}}">
+      <view class='shop' hover-class='hover-class' hover-stay-time='400' bindtap='onShop' data-id='{{item.store_id}}' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:130rpx 130rpx;'>
+        <image src='{{item.brand_image}}'></image>
+        <!-- <view class='money-off'>
+          <view>满2000减200</view>
+        </view> -->
+        <!-- <view class='enter'>
+          <view>立即进入</view>
+          <image src='{{util.HTTP}}mobile/small/image/traigle.png'></image>
+        </view> -->
+      </view>
+      <view class='good-wrap'>
+        <view class='good' wx:for="{{item.shop_goods}}" hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goods_id}}'>
+          <view class='good-pic' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
+            <image src='{{item.file}}'></image>
+          </view>
+          <view class='good-name'>{{item.goods_name}}</view>
+          <block wx:if='{{item.is_bargain==1}}'>
+            <view class='price cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+              <text class='unit'>￥</text>
+              <text class='integer'>{{util.integer(item.cut_price)}}</text>
+              <text class='decimals'>.{{util.decimals(item.cut_price)}}</text>
+            </view>
+          </block>
+          <block wx:elif='{{item.is_group==1}}'>
+            <view class='price cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+              <text class='unit'>￥</text>
+              <text class='integer'>{{util.integer(item.group_price)}}</text>
+              <text class='decimals'>.{{util.decimals(item.group_price)}}</text>
+            </view>
+          </block>
+          <block wx:elif='{{item.is_limit==1}}'>
+            <view class='price cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+              <text class='unit'>￥</text>
+              <text class='integer'>{{util.integer(item.time_limit_price)}}</text>
+              <text class='decimals'>.{{util.decimals(item.time_limit_price)}}</text>
+            </view>
+          </block>
+          <block wx:else>
+            <view class='price cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+              <text class='unit'>￥</text>
+              <text class='integer'>{{util.integer(item.shop_price)}}</text>
+              <text class='decimals'>.{{util.decimals(item.shop_price)}}</text>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- <view class='empty-view' hidden='{{list.length != 0 || loading}}'>
+    <view>
+      <image src='{{util.HTTP}}mobile/small/image/kby-zwyh.png'></image>
+      <view>暂无品牌</view>
+    </view>
+  </view> -->
+  <view class='no-order' hidden="{{list.length != 0 || loading}}">
+    <view>
+      <image src='{{util.HTTP}}mobile/small/image/kby-zwyh.png'></image>
+      <view class='no-order-head'>暂无品牌</view>
+      <!-- <view class='no-order-content'>"快来忙里偷闲下一单吧"</view> -->
+    </view>
+  </view>
+  <load_more show="{{loading}}" />
+</scroll-view>
+
+<!--返回顶部  -->
+<go_top id="go_top" hover-class='hover-class' hover-stay-time='400' bindtap='onBackTop' />

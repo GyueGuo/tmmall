@@ -1,0 +1,39 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<scroll-view class='scroll' scroll-y scroll-into-view="{{initials}}" scroll-with-animation>
+  <view class='title'>
+    <image src='{{util.HTTP}}mobile/small/image/gwc-sl-dw3.png'></image>
+    <view>当前定位城市</view>
+  </view>
+
+  <view class='content location' hover-class='hover-class' hover-stay-time='400' bindtap='onCity' data-name='{{current_location}}'>{{current_location}}</view>
+
+  <view class='title'>
+    <image src='{{util.HTTP}}mobile/small/image/cs.png'></image>
+    <view>不限城市</view>
+  </view>
+  <view class='content' hover-class='hover-class' hover-stay-time='400' bindtap='onCity' data-name='全国'>全国</view>
+
+  <view class='title'>
+    <image src='{{util.HTTP}}mobile/small/image/rm.png'></image>
+    <view>热门城市</view>
+  </view>
+
+  <view class='hot'>
+    <view>
+      <view wx:for="{{hot}}" hover-class='hover-class' hover-stay-time='400' bindtap='onCity' data-name='{{item.area_name}}'>
+        {{item.area_name}}
+      </view>
+    </view>
+  </view>
+
+  <view wx:for="{{list}}" id='i-{{index}}'>
+    <view class='title'>
+      <view>{{item.initials}}</view>
+    </view>
+    <view class='content' wx:for="{{item.list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onCity' data-name='{{item.area_name}}'>{{item.area_name}}</view>
+  </view>
+</scroll-view>
+
+<view class='sidebar' catchtouchmove='indexEvent' catchtap='selectWord'>
+  <view class='cur' wx:for="{{letters}}" style='{{util.diy_color(diy_color.z_color,"","")}}'>{{item}}</view>
+</view>

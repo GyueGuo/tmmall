@@ -1,0 +1,113 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<wxs module="wxs_common">
+  /**
+   * 优惠券状态
+   * type: 0未领取 1已领取 2已领完
+   * exchange_num: 剩余量
+   * member_coupon_count: 用户已领优惠券
+   * limit_num: 每人限领数量,0相当于不限
+   */
+  var coupon_type = function(exchange_num, member_coupon_count, limit_num) {
+    var type = 0;
+    if (exchange_num > 0 && limit_num - member_coupon_count > 0 && limit_num > 0) {
+      if (member_coupon_count > 0) {
+        type = 1;
+      } else {
+        type = 0;
+      }
+    } else if (exchange_num > 0 && limit_num == 0) {
+      if (member_coupon_count > 0) {
+        type = 1;
+      } else {
+        type = 0;
+      }
+    } else {
+      type = 2;
+    }
+    return type;
+  }
+  module.exports = {
+    coupon_type: coupon_type
+  }
+</wxs>
+<!--背景   -->
+<view class='trans' hidden='{{!isShow}}' style='opacity:{{opacity}}'></view>
+<view class='board' hover-class='hover-class' hover-stay-time='400' bindtap='closeCoupon' animation="{{animation_coupon}}">
+  <!--优惠券  -->
+  <view class='good-coupon' catchtap="none">
+    <view class='coupon-head'>优惠券</view>
+    <scroll-view scroll-y class='coupon-scroll' bindscrolltolower='loadMore'>
+      <view class='coupon-con {{wxs_common.coupon_type(item.exchange_num,item.member_coupon_count,item.limit_num)==2?"cannot":""}}' wx:for='{{coupon}}' wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' data-type='{{wxs_common.coupon_type(item.exchange_num,item.member_coupon_count,item.limit_num)}}'
+        data-item='{{item}}' data-index='{{index}}' bindtap='getCoupon'>
+        <view class='coupon'>
+          <view class='info'>
+            <view class='l-info'>
+              <view class='price-con' style='{{wxs_common.coupon_type(item.exchange_num,item.member_coupon_count,item.limit_num)==2?"":util.diy_color("#f23030","","")}}'>
+                <text class='unit'>￥</text>
+                <text class='price'>{{item.actual_price}}</text>
+              </view>
+              <block wx:if='{{item.full_subtraction_price<=0}}'>
+                <view class='price-tag'>无门槛</view>
+              </block>
+              <block wx:else>
+                <view class='price-tag'>满
+                  <text style='{{wxs_common.coupon_type(item.exchange_num,item.member_coupon_count,item.limit_num)==2?"":util.diy_color("#f23030","","")}}'>{{item.full_subtraction_price}}</text>元使用</view>
+              </block>
+            </view>
+            <view class='r-info'>
+              <view class='tag'>
+                <text style='{{util.diy_color("#f23030","","#f23030")}}'>{{item.flag_name}}</text>
+              </view>
+              <view class='time'>有效期至{{item.end_time}}</view>
+            </view>
+          </view>
+          <image class='coupon-icon' src='{{util.HTTP}}mobile/small/image/coupon/coupon-bg-01.png'></image>
+          <view class="coupon-btn">
+            <image src='data:image/svg+xml;base64,{{wxs_common.coupon_type(item.exchange_num,item.member_coupon_count,item.limit_num)==2?cannotIconPath:iconPath}}'></image>
+            <view wx:if='{{wxs_common.coupon_type(item.exchange_num,item.member_coupon_count,item.limit_num)==0}}'>立即领取</view>
+            <view wx:elif='{{wxs_common.coupon_type(item.exchange_num,item.member_coupon_count,item.limit_num)==1}}'>继续领取</view>
+            <view wx:elif='{{wxs_common.coupon_type(item.exchange_num,item.member_coupon_count,item.limit_num)==2}}'>已领取</view>
+          </view>
+          <!-- <image class="tag" src='{{util.HTTP}}mobile/small/image/coupon/coupon-bg-01.png'></image> -->
+        </view>
+        <view class='tag'>
+          <text>{{item.type_name}}</text>
+          <image src='{{util.HTTP}}mobile/small/image/coupon/1.png'></image>
+        </view>
+      </view>
+
+
+
+      <!-- <view class='coupon' wx:for="{{coupon}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='{{item.limit_num==0&&item.exchange_num!=0||(item.member_coupon_count<item.limit_num&&item.exchange_num!=0)?"getCoupon":"showToast"}}'
+        data-item='{{item}}' data-index='{{index}}'>
+        <view class='coupon-bg-con' wx:if='{{item.limit_num==0&&item.exchange_num!=0||(item.member_coupon_count<item.limit_num&&item.exchange_num!=0)}}'>
+          <image class='coupon-bg' src="{{util.HTTP}}mobile/small/image/xq-yhq_01.png" style='width:513rpx;'></image>
+          <view style='{{util.diy_imgbox(160)}}margin-top:10rpx;'>
+            <image class='coupon-bg' src="{{util.HTTP}}mobile/small/image/xq-yhq_02.png" style='width:160rpx;' style='{{util.diy_imgcolor(diy_color.z_color,160)}}'></image>
+          </view>
+        </view>
+        <image class='coupon-bg' src="{{util.HTTP}}mobile/small/image/spxq-yhq-ylq.png" wx:else></image>
+        <view class='coupon-info'>
+          <view class="cur" style='{{util.diy_color(diy_color.z_color,"","")}}'>
+            <view class="{{item.limit_num==0&&item.exchange_num!=0||(item.member_coupon_count<item.limit_num&&item.exchange_num!=0)?'cur':'gray'}}" style='{{item.limit_num==0&&item.exchange_num!=0||(item.member_coupon_count<item.limit_num&&item.exchange_num!=0)?util.diy_color(diy_color.z_color,"",""):""}}'>
+              <text class='unit'>￥</text>
+              <text class='price'>{{item.actual_price}}</text>
+            </view>
+            <block wx:if='{{item.full_subtraction_price!=0}}'>
+              <view class="tips {{item.limit_num==0&&item.exchange_num!=0||(item.member_coupon_count<item.limit_num&&item.exchange_num!=0)?'':'gray'}}">订单金额满{{item.full_subtraction_price}}元可用</view>
+            </block>
+            <block wx:elif='{{item.full_subtraction_price==0}}'>
+              <view class='tips'>无门槛</view>
+            </block>
+            <view class='validity'>有效期{{item.start_time}}至{{item.end_time}}</view>
+          </view>
+        </view>
+        <view class='get-now' wx:if="{{item.member_coupon_count<item.limit_num&&item.member_coupon_count==0&&item.exchange_num!=0}}">立即领取</view>
+        <view class='get-now' wx:elif="{{item.member_coupon_count<item.limit_num&&item.member_coupon_count>0&&item.exchange_num!=0}}">继续领取</view>
+        <view class='get-now' style='top:40rpx;' wx:else>已领取</view>
+      </view> -->
+
+    </scroll-view>
+    <view class='coupon-finish' hover-class='hover-class' hover-stay-time='400' bindtap='closeCoupon' style='{{util.diy_color("",diy_color.z_color,"")}}'>完成</view>
+  </view>
+</view>

@@ -1,0 +1,131 @@
+.filtrate-board {
+  z-index: 14 !important;
+  left: 100% !important;
+  transition: all 0.5s ease;
+}
+
+.filtrate-board-anim {
+  left: 0 !important;
+  transition: all 0.5s ease;
+}
+
+.trans {
+  background: rgb(0, 0, 0);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 14;
+}
+
+.board {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  bottom: 0;
+  left: 100%;
+}
+
+.board .content {
+  position: absolute;
+  left: 10%;
+  top: 0;
+  width: 90%;
+  height: 100vh;
+  background: white;
+  overflow: hidden;
+}
+
+.filtrate-item {
+  padding: 50rpx 40rpx 0;
+}
+
+.filtrate-item .filtrate-title {
+  font-size: 30rpx;
+}
+
+.filtrate-item .filtrate-content {
+  overflow: hidden;
+  width: 100%;
+  margin-top: 16rpx;
+}
+
+.filtrate-item .filtrate-content > view {
+  margin-top: 20rpx;
+  width: 30%;
+  margin-left: 3%;
+  float: left;
+  text-align: center;
+  font-size: 26rpx;
+  line-height: 70rpx;
+  background: #f7f7f7;
+  border-radius: 6rpx;
+  border: 2rpx solid #f7f7f7;
+}
+
+.filtrate-item .filtrate-content .cur {
+  color: #f23030;
+  border: 2rpx solid #f23030;
+  background: #fef4f3;
+}
+
+.filtrate-item .filtrate-content > view:nth-child(3n + 1) {
+  margin-left: 0;
+}
+
+.filtrate-item .filtrate-price {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  margin-top: 36rpx;
+}
+
+.filtrate-item .filtrate-price input {
+  width: 260rpx;
+  text-align: center;
+  font-size: 26rpx;
+  line-height: 70rpx;
+  height: 70rpx;
+  float: left;
+  background: #f7f7f7;
+  border-radius: 6rpx;
+}
+
+.filtrate-item .filtrate-price .line {
+  width: 2%;
+  margin: 0 4%;
+  display: inline-block;
+  height: 2rpx;
+  background: #a9a9a9;
+}
+
+.board .content .footer {
+  width: 100%;
+  height: 90rpx;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  overflow: hidden;
+  border-top: 2rpx solid #eaeaea;
+  z-index: 110;
+  background: white;
+}
+
+.board .content .footer > view {
+  width: 50%;
+  float: left;
+  text-align: center;
+  font-size: 28rpx;
+  line-height: 90rpx;
+}
+
+.board .content .footer > view:last-child {
+  background: #f23030;
+  color: white;
+}
+
+.block {
+  height: 100rpx;
+}

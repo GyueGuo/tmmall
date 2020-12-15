@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "限时抢购",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "sale_progress": "/components/sale_progress/sale_progress",
+    "go_top": "/components/go_top/go_top"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "填写退货物流",
+  "usingComponents": {
+    "select_self_pick": "/components/select_self_pick/select_self_pick"
+  }
+}

@@ -1,0 +1,84 @@
+/* nearby_shops/pay_result/pay_result.wxss */
+.warp .dy_con{
+  display: flex;
+  align-items: center;
+  padding: 30rpx 28rpx;
+}
+.warp .dy_con .dy_img{
+  width: 67rpx;
+  height: 67rpx;
+  border-radius: 50%;
+  background-color: #ccc;
+}
+.warp .dy_con text{
+  font-size: 26rpx;
+  margin-left: 20rpx;
+  color: #4d2b04;
+}
+.warp .warp_pay_con{
+  height: 344rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.warp_pay_con .pay_title{
+  display: flex;
+  align-items: center;
+  margin-top: 45rpx;
+}
+.warp_pay_con .pay_title>image{
+  width: 40rpx;
+  height: 40rpx;
+}
+.warp_pay_con .pay_title>text{
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-left: 8rpx;
+}
+.warp_pay_con .pay_price{
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  color: #fff;
+}
+.warp_pay_con .pay_btn{
+  width: 100%;
+  margin-top: 40rpx;
+  display: flex;
+  justify-content: space-around;
+  font-size: 26rpx;
+  padding: 0 10rpx;
+  box-sizing: border-box;
+  color: #fff;
+}
+.warp_pay_con .pay_btn>view{
+  width: 216rpx;
+  height: 64rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px 50px;
+  border: 1px solid #fff;
+}
+
+.warp .pay_banner{
+  width: 90%;
+  border-radius: 20rpx;
+  margin: 0 auto;
+  padding: 40rpx 60rpx;
+  box-sizing: border-box;
+  margin-top: -45rpx;
+}
+.warp .pay_banner .tip_h3{
+  font-size: 33rpx;
+  color: #f22d2d;
+}
+.warp .pay_banner .tip_p{
+  margin-top: 14rpx;
+  font-size: 22rpx;
+  color: #cdc9c6;
+}
+.warp .recommend_goods{
+  height: 80%;
+  margin-top: 10rpx;
+}

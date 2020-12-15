@@ -1,0 +1,24 @@
+/* nearby_shops/invoice_over/invoice_over.wxss */
+page{
+  background-color: #fff;
+}
+.warp{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.warp>image{
+  width: 100%;
+  height: 250rpx;
+  margin: 100rpx 0 50rpx;
+}
+.warp>.p{
+  font-size: 30rpx; 
+}
+.warp>.btn{
+  color: #fff;
+  font-size: 28rpx;
+  padding: 26rpx 120rpx;
+  border-radius: 8rpx;
+  margin-top: 80rpx;
+}

@@ -1,0 +1,53 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view hidden='{{!info}}'>
+  <!--店铺简介  -->
+  <view class='shop-intro'>
+    <image src='{{info.logo}}'></image>
+    <view>
+      <view class='shop-name'>{{info.store_name}}</view>
+      <view class='shop-attention'>{{info.collect}}人关注</view>
+    </view>
+  </view>
+
+  <view class='shop-operation'>
+    <view hover-class='hover-class' hover-stay-time='400' bindtap='goCredential' data-data='{{info}}'>
+      <view class='operation-title'>证照信息</view>
+      <image class='operation-icon' src='{{util.HTTP}}{{"mobile/small/image/credential.png"}}'></image>
+    </view>
+    <view hover-class='hover-class' hover-stay-time='400' bindtap='code'>
+      <view class='operation-title'>店铺二维码</view>
+      <image class='operation-icon' src='{{util.HTTP}}{{"mobile/small/image/dp-dpxqewm.png"}}'></image>
+    </view>
+  </view>
+
+  <!--店家操作  -->
+  <view class='shop-operation'>
+    <!-- <view hover-class='hover-class' hover-stay-time='400' bindtap='service'>
+      <view class='operation-title'>联系商家</view>
+      <image class='operation-icon' src='{{util.HTTP}}{{"mobile/small/image/dp-kf.png"}}'></image>
+    </view> -->
+    <view hover-class='hover-class' hover-stay-time='400' bindtap='callPhone'>
+      <view class='operation-title'>服务电话</view>
+      <image class='operation-icon' src='{{util.HTTP}}{{"mobile/small/image/dp-dpxqdh.png"}}'></image>
+    </view>
+  </view>
+
+  <!--店铺信息  -->
+  <view class='shop-info'>
+    <view hover-class='hover-class' hover-stay-time='400' bindtap='onAddress'>
+      <view class='info-title'>店铺地址</view>
+      <view class='info-content'>{{info.address}}</view>
+      <image class='info-icon' src='{{util.HTTP}}{{"mobile/small/image/dp-dpxqdaoh.png"}}'></image>
+    </view>
+    <view>
+      <view class='info-title'>开店时间</view>
+      <view class='info-content'>{{info.create_time}}</view>
+    </view>
+    <view>
+      <view class=' info-title '>店铺简介</view>
+      <view class='info-content-i'>{{info.describe}}</view>
+    </view>
+  </view>
+</view>
+
+<shop_code id='shop_code' info="{{info}}"></shop_code>

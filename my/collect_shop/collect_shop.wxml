@@ -1,0 +1,40 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<!-- <view class='collect-head'>
+  <view class="{{tab == 1?'cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onDefault'>默认</view>
+  <view class="{{tab == 2?'cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onPromotion'>促销优先</view>
+  <view class="{{tab == 3?'cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onCoupon'>有券优先</view>
+  <view class="{{tab == 1?'cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onFiltrate'>筛选
+    <image src='/image/shaixuan.png'></image>
+  </view>
+</view> -->
+
+<view class='list'>
+  <view class='{{item.is_invalid!=0?"invalid_type":""}}' wx:for="{{list}}" wx:key='{{index}}' bindlongtap='deleteShop' hover-class='hover-class' hover-stay-time='400' bindtap='{{item.is_invalid==0?"onShop":""}}' data-item='{{item}}' data-index='{{index}}'>
+    <image class='shop-img' src='{{item.logo}}' style='{{item.is_invalid!=0?"filter: grayscale(80%);":""}}'></image>
+    <view class='shop-con'>
+      <view class='shop-name'>{{item.store_name}}</view>
+      <view class='shop-attention'>{{item.collect}}人关注</view>
+    </view>
+    <block wx:if='{{item.is_invalid==0}}'>
+      <image class='next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+    </block>
+    <block wx:else>
+      <view class='invalid'>
+        <image class='icon' src='{{util.HTTP}}mobile/small/image/shops_sold_out.png'></image>
+        <text>已注销</text>
+      </view>
+    </block>
+  </view>
+</view>
+
+<view class='empty-view' hidden='{{list.length != 0 || loading}}'>
+  <view>
+    <image src='{{util.HTTP}}mobile/small/image/kby-zwsc.png'></image>
+    <view class='no-order-head'>暂无关注店铺</view>
+    <view class='no-order-content'>"去逛一逛商城吧"</view>
+  </view>
+</view>
+
+<load_more show="{{loading}}" />
+<shop_filtrate isShow="{{filtrate}}" />
+<modal id='modal' title="提示" content="您确定取消关注吗?" bind:confirm="delectConfirm" />

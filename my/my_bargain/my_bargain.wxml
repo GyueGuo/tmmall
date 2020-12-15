@@ -1,0 +1,66 @@
+<wxs module="util" src="../../utils/util.wxs" />
+
+<view class='tab-view'>
+  <view wx:for="{{tab_view}}" hover-class='hover-class' hover-stay-time='400' bindtap='onTab' data-index='{{index}}'>
+    <view class="{{current_tab == index?'cur':''}}" style='{{current_tab == index?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>
+      {{item}}
+    </view>
+  </view>
+</view>
+
+<scroll-view scroll-y class='bargain-list' bindscrolltolower="loadMore" hidden='{{list.length == 0 && !loading}}'>
+  <view class='bargain-item' wx:for="{{list}}">
+
+    <view class='bargain-time' hidden='{{item.status != 1}}'>倒计时:{{item.day}}天{{item.hour}}时{{item.min}}分{{item.sec}}秒</view>
+    <view class='bargain-info'>
+      <view style='{{util.diy_imgbox(116)}}position: absolute;right: 0;top: 0;' wx:if="{{item.status == 1}}">
+        <image src='{{util.HTTP}}mobile/small/image/pg-xq-jxz.png' style='{{util.diy_imgcolor(diy_color.z_color,116,116)}}'></image>
+      </view>
+      <view style='{{util.diy_imgbox(116)}}position: absolute;right: 0;top: 0;' wx:elif="{{item.status == 2}}">
+        <image src='{{util.HTTP}}mobile/small/image/pg-xq-chengg.png' style='{{util.diy_imgcolor(diy_color.z_color,116,116)}}'></image>
+      </view>
+      <image class='bargain-state' src='{{util.HTTP}}mobile/small/image/pg-xq-shib.png' wx:else></image>
+      <view class='bargain-img' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
+        <image src='{{item.file}}'></image>
+      </view>
+      <view class='bargain-info' hover-class='hover-class' hover-stay-time='400' bindtap='onBargainDetail' data-id='{{item.cut_activity_id}}'>
+        <view class='bargain-name'>{{item.goods_name}}</view>
+        <view class='bargain-tip'>
+          <view class='cur bargain-price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+            <text class='unit'>￥</text>
+            <text class='integer'>{{util.integer(item.cut_price)}}</text>
+            <text class='decimals'>.{{util.decimals(item.cut_price)}}</text>
+          </view>
+          <view class='origin-price'>￥{{item.original_price}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='bargain-operation'>
+      <view class='border-cur' hidden='{{item.status != 1}}' hover-class='hover-class' hover-stay-time='400' bindtap='onPayOrder' data-item='{{item}}' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>付款</view>
+      <view hidden='{{item.status != 1}}' hover-class='hover-class' hover-stay-time='400' bindtap='onBargainDetail' data-id='{{item.cut_activity_id}}'>继续砍价</view>
+      <view hidden='{{item.status != 2}}' hover-class='hover-class' hover-stay-time='400' bindtap='onBargainDetail' data-id='{{item.cut_activity_id}}'>砍价详情</view>
+      <view hidden='{{item.status != 2}}' hover-class='hover-class' hover-stay-time='400' bindtap='onOrderDetail' data-id='{{item.order_attach_id}}'>订单详情</view>
+      <view hidden='{{item.status != 3}}' hover-class='hover-class' hover-stay-time='400' bindtap='onAnother' data-id='{{item.goods_id}}'>重砍一个</view>
+    </view>
+  </view>
+  <load_more show="{{loading}}" />
+</scroll-view>
+
+<view class='empty-view' hidden='{{list.length != 0 || loading}}'>
+  <view>
+    <image src='{{util.HTTP}}mobile/small/image/kby-zwsc.png'></image>
+    <view>暂无订单</view>
+    <view class='empty-tips'>"快来忙里偷闲下一单吧"</view>
+  </view>
+</view>
+
+<view class='footer'>
+  <view hover-class='hover-class' hover-stay-time='400' bindtap='onBargainGood'>
+    <view class='font_family shop-icon icon-kj'></view>
+    <view class='title'>砍价商品</view>
+  </view>
+  <view>
+    <view class='font_family mykj-icon icon-kj-wd-' style='{{util.diy_color(diy_color.z_color,"","")}}'></view>
+    <view class='title' style='{{util.diy_color(diy_color.z_color,"","")}}'>我的砍价</view>
+  </view>
+</view>

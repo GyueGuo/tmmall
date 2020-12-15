@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "收益",
+  "usingComponents": {
+    "ff-canvas": "./f2-canvas/f2-canvas"
+  }
+}

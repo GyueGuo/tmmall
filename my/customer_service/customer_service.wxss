@@ -1,0 +1,27 @@
+.wrap {
+  background: white;
+  padding-left: 24rpx;
+}
+
+.wrap .do {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2rpx solid #f6f6f6;
+  height: 100rpx;
+}
+
+.wrap .do view{
+  font-size: 30rpx;
+}
+
+.wrap .do .right{
+  font-size: 28rpx;
+  color: #8d8d8d;
+  margin-right: 24rpx;
+}
+.wrap .do image{
+  width: 12rpx;
+  height: 22rpx;
+  margin-right: 24rpx;
+}

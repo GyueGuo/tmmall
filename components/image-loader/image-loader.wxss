@@ -1,0 +1,13 @@
+/* components/image-loader/image-loader.wxss */
+.original{
+  display: block;
+  transition: opacity .35s;
+}
+.default{
+  display: block;
+}
+.load{
+  width: 0;
+  height: 0;
+  opacity: 0;
+}

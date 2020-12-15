@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "拼团",
+  "usingComponents": {
+    "load_more": "/components/load_more/load_more"
+  }
+}

@@ -1,0 +1,39 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='wrap'>
+  <view class='search-bg'>
+    <view class='map-search'>
+      <view class='font_family icon-xq-gd-ss- search-icon'></view>
+      <input placeholder='搜索城市+"写字楼、小区"' bindinput='searchInput'></input>
+    </view>
+    <view class='search-now' hover-class='hover-class' hover-stay-time='400' bindtap='onSearch' >搜索</view>
+  </view>
+  <view class='map-wrap'>
+    <map id='map' class='map' latitude="{{latitude}}" longitude="{{longitude}}" bindregionchange="regionChange" enable-3D subkey='{{key}}'>
+      <cover-view class='bubble' style="{{bubble?'':'display:none'}}">
+        <cover-view class='location'>
+          <cover-view class='location_desc'>{{location.title}}</cover-view>
+          <cover-view class='location_name'>{{location.address}}</cover-view>
+        </cover-view>
+        <cover-view class='submit' hover-class='hover-class' hover-stay-time='400' bindtap='submit' style='{{util.diy_color("",diy_color.z_color,"")}}' >确认</cover-view>
+      </cover-view>
+      <!-- <cover-view class='logo' style='{{util.diy_imgbox(60)}}'>
+        <cover-image src='{{util.HTTP}}{{"mobile/small/image/gwc-sl-dw.png"}}' style='{{util.diy_imgcolor(diy_color.z_color,60,60)}}'></cover-image>
+      </cover-view> -->
+      <!-- <cover-view class='logo font_family icon-gwc-sl-dw'></cover-view> -->
+      <cover-image class='logo' src='{{util.HTTP}}mobile/small/image/gwc-sl-dw.png'></cover-image>
+      <cover-image class='current-location' src='{{util.HTTP}}mobile/small/image/gwc-sl-dh.png' hover-class='hover-class' hover-stay-time='400' bindtap='getLocation' ></cover-image>
+    </map>
+  </view>
+  <scroll-view class='list' scroll-y scroll-into-view='{{scrollIndex}}'>
+    <view id='a-{{index}}' class='li' wx:for="{{list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onListAddress' data-item='{{item}}' >
+      <view class='font_family icon-ddxq-dw icon' style='{{index == 0?util.diy_color(diy_color.z_color,"",""):""}}'></view>
+      <!-- <view class='icon' style='{{util.diy_imgbox(36)}}'>
+        <image src="{{util.HTTP}}{{index == 0?'mobile/small/image/gwc-sl-dw2.png':'mobile/small/image/gwc-sl-dw3.png'}}" style='{{index == 0?util.diy_imgcolor(diy_color.z_color,36,36):""}}'></image>
+      </view> -->
+      <view class='info'>
+        <view class="name {{index == 0?'cur':''}}" style='{{index == 0?util.diy_color(diy_color.z_color,"",""):""}}'>{{item.title}}</view>
+        <view class="address {{index == 0?'cur':''}}" style='{{index == 0?util.diy_color(diy_color.z_color,"",""):""}}'>{{item.address}}</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

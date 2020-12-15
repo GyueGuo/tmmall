@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "浏览记录",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "cart": "/components/cart/cart",
+    "modal": "/components/modal/modal",
+    "go_top":"/components/go_top/go_top",
+    "buy": "/components/buy/buy"
+  }
+}

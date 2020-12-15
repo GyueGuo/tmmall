@@ -1,0 +1,48 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<!--背景   -->
+<view class='trans' hidden='{{!isShow}}' style='opacity:{{opacity}}'></view>
+<view class="board {{isShow?'rise':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'>
+  <view catchtap='none'>
+    <view class='head'>
+      <view>配送至</view>
+      <image src='{{util.HTTP}}mobile/small/image/gb.png' hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'></image>
+    </view>
+
+    <view class='address-head'>
+      <view class="{{tab == 1?'cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='_chooseProvince' style='{{tab == 1?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{province}}</view>
+      <view class="{{tab == 2?'cur':''}}" hidden="{{city==''}}" hover-class='hover-class' hover-stay-time='400' bindtap='_chooseCity' style='{{tab == 2?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{city}}</view>
+      <view class="{{tab == 3?'cur':''}}" hidden="{{area==''}}" hover-class='hover-class' hover-stay-time='400' bindtap='_chooseArea' style='{{tab == 3?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{area}}</view>
+      <view class="{{tab == 4?'cur':''}}" hidden="{{street==''}}" hover-class='hover-class' hover-stay-time='400' bindtap='_chooseDetail' style='{{tab == 4?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{street}}</view>
+    </view>
+
+    <scroll-view scroll-y scroll-with-animation class='address-list' scroll-into-view="{{current_id}}">
+      <view wx:for="{{list}}" hover-class='hover-class' hover-stay-time='400' bindtap='_onItem' data-item='{{item}}' id="{{'id-' + item.area_id}}">
+        <view class='address' wx:if="{{tab == 1}}">
+          <view class="{{item.area_name == province?'cur':''}}" style='{{item.area_name == province?util.diy_color(diy_color.z_color,"",""):""}}'>{{item.area_name}}</view>
+          <view style='{{util.diy_imgbox(28)}}margin-left:20rpx;' wx:if='{{item.area_name == province}}'>
+            <image src='{{util.HTTP}}mobile/small/image/arx.png' style='{{util.diy_imgcolor(diy_color.z_color,28,20)}}'></image>
+          </view>
+        </view>
+        <view class='address' wx:elif="{{tab == 2}}">
+          <view class="{{item.area_name == city?'cur':''}}" style='{{item.area_name == city?util.diy_color(diy_color.z_color,"",""):""}}'>{{item.area_name}}</view>
+          <view style='{{util.diy_imgbox(28)}}margin-left:20rpx;' wx:if='{{item.area_name == city}}'>
+            <image src='{{util.HTTP}}mobile/small/image/arx.png' style='{{util.diy_imgcolor(diy_color.z_color,28,20)}}'></image>
+          </view>
+        </view>
+        <view class='address' wx:elif="{{tab == 3}}">
+          <view class="{{item.area_name == area?'cur':''}}" style='{{item.area_name == area?util.diy_color(diy_color.z_color,"",""):""}}'>{{item.area_name}}</view>
+          <view style='{{util.diy_imgbox(28)}}margin-left:20rpx;' wx:if='{{item.area_name == area}}'>
+            <image src='{{util.HTTP}}mobile/small/image/arx.png' style='{{util.diy_imgcolor(diy_color.z_color,28,20)}}'></image>
+          </view>
+        </view>
+        <view class='address' wx:else>
+          <view class="{{item.area_name == street?'cur':''}}" style='{{item.area_name == street?util.diy_color(diy_color.z_color,"",""):""}}'>{{item.area_name}}</view>
+          <view style='{{util.diy_imgbox(28)}}margin-left:20rpx;' wx:if='{{item.area_name == street}}'>
+            <image src='{{util.HTTP}}mobile/small/image/arx.png' style='{{util.diy_imgcolor(diy_color.z_color,28,20)}}'></image>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+
+  </view>
+</view>

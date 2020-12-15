@@ -1,0 +1,202 @@
+.wrap{
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+.tab-view {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: calc(100% - 70rpx);
+  padding-right: 70rpx;
+  box-shadow: 0 0 5rpx 2rpx rgba(150, 150, 150, 0.1);
+  background: white;
+}
+
+.tab-sroll {
+  height: 82rpx;
+  white-space: nowrap;
+}
+
+.tab-sroll .tab-item {
+  display: inline-block;
+  height: 100%;
+  padding: 0 38rpx;
+}
+
+.tab-sroll .tab-item text {
+  position: relative;
+  display: inline-block;
+  height: 100%;
+  font-size: 28rpx;
+  line-height: 82rpx;
+  box-sizing: border-box;
+  border-bottom: 6rpx solid #fff;
+}
+
+.tab-view .more {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70rpx;
+  height: 82rpx;
+}
+
+.tab-view .more::after {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  content: '';
+  width: 2rpx;
+  height: 34rpx;
+  margin-top: -17rpx;
+  background: #eee;
+}
+
+.tab-view .more image {
+  width: 22rpx;
+  height: 12rpx;
+}
+
+.second-tab {
+  position: fixed;
+  top: 82rpx;
+  left: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100rpx;
+  background: #f6f6f6;
+}
+
+.list-con {
+  flex: 1;
+  margin-top: 178rpx;
+  overflow: hidden;
+}
+
+.second-scroll {
+  height: 60rpx;
+  white-space: nowrap;
+}
+
+.second-tab-item:first-child {
+  margin-left: 34rpx;
+}
+
+.second-tab-item {
+  display: inline-block;
+  font-size: 26rpx;
+  line-height: 48rpx;
+  padding: 0 30rpx;
+  border-radius: 30rpx;
+  margin-right: 15rpx;
+  color: #656b70;
+  background: white;
+}
+
+.second-tab .bg {
+  color: white !important;
+}
+
+.good-list .rank {
+  position: absolute;
+  left: 10rpx;
+  top: 0;
+  width: 44rpx;
+  height: 56rpx;
+}
+
+.good-list .rank image {
+  width: 100%;
+  height: 100%;
+}
+
+.good-list .rank .top {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 20rpx;
+  width: 100%;
+  text-align: center;
+  color: white;
+}
+
+.good-list .rank .rank-num {
+  position: absolute;
+  left: 0;
+  top: 22rpx;
+  width: 100%;
+  font-size: 22rpx;
+  text-align: center;
+  color: white;
+}
+
+.footer {
+  width: 100%;
+  height: 100rpx;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 5rpx 2rpx rgba(150, 150, 150, 0.1);
+  /* border-top: 1px solid #f6f6f6; */
+}
+
+.footer > .footer_con {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 9;
+  display: flex;
+  width: 100%;
+  height: 100rpx;
+}
+
+.footer > .footer_con>view {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.footer > .footer_con >view:last-child::after {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  content: '';
+  width: 2rpx;
+  height: 44rpx;
+  margin-top: -22rpx;
+  background: #f6f6f6;
+}
+
+.footer > view .title {
+  font-size: 32rpx;
+  margin-left: 20rpx;
+  color: #6e7479;
+}
+
+.footer > view .rm-icon {
+  font-size: 50rpx;
+}
+
+.footer > view .shop-icon {
+  font-size: 48rpx;
+  color: #6e7479;
+}
+
+.good-list {
+  height: 100%;
+}
+
+.good-list .good-item {
+  background: white;
+  overflow: hidden;
+}

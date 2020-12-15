@@ -1,0 +1,44 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view hidden='{{!finish}}'>
+  <view class='address' hover-class='hover-class' hover-stay-time='400' bindtap='chooseAddress' wx:if="{{address != null}}">
+    <view>
+      <view class='address-head'>
+        <view class='address-receiver'>收货人:{{address.name}}</view>
+        <view class='address-phone'>{{address.phone}}</view>
+      </view>
+      <view class='address-detail'>收货地址:{{address.province}}{{address.city}}{{address.area}}{{address.street}}{{address.address}}</view>
+      <image class='next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+    </view>
+  </view>
+  <view class='no-address' hover-class='hover-class' hover-stay-time='400' bindtap='chooseAddress' wx:else>
+    <image src='{{util.HTTP}}mobile/small/image/shdz-tjshdz.png'></image>
+    <view>添加收货地址</view>
+  </view>
+
+  <image class='bottom' src='{{util.HTTP}}mobile/small/image/qrsd-xf.png'></image>
+
+  <view class='good-detail'>
+    <view class='good-info'>
+      <image src='{{result.file}}'></image>
+      <view>
+        <view class='good-name'>{{result.integral_name}}</view>
+        <view class='good-tips cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+          <text>{{result.integral}}积分</text>
+          <text hidden='{{result.price == 0}}'> +￥{{result.price}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='footer'>
+    <view class='left'>
+      <view>
+        <text>消耗积分 : </text>
+        <text class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>{{result.integral}}</text>
+        <text class='cur' hidden='{{result.price == 0}}' style='{{util.diy_color(diy_color.z_color,"","")}}'> +￥{{result.price}}</text>
+      </view>
+    </view>
+    <view class='right bg' hover-class='hover-class' hover-stay-time='400' bindtap='confirm' style='{{util.diy_color("",diy_color.z_color,"")}}'>确认兑换</view>
+  </view>
+</view>
+<modal content="您还没有收货地址" tip="现在去添加收货地址吗?" id="modal" bind:confirm="chooseAddress" />

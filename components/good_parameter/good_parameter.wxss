@@ -1,0 +1,72 @@
+.trans {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 13;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0);
+}
+
+.board {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  z-index: 60;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+}
+
+.good-parameter {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  border-radius: 50rpx 50rpx 0 0;
+  background: white;
+}
+
+.good-parameter .parameter-head {
+  font-size: 34rpx;
+  font-weight: bold;
+  line-height: 120rpx;
+  text-align: center;
+}
+
+.good-parameter .parameter {
+  width: 92%;
+  overflow: hidden;
+  margin: 0 auto;
+  border-bottom: 2rpx solid #e8e8e8;
+}
+
+.good-parameter .parameter .parameter-title {
+  float: left;
+  font-size: 28rpx;
+  line-height: 104rpx;
+  width: 120rpx;
+}
+
+.good-parameter .parameter .parameter-content {
+  float: left;
+  margin-left: 50rpx;
+  font-size: 28rpx;
+  line-height: 104rpx;
+  color: #909090;
+}
+
+.good-parameter .parameter-finish {
+  width: 100%;
+  height: 100rpx;
+  font-size: 32rpx;
+  line-height: 100rpx;
+  text-align: center;
+  background: #f23030;
+  color: white;
+}
+
+.good-parameter .parameter-scroll {
+  height: 820rpx;
+}

@@ -1,0 +1,276 @@
+.order-head > image {
+  width: 100%;
+  height: 230rpx;
+  position: relative;
+}
+
+.order-head > view {
+  height: 230rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 690rpx;
+  margin: 0 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.order-head > view view {
+  font-size: 36rpx;
+  color: white;
+}
+
+.order-head > view image {
+  width: 230rpx;
+  height: 140rpx;
+}
+
+.order-head > .imagebg {
+  width: 100%;
+  height: 230rpx;
+  position: relative;
+  margin:0;
+  
+}
+.order-head > .imagebg>view {
+  width: 100%;
+  height: 100%;
+  opacity: .6;
+}
+
+.good-wrap {
+  width: 100%;
+  background: white;
+}
+
+.shop-info {
+  width: 100%;
+  height: 118rpx;
+  display: flex;
+  align-items: center;
+  margin-top: 16rpx;
+}
+
+.shop-info .shop-logo {
+  width: 60rpx;
+  height: 60rpx;
+  margin-left: 30rpx;
+}
+
+.shop-info  > view {
+  font-size: 30rpx;
+  margin-left: 20rpx;
+}
+
+.shop-info .shop-next {
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 20rpx;
+}
+
+.price-info {
+  background: #fafafa;
+}
+
+.price-title {
+  font-size: 30rpx;
+  line-height: 30rpx;
+  padding-top: 96rpx;
+  text-align: center;
+  color: #8d8d8d;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60rpx;
+  padding-top: 30rpx;
+  border-bottom: 2rpx solid #f6f6f6;
+}
+
+.price > view {
+  display: flex;
+  align-items: flex-start;
+  text-align: center;
+  font-size: 60rpx;
+  line-height: 1;
+  font-weight: bold;
+}
+
+.price .unit {
+  font-size: 34rpx;
+  line-height: 1;
+  margin-top: 6rpx;
+}
+
+.return-integral {
+  margin-left: 30rpx;
+  font-size: 30rpx;
+  height: 114rpx;
+  display: flex;
+  align-items: center;
+  background: white;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+
+.return-integral .border-cur {
+  font-size: 26rpx;
+  line-height: 30rpx;
+  width: 66rpx;
+  text-align: center;
+  margin-right: 14rpx;
+}
+
+.operation {
+  padding-left: 30rpx;
+  background: white;
+  overflow: hidden;
+}
+.operation > button {
+  width: 50%;
+  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 110rpx;
+  position: relative;
+}
+
+.operation > button image {
+  width: 40rpx;
+  height: 40rpx;
+}
+.operation > button view {
+  font-size: 30rpx;
+  margin-left: 14rpx;
+}
+
+.operation > view {
+  width: 50%;
+  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 110rpx;
+  position: relative;
+}
+
+.operation > view:last-child::after {
+  position: absolute;
+  width: 4rpx;
+  height: 40rpx;
+  left: 0;
+  top: 50%;
+  margin-top: -20rpx;
+  background: #f0f0f0;
+  content: '';
+}
+
+.operation > view image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.operation > view view {
+  font-size: 30rpx;
+  margin-left: 14rpx;
+}
+
+.price-bg {
+  background: white;
+}
+
+.price-wrap {
+  padding: 36rpx 0 36rpx 30rpx;
+  background: white;
+  margin-top: 16rpx;
+}
+
+.price-wrap > view {
+  overflow: hidden;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  font-weight: bold;
+  margin-bottom: 28rpx;
+}
+
+.price-wrap > view:last-child {
+  margin-bottom: 0;
+}
+
+.price-wrap .price-left {
+  float: left;
+}
+
+.price-wrap .price-right {
+  float: right;
+  margin-right: 20rpx;
+}
+
+.actually-pay {
+  margin-left: 30rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  line-height: 110rpx;
+  border-top: 2rpx solid #f0f0f0;
+  background: white;
+  overflow: hidden;
+}
+
+.actually-pay > view {
+  float: right;
+  margin-right: 20rpx;
+}
+
+.order-infor {
+  background: white;
+  padding: 30rpx;
+  margin-top: 16rpx;
+  margin-bottom: 10rpx;
+}
+
+.order-infor .copy {
+  display: inline-block;
+  font-size: 26rpx;
+  line-height: 40rpx;
+  width: 116rpx;
+  text-align: center;
+  border: 2rpx solid #f0f0f0;
+  border-radius: 30rpx;
+  margin-left: 30rpx;
+}
+
+.order-infor > view {
+  font-size: 28rpx;
+  line-height: 28rpx;
+}
+
+.order-infor .order-time {
+  margin-top: 30rpx;
+}
+
+.logistics {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100rpx;
+  border-top: 2rpx solid #f0f0f0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  background: white;
+  justify-content: flex-end;
+}
+
+.logistics > view {
+  width: 170rpx;
+  font-size: 28rpx;
+  line-height: 60rpx;
+  border: 2rpx solid #b0b0b0;
+  border-radius: 30rpx;
+  text-align: center;
+  margin-right: 24rpx;
+}

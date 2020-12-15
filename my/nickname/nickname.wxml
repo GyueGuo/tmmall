@@ -1,0 +1,11 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='wrap'>
+  <input value='{{nickname}}' bindinput='nameInput' maxlength='20' placeholder='请输入昵称'></input>
+  <image src='{{util.HTTP}}mobile/small/image/shanchu.png' hover-class='hover-class' hover-stay-time='400' bindtap='clearInput' hidden='{{nickname.length == 0}}' ></image>
+</view>
+
+<view class='nickname-rule'>昵称不能超过20个字符,支持中英文、数字、下划线</view>
+
+<view class='save'>
+  <view class='bg' hover-class='hover-class' hover-stay-time='400' bindtap='save' style='{{util.diy_color("",diy_color.z_color,"")}}' >保存</view>
+</view>

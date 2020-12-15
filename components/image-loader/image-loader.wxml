@@ -1,0 +1,3 @@
+<!--components/image-loader/image-loader.wxml-->
+<image class="default" hidden="{{loading}}" mode="{{default_mode}}" src="{{default}}" lazy-load style="{{width?'width:' + width +';':''}}{{height?'height:' + height +';':''}}"></image>
+<image class="original {{loading?'':'load'}}" mode="{{mode}}" src="{{original}}" lazy-load bindload="loader" style="{{loading&&width?'width:' + width +';':''}}{{loading&&height?'height:' + height +';':''}}"></image>

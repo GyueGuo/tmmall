@@ -1,0 +1,28 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='wrap' wx:for="{{list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onDetail' data-id='{{item.order_attach_id}}'>
+  <view>
+    <view class='shop-info'>
+      <image src='{{util.HTTP}}mobile/small/image/xq-jrdp.png'></image>
+      <view>{{item.store_name}}</view>
+    </view>
+    <view class='price-title'>线下消费金额</view>
+    <view class='price cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+      <view>
+        <text class='unit'>￥</text>
+        <text>{{item.total_price}}</text>
+      </view>
+    </view>
+    <view class='bottom'>
+      <view>点击查看</view>
+      <image src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+    </view>
+  </view>
+</view>
+
+<view class='no-order' hidden="{{list.length != 0 || loading}}">
+  <view>
+    <image src='{{util.HTTP}}mobile/small/image/wd-zwdd.png'></image>
+    <view class='no-order-head'>暂无订单</view>
+    <view class='no-order-content'>"快来忙里偷闲下一单吧"</view>
+  </view>
+</view>

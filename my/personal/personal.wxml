@@ -1,0 +1,42 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='avatar' hover-class='hover-class' hover-stay-time='400' bindtap='chooseHead' >
+  <view class='left'>头像</view>
+  <view class='right'>
+    <image class='avatar-img' src='{{info.avatar}}'></image>
+    <image class='next' src='{{util.HTTP}}{{"mobile/small/image/xq-gd.png"}}'></image>
+  </view>
+</view>
+
+<view class='content'>
+  <view class='left'>会员名</view>
+  <view class='right'>
+    <view class='member-name'>{{info.username}}</view>
+  </view>
+</view>
+
+<view class='content' hover-class='hover-class' hover-stay-time='400' bindtap='onNickname' >
+  <view class='left'>昵称</view>
+  <view class='right'>
+    <view>{{info.nickname}}</view>
+    <image class='next' src='{{util.HTTP}}{{"mobile/small/image/xq-gd.png"}}'></image>
+  </view>
+</view>
+
+<view class='content' hover-class='hover-class' hover-stay-time='400' bindtap='onMemberCode' >
+  <view class='left'>会员码</view>
+  <view class='right'>
+    <image class='member-qr' src='{{util.HTTP}}{{"mobile/small/image/dp-dpxqewm.png"}}'></image>
+    <image class='next' src='{{util.HTTP}}{{"mobile/small/image/xq-gd.png"}}'></image>
+  </view>
+</view>
+
+<view class='content' hover-class='hover-class' hover-stay-time='400' bindtap='chooseSex' >
+  <view class='left'>性别</view>
+  <view class='right'>
+    <view>{{info.sex == 1?'男':'女'}}</view>
+    <image class='next' src='{{util.HTTP}}{{"mobile/small/image/xq-gd.png"}}'></image>
+  </view>
+</view>
+
+<choose_sex isShow="{{sex_board}}" bind:confirm="confirmSex" />
+<choose_head isShow="{{head_board}}" bind:confirmAvatar="confirmAvatar" />

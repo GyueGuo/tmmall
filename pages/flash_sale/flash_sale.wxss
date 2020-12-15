@@ -1,0 +1,168 @@
+.tab {
+  height: 130rpx;
+}
+.tab-con{
+  display: flex;
+  justify-content: center;
+}
+
+.tab-scroll {
+  height: 120rpx;
+  white-space: nowrap;
+}
+
+.tab-scroll .tab-item {
+  position: relative;
+  width: 50%;
+  display: inline-block;
+  color: white;
+}
+
+.tab-scroll .tab-item .title {
+  font-size: 36rpx;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 10rpx;
+}
+
+.tab-scroll .tab-item .status {
+  font-size: 26rpx;
+  text-align: center;
+}
+
+.tab-scroll .tab-item > view {
+  height: 110rpx;
+}
+
+.tab-scroll .tab-item > .present {
+  display: block;
+  position: absolute;
+  left: 50%;
+  margin-left: -14rpx;
+  top: 110rpx;
+  border-right: 12rpx solid transparent;
+  border-left: 12rpx solid transparent;
+  border-top: 12rpx solid #f23030;
+}
+
+.info-tip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 58rpx;
+  background: white;
+  border-bottom: 2rpx solid #f6f6f6;
+}
+
+.info-tip .left {
+  font-size: 26rpx;
+  margin-left: 16rpx;
+}
+
+.info-tip .right {
+  margin-right: 24rpx;
+  display: flex;
+  align-items: center;
+}
+
+.info-tip .right .finish {
+  font-size: 28rpx;
+  color: #575e64;
+  margin-right: 8rpx;
+}
+
+.info-tip .right .count {
+  display: inline-block;
+  width: 40rpx;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 34rpx;
+  border-radius: 4rpx;
+  color: white;
+  font-weight: bold;
+}
+
+.info-tip .right .colon {
+  margin: 0 4rpx;
+  font-weight: bold;
+}
+
+.flash-good {
+  height: 264rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: white;
+  border-bottom: 2rpx solid #f6f6f6;
+}
+
+.flash-good > image {
+  width: 230rpx;
+  height: 230rpx;
+}
+
+.flash-good > view {
+  width: 468rpx;
+  padding: 0 26rpx;
+}
+
+.flash-good .good-name {
+  position:unset!important;
+  font-size: 28rpx;
+  line-height: 36rpx;
+  height: 72rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.flash-good .good-price {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 54rpx;
+}
+
+.flash-good .rush-now {
+  width: 176rpx;
+  color: white;
+  text-align: center;
+  border-radius: 4rpx;
+  font-size: 30rpx;
+  line-height: 64rpx;
+  background: #52b84a;
+}
+
+.sack {
+  background: #f0f0f0 !important;
+  color: #bbb !important;
+}
+
+.flash-good .good-tip {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.flash-good .good-tip .origin-price {
+  font-size: 22rpx;
+  color: #6e7378;
+  text-decoration: line-through;
+}
+
+.flash-good .good-tip .sale-percent {
+  display: flex;
+  align-items: center;
+}
+
+.flash-good .sale-percent  > view {
+  font-size: 24rpx;
+  color: #6e7378;
+  margin-right: 4rpx;
+}
+
+.empty-view{
+  height: calc(100vh - 200rpx);
+}

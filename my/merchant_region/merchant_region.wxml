@@ -1,0 +1,25 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='wrap'>
+  <view class='province-con'>
+    <scroll-view scroll-y>
+      <view wx:for="{{province_list}}" class='province' hover-class='hover-class' hover-stay-time='400' bindtap='onProvince' data-item='{{item}}' style="{{province.area_name==item.area_name?'background:#f4f4f4':''}}">
+        <view style='{{province.area_name==item.area_name?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{item.area_name}}</view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class='city-con'>
+    <scroll-view scroll-y>
+      <view wx:for="{{city_list}}" class='city' hover-class='hover-class' hover-stay-time='400' bindtap='onCity' data-item='{{item}}' style="{{city.area_name==item.area_name?'background:#f9f9f9':''}}">
+        <view style='{{city.area_name==item.area_name?util.diy_color(diy_color.z_color,"",""):""}}'>{{item.area_name}}</view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class='area-con'>
+    <scroll-view scroll-y>
+      <view wx:for="{{area_list}}" class='area' hover-class='hover-class' hover-stay-time='400' bindtap='onArea' data-item='{{item}}'>
+        <view style='{{area.area_name==item.area_name?util.diy_color(diy_color.z_color,"",""):""}}'>{{item.area_name}}</view>
+        <view class='font_family icon-arx' hidden='{{area.area_name!=item.area_name}}' style='{{util.diy_color(diy_color.z_color,"","")}}'></view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

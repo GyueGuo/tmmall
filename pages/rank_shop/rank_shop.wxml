@@ -1,0 +1,94 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view hidden='{{classify.length == 0}}'>
+  <view class='tab-view'>
+    <view class='tab-view'>
+      <scroll-view scroll-x class='tab-sroll' scroll-into-view="{{sroll_id}}" scroll-with-animation>
+        <view class='tab-item' wx:for="{{classify}}" hover-class='hover-class' hover-stay-time='400' bindtap='onClassify' data-id='{{item.store_classify_id}}' id='a-{{index}}'>
+          <text style='{{current_tab==item.store_classify_id?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{item.title}}</text>
+        </view>
+      </scroll-view>
+      <view class='more' hover-class='hover-class' hover-stay-time='400' bindtap='onMore'>
+        <view></view>
+        <image src='{{util.HTTP}}mobile/small/image/fl2_x.png'></image>
+      </view>
+    </view>
+  </view>
+
+  <view class='tab-more' hidden="{{!more_board}}" hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'>
+    <view catchtap='none'>
+      <view class='tab-more-head'>
+        <view>全部分类</view>
+        <image src='{{util.HTTP}}mobile/small/image/tsczz-sl.png' hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'></image>
+      </view>
+      <view class='tab-more-wrap'>
+        <view wx:for="{{classify}}" hover-class='hover-class' hover-stay-time='400' bindtap='onTabMoreItem' data-index='{{index}}' data-id='{{item.store_classify_id}}' style='{{current_tab==item.store_classify_id?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{item.title}}</view>
+      </view>
+    </view>
+  </view>
+
+  <scroll-view scroll-y style='height:100vh;' hidden='{{shop_list.length == 0}}' bindscrolltolower="loadMore" bindscroll="scroll" scroll-top="{{scroll_top}}">
+    <view class='shop-list'>
+      <view wx:for="{{shop_list}}">
+        <view class='rank'>
+          <image src='{{util.HTTP}}mobile/small/image/sy-jfsc-icon-dh.png'></image>
+          <view class='rank-num'>
+            <view>TOP</view>
+            <view>{{index + 1}}</view>
+          </view>
+        </view>
+        <view class='shop-head'>
+          <view class='logo' style='background:url({{util.HTTP}}mobile/small/image/p_img_shops_180x180-2.png) no-repeat center;background-size:100% 100%;'>
+            <image src='{{item.logo}}'></image>
+          </view>
+          <!-- 分类（公司店铺 | 自营店铺） 0 普通店 1 旗舰店 2 专卖店 3 直营店 -->
+          <view class='shop-intro'>
+            <view class='shop-name'>{{item.store_name}}</view>
+            <view class='shop-attention'>
+              <text>{{item.collect}}人关注</text>
+              <image wx:if='{{item.type!=null}}' src='{{util.HTTP}}mobile/small/image/shops/shop-icon{{item.type}}.png'></image>
+            </view>
+          </view>
+          <view class='go-shop cur' hover-class='hover-class' hover-stay-time='400' bindtap='onShop' data-id='{{item.store_id}}' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>进店</view>
+        </view>
+        <view class='shop-pic' wx:if='{{item.shop_goods.length!=0}}'>
+          <view wx:for="{{item.shop_goods}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goods_id}}' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
+            <image src='{{item.file}}'></image>
+            <block wx:if='{{item.is_bargain==1}}'>
+              <text>￥{{item.cut_price}}</text>
+            </block>
+            <block wx:elif='{{item.is_group==1}}'>
+              <text>￥{{item.group_price}}</text>
+            </block>
+            <block wx:elif='{{item.is_limit==1}}'>
+              <text>￥{{item.time_limit_price}}</text>
+            </block>
+            <block wx:else>
+              <text>￥{{item.shop_price}}</text>
+            </block>
+          </view>
+        </view>
+      </view>
+    </view>
+    <load_more show="{{loading}}" />
+  </scroll-view>
+
+  <view class='empty-view' style='height:70vh;' hidden='{{shop_list.length != 0 || loading}}'>
+    <view>
+      <image src='{{util.HTTP}}mobile/small/image/zwsp.png'></image>
+      <view>暂无相关店铺</view>
+    </view>
+  </view>
+  <view class='footer'>
+    <view hover-class='hover-class' hover-stay-time='400' bindtap='onRankGood'>
+      <view class='font_family rm-icon icon-a'></view>
+      <view class='title'>热卖榜</view>
+    </view>
+    <view>
+      <view class='font_family shop-icon icon-b' style='{{util.diy_color(diy_color.z_color,"","")}}'></view>
+      <view class='title' style='{{util.diy_color(diy_color.z_color,"","")}}'>店铺榜</view>
+    </view>
+  </view>
+</view>
+
+<!--返回顶部  -->
+<go_top id="go_top" hover-class='hover-class' hover-stay-time='400' bindtap='onBackTop' />

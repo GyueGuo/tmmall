@@ -1,0 +1,26 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='wrap'>
+  <view class='title'>{{type==0?'请输入设置支付密码':'确认支付密码'}}</view>
+  <view class='psw-con' hover-class='hover-class' hover-stay-time='400' bindtap='psw_focus'>
+    <view class='con'>
+      <view wx:if='{{password.length>=1}}'></view>
+    </view>
+    <view class='con'>
+      <view wx:if='{{password.length>=2}}'></view>
+    </view>
+    <view class='con'>
+      <view wx:if='{{password.length>=3}}'></view>
+    </view>
+    <view class='con'>
+      <view wx:if='{{password.length>=4}}'></view>
+    </view>
+    <view class='con'>
+      <view wx:if='{{password.length>=5}}'></view>
+    </view>
+    <view class='con'>
+      <view wx:if='{{password.length>=6}}'></view>
+    </view>
+  </view>
+  <input class='psw' password maxlength='6' type='number' value='{{password}}' bindinput='passwordInput' focus='{{focus}}' adjust-position='{{adjust_position}}'></input>
+  <input class='psw' password maxlength='6' type='number' value='{{password}}' bindinput='passwordInput_verify' focus='{{focus_verify}}' adjust-position='{{adjust_position}}'></input>
+</view>

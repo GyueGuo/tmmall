@@ -1,0 +1,151 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='bg' hidden='{{info == null}}'>
+  <image class='bargain-bg' src='{{util.HTTP}}mobile/small/kaj.png'></image>
+
+  <view class='rule' hover-class='hover-class' hover-stay-time='400' bindtap='onBargainRule'>
+    <view class='vertical' />
+    <view class='cur' style='{{util.diy_color("#f23030","","")}}'>砍价规则</view>
+  </view>
+
+  <view class='bargain-wrap'>
+    <view class='bargain-info'>
+      <view class='user-avatar' style='background:url({{util.HTTP}}mobile/small/image/placeholder_member.png) no-repeat center;background-size:100% 100%;'>
+        <image src='{{info.member.avatar}}'></image>
+      </view>
+      <view class='user-name'>{{info.member.nickname}}</view>
+      <image class='find-img' src='{{util.HTTP}}mobile/small/image/kj-fxhh.png'></image>
+      <view class='good-wrap' hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' data-id='{{info.goods_id}}'>
+        <view class='file' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
+          <image src='{{info.goods.file}}'></image>
+        </view>
+        <view class='good-info'>
+          <view class='good-name'>{{info.goods.goods_name}}</view>
+          <view class='good-price'>
+            <text class='base-price cur' style='{{util.diy_color("#f23030","","")}}'>底价{{info.cut_price}}元</text>
+            <text class='origin-price'>￥{{info.original_price}}</text>
+          </view>
+          <view class='good-tips'>
+            <text class='present-price cur' style='{{util.diy_color("#f23030","","")}}'>￥{{info.present_price}}</text>
+            <text class='bargain-num'>{{info.goods.cut_success_num}}人砍价成功</text>
+          </view>
+        </view>
+      </view>
+      <view>
+        <view class='bargain-spread' wx:if="{{(info.state != 2 && info.status == 1 && !is_Cutout)||info.status == 3}}">
+          <text>已砍</text>
+          <text style='{{util.diy_color("#f23030","","")}}'>{{util.toFixed(info.original_price-info.present_price)}}</text>
+          <text>元,还差</text>
+          <text style='{{util.diy_color("#f23030","","")}}'>{{util.toFixed(info.present_price-info.cut_price)}}</text>
+          <text>元</text>
+        </view>
+        <view class='bargain-spread' wx:elif="{{info.state == 3 && info.status == 1 && is_Cutout}}">已砍到底价</view>
+        <view class='bargain-spread' wx:elif="{{info.state != 2 && info.status == 1 && is_Cutout}}">恭喜您砍价成功,已砍到底价</view>
+        <view class='bargain-spread' wx:elif="{{info.state == 1 && info.status == 2}}">恭喜您砍价成功</view>
+        <view class='bargain-spread' wx:elif="{{info.state != 1}}">已帮助好友砍价</view>
+        <view class='bargain-progress'>
+          <view class='progress' style='width:{{(info.original_price - info.present_price)/(info.original_price - info.cut_price) * 100}}%;'></view>
+        </view>
+        <view class='bargain-money'>
+          <view>原价{{info.original_price}}</view>
+          <view>底价{{info.cut_price}}</view>
+        </view>
+      </view>
+      <view class='bargain-operation' wx:if="{{info.state== 1 && info.status == 1 && !is_Cutout}}">
+        <image src='{{util.HTTP}}mobile/small/image/kj-xq-nanu.png'></image>
+        <button hover-class='none' open-type='share' class='cur bargain-share' style='{{util.diy_color("#f23030","","")}}'>分享给好友砍价</button>
+        <view class='cur bargain-pay' hover-class='hover-class' hover-stay-time='400' bindtap='payOrder' style='{{util.diy_color("#f23030","","")}}'>付款</view>
+      </view>
+
+      <view class='bargain-operation' style='height:88rpx;' wx:if="{{info.state== 1 && info.status == 1 && is_Cutout}}">
+        <image src='{{util.HTTP}}mobile/small/image/kj-xq-na.png'></image>
+        <view class='cur bargain-pay1' style='{{util.diy_color("#f23030","","")}}height:88rpx;' hover-class='hover-class' hover-stay-time='400' bindtap='payOrder'>付款</view>
+      </view>
+
+      <view class='bargain-operation' style='height:88rpx;' wx:if="{{info.state== 1 && info.status== 3}}" hover-class='hover-class' hover-stay-time='400' bindtap='onAnother'>
+        <image src='{{util.HTTP}}mobile/small/image/kj-xq-na.png'></image>
+        <view class='other-activity cur' style='{{util.diy_color("#f23030","","")}}'>重砍一个</view>
+      </view>
+      <view class='bargain-operation' style='height:88rpx;' wx:if="{{info.state== 1 && info.status== 2}}" hover-class='hover-class' hover-stay-time='400' bindtap='onOthers'>
+        <image src='{{util.HTTP}}mobile/small/image/kj-xq-na.png'></image>
+        <view class='other-activity cur' style='{{util.diy_color("#f23030","","")}}'>去逛逛其他砍价活动</view>
+      </view>
+      <view class='bargain-other' wx:elif="{{info.state == 3 && info.status == 1 && is_Cutout}}" hover-class='hover-class' hover-stay-time='400' bindtap='onOthers'>
+        <image src='{{util.HTTP}}mobile/small/image/kj-xq-na.png'></image>
+        <view class='cur bargain-cut' style='{{util.diy_color("#f23030","","")}}'>我也要参加砍价活动</view>
+      </view>
+      <view class='bargain-other' wx:elif="{{info.state == 3 && info.status == 1}}" hover-class='hover-class' hover-stay-time='400' bindtap='helpBargain'>
+        <image src='{{util.HTTP}}mobile/small/image/kj-xq-na.png'></image>
+        <view class='cur bargain-cut' style='{{util.diy_color("#f23030","","")}}'>帮朋友砍一刀</view>
+      </view>
+
+      <view class='bargain-other' wx:if="{{info.state == 2 && info.status == 1}}" hover-class='hover-class' hover-stay-time='400' bindtap='onOthers'>
+        <image src='{{util.HTTP}}mobile/small/image/kj-xq-na.png'></image>
+        <view class='cur bargain-cut' style='{{util.diy_color("#f23030","","")}}'>我也要参加砍价活动</view>
+      </view>
+      <view class='bargain-other' wx:if="{{info.state!= 1&&(info.status == 2||info.status == 3)}}" hover-class='hover-class' hover-stay-time='400' bindtap='onOthers'>
+        <image src='{{util.HTTP}}mobile/small/image/kj-xq-na.png'></image>
+        <view class='cur bargain-cut' style='{{util.diy_color("#f23030","","")}}'>我也要参加砍价活动</view>
+      </view>
+
+      <view class='bargain-time' wx:if="{{info.status == 1&&!is_Cutout}}">还剩{{info.day}}:{{info.hour}}:{{info.min}}:{{info.sec}}结束,快让好友帮忙砍价吧~</view>
+      <view class='bargain-time' wx:elif="{{info.status == 1&&is_Cutout}}">还剩{{info.day}}:{{info.hour}}:{{info.min}}:{{info.sec}}结束,快付款吧~</view>
+      <view class='bargain-time' wx:elif='{{info.status == 3}}'>未在活动时间内完成,砍价已过期</view>
+    </view>
+
+    <view class='vertical-line'>
+      <view></view>
+      <view></view>
+    </view>
+
+    <view class='bargain-help'>
+      <view class='help-head'>
+        <image src='{{util.HTTP}}mobile/small/image/kj-xq-kjb.png'></image>
+        <view style='{{util.diy_color("#f23030","","")}}'>砍价帮</view>
+      </view>
+      <view class='helper-list'>
+        <view class='help-person' wx:for="{{info.attach_list}}">
+          <view class='person-info'>
+            <view class='avatar' style='background:url({{util.HTTP}}mobile/small/image/placeholder_member.png) no-repeat center;background-size:100% 100%;'>
+              <image src='{{item.member.avatar}}'></image>
+            </view>
+            <view class='nickname'>{{item.member.nickname}}</view>
+          </view>
+          <view class='person-price'>
+            <image src='{{util.HTTP}}mobile/small/image/kj-xq-kjtb.png'></image>
+            <view>砍掉{{item.cut_price}}元</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <!--列表  -->
+  <!-- <view class="good-list {{columns == 2?'good-list-one':''}}" wx:if='{{info.status != 1}}' style='background:none;'>
+    <view wx:for="{{good_list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' data-id='{{item.goods_id}}'>
+      <view class='pic-wrap'>
+        <image class='pic' src='{{item.file}}'></image>
+        <view class='sale-num'>销量 {{item.sales_volume}}</view>
+      </view>
+      <view class='good-detail'>
+        <view class='good-name'>{{item.goods_name}}</view>
+        <view>
+          <view class='good-tips-list'>
+            <text class='good-tips' wx:if='{{item.shop==0}}' style='{{item.shop!=0?"":util.diy_color("#f23030","","#f23030")}}'>自营</text>
+          </view>
+          <view class='price cur' style='{{util.diy_color("#f23030","","")}}'>
+            <text class='unit'>￥</text>
+            <text class='integer'>{{util.integer(util.vip_price(item.shop_price,discount))}}</text>
+            <text class='decimals'>.{{util.decimals(util.vip_price(item.shop_price,discount))}}</text>
+          </view>
+        </view>
+        <view style='{{util.diy_imgbox(55)}}' class='add-cart'>
+          <image catchtap='addCart' src='{{util.HTTP}}mobile/small/image/dp-gwc.png' style='{{util.diy_imgcolor("#f23030",55,55)}}'></image>
+        </view>
+      </view>
+    </view>
+  </view> -->
+
+</view>
+
+<bargainModal id="bargainModal" />

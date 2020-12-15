@@ -1,0 +1,66 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='wrap'>
+  <view class='tab-view'>
+    <view wx:for="{{tab_view}}" hover-class='hover-class' hover-stay-time='400' bindtap='onTab' data-index='{{index}}'>
+      <view style='{{current_tab == index?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{item}}</view>
+    </view>
+  </view>
+
+  <view class='collage-list'>
+    <scroll-view scroll-y class='collage' bindscrolltolower="loadMore" hidden='{{list.length == 0}}'>
+      <view class='collage-item' wx:for="{{list}}">
+        <view style='{{util.diy_imgbox(116)}}height:116rpx;position: absolute;right: 0;top: 0;' wx:if="{{item.status == 1}}">
+          <image src='{{util.HTTP}}mobile/small/image/pg-xq-jxz.png' style='{{util.diy_imgcolor(diy_color.z_color,116,116)}}'></image>
+        </view>
+        <view style='{{util.diy_imgbox(116)}}height:116rpx;position: absolute;right: 0;top: 0;' wx:elif="{{item.status == 2}}">
+          <image style='{{util.diy_imgcolor(diy_color.z_color,116,116)}}' src='{{util.HTTP}}mobile/small/image/pg-xq-chengg.png'></image>
+        </view>
+        <image src='{{util.HTTP}}mobile/small/image/pg-xq-shib.png' wx:elif="{{item.status == 3}}"></image>
+        <view class='collage-info'>
+          <view class='c-img' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
+            <image src='{{item.file}}'></image>
+          </view>
+          <view class='c-info'>
+            <view class='collage-name'>{{item.goods_name}}</view>
+            <view class='collage-tip'>
+              <view class='collage-person' style='{{util.diy_color("","",diy_color.z_color)}}'>
+                <view class='font_family collage-icon icon-pg-xq-pgjg' style='{{util.diy_color(diy_color.z_color,"","")}}'></view>
+                <view class='collage-tit' style='{{util.diy_color(diy_color.z_color,"","")}}'>{{item.group_num}}人拼</view>
+              </view>
+              <view class='collage-price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+                <text class='unit'>￥</text>
+                <text class='integer'>{{util.integer(item.single_price)}}</text>
+                <text class='decimals'>.{{util.decimals(item.single_price)}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class='collage-operation'>
+          <view hover-class='hover-class' hover-stay-time='400' bindtap='onCollageDetail' data-id='{{item.group_activity_attach_id}}'>拼团详情</view>
+          <view hover-class='hover-class' hover-stay-time='400' bindtap='onOrderDetail' data-id='{{item.order_attach_id}}'>订单详情</view>
+        </view>
+      </view>
+    </scroll-view>
+    <load_more show="{{loading}}" />
+    <view class='empty-view' hidden='{{list.length != 0 || loading}}'>
+      <view>
+        <image src='{{util.HTTP}}mobile/small/image/kby-zwsc.png'></image>
+        <view>暂无订单</view>
+        <view class='empty-tips'>"快来忙里偷闲下一单吧"</view>
+      </view>
+    </view>
+  </view>
+
+
+
+  <view class='footer'>
+    <view hover-class='hover-class' hover-stay-time='400' bindtap='onCollage'>
+      <view class='font_family shop-icon icon-pg-ptsc-'></view>
+      <view class='title'>拼团商城</view>
+    </view>
+    <view>
+      <view class='font_family my-icon icon-pg-wd-' style='{{util.diy_color(diy_color.z_color,"","")}}'></view>
+      <view class='title' style='{{util.diy_color(diy_color.z_color,"","")}}'>我的拼团</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,37 @@
+.title {
+  margin: 24rpx;
+  font-size: 30rpx;
+  color: #505050;
+}
+
+.current-price {
+  font-size: 30rpx;
+  line-height: 100rpx;
+  padding-left: 36rpx;
+  background: #f5f9fc;
+}
+
+.expect-price {
+  font-size: 30rpx;
+  line-height: 100rpx;
+  padding-left: 36rpx;
+  background: white;
+  margin-top: 20rpx;
+  display: flex;
+}
+
+.expect-price input {
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  flex: 1;
+}
+
+.confirm {
+  width: 690rpx;
+  margin: 56rpx auto;
+  color: white;
+  font-size: 32rpx;
+  line-height: 84rpx;
+  text-align: center;
+}

@@ -1,0 +1,10 @@
+.a{
+  text-decoration: underline;
+}
+image{
+  width: 100%;
+  display: block;
+}
+.move-remove{
+  display: none;
+}

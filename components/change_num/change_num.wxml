@@ -1,0 +1,19 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='board' hidden='{{!show}}'>
+  <view class='change-num'>
+    <view class='change-wrap'>
+      <view class='title'>修改购买数量</view>
+      <view class='wrap-bg'>
+        <view class='change'>
+          <image src='{{util.HTTP}}mobile/small/image/tc-jh.png' hover-class='hover-class' hover-stay-time='400' bindtap='onChangeMinus'></image>
+          <input type='number' value='{{change_num}}' bindinput='numInput'></input>
+          <image src='{{util.HTTP}}mobile/small/image/tc-jiahao.png' hover-class='hover-class' hover-stay-time='400' bindtap='onChangeAdd'></image>
+        </view>
+      </view>
+    </view>
+    <view class='operation'>
+      <view hover-class='hover-class' hover-stay-time='400' bindtap='onChangeCancel'>取消</view>
+      <view class='cur' hover-class='hover-class' hover-stay-time='400' bindtap='onChangeSubmit' style='{{util.diy_color(diy_color.z_color,"","")}}'>确定</view>
+    </view>
+  </view>
+</view>

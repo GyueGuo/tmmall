@@ -1,0 +1,42 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='good-wrap'>
+  <image></image>
+  <view>
+    <view class='good-name'>花花公子休闲裤子男士装青年夏季薄款直筒弹力修身型百搭韩版潮流</view>
+    <view class='good-attr'>颜色: 白色 尺码: M</view>
+  </view>
+</view>
+
+<view class='retrun-way'>
+  <view class='retrun-head'>货物状态:</view>
+  <view class='retrun-content'>
+    <view class="{{state==1?'border-cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onMerchant'>快递至商家</view>
+    <view class="{{state==2?'border-cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='selfStore'>送货至自提门店</view>
+  </view>
+</view>
+
+<picker>
+  <view class='hdl-info'>
+    <view class='title'>快递公司:</view>
+    <view class='hdl-name' style="{{dhl=='请选择快递公司'?'color:#8d8d8d':''}}">请选择快递公司</view>
+    <image src='{{util.HTTP}}{{"mobile/small/image/xq-gd.png"}}'></image>
+  </view>
+</picker>
+
+<view class='hdl-info'>
+  <view class='title'>快递单号:</view>
+  <input placeholder='请输入快递单号'></input>
+</view>
+
+<view class='upload-wrap'>
+  <view class='head'>上传凭证</view>
+  <view class='pic-list'>
+    <view wx:for="{{pic_list}}">
+      <image class='pic' src='{{item}}'></image>
+      <image class='delete' src='{{util.HTTP}}{{"mobile/small/image/wd-pj-sc.png"}}' hover-class='hover-class' hover-stay-time='400' bindtap='delectPic' data-index='{{index}}'></image>
+    </view>
+    <view hidden='{{pic_list.length == 3}}'>
+      <image class='pic' src='{{util.HTTP}}{{"mobile/small/image/wd-pj-sczp.png"}}' hover-class='hover-class' hover-stay-time='400' bindtap='choosePic'></image>
+    </view>
+  </view>
+</view>

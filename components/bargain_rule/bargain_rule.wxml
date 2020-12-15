@@ -1,0 +1,18 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<!--背景   -->
+<view class='trans' hidden='{{!isShow}}' style='opacity:{{opacity}}'></view>
+
+<view class="rule-board {{isShow?'rise':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'>
+  <view catchtap='none'>
+    <view class='rule-head'>砍价规则</view>
+    <view class='rule-content'>1)邀请好友一起砍价,最低可以砍到底价购买;</view>
+    <view class='rule-content'>2)对于同一个砍价,同一个好友只能帮助砍价一次;</view>
+    <view class='rule-content'>3)每次砍价金额随机,参与好友越多越容易砍到底价;</view>
+    <view class='rule-content'>4)砍价完成以后需要支付砍价后的商品金额;</view>
+    <view class='rule-content'>5)主办方享有对活动的最终解释权</view>
+    <view class='rule-close' catchtap='closeBoard'>
+      <view class='close-bg' style='border-right:84rpx solid {{diy_color.z_color}};border-top:84rpx solid {{diy_color.z_color}};border-bottom:84rpx solid transparent;border-left:84rpx solid transparent;'></view>
+      <image src='{{util.HTTP}}mobile/small/image/sy-xrzx-gb.png' class='close-icon'></image>
+    </view>
+  </view>
+</view>

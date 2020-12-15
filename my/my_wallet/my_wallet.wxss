@@ -1,0 +1,37 @@
+/* my/my_wallet/my_wallet.wxss */
+.section{
+  width: 100%;
+  background-color: #fff;
+  padding: 0 25rpx;
+  box-sizing: border-box;
+  margin-bottom: 18rpx;
+}
+.section .li{
+  display: flex;
+  align-items: center;
+  padding: 30rpx 0;
+  border-bottom: 1px solid #f6f6f6;
+  box-sizing: border-box;
+}
+.section .li:last-child{
+  border: none;
+}
+.section .li .img{
+  width: 42rpx;
+  height: 42rpx;
+  flex-shrink: 0;
+}
+.section .li .title{
+  flex: 1;
+  font-size: 30rpx;
+  margin-left: 25rpx;
+}
+.section .li .num{
+  margin-right: 35rpx;
+  font-size: 26rpx;
+}
+.section .li .next{
+  width: 20rpx;
+  height: 27rpx;
+  flex-shrink: 0;
+}

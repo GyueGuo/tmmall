@@ -1,0 +1,166 @@
+.head {
+  width: 100%;
+  height: 110rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+}
+
+.head  .head-left {
+  font-size: 28rpx;
+  margin-left: 24rpx;
+}
+
+.head .border-cur {
+  width: 136rpx;
+  line-height: 52rpx;
+  font-size: 28rpx;
+  text-align: center;
+  border-radius: 30rpx;
+  margin-right: 24rpx;
+}
+
+.scroll {
+  height: calc(100vh - 234rpx);
+}
+
+.comment-tab {
+  margin-top: 16rpx;
+  height: 92rpx;
+  background: white;
+  overflow: hidden;
+  border-bottom: 2rpx solid #f6f6f6;
+}
+
+.comment-tab > view {
+  float: left;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comment-tab > view > view {
+  display: inline-block;
+  font-size: 30rpx;
+  line-height: 86rpx;
+  position: relative;
+  border-bottom: 4rpx solid #fff;
+}
+
+/* .comment-tab .cur::after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4rpx;
+  background: #f23020;
+  content: '';
+} */
+
+.comment {
+  padding: 34rpx 24rpx;
+  background: white;
+}
+
+.comment .comment-time {
+  font-size: 26rpx;
+  color: #8d8d8d;
+}
+
+.comment .comment-content {
+  font-size: 28rpx;
+  margin-top: 10rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.good-info {
+  background: #f8f8f8;
+  overflow: hidden;
+  margin-top: 50rpx;
+}
+
+.good-info > image {
+  width: 206rpx;
+  height: 206rpx;
+  float: left;
+}
+
+.good-info > view {
+  width: 450rpx;
+  height: 206rpx;
+  float: left;
+  margin-left: 24rpx;
+}
+
+.good-info .good-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 28rpx;
+  height: 76rpx;
+  margin-top: 20rpx;
+}
+
+.good-info .good-tips {
+  font-size: 30rpx;
+  margin-top: 50rpx;
+}
+
+.good-info .good-tips .cur {
+  margin-left: 20rpx;
+}
+
+.comment-img {
+  overflow: hidden;
+  margin-top: 6rpx;
+}
+
+.comment-img > view {
+  width: 226rpx;
+  height: 226rpx;
+  background: black;
+  margin-right: 10rpx;
+  margin-bottom: 10rpx;
+  position: relative;
+  float: left;
+}
+
+.comment-img > view > image {
+  width: 84rpx;
+  height: 84rpx;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -42rpx;
+  margin-top: -42rpx;
+}
+
+.comment-img > image {
+  width: 226rpx;
+  height: 226rpx;
+  margin-right: 10rpx;
+  margin-bottom: 10rpx;
+  float: left;
+}
+
+.comment-img > image:nth-child(3n) {
+  margin-right: 0;
+}
+
+.single-img {
+  width: 378rpx;
+  height: 378rpx;
+}
+
+.empty-view {
+  height: calc(100vh - 240rpx);
+}

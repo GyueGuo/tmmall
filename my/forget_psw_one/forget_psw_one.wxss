@@ -1,0 +1,38 @@
+page {
+  background: white;
+}
+
+.phone {
+  width: 646rpx;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  background: #f8f8f8;
+  margin: 0 auto;
+  margin-top: 30rpx;
+  border-radius: 6rpx;
+}
+
+.phone image {
+  width: 38rpx;
+  height: 38rpx;
+  margin-left: 50rpx;
+}
+
+.phone input {
+  width: 530rpx;
+  font-size: 28rpx;
+  line-height: 100rpx;
+  margin-left: 30rpx;
+}
+
+.next-step {
+  margin: 0 auto;
+  margin-top: 50rpx;
+  width: 644rpx;
+  text-align: center;
+  font-size: 30rpx;
+  line-height: 86rpx;
+  background: #d8d5d5;
+  color: white;
+}

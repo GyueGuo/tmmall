@@ -1,0 +1,71 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='wrap'>
+  <!--搜索头  -->
+  <view class='search'>
+    <view class='search-bg'>
+      <!-- <view class='font_family icon-ssk-ss search-icon'></view> -->
+      <input placeholder='搜索喜欢的商品' type='text' value='{{search_key}}' bindinput='searchInput' bindfocus="inputFocus" bindconfirm='onSearch'></input>
+      <view class='font_family icon-shanchu- clear' hover-class='hover-class' hover-stay-time='400' bindtap='onClearKey'></view>
+    </view>
+    <image src="{{util.HTTP}}{{columns==1?'mobile/small/image/lieb.png':'mobile/small/image/lieb2.png'}}" hover-class='hover-class' hover-stay-time='400' bindtap='changeColums'></image>
+  </view>
+  <!--选项卡  -->
+  <view class='list-title'>
+    <view class='list'>
+      <view class="{{current_tab==1?'cur title':' title'}}" data-index='1' hover-class='hover-class' hover-stay-time='400' bindtap='onComposite' style='{{current_tab==1?util.diy_color(diy_color.z_color,"",""):""}}'>{{compre}}
+        <view>
+          <text class="caret down {{current_tab==1?'cur-bg':''}}" style='{{current_tab==1?"border-top:8rpx solid ":""}}{{diy_color.z_color}}'></text>
+        </view>
+      </view>
+      <view class="{{current_tab==2?'cur title':' title'}}" data-index='2' hover-class='hover-class' hover-stay-time='400' bindtap='onSaleClick' style='{{current_tab==2?util.diy_color(diy_color.z_color,"",""):""}}'>销量</view>
+      <view class="{{current_tab==3?'cur title':' title'}}" data-index='3' hover-class='hover-class' hover-stay-time='400' bindtap='onPriceClick' style='{{current_tab==3?util.diy_color(diy_color.z_color,"",""):""}}'>价格
+        <view>
+          <text class="caret up {{(current_tab==3) &&(rank == 'asc')?'cur-bg':''}}" style="{{(current_tab==3) &&(rank == 'asc')?'border-top:8rpx solid ':''}}{{diy_color.z_color}}"></text>
+          <text class="caret down {{(current_tab==3) &&(rank == 'desc')?'cur-bg':''}}" style="{{(current_tab==3) &&(rank == 'desc')?'border-top:8rpx solid ':''}}{{diy_color.z_color}}"></text>
+        </view>
+      </view>
+    </view>
+    <view class="choose" hover-class='hover-class' hover-stay-time='400' bindtap='OnChangeFilter' style="{{is_filtrate?util.diy_color(diy_color.z_color,'',''):''}}">
+      筛选
+      <view class='font_family icon-shaixuan choose-icon' style="{{is_filtrate?util.diy_color(diy_color.z_color,'',''):'color:#6d6d6d'}}">
+        <!-- <image style='{{is_filtrate?util.diy_imgcolor(diy_color.z_color,18,18):""}}' src="{{util.HTTP}}{{is_filtrate?'mobile/small/image/shaixuan-2.png':'mobile/small/image/shaixuan.png'}}"></image> -->
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='no-order' hidden="{{good_list.length != 0 || loading}}">
+  <view>
+    <image src='{{util.HTTP}}mobile/small/image/zwsp.png'></image>
+    <view class='no-order-head'>暂无相关商品</view>
+    <view class='no-order-content'>"换个词语搜搜看看吧"</view>
+  </view>
+</view>
+<!--购物车  -->
+<cart id="cart" diy_color='{{diy_color}}'/>
+<!--返回顶部  -->
+<go_top id="go_top" hover-class='hover-class' hover-stay-time='400' bindtap='onBackTop' />
+<scroll-view scroll-y style='height:calc(100vh - 184rpx);padding-top:184rpx' bindscrolltolower="loadMore" bindscroll="scroll" scroll-top="{{scroll_top}}" hidden='{{good_list.length == 0 && !loading}}' scroll-with-animation>
+  <!--列表  -->
+  <good_list id='good_list' list="{{good_list}}" discount="{{discount}}" bind:addCart="addCart" columns="{{columns}}" />
+  <load_more show="{{loading}}" />
+</scroll-view>
+<!--筛选  -->
+<filtrate isShow="{{filtrate_board}}" bind:onFiltrateReset="onFiltrateReset" bind:onFiltrateConfirm="onFiltrateConfirm"></filtrate>
+<!--综合选择列表  -->
+<view class='board classify-board' hidden="{{!classify_board}}" hover-class='hover-class' hover-stay-time='400' bindtap='closeTrans'>
+  <view hover-class='hover-class' hover-stay-time='400' bindtap='onCompreRank'>
+    <view class="left" style="{{compre_type==1?util.diy_color(diy_color.z_color,'',''):''}}">综合排序</view>
+    <view class='right font_family icon-arx' hidden='{{compre_type!=1}}' style="{{util.diy_color(diy_color.z_color,'','')}}"></view>
+  </view>
+  <view hover-class='hover-class' hover-stay-time='400' bindtap='onNew'>
+    <view class="left {{compre_type==2?'cur':''}}" style="{{compre_type==2?util.diy_color(diy_color.z_color,'',''):''}}">新品优先</view>
+    <view class='right font_family icon-arx' hidden='{{compre_type!=2}}' style="{{util.diy_color(diy_color.z_color,'','')}}"></view>
+  </view>
+  <view hover-class='hover-class' hover-stay-time='400' bindtap='onComment'>
+    <view class="left {{compre_type==3?'cur':''}}" style="{{compre_type==3?util.diy_color(diy_color.z_color,'',''):''}}">评论数从高到低</view>
+    <view class='right font_family icon-arx' hidden='{{compre_type!=3}}' style="{{util.diy_color(diy_color.z_color,'','')}}"></view>
+  </view>
+</view>
+
+<buy catchtap="none" id="buy_board" bind:closeBuy="closeBuy" type="3" info="{{info}}" discount="{{discount}}" group_buy="{{false}}" diy_color='{{diy_color}}'/>

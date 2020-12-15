@@ -1,0 +1,28 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='pay-head'>
+  <text>需支付:</text>
+  <text class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥{{data.total_price}}元</text>
+</view>
+
+<view class='pay-way-head'>支付方式</view>
+
+<view class='pay-way'>
+  <view hover-class='hover-class' hover-stay-time='400' bindtap='onWx'>
+    <image class='logo' src='{{util.HTTP}}mobile/small/image/syt-wx.png'></image>
+    <text>微信支付</text>
+    <view class='check' style='{{util.diy_imgbox(48)}}'>
+      <image src="{{util.HTTP}}{{pay_type == 2?'mobile/small/image/syt-gx1.png':'mobile/small/image/syt-gx2.png'}}" style='{{pay_type == 2?util.diy_imgcolor(diy_color.z_color,48,48):""}}'></image>
+    </view>
+  </view>
+  <view hover-class='hover-class' hover-stay-time='400' bindtap='onBalance' wx:if='{{configSwitch.show_switch.is_balance==1}}'>
+    <image class='logo' src='{{util.HTTP}}mobile/small/image/syt-qb.png'></image>
+    <text>余额支付</text>
+    <view class='check' style='{{util.diy_imgbox(48)}}'>
+      <image src="{{util.HTTP}}{{pay_type == 1?'mobile/small/image/syt-gx1.png':'mobile/small/image/syt-gx2.png'}}" style='{{pay_type == 1?util.diy_imgcolor(diy_color.z_color,48,48):""}}'></image>
+    </view>
+  </view>
+</view>
+
+<view class='submit bg' hover-class='hover-class' hover-stay-time='400' bindtap='commit' style='{{util.diy_color("",diy_color.z_color,"")}}'>确认付款</view>
+
+<integral_enter_psw id="enter_psw" />

@@ -1,0 +1,67 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view hidden='{{classify.length == 0}}' class='wrap'>
+  <view class='tab-view'>
+    <scroll-view scroll-x class='tab-sroll' scroll-into-view="{{sroll_id}}" scroll-with-animation>
+      <view class='tab-item ' wx:for="{{classify}}" hover-class='hover-class' hover-stay-time='400' bindtap='onClassify' data-id='{{item.goods_classify_id}}' id='a-{{index}}'>
+        <text class="{{current_tab==item.goods_classify_id?'cur':''}}" style='{{current_tab==item.goods_classify_id?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{item.title}}</text>
+      </view>
+    </scroll-view>
+    <view class='more' hover-class='hover-class' hover-stay-time='400' bindtap='onMore'>
+      <view></view>
+      <image src='{{util.HTTP}}mobile/small/image/fl2_x.png'></image>
+    </view>
+  </view>
+  <view class='tab-more' hidden="{{!more_board}}" hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'>
+    <view catchtap='none'>
+      <view class='tab-more-head'>
+        <view>全部分类</view>
+        <image src='{{util.HTTP}}mobile/small/image/tsczz-sl.png' hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'></image>
+      </view>
+      <view class='tab-more-wrap'>
+        <view wx:for="{{classify}}" hover-class='hover-class' hover-stay-time='400' bindtap='onTabMoreItem' data-index='{{index}}' data-id='{{item.goods_classify_id}}' class="{{item.goods_classify_id == current_tab?'border-cur':''}}" style='{{item.goods_classify_id == current_tab?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{item.title}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='second-tab' hidden='{{level==1 && sub_list.length == 1}}'>
+    <scroll-view scroll-x class='second-scroll'>
+      <view class="second-tab-item" wx:for="{{sub_list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onSubClassify' data-id='{{item.goods_classify_id}}' style='{{item.goods_classify_id == sub_tab?util.diy_color("#fff",diy_color.z_color,""):""}}'>{{item.title}}</view>
+    </scroll-view>
+  </view>
+  <view class='list-con'>
+    <scroll-view class="good-list good-list-one" hidden='{{good_list.length == 0}}' scroll-y bindscrolltolower="loadMore" bindscroll="scroll" scroll-top="{{scroll_top}}" style='{{util.isShops==0&&configSwitch.version_info.one_more==1?"":"height:calc(100vh - 180rpx);"}}'>
+      <good_list bind:addCart="addCart" list="{{good_list}}" discount="{{discount}}" columns="2" rank="true" />
+      <load_more show="{{loading}}" />
+    </scroll-view>
+    <view class='empty-view' style='height:70vh;' hidden='{{good_list.length != 0 || loading}}'>
+      <view>
+        <image src='{{util.HTTP}}mobile/small/image/zwsp.png'></image>
+        <view>暂无相关商品</view>
+      </view>
+    </view>
+  </view>
+  <!--列表  -->
+  <view class='footer' wx:if='{{util.isShops==0&&configSwitch.version_info.one_more==1}}'>
+    <view class='footer_con'>
+      <view>
+        <view class='font_family rm-icon icon-a1' style='{{util.diy_color(diy_color.z_color,"","")}}'></view>
+        <!-- <view style='{{util.diy_imgbox(50)}}'>
+          <image src='{{util.HTTP}}mobile/small/image/sysy-phb-rmb1.png' style='{{util.diy_imgcolor(diy_color.z_color,50,50)}}'></image>
+        </view> -->
+        <view class='title' style='{{util.diy_color(diy_color.z_color,"","")}}'>热卖榜</view>
+      </view>
+      <view hover-class='hover-class' hover-stay-time='400' bindtap='onRankShop'>
+        <view class='font_family shop-icon icon-b1'></view>
+        <!-- <image src='{{util.HTTP}}mobile/small/image/sysy-phb-dpb.png'></image> -->
+        <view class='title'>店铺榜</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!--购物车  -->
+<cart diy_color='{{diy_color}}'/>
+
+<!--返回顶部  -->
+<go_top id="go_top" hover-class='hover-class' hover-stay-time='400' bindtap='onBackTop' />
+
+<buy catchtap="none" id="buy_board" bind:closeBuy="closeBuy" type="{{buy_type}}" info="{{info}}" discount="{{discount}}" group_buy="{{false}}" diy_color='{{diy_color}}'/>

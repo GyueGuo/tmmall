@@ -1,0 +1,64 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='head'>
+  <view class='search-head'>
+    <view class='search-bg' hover-class='hover-class' hover-stay-time='400' bindtap='onSearch'>
+      <image src='{{util.HTTP}}{{"mobile/small/image/xq-gd-ss-3.png"}}'></image>
+      <view>请输入搜索关键字</view>
+    </view>
+    <view class='after-sale-order' hover-class='hover-class' hover-stay-time='400' bindtap='onSaleAfter'>售后订单</view>
+  </view>
+
+  <view class='tab-view'>
+    <view wx:for="{{tab_view}}" hover-class='hover-class' hover-stay-time='400' bindtap='onTab' data-index='{{index}}'>
+      <view class="{{current_tab == index?'cur':''}}">
+        {{item}}
+      </view>
+    </view>
+  </view>
+</view>
+
+<scroll-view scroll-with-animation scroll-y class='order-list' scroll-top="{{scroll_top}}" bindscroll='scroll'>
+  <view class='order-item' wx:for="{{list}}">
+    <view class='order-item-shop'>
+      <view>
+        <image class='item-shop-icon' src='{{util.HTTP}}{{"mobile/small/image/xq-dp.png"}}'></image>
+        <view class='item-shop-name'>梨肉旗舰店</view>
+        <image class='item-shop-next' src='{{util.HTTP}}{{"mobile/small/image/xq-gd.png"}}'></image>
+      </view>
+      <view class='cur order-item-status'>
+        <text wx:if="{{item.status == 1}}">等待付款</text>
+        <text wx:if="{{item.status == 2}}">待自提</text>
+        <text wx:if="{{item.status == 3 || item.status == 4}}">交易成功</text>
+      </view>
+    </view>
+    <view class='order-item-good' hover-class='hover-class' hover-stay-time='400' bindtap='onOrderDetail'>
+      <image></image>
+      <view>
+        <view class='order-item-good-info'>
+          <view class='order-item-good-name'>雪之梦女装夏季连衣裙2018春季秋季爆款韩版套装女士中长开衫</view>
+          <view class='order-item-good-price'>￥53.90</view>
+        </view>
+        <view class='order-item-good-tips'>
+          <view class='order-item-good-attr'>颜色:白色 尺码:M</view>
+          <view class='order-item-good-number'>x1</view>
+        </view>
+      </view>
+    </view>
+    <view class='order-item-total'>
+      <view>共2件商品</view>
+      <view>合计</view>
+      <view class='order-item-total-price'>318.00</view>
+      <view>(含运费)￥5.00</view>
+    </view>
+    <view class='order-item-operation'>
+      <view wx:if="{{item.status ==1}}">取消订单</view>
+      <view wx:if="{{item.status == 3 || item.status == 4}}">删除订单</view>
+      <view class='border-cur' wx:if="{{item.status == 2}}">确认提货</view>
+      <view class='border-cur' wx:if="{{item.status == 3 }}">评价</view>
+      <view class='border-cur' wx:if="{{item.status ==1}}">付款</view>
+    </view>
+  </view>
+</scroll-view>
+
+<!--返回顶部  -->
+<image class='back-top' hover-class='hover-class' hover-stay-time='400' bindtap='onBackTop' src='{{util.HTTP}}{{"mobile/small/image/top.png"}}' animation="{{animation_top}}"></image>

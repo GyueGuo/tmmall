@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "个人资料",
+  "usingComponents": {
+    "choose_sex": "/components/choose_sex/choose_sex",
+    "choose_head": "/components/choose_head/choose_head"
+  }
+}

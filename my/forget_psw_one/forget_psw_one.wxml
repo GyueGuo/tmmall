@@ -1,0 +1,7 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='phone'>
+  <image src='{{util.HTTP}}mobile/small/image/sj.png'></image>
+  <input placeholder='手机号' type='number' maxlength='11' value='{{phone}}' disabled='false' bindinput='phoneInput'></input>
+</view>
+
+<view class="next-step bg" hover-class='hover-class' hover-stay-time='400' bindtap='onNext' style='{{util.diy_color("",diy_color.z_color,"")}}' hover-class='hover-class' hover-stay-time='400'>下一步</view>

@@ -1,0 +1,244 @@
+{
+  "description": "项目配置文件。",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": true,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "bundle": true,
+    "preloadBackgroundData": false
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.10.3",
+  "projectname": "ishop2.0%E5%BC%80%E5%8F%91%E7%89%88",
+  "isGameTourist": false,
+  "scripts": {
+    "beforeCompile": "",
+    "beforePreview": "",
+    "beforeUpload": ""
+  },
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "currentL": -1,
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": 0,
+          "name": "商品",
+          "pathName": "nearby_shops/good_detail/good_detail",
+          "query": "goods_id=11",
+          "scene": null
+        },
+        {
+          "id": 1,
+          "name": "订单",
+          "pathName": "my/order_detail/order_detail",
+          "query": "id=150"
+        },
+        {
+          "id": 2,
+          "name": "待评价",
+          "pathName": "my/express_order/express_order",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "地图",
+          "pathName": "my/map/map",
+          "query": ""
+        },
+        {
+          "id": 4,
+          "name": "店铺",
+          "pathName": "pages/shop_detail/shop_detail",
+          "query": "store_id=5"
+        },
+        {
+          "id": -1,
+          "name": "评价",
+          "pathName": "pages/evaluate/evaluate",
+          "query": "goods_id=179"
+        },
+        {
+          "id": -1,
+          "name": "店铺",
+          "pathName": "pages/rank_good/rank_good",
+          "query": "store_id=49"
+        },
+        {
+          "id": 7,
+          "name": "帮助中心",
+          "pathName": "my/help_center/help_center",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 8,
+          "name": "拼团详情",
+          "pathName": "pages/collage_detail/collage_detail",
+          "query": "id=192",
+          "scene": null
+        },
+        {
+          "id": 9,
+          "name": "登录",
+          "pathName": "pages/accredit/accredit",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的抽奖",
+          "pathName": "my/my_prize/my_prize",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "达达",
+          "pathName": "my/take_out/take_out",
+          "query": ""
+        },
+        {
+          "id": 12,
+          "name": "关注",
+          "pathName": "pages/home/home",
+          "query": "",
+          "scene": "1011"
+        },
+        {
+          "id": -1,
+          "name": "支付成功",
+          "pathName": "nearby_shops/pay_result/pay_result",
+          "query": "",
+          "scene": "1011"
+        },
+        {
+          "id": 14,
+          "name": "客服",
+          "pathName": "my/service/service",
+          "query": "service_info={\"store_title\":\"贝印化妆品专营店\",\"form_type\":\"goods\",\"detail\":{\"file\":\"https%3A%2F%2Fishop-bucket.oss-cn-beijing.aliyuncs.com%2Fgoods_file%2F20181027%2F0ef07012b4fb5e3c10b48768b6058701.jpg%2521upload-back%3FOSSAccessKeyId%3DLTAI1Fzp44FgTE0d%26Expires%3D1551244023%26Signature%3DMTkNWU1NzZOlKR7envatSAolXK8%253D\",\"goods_name\":\"玉兰油OLAY洗面奶细滑焕肤洁面乳100g（补水保湿 深层清\",\"goods_id\":\"212\",\"price\":\"19.90\"},\"TARGET_ID\":56,\"DIVERSION_ID\":\"1001\"}",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "发票信息",
+          "pathName": "nearby_shops/invoice_detail/invoice_detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "收票人信息",
+          "pathName": "nearby_shops/invoice_info/invoice_info",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "开具发票",
+          "pathName": "nearby_shops/invoice_over/invoice_over",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的",
+          "pathName": "pages/my/my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "更新测试",
+          "pathName": "pages/home/home",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "dy",
+          "pathName": "my/fx_cwdy/fx_cwdy",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 21,
+          "name": "设置密码",
+          "pathName": "my/set_pay_psw/set_pay_psw",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "购物车",
+          "pathName": "pages/cart/cart",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 23,
+          "name": "pages/home/home",
+          "pathName": "pages/home/home",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/recommend/recommend",
+          "pathName": "pages/recommend/recommend",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "my/set_pay_psw/set_pay_psw",
+          "pathName": "my/set_pay_psw/set_pay_psw",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/bind_phone/bind_phone",
+          "pathName": "pages/bind_phone/bind_phone",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

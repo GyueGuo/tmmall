@@ -1,0 +1,4 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='background' style="{{percent == '100%'?'border:1px solid #c2c2c2':''}}" style='{{util.diy_color("","",diy_color.z_color)}}'>
+  <view style="width:{{percent}};{{percent == '100%'?util.diy_color('',diy_color.f_color,''):util.diy_color('',diy_color.f_color,'')}}"></view>
+</view>

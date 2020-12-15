@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "附近门店",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "search_shop_filitrate": "/components/search_shop_filitrate/search_shop_filitrate",
+    "load_more": "/components/load_more/load_more"
+  }
+}

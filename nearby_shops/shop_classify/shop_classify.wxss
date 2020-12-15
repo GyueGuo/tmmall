@@ -1,0 +1,85 @@
+page {
+  background-color: #fff;
+}
+
+.all-good {
+  position: relative;
+  width: 100%;
+  padding: 16rpx 0;
+  background: #f6f6f6;
+}
+
+.all-good .con {
+  height: 90rpx;
+  background-color: #fff;
+}
+
+.all-good .con view {
+  font-size: 32rpx;
+  line-height: 90rpx;
+  margin-left: 3%;
+}
+
+.all-good .con image {
+  position: absolute;
+  right: 3%;
+  top: 50%;
+  width: 12rpx;
+  height: 22rpx;
+  margin-top: -11rpx;
+}
+
+.head {
+  position: relative;
+  width: 97%;
+  height: 90rpx;
+  font-size: 32rpx;
+  line-height: 90rpx;
+  padding-left: 3%;
+  background: white;
+}
+
+.classify-list {
+  background: white;
+}
+
+.classify-list > view {
+  position: relative;
+}
+
+.classify-list .look-all {
+  position: absolute;
+  right: 3%;
+  top: 0;
+  font-size: 28rpx;
+  line-height: 90rpx;
+  color: #8d8d8d;
+}
+
+.classify-list .list {
+  overflow: hidden;
+}
+
+.classify-list .list > view {
+  font-size: 28rpx;
+  line-height: 90rpx;
+  width: 49.5%;
+  margin-right: 1%;
+  float: left;
+  text-align: center;
+  margin-bottom: 1%;
+  background: #f6f6f6;
+}
+
+.classify-list .list > view:nth-child(2n) {
+  margin-right: 0;
+}
+
+.classify-list > view image {
+  width: 12rpx;
+  height: 22rpx;
+  position: absolute;
+  top: 50%;
+  margin-top: -11rpx;
+  right: 3%;
+}

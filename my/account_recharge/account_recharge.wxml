@@ -1,0 +1,51 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view hidden='{{list.length == 0}}'>
+  <swiper class='swiper' circular previous-margin="80rpx" next-margin="80rpx" current="{{current}}" bindchange='swiperChange'>
+    <block wx:for="{{list}}">
+      <swiper-item>
+        <view class="swiper-item {{current==index?'scale':''}}">
+          <image src='{{item.file}}'></image>
+          <view class='charge-money'>
+            <text class='exact-money'>{{item.recharge_money}}</text>
+            <text class='exact-unit'>元</text>
+          </view>
+          <view class='charge-tips'>奖励{{item.award_money}}元现金存入钱包账户</view>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <scroll-view scroll-x class='scroll' scroll-into-view='id{{current}}' scroll-with-animation>
+    <view id='id{{index}}' wx:for="{{list}}" class="scroll-item" hover-class='hover-class' hover-stay-time='400' bindtap='onSelect' data-index='{{index}}'>
+      <text class="{{current==index?'select':''}}" style='{{current==index?util.diy_color("","",diy_color.z_color):""}}'>{{item.recharge_money}}元</text>
+    </view>
+  </scroll-view>
+
+  <view class='pay-way'>
+    <view class='pay-left'>支付方式</view>
+    <view class='pay-right' hover-class='hover-class' hover-stay-time='400' bindtap='onChargeInfo'>
+      <text>充值说明</text>
+      <image src='{{util.HTTP}}mobile/small/image/wd-zhye-sm.png'></image>
+    </view>
+  </view>
+
+  <view class='wx-pay'>
+    <view>
+      <image src='{{util.HTTP}}mobile/small/image/syt-wx.png'></image>
+      <view>微信支付</view>
+    </view>
+    <view class='font_family imager icon-syt-gx1' style='{{util.diy_color(diy_color.z_color,"","")}}'></view>
+  </view>
+
+  <view class='overpayment bg' hover-class='hover-class' hover-stay-time='400' bindtap='pay' style='{{util.diy_color("",diy_color.z_color,"")}}'>需支付{{list[current].recharge_money}}元</view>
+
+  <view class='charge-info' hover-class='hover-class' hover-stay-time='400' bindtap='closeCharge' hidden='{{!charge_board}}'>
+    <view catchtap='none'>
+      <view class='title'>充值说明</view>
+      <view class='content'>储值金额暂不支持提现功能</view>
+      <view class='close' style='{{util.diy_imgbox(80)}}'>
+        <image src='{{util.HTTP}}mobile/small/image/pgxq-x.png' hover-class='hover-class' hover-stay-time='400' bindtap='closeCharge' style='{{util.diy_imgcolor(diy_color.z_color,80,80)}}'></image>
+      </view>
+    </view>
+  </view>
+</view>

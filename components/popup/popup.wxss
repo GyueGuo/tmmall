@@ -1,0 +1,214 @@
+.trans {
+  background: rgb(0, 0, 0);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 13;
+}
+
+.board {
+  background: rgba(0, 0, 0, 0);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  z-index: 14;
+}
+
+.board > view {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: white;
+}
+
+.pay-way {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.pay-way view {
+  font-size: 36rpx;
+  line-height: 36rpx;
+  font-weight: bold;
+  margin-left: 28rpx;
+  margin-top: 40rpx;
+}
+
+.pay-way image {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 26rpx;
+  margin-top: 36rpx;
+  display: block;
+}
+
+.scrolly {
+  height: 900rpx;
+  white-space: nowrap;
+  margin-top: 40rpx;
+}
+
+.scrolly .item {
+  border-bottom: 1rpx solid #e5e5e5;
+  margin-top: 40rpx;
+}
+
+.scrollx {
+  width: 700rpx;
+  margin: 0 auto;
+  white-space: nowrap;
+}
+
+.scrolly .item:first-child {
+  margin-top: 0!important;
+}
+
+.good-image {
+  width: 134rpx;
+  height: 134rpx;
+  display: inline-block;
+  margin-left: 10rpx;
+}
+
+.good-image:first-child {
+  margin-left: 0;
+}
+
+.choose-way {
+  overflow: hidden;
+  margin-top: 10rpx;
+  margin-bottom: 30rpx;
+}
+
+.choose-way > view {
+  font-size: 26rpx;
+  line-height: 60rpx;
+  float: left;
+  border: 2rpx solid #e5e5e5;
+  width: 166rpx;
+  text-align: center;
+  /* box-shadow: 1rpx 1rpx 1rpx 1rpx #e0e0e0; */
+  margin-left: 26rpx;
+}
+
+/* .confirm {
+  width: 100%;
+  font-size: 34rpx;
+  line-height: 100rpx;
+  text-align: center;
+  background: #f20230;
+  color: white;
+} */
+
+.select{
+  border: 1rpx solid #f20230!important;
+  background: #fef4f3;
+  color: #f20230;
+}
+
+
+.scrolly .warp{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.scrolly .section {
+  padding: 0 20rpx 20rpx;
+}
+.scrolly .row{
+  position: relative;
+  width: 100%;
+}
+.scrolly .row .rise-history-con{
+  position: absolute;
+  left: 0;
+  top: 81rpx;
+  z-index: 20;
+  width: 100%;
+  height: 400rpx;
+  background-color: #fff;
+  border: 1px solid #f6f6f6;
+}
+.scrolly .row .rise-history-con scroll-view{
+  width: 100%;
+  height: 100%;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+.scrolly .row .rise-history-con scroll-view view{
+  font-size: 30rpx;
+  padding: 10rpx 0;
+  color: #666;
+}
+.scrolly .row .title {
+  font-size: 28rpx;
+  margin: 25rpx 0;
+  font-weight: bold;
+}
+
+.scrolly .row .btn-con {
+  display: flex;
+}
+
+.scrolly .row .btn-con>text {
+  font-size: 24rpx;
+  border: 1px solid #e5e5e5;
+  padding: 16rpx 34rpx;
+  margin-right: 22rpx;
+  border-radius: 8rpx;
+}
+
+.scrolly .row>input {
+  background-color: #f9f9f9;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  padding: 14rpx 26rpx;
+  margin-top: 24rpx;
+}
+
+.scrolly .row .info {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ececec;
+  padding: 15rpx 0;
+}
+
+.scrolly .row .info .name {
+  font-size: 24rpx;
+  flex-shrink: 0;
+}
+
+.scrolly .row .info>input {
+  font-size: 24rpx;
+  flex: 1;
+  padding: 0 20rpx 0 30rpx;
+}
+.scrolly .section .tip{
+  margin-top: 14rpx;
+  font-size: 22rpx;
+  color: #7a7f84;
+}
+.board .btn{
+  display: flex;
+}
+.flex3{
+  flex: 3;
+}
+.flex7{
+  flex: 7;
+}
+.board .btn .submit {
+  font-size: 30rpx;
+  color: #fff;
+  padding: 35rpx 0;
+  text-align: center;
+}

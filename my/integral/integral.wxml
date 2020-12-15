@@ -1,0 +1,106 @@
+<!-- <wxs module="util" src="util.wxs" /> -->
+<wxs module="util" src="../../utils/util.wxs" />
+<view>
+  <view class='integral-head' wx:if="{{member_info.sign_state == 0&&member_info!=null||member_info==null}}">
+    <image src='{{member_info!=null&&member_info.avatar!=""?member_info.avatar:util.HTTP+"mobile/small/image/placeholder_member.png"}}'></image>
+    <view class='member-info' wx:if="{{member_info!=null}}">
+      <view class='head'>{{member_info.nickname}}</view>
+      <view class='content' hover-class='hover-class' hover-stay-time='400' bindtap='onDetail'>
+        <image src='{{util.HTTP}}mobile/small/image/sy-hqzx-jf.png'></image>
+        <text>{{member_info.pay_points}}</text>
+      </view>
+    </view>
+    <view class='member-info-login' wx:else hover-class='hover-class' hover-stay-time='400' bindtap='login_status'>登录/注册</view>
+    <view class='sign-in' hover-class='hover-class' hover-stay-time='400' bindtap='signIn' wx:if='{{configSwitch.show_switch.is_sign_in==1}}' style='{{util.diy_color("",diy_color.z_color,"")}}'>签到</view>
+  </view>
+  <view class='integral-head' wx:else>
+    <view class='my-integral'>
+      <view class='integer-info' hover-class='hover-class' hover-stay-time='400' bindtap='onDetail'>
+        <text>我的积分</text>
+        <text style='{{util.diy_color(diy_color.z_color,"","")}}'> {{member_info.pay_points}}></text>
+        <image src='{{util.HTTP}}mobile/small/image/wd-zhye-sm.png' catchtap='onHelp'></image>
+      </view>
+      <view class='sign-day'>已经连续签到{{member_info.continuous_days}}天</view>
+    </view>
+    <view class='sign-in' hover-class='hover-class' hover-stay-time='400' bindtap='onDetail' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>明天 +{{member_info.integral}}</view>
+  </view>
+
+  <image class='ad' src='{{adv.file}}' wx:if='{{adv.file!=undefined}}' bindtap='adv'></image>
+
+  <view class='content-list'>
+    <view hover-class='hover-class' hover-stay-time='400' bindtap='game'>
+      <view>
+        <image src='{{util.HTTP}}mobile/small/image/sy-jfsc-icon-wyx.png'></image>
+        <view>玩游戏</view>
+      </view>
+    </view>
+    <view hover-class='hover-class' hover-stay-time='400' bindtap='onTask'>
+      <view>
+        <image src='{{util.HTTP}}mobile/small/image/sy-jfsc-icon-zjf.png'></image>
+        <view>赚积分</view>
+      </view>
+    </view>
+    <view hover-class='hover-class' hover-stay-time='400' bindtap='onChangeCoupon' wx:if='{{configSwitch.show_switch.is_coupon==1}}'>
+      <view>
+        <image src='{{util.HTTP}}mobile/small/image/sy-jfsc-icon-hhq.png'></image>
+        <view>换好券</view>
+      </view>
+    </view>
+    <view hover-class='hover-class' hover-stay-time='400' bindtap='onRecord'>
+      <view>
+        <image src='{{util.HTTP}}mobile/small/image/sy-jfsc-icon-dhjl.png'></image>
+        <view>兑换记录</view>
+      </view>
+    </view>
+  </view>
+
+  <view class='integer-list'>
+    <view class='list-head' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>
+      <view  hover-class='hover-class' hover-stay-time='400' bindtap='creditsExchange' style='{{exchange_tab==1?util.diy_color("#fff",diy_color.z_color,""):""}}'>积分兑换</view>
+      <view  hover-class='hover-class' hover-stay-time='400' bindtap='pointRedemption' style='{{exchange_tab==2?util.diy_color("#fff",diy_color.z_color,""):""}}'>积分换购</view>
+    </view>
+  </view>
+  <scroll-view scroll-x class='tab-scroll'>
+    <view class='tab' wx:for="{{classify}}" hover-class='hover-class' hover-stay-time='400' bindtap='onTab' data-id='{{item.integral_classify_id}}'>
+      <text style='{{classify_id == item.integral_classify_id?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{item.title}}</text>
+    </view>
+  </scroll-view>
+
+  <view class='exchange-list'>
+    <view wx:for="{{result}}" hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.integral_id}}'>
+      <view class='exchange-img'>
+        <image class='exchange-image' src='{{item.file}}'></image>
+        <text class='cut-money' hidden='{{exchange_tab==1}}'>省{{util.cal(item.integral,ratio)}}元</text>
+      </view>
+      <view class='exchange-name'>{{item.integral_name}}</view>
+      <view class='integral-price'>
+        <text style='{{util.diy_color(diy_color.z_color,"","")}}'>{{item.integral}}</text>
+        <text>积分</text>
+        <view class='price' hidden='{{exchange_tab==1}}'>
+          <text>+</text>
+          <text style='{{util.diy_color(diy_color.z_color,"","")}}'>￥{{item.price}}</text>
+        </view>
+      </view>
+      <view class='go-exchange'>
+        <image src='{{util.HTTP}}mobile/small/image/sy-jfsc-icon-dh.png'></image>
+        <text wx:if='{{exchange_tab==1}}'>兑换</text>
+        <text wx:elif='{{exchange_tab==2}}'>换购</text>
+      </view>
+    </view>
+  </view>
+
+  <view hidden='{{result.length != 0}}' style='font-size:28rpx;text-align:center;margin-top:100rpx;'>暂无商品</view>
+
+  <!--积分不足  -->
+  <view class='integral-board' catchtouchmove='none' hidden='{{!lack_integral}}'>
+    <view class='lack-integral'>
+      <view class='title'>提示</view>
+      <view class='content'>抱歉您的积分不足以兑换此商品</view>
+      <view class='content'>做任务可以获得更多积分哦!</view>
+      <view class='opertation'>
+        <view class='confirm' hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'>确定</view>
+        <view class='cancel bg' hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'>取消</view>
+      </view>
+    </view>
+  </view>
+</view>

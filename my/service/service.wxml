@@ -1,0 +1,115 @@
+<!--my/service/service.wxml-->
+<wxs module="util" src="../../utils/util.wxs" />
+<wxs module="service" src="../../utils/service.wxs" />
+<import src="popups/popups.wxml"/>
+<view class='warp'>
+  <view class='service_header' style='{{util.diy_color("",diy_color.z_color,"")}}' wx:if='{{util.isShops==0}}'>
+    <view class='service_btn'>
+      <view class='go_shop' wx:if='{{service_info.TARGET_ID!="0"}}' data-data='{{service_info.TARGET_ID}}' hover-class='hover-class' hover-stay-time='400' bindtap='go_shop'>进店</view>
+      <!-- <image class='service_set' src='{{util.HTTP}}mobile/small/image/service/set.png'></image> -->
+    </view>
+  </view>
+  <view class='service_info' wx:if='{{service_info.detail!=undefined}}'>
+    <view class='goods' wx:if='{{service_info.form_type=="goods"}}'>
+      <image class='goods_img' src='{{service_info.detail.file}}'></image>
+      <view class='goods_info'>
+        <view class='goods_title'>{{service_info.detail.goods_name}}</view>
+        <view class='goods_price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+          <text class='unit'>￥</text>
+          <text class='integer'>{{util.integer(service_info.detail.price)}}</text>
+          <text class='decimal'>.{{util.decimals(service_info.detail.price)}}</text>
+        </view>
+      </view>
+    </view>
+    <view class='service_info_btn' hover-class='hover-class' hover-stay-time='400' bindtap='goodslink' data-id='{{service_info.detail.goods_id}}' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>发送宝贝链接</view>
+  </view>
+  <view class='message_con' hover-class='hover-class' hover-stay-time='400' bindtap='viewReset'>
+    <scroll-view scroll-y scroll-with-animation='{{scrollAnimation}}' scroll-into-view='{{msglist_index}}' scroll-top='{{scrollTop}}' bindscrolltoupper='history' bindscrolltolower='bindscrolltolower' bindscroll='bindscroll'>
+      <view id='id{{item.MESSAGE_ID}}' class='msg {{item.FROM_ID==mid?"me":"other"}}' wx:for='{{msglist}}' wx:key='{{index}}'>
+        <view class='msgtime' hidden='{{util.service_time(msglist[index-1].MESSAGE_ID)==util.service_time(msglist[index].MESSAGE_ID)}}'>
+          <text>{{util.service_time(item.MESSAGE_ID)}}</text>
+        </view>
+        <view class='msginfo'>
+          <image class='userimg' lazy-load src='{{item.FROM_ID==mid?userinfo.avatar:storeinfo.logo}}'></image>
+          <view class='msg-con' style='{{item.MESSAGE_TYPE=="IMAGE"?"padding:0;":""}}'>
+            <!-- 文字 -->
+            <view class='msg_text' wx:if='{{item.MESSAGE_TYPE=="TEXT"}}'>
+              <block wx:for='{{item.MESSAGE_DATA}}' wx:for-index="idx" wx:for-item="itemName" wx:key='{{index}}'>
+                <text wx:if='{{itemName.type=="text"}}'>{{itemName.data}}</text>
+                <image wx:elif='{{itemName.type=="emoji"}}' src='{{util.HTTP}}{{itemName.data}}'></image>
+              </block>
+            </view>
+            <!-- 图片 -->
+            <image class='msg_image' wx:elif='{{item.MESSAGE_TYPE=="IMAGE"}}' src='{{item.MESSAGE_DATA}}' mode='widthFix' bindload='msg_image' style='width:{{msg_image_width}}rpx;' data-index='{{index}}' data-url='{{item.MESSAGE_DATA}}' catchtap='preview'></image>
+            <!-- 语音 -->
+            <view class='msg_voice' wx:elif='{{item.MESSAGE_TYPE=="VOICE"}}' data-index='{{index}}' data-src='{{item.MESSAGE_DATA}}' catchtap='recorderPlay'>
+              <image class='voice_image' src='{{util.HTTP}}{{item.voiceplay_type==1?"mobile/small/image/service/voice_play.gif":"mobile/small/image/service/voice_stop.png"}}'></image>
+              <text class='voice_time'>{{item.VOICE_TIME}}"</text>
+            </view>
+            <!-- 商品 -->
+            <view class='msg_goods' wx:elif='{{item.MESSAGE_TYPE=="GOODS"}}' data-index='{{index}}' data-src='{{item.MESSAGE_DATA}}' catchtap='go_Goods' data-id='{{item.GOODS_DATA.goods_id}}'>
+              <view class='goods'>
+                <image class='goods_img' src='{{item.GOODS_DATA.file}}'></image>
+                <view class='goods_info'>
+                  <view class='goods_title {{item.GOODS_DATA== null?"on-title":""}}'>{{item.GOODS_DATA== null?'':item.GOODS_DATA.goods_name}}</view>
+                  <view class='goods_price {{item.GOODS_DATA== null?"on-price":""}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+                    <text class='unit'  hidden='{{item.GOODS_DATA== null}}'>￥</text>
+                    <text class='integer'  hidden='{{item.GOODS_DATA== null}}'>{{util.integer(item.GOODS_DATA.price)}}</text>
+                    <text class='decimal'  hidden='{{item.GOODS_DATA== null}}'>.{{util.decimals(item.GOODS_DATA.price)}}</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+
+            <image class='type {{item.MSG_TYPE=="error"?"":"rotate"}}' wx:if='{{item.MSG_TYPE!="success"}}' src='{{util.HTTP}}{{item.MSG_TYPE=="error"?"mobile/small/image/service/warning.png":"mobile/small/image/service/send.png"}}'></image>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+  <view class='service_footer'>
+    <view class='service_con'>
+      <image class='service_type' src='{{util.HTTP}}{{chatType==0?"mobile/small/image/service/kf-yy.png":"mobile/small/image/service/kf-wzz.png"}}' hover-class='hover-class' hover-stay-time='400' bindtap='service_type'></image>
+      <view class='service' style='{{spkStartY!=""?"background-color: #ccc;":""}}' hover-class='hover-class' hover-stay-time='400' bindtap='inputtap'>
+        <!-- <scroll-view scroll-y scroll-with-animation style='height:max-height:300rpx;' hidden='{{chatType==1}}'> -->
+        <textarea type='text' confirm-hold auto-height focus='{{focus}}' fixed='{{fixed}}' hidden='{{chatType==1}}' show-confirm-bar='{{show_confirm}}' bindinput='service_text' cursor-spacing="{{service.length!=0?20:0}}" value='{{service_input}}' confirm-type='send'></textarea>
+        <!-- </scroll-view> -->
+        <view class='speak' hidden='{{chatType==0}}' bind:touchstart='speakStart' bind:touchmove='speakMove' bind:touchend='speakEnd'>{{recorderTitle}}</view>
+      </view>
+      <image class='service_bq' src='{{util.HTTP}}mobile/small/image/service/kf-bq.png' wx:if='{{chatType==0}}' catchtap='emoji_type'></image>
+      <image class='service_fun' style='{{service_input.length==0?"display:block":"display:none"}}' src='{{util.HTTP}}mobile/small/image/service/kf-jh.png' hover-class='hover-class' hover-stay-time='400' bindtap='service_fun'></image>
+      <view class='submit' style='{{service_input.length!=0?"display:block":"display:none"}}' hover-class='hover-class' hover-stay-time='400' bindtap='submit'>发送</view>
+    </view>
+    <view class='funbtn_con' hidden='{{!service_fun}}'>
+      <view class='btn_con' wx:for='{{funbtn_list}}' wx:key='{{index}}' data-item='{{item}}' hover-class='hover-class' hover-stay-time='400' bindtap='service_funbtn'>
+        <image src='{{util.HTTP}}{{item.img}}'></image>
+        <text>{{item.name}}</text>
+      </view>
+    </view>
+    <view class='emoji_con' hidden='{{!isEmoji}}'>
+      <swiper>
+        <swiper-item wx:for='{{emojiList}}' wx:key='{{index}}'>
+          <view class='emoji' wx:for='{{item}}' wx:key='{{index}}' wx:for-index="idx" wx:for-item="itemName" data-item='{{itemName}}' hover-class='hover-class' hover-stay-time='400' bindtap='emojiBtn'>
+            <image class='emoji_img' src='{{util.HTTP}}{{itemName.url}}'></image>
+          </view>
+        </swiper-item>
+      </swiper>
+    </view>
+  </view>
+</view>
+
+<view class='touchVoice' wx:if='{{spkStartY!=0}}'>
+  <view class='record' wx:if='{{spkStartY!=0&&spkMoveY<200}}'>
+    <image class='chat_icon2' src='{{util.HTTP}}mobile/small/image/service/chat_icon2.png'></image>
+    <image class='chat_icon1' src='{{util.HTTP}}mobile/small/image/service/chat_icon1.png'></image>
+    <view class='record_text'>手指上滑，取消发送</view>
+  </view>
+  <view class='record record_stop' wx:elif='{{spkStartY!=0&&spkMoveY>=200}}'>
+    <image class='chat_icon3' src='{{util.HTTP}}mobile/small/image/service/chat_icon3.png'></image>
+    <view class='record_text_s'>松开手指，取消发送</view>
+  </view>
+</view>
+
+<view class='popups' hidden='{{!orderList_type}}' animation='{{animationFade}}'>
+  <template is='{{template}}' data='{{orderList,diy_color,animationData}}'></template>
+</view>

@@ -1,0 +1,24 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<!--背景   -->
+<view class='trans' hidden='{{!isShow}}' style='opacity:{{opacity}}'></view>
+<view class='board' hover-class='hover-class' hover-stay-time='400' bindtap='closeDelivery' animation="{{animation}}">
+  <!--配送说明  -->
+  <view class='delivery-info' catchtap="none">
+    <view class='delivery-head'>服务说明</view>
+    <view class='delivery-content'>
+      <scroll-view scroll-y>
+        <view class='item' wx:for='{{info}}' wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' data-id='{{item.tag_bind_goods_id}}' bindtap='onLabel'>
+          <view class='icon' style='{{util.diy_color("","",diy_color.z_color)}}'>
+            <view style='{{util.diy_color("",diy_color.z_color,"")}}'></view>
+          </view>
+          <view class='delivery-content-detail'>
+            <view class='delivery-content-title'>{{item.name}}</view>
+            <view class='delivery-content-area'>{{item.content}}</view>
+          </view>
+          <!-- <image src='{{util.HTTP}}mobile/small/image/xq-gd.png' class='next'></image> -->
+        </view>
+      </scroll-view>
+    </view>
+    <view class='delivery-finish' hover-class='hover-class' hover-stay-time='400' bindtap='closeDelivery' style='{{util.diy_color("",diy_color.z_color,"")}}'>完成</view>
+  </view>
+</view>

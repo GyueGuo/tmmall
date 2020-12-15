@@ -1,0 +1,77 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view style='padding-bottom:100rpx'>
+  <view class='wrap' wx:for="{{info}}">
+    <view class='good-star'>
+      <image src='{{item.file}}'></image>
+      <view>商品评分</view>
+      <star_level bind:changeStar="goodStar" data-index="{{index}}" />
+      <view>
+        <text wx:if="{{item.good_level==1}}">非常差</text>
+        <text wx:elif="{{item.good_level==2}}">差</text>
+        <text wx:elif="{{item.good_level==3}}">一般</text>
+        <text wx:elif="{{item.good_level==4}}">好</text>
+        <text wx:else>非常好</text>
+      </view>
+    </view>
+
+    <view class='leave-message'>
+      <textarea placeholder='商品怎么样?说说体验心得,给其他买家做个参考吧~' bindinput='contentInput' data-index='{{index}}'></textarea>
+    </view>
+
+    <view class='upload-wrap'>
+      <view class='head'>上传凭证</view>
+      <view class='pic-list'>
+        <view wx:if="{{item.video == ''}}" hover-class='hover-class' hover-stay-time='400' bindtap='chooseVideo' data-index='{{index}}'>
+          <image class='pic' src='{{util.HTTP}}mobile/small/image/wd-pj-.png'></image>
+          <!-- <image class='try' src='{{util.HTTP}}{{"mobile/small/image/wd-pj-s-2.png"}}'></image> -->
+          <view class='try' style='{{util.diy_imgbox(144)}}'>
+            <text>试试这个</text>
+            <image src='{{util.HTTP}}mobile/small/image/wd-pj-s-2.png' style='{{util.diy_imgcolor(diy_color.z_color,144,58)}}'></image>
+          </view>
+        </view>
+        <view class='video' wx:else>
+          <image class='pic' style='background:black'></image>
+          <image src='{{util.HTTP}}mobile/small/image/pj-bf.png' class='play' hover-class='hover-class' hover-stay-time='400' bindtap='onPreview' data-index='{{index}}' data-idx='-1'></image>
+          <image class='delete' src='{{util.HTTP}}mobile/small/image/wd-pj-sc.png' hover-class='hover-class' hover-stay-time='400' bindtap='deleteVideo' data-index='{{index}}'></image>
+        </view>
+        <view wx:for="{{item.pic_list}}" wx:for-index="idx">
+          <image class='pic' src='{{item}}' hover-class='hover-class' hover-stay-time='400' bindtap='onPreview' data-index='{{index}}' data-idx='{{idx}}'></image>
+          <image class='delete' src='{{util.HTTP}}mobile/small/image/wd-pj-sc.png' hover-class='hover-class' hover-stay-time='400' bindtap='delectPic' data-index='{{idx}}' data-idx='{{index}}'></image>
+        </view>
+        <view hidden='{{item.pic_list.length == 5}}'>
+          <image class='pic' src='{{util.HTTP}}mobile/small/image/wd-pj-tjzp.png' hover-class='hover-class' hover-stay-time='400' bindtap='choosePic' data-index='{{index}}'></image>
+        </view>
+
+      </view>
+    </view>
+    <view class='anonymity-wrap'>
+      <view hover-class='hover-class' hover-stay-time='400' bindtap='onAnonymity' data-index='{{index}}'>
+        <!-- <view style='{{util.diy_imgbox(40)}}'>
+        <image src="{{util.HTTP}}{{item.anonymity?'mobile/small/image/syt-gx1.png':'mobile/small/image/syt-gx2.png'}}" style='{{item.anonymity?util.diy_imgcolor(diy_color.z_color,40,40):""}}'></image>
+      </view> -->
+        <view class='font_family imager {{item.anonymity?"icon-syt-gx1":"icon-syt-gx"}}' style='{{item.anonymity?util.diy_color(diy_color.z_color,"",""):""}}'></view>
+        <view>匿名</view>
+      </view>
+      <view>{{!item.anonymity?'你的评价能帮助其他小伙伴哟':'你写的评价会以匿名的形式展现'}}</view>
+    </view>
+  </view>
+
+  <view class='give-grade' wx:if='{{util.isShops==0}}'>
+    <image class='logo' src='{{util.HTTP}}mobile/small/image/wd-pj-dp.png'></image>
+    <view>店铺评分</view>
+    <star_level bind:changeStar="storeStar" />
+  </view>
+
+  <view class='give-grade'>
+    <image class='logo' src='{{util.HTTP}}mobile/small/image/wd-pj-wl1.png'></image>
+    <view>物流评分</view>
+    <star_level bind:changeStar="logisticsStar" />
+  </view>
+
+  <view class='leave-message'>
+    <textarea bindinput='expressInput' placeholder='留下您对物流配送的评价,我们会积极改进'></textarea>
+  </view>
+
+</view>
+
+<view class='commit bg' hover-class='hover-class' hover-stay-time='400' bindtap='commit' style='{{util.diy_color("",diy_color.z_color,"")}}'>提交</view>

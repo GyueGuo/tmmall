@@ -1,0 +1,177 @@
+@import "/utils/iconfont.wxss";
+
+.trans {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 13;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0);
+}
+
+.board {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  z-index: 60;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+}
+
+.delivery-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 3;
+  width: 100%;
+  border-radius: 50rpx 50rpx 0 0;
+  background: white;
+}
+
+.delivery-info .delivery-head {
+  font-size: 34rpx;
+  font-weight: bold;
+  line-height: 120rpx;
+  text-align: center;
+}
+
+.delivery-info .delivery-content {
+  height: 800rpx;
+}
+
+.delivery-info .delivery-content scroll-view {
+  width: 100%;
+  height: 100%;
+}
+
+.delivery-info .delivery-content scroll-view .item {
+  position: relative;
+  display: flex;
+  width: 92%;
+  padding: 34rpx 4%;
+  overflow: hidden;
+}
+.delivery-info .delivery-content scroll-view .item .icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25rpx;
+  height: 25rpx;
+  border-radius: 50%;
+  margin-top: 8rpx;
+  border: 4rpx solid transparent;
+}
+.delivery-info .delivery-content scroll-view .item .icon view{
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+}
+
+.delivery-info .delivery-content .delivery-content-logo {
+  width: 42rpx;
+  height: 42rpx;
+  float: left;
+}
+
+.delivery-info .delivery-content .next {
+  width: 12rpx;
+  height: 22rpx;
+  position: absolute;
+  right: 4%;
+  top: 50%;
+  margin-top: -11rpx;
+}
+
+.delivery-info .delivery-content-detail {
+  float: left;
+  margin-left: 20rpx;
+  width: 600rpx;
+}
+
+.delivery-content-title {
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+}
+
+.delivery-content-area {
+  font-size: 28rpx;
+  margin-top: 12rpx;
+  color: #909090;
+}
+
+.delivery-content-detail .deliver {
+  font-size: 28rpx;
+  margin-top: 12rpx;
+  display: flex;
+  align-items: center;
+}
+
+.delivery-content-detail .deliver .title {
+  flex-shrink: 0;
+  color: #909090;
+}
+
+.delivery-content-detail .deliver image {
+  width: 22rpx;
+  height: 26rpx;
+  margin-left: 35rpx;
+  margin-right: 16rpx;
+}
+
+.delivery-content-detail .deliver .freight {
+  margin-left: 35rpx;
+}
+
+.delivery-content .freight_tip {
+  font-size: 20rpx;
+  padding: 4rpx 8rpx;
+  margin-left: 35rpx;
+  color: #f00;
+  border: 1px solid #f00;
+}
+
+.delivery-info .delivery-finish {
+  width: 100%;
+  height: 100rpx;
+  font-size: 32rpx;
+  line-height: 100rpx;
+  text-align: center;
+  background: #f23030;
+  color: white;
+}
+
+.loading {
+  width: 34rpx;
+  height: 34rpx;
+  -webkit-animation: spin 1s linear infinite; /*鼠标hover时，i图标旋转,infinite表示动画无限循环*/
+  animation: spin 1s linear infinite;
+}
+
+/*定义动画*/
+
+@-webkit-keyframes spin {
+  /*兼容性写法。spin是关键帧的动画名称*/
+
+  from {
+    /*动画起始状态*/
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    /*动画结束状态*/
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

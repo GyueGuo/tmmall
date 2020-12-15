@@ -1,0 +1,272 @@
+.tab-view {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  width: calc(100% - 70rpx);
+  padding-right: 70rpx;
+  box-shadow: 0 0 5rpx 2rpx rgba(150, 150, 150, 0.1);
+  background: white;
+}
+
+.tab-sroll {
+  height: 82rpx;
+  white-space: nowrap;
+}
+
+.tab-sroll .tab-item {
+  display: inline-block;
+  height: 100%;
+  padding: 0 38rpx;
+}
+
+.tab-sroll .tab-item text {
+  position: relative;
+  height: 100%;
+  line-height: 82rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+  display: inline-block;
+  border-bottom: 6rpx solid #fff;
+}
+
+.tab-view .more {
+  width: 70rpx;
+  height: 82rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.tab-view .more::after {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  content: '';
+  width: 2rpx;
+  height: 34rpx;
+  margin-top: -17rpx;
+  background: #eee;
+}
+
+.tab-view .more image {
+  width: 22rpx;
+  height: 12rpx;
+}
+
+.second-tab {
+  position: fixed;
+  top: 82rpx;
+  left: 0;
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  z-index: 4;
+  background: #f6f6f6;
+}
+
+.second-scroll {
+  height: 50rpx;
+  white-space: nowrap;
+}
+
+.second-tab-item:first-child {
+  margin-left: 34rpx;
+}
+
+.second-tab-item {
+  display: inline-block;
+  font-size: 26rpx;
+  line-height: 48rpx;
+  padding: 0 30rpx;
+  color: #656b70;
+  background: white;
+  border-radius: 30rpx;
+  margin-right: 10rpx;
+}
+
+.shop-list {
+  padding-top: 85rpx;
+  padding-bottom: 100rpx;
+}
+
+.shop-list > view {
+  width: 96%;
+  margin: 20rpx auto 0;
+  background: white;
+  position: relative;
+}
+
+.shop-list .rank {
+  width: 114rpx;
+  height: 50rpx;
+  position: absolute;
+  left: 10rpx;
+  top: 0;
+  z-index: 1;
+}
+
+.shop-list .rank image {
+  width: 100%;
+  height: 100%;
+}
+
+.shop-list .rank .rank-num {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 20rpx;
+  color: white;
+  justify-content: center;
+}
+
+.shop-list .rank .rank-num > view:last-child {
+  margin-left: 4rpx;
+}
+
+.shop-list .shop-intro {
+  margin-left: 20rpx;
+}
+
+.shop-head {
+  padding: 30rpx 2%;
+  width: 96%;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.shop-head .logo {
+  width: 80rpx;
+  height: 80rpx;
+}
+.shop-head .logo image {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.shop-head .shop-name {
+  font-size: 30rpx;
+}
+
+.shop-head .shop-attention {
+  display: flex;
+  align-items: center;
+  font-size: 24rpx;
+  color: #767b80;
+  margin-top: 8rpx;
+}
+.shop-head .shop-attention image{
+  width: 112rpx;
+  height: 32rpx;
+  margin-left:10rpx;
+}
+
+.shop-head .go-shop {
+  width: 100rpx;
+  line-height: 40rpx;
+  font-size: 26rpx;
+  border: 1px solid #f23030;
+  text-align: center;
+  border-radius: 8rpx;
+  position: absolute;
+  right: 20rpx;
+  top: 50%;
+  margin-top: -20rpx;
+}
+
+.shop-pic {
+  width: 100%;
+  padding: 25rpx 2%;
+  box-sizing: border-box;
+  border-top: 1px solid #f6f6f6;
+  overflow: hidden;
+}
+
+.shop-pic > view {
+  width: 32%;
+  margin-left: 2%;
+  height: 214rpx;
+  float: left;
+  position: relative;
+}
+
+.shop-pic > view:first-child {
+  margin-left: 0;
+}
+
+.shop-pic > view image {
+  width: 100%;
+  height: 100%;
+}
+
+.shop-pic > view text {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 110rpx;
+  text-align: center;
+  font-size: 24rpx;
+  line-height: 36rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100rpx;
+  overflow: hidden;
+  background: white;
+  /* border-top: 2rpx solid #f6f6f6; */
+  box-shadow: 0 0 5rpx 2rpx rgba(150, 150, 150, 0.1);
+}
+
+.footer > view {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: left;
+  position: relative;
+}
+
+.footer > view:last-child::after {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -22rpx;
+  width: 2rpx;
+  height: 44rpx;
+  content: '';
+  background: #f6f6f6;
+}
+
+.footer > view .title {
+  font-size: 32rpx;
+  margin-left: 20rpx;
+  color: #6e7479;
+}
+
+.footer > view .rm-icon {
+  font-size: 50rpx;
+  color: #6e7479;
+}
+
+.footer > view .shop-icon {
+  font-size: 48rpx;
+}

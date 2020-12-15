@@ -1,0 +1,56 @@
+.wrap {
+  padding: 0 26rpx;
+  background: white;
+}
+
+.wrap > view {
+  padding: 24rpx 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2rpx solid #f6f6f6;
+}
+
+.left {
+  width: 460rpx;
+  margin-right: 20rpx;
+}
+
+.left .title {
+  font-size: 34rpx;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.left .num {
+  font-size: 24rpx;
+  margin-top: 80rpx;
+  color: #8d8d8d;
+}
+
+.right {
+  width: 204rpx;
+  height: 204rpx;
+  position: relative;
+}
+
+.right > image {
+  width: 100%;
+  height: 100%;
+}
+
+.right > view {
+  width: 120rpx;
+  font-size: 24rpx;
+  line-height: 36rpx;
+  color: white;
+  text-align: center;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+}

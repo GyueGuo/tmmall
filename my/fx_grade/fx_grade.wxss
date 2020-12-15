@@ -1,0 +1,271 @@
+/* my/fx_grade/fx_grade.wxss */
+
+page {
+  background-color: #fefefe;
+}
+
+.warp .grade_bg {
+  width: 100%;
+  height: 300rpx;
+  padding: 40rpx 60rpx 0;
+  box-sizing: border-box;
+}
+
+.warp .grade_bg .user-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.warp .grade_bg .user-info .user-con {
+  display: flex;
+  align-items: center;
+}
+
+.warp .grade_bg .user-info .user-con .user_img {
+  width: 82rpx;
+  height: 82rpx;
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+.warp .grade_bg .user-info .user-con .user_name {
+  font-size: 32rpx;
+  color: #fff;
+  padding-left: 20rpx;
+}
+
+.warp .grade_bg .user-info .btn {
+  display: inline-block;
+  color: #825c24;
+  border-radius: 50px 50px;
+  border: 1px solid #825c24;
+  font-size: 26rpx;
+  padding: 10rpx 18rpx;
+}
+
+.warp .grade_bg .level-con {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  margin-top: 50rpx;
+}
+
+.warp .grade_bg .level-con .list {
+  width: 25%;
+  float: left;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.warp .grade_bg .level-con .list .level-icon {
+  position: relative;
+  width: 40rpx;
+  height: 20rpx;
+  line-height: 20rpx;
+  border-radius: 50px 50px;
+  background-color: #96723a;
+  padding: 6rpx 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.warp .grade_bg .level-con .list .level-icon .level {
+  font-size: 22rpx;
+  color: #fff;
+  font-weight: bold;
+}
+
+.warp .grade_bg .level-con .list .on {
+  background-color: #fff;
+}
+
+.warp .grade_bg .level-con .list .on .level {
+  color: #d6af7a;
+}
+
+.level-con .list .level-icon>image {
+  width: 40rpx;
+  height: 20rpx;
+  display: block;
+}
+
+.level-con .list .level_name {
+  font-size: 22rpx;
+  margin-top: 12rpx;
+  color: #906c34;
+}
+
+.level-con .list .progress {
+  position: absolute;
+  left: 62rpx;
+  top: 14rpx;
+  width: 98rpx;
+  height: 6rpx;
+  background-color: #906c34;
+}
+
+.level-con .list .progress>view {
+  width: 50%;
+  height: 6rpx;
+  background-color: #fff;
+  border-radius: 0 50px 50px 0;
+}
+
+.content {
+  padding: 0 28rpx 28rpx;
+  box-sizing: border-box;
+}
+
+.grade_con {
+  width: 100%;
+}
+
+.grade_con .grade_title {
+  font-size: 32rpx;
+  padding-left: 10rpx;
+  margin: 26rpx 0;
+}
+.grade_con .grade_title>text{
+  font-size: 24rpx;
+}
+
+.grade_con .grade_warp {
+  background-color: #fff;
+  border-radius: 15rpx;
+  box-shadow: 0 0 20rpx 0 rgba(190, 190, 190, 0.2);
+  font-size: 26rpx;
+  padding: 35rpx 38rpx;
+}
+
+.grade_con .grade_warp .grade_list {
+  padding-top: 30rpx;
+}
+
+.grade_con .grade_warp .grade_list:first-child {
+  padding-top: 0;
+}
+.grade_con .grade_warp .grade_list:last-child {
+  padding-bottom: 0;
+}
+
+.grade_con .grade_warp .grade_list .name {
+  margin-bottom: 60rpx;
+}
+
+.grade_warp .grade_list .progress_bar {
+  position: relative;
+  background-color: #b58f3e;
+  width: 100%;
+  height: 10rpx;
+  border-radius: 100px 100px;
+  box-shadow: 0 0 10rpx 0 rgba(181, 143, 62, 0.3)
+}
+
+.grade_warp .grade_list .progress_bar .rate {
+  position: relative;
+  background-color: #8b6d27;
+  height: 10rpx;
+  border-radius: 10px 10px;
+}
+
+.grade_warp .grade_list .progress_bar .tip {
+  position: absolute;
+  bottom: 16rpx;
+  right: -6rpx;
+  z-index: 1;
+  height: 0;
+  width: 0;
+  border-left: 8rpx solid transparent;
+  border-top: 8rpx solid #efd89a;
+  border-right: 8rpx solid transparent;
+  margin-left: -8rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.grade_warp .grade_list .progress_bar .tip>text {
+  width: auto;
+  height: 38rpx;
+  padding: 2rpx 12rpx;
+  background-color: #efd89a;
+  color: #7d5f1a;
+  border-radius: 10rpx;
+  transform: translateY(-48rpx);
+}
+
+.grade_warp .grade_list .units {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16rpx;
+  color: #aa863f;
+}
+.grade_warp .grade_list .condition {
+  text-align: center;
+  padding-top: 30rpx;
+}
+
+.fun_list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 30rpx;
+}
+
+.fun_list:last-child {
+  padding: 30rpx 0 0 0;
+  border-top: 1px solid #f8f8f8;
+}
+
+.fun_list .name {
+  font-size: 28rpx;
+}
+
+.fun_list .btn {
+  font-size: 26rpx;
+  color: #fff;
+  background: linear-gradient(to right, #cfa86d, #e9ce9b);
+  border-radius: 50px 50px;
+  padding: 12rpx 25rpx;
+  box-shadow: 0 0 20rpx 0 rgba(216, 188, 121, 0.4);
+}
+
+.grade_rule .grade_warp {
+  margin-bottom: 40rpx;
+}
+
+.grade_rule .grade_warp .rule_list .title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 28rpx;
+}
+
+.rule_list .title .title_img {
+  width: 54rpx;
+  height: 54rpx;
+}
+
+.rule_list .title text {
+  font-size: 28rpx;
+  color: #947a43;
+  margin-left: 25rpx;
+}
+
+.rule_list .info>view {
+  display: flex;
+  margin-bottom: 30rpx;
+}
+
+.rule_list .info>view .icon {
+  width: 33rpx;
+  height: 33rpx;
+  margin-right: 17rpx;
+}
+
+.rule_list .info>view .text {
+  flex: 1;
+  color: #656b71;
+  line-height: 38rpx;
+}

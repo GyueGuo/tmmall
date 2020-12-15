@@ -1,0 +1,10 @@
+<!--背景   -->
+<view class='trans' hidden='{{!isShow}}' style='opacity:{{opacity}}'></view>
+
+<view class="board {{isShow?'rise':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'>
+  <view>
+    <view class='man' catchtap='onAlbum'>相册</view>
+    <view class='woman' catchtap='onCamera'>拍照</view>
+    <view class='cancel'>取消</view>
+  </view>
+</view>

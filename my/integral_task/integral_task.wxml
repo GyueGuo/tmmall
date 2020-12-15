@@ -1,0 +1,110 @@
+<wxs module="util" src="../../utils/util.wxs" />
+
+<image src='{{adv_info.file}}' class='ad' wx:if='{{adv_info.file}}' bindtap='adv'></image>
+<view class='wrap'>
+  <view class='head' hover-class='hover-class' hover-stay-time='400' bindtap='changeAccount'>
+    <view>
+      <view class='line bg' style='{{util.diy_color("",diy_color.z_color,"")}}'></view>
+      <view>完善账户</view>
+    </view>
+    <image src="{{util.HTTP}}{{account_status?'mobile/small/image/tsczz-sl.png':'mobile/small/image/fl2_x.png'}}"></image>
+  </view>
+  <view hidden='{{!account_status}}'>
+    <view class='content'>
+      <view class='content-left'>
+        <view class='content-title'>完善个人信息</view>
+        <view class='content-info'>
+          <text>补全个人信息</text>
+          <text class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>+{{info.info.integral}}</text>积分</view>
+      </view>
+      <view class='content-right'>已完成</view>
+    </view>
+    <view class='content'>
+      <view class='content-left'>
+        <view class='content-title'>绑定手机号</view>
+        <view class='content-info'>
+          <text>绑定手机号</text>
+          <text class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>+{{info.phone.integral}}</text>积分</view>
+      </view>
+      <view class='content-right'>已绑定</view>
+    </view>
+    <view class='content'>
+      <view class='content-left'>
+        <view class='content-title'>绑定第三方社交账号</view>
+        <view class='content-info'>
+          <text>将本账号与第三方账号关联</text>
+          <text class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>+{{info.third_party.integral}}</text>积分</view>
+      </view>
+      <view class='content-right'>已绑定</view>
+    </view>
+  </view>
+</view>
+
+<view class='wrap'>
+  <view class='head' hover-class='hover-class' hover-stay-time='400' bindtap='changeShopping'>
+    <view>
+      <view class='line bg' style='{{util.diy_color("",diy_color.z_color,"")}}'></view>
+      <view>消费购物</view>
+    </view>
+    <image src="{{util.HTTP}}{{account_status?'mobile/small/image/tsczz-sl.png':'mobile/small/image/fl2_x.png'}}"></image>
+  </view>
+  <view hidden='{{!shopping_status}}'>
+    <view class='content'>
+      <view class='content-left'>
+        <view class='content-title'>购物</view>
+        <view class='content-info'>购物越多(实际支付金额),获得积分越多</view>
+      </view>
+      <view class='content-right bg' hover-class='hover-class' hover-stay-time='400' bindtap='goShopping' style='{{util.diy_color("",diy_color.z_color,"")}}'>去购物</view>
+    </view>
+  </view>
+</view>
+
+<view class='wrap'>
+  <view class='head' hover-class='hover-class' hover-stay-time='400' bindtap='changeInteract'>
+    <view>
+      <view class='line bg' style='{{util.diy_color("",diy_color.z_color,"")}}'></view>
+      <view>更多互动</view>
+    </view>
+    <image src="{{util.HTTP}}{{account_status?'mobile/small/image/tsczz-sl.png':'mobile/small/image/fl2_x.png'}}"></image>
+  </view>
+  <view hidden='{{!interact_status}}'>
+    <view class='content' wx:if='{{configSwitch.show_switch.is_sign_in==1}}'>
+      <view class='content-left'>
+        <view class='content-title'>每日签到</view>
+        <view class='content-info'>
+          <text>每日签到</text>
+          <text class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>+{{info.sign.integral}}</text>积分</view>
+      </view>
+      <view class='content-right bg' wx:if="{{info.sign.state == 0}}" hover-class='hover-class' hover-stay-time='400' bindtap='onSignin' style='{{util.diy_color("",diy_color.z_color,"")}}'>去签到</view>
+      <view class='content-right' wx:else>已签到</view>
+    </view>
+    <view class='content'>
+      <view class='content-left'>
+        <view class='content-title'>评价商品</view>
+        <view class='content-info'>
+          <text>发表1次评价</text>
+          <text class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>+{{info.evaluate.integral}}</text>积分(每日最多{{util.add(info.evaluate.integral,info.evaluate.number)}}分)</view>
+      </view>
+      <view class='content-right bg' wx:if="{{info.evaluate.state == 0}}" hover-class='hover-class' hover-stay-time='400' bindtap='onComment' style='{{util.diy_color("",diy_color.z_color,"")}}'>去评价</view>
+      <view class='content-right' wx:else>已评价</view>
+    </view>
+    <view class='content'>
+      <view class='content-left'>
+        <view class='content-title'>分享商品或活动</view>
+        <view class='content-info'>
+          <text>将链接分享到其他平台</text>
+          <text class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>+{{info.share.integral}}</text>积分(每日最多{{util.add(info.share.integral,info.share.number)}}分)</view>
+      </view>
+      <view class='content-right bg' hover-class='hover-class' hover-stay-time='400' bindtap='goShopping' style='{{util.diy_color("",diy_color.z_color,"")}}'>去分享</view>
+    </view>
+    <view class='content'>
+      <view class='content-left'>
+        <view class='content-title'>浏览广告</view>
+        <view class='content-info'>
+          <text>查看一条广告</text>
+          <text class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>+{{info.adv.integral}}</text>积分</view>
+      </view>
+      <view class='content-right bg' hover-class='hover-class' hover-stay-time='400' bindtap='onAdv' style='{{util.diy_color("",diy_color.z_color,"")}}'>去浏览</view>
+    </view>
+  </view>
+</view>

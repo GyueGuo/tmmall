@@ -1,0 +1,54 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='order-item' wx:for="{{order_list}}">
+  <view class='order-item-shop' wx:if='{{util.isShops==0}}'>
+    <view>
+      <image class='item-shop-icon' src='{{util.HTTP}}mobile/small/image/xq-dp.png'></image>
+      <view class='item-shop-name'>{{item.order_goods_refund_store.store_name}}</view>
+      <image class='item-shop-next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+    </view>
+  </view>
+  <view class='order-item-good' hover-class='hover-class' hover-stay-time='400' bindtap='onRefundDetail' data-item='{{item}}'>
+    <image src='{{item.file}}'></image>
+    <view>
+      <view class='order-item-good-info'>
+        <view class='order-item-good-name'>{{item.goods_name}}</view>
+        <view class='order-item-good-price'>￥{{item.single_price}}</view>
+      </view>
+      <view class='order-item-good-tips'>
+        <view class='order-item-good-attr'>{{item.attr}}</view>
+        <view class='order-item-good-number'>x{{item.quantity}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='order-status' wx:if="{{item.status == 5.1 || item.status == 4.2 ||item.status == 5.5}}">
+    <view style='{{util.diy_imgbox(40)}}'>
+      <image src='{{util.HTTP}}mobile/small/image/wd-pj-jtk.png' style='{{util.diy_imgcolor(diy_color.z_color,40,40)}}'></image>
+    </view>
+    <view wx:if="{{item.status == 5.1}}">仅退款 申请退款中</view>
+    <view wx:elif="{{item.status == 4.2}}">仅退款 退款成功</view>
+    <view wx:elif="{{item.status == 5.5}}">仅退款 退款失败</view>
+  </view>
+
+  <view class='order-status' wx:if="{{item.status == 5.2 || item.status == 5.3 || item.status == 5.4 || item.status == 5.6 || item.status == 5.7 || item.status == 4.3}}">
+    <view style='{{util.diy_imgbox(40)}}'>
+      <image src='{{util.HTTP}}mobile/small/image/wd-pj-thtk.png' style='{{util.diy_imgcolor(diy_color.z_color,40,40)}}'></image>
+    </view>
+    <view wx:if="{{item.status == 4.3}}">退货退款 退款成功</view>
+    <view wx:elif="{{item.status == 5.2}}">退货退款 申请退款中</view>
+    <view wx:elif="{{item.status == 5.3}}">退货退款 商家同意退货(填写物流发货)</view>
+    <view wx:elif="{{item.status == 5.4}}">退货退款 退款中</view>
+    <view wx:elif="{{item.status == 5.6}}">退货退款 退款失败</view>
+    <view wx:elif="{{item.status == 5.7}}">退货退款 退款失败</view>
+  </view>
+  <view class='order-item-operation'>
+    <view class='border-cur' hover-class='hover-class' hover-stay-time='400' bindtap='onRefundDetail' data-item='{{item}}' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>查看详情</view>
+  </view>
+</view>
+
+<view class='no-order' hidden="{{order_list.length != 0 || loading}}">
+  <view>
+    <image src='{{util.HTTP}}mobile/small/image/wd-zwdd.png'></image>
+    <view class='no-order-head'>暂无订单</view>
+    <view class='no-order-content'>"快来忙里偷闲下一单吧"</view>
+  </view>
+</view>

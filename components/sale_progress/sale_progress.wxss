@@ -1,0 +1,12 @@
+.background {
+  width: 172rpx;
+  height: 12rpx;
+  border-radius: 30rpx;
+  border: 2rpx solid #d87273;
+  overflow: hidden;
+}
+
+.background > view {
+  background: #ff8989;
+  height: 100%;
+}

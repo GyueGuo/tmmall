@@ -1,0 +1,17 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='all-good' hover-class='hover-class' hover-stay-time='400' bindtap='onSearch' data-id=''>
+  <view class='con'>
+    <view>全部商品</view>
+    <image src='{{util.HTTP}}{{"mobile/small/image/xq-gd.png"}}'></image>
+  </view>
+</view>
+
+<view class='classify-list'>
+  <view wx:for="{{list}}">
+    <view class='head'>{{item.title}}</view>
+    <view class='look-all' hover-class='hover-class' hover-stay-time='400' bindtap='onSearch' data-id='{{item.store_goods_classify_id}}'>查看全部</view>
+    <view class='list'>
+      <view wx:for="{{item.subset}}" data-id='{{item.store_goods_classify_id}}' hover-class='hover-class' hover-stay-time='400' bindtap='onSearch'>{{item.title}}</view>
+    </view>
+  </view>
+</view>

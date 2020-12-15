@@ -1,0 +1,30 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='head-wrap'>
+  <view class='head border-cur' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>
+    <view wx:for="{{tab_list}}" class="{{current_tab == index?'cur-head bg':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onTab' data-index='{{index}}' data-type='{{item.type}}' style='{{current_tab == index?util.diy_color("",diy_color.z_color,diy_color.z_color):util.diy_color("","",diy_color.z_color)}}'>{{item.title}}</view>
+  </view>
+</view>
+
+<view class='list'>
+  <view wx:for="{{list}}">
+    <view>
+      <view class='title'>{{item.describe}}</view>
+      <view class='time'>{{item.create_time}}</view>
+    </view>
+    <view class='money'>
+    <view style='{{util.diy_imgbox(22)}}'>
+      <image src="{{util.HTTP}}{{item.type==1?'mobile/small/image/wd-jf-jfmx-zc.png':'mobile/small/image/wd-jf-jfmx-sr.png'}}" style='{{item.type==1?"":util.diy_imgcolor(diy_color.z_color,22,22)}}'></image>
+    </view>
+      <text wx:if="{{item.type == 0}}" class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>+</text>
+      <text wx:else>-</text>
+      <text class="{{item.type==1?'':'cur'}}" style='{{item.type==1?"":util.diy_color(diy_color.z_color,"","")}}'>{{item.integral}}</text>
+    </view>
+  </view>
+</view>
+
+<view class='empty-view' hidden='{{list.length != 0 || loading}}'>
+  <view>
+    <image src='{{util.HTTP}}mobile/small/image/kby-zwyh.png'></image>
+    <view>暂无记录</view>
+  </view>
+</view>

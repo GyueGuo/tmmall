@@ -1,0 +1,72 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='wrap'>
+  <view class='member-wrap'>
+    <view style='background:url({{util.HTTP}}mobile/small/image/hy-shangbj.png);background-size:100% 100%;'>
+      <view class='member-head'>
+        <image src="{{info.avatar?info.avatar:util.HTTP + 'mobile/small/image/placeholder_member.png'}}"></image>
+        <!-- <view>
+          <view class='member-name'>{{info.nickname}}</view>
+          <view class='member-grade'>{{info.now.mark}}</view>
+        </view> -->
+      </view>
+      <view class='member-info'>
+        <view class='member-level'>
+          <view class='next-level' wx:if='{{info.next.rank_name!=undefined}}'>
+            <view>{{info.next.mark}}</view>
+          </view>
+          <text>{{info.now.mark}}{{info.now.rank_name}}</text>
+        </view>
+        <view class='member-levelNum'>我的成长值{{info.growth_value}}</view>
+        <view class='member-tip' hover-class='hover-class' hover-stay-time='400' bindtap='onValue' wx:if='{{info.next.rank_name!=undefined}}'>距下一等级还需{{info.next.min_points-info.growth_value}}成长值，提升成长值></view>
+        <view class='member-tip' hover-class='hover-class' hover-stay-time='400' bindtap='onValue' wx:elif='{{info.next.rank_name==undefined}}'>您已是最高等级会员</view>
+      </view>
+      <!-- <member_progress info="{{info}}" /> -->
+      <view class='privilege-head'>会员特权</view>
+      <view class='privilege-content'>
+        <view class='privilege' hover-class='hover-class' hover-stay-time='400' bindtap='onMemberPrice'>
+          <view class='title'>
+            <text class='tit'>会员专享价</text>
+          </view>
+          <view class='tips'>
+            <text>会员权益</text>
+            <text class='ps'>(会员购物更优惠)</text>
+          </view>
+        </view>
+        <view class='privilege-icon'>
+          <image src='{{util.HTTP}}mobile/small/image/mym01.png'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<image src='{{util.HTTP}}mobile/small/image/pic39.png' class='rule-img'></image>
+
+<view class='level-one' wx:for="{{info.rank_list}}" wx:key='{{index}}'>
+  <image src='{{util.HTTP}}mobile/small/image/hy-ctbj.png'></image>
+  <view>
+    <image src='{{item.file2}}'></image>
+    <view>
+      <view class='level-head'>{{item.rank_name}}</view>
+      <block wx:if='{{index==0}}'>
+        <view class='level-content'>新注册未购买用户</view>
+      </block>
+      <block wx:elif='{{index!=0}}'>
+        <view class='level-content'>成长值≥{{item.min_points}}</view>
+      </block>
+    </view>
+  </view>
+</view>
+
+<!-- <scroll-view scroll-x class='level-other'>
+  <view class='level-others' wx:for="{{info.rank_list}}">
+    <image src='{{util.HTTP}}mobile/small/image/hy-xbj.png'></image>
+    <view>
+      <view>
+        <view class='other-head'>{{item.rank_name}}</view>
+        <view class='other-content'>成长值{{item.min_points}}-{{item.max_points}}</view>
+      </view>
+      <image src='{{item.file2}}'></image>
+    </view>
+  </view>
+</scroll-view> -->

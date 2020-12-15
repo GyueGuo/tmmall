@@ -1,0 +1,137 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='growth-head'>
+  <image src='{{util.HTTP}}mobile/small/image/tsczz-bj.png'></image>
+  <view class='growth-value'>{{info.growth_value}}</view>
+  <!-- <view class='growth-time'>
+    <text>成长值计算周期: </text>
+    <text class='cur'>{{info.date.start}}</text>
+    <text>至</text>
+    <text class='cur'>{{info.date.end}}</text>
+  </view> -->
+</view>
+
+<image src='{{util.HTTP}}mobile/small/image/tsczz-bt.png' class='growth-logo'></image>
+
+<view class='wrap' style='margin-top:0'>
+  <view class='head' hover-class='hover-class' hover-stay-time='400' bindtap='changeAccount'>
+    <view>
+      <view class='line bg'></view>
+      <view>完善账户</view>
+    </view>
+    <image src="{{util.HTTP}}{{account_status?'mobile/small/image/fl2_x.png':'mobile/small/image/tsczz-sl.png'}}"></image>
+  </view>
+  <view hidden='{{!account_status}}'>
+    <view class='content'>
+      <view class='content-left'>
+        <view class='content-title'>完善个人信息</view>
+        <view class='content-info'>
+          <text>补全个人信息</text>
+          <text class='cur'>+{{info.result.info.growth}}</text>成长值</view>
+      </view>
+      <view class='content-right'>已完成</view>
+    </view>
+    <view class='content'>
+      <view class='content-left'>
+        <view class='content-title'>绑定手机号</view>
+        <view class='content-info'>
+          <text>绑定手机号</text>
+          <text class='cur'>+{{info.result.phone.growth}}</text>成长值</view>
+      </view>
+      <view class='content-right'>已绑定</view>
+    </view>
+    <view class='content'>
+      <view class='content-left'>
+        <view class='content-title'>绑定第三方社交账号</view>
+        <view class='content-info'>
+          <text>将本账号与第三方账号管理</text>
+          <text class='cur'>+{{info.result.third_party.growth}}</text>成长值</view>
+      </view>
+      <view class='content-right'>已绑定</view>
+    </view>
+  </view>
+</view>
+
+<view class='wrap'>
+  <view class='head' hover-class='hover-class' hover-stay-time='400' bindtap='changeShopping'>
+    <view>
+      <view class='line bg'></view>
+      <view>消费购物</view>
+    </view>
+    <image src="{{util.HTTP}}{{shopping_status?'mobile/small/image/fl2_x.png':'mobile/small/image/tsczz-sl.png'}}"></image>
+  </view>
+  <view hidden='{{!shopping_status}}'>
+    <view class='content'>
+      <view class='content-left'>
+        <view class='content-title'>购物</view>
+        <view class='content-info'>购物越多(实际支付金额),获得成长值越多</view>
+      </view>
+      <view class='content-right bg' hover-class='hover-class' hover-stay-time='400' bindtap='goShopping'>去购物</view>
+    </view>
+    <!-- <view class='content'>
+      <view class='content-left'>
+        <view class='content-title'>每月购物3天</view>
+        <view class='content-info'>
+          <text class='cur'>+{{info.result.monthly_shopping.growth}}</text>成长值</view>
+      </view>
+      <view class='content-right bg' hover-class='hover-class' hover-stay-time='400' bindtap='goShopping'>去购物</view>
+    </view>
+    <view class='content'>
+      <view class='content-left'>
+        <view class='content-title'>购物年限</view>
+        <view class='content-info'>
+          <text>每年</text>
+          <text class='cur'>+{{info.result.age_limit.growth}}</text>成长值</view>
+      </view>
+      <view class='content-right bg' hover-class='hover-class' hover-stay-time='400' bindtap='goShopping'>去购物</view>
+    </view> -->
+  </view>
+</view>
+
+<view class='wrap'>
+  <view class='head' hover-class='hover-class' hover-stay-time='400' bindtap='changeInteract'>
+    <view>
+      <view class='line bg'></view>
+      <view>更多互动</view>
+    </view>
+    <image src="{{util.HTTP}}{{interact_status?'mobile/small/image/fl2_x.png':'mobile/small/image/tsczz-sl.png'}}"></image>
+  </view>
+  <view hidden='{{!interact_status}}'>
+
+    <view class='content'>
+      <view class='content-left'>
+        <view class='content-title'>评价商品</view>
+        <view class='content-info'>
+          <text>发表1次评价</text>
+          <text class='cur'>+{{info.result.evaluate_number.growth}}</text>成长值(每日最多奖励{{info.result.evaluate_number.number}}成长值)</view>
+      </view>
+      <view class='content-right bg' hover-class='hover-class' hover-stay-time='400' bindtap='goCommenting'>去评价</view>
+    </view>
+    <view class='content'>
+      <view class='content-left'>
+        <view class='content-title'>分享商品或活动</view>
+        <view class='content-info'>
+          <text>将链接分享到其他平台</text>
+          <text class='cur'>+{{info.result.growth_share.growth}}</text>成长值(每日最多奖励{{info.result.growth_share.number}}成长值)</view>
+      </view>
+      <view class='content-right bg' hover-class='hover-class' hover-stay-time='400' bindtap='goShopping'>去分享</view>
+    </view>
+    <view class='content'>
+      <view class='content-left'>
+        <view class='content-title'>浏览广告</view>
+        <view class='content-info'>
+          <text>查看一条广告</text>
+          <text class='cur'>+{{info.result.growth_adv.growth}}</text>成长值</view>
+      </view>
+      <view class='content-right bg' hover-class='hover-class' hover-stay-time='400' bindtap='goView'>去浏览</view>
+    </view>
+    <view class='content'>
+      <view class='content-left'>
+        <view class='content-title'>使用余额支付</view>
+        <view class='content-info'>
+          <text>支付1次</text>
+          <text class='cur'>+{{info.result.growth_balance.growth}}</text>成长值(每日最多奖励{{info.result.growth_balance.number}}成长值)</view>
+      </view>
+      <view class='content-right bg' hover-class='hover-class' hover-stay-time='400' bindtap='goShopping'>去使用</view>
+    </view>
+  </view>
+</view>

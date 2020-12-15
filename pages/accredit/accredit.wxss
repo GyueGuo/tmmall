@@ -1,0 +1,44 @@
+page {
+  background: white;
+}
+button[disabled] {
+    color: #fff !important;
+}
+
+.logo {
+  width: 194rpx;
+  height: 194rpx;
+  padding-top: 194rpx;
+  display: block;
+  margin: 0 auto;
+}
+
+.head {
+  width: 100%;
+  padding: 0 50rpx;
+  box-sizing: border-box;
+  font-size: 30rpx;
+  line-height: 50rpx;
+  font-weight: bold;
+  margin-top: 100rpx;
+  text-align: center;
+}
+
+.subhead {
+  font-size: 28rpx;
+  line-height: 27rpx;
+  margin-top: 20rpx;
+  color: #6b6b6b;
+  text-align: center;
+}
+
+.submit{
+  width:612rpx;
+  height: 76rpx;
+  font-size: 32rpx;
+  line-height: 76rpx;
+  text-align: center;
+  margin-top: 90rpx;
+  border-radius: 10rpx;
+  color: white;
+}

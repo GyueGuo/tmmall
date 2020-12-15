@@ -1,0 +1,7 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='bg' wx:if="{{show}}">
+  <image src="{{util.HTTP}}mobile/small/image/store_enter.png"></image>
+  <view class='wrap'>
+    <view hover-class='hover-class' hover-stay-time='400' bindtap='settle'>立即入驻</view>
+  </view>
+</view>

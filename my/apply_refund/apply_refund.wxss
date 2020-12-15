@@ -1,0 +1,150 @@
+.good-wrap {
+  background: white;
+  padding: 10rpx 24rpx;
+  overflow: hidden;
+  margin-bottom: 16rpx;
+}
+
+.good-wrap > image {
+  width: 180rpx;
+  height: 180rpx;
+  float: left;
+}
+
+.good-wrap > view {
+  float: left;
+  width: 490rpx;
+  margin-left: 26rpx;
+}
+
+.good-wrap .good-name {
+  font-size: 28rpx;
+  height: 72rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  margin-top: 4rpx;
+}
+
+.good-wrap .good-attr {
+  font-size: 26rpx;
+  color: #8d8d8d;
+  margin-top: 14rpx;
+}
+
+.reason, .price, .state {
+  width: 100%;
+  height: 100rpx;
+  background: white;
+  font-size: 28rpx;
+  line-height: 100rpx;
+  overflow: hidden;
+}
+
+.state .state-head {
+  float: left;
+  margin-left: 24rpx;
+}
+
+.state .state-content {
+  float: right;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+}
+
+.state .state-content > view {
+  width: 148rpx;
+  line-height: 52rpx;
+  text-align: center;
+  border-radius: 8rpx;
+  margin-right: 20rpx;
+  border: 1px solid #f0f0f0;
+}
+
+.reason > view {
+  float: left;
+  margin-left: 24rpx;
+}
+
+.reason input {
+  width: 550rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  float: left;
+  font-size: 28rpx;
+  margin-left: 24rpx;
+}
+
+.price {
+  margin-top: 16rpx;
+}
+
+.price >  view {
+  float: left;
+  margin-left: 24rpx;
+}
+
+.price input {
+  font-size: 28rpx;
+  line-height: 100rpx;
+  height: 100rpx;
+}
+
+.tip {
+  font-size: 26rpx;
+  color: #8d8d8d;
+  line-height: 84rpx;
+  padding-left: 26rpx;
+}
+
+.upload-wrap {
+  background: white;
+  padding-left: 24rpx;
+  padding-bottom: 40rpx;
+}
+
+.upload-wrap .head {
+  font-size: 28rpx;
+  line-height: 86rpx;
+}
+
+.upload-wrap .pic-list {
+  overflow: hidden;
+}
+
+.upload-wrap .pic-list > view {
+  width: 168rpx;
+  height: 168rpx;
+  margin-right: 28rpx;
+  position: relative;
+  float: left;
+  padding-right: 20rpx;
+  padding-top: 20rpx;
+}
+
+.upload-wrap .pic-list .pic {
+  width: 100%;
+  height: 100%;
+}
+
+.upload-wrap .pic-list .delete {
+  width: 42rpx;
+  height: 42rpx;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.bg {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  font-size: 34rpx;
+  line-height: 100rpx;
+  text-align: center;
+  width: 100%;
+  color: white;
+}

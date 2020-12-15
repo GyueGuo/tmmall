@@ -1,0 +1,16 @@
+<!--my/bank_details/bank_details.wxml-->
+<wxs module="util" src="../../utils/util.wxs" />
+<view class="list">
+  <view class="item">
+    <view class="list_info">
+      <view class="bank_title">{{card_details.card_remark}}</view>
+      <view class="bank_number">**** **** **** {{card_details.card_number_enc}}</view>
+    </view>
+    <image class="list_bg" src="{{util.HTTP}}mobile/small/image/bank/1.png"></image>
+  </view>
+</view>
+<view class="submit">
+  <button bindtap="card_del" hover-class='hover-class' hover-stay-time='400' style='{{util.diy_color("",diy_color.z_color,"")}}'>
+    <view>解绑银行卡</view>
+  </button>
+</view>

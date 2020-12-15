@@ -1,0 +1,279 @@
+
+var emoji = [{
+  name: '[微笑]',
+  url: 'mobile/small/image/emoji-icon/0.png'
+}, {
+  name: '[撇嘴]',
+  url: 'mobile/small/image/emoji-icon/1.png'
+}, {
+  name: '[色]',
+  url: 'mobile/small/image/emoji-icon/2.png'
+}, {
+  name: '[发呆]',
+  url: 'mobile/small/image/emoji-icon/3.png'
+}, {
+  name: '[得意]',
+  url: 'mobile/small/image/emoji-icon/4.png'
+}, {
+  name: '[流泪]',
+  url: 'mobile/small/image/emoji-icon/5.png'
+}, {
+  name: '[害羞]',
+  url: 'mobile/small/image/emoji-icon/6.png'
+}, {
+  name: '[闭嘴]',
+  url: 'mobile/small/image/emoji-icon/7.png'
+}, {
+  name: '[睡]',
+  url: 'mobile/small/image/emoji-icon/8.png'
+}, {
+  name: '[大哭]',
+  url: 'mobile/small/image/emoji-icon/9.png'
+}, {
+  name: '[尴尬]',
+  url: 'mobile/small/image/emoji-icon/10.png'
+}, {
+  name: '[发怒]',
+  url: 'mobile/small/image/emoji-icon/11.png'
+}, {
+  name: '[调皮]',
+  url: 'mobile/small/image/emoji-icon/12.png'
+}, {
+  name: '[呲牙]',
+  url: 'mobile/small/image/emoji-icon/13.png'
+}, {
+  name: '[惊讶]',
+  url: 'mobile/small/image/emoji-icon/14.png'
+}, {
+  name: '[难过]',
+  url: 'mobile/small/image/emoji-icon/15.png'
+}, {
+  name: '[囧]',
+  url: 'mobile/small/image/emoji-icon/16.png'
+}, {
+  name: '[抓狂]',
+  url: 'mobile/small/image/emoji-icon/17.png'
+}, {
+  name: '[吐]',
+  url: 'mobile/small/image/emoji-icon/18.png'
+}, {
+  name: '[偷笑]',
+  url: 'mobile/small/image/emoji-icon/19.png'
+}, {
+  name: '[愉快]',
+  url: 'mobile/small/image/emoji-icon/20.png'
+}, {
+  name: '[白眼]',
+  url: 'mobile/small/image/emoji-icon/21.png'
+}, {
+  name: '[傲慢]',
+  url: 'mobile/small/image/emoji-icon/22.png'
+}, {
+  name: '[困]',
+  url: 'mobile/small/image/emoji-icon/23.png'
+}, {
+  name: '[惊恐]',
+  url: 'mobile/small/image/emoji-icon/24.png'
+}, {
+  name: '[流汗]',
+  url: 'mobile/small/image/emoji-icon/25.png'
+}, {
+  name: '[憨笑]',
+  url: 'mobile/small/image/emoji-icon/26.png'
+}, {
+  name: '[悠闲]',
+  url: 'mobile/small/image/emoji-icon/27.png'
+}, {
+  name: '[奋斗]',
+  url: 'mobile/small/image/emoji-icon/28.png'
+}, {
+  name: '[咒骂]',
+  url: 'mobile/small/image/emoji-icon/29.png'
+}, {
+  name: '[疑问]',
+  url: 'mobile/small/image/emoji-icon/30.png'
+}, {
+  name: '[嘘]',
+  url: 'mobile/small/image/emoji-icon/31.png'
+}, {
+  name: '[晕]',
+  url: 'mobile/small/image/emoji-icon/32.png'
+}, {
+  name: '[衰]',
+  url: 'mobile/small/image/emoji-icon/33.png'
+}, {
+  name: '[骷髅]',
+  url: 'mobile/small/image/emoji-icon/34.png'
+}, {
+  name: '[敲打]',
+  url: 'mobile/small/image/emoji-icon/35.png'
+}, {
+  name: '[再见]',
+  url: 'mobile/small/image/emoji-icon/36.png'
+}, {
+  name: '[擦汗]',
+  url: 'mobile/small/image/emoji-icon/37.png'
+}, {
+  name: '[抠鼻]',
+  url: 'mobile/small/image/emoji-icon/38.png'
+}, {
+  name: '[鼓掌]',
+  url: 'mobile/small/image/emoji-icon/39.png'
+}, {
+  name: '[坏笑]',
+  url: 'mobile/small/image/emoji-icon/40.png'
+}, {
+  name: '[左哼哼]',
+  url: 'mobile/small/image/emoji-icon/41.png'
+}, {
+  name: '[右哼哼]',
+  url: 'mobile/small/image/emoji-icon/42.png'
+}, {
+  name: '[哈欠]',
+  url: 'mobile/small/image/emoji-icon/43.png'
+}, {
+  name: '[鄙视]',
+  url: 'mobile/small/image/emoji-icon/44.png'
+}, {
+  name: '[委屈]',
+  url: 'mobile/small/image/emoji-icon/45.png'
+}, {
+  name: '[快哭了]',
+  url: 'mobile/small/image/emoji-icon/46.png'
+}, {
+  name: '[阴险]',
+  url: 'mobile/small/image/emoji-icon/47.png'
+}, {
+  name: '[亲亲]',
+  url: 'mobile/small/image/emoji-icon/48.png'
+}, {
+  name: '[可怜]',
+  url: 'mobile/small/image/emoji-icon/49.png'
+}, {
+  name: '[菜刀]',
+  url: 'mobile/small/image/emoji-icon/50.png'
+}, {
+  name: '[西瓜]',
+  url: 'mobile/small/image/emoji-icon/51.png'
+}, {
+  name: '[啤酒]',
+  url: 'mobile/small/image/emoji-icon/52.png'
+}, {
+  name: '[咖啡]',
+  url: 'mobile/small/image/emoji-icon/53.png'
+}, {
+  name: '[猪头]',
+  url: 'mobile/small/image/emoji-icon/54.png'
+}, {
+  name: '[玫瑰]',
+  url: 'mobile/small/image/emoji-icon/55.png'
+}, {
+  name: '[凋谢]',
+  url: 'mobile/small/image/emoji-icon/56.png'
+}, {
+  name: '[嘴唇]',
+  url: 'mobile/small/image/emoji-icon/57.png'
+}, {
+  name: '[爱心]',
+  url: 'mobile/small/image/emoji-icon/58.png'
+}, {
+  name: '[心碎]',
+  url: 'mobile/small/image/emoji-icon/59.png'
+}, {
+  name: '[蛋糕]',
+  url: 'mobile/small/image/emoji-icon/60.png'
+}, {
+  name: '[炸弹]',
+  url: 'mobile/small/image/emoji-icon/61.png'
+}, {
+  name: '[便便]',
+  url: 'mobile/small/image/emoji-icon/62.png'
+}, {
+  name: '[月亮]',
+  url: 'mobile/small/image/emoji-icon/63.png'
+}, {
+  name: '[太阳]',
+  url: 'mobile/small/image/emoji-icon/64.png'
+}, {
+  name: '[拥抱]',
+  url: 'mobile/small/image/emoji-icon/65.png'
+}, {
+  name: '[强]',
+  url: 'mobile/small/image/emoji-icon/66.png'
+}, {
+  name: '[弱]',
+  url: 'mobile/small/image/emoji-icon/67.png'
+}, {
+  name: '[握手]',
+  url: 'mobile/small/image/emoji-icon/68.png'
+}, {
+  name: '[胜利]',
+  url: 'mobile/small/image/emoji-icon/69.png'
+}, {
+  name: '[抱拳]',
+  url: 'mobile/small/image/emoji-icon/70.png'
+}, {
+  name: '[勾引]',
+  url: 'mobile/small/image/emoji-icon/71.png'
+}, {
+  name: '[拳头]',
+  url: 'mobile/small/image/emoji-icon/72.png'
+}, {
+  name: '[OK]',
+  url: 'mobile/small/image/emoji-icon/73.png'
+}, {
+  name: '[跳跳]',
+  url: 'mobile/small/image/emoji-icon/74.png'
+}, {
+  name: '[发抖]',
+  url: 'mobile/small/image/emoji-icon/75.png'
+}, {
+  name: '[怄火]',
+  url: 'mobile/small/image/emoji-icon/76.png'
+}, {
+  name: '[转圈]',
+  url: 'mobile/small/image/emoji-icon/77.png'
+}, {
+  name: '[笑脸]',
+  url: 'mobile/small/image/emoji-icon/78.png'
+}, {
+  name: '[生病]',
+  url: 'mobile/small/image/emoji-icon/79.png'
+}, {
+  name: '[破涕为笑]',
+  url: 'mobile/small/image/emoji-icon/80.png'
+}, {
+  name: '[吐舌]',
+  url: 'mobile/small/image/emoji-icon/81.png'
+}, {
+  name: '[脸红]',
+  url: 'mobile/small/image/emoji-icon/82.png'
+}, {
+  name: '[恐惧]',
+  url: 'mobile/small/image/emoji-icon/83.png'
+}, {
+  name: '[失望]',
+  url: 'mobile/small/image/emoji-icon/84.png'
+}, {
+  name: '[无语]',
+  url: 'mobile/small/image/emoji-icon/85.png'
+}, {
+  name: '[嘿哈]',
+  url: 'mobile/small/image/emoji-icon/86.png'
+}, {
+  name: '[捂脸]',
+  url: 'mobile/small/image/emoji-icon/87.png'
+}, {
+  name: '[奸笑]',
+  url: 'mobile/small/image/emoji-icon/88.png'
+}, {
+  name: '[机智]',
+  url: 'mobile/small/image/emoji-icon/89.png'
+}, {
+  name: '[皱眉]',
+  url: 'mobile/small/image/emoji-icon/90.png'
+}]
+
+module.exports = {
+  emoji: emoji,
+}

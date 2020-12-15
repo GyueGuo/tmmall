@@ -1,0 +1,47 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view hidden='{{list.length == 0}}'>
+  <image class="wrap-bg" src="{{util.HTTP}}{{'mobile/small/sy-xrzx-xybjt.png'}}"></image>
+
+  <view class='rule' hover-class='hover-class' hover-stay-time='400' bindtap='onRule'>
+    <view class='vertical' />
+    <view class='cur'>活动规则</view>
+  </view>
+
+  <view class='gift-bag'>
+    <view class='gift-head'>
+      <image src='{{util.HTTP}}{{"mobile/small/image/hb-s.png"}}'></image>
+      <view>/ 您有一个大礼包未领取 /</view>
+    </view>
+    <view class='gift-content'>
+      <scroll-view scroll-y class='gift-scroll'>
+        <view class='gift-item' wx:for="{{list}}">
+          <view>
+            <text class='unit cur'>￥</text>
+            <text class='price cur'>{{util.integer(item.actual_price)}}</text>
+            <view>
+              <view class='cur gift-classify'>全品类</view>
+              <view class='gift-range'>满
+                <text class='cur'>{{util.integer(item.full_subtraction_price)}}元</text>可用
+              </view>
+            </view>
+          </view>
+          <image src='{{util.HTTP}}{{"mobile/small/image/xrzx-db.png"}}'></image>
+        </view>
+      </scroll-view>
+      <view class='key-get' hover-class='hover-class' hover-stay-time='400' bindtap='getAll'>一键领取</view>
+    </view>
+  </view>
+
+
+  <view class='rule-board' hidden='{{!show}}' hover-class='hover-class' hover-stay-time='400' bindtap='close'>
+    <view catchtap='none'>
+      <view class='rule-title'>活动规则</view>
+      <scroll-view style='height:680rpx;' scroll-y>
+        <view class="wxParse">
+          <Parser html='{{web_content}}' bindparse='parse' />
+        </view>
+      </scroll-view>
+      <image src='{{util.HTTP}}{{"mobile/small/image/pgxq-x.png"}}' hover-class='hover-class' hover-stay-time='400' bindtap='close'></image>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "choose_address": "/components/choose_address/choose_address"
+  }
+}

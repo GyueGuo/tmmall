@@ -1,0 +1,23 @@
+<!--my/fx_change_record/fx_change_record.wxml-->
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='warp'>
+  <view class='list' wx:for='{{list}}' wx:key='{{index}}'>
+    <view class='time'>{{item.change_time}}</view>
+    <view class='detils'>
+      <view class='type' hidden='{{item.change_type!=1}}'>您成功升级</view>
+      <view class='type' hidden='{{item.change_type!=2}}'>可惜哦</view>
+      <view class='info'>
+        <image src='{{util.HTTP}}mobile/small/image/fx/sjjl-s.png' hidden='{{item.change_type!=1}}'></image>
+        <image src='{{util.HTTP}}mobile/small/image/fx/tx-j.png' hidden='{{item.change_type!=2}}'></image>
+        <view>{{item.record_content}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class='no-order' hidden="{{list.length != 0 || loading}}">
+    <view>
+      <image src='{{util.HTTP}}mobile/small/image/wd-zwdd.png'></image>
+      <view class='no-order-head'>暂无记录</view>
+    </view>
+  </view>
+</view>

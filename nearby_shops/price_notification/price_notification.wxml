@@ -1,0 +1,13 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='title'>一旦此商品在3个月内降价,您将收到系统消息及手机推送消息</view>
+<view class='current-price'>
+  <text>当前价格: </text>
+  <text class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥{{price}}</text>
+</view>
+
+<view class='expect-price'>
+  <text>期望价格: ￥</text>
+  <input type='digit' placeholder='低于此价会通知您' bindinput='priceInput' value='{{expect_price}}'></input>
+</view>
+
+<view class='confirm bg' hover-class='hover-class' hover-stay-time='400' bindtap='submit' style='{{util.diy_color("",diy_color.z_color,"")}}'>确定</view>

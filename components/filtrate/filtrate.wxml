@@ -1,0 +1,37 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<!--背景   -->
+<view class='trans' hidden='{{!isShow}}' style='opacity:{{opacity}}'></view>
+<!--筛选  -->
+<view class="board filtrate-board {{isShow?'filtrate-board-anim':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='closeTrans' style="left:{{move_distance}}rpx !important">
+  <view class='content' catchtap='none' bindtouchstart='filtrateStart' bindtouchmove='filtrateMove' bindtouchend='filtrateEnd'>
+    <view style='overflow:auto;height:100%'>
+      <view>
+        <view class='filtrate-item'>
+          <view class='filtrate-title'>通用筛选</view>
+          <view class='filtrate-content'>
+            <view hover-class='hover-class' hover-stay-time='400' bindtap='onCityWide' class="{{city_wide?'cur':''}}" style='{{city_wide?util.diy_color(diy_color.z_color,diy_color.f_color,diy_color.z_color):""}}' wx:if='{{configSwitch.show_switch.is_city==1}}'>同城配送</view>
+            <view hover-class='hover-class' hover-stay-time='400' bindtap='onStore' class="{{store?'cur':''}}" style='{{store?util.diy_color(diy_color.z_color,diy_color.f_color,diy_color.z_color):""}}' wx:if='{{configSwitch.show_switch.is_shop==1}}'>门店自提</view>
+            <!-- <view hover-class='hover-class' hover-stay-time='400' bindtap='onExemption' class="{{exemption?'cur':''}}" style='{{exemption?util.diy_color(diy_color.z_color,diy_color.f_color,diy_color.z_color):""}}'>包邮</view> -->
+            <view hover-class='hover-class' hover-stay-time='400' bindtap='onPlatform' wx:if='{{util.isShops==0&&configSwitch.version_info.one_more==1}}' class="{{platform?'cur':''}}" style='{{platform?util.diy_color(diy_color.z_color,diy_color.f_color,diy_color.z_color):""}}'>平台自营</view>
+            <view hover-class='hover-class' hover-stay-time='400' bindtap='onIndividual' wx:if='{{util.isShops==0&&configSwitch.version_info.one_more==1}}' class="{{individual?'cur':''}}" style='{{individual?util.diy_color(diy_color.z_color,diy_color.f_color,diy_color.z_color):""}}'>个人店铺</view>
+            <view hover-class='hover-class' hover-stay-time='400' bindtap='onBusinesses' wx:if='{{util.isShops==0&&configSwitch.version_info.one_more==1}}' class="{{businesses?'cur':''}}" style='{{businesses?util.diy_color(diy_color.z_color,diy_color.f_color,diy_color.z_color):""}}'>企业店铺</view>
+            <view hover-class='hover-class' hover-stay-time='400' bindtap='onStock' class="{{is_stock?'cur':''}}" style='{{is_stock?util.diy_color(diy_color.z_color,diy_color.f_color,diy_color.z_color):""}}'>仅显示有货</view>
+          </view>
+        </view>
+        <view class='filtrate-item'>
+          <view class='filtrate-title'>价格区间(元)</view>
+          <view class='filtrate-price'>
+            <input placeholder='最低价' bindinput='minInput' type='number' value='{{min_price}}'></input>
+            <view class='line'></view>
+            <input placeholder='最高价' bindinput='maxInput' type='number' value='{{max_price}}'></input>
+          </view>
+        </view>
+        <view class='block'></view>
+      </view>
+    </view>
+    <view class='footer'>
+      <view catchtap='onFiltrateReset'>重置</view>
+      <view catchtap='onFiltrateConfirm' style='{{util.diy_color("",diy_color.z_color,"")}}'>确定</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,89 @@
+<!--nearby_shops/invoice_detail/invoice_detail.wxml-->
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='warp'>
+  <view class='logistics' wx:if='{{invoice_info.invoice_open_type==0}}'>
+    <view class='info' style='border:none;'>
+      <image class='icon' src='{{util.HTTP}}mobile/small/image/invoice_icon2.png'></image>
+      <view class='title'>电子发票</view>
+      <view class='logistics_pic btn' hover-class='hover-class' hover-stay-time='400' bindtap='copylink' wx:if='{{invoice_info.billing_type!=0}}'>复制链接</view>
+    </view>
+  </view>
+  <view class='logistics' wx:else>
+    <view class='info'>
+      <image class='icon' src='{{util.HTTP}}mobile/small/image/invoice_icon2.png'></image>
+      <view class='title'>开具发票</view>
+      <view class='logistics_pic btn' hover-class='hover-class' hover-stay-time='400' bindtap='logistics' wx:if='{{invoice_info.billing_type!=0&&invoice_info.invoice_open_type==1}}'>查看物流</view>
+      <!-- <view class='logistics_pic btn' hover-class='hover-class' hover-stay-time='400' bindtap='copylink' wx:elif='{{invoice_info.billing_type!=0&&invoice_info.invoice_open_type==0}}'>下载发票</view> -->
+      <!-- <view class='logistics_pic'>运费：0元</view> -->
+    </view>
+    <!-- <view class='btn_con'>
+      <text class='btn' hover-class='hover-class' hover-stay-time='400' bindtap='logistics'>查看物流</text>
+    </view> -->
+  </view>
+  <view class='invoice_con'>
+    <view class='section'>
+      <view class='row'>
+        <view class='title'>发票类型：</view>
+        <view class='text' wx:if='{{invoice_info.invoice_type==0}}'>普通发票</view>
+        <view class='text' wx:elif='{{invoice_info.invoice_type==1}}'>增值税专用发票</view>
+        <text class='invoice_type' style='{{util.diy_color(diy_color.z_color,diy_color.f_color_2,"")}}' wx:if='{{invoice_info.billing_type==1&&(invoice_info.status!=6||invoice_info.status!=0)}}'>已开票</text>
+        <text class='invoice_type' style='{{util.diy_color(diy_color.z_color,diy_color.f_color_2,"")}}' wx:elif='{{invoice_info.billing_type==2&&(invoice_info.status!=6||invoice_info.status!=0)}}'>已冲红</text>
+        <text class='invoice_type' wx:elif='{{invoice_info.billing_type==0&&(invoice_info.status!=6&&invoice_info.status!=0)}}'>开票中</text>
+        <text class='invoice_type' wx:elif='{{invoice_info.billing_type==0&&invoice_info.status==6}}'>未开票</text>
+      </view>
+      <view class='row'>
+        <view class='title'>发票抬头：</view>
+        <view class='text'>{{invoice_info.rise_name}}</view>
+      </view>
+      <view class='row'>
+        <view class='title'>发票内容：</view>
+        <view class='text'>{{invoice_info.detail_type}}</view>
+      </view>
+      <view class='row' wx:if='{{invoice_info.taxer_number!=""}}'>
+        <view class='title'>纳税人识别号：</view>
+        <view class='text'>{{invoice_info.taxer_number}}</view>
+      </view>
+      <view class='row' wx:if='{{invoice_info.invoice_type==1}}'>
+        <view class='title'>注册地址</view>
+        <view class='text'>{{invoice_info.address}}</view>
+      </view>
+      <view class='row' wx:if='{{invoice_info.invoice_type==1}}'>
+        <view class='title'>注册电话</view>
+        <view class='text'>{{invoice_info.phone}}</view>
+      </view>
+      <view class='row' wx:if='{{invoice_info.invoice_type==1}}'>
+        <view class='title'>开户银行</view>
+        <view class='text'>{{invoice_info.bank}}</view>
+      </view>
+      <view class='row' wx:if='{{invoice_info.invoice_type==1}}'>
+        <view class='title'>开户账号</view>
+        <view class='text'>{{invoice_info.account}}</view>
+      </view>
+      <!-- <view class='row' wx:if='{{invoice_info.invoice_code==null}}'>
+        <view class='title'>发票代码：</view>
+        <view class='text'>{{invoice_info.invoice_code==null?'开票中':invoice_info.invoice_code}}</view>
+      </view>
+      <view class='row'>
+        <view class='title'>开具商家：</view>
+        <view class='text'>{{invoice_info.store.store_name}}</view>
+      </view>
+      <view class='row'>
+        <view class='title'>发票金额：</view>
+        <view class='text'>{{invoice_info.amount}}</view>
+      </view> -->
+    </view>
+    <view class='section'>
+      <view class='row'>
+        <view class='title'>下单编号：</view>
+        <view class='text'>{{invoice_info.order_attach_number}}</view>
+      </view>
+      <view class='row'>
+        <view class='title'>下单时间：</view>
+        <view class='text'>{{invoice_info.create_time}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='submit' wx:if='{{status==0}}' style='{{util.diy_color("",diy_color.z_color,"")}}' hover-class='hover-class' hover-stay-time='400' bindtap='submit'>修改发票</view>
+</view>
+<!-- 发票 -->
+<popup id="popup" bind:confirmWay="popup_invoice" bind:refresh="refresh_invoice" invoice='{{invoice}}' />

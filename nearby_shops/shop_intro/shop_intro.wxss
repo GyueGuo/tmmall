@@ -1,0 +1,103 @@
+.shop-intro {
+  width: 100%;
+  height: 160rpx;
+  padding-left: 24rpx;
+  background: white;
+  display: flex;
+  align-items: center;
+}
+
+.shop-intro > image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.shop-intro > view {
+  margin-left: 20rpx;
+}
+
+.shop-intro .shop-name {
+  font-size: 30rpx;
+  line-height: 30rpx;
+}
+
+.shop-intro .shop-attention {
+  font-size: 24rpx;
+  line-height: 24rpx;
+  color: #808589;
+  margin-top: 20rpx;
+}
+
+.shop-operation, .shop-info {
+  background: white;
+  padding-left: 20rpx;
+  margin-top: 16rpx;
+}
+
+.shop-operation > view, button {
+  width: 100%;
+  height: 92rpx;
+  border-bottom: 2rpx solid #f0f0f0;
+  position: relative;
+}
+
+.shop-operation .operation-title {
+  font-size: 28rpx;
+  line-height: 92rpx;
+  text-align: left;
+}
+
+.shop-operation .operation-icon {
+  width: 42rpx;
+  height: 42rpx;
+  position: absolute;
+  top: 50%;
+  margin-top: -21rpx;
+  right: 34rpx;
+}
+
+.shop-info > view {
+  width: 100%;
+  /* height: 92rpx; */
+  border-bottom: 2rpx solid #f0f0f0;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.shop-info .info-title {
+  font-size: 28rpx;
+  line-height: 92rpx;
+  float: left;
+}
+
+.shop-info .info-content {
+  font-size: 28rpx;
+  line-height: 92rpx;
+  float: left;
+  margin-left: 46rpx;
+  color: #8a8a8a;
+  width: 400rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.shop-info .info-content-i {
+  font-size: 28rpx;
+  line-height: 50rpx;
+  float: left;
+  margin-left: 46rpx;
+  color: #8a8a8a;
+  flex: 1;
+  padding: 20rpx 20rpx 20rpx 0;
+}
+
+.shop-info .info-icon {
+  width: 42rpx;
+  height: 42rpx;
+  position: absolute;
+  top: 50%;
+  margin-top: -21rpx;
+  right: 34rpx;
+}

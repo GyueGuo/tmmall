@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "确认订单",
+  "usingComponents": {
+    "pay_way": "/components/pay_way/pay_way",
+    "popup": "/components/popup/popup",
+    "confirm_coupon": "/components/confirm_coupon/confirm_coupon",
+    "confirm_packet":"/components/confirm_packet/confirm_packet",
+    "change_num": "/components/change_num/change_num",
+    "select_self_pick": "/components/select_self_pick/select_self_pick",
+    "modal": "/components/modal/modal"
+  }
+}

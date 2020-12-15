@@ -1,0 +1,134 @@
+.search-head {
+  width: 100%;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18rpx;
+  box-sizing: border-box;
+}
+
+.search-head .search-bg {
+  flex: 1;
+  height: 62rpx;
+  display: flex;
+  align-items: center;
+  padding-left: 20rpx;
+  background: #fff;
+}
+
+.search-head .search-bg image {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.search-head .search-bg view {
+  margin-left: 24rpx;
+  font-size: 28rpx;
+  color: #8d8d8d;
+}
+
+.search-head .after-sale-order {
+  font-size: 30rpx;
+  line-height: 88rpx;
+  width: 164rpx;
+  text-align: center;
+  color: #8d8d8d;
+}
+
+.tab-view {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  height: 80rpx;
+  background: white;
+}
+
+.tab-view > view {
+  flex: 1;
+  width: 20%;
+  text-align: center;
+  line-height: 74rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-view > view view {
+  font-size: 28rpx;
+  position: relative;
+  border-bottom: 4rpx solid #fff;
+}
+
+/* .tab-view .cur::after {
+  width: 100%;
+  height: 4rpx;
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background: #f20230;
+} */
+
+.head {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  background: #f6f6f6;
+}
+
+.order-list {
+  margin-top: 170rpx;
+  height: calc(100vh - 170rpx);
+}
+
+.no-order {
+  margin-top: 170rpx;
+  height: calc(100vh - 170rpx);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-order > view {
+  width: 100%;
+}
+
+.no-order image {
+  width: 100%;
+  height: 260rpx;
+}
+
+.no-order .no-order-head {
+  font-size: 30rpx;
+  text-align: center;
+}
+
+.no-order .no-order-content {
+  font-size: 26rpx;
+  color: #8d8d8d;
+  text-align: center;
+  margin-top: 10rpx;
+}
+.order-item .order-item-good > view {
+  margin-left: 0;
+}
+
+.order-item .order-item-good .file {
+  width: 150rpx;
+  height: 150rpx;
+  float: left;
+}
+
+.order-item .order-item-good .file image {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.order-item .order-item-good .info {
+  float: left;
+  width: 525rpx;
+  margin-left: 24rpx;
+}

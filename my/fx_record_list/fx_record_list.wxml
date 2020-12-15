@@ -1,0 +1,33 @@
+<!--my/fx_record_list/fx_record_list.wxml-->
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='container'>
+  <scroll-view scroll-y style='height:100%;' bindscrolltolower="loadMore" bindscroll="scroll" scroll-top="{{scroll_top}}" scroll-with-animation>
+    <view class='list' wx:for='{{list}}' wx:key='index'>
+      <view class='list_t'>
+        <view class='number'>订单编号：{{item.withdraw_number}}</view>
+        <view class='type'>
+          <image class='type_img' wx:if='{{item.distribution_type==2}}' src='{{util.HTTP}}mobile/small/image/fx/txjl-wx.png'></image>
+          <image class='type_img' wx:elif='{{item.distribution_type==1}}' src='{{util.HTTP}}mobile/small/image/fx/txjl-qb.png'></image>
+          <image class='type_img' wx:elif='{{item.distribution_type==3}}' src='{{util.HTTP}}mobile/small/image/fx/txjl-yhk.png'></image>
+          <text class='type_title' wx:if='{{item.status==0}}'>提现中</text>
+          <text class='type_title succeed' wx:elif='{{item.status==1}}'>成功</text>
+          <text class='type_title defeated ' wx:elif='{{item.status==2}}'>失败</text>
+        </view>
+      </view>
+      <view class='list_b'>
+        <view class='time'>{{item.apply_time}}</view>
+        <view class='price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+          <text>+</text>
+          <text>{{item.price}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class='no-order' hidden="{{list.length != 0 || loading}}">
+        <view>
+          <image src='{{util.HTTP}}mobile/small/image/kby-zwshjl.png'></image>
+          <view class='no-order-head'>暂无记录</view>
+        </view>
+      </view>
+  </scroll-view>
+</view>

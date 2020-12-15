@@ -1,0 +1,48 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view hidden='{{city_list.length == 0}}'>
+
+  <view class='search'>
+    <view class='search-bg'>
+      <view class='font_family icon-ssk-ss search-icon'></view>
+      <input confirm-type="search" placeholder='请输入自提点名称/所在地' value='{{search_key}}' bindinput='searchInput' bindconfirm='onSearch' placeholder-style='color:#bdbfc1;'></input>
+      <view class='font_family icon-shanchu- clear' hover-class='hover-class' hover-stay-time='400' bindtap='onClearKey'></view>
+    </view>
+    <view class='search-title' hover-class='hover-class' hover-stay-time='400' bindtap='onSearch'>搜索</view>
+  </view>
+
+  <view class='head'>
+    <view class='head-title'>自提点</view>
+    <picker mode="selector" range="{{city_list}}" range-key="area_name" bindchange="changeArea">
+      <view class='head-area'>
+        <view class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>{{area}}</view>
+        <view style='{{util.diy_imgbox(16)}}transform:translateY(-2px);'>
+          <image src='{{util.HTTP}}mobile/small/image/xl.png' style='{{util.diy_imgcolor(diy_color.z_color,16,8)}}transform:translateX(-15px);'></image>
+        </view>
+      </view>
+    </picker>
+
+  </view>
+
+  <view class='no-order' hidden="{{list.length != 0 || loading}}">
+    <view>
+      <image src='{{util.HTTP}}mobile/small/image/zwsp.png'></image>
+      <view class='no-order-head'>暂无自提点</view>
+    </view>
+  </view>
+
+  <view class='pickup-wrap' wx:for="{{list}}">
+    <view class='pickup-name'>
+      <view>{{item.take_name}}</view>
+      <view>{{item.contacts_phone}}</view>
+    </view>
+    <view class='pickup-tip'>
+      <image src='{{util.HTTP}}mobile/small/image/xq-zt-sj.png'></image>
+      <view class='time'>{{item.start_hours}}-{{item.end_hours}}</view>
+      <view class='distance' style='{{util.diy_color("",diy_color.z_color,"")}}'>{{item.distance}}km</view>
+    </view>
+    <view class='pickup-address'>
+      <image src='{{util.HTTP}}mobile/small/image/xq-zt-dw.png'></image>
+      <view>{{item.address}}</view>
+    </view>
+  </view>
+</view>

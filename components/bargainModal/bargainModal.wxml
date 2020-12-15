@@ -1,0 +1,18 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='board' catchtouchmove='none' hidden='{{!show}}'>
+  <view>
+    <image class='avatar' src='{{avatar}}'></image>
+    <view class='close' style='{{util.diy_imgbox(80)}}'>
+      <image src='{{util.HTTP}}mobile/small/image/pgxq-x.png' hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard' style='{{util.diy_imgcolor(diy_color.z_color,80,80)}}'></image>
+    </view>
+    <view class='bargain-info'>
+      <text>砍掉了</text>
+      <text class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥{{price}}</text>
+    </view>
+    <image class='logo' src='{{util.HTTP}}{{"mobile/small/image/kj-tc.png"}}'></image>
+    <form report-submit='true' bindsubmit='formId'>
+      <button class='know' hover-class='hover-class' hover-stay-time='400' formType="submit" bindtap='closeBoard' style='{{util.diy_color("",diy_color.z_color,"")}}'>我知道了</button>
+    </form>
+    <!-- <view class='know' hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard' style='{{util.diy_color("",diy_color.z_color,"")}}'>我知道了</view> -->
+  </view>
+</view>

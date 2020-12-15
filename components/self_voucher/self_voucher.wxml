@@ -1,0 +1,37 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class="board" hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard' hidden='{{!isShow}}' catchtouchmove='none'>
+  <view catchtap='none'>
+    <view class='voucher-head'>
+      <view class='head-left'>
+        <image src='{{util.HTTP}}{{"mobile/small/image/ddxq-ztpz-zt.png"}}'></image>
+        <view>自提订单提货凭证</view>
+      </view>
+      <image src='{{util.HTTP}}{{"mobile/small/image/ddxq-ztpz-gb.png"}}' hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'></image>
+    </view>
+    <view class='voucher-content'>
+
+      <canvas canvas-id="barcode" class='bar-code' />
+      <view>提货码:{{info.take_code}}</view>
+      <canvas canvas-id="qrcode" class='qr-code' />
+    </view>
+    <image class='cut-line' src='{{util.HTTP}}{{"mobile/small/image/ddxq-ztpz-bj-2.png"}}'></image>
+    <view class='voucher-info'>
+      <view>
+        <text class='title'>自提门店: </text>
+        <text>{{info.take_address}}</text>
+      </view>
+      <!-- <view>
+        <text class='title'>自提时间: </text>
+        <text>2017年06月25日 09:15-09:30</text>
+      </view> -->
+      <view>
+        <text class='title'>商品信息: </text>
+        <text>特别好吃的大西瓜大南瓜不甜不要钱啊 等3件商品</text>
+      </view>
+      <view>
+        <text class='title'>实付金额: </text>
+        <text>{{info.subtotal_price}}元</text>
+      </view>
+    </view>
+  </view>
+</view>

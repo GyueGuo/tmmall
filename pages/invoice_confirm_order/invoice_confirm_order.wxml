@@ -1,0 +1,79 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view hidden='{{info == undefined}}'>
+  <scroll-view scroll-y style='height:100vh'>
+    <view class='wrap'>
+      <view class='address' hover-class='hover-class' hover-stay-time='400' bindtap='chooseAddress' wx:if="{{address != null}}">
+        <view>
+          <view class='address-head'>
+            <view class='address-receiver'>收货人:{{address.name}}</view>
+            <view class='address-phone'>{{address.phone}}</view>
+          </view>
+          <view class='address-detail'>收货地址:{{address.province}}{{address.city}}{{address.area}}{{address.street}}{{address.address}}</view>
+          <image class='next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+        </view>
+      </view>
+      <view class='no-address' hover-class='hover-class' hover-stay-time='400' bindtap='chooseAddress' wx:else>
+        <image src='{{util.HTTP}}mobile/small/image/shdz-tjshdz.png'></image>
+        <view>添加收货地址</view>
+      </view>
+
+      <image class='bottom' src='{{util.HTTP}}mobile/small/image/qrsd-xf.png'></image>
+
+      <view class='pay-way' hover-class='hover-class' hover-stay-time='400' bindtap='onPayWay'>
+        <view>支付方式</view>
+        <view>{{pay_way}}</view>
+        <image src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
+      </view>
+
+      <view class='order-detail'>
+        <view class='shop'>
+          <image src='{{store.logo}}'></image>
+          <text>{{store.store_name}}</text>
+        </view>
+        <view class='good-detail'>
+          <view class='good-info'>
+            <image src='{{info.file}}'></image>
+            <view>
+              <view class='good-name'>{{info.goods_name}}</view>
+              <!-- <view class='good-attr'>{{info.attr}}</view> -->
+            </view>
+          </view>
+        </view>
+
+        <view class='detail-operation'>
+          <view class='operation'>
+            <view class='left'>运费</view>
+            <view class='right'>
+              <text>￥{{freight}}</text>
+            </view>
+          </view>
+          <view class='detail-message'>
+            <view class='left'>买家留言:</view>
+            <input placeholder='选填:填写内容已和卖家协商确定' bindinput='messageInput' data-index='{{index}}'></input>
+          </view>
+
+          <view class='operation'>
+            <view class='right'>
+              <text>共1件商品 小计:</text>
+              <text class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥{{util.toFixed(total)}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class='footer'>
+    <view class='bg submit' hover-class='hover-class' hover-stay-time='400' bindtap='confirmOrder' style='{{util.diy_color("",diy_color.z_color,"")}}'>提交订单</view>
+    <view>
+      <text class='content'>合计:</text>
+      <text class='price cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥{{util.toFixed(total)}}</text>
+    </view>
+  </view>
+</view>
+
+<pay_way id="pay_way" bind:confirmWay="confirmWay" />
+
+<select_self_pick id="self_pick" bind:selectPick="selectPick" />
+
+<modal content="您还没有收货地址,现在去添加收货地址吗?" id="modal" bind:confirm="chooseAddress" />

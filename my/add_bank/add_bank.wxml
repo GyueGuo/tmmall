@@ -1,0 +1,20 @@
+<!--my/add_bank/add_bank.wxml-->
+<wxs module="util" src="../../utils/util.wxs" />
+<view class="item">
+  <view class="item-title">开户银行</view>
+  <input placeholder="请输入开户银行" maxlength="20" type="text" bindinput="bankName"></input>
+</view>
+<view class="item">
+  <view class="item-title">持卡人姓名</view>
+  <input placeholder="请输入持卡人姓名" maxlength="10" type="text" bindinput="bankUserName"></input>
+</view>
+<view class="item">
+  <view class="item-title">银行卡号</view>
+  <input placeholder="请输入银行卡号" maxlength="20" type="number" bindinput="bankNumber"></input>
+</view>
+
+<view class="submit">
+  <button bindtap="submit" hover-class='hover-class' hover-stay-time='400' style='{{util.diy_color("",diy_color.z_color,"")}}'>
+    <view>提交</view>
+  </button>
+</view>

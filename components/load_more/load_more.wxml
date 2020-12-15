@@ -1,0 +1,5 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='wrap' hidden='{{!showing}}'>
+  <image src='{{util.HTTP}}mobile/small/image/xcx-jz.png'></image>
+  <view>加载中...</view>
+</view>

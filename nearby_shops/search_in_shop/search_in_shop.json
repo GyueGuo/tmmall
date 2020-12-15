@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "店铺搜索",
+  "usingComponents": {
+    "cart": "/components/cart/cart",
+    "go_top": "/components/go_top/go_top",
+    "good_list":"/components/good_list/good_list",
+    "buy": "/components/buy/buy"
+  }
+}

@@ -1,0 +1,9 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='wrap'>
+  <canvas canvas-id='back' class='canvas'></canvas>
+  <image class='arc' src='{{arc}}'></image>
+  <view class='percent' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+    <view>已抢</view>
+    <view>{{util.integer(percent)}}%</view>
+  </view>
+</view>

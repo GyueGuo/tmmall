@@ -1,0 +1,93 @@
+/* my/fx_record_list/fx_record_list.wxss */
+page{
+  width: 100%;
+  height: 100%;
+}
+.container{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.list{
+  background-color: #fff;
+  padding: 0rpx 34rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.list .list_t{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+  padding-top: 36rpx;
+}
+.list .list_t .number{
+  font-size: 28rpx;
+}
+.list .list_t .type{
+  display: flex;
+  align-items: center;
+}
+.list .list_t .type .type_img{
+  width: 40rpx;
+  height: 40rpx;
+}
+.list .list_t .type .type_title{
+  font-size: 26rpx;
+  padding-left: 7rpx;
+  color: #9ea3a9;
+}
+.list .list_t .type .succeed{
+  color: #04ae04;
+}
+.list .list_t .type .defeated{
+  color: #f23030;
+}
+
+.list .list_b{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 36rpx;
+  border-bottom: 1px solid #f6f6f6;
+}
+.list .list_b .time{
+  font-size: 24rpx;
+  color: #70767b;
+}
+.list .list_b .price{
+  font-size: 24rpx;
+  color: #f23030;
+}
+.list .list_b .price>text{
+  font-size: 33rpx;
+}
+
+.no-order {
+  height: calc(100vh - 300rpx);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-order > view {
+  width: 100%;
+}
+
+.no-order image {
+  width: 100%;
+  height: 260rpx;
+}
+
+.no-order .no-order-head {
+  font-size: 32rpx;
+  text-align: center;
+}
+
+.no-order .no-order-content {
+  font-size: 26rpx;
+  color: #8d8d8d;
+  text-align: center;
+  margin-top: 10rpx;
+}

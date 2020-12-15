@@ -1,0 +1,75 @@
+/* nearby_shops/invoice_info/invoice_info.wxss */
+
+page {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+.warp{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.section {
+  padding: 0 20rpx 20rpx;
+}
+
+.row .title {
+  font-size: 28rpx;
+  margin: 25rpx 0;
+  font-weight: bold;
+}
+
+.row .btn-con {
+  display: flex;
+}
+
+.row .btn-con>text {
+  font-size: 24rpx;
+  border: 1px solid #e5e5e5;
+  padding: 16rpx 34rpx;
+  margin-right: 22rpx;
+  border-radius: 8rpx;
+}
+
+.row>input {
+  background-color: #f9f9f9;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  padding: 14rpx 26rpx;
+  margin-top: 24rpx;
+}
+
+.row .info {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ececec;
+  padding: 15rpx 0;
+}
+
+.row .info .name {
+  font-size: 24rpx;
+  flex-shrink: 0;
+}
+
+.row .info>input {
+  font-size: 24rpx;
+  flex: 1;
+  padding: 0 20rpx 0 30rpx;
+}
+.section>.tip{
+  margin-top: 14rpx;
+  font-size: 22rpx;
+  color: #7a7f84;
+}
+
+.submit {
+  font-size: 30rpx;
+  color: #fff;
+  padding: 35rpx 0;
+  text-align: center;
+  margin-top: 100rpx;
+}

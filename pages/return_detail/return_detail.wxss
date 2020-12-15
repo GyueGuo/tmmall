@@ -1,0 +1,259 @@
+.detail-wrap {
+  padding-bottom: 120rpx;
+}
+
+.head {
+  height: 146rpx;
+  color: white;
+  padding-top: 60rpx;
+}
+
+.head .title {
+  font-size: 32rpx;
+  line-height: 32rpx;
+  margin-left: 50rpx;
+}
+
+.head .content {
+  font-size: 26rpx;
+  line-height: 26rpx;
+  margin-top: 26rpx;
+  margin-left: 50rpx;
+}
+
+.address-wrap {
+  padding-left: 24rpx;
+  background: white;
+}
+
+.address {
+  display: flex;
+  align-items: center;
+  padding-bottom: 20rpx;
+  border-bottom: 2rpx solid #f5f5f5;
+}
+
+.address > image {
+  width: 32rpx;
+  height: 40rpx;
+}
+
+.address > view {
+  width: 650rpx;
+  margin-left: 20rpx;
+}
+
+.address .consignee {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 30rpx;
+  line-height: 28rpx;
+  margin-top: 34rpx;
+}
+
+.address .address-detail {
+  font-size: 28rpx;
+  margin-top: 10rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.logistics > view {
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.logistics .launched {
+  font-size: 30rpx;
+  line-height: 90rpx;
+  margin-left: 24rpx;
+  border-bottom: 2rpx solid #f6f6f6;
+}
+
+.logistics .circle {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 50%;
+  background: #8d8d8d;
+}
+
+.logistics .logistics-tip {
+  font-size: 26rpx;
+  color: #8d8d8d;
+  margin-left: 30rpx;
+}
+
+.logistics-operation {
+  justify-content: flex-end;
+  height: 128rpx;
+}
+
+.logistics-operation > view {
+  font-size: 28rpx;
+  line-height: 72rpx;
+  padding: 0 38rpx;
+  border: 2rpx solid #f0f0f0;
+  border-radius: 8rpx;
+  margin-right: 24rpx;
+}
+
+.refund-info {
+  margin-top: 16rpx;
+  background: white;
+}
+
+.refund-info .refund-head {
+  font-size: 30rpx;
+  line-height: 100rpx;
+  padding-left: 24rpx;
+}
+
+.good-wrap {
+  background: #fafafa;
+  padding: 10rpx 24rpx;
+  overflow: hidden;
+}
+
+.good-wrap > image {
+  width: 180rpx;
+  height: 180rpx;
+  float: left;
+}
+
+.good-wrap > view {
+  float: left;
+  width: 490rpx;
+  margin-left: 26rpx;
+}
+
+.good-wrap .good-name {
+  font-size: 28rpx;
+  height: 72rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  margin-top: 4rpx;
+}
+
+.good-wrap .good-attr {
+  font-size: 26rpx;
+  color: #8d8d8d;
+  margin-top: 14rpx;
+}
+
+.refund-detail {
+  background: white;
+  padding: 32rpx 0 8rpx 24rpx;
+}
+
+.refund-detail > view {
+  font-size: 28rpx;
+  color: #8d8d8d;
+  line-height: 28rpx;
+  margin-bottom: 24rpx;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  width: 100%;
+  height: 100rpx;
+  overflow: hidden;
+  background: white;
+}
+
+.footer > button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100rpx;
+}
+
+.footer > button image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.footer > button view {
+  font-size: 28rpx;
+  margin-left: 10rpx;
+}
+
+.refund-way {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 28rpx;
+  line-height: 90rpx;
+  padding: 0 26rpx;
+  background: white;
+}
+
+.return-logistics {
+  padding: 36rpx 24rpx;
+  margin-top: 18rpx;
+  background: white;
+}
+
+.return-logistics .return-head {
+  display: flex;
+}
+
+.return-logistics .return-head image {
+  flex-shrink: 0;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.return-logistics .return-head .logistics-company {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.return-logistics .logistics-info {
+  font-size: 28rpx;
+  margin-top: 10rpx;
+  color: #525255;
+}
+
+.return-logistics .logistics-time {
+  font-size: 26rpx;
+  margin-top: 10rpx;
+  color: #8d8d8d;
+}
+
+.refuse {
+  padding: 36rpx 24rpx;
+  background: white;
+}
+
+.refuse-title {
+  font-size: 28rpx;
+}
+
+.refuse-reason {
+  height: 500rpx;
+  padding: 30rpx;
+  font-size: 26rpx;
+  background: #fafafa;
+  color: #6b7177;
+}
+
+.change-apply {
+  width: 680rpx;
+  font-size: 30rpx;
+  line-height: 80rpx;
+  margin: 50rpx auto;
+  text-align: center;
+}

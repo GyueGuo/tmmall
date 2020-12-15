@@ -1,0 +1,40 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<!--背景   -->
+<view class='trans' hidden='{{!isShow}}' style='opacity:{{opacity}}'></view>
+
+<view class='board' hover-class='hover-class' hover-stay-time='400' bindtap='_closeBoard' animation="{{animation}}">
+  <view catchtap='none'>
+    <view class='head'>
+      <view>选择自提门店</view>
+      <image src='{{util.HTTP}}mobile/small/image/xq-gb.png' hover-class='hover-class' hover-stay-time='400' bindtap='_closeBoard'></image>
+    </view>
+    <view class='nearby-pick'>
+      <view class='nearby-title'>附近自提点</view>
+    </view>
+    <scroll-view scroll-y class='pickup-list'>
+      <view class='pickup-item' wx:for="{{list}}" hover-class='hover-class' hover-stay-time='400' bindtap='selectPick' data-id='{{item.take_id}}' data-item='{{item}}'>
+        <view class='select-img'>
+          <view class='font_family imager {{id == item.take_id?"icon-syt-gx1":"icon-syt-gx"}}' style='{{id == item.take_id?util.diy_color(diy_color.z_color,"",""):""}}'></view>
+        </view>
+        <view class='pickup-info'>
+          <view>
+            <view class='pickup-name'>
+              <view>{{item.take_name}}自提点</view>
+              <view>{{item.contacts_phone}}</view>
+            </view>
+            <view class='pickup-tip'>
+              <image src='{{util.HTTP}}mobile/small/image/xq-zt-sj.png'></image>
+              <view class='time'>{{item.start_hours}}-{{item.end_hours}}</view>
+            </view>
+            <view class='pickup-address'>
+              <image src='{{util.HTTP}}mobile/small/image/xq-zt-dw.png'></image>
+              <view>{{item.province}}{{item.city}}{{item.area}}{{item.address}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='no-list' hidden='{{list.length != 0}}'>暂无自提门店</view>
+    </scroll-view>
+    <view class='finish' hover-class='hover-class' hover-stay-time='400' bindtap='confirmSelect' style='{{util.diy_color("",diy_color.z_color,"")}}'>完成</view>
+  </view>
+</view>

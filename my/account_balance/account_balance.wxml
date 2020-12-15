@@ -1,0 +1,12 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='balance'>
+  <image src='{{util.HTTP}}mobile/small/image/wd-zhye-sy.png'></image>
+  <view>
+    <view class='balance-title'>账户余额(元)</view>
+    <view class='balance-money'>{{balance}}</view>
+    <view class='balance-tip'>金额可用于线上或线下门店购物时支付</view>
+    <image src='{{util.HTTP}}mobile/small/image/yejl.png' hover-class='hover-class' hover-stay-time='400' bindtap='onRecord'></image>
+  </view>
+</view>
+
+<view class='charge' hover-class='hover-class' hover-stay-time='400' bindtap='chargeNow' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>立即充值</view>

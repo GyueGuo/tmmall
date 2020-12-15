@@ -1,0 +1,6 @@
+<view wx:for="{{list}}">
+  <view class='title'>{{item.prefix}}</view>
+  <view class='content'>
+    <view wx:for="{{item.list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onExpress' data-item='{{item}}'>{{item.name}}</view>
+  </view>
+</view>

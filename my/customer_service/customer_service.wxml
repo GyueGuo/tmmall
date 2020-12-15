@@ -1,0 +1,15 @@
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='wrap'>
+  <view class='do' hover-class='hover-class' hover-stay-time='400' bindtap='callPhone'>
+    <view>客服热线</view>
+    <view class='right'>{{configSwitch.app_info.contact}}</view>
+  </view>
+  <!-- <view class='do' hover-class='hover-class' hover-stay-time='400' bindtap='service_pt'>
+    <view>在线客服</view>
+    <image src='{{util.HTTP}}{{"mobile/small/image/xq-gd.png"}}'></image>
+  </view> -->
+  <!-- <button class='do' hover-class='none' open-type='contact'>
+    <view>在线客服</view>
+    <image src='{{util.HTTP}}{{"mobile/small/image/xq-gd.png"}}'></image>
+  </button> -->
+</view>

@@ -1,0 +1,58 @@
+page {
+  background: white;
+}
+
+.psw {
+  position: relative;
+  width: 646rpx;
+  height: 100rpx;
+  margin: 80rpx auto 0;
+  display: flex;
+  align-items: center;
+  border-radius: 6rpx;
+  background: #f8f8f8;
+}
+
+.psw>image {
+  width: 38rpx;
+  height: 38rpx;
+  margin-left: 50rpx;
+  flex-shrink: 0;
+}
+
+.psw input {
+  flex: 1;
+  height: 100rpx;
+  font-size: 28rpx;
+  line-height: 100rpx;
+  margin-left: 30rpx;
+}
+
+.finish {
+  width: 646rpx;
+  font-size: 30rpx;
+  line-height: 88rpx;
+  border-radius: 6rpx;
+  text-align: center;
+  margin: 50rpx auto 0;
+  color: white;
+  background: #d8d5d5;
+}
+.pswBtn{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  width: 100rpx;
+  height: 100%;
+  flex-shrink: 0;
+}
+.pswBtn>image{
+  width: 40rpx;
+  height: 38rpx;
+}
+.tip{
+  width:646rpx;
+  margin: 20rpx auto 0;
+  font-size: 24rpx;
+  color: #ccc;
+}

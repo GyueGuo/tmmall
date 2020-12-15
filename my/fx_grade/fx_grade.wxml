@@ -1,0 +1,137 @@
+<!--my/fx_grade/fx_grade.wxml-->
+<wxs module="util" src="../../utils/util.wxs" />
+<view class='warp'>
+  <view class='grade_bg' style='background: url({{util.HTTP}}mobile/small/image/fx/wddj-bj.png) no-repeat;background-size:100% 100%;'>
+    <view class='user-info'>
+      <view class='user-con'>
+        <image class='user_img' src='{{data.avatar}}'></image>
+        <view class='user_name'>{{data.nickname}}</view>
+      </view>
+      <view class='btn' hover-class='hover-class' hover-stay-time='400' bindtap='gorecord'>升降级记录</view>
+    </view>
+    <view class='level-con'>
+      <view class='list' wx:for='{{level}}'>
+        <view class='level-icon {{level_index>=index?"on":""}}'>
+          <text class='level'>{{item.level}}</text>
+          <view class='progress' hidden='{{level.length-1==index}}'>
+            <view hidden='{{level_index<index}}' style='{{index!=level_index?"width:100%":""}}'></view>
+          </view>
+        </view>
+        <text class='level_name' style='{{level_index>=index?"color:#fff;":""}}'>{{item.level_title}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='content'>
+    <view class='grade_con grade_statistics' wx:if='{{level[rule_index].upgrade_total_order_sum!=0&&levelList[rule_index].upgrade_total_order_num!=0&&levelList[rule_index].upgrade_total_brokerage!=0&&levelList[rule_index].upgrade_direct_next_num!=0&&levelList[rule_index].upgrade_next_num!=0}}'>
+      <view class='grade_title' style='margin-top:0;'>代言统计
+        <text>{{levelList[rule_index].upgrade_relation==1?'(全部满足才可晋级)':'(满足其一即可晋级)'}}</text>
+      </view>
+      <view class='grade_warp'>
+        <view class='grade_list' wx:if='{{level[rule_index].upgrade_total_order_sum!=0}}'>
+          <view class='name'>订单总金额</view>
+          <view class='progress_bar'>
+            <view class='rate' style='width:{{util.oPercent(levelList[rule_index].upgrade_total_order_sum,info.cycle_up_order_sum)}}%'>
+              <view class='tip'>
+                <text>{{info.cycle_up_order_sum}}</text>
+              </view>
+            </view>
+          </view>
+          <view class='units'>
+            <view class='start'>0</view>
+            <view class='end'>{{levelList[rule_index].upgrade_total_order_sum}}</view>
+          </view>
+        </view>
+        <view class='grade_list' wx:if='{{levelList[rule_index].upgrade_total_order_num!=0}}'>
+          <view class='name'>订单笔数</view>
+          <view class='progress_bar'>
+            <view class='rate' style='width:{{util.oPercent(levelList[rule_index].upgrade_total_order_num,info.cycle_up_order_num)}}%'>
+              <view class='tip'>
+                <text>{{info.cycle_up_order_num}}</text>
+              </view>
+            </view>
+          </view>
+          <view class='units'>
+            <view class='start'>0</view>
+            <view class='end'>{{levelList[rule_index].upgrade_total_order_num}}</view>
+          </view>
+        </view>
+        <view class='grade_list' wx:if='{{levelList[rule_index].upgrade_total_brokerage!=0}}'>
+          <view class='name'>佣金总金额</view>
+          <view class='progress_bar'>
+            <view class='rate' style='width:{{util.oPercent(levelList[rule_index].upgrade_total_brokerage,info.cycle_up_brokerage)}}%'>
+              <view class='tip'>
+                <text>{{info.cycle_up_brokerage}}</text>
+              </view>
+            </view>
+          </view>
+          <view class='units'>
+            <view class='start'>0</view>
+            <view class='end'>{{levelList[rule_index].upgrade_total_brokerage}}</view>
+          </view>
+        </view>
+        <view class='grade_list' wx:if='{{levelList[rule_index].upgrade_direct_next_num!=0}}'>
+          <view class='name'>直属下级分销商数量</view>
+          <view class='progress_bar'>
+            <view class='rate' style='width:{{util.oPercent(levelList[rule_index].upgrade_direct_next_num,info.cycle_up_referrer_num)}}%'>
+              <view class='tip'>
+                <text>{{info.cycle_up_referrer_num}}</text>
+              </view>
+            </view>
+          </view>
+          <view class='units'>
+            <view class='start'>0</view>
+            <view class='end'>{{levelList[rule_index].upgrade_direct_next_num}}</view>
+          </view>
+        </view>
+        <view class='grade_list' wx:if='{{levelList[rule_index].upgrade_next_num!=0}}'>
+          <view class='name'>下级分销商数量</view>
+          <view class='progress_bar'>
+            <view class='rate' style='width:{{util.oPercent(levelList[rule_index].upgrade_next_num,info.cycle_up_relation_num)}}%'>
+              <view class='tip'>
+                <text>{{info.cycle_up_relation_num}}</text>
+              </view>
+            </view>
+          </view>
+          <view class='units'>
+            <view class='start'>0</view>
+            <view class='end'>{{levelList[rule_index].upgrade_next_num}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='grade_con grade_fun'>
+      <view class='grade_title'>代言宝典</view>
+      <view class='grade_warp'>
+        <view class='fun_list'>
+          <view class='name'>邀请粉丝加入</view>
+          <view class='btn' hover-class='hover-class' hover-stay-time='400' bindtap='goYq'>去邀请</view>
+        </view>
+        <view class='fun_list'>
+          <view class='name'>购买更多宝贝</view>
+          <view class='btn' hover-class='hover-class' hover-stay-time='400' bindtap='goShop'>去购买</view>
+        </view>
+      </view>
+    </view>
+    <view class='grade_con grade_rule'>
+      <view class='grade_title'>代言规则</view>
+      <view class='grade_warp' wx:for='{{levelList}}'>
+        <view class='rule_list'>
+          <view class='title'>
+            <image class='title_img' src='{{item.mark_alias}}'></image>
+            <text>{{item.level_title}}</text>
+          </view>
+          <view class='info'>
+            <view class='up'>
+              <image class='icon' src='{{util.HTTP}}mobile/small/image/fx/wddj-s.png'></image>
+              <view class='text'>{{item.upgrade_rule}}</view>
+            </view>
+            <view class='down'>
+              <image class='icon' src='{{util.HTTP}}mobile/small/image/fx/wddj-xia.png'></image>
+              <view class='text'>{{item.down_rule}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
