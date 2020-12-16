@@ -30,12 +30,11 @@ App({
     this.updateManager() // 系统更新
     this.checkClipBoard();
   },
-  onHide() {
-  },
+  onHide() {},
   // 口令红包
   checkClipBoard() {
     wx.getClipboardData({
-      success: ({ res }) {
+      success: ({ res }) => {
         console.log(res); 
       },
     })
