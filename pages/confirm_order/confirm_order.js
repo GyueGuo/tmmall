@@ -54,7 +54,7 @@ Page({
     info.goods_name = decodeURIComponent(info.goods_name)
     info.store_name = decodeURIComponent(info.store_name)
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       configSwitch: app.globalData.configSwitch,
       info: info,
       first: false,

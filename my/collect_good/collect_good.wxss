@@ -33,11 +33,6 @@
   border-top: 8rpx solid transparent;
 }
 
-.collect-list {
-  /* margin-top: 10rpx;
-  padding-top: 80rpx; */
-}
-
 .collect-list > view {
   display: flex;
   justify-content: center;

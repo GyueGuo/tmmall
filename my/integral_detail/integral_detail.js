@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tab_list: [{
+    tabList: [{
       title: '全部',
       type: ''
     }, {
@@ -16,7 +16,7 @@ Page({
       title: '支出',
       type: 1
     }],
-    current_tab: 0,
+    currentTab: 0,
     type: '',
     page: 1,
     total: '',
@@ -28,7 +28,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -82,7 +82,7 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.integral_detail, {
+    http.post(app.globalData.integralDetail, {
       type: this.data.type,
       page: this.data.page
     }).then(res => {
@@ -104,7 +104,7 @@ Page({
    */
   onTab(e) {
     this.setData({
-      current_tab: e.currentTarget.dataset.index,
+      currentTab: e.currentTarget.dataset.index,
       type: e.currentTarget.dataset.type,
       page: 1
     })

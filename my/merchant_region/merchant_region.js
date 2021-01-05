@@ -26,7 +26,7 @@ Page({
         popupIdx: options.popupIdx
       })
     }
-    obj.diy_color = app.globalData.diy_color
+    obj.diyColor = app.globalData.diyColor
     this.setData(obj)
     this.getProvince()
     // if (options.data){

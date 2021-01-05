@@ -1,4 +1,3 @@
-// nearby_shops/invoice_over/invoice_over.js
 const app = getApp();
 const http = require('../../utils/http.js');
 Page({
@@ -7,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    diy_color: app.globalData.diy_color,
+    diyColor: app.globalData.diyColor,
   },
 
   /**

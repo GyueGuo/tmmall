@@ -1,4 +1,3 @@
-// nearby_shops/invoice_info/invoice_info.js
 const app = getApp();
 const http = require('../../utils/http.js');
 Page({
@@ -7,9 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    diy_color: app.globalData.diy_color,
+    diyColor: app.globalData.diyColor,
     //发票类型
-    invoice_con: [{
+    invoiceCon: [{
       name: '电子普通发票',
       type: '1'
     }, {
@@ -19,9 +18,9 @@ Page({
       name: '增值税专用发票',
       type: '3'
     }],
-    invoice_type: '1',
+    invoiceType: '1',
     //发票抬头
-    rise_con: [{
+    riseCon: [{
       name: '个人或事业单位',
       type: '1'
     }, {
@@ -30,15 +29,15 @@ Page({
     }],
     rise: '1',
     //发票内容
-    detail_con: [{
+    detailCon: [{
       name: '商品明细',
       type: '1'
     }, {
       name: '商品类型',
       type: '2'
     }],
-    detail_type: '1',
-    is_anew: 0,
+    detailType: '1',
+    isAnew: 0,
   },
 
   /**
@@ -46,20 +45,20 @@ Page({
    */
   onLoad: function(options) {
     let data
-    if (options.is_anew) {
+    if (options.isAnew) {
       data = {
-        order_attach_id: options.order_attach_id,
-        is_anew: options.is_anew,
-        store_id: options.store_id
+        orderAttachId: options.orderAttachId,
+        isAnew: options.isAnew,
+        storeId: options.storeId
       }
     } else {
       data = {
-        order_attach_id: options.order_attach_id,
-        store_id: options.store_id
+        orderAttachId: options.orderAttachId,
+        storeId: options.storeId
       }
     }
     this.setData(data)
-    this.invoice_explain_type()
+    this.invoiceExplainType()
   },
 
   /**
@@ -112,23 +111,23 @@ Page({
   },
 
   getData() {
-    http.post(app.globalData.invoice_explain_reopening, {
-      orderAttachId: this.data.order_attach_id
+    http.post(app.globalData.invoiceExplainReopening, {
+      orderAttachId: this.data.orderAttachId
     }).then(res => {
       if (res.result != null && res.result != '') {
         this.setData({
           data: res.result,
-          is_amend: 1,
-          invoice_type: res.result.invoice_type,
+          isAmend: 1,
+          invoiceType: res.result.invoiceType,
           rise: res.result.rise,
-          rise_name: res.result.rise == 1 ? res.result.rise_name : '',
-          detail_type: res.result.detail_type,
-          person_mobile: res.result.InvoiceAttach.person_mobile != undefined ? res.result.InvoiceAttach.person_mobile : '',
-          person_mail: res.result.InvoiceAttach.person_mail != undefined ? res.result.InvoiceAttach.person_mail : '',
+          riseName: res.result.rise == 1 ? res.result.riseName : '',
+          detailType: res.result.detailType,
+          personMobile: res.result.InvoiceAttach.personMobile != undefined ? res.result.InvoiceAttach.personMobile : '',
+          personMail: res.result.InvoiceAttach.personMail != undefined ? res.result.InvoiceAttach.personMail : '',
           company: res.result.rise == 2 ? res.result.company : undefined,
           identification: res.result.rise == 2 ? (res.result.identification == undefined ? '' : res.result.identification) : undefined,
-          invoice_address: res.result.rise == 2 ? (res.result.invoice_address == undefined ? '' : res.result.invoice_address) : undefined,
-          invoice_phone: res.result.rise == 2 ? (res.result.invoice_phone == undefined ? '' : res.result.invoice_phone) : undefined,
+          invoiceAddress: res.result.rise == 2 ? (res.result.invoiceAddress == undefined ? '' : res.result.invoiceAddress) : undefined,
+          invoicePhone: res.result.rise == 2 ? (res.result.invoicePhone == undefined ? '' : res.result.invoicePhone) : undefined,
           bank: res.result.rise == 2 ? (res.result.bank == undefined ? '' : res.result.bank) : undefined,
           account: res.result.rise == 2 ? (res.result.account == undefined ? '' : res.result.account) : undefined,
         })
@@ -139,20 +138,20 @@ Page({
   /**
    * 发票可开具类型
    */
-  invoice_explain_type() {
-    http.post(app.globalData.invoice_explain_type, {
-      store_id: this.data.store_id
+  invoiceExplainType() {
+    http.post(app.globalData.invoiceExplainType, {
+      storeId: this.data.storeId
     }).then(res => {
-      let invoice_type = null
+      let invoiceType = null
       for (let i = 0, len = res.result.length; i < len; i++) {
-        this.data.invoice_con[i].status = res.result[i]
-        if (res.result[i] == 1 && invoice_type != 1) {
-          invoice_type = i
+        this.data.invoiceCon[i].status = res.result[i]
+        if (res.result[i] == 1 && invoiceType != 1) {
+          invoiceType = i
         }
       }
       this.setData({
-        invoice_con: this.data.invoice_con,
-        invoice_type: invoice_type
+        invoiceCon: this.data.invoiceCon,
+        invoiceType: invoiceType
       })
     })
   },
@@ -163,11 +162,11 @@ Page({
   invoiceClick(e) {
     let type = e.currentTarget.dataset.type
     this.setData({
-      invoice_type: type
+      invoiceType: type
     })
     if (type == 3) {
       this.setData({
-        rise_con: [{
+        riseCon: [{
           name: '企业',
           type: '2'
         }],
@@ -175,7 +174,7 @@ Page({
       })
     } else {
       this.setData({
-        rise_con: [{
+        riseCon: [{
           name: '个人或事业单位',
           type: '1'
         }, {
@@ -200,16 +199,16 @@ Page({
   detailClick(e) {
     let type = e.currentTarget.dataset.type
     this.setData({
-      detail_type: type
+      detailType: type
     })
   },
   /**
    * 个人发票抬头
    */
-  rise_name(e) {
+  riseName(e) {
     let val = e.detail.value
     this.setData({
-      rise_name: val
+      riseName: val
     })
   },
   /**
@@ -233,19 +232,19 @@ Page({
   /**
    * 注册地址
    */
-  invoice_address(e) {
+  invoiceAddress(e) {
     let val = e.detail.value
     this.setData({
-      invoice_address: val
+      invoiceAddress: val
     })
   },
   /**
    * 注册电话
    */
-  invoice_phone(e) {
+  invoicePhone(e) {
     let val = e.detail.value
     this.setData({
-      invoice_phone: val
+      invoicePhone: val
     })
   },
   /**
@@ -272,7 +271,7 @@ Page({
   spPhone(e) {
     let val = e.detail.value
     this.setData({
-      person_mobile: val
+      personMobile: val
     })
   },
   /**
@@ -282,12 +281,12 @@ Page({
     console.log(e)
     let val = e.detail.value
     this.setData({
-      person_mail: val
+      personMail: val
     })
   },
 
   submit() {
-    if (this.data.rise == 1 && (this.data.rise_name == '' || this.data.rise_name == undefined)) {
+    if (this.data.rise == 1 && (this.data.riseName == '' || this.data.riseName == undefined)) {
       app.showToast('请填写抬头名称', res => {})
       return
     }
@@ -299,65 +298,65 @@ Page({
       app.showToast('请填写纳税人识别码', res => {})
       return
     }
-    if (this.data.invoice_type != 2 && !app.isPoneAvailable(this.data.person_mobile)) {
+    if (this.data.invoiceType != 2 && !app.isPoneAvailable(this.data.personMobile)) {
       app.showToast('请输入正确的手机号', res => {})
       return
     }
 
     let data = {
-      invoiceType: this.data.invoice_type,
+      invoiceType: this.data.invoiceType,
       rise: this.data.rise,
-      riseName: this.data.rise == 1 ? this.data.rise_name : this.data.company,
-      detailType: this.data.detail_type,
-      personMobile: this.data.person_mobile != undefined ? this.data.personMobile : '',
-      personMail: this.data.person_mail != undefined ? this.data.personMail : '',
+      riseName: this.data.rise == 1 ? this.data.riseName : this.data.company,
+      detailType: this.data.detailType,
+      personMobile: this.data.personMobile != undefined ? this.data.personMobile : '',
+      personMail: this.data.personMail != undefined ? this.data.personMail : '',
       company: this.data.rise == 2 ? this.data.company : undefined,
       identification: this.data.rise == 2 ? (this.data.identification == undefined ? '' : this.data.identification) : undefined,
-      invoiceAddress: this.data.rise == 2 ? (this.data.invoice_address == undefined ? '' : this.data.invoice_address) : undefined,
-      invoicePhone: this.data.rise == 2 ? (this.data.invoice_phone == undefined ? '' : this.data.invoice_phone) : undefined,
+      invoiceAddress: this.data.rise == 2 ? (this.data.invoiceAddress == undefined ? '' : this.data.invoiceAddress) : undefined,
+      invoicePhone: this.data.rise == 2 ? (this.data.invoicePhone == undefined ? '' : this.data.invoicePhone) : undefined,
       bank: this.data.rise == 2 ? (this.data.bank == undefined ? '' : this.data.bank) : undefined,
       account: this.data.rise == 2 ? (this.data.account == undefined ? '' : this.data.account) : undefined,
-      orderAttachId: this.data.order_attach_id,
-      invoiceAttr: this.data.is_anew == 1 ? 3 : 2,
-      storeId: this.data.is_anew == 1 ? this.data.store_id : undefined
+      orderAttachId: this.data.orderAttachId,
+      invoiceAttr: this.data.isAnew == 1 ? 3 : 2,
+      storeId: this.data.isAnew == 1 ? this.data.storeId : undefined
     }
 
     let obj = {
-      store_id: this.data.store_id,
-      is_anew: this.data.is_anew == 1 ? 3 : 2,
-      order_attach_id: this.data.order_attach_id
+      storeId: this.data.storeId,
+      isAnew: this.data.isAnew == 1 ? 3 : 2,
+      orderAttachId: this.data.orderAttachId
     }
 
-    if (this.data.is_anew == 1 && this.data.invoice_type == 1) { // 重开发票（电子发票）
-      http.post(app.globalData.invoice_anew, data).then(res => {
-        http.post(app.globalData.invoice_change_status, {
-          orderAttachId: this.data.order_attach_id
+    if (this.data.isAnew == 1 && this.data.invoiceType == 1) { // 重开发票（电子发票）
+      http.post(app.globalData.invoiceAnew, data).then(res => {
+        http.post(app.globalData.invoiceChangeStatus, {
+          orderAttachId: this.data.orderAttachId
         }).then(res => {
           wx.redirectTo({
-            url: `/nearby_shops/invoice_over/invoice_over?info=${JSON.stringify(obj)}`,
+            url: `/nearbyShops/invoiceOver/invoiceOver?info=${JSON.stringify(obj)}`,
           })
         })
       })
-    } else if (this.data.is_anew == 1 && this.data.invoice_type != 1) { // 重开发票（普通纸质发票/增值税纸质发票）
-      http.post(app.globalData.invoice_anew, data).then(res => {
+    } else if (this.data.isAnew == 1 && this.data.invoiceType != 1) { // 重开发票（普通纸质发票/增值税纸质发票）
+      http.post(app.globalData.invoiceAnew, data).then(res => {
         wx.redirectTo({
-          url: `/pages/invoice_confirm_order/invoice_confirm_order?info=${JSON.stringify(obj)}`,
+          url: `/pages/invoiceConfirmOrder/invoiceConfirmOrder?info=${JSON.stringify(obj)}`,
         })
       })
-    } else if (this.data.is_anew != 1 && this.data.invoice_type == 1) { // 补开发票（电子发票）
-      http.post(app.globalData.invoice_supplement, data).then(res => {
-        http.post(app.globalData.invoice_change_status, {
-          orderAttachId: this.data.order_attach_id
+    } else if (this.data.isAnew != 1 && this.data.invoiceType == 1) { // 补开发票（电子发票）
+      http.post(app.globalData.invoiceSupplement, data).then(res => {
+        http.post(app.globalData.invoiceChangeStatus, {
+          orderAttachId: this.data.orderAttachId
         }).then(res => {
           wx.redirectTo({
-            url: `/nearby_shops/invoice_over/invoice_over?info=${JSON.stringify(obj)}`,
+            url: `/nearbyShops/invoiceOver/invoiceOver?info=${JSON.stringify(obj)}`,
           })
         })
       })
-    } else if (this.data.is_anew != 1 && this.data.invoice_type != 1) { // 补开发票（普通纸质发票/增值税纸质发票）
-      http.post(app.globalData.invoice_supplement, data).then(res => {
+    } else if (this.data.isAnew != 1 && this.data.invoiceType != 1) { // 补开发票（普通纸质发票/增值税纸质发票）
+      http.post(app.globalData.invoiceSupplement, data).then(res => {
         wx.redirectTo({
-          url: `/pages/invoice_confirm_order/invoice_confirm_order?info=${JSON.stringify(obj)}`,
+          url: `/pages/invoiceConfirmOrder/invoiceConfirmOrder?info=${JSON.stringify(obj)}`,
         })
       })
     }

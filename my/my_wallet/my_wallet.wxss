@@ -1,4 +1,3 @@
-/* my/my_wallet/my_wallet.wxss */
 .section{
   width: 100%;
   background-color: #fff;

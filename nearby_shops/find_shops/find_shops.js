@@ -7,11 +7,11 @@ Page({
    */
   data: {
     //选项卡
-    tab_list: [{
-      store_classify_id: 0,
+    tabList: [{
+      storeClassifyId: 0,
       title: '精选'
     }],
-    current_tab: 0,
+    currentTab: 0,
     page: 1,
     list: [],
     total: ''
@@ -22,7 +22,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -72,9 +72,9 @@ Page({
    * 获取一级列表
    */
   getClassify() {
-    http.post(app.globalData.platform_classify).then(res => {
+    http.post(app.globalData.platformClassify).then(res => {
       this.setData({
-        classify: [...this.data.tab_list, ...res.result]
+        classify: [...this.data.tabList, ...res.result]
       })
       this.getShopList()
     })
@@ -85,7 +85,7 @@ Page({
    */
   onClassify(e) {
     this.setData({
-      current_tab: e.currentTarget.dataset.id,
+      currentTab: e.currentTarget.dataset.id,
       page: 1
     })
     this.getShopList()
@@ -98,7 +98,7 @@ Page({
    */
   onMore() {
     this.setData({
-      more_board: true
+      moreBoard: true
     })
   },
 
@@ -107,7 +107,7 @@ Page({
    */
   closeBoard() {
     this.setData({
-      more_board: false
+      moreBoard: false
     })
   },
 
@@ -117,8 +117,8 @@ Page({
   onTabMoreItem(e) {
     this.closeBoard()
     this.setData({
-      sroll_id: 'a-' + e.currentTarget.dataset.index,
-      current_tab: e.currentTarget.dataset.id
+      srollId: 'a-' + e.currentTarget.dataset.index,
+      currentTab: e.currentTarget.dataset.id
     })
     this.getShopList()
   },
@@ -127,8 +127,8 @@ Page({
    * 获取列表
    */
   getShopList() {
-    http.post(app.globalData.store_good_list, {
-      category: this.data.current_tab,
+    http.post(app.globalData.storeGoodList, {
+      category: this.data.currentTab,
       page: this.data.page
     }).then(res => {
       if (this.data.page == 1) {
@@ -156,13 +156,13 @@ Page({
 
   onShop(e) {
     wx.navigateTo({
-      url: '/nearby_shops/shop_detail/shop_detail?store_id=' + e.currentTarget.dataset.id,
+      url: '/nearbyShops/shopDetail/shopDetail?storeId=' + e.currentTarget.dataset.id,
     })
   },
 
   onGood(e) {
     wx.navigateTo({
-      url: '/nearby_shops/good_detail/good_detail?goods_id=' + e.currentTarget.dataset.id,
+      url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + e.currentTarget.dataset.id,
     })
   }
 })

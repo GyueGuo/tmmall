@@ -20,7 +20,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    http.post(app.globalData.platform_classify).then(res=> {
+    http.post(app.globalData.platformClassify).then(res=> {
       this.setData({
         list: res.result
       })
@@ -67,7 +67,7 @@ Page({
     let pages = getCurrentPages()
     let prevPage = pages[pages.length - 2];
     prevPage.setData({
-      category_id: item.store_classify_id,
+      categoryId: item.storeClassifyId,
       category: item.title
     })
     prevPage.createWhether()

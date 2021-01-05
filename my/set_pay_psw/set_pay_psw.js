@@ -7,11 +7,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    f_psw: '',
+    fPsw: '',
     password: '',
     type: 0, //0设置,1确认
     focus: true, //焦点
-    focus_verify: false
+    focusVerify: false
   },
 
   /**
@@ -19,7 +19,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -64,14 +64,14 @@ Page({
   onReachBottom: function() {
 
   },
-  psw_focus() {
+  pswFocus() {
     if (this.data.type === 0) {
       this.setData({
         focus: true,
       })
     } else {
       this.setData({
-        focus_verify: true,
+        focusVerify: true,
       })
     }
   },
@@ -88,7 +88,7 @@ Page({
         mask: true
       })
       this.setData({
-        f_psw: this.data.password,
+        fPsw: this.data.password,
         password: '',
         type: 1,
         focus: false
@@ -99,7 +99,7 @@ Page({
       wx.nextTick(() => {
         wx.hideLoading()
         this.setData({
-          focus_verify: true,
+          focusVerify: true,
         })
       })
     }
@@ -107,22 +107,22 @@ Page({
   /**
    * 密码输入
    */
-  passwordInput_verify(e) {
+  passwordInputVerify(e) {
     this.setData({
       password: e.detail.value
     })
     if (this.data.password.length == 6 && this.data.type === 1) {
       console.log('a')
-      if (this.data.f_psw == this.data.password) {
+      if (this.data.fPsw == this.data.password) {
         this.setData({
           focus: false,
-          focus_verify: false,
+          focusVerify: false,
         })
         wx.showLoading({
           title: '提交中',
           mask: true
         })
-        http.encPost(app.globalData.set_password, {
+        http.encPost(app.globalData.setPassword, {
           payPassword: this.data.password
         }).then(res => {
           app.showSuccessToast(res.message, () => {
@@ -132,10 +132,10 @@ Page({
         })
       } else {
         this.setData({
-          f_psw: '',
+          fPsw: '',
           password: '',
           type: 0,
-          focus_verify: false,
+          focusVerify: false,
         })
         app.showToast('两次新密码输入不一致', () => {
           this.setData({

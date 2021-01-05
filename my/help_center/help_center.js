@@ -59,7 +59,7 @@ Page({
   },
 
   getData() {
-    http.post(app.globalData.help_center).then(res=> {
+    http.post(app.globalData.helpCenter).then(res=> {
       this.setData({
         list: res.result
       })
@@ -69,7 +69,7 @@ Page({
   onItem(e) {
     let item = e.currentTarget.dataset.item
     wx.navigateTo({
-      url: '/my/help_web/help_web?item=' + JSON.stringify(item),
+      url: '/my/helpWeb/helpWeb?item=' + JSON.stringify(item),
     })
   }
 })

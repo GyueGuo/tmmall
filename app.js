@@ -18,15 +18,15 @@ App({
         }
       }
     })
-    this.globalData.member_id = wx.getStorageSync('member_id')
+    this.globalData.memberId = wx.getStorageSync('memberId')
     this.globalData.token = wx.getStorageSync('token') || ''
     this.globalData.phone = wx.getStorageSync('phone') == null ? '' : wx.getStorageSync('phone')
     this.globalData.openid = wx.getStorageSync('openid')
     this.globalData.unionId = wx.getStorageSync('unionId')
   },
   onShow() {
-    this.app_leave = false
-    this.app_DIY(() => {})
+    this.appLeave = false
+    this.appDIY(() => {})
     this.updateManager() // 系统更新
     this.checkClipBoard();
   },
@@ -43,7 +43,7 @@ App({
    * 客服
    */
   service(callback) {
-    this.app_socket = wx.connectSocket({
+    this.appSocket = wx.connectSocket({
       // url: 'wss://ishoptest.zihaiwangluo.com/ws',
       url: 'wss://ishop.zihaiwangluo.com/ws',
       // url: 'ws://125.211.218.59:60013',
@@ -53,22 +53,21 @@ App({
       method: 'GET',
     })
     //创建连接
-    this.app_socket.onOpen(res => {
+    this.appSocket.onOpen(res => {
       console.log(res, '客服创建连接成功')
-      this.app_socketType = true
-      clearTimeout(this.app_socketAgainTime)
+      this.appSocketType = true
+      clearTimeout(this.appSocketAgainTime)
       let data = {
         "TYPE": "LOGIN",
         "DATA": {
-          "USER_TYPE": "USER",
-          "MEMBER_ID": this.globalData.member_id.toString(),
-          "PLATFORM_ID": "1"
+          "USERTYPE": "USER",
+          "MEMBERID": this.globalData.memberId.toString(),
+          "PLATFORMID": "1"
         }
       }
-      this.app_socket.send({
+      this.appSocket.send({
         data: JSON.stringify(data),
         success: res => {
-          console.log(res)
           this.socketHeart()
           if (callback) {
             callback()
@@ -79,11 +78,11 @@ App({
     })
 
     //监听关闭
-    this.app_socket.onClose(res => {
+    this.appSocket.onClose(res => {
       console.log(res, '连接断开')
-      this.app_socketType = false
-      if (res.code != 10000 && !this.app_leave) {
-        clearTimeout(this.app_socketHeartTime)
+      this.appSocketType = false
+      if (res.code != 10000 && !this.appLeave) {
+        clearTimeout(this.appSocketHeartTime)
         setTimeout(res => {
           this.service()
         }, 3000)
@@ -108,11 +107,11 @@ App({
         case 'MESSAGE':
           if (type == 'serviceRoom') {
             console.log(resData)
-            this.socket_serviceRoom(resData, _this)
+            this.socketServiceRoom(resData, _this)
           }
           if (type == 'serviceMsgList') {
             console.log('发' + resData)
-            this.socket_msgList(resData, _this)
+            this.socketMsgList(resData, _this)
           }
           break;
         case 'SUCCESS':
@@ -123,21 +122,21 @@ App({
   /**
    * 聊天房间
    */
-  socket_serviceRoom(resData, _this) {
-    if (_this.data.service_info.TARGET_ID != resData.DATA.FROM_ID) {
+  socketServiceRoom(resData, _this) {
+    if (_this.data.serviceInfo.TARGETID != resData.DATA.FROMID) {
       return
     }
     let list, writeData
-    switch (resData.DATA.MESSAGE_TYPE) {
+    switch (resData.DATA.MESSAGETYPE) {
       case 'TEXT':
         console.log('收到文本')
         list = {
-          MSG_TYPE: 'success',
-          MESSAGE_ID: resData.DATA.MESSAGE_ID,
-          FROM_ID: resData.DATA.FROM_ID,
-          MESSAGE_TYPE: resData.DATA.MESSAGE_TYPE,
+          MSGTYPE: 'success',
+          MESSAGEID: resData.DATA.MESSAGEID,
+          FROMID: resData.DATA.FROMID,
+          MESSAGETYPE: resData.DATA.MESSAGETYPE,
           HEADIMG: '',
-          MESSAGE_DATA: _this.chat(resData.DATA.MESSAGE_DATA),
+          MESSAGEDATA: _this.chat(resData.DATA.MESSAGEDATA),
         }
         _this.data.msglist.push(list)
         _this.setData({
@@ -145,18 +144,18 @@ App({
         })
         if (_this.data.scrollAnimation) {
           _this.setData({
-            msglist_index: `id${resData.DATA.MESSAGE_ID}`
+            msglistIndex: `id${resData.DATA.MESSAGEIDD}`
           })
         }
         writeData = {
-          "TYPE": "MESSAGE_DELIVERD",
+          "TYPE": "MESSAGEDELIVERD",
           "DATA": {
-            "MESSAGE_ID": resData.DATA.MESSAGE_ID, // 字符串类型的毫秒级时间戳
-            "TARGET_TYPE": resData.DATA.FROM_TYPE, // 收到消息的店铺ID
-            "TARGET_ID": resData.DATA.FROM_ID // 接收者店铺ID
+            "MESSAGEID": resData.DATA.MESSAGEID, // 字符串类型的毫秒级时间戳
+            "TARGETTYPE": resData.DATA.TARGETTYPE, // 收到消息的店铺ID
+            "TARGETID": resData.DATA.TARGETID // 接收者店铺ID
           }
         }
-        this.app_socket.send({
+        this.appSocket.send({
           data: JSON.stringify(writeData),
           success: res => {
             console.log(res)
@@ -166,12 +165,12 @@ App({
       case 'IMAGE':
         console.log('收到图片')
         list = {
-          MSG_TYPE: 'success',
-          MESSAGE_ID: resData.DATA.MESSAGE_ID,
-          FROM_ID: resData.DATA.FROM_ID,
-          MESSAGE_TYPE: resData.DATA.MESSAGE_TYPE,
+          MSGTYPE: 'success',
+          MESSAGEID: resData.DATA.MESSAGEID,
+          FROMID: resData.DATA.FROMID,
+          MESSAGETYPE: resData.DATA.MESSAGETYPE,
           HEADIMG: '',
-          MESSAGE_DATA: resData.DATA.MESSAGE_DATA,
+          MESSAGEDATA: resData.DATA.MESSAGEDATA,
         }
         _this.data.msglist.push(list)
         _this.setData({
@@ -179,18 +178,18 @@ App({
         })
         if (_this.data.scrollAnimation) {
           _this.setData({
-            msglist_index: `id${resData.DATA.MESSAGE_ID}`
+            msglistIndex: `id${resData.DATA.MESSAGEID}`
           })
         }
         writeData = {
-          "TYPE": "MESSAGE_DELIVERD",
+          "TYPE": "MESSAGEDELIVERD",
           "DATA": {
-            "MESSAGE_ID": resData.DATA.MESSAGE_ID, // 字符串类型的毫秒级时间戳
-            "TARGET_TYPE": resData.DATA.FROM_TYPE, // 收到消息的店铺ID
-            "TARGET_ID": resData.DATA.FROM_ID // 接收者店铺ID
+            "MESSAGEID": resData.DATA.MESSAGEID, // 字符串类型的毫秒级时间戳
+            "TARGETTYPE": resData.DATA.FROMTYPE, // 收到消息的店铺ID
+            "TARGETID": resData.DATA.FROMID // 接收者店铺ID
           }
         }
-        this.app_socket.send({
+        this.appSocket.send({
           data: JSON.stringify(writeData),
           success: res => {
             console.log(res)
@@ -200,12 +199,12 @@ App({
       case 'VOICE':
         console.log('收到语音')
         list = {
-          MSG_TYPE: 'success',
-          MESSAGE_ID: resData.DATA.MESSAGE_ID,
-          FROM_ID: resData.DATA.FROM_ID,
-          MESSAGE_TYPE: resData.DATA.MESSAGE_TYPE,
+          MSGTYPE: 'success',
+          MESSAGEID: resData.DATA.MESSAGEID,
+          FROMID: resData.DATA.FROMID,
+          MESSAGETYPE: resData.DATA.MESSAGETYPE,
           HEADIMG: '',
-          MESSAGE_DATA: resData.DATA.MESSAGE_DATA,
+          MESSAGEDATA: resData.DATA.MESSAGEDATA,
         }
         _this.data.msglist.push(list)
         _this.setData({
@@ -213,20 +212,20 @@ App({
         })
         if (_this.data.scrollAnimation) {
           _this.setData({
-            msglist_index: `id${resData.DATA.MESSAGE_ID}`
+            msglistIndex: `id${resData.DATA.MESSAGEID}`
           })
         }
         break;
       case 'GOODS':
         console.log('收到商品')
         list = {
-          MSG_TYPE: 'success',
-          MESSAGE_ID: resData.DATA.MESSAGE_ID,
-          FROM_ID: resData.DATA.FROM_ID,
-          MESSAGE_TYPE: resData.DATA.MESSAGE_TYPE,
+          MSGTYPE: 'success',
+          MESSAGEID: resData.DATA.MESSAGEID,
+          FROMID: resData.DATA.FROMID,
+          MESSAGETYPE: resData.DATA.MESSAGETYPE,
           HEADIMG: '',
-          MESSAGE_DATA: resData.DATA.MESSAGE_DATA,
-          GOODS_DATA: null
+          MESSAGEDATA: resData.DATA.MESSAGEDATA,
+          GOODSDATA: null
         }
         _this.data.msglist.push(list)
         _this.setData({
@@ -234,7 +233,7 @@ App({
         })
         if (_this.data.scrollAnimation) {
           _this.setData({
-            msglist_index: `id${resData.DATA.MESSAGE_ID}`
+            msglistIndex: `id${resData.DATA.MESSAGEID}`
           })
         }
         wx.request({
@@ -245,12 +244,12 @@ App({
             "token": this.globalData.token
           },
           data: {
-            goodsId: resData.DATA.MESSAGE_DATA
+            goodsId: resData.DATA.MESSAGEDATA
           },
           success: res => {
             for (let i = 0, len = _this.data.msglist.length; i < len; i++) {
-              if (resData.DATA.MESSAGE_ID == _this.data.msglist[i].MESSAGE_ID) {
-                _this.data.msglist[i].GOODS_DATA = res.data.data
+              if (resData.DATA.MESSAGEID == _this.data.msglist[i].MESSAGEID) {
+                _this.data.msglist[i].GOODSDATA = res.data.data
                 _this.setData({
                   msglist: _this.data.msglist
                 })
@@ -265,42 +264,41 @@ App({
   /**
    * 消息列表
    */
-  socket_msgList(resData, _this) {
-    console.log(resData)
-    let service_list = _this.data.service_list.map((value, index, arr) => {
-      if (resData.DATA.FROM_ID == value.store_id) {
-        switch (resData.DATA.MESSAGE_TYPE) {
+  socketMsgList(resData, _this) {
+    let serviceList = _this.data.serviceList.map((value, index, arr) => {
+      if (resData.DATA.FROMID == value.storeId) {
+        switch (resData.DATA.MESSAGETYPE) {
           case 'TEXT':
-            value.after_chat_time = resData.DATA.MESSAGE_ID
-            value.message.MESSAGE_TYPE = resData.DATA.MESSAGE_TYPE
-            value.message.MESSAGE_DATA = resData.DATA.MESSAGE_DATA
+            value.afterChatTime = resData.DATA.MESSAGEID
+            value.message.MESSAGETYPE = resData.DATA.MESSAGETYPE
+            value.message.MESSAGEDATA = resData.DATA.MESSAGEDATA
             break;
           case 'IMAGE':
-            value.after_chat_time = resData.DATA.MESSAGE_ID
-            value.message.MESSAGE_TYPE = resData.DATA.MESSAGE_TYPE
-            value.message.MESSAGE_DATA = '[图片]'
+            value.afterChatTime = resData.DATA.MESSAGEID
+            value.message.MESSAGETYPE = resData.DATA.MESSAGETYPE
+            value.message.MESSAGEDATA = '[图片]'
             break;
           case 'VOICE':
-            value.after_chat_time = resData.DATA.MESSAGE_ID
-            value.message.MESSAGE_TYPE = resData.DATA.MESSAGE_TYPE
-            value.message.MESSAGE_DATA = '[语音]'
+            value.afterChatTime = resData.DATA.MESSAGEID
+            value.message.MESSAGETYPE = resData.DATA.MESSAGETYPE
+            value.message.MESSAGEDATA = '[语音]'
             break;
           case 'GOODS':
-            value.after_chat_time = resData.DATA.MESSAGE_ID
-            value.message.MESSAGE_TYPE = resData.DATA.MESSAGE_TYPE
-            value.message.MESSAGE_DATA = '[商品]'
+            value.afterChatTime = resData.DATA.MESSAGEID
+            value.message.MESSAGETYPE = resData.DATA.MESSAGETYPE
+            value.message.MESSAGEDATA = '[商品]'
             break;
           case 'ORDER':
-            value.after_chat_time = resData.DATA.MESSAGE_ID
-            value.message.MESSAGE_TYPE = resData.DATA.MESSAGE_TYPE
-            value.message.MESSAGE_DATA = '[订单]'
+            value.afterChatTime = resData.DATA.MESSAGEID
+            value.message.MESSAGETYPE = resData.DATA.MESSAGETYPE
+            value.message.MESSAGEDATA = '[订单]'
             break;
         }
       }
       return value
     })
     _this.setData({
-      service_list: service_list
+      serviceList,
     })
   },
 
@@ -311,8 +309,8 @@ App({
     let data = {
       "TYPE": "HEART"
     }
-    this.app_socketHeartTime = setTimeout(() => {
-      this.app_socket.send({
+    this.appSocketHeartTime = setTimeout(() => {
+      this.appSocket.send({
         data: JSON.stringify(data),
         success: res => {
           this.socketHeart()
@@ -322,61 +320,49 @@ App({
       })
     }, 50000)
   },
-  /**
-   * 重连
-   */
-  againSocket() {
-    if (this.app_leave) {
-      return
-    }
-    this.app_socketAgainTime = setTimeout(() => {
-      console.log('重连')
-      this.service()
-    }, 3000)
-  },
 
   // DIY风格
-  app_DIY(callback, that) {
-    if (this.globalData.diy_color == null) {
+  appDIY(callback, that) {
+    if (this.globalData.diyColor == null) {
       wx.request({
-        url: this.globalData.app_DIY,
+        url: this.globalData.appDIY,
         success: res => {
           let data = res.data.result
           if (res.data.code == -201) {
             wx.clearStorageSync()
-            app.globalData.member_id = ''
+            app.globalData.memberId = ''
             app.globalData.phone = ''
             app.globalData.openid = ''
             app.globalData.unionId = ''
             app.globalData.token = ''
             //代言人ID
-            app.globalData.sup_id = ''
+            app.globalData.supId = ''
             app.globalData.distribution = {}
             wx.closeSocket()
-            clearTimeout(app.app_socketHeartTime)
+            clearTimeout(app.appSocketHeartTime)
           }
 
           const obj = {
-            z_color: `rgb(${data.primary_r},${data.primary_g},${data.primary_b})`,
-            c_color: `rgb(${data.deputy_r},${data.deputy_g},${data.deputy_b})`,
-            f_color: `rgba(${data.primary_r},${data.primary_g},${data.primary_b},0.4)`,
-            f_color_2: `rgba(${data.primary_r},${data.primary_g},${data.primary_b},0.2)`,
-            f_color_6: `rgba(${data.primary_r},${data.primary_g},${data.primary_b},0.6)`,
-            f_color_8: `rgba(${data.primary_r},${data.primary_g},${data.primary_b},0.8)`,
-            text_color: `rgb(${data.contrast_r},${data.contrast_g},${data.contrast_b})`,
-            primary_hex: data.primary_hex
+            zColor: `rgb(${data.primaryR},${data.primaryG},${data.primaryB})`,
+            cColor: `rgb(${data.deputyR},${data.deputyG},${data.deputyB})`,
+            fColor: `rgba(${data.primaryR},${data.primaryG},${data.primaryB},0.4)`,
+            fColor2: `rgba(${data.primaryR},${data.primaryG},${data.primaryB},0.2)`,
+            fColor6: `rgba(${data.primaryR},${data.primaryG},${data.primaryB},0.6)`,
+            fColor8: `rgba(${data.primaryR},${data.primaryG},${data.primaryB},0.8)`,
+            textColor: `rgb(${data.contrastR},${data.contrastG},${data.contrastB})`,
+            primaryHex: data.primaryHex
           }
           const config = {
-            app_info: data.app_info,
-            show_switch: data.show_switch,
-            version_info: data.version_info,
-            share_text: data.share_text
+            appInfo: data.appInfo,
+            showSwitch: data.showSwitch,
+            versionInfo: data.versionInfo,
+            shareText: data.shareText
           }
-          this.globalData.diy_color = obj
+          this.globalData.diyColor = obj
           this.globalData.configSwitch = config
           if (that) {
             that.setData({
-              diy_color: obj,
+              diyColor: obj,
               configSwitch: config
             })
           }
@@ -386,7 +372,7 @@ App({
     } else {
       if (that) {
         that.setData({
-          diy_color: this.globalData.diy_color,
+          diyColor: this.globalData.diyColor,
           configSwitch: this.globalData.configSwitch
         })
       }
@@ -423,7 +409,7 @@ App({
 
   //登录
   login() {
-    if (this.globalData.member_id == '') {
+    if (this.globalData.memberId == '') {
       wx.navigateTo({
         url: '/pages/accredit/accredit',
       })
@@ -432,7 +418,7 @@ App({
 
     if (this.globalData.phone == '') {
       wx.navigateTo({
-        url: '/pages/bind_phone/bind_phone',
+        url: '/pages/bindPhone/bindPhone',
       })
       return false
     }
@@ -491,7 +477,7 @@ App({
     wx.showModal({
       title: title,
       content: content,
-      confirmColor: this.globalData.diy_color.primary_hex,
+      confirmColor: this.globalData.diyColor.primaryHex,
       success: (res) => {
         if (res.confirm) {
           success()
@@ -526,16 +512,16 @@ App({
     })
 
   },
-  app_socket: null,
-  app_socketType: false,
-  app_socketSite: 0,
-  app_socketHeartTime: null,
-  app_socketAgainTime: null,
-  app_leave: false, //离开程序
-  PAST_LOGIN: false,
+  appSocket: null,
+  appSocketType: false,
+  appSocketSite: 0,
+  appSocketHeartTime: null,
+  appSocketAgainTime: null,
+  appLeave: false, //离开程序
+  PASTLOGIN: false,
   globalData: {
     isShops: 0, //多店，单店开关 多店：0，单店：1
-    member_id: '',
+    memberId: '',
     phone: '',
     openid: '',
     unionId: '',
@@ -548,23 +534,23 @@ App({
     MapKey: 'RPHBZ-PVZK5-RQHIN-QGZCU-KJFQT-ZQBH4',
     messageList: [],
     //上级代言人ID
-    sup_id: '',
+    supId: '',
     //定位信息
     lat: 0,
     lng: 0,
-    PAST_LOGIN: false,
+    PASTLOGIN: false,
     address: null,
     addressSelect: {
-      member_address_id: null
+      memberAddressId: null
     },
     location: '全国',
-    current_location: '全国',
+    currentLocation: '全国',
     //底部导航索引
-    nav_index: 0,
+    navIndex: 0,
     navHeight: '',
     navBar: null,
     //DIY配色
-    diy_color: null,
+    diyColor: null,
     //配置开关
     configSwitch: {},
     //代言信息
@@ -574,433 +560,433 @@ App({
     },
     HTTP: HTTP,
     //风格
-    app_DIY: HTTP + 'v2.0/shopStyle/get',
+    appDIY: HTTP + 'v2.0/shopStyle/get',
     //0.底部导航
     navigation: HTTP + 'v2.0/appletMy/navigation',
     //1.发送验证码
-    message_send: HTTP + 'v2.0/sms/send',
+    messageSend: HTTP + 'v2.0/sms/send',
     //绑定手机号
-    bind_phone: HTTP + 'v2.0/appletMy/info',
+    bindPhone: HTTP + 'v2.0/appletMy/info',
     //2.我的
     my: HTTP + 'v2.0/my/index',
     //3.个人资料
-    my_info: HTTP + 'v2.0/my/info',
+    myInfo: HTTP + 'v2.0/my/info',
     //4.修改性别or昵称
-    my_other: HTTP + 'v2.0/my/other',
+    myOther: HTTP + 'v2.0/my/other',
     //5.修改头像
     avatar: HTTP + 'v2.0/my/avatar',
     //6.会员等级
-    member_grade: HTTP + 'v2.0/rank/index',
+    memberGrade: HTTP + 'v2.0/rank/index',
     //7.设置首页
     setting: HTTP + 'v2.0/setting/index',
     //8.账户与安全
     safety: HTTP + 'v2.0/setting/safety',
     //9.设置支付密码
-    set_password: HTTP + 'v2.0/setting/setPayPassword',
+    setPassword: HTTP + 'v2.0/setting/setPayPassword',
     //9.设置密码
-    set_password_login: HTTP + 'v2.0/setting/setPassword',
+    setPasswordLogin: HTTP + 'v2.0/setting/setPassword',
     //10.修改密码
-    update_password: HTTP + 'v2.0/setting/updatePayPassword',
+    updatePassword: HTTP + 'v2.0/setting/updatePayPassword',
     //11.检测验证码
-    check_code: HTTP + 'v2.0/sms/checkCodeInvalid',
+    checkCode: HTTP + 'v2.0/sms/checkCodeInvalid',
     //12.忘记密码
-    forget_password: HTTP + 'v2.0/setting/forgetPassword',
+    forgetPassword: HTTP + 'v2.0/setting/forgetPassword',
     //13.修改手机号码
-    update_phone: HTTP + 'v2.0/setting/updatePhone',
+    updatePhone: HTTP + 'v2.0/setting/updatePhone',
     //14.收货地址
-    address_index: HTTP + 'v2.0/address/index',
+    addressIndex: HTTP + 'v2.0/address/index',
     //15.省市区街道
-    address_linkage: HTTP + 'v2.0/address/linkage',
+    addressLinkage: HTTP + 'v2.0/address/linkage',
     //16.保存收货地址
-    address_create: HTTP + 'v2.0/address/create',
+    addressCreate: HTTP + 'v2.0/address/create',
     //17.编辑收货地址
-    address_update: HTTP + 'v2.0/address/update',
+    addressUpdate: HTTP + 'v2.0/address/update',
     //18.读取收货地址
-    address_find: HTTP + 'v2.0/address/find',
+    addressFind: HTTP + 'v2.0/address/find',
     //19.删除地址
-    address_destroy: HTTP + 'v2.0/address/destroy',
+    addressDestroy: HTTP + 'v2.0/address/destroy',
     //20.反馈
     feedback: HTTP + 'v2.0/setting/feedback',
     //21.上传图片
-    upload_pic: HTTP + 'v2.0/image/upload',
+    uploadPic: HTTP + 'v2.0/image/upload',
     //22.上传视频
-    upload_video: HTTP + 'v2.0/image/uploadVideo',
+    uploadVideo: HTTP + 'v2.0/image/uploadVideo',
     //23.帮助中心
-    help_center: HTTP + 'v2.0/setting/helpCenter',
+    helpCenter: HTTP + 'v2.0/setting/helpCenter',
     //24.积分首页
-    integral_index: HTTP + 'v2.0/integral/index',
+    integralIndex: HTTP + 'v2.0/integral/index',
     //25.积分分类列表
-    integral_classify: HTTP + 'v2.0/integral/classify',
+    integralClassify: HTTP + 'v2.0/integral/classify',
     //26.积分签到
     sign: HTTP + 'v2.0/integral/sign',
     //27.积分商品列表
-    integral_goods: HTTP + 'v2.0/integral/goods',
+    integralGoods: HTTP + 'v2.0/integral/goods',
     //28.积分明细
-    integral_detail: HTTP + 'v2.0/integral/detail',
+    integralDetail: HTTP + 'v2.0/integral/detail',
     //29.积分商品详情
-    integral_view: HTTP + 'v2.0/integral/view',
+    integralView: HTTP + 'v2.0/integral/view',
     //30.兑换展示
-    integral_conversion: HTTP + 'v2.0/integral/conversion',
+    integralConversion: HTTP + 'v2.0/integral/conversion',
     //31.积分任务
-    integral_task: HTTP + 'v2.0/integral/task',
+    integralTask: HTTP + 'v2.0/integral/task',
     //32.兑换商品
-    integral_confirm: HTTP + 'v2.0/integral/redemption',
+    integralConfirm: HTTP + 'v2.0/integral/redemption',
     //33.兑换商品加余额
-    redemption_money: HTTP + 'v2.0/integral/redemptionMoney',
+    redemptionMoney: HTTP + 'v2.0/integral/redemptionMoney',
     //34.兑换记录
-    integral_record: HTTP + 'v2.0/integral/conversionRecord',
+    integralRecord: HTTP + 'v2.0/integral/conversionRecord',
     //35.兑换记录详情
-    integral_order: HTTP + 'v2.0/integral/conversionView',
+    integralOrder: HTTP + 'v2.0/integral/conversionView',
     //36.确认收货
-    confirm_receipt: HTTP + 'v2.0/integral/confirmReceipt',
+    confirmReceipt: HTTP + 'v2.0/integral/confirmReceipt',
     //37.商品分类
-    classify_parent: HTTP + 'v2.0/goodsClassify/parent',
+    classifyParent: HTTP + 'v2.0/goodsClassify/parent',
     //38.下级分类
-    sub_classify: HTTP + 'v2.0/goodsClassify/subordinate',
+    subClassify: HTTP + 'v2.0/goodsClassify/subordinate',
     //39.热门搜索
-    hot_search: HTTP + 'v2.0/search/hot',
+    hotSearch: HTTP + 'v2.0/search/hot',
     //40.商品列表
-    good_list: HTTP + 'v2.0/goods/index',
+    goodList: HTTP + 'v2.0/goods/index',
     //41.商品详情
-    goods_view: HTTP + 'v2.0/goods/view',
+    goodsView: HTTP + 'v2.0/goods/view',
     //42.商品评价
-    evaluate_list: HTTP + 'v2.0/goods/evaluateList',
+    evaluateList: HTTP + 'v2.0/goods/evaluateList',
     //43.商品购物券列表
-    good_coupon_list: HTTP + 'v2.0/goods/couponList',
+    goodCouponList: HTTP + 'v2.0/goods/couponList',
     //44.商品属性
-    attr_find: HTTP + 'v2.0/goods/attrFind',
+    attrFind: HTTP + 'v2.0/goods/attrFind',
     //45.收藏商品
-    collect_goods: HTTP + 'v2.0/goods/collectGoods',
+    collectGoods: HTTP + 'v2.0/goods/collectGoods',
     //46.取消收藏
-    collect_delete: HTTP + 'v2.0/goods/viewCollectGoodsDelete',
+    collectDelete: HTTP + 'v2.0/goods/viewCollectGoodsDelete',
     //47.收藏列表
-    collect_goods_list: HTTP + 'v2.0/goods/collectGoodsList',
+    collectGoodsList: HTTP + 'v2.0/goods/collectGoodsList',
     //48.收藏列表取消收藏
-    collect_goods_delete: HTTP + 'v2.0/goods/collectGoodsDelete',
+    collectGoodsDelete: HTTP + 'v2.0/goods/collectGoodsDelete',
     //49.登录
     login: HTTP + 'v2.0/appletMy/login',
     //50.店铺头部
-    store_head: HTTP + 'v2.0/store/head',
+    storeHead: HTTP + 'v2.0/store/head',
     //51.店铺首页
-    store_index: HTTP + 'v2.0/store/index',
+    storeIndex: HTTP + 'v2.0/store/index',
     //52.店铺全部商品
-    store_goods_list: HTTP + 'v2.0/store/goodsList',
+    storeGoodsList: HTTP + 'v2.0/store/goodsList',
     //53.店铺新品
-    new_product_list: HTTP + 'v2.0/store/newProductList',
+    newProductList: HTTP + 'v2.0/store/newProductList',
     //54.店铺热门分类
-    store_hot_classify_list: HTTP + 'v2.0/store/hotClassifyList',
+    storeHotClassifyList: HTTP + 'v2.0/store/hotClassifyList',
     //55.店铺分类
-    store_classify_list: HTTP + 'v2.0/store/classifyList',
+    storeClassifyList: HTTP + 'v2.0/store/classifyList',
     //56.店铺详情
-    store_info: HTTP + 'v2.0/store/info',
+    storeInfo: HTTP + 'v2.0/store/info',
     //57.收藏店铺
-    collect_store: HTTP + 'v2.0/store/collectStore',
+    collectStore: HTTP + 'v2.0/store/collectStore',
     //58.取消收藏店铺
-    store_index_delete: HTTP + 'v2.0/store/viewCollectStoreDelete',
+    storeIndexDelete: HTTP + 'v2.0/store/viewCollectStoreDelete',
     //59.收藏店铺列表
-    collect_store_list: HTTP + 'v2.0/store/collectStoreList',
+    collectStoreList: HTTP + 'v2.0/store/collectStoreList',
     //60.删除收藏店铺
-    collect_store_delete: HTTP + 'v2.0/store/collectStoreDelete',
+    collectStoreDelete: HTTP + 'v2.0/store/collectStoreDelete',
     //61.店铺动态
-    store_article_list: HTTP + 'v2.0/store/articleList',
+    storeArticleList: HTTP + 'v2.0/store/articleList',
     //62.店铺动态
-    article_view: HTTP + 'v2.0/store/articleView',
+    articleView: HTTP + 'v2.0/store/articleView',
     //63.附近店铺
-    store_nearby_list: HTTP + 'v2.0/store/nearbyList',
+    storeNearbyList: HTTP + 'v2.0/store/nearbyList',
     //64.发现好店
-    store_good_list: HTTP + 'v2.0/store/goodList',
+    storeGoodList: HTTP + 'v2.0/store/goodList',
     //65.搜索店铺
-    store_search_list: HTTP + 'v2.0/store/searchList',
+    storeSearchList: HTTP + 'v2.0/store/searchList',
     //66.领券中心
-    coupon_center: HTTP + 'v2.0/coupon/get',
+    couponCenter: HTTP + 'v2.0/coupon/get',
     //67.换券中心 
-    coupon_exchange_list: HTTP + 'v2.0/coupon/exchange',
+    couponExchangeList: HTTP + 'v2.0/coupon/exchange',
     //68.换券详情
-    coupon_exchange_view: HTTP + 'v2.0/coupon/exchangeView',
+    couponExchangeView: HTTP + 'v2.0/coupon/exchangeView',
     //69.换券促销列表
-    coupon_goods_list: HTTP + 'v2.0/coupon/goodsList',
+    couponGoodsList: HTTP + 'v2.0/coupon/goodsList',
     //70.领取优惠券
-    get_coupon: HTTP + 'v2.0/memberCoupon/get',
+    getCoupon: HTTP + 'v2.0/memberCoupon/get',
     //71.换取优惠券
-    exchange_coupon: HTTP + 'v2.0/memberCoupon/exchange',
+    exchangeCoupon: HTTP + 'v2.0/memberCoupon/exchange',
     //72.我的优惠券
-    member_coupon: HTTP + 'v2.0/memberCoupon/index',
+    memberCoupon: HTTP + 'v2.0/memberCoupon/index',
     //73.我的红包
-    member_packet: HTTP + 'v2.0/memberPacket/index',
+    memberPacket: HTTP + 'v2.0/memberPacket/index',
     //74.好物推荐 精选
-    choiceness_list: HTTP + 'v2.0/goods/choicenessList',
+    choicenessList: HTTP + 'v2.0/goods/choicenessList',
     //75.好物推荐列表
-    good_recommend_list: HTTP + 'v2.0/goods/goodRecommendList',
+    goodRecommendList: HTTP + 'v2.0/goods/goodRecommendList',
     //76.浏览记录
-    record_goods: HTTP + 'v2.0/recordGoods/index',
+    recordGoods: HTTP + 'v2.0/recordGoods/index',
     //77.删除记录
-    delete_record: HTTP + 'v2.0/recordGoods/delete',
+    deleteRecord: HTTP + 'v2.0/recordGoods/delete',
     //78.限时抢购分类
-    time_limit: HTTP + 'v2.0/timeLimit/classify',
+    timeLimit: HTTP + 'v2.0/timeLimit/classify',
     //79.限时抢购商品
-    limit_list: HTTP + 'v2.0/timeLimit/index',
+    limitList: HTTP + 'v2.0/timeLimit/index',
     //80.加入购物车
-    cart_create: HTTP + 'v2.0/cart/create',
+    cartCreate: HTTP + 'v2.0/cart/create',
     //81.购物车列表
-    cart_index: HTTP + 'v2.0/cart/index',
+    cartIndex: HTTP + 'v2.0/cart/index',
     //82.购物车增加
-    cart_add: HTTP + 'v2.0/cart/addNumber',
+    cartAdd: HTTP + 'v2.0/cart/addNumber',
     //83.购物车减少
-    cart_reduce: HTTP + 'v2.0/cart/reduceNumber',
+    cartReduce: HTTP + 'v2.0/cart/reduceNumber',
     //84.商品规格
-    cart_attr: HTTP + 'v2.0/cart/attr',
+    cartAttr: HTTP + 'v2.0/cart/attr',
     //85.商品
-    cart_update: HTTP + 'v2.0/cart/update',
+    cartUpdate: HTTP + 'v2.0/cart/update',
     //86.购物车删除
-    cart_delete: HTTP + 'v2.0/cart/delete',
+    cartDelete: HTTP + 'v2.0/cart/delete',
     //87.购物车收藏
-    cart_collect: HTTP + 'v2.0/cart/collect',
+    cartCollect: HTTP + 'v2.0/cart/collect',
     //88.店铺优惠券
-    cart_coupon_list: HTTP + 'v2.0/cart/couponList',
+    cartCouponList: HTTP + 'v2.0/cart/couponList',
     //89.购物车确认订单
-    cart_confirm_order: HTTP + 'v2.0/cart/confirmOrder',
+    cartConfirmOrder: HTTP + 'v2.0/cart/confirmOrder',
     //90.城市列表
-    area_index: HTTP + 'v2.0/area/index',
+    areaIndex: HTTP + 'v2.0/area/index',
     //91.砍价列表
-    bargain_index: HTTP + 'v2.0/bargain/index',
+    bargainIndex: HTTP + 'v2.0/bargain/index',
     //92.立即砍价
-    bargain_immediately: HTTP + 'v2.0/bargain/immediately',
+    bargainImmediately: HTTP + 'v2.0/bargain/immediately',
     //93.我的砍价列表
-    my_bargain: HTTP + 'v2.0/bargain/myCut',
+    myBargain: HTTP + 'v2.0/bargain/myCut',
     //94.砍价详情
-    cut_detail: HTTP + 'v2.0/bargain/myCutView',
+    cutDetail: HTTP + 'v2.0/bargain/myCutView',
     //95.帮忙砍价
-    cut_help: HTTP + 'v2.0/bargain/myCutHelp',
+    cutHelp: HTTP + 'v2.0/bargain/myCutHelp',
     //96.充值列表
-    recharge_list: HTTP + 'v2.0/recharge/index',
+    rechargeList: HTTP + 'v2.0/recharge/index',
     //97.商品排行榜
-    goods_ranking: HTTP + 'v2.0/home/goodsRanking',
+    goodsRanking: HTTP + 'v2.0/home/goodsRanking',
     //98.店铺排行榜
-    store_ranking: HTTP + 'v2.0/home/storeRanking',
+    storeRanking: HTTP + 'v2.0/home/storeRanking',
     //99.品牌甄选分类
-    brand_class_list: HTTP + 'v2.0/home/brandClassList',
+    brandClassList: HTTP + 'v2.0/home/brandClassList',
     //100.品牌甄选列表
-    brand_list: HTTP + 'v2.0/home/brandList',
+    brandList: HTTP + 'v2.0/home/brandList',
     //101.热点
-    hot_list: HTTP + 'v2.0/home/hotList',
+    hotList: HTTP + 'v2.0/home/hotList',
     //102.热点详情
-    hot_view: HTTP + 'v2.0/home/hotView',
+    hotView: HTTP + 'v2.0/home/hotView',
     //103.收藏文章列表
-    article_list: HTTP + 'v2.0/home/articleList',
+    articleList: HTTP + 'v2.0/home/articleList',
     //104.收藏文章
-    collect_article: HTTP + 'v2.0/home/collectArticle',
+    collectArticle: HTTP + 'v2.0/home/collectArticle',
     //105.取消收藏
-    view_collect_article_delete: HTTP + 'v2.0/home/viewCollectArticleDelete',
+    viewCollectArticleDelete: HTTP + 'v2.0/home/viewCollectArticleDelete',
     //106.取消收藏
-    collect_article_delete: HTTP + 'v2.0/home/collectArticleDelete',
+    collectArticleDelete: HTTP + 'v2.0/home/collectArticleDelete',
     //107.首页
     index: HTTP + 'v2.0/index/index',
     //限时抢购
-    index_curLimitList: HTTP + 'v2.0/index/curLimitList',
+    indexCurLimitList: HTTP + 'v2.0/index/curLimitList',
     //108.新人专享礼包
-    new_gift: HTTP + 'v2.0/index/couponList',
+    newGift: HTTP + 'v2.0/index/couponList',
     //109.获取专享礼包
-    get_gift: HTTP + 'v2.0/index/getCoupon',
+    getGift: HTTP + 'v2.0/index/getCoupon',
     //110.购物车数量
-    cart_number: HTTP + 'v2.0/cart/number',
+    cartNumber: HTTP + 'v2.0/cart/number',
     //111.订单列表
-    order_list: HTTP + 'v2.0/order/orderList',
+    orderList: HTTP + 'v2.0/order/orderList',
     //112.取消订单
-    cancel_order: HTTP + 'v2.0/order/cancel',
+    cancelOrder: HTTP + 'v2.0/order/cancel',
     //113.删除订单
-    delete_order: HTTP + 'v2.0/order/destroyOrder',
+    deleteOrder: HTTP + 'v2.0/order/destroyOrder',
     //114.确认订单
-    confirm_collect: HTTP + 'v2.0/order/confirmCollect',
+    confirmCollect: HTTP + 'v2.0/order/confirmCollect',
     //115.订单退款
     refundAndReturn: HTTP + 'v2.0/order/refundAndReturn',
     //116.消息通知
-    message_list: HTTP + 'v2.0/message/index',
+    messageList: HTTP + 'v2.0/message/index',
     //117.余额记录
-    balance_record: HTTP + 'v2.0/recharge/balanceRecord',
+    balanceRecord: HTTP + 'v2.0/recharge/balanceRecord',
     //118.消息统计
-    message_statistics: HTTP + 'v2.0/message/statistics',
+    messageStatistics: HTTP + 'v2.0/message/statistics',
     //119.积分说明
-    integral_help: HTTP + 'v2.0/html/articleView?articleId=27',
+    integralHelp: HTTP + 'v2.0/html/articleView?articleId=27',
     //120.订单详情
-    order_details: HTTP + 'v2.0/order/orderDetails',
+    orderDetails: HTTP + 'v2.0/order/orderDetails',
     //121.确认订单
-    common_confirm_order: HTTP + 'v2.0/cart/commonConfirmOrder',
+    commonConfirmOrder: HTTP + 'v2.0/cart/commonConfirmOrder',
     //122.拼团分类列表
-    group_class_index: HTTP + 'v2.0/group/classIndex',
+    groupClassIndex: HTTP + 'v2.0/group/classIndex',
     //123.拼团列表
-    group_index: HTTP + 'v2.0/group/index',
+    groupIndex: HTTP + 'v2.0/group/index',
     //124.我的拼团
-    group_my_index: HTTP + 'v2.0/group/myIndex',
+    groupMyIndex: HTTP + 'v2.0/group/myIndex',
     //125.拼团详情
-    group_view: HTTP + 'v2.0/group/view',
+    groupView: HTTP + 'v2.0/group/view',
     //126.提交订单
-    order_confirm: HTTP + 'v2.0/order/confirm',
+    orderConfirm: HTTP + 'v2.0/order/confirm',
     //127.余额支付
-    balance_exec: HTTP + 'v2.0/balance/exec',
+    balanceExec: HTTP + 'v2.0/balance/exec',
     //128.邀请好友数据
-    packet_index: HTTP + 'v2.0/packet/index',
+    packetIndex: HTTP + 'v2.0/packet/index',
     //129.售后订单列表
-    order_fter_sale_ist: HTTP + 'v2.0/order/orderAfterSaleList',
+    orderAfterSaleList: HTTP + 'v2.0/order/orderAfterSaleList',
     //130.退款详情
-    refund_details: HTTP + 'v2.0/order/refundDetails',
+    refundDetails: HTTP + 'v2.0/order/refundDetails',
     //131.物流详情
-    express_view: HTTP + 'v2.0/express/view',
+    expressView: HTTP + 'v2.0/express/view',
     //132.降价通知
-    depreciate_goods: HTTP + 'v2.0/goods/depreciateGoods',
+    depreciateGgoods: HTTP + 'v2.0/goods/depreciateGoods',
     //133.web页 活动规则
-    collage_rule_web: HTTP + 'v2.0/html/articleView?articleId=20',
+    collageRuleWeb: HTTP + 'v2.0/html/articleView?articleId=20',
     //砍价规则
-    bargain_rule_web: HTTP + 'v2.0/html/articleView?articleId=21',
+    bargainRuleWeb: HTTP + 'v2.0/html/articleView?articleId=21',
     //134.充值说明
-    recharge_web: HTTP + 'v2.0/html/articleView?articleId=24',
+    rechargeWeb: HTTP + 'v2.0/html/articleView?articleId=24',
     //134.购物流程
-    process_web: HTTP + 'v2.0/html/articleView?articleId=28',
+    processWeb: HTTP + 'v2.0/html/articleView?articleId=28',
     //135.优惠券使用
-    coupon_web: HTTP + 'v2.0/html/articleView?articleId=29',
+    couponWeb: HTTP + 'v2.0/html/articleView?articleId=29',
     //136.同城配送说明
-    city_web: HTTP + 'v2.0/html/articleView?articleId=30',
+    cityWeb: HTTP + 'v2.0/html/articleView?articleId=30',
     //137.配送服务费说明
-    delivery_service_web: HTTP + 'v2.0/html/articleView?articleId=31',
+    deliveryServiceWeb: HTTP + 'v2.0/html/articleView?articleId=31',
     //138.在线支付说明
-    pay_online_web: HTTP + 'v2.0/html/articleView?articleId=32',
+    payOnlineWeb: HTTP + 'v2.0/html/articleView?articleId=32',
     //139.门店自提说明
-    store_self_web: HTTP + 'v2.0/html/articleView?articleId=33',
+    storeSelfWeb: HTTP + 'v2.0/html/articleView?articleId=33',
     //140.撤销退换货
-    revoke_apply: HTTP + 'v2.0/order/revokeApply',
+    revokeApply: HTTP + 'v2.0/order/revokeApply',
     //141.物流列表
-    express_list: HTTP + 'v2.0/express/expressList',
+    expressList: HTTP + 'v2.0/express/expressList',
     //142.填写退货物流
-    return_confirmed: HTTP + 'v2.0/order/returnConfirmed',
+    returnConfirmed: HTTP + 'v2.0/order/returnConfirmed',
     //143.发表评价
-    evaluate_report: HTTP + 'v2.0/evaluate/report',
+    evaluateReport: HTTP + 'v2.0/evaluate/report',
     //144.创建店铺
-    create_store: HTTP + 'v2.0/my/createStore',
+    createStore: HTTP + 'v2.0/my/createStore',
     //145.门店自提列表
-    take_list: HTTP + 'v2.0/goods/takeList',
+    takeList: HTTP + 'v2.0/goods/takeList',
     //146.配送说明
-    shipping_instructions: HTTP + 'v2.0/goods/shippingInstructions',
+    shippingInstructions: HTTP + 'v2.0/goods/shippingInstructions',
     //147.成长值
-    my_task: HTTP + 'v2.0/my/task',
+    myTask: HTTP + 'v2.0/my/task',
     //148会员卡
-    rank_card: HTTP + 'v2.0/rank/card',
+    rankCard: HTTP + 'v2.0/rank/card',
     //149线下订单
-    order_under_line_list: HTTP + 'v2.0/order/orderUnderLineList',
+    orderUnderLineList: HTTP + 'v2.0/order/orderUnderLineList',
     //150会员卡web
-    index_web: HTTP + 'v2.0/my/indexWeb',
+    indexWeb: HTTP + 'v2.0/my/indexWeb',
     //151微信支付
-    wx_pay: HTTP + 'v2.0/appletPay/payment',
+    wxPay: HTTP + 'v2.0/appletPay/payment',
     //152充值生成订单号
-    common_order: HTTP + 'v2.0/commonOrder/number',
+    commonOrder: HTTP + 'v2.0/commonOrder/number',
     //153微信充值
-    applet_pay_recharge: HTTP + 'v2.0/appletPay/recharge',
+    appletPayRecharge: HTTP + 'v2.0/appletPay/recharge',
     //154待评价订单
     orderEvaluateList: HTTP + 'v2.0/order/orderEvaluateList',
     //155我的评价
     myEvaluateList: HTTP + 'v2.0/evaluate/myEvaluateList',
     //156会员专享价web
-    premium_price: HTTP + 'v2.0/rank/premiumPrice',
+    premiumPrice: HTTP + 'v2.0/rank/premiumPrice',
     //157支付密码
-    pay_recharge: HTTP + 'v2.0/pay/recharge',
+    payRecharge: HTTP + 'v2.0/pay/recharge',
     //158拼团信息列表
     groupMsgList: HTTP + 'v2.0/order/groupMsgList',
     //159付款码
-    payment_code: HTTP + 'v2.0/my/paymentCode',
+    paymentCode: HTTP + 'v2.0/my/paymentCode',
     //160店铺服务
-    shop_service_web: HTTP + 'v2.0/html/articleView?articleId=34',
+    shopServiceWeb: HTTP + 'v2.0/html/articleView?articleId=34',
     //161主营类目店铺
-    shop_category_web: HTTP + 'v2.0/html/articleView?articleId=35',
+    shopCategoryWeb: HTTP + 'v2.0/html/articleView?articleId=35',
     //162 面对面扫码
-    face_code: HTTP + 'v2.0/appletMy/faceCode',
+    faceCode: HTTP + 'v2.0/appletMy/faceCode',
     //163邀请活动规则
-    red_pocket_rule: HTTP + 'v2.0/html/appletArticleView?articleId=19',
+    redPocketRule: HTTP + 'v2.0/html/appletArticleView?articleId=19',
     //164注册协议
-    regist_web: HTTP + 'v2.0/html/articleView?articleId=17',
+    registWeb: HTTP + 'v2.0/html/articleView?articleId=17',
     //165web
-    service_web: HTTP + 'v2.0/html/articleView?articleId=',
+    serviceWeb: HTTP + 'v2.0/html/articleView?articleId=',
     //167客服热线
     hotline: HTTP + 'v2.0/setting/hotline',
     //168分享按钮
-    share_btn: HTTP + 'v2.0/share/text',
+    shareBtn: HTTP + 'v2.0/share/text',
     //169分享
     notify: HTTP + 'v2.0/share/notify',
     //170平台店铺主营分类
-    platform_classify: HTTP + 'v2.0/store/platformClassify',
+    platformClassify: HTTP + 'v2.0/store/platformClassify',
     //171注释
     label: HTTP + 'v2.0/share/test',
     //172抽奖详情
-    activity_goods_list: HTTP + 'v2.0/lotteryActivity/activityGoodsList',
+    activityGoodsList: HTTP + 'v2.0/lotteryActivity/activityGoodsList',
     //173抽奖
-    lottery_activity: HTTP + 'v2.0/lotteryActivity/draw',
+    lotteryActivity: HTTP + 'v2.0/lotteryActivity/draw',
     //174我的抽奖
-    lottery_activity_list: HTTP + 'v2.0/lotteryActivity/orderList',
+    lotteryActivityList: HTTP + 'v2.0/lotteryActivity/orderList',
     //175抽奖确认到货
-    confirm_take: HTTP + 'v2.0/lotteryActivity/confirmTake',
+    confirmTake: HTTP + 'v2.0/lotteryActivity/confirmTake',
     //176填写抽奖收货地址
-    set_addres: HTTP + 'v2.0/lotteryActivity/setAddres',
+    setAddres: HTTP + 'v2.0/lotteryActivity/setAddres',
     //177抽奖分享
-    share_activity: HTTP + 'v2.0/lotteryActivity/shareActivity',
+    shareActivity: HTTP + 'v2.0/lotteryActivity/shareActivity',
     //178达达快递
     dadaExpress: HTTP + 'v2.0/express/dadaExpress',
     //179忘记支付密码
-    forget_pay_password: HTTP + 'v2.0/setting/forgetPayPassword',
+    forgetPayPassword: HTTP + 'v2.0/setting/forgetPayPassword',
     //180修改登录密码
-    d_update_password: HTTP + 'v2.0/setting/updatePassword',
+    dUpdatePassword: HTTP + 'v2.0/setting/updatePassword',
     //181抽奖规则
-    draw_activity_view: HTTP + 'v2.0/html/drawActivityView',
+    drawActivityView: HTTP + 'v2.0/html/drawActivityView',
     //182积分删除订单
-    conversion_record_delete: HTTP + 'v2.0/integral/conversionRecordDelete',
+    conversionRecordDelete: HTTP + 'v2.0/integral/conversionRecordDelete',
     //183积分微信支付
-    points_redemption: HTTP + 'v2.0/appletPay/pointsRedemption',
+    pointsRedemption: HTTP + 'v2.0/appletPay/pointsRedemption',
     //获取订单状态
-    order_getOrderState: HTTP + 'v2.0/order/getOrderState',
+    orderGetOrderState: HTTP + 'v2.0/order/getOrderState',
     // 是否创建店铺
-    my_getInState: HTTP + 'v2.0/my/getInState',
-    customer_getStoreInfo: HTTP + 'v2.0/customer/getStoreInfo',
+    myGetInState: HTTP + 'v2.0/my/getInState',
+    customerGetStoreInfo: HTTP + 'v2.0/customer/getStoreInfo',
     //积分下订单
-    integral_preOrder: HTTP + 'v2.0/integral/preOrder',
+    integralPreOrder: HTTP + 'v2.0/integral/preOrder',
     //增加广告点击数
-    index_adBrowseInc: HTTP + 'v2.0/index/adBrowseInc',
+    indexAdBrowseInc: HTTP + 'v2.0/index/adBrowseInc',
     //185代言收益首页
-    dy_earnings_view: HTTP + 'v2.0/distributionMy/earningsView',
+    dyEearningsView: HTTP + 'v2.0/distributionMy/earningsView',
     //186代言收益提现首页
-    distribution_withdrawal_index: HTTP + 'v2.0/distributionWithdrawal/index',
+    distributionWithdrawalIndex: HTTP + 'v2.0/distributionWithdrawal/index',
     //187代言收益提现
-    distribution_withdrawal_to_apply: HTTP + 'v2.0/distributionWithdrawal/toApply',
+    distributionWithdrawalToApply: HTTP + 'v2.0/distributionWithdrawal/toApply',
     //188代言提现记录
-    distribution_withdrawal_record: HTTP + 'v2.0/distributionWithdrawal/record',
+    distributionWithdrawalRecord: HTTP + 'v2.0/distributionWithdrawal/record',
     //189代言粉丝列表
-    distribution_my_fans: HTTP + 'v2.0/distributionMy/fans',
+    distributionMyFans: HTTP + 'v2.0/distributionMy/fans',
     //190代言申请代言
-    distribution_become_apply: HTTP + 'v2.0/distributionBecome/apply',
+    distributionBecomeApply: HTTP + 'v2.0/distributionBecome/apply',
     //191代言收益详情
-    distribution_my_earnings_details: HTTP + 'v2.0/distributionMy/earningsDetails',
+    distributionMyEarningsDetails: HTTP + 'v2.0/distributionMy/earningsDetails',
     //192代言代言升降记录
-    distribution_level_change_record: HTTP + 'v2.0/distributionLevel/changeRecord',
+    distributionLevelChangeRecord: HTTP + 'v2.0/distributionLevel/changeRecord',
     //193代言申请代言设置
-    distribution_form_set: HTTP + 'v2.0/distributionBecome/distributionFormSet',
+    distributionFormSet: HTTP + 'v2.0/distributionBecome/distributionFormSet',
     //194代言规则
-    tobe_distributor_rule: HTTP + 'v2.0/distributionBecome/tobeDistributorRule',
+    tobeDistributorRule: HTTP + 'v2.0/distributionBecome/tobeDistributorRule',
     //195代言我的代言等级
-    distribution_my_level: HTTP + 'v2.0/distributionLevel/myLevel',
+    distributionMyLevel: HTTP + 'v2.0/distributionLevel/myLevel',
     //196代言说明
-    distribution_my_explain: HTTP + 'v2.0/distributionMy/explain',
+    distributionMyExplain: HTTP + 'v2.0/distributionMy/explain',
     //197代言邀请你代言
-    distribution_yq: HTTP + 'v2.0/distributionShare/toInvite',
+    distributionYq: HTTP + 'v2.0/distributionShare/toInvite',
     //198代言人商信息
-    distribution_share_info: HTTP + 'v2.0/distributionShare/getInfo',
+    distributionShareInfo: HTTP + 'v2.0/distributionShare/getInfo',
     //199代言商品列表
-    distribution_goods_list: HTTP + 'v2.0/distributionGoods/goodsList',
+    distributionGoodsList: HTTP + 'v2.0/distributionGoods/goodsList',
     //200绑定代言人关系
-    distribution_bindDistribution: HTTP + 'v2.0/distributionShare/bindDistribution',
+    distributionBindDistribution: HTTP + 'v2.0/distributionShare/bindDistribution',
     //
-    distribution_query_point: HTTP + 'v2.0/distributionBecome/queryPoint',
+    distributionQueryPoint: HTTP + 'v2.0/distributionBecome/queryPoint',
     //
-    distribution_jumpSign: HTTP + 'v2.0/share/jumpSign',
+    distributionJumpSign: HTTP + 'v2.0/share/jumpSign',
     //
-    distribution_vipTurnDist: HTTP + 'v2.0/distributionBecome/vipTurnDist',
-    distribution_getRiseHistory: HTTP + 'v2.0/invoiceExplain/getRiseHistory',
+    distributionVipTurnDist: HTTP + 'v2.0/distributionBecome/vipTurnDist',
+    distributionGetRiseHistory: HTTP + 'v2.0/invoiceExplain/getRiseHistory',
     //201客服上传图片
-    service_uploadFile: HTTP + 'v2.0/customer/uploadFile',
+    serviceUploadFile: HTTP + 'v2.0/customer/uploadFile',
     //202客服历史消息
     getChatLog: HTTP + 'v2.0/customer/getChatLog',
     //203客服店铺列表
@@ -1008,49 +994,48 @@ App({
     //获得商品详情接口
     getGoodsInfo: HTTP + 'v2.0/customer/getGoodsInfo',
     //获取咨询订单
-    customer_getStoreOrderList: HTTP + 'v2.0/customer/getStoreOrderList',
+    customerGetStoreOrderList: HTTP + 'v2.0/customer/getStoreOrderList',
     // 会员获得商品列表
-    customer_getGoodsList: HTTP + 'v2.0/customer/getGoodsList',
+    customerGetGoodsList: HTTP + 'v2.0/customer/getGoodsList',
     //我的钱包
-    my_myWallet: HTTP + 'v2.0/my/myWallet',
+    myMyWallet: HTTP + 'v2.0/my/myWallet',
     //平台证照信息
     license: HTTP + 'v2.0/share/license',
     //发票信息
-    invoice_detail: HTTP + 'v2.0/invoiceExplain/detail',
+    invoiceDetail: HTTP + 'v2.0/invoiceExplain/detail',
     //收票人信息
-    invoice_supplement: HTTP + 'v2.0/invoice/supplement',
+    invoiceSupplement: HTTP + 'v2.0/invoice/supplement',
     //发票确认订单
-    invoice_order_detail: HTTP + 'v2.0/invoice/orderDetail',
+    invoiceOrderDetail: HTTP + 'v2.0/invoice/orderDetail',
     //
-    invoice_anew: HTTP + 'v2.0/invoice/anew',
+    invoiceAnew: HTTP + 'v2.0/invoice/anew',
     //支付成功返回活动id
-    payInfo_getPayInfo: HTTP + 'v2.0/payInfo/getPayInfo',
+    payInfoGetPayInfo: HTTP + 'v2.0/payInfo/getPayInfo',
     //发票可开具类型
-    //invoice_explain_type: HTTP + 'v2.0/invoice_explain/type',
-    invoice_explain_editInvoice: HTTP + 'v2.0/invoiceExplain/editInvoice',
+    invoiceExplainEditInvoice: HTTP + 'v2.0/invoiceExplain/editInvoice',
     //重开补开发票时保留未付款的发票信息数据
-    invoice_explain_reopening: HTTP + 'v2.0/invoiceExplain/reopening',
+    invoiceExplainReopening: HTTP + 'v2.0/invoiceExplain/reopening',
     //重开补开发票时修改发票信息
-    invoice_edit: HTTP + 'v2.0/invoice/edit',
+    invoiceEdit: HTTP + 'v2.0/invoice/edit',
     //No.9重开补开发票运费为0时更改信息
-    invoice_change_status: HTTP + 'v2.0/invoice/changeStatus',
+    invoiceChangeStatus: HTTP + 'v2.0/invoice/changeStatus',
     //---------------------------------------------------------------------------------
     //获取FormId
-    applet_my_saveFormId: HTTP + 'v2.0/appletMy/saveFormId',
+    appletMySaveFormId: HTTP + 'v2.0/appletMy/saveFormId',
     //商品标签
-    goods_tagClickLog: HTTP + 'v2.0/goods/tagClickLog',
+    goodsTagClickLog: HTTP + 'v2.0/goods/tagClickLog',
     //抽奖订单详情
-    lottery_activity_order_info: HTTP + 'v2.0/lotteryActivity/orderInfo',
+    lotteryActivityOrderInfo: HTTP + 'v2.0/lotteryActivity/orderInfo',
     //银行卡列表
-    card_index: HTTP + 'v2.0/card/index',
+    cardIndex: HTTP + 'v2.0/card/index',
     //添加银行卡
-    card_create: HTTP + 'v2.0/card/create',
+    cardCreate: HTTP + 'v2.0/card/create',
     //删除银行卡
-    card_destroy: HTTP + 'v2.0/card/destroy',
+    cardDestroy: HTTP + 'v2.0/card/destroy',
     //银行卡详情
-    card_details: HTTP + 'v2.0/card/details',
+    cardDetails: HTTP + 'v2.0/card/details',
     //退款金额
-    order_refundMoney: HTTP + 'v2.0/order/refundMoney'
+    orderRefundMoney: HTTP + 'v2.0/order/refundMoney'
     //---------------------------------------------------------------------------------
   }
 })

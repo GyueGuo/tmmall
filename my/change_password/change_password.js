@@ -7,9 +7,9 @@ Page({
    */
   data: {
     type: '',
-    old_psw: '',
-    new_psw: '',
-    confirm_psw: ''
+    oldPsw: '',
+    newPsw: '',
+    confirmPsw: ''
   },
 
   /**
@@ -18,7 +18,7 @@ Page({
   onLoad: function(options) {
     this.setData({
       type: options.type != undefined ? options.type : '',
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
     if (this.data.type == 'login') {
       wx.setNavigationBarTitle({
@@ -78,7 +78,7 @@ Page({
    */
   oldInput(e) {
     this.setData({
-      old_psw: e.detail.value
+      oldPsw: e.detail.value
     })
   },
 
@@ -87,7 +87,7 @@ Page({
    */
   newInput(e) {
     this.setData({
-      new_psw: e.detail.value
+      newPsw: e.detail.value
     })
   },
 
@@ -96,7 +96,7 @@ Page({
    */
   confirmInput(e) {
     this.setData({
-      confirm_psw: e.detail.value
+      confirmPsw: e.detail.value
     })
   },
 
@@ -104,26 +104,26 @@ Page({
    * 完成支付修改密码
    */
   finish() {
-    if (this.data.old_psw.length < 6) {
+    if (this.data.oldPsw.length < 6) {
       app.showToast('请输入旧的支付密码')
       return
     }
-    if (this.data.new_psw.length < 6) {
+    if (this.data.newPsw.length < 6) {
       app.showToast('请输入新的支付密码')
       return
     }
-    if (this.data.confirm_psw.length < 6) {
+    if (this.data.confirmPsw.length < 6) {
       app.showToast('请输入新的支付密码')
       return
     }
-    if (this.data.new_psw != this.data.confirm_psw) {
+    if (this.data.newPsw != this.data.confirmPsw) {
       app.showToast('两次新密码输入不一致')
       return
     }
     
-    http.encPost(app.globalData.update_password, {
-      oldPassword: this.data.old_psw,
-      payPassword: this.data.confirm_psw
+    http.encPost(app.globalData.updatePassword, {
+      oldPassword: this.data.oldPsw,
+      payPassword: this.data.confirmPsw
     }).then(res => {
       app.showSuccessToast(res.message, () => {
         wx.navigateBack()
@@ -134,27 +134,27 @@ Page({
   /**
    * 完成登录修改密码
    */
-  d_set_psw() {
+  dSetPsw() {
     let re = /^(?!([a-zA-Z]+|\d+)$)[a-zA-Z\d]{6,20}$/
-    if (!re.test(this.data.old_psw)) {
+    if (!re.test(this.data.oldPsw)) {
       app.showToast('请输入6位-20位字母、数字旧的登录密码')
       return
     }
-    if (!re.test(this.data.new_psw)) {
+    if (!re.test(this.data.newPsw)) {
       app.showToast('请输入6位-20位字母、数字新的登录密码')
       return
     }
-    if (!re.test(this.data.confirm_psw)) {
+    if (!re.test(this.data.confirmPsw)) {
       app.showToast('请输入6位-20位字母、数字新的登录密码')
       return
     }
-    if (this.data.new_psw != this.data.confirm_psw) {
+    if (this.data.newPsw != this.data.confirmPsw) {
       app.showToast('两次新密码输入不一致')
       return
     }
-    http.encPost(app.globalData.d_update_password, {
-      oldPassword: this.data.old_psw,
-      password: this.data.confirm_psw
+    http.encPost(app.globalData.dUpdatePassword, {
+      oldPassword: this.data.oldPsw,
+      password: this.data.confirmPsw
     }).then(res => {
       app.showSuccessToast(res.message, () => {
         wx.navigateBack()

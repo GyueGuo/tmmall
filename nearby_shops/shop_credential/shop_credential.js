@@ -1,4 +1,3 @@
-// nearby_shops/shop_credential/shop_credential.js
 Page({
 
   /**
@@ -19,13 +18,8 @@ Page({
     })
     let list = [{
       name: '营业执照',
-      path: this.data.info.business_file
-    }, 
-    // {
-    //   name: '行政许可证',
-    //   img: this.data.info.licence_file
-    // }
-    ]
+      path: this.data.info.businessFile
+    }]
     this.setData({
       list: list
     })

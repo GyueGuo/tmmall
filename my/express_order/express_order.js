@@ -8,42 +8,43 @@ Page({
    */
   data: {
     //快递邮寄
-    tab_view: [{
+    tabView: [{
       id: '0',
       title: '全部',
-      distribution_type: '0',
+      distributionType: '0',
       status: null
     }, {
       id: '1',
       title: '待付款',
-      distribution_type: '0',
+      distributionType: '0',
       status: '0'
     }, {
       id: '2',
       title: '待收货',
-      distribution_type: '1,3,4',
+      distributionType: '1,3,4',
       status: '1,2'
     }, {
       id: '3',
       title: '待自提',
-      distribution_type: '2',
+      distributionType: '2',
       status: '2'
     }, {
       id: '4',
       title: '待评价',
-      distribution_type: '0',
+      distributionType: '0',
       status: '3'
     }],
     //选项卡当前选中
-    current_status: null,
+    currentStatus: null,
     //配送方式
-    distribution_type: '0',
+    distributionType: '0',
     page: 1,
     list: [],
     total: '',
+    scrollTop: 0,
     //当前进入详情index
     index: '',
-    modal_confirm: [{
+    modalConfirm: [{
         title: '提示',
         content: '确认已收到货?',
         tip: '',
@@ -67,21 +68,21 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     let obj = {
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       configSwitch: app.globalData.configSwitch
     }
     if (options.type) {
-      obj.distribution_type = JSON.parse(options.type).distribution_type
-      obj.current_status = JSON.parse(options.type).status
+      obj.distributionType = JSON.parse(options.type).distributionType
+      obj.currentStatus = JSON.parse(options.type).status
     }
     // let title = null
     // if (options.city) { //同城速递订单
     //   title = '同城速递订单'
-    //   obj.distribution_type = 1
+    //   obj.distributionType = 1
     // } else if (options.pickup) { //门店自提订单
-    //   obj.distribution_type = 2
+    //   obj.distributionType = 2
     //   title = '门店自提订单'
     // } else { //快递邮寄订单
     //   title = '快递邮寄订单'
@@ -95,10 +96,10 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
     //取消订单
     event.on('closeOrder', this, () => {
-      if (this.data.current_status == null) {
+      if (this.data.currentStatus == null) {
         this.data.list[this.data.index].status = -1
       } else {
         this.data.list.splice(this.data.index, 1)
@@ -109,7 +110,7 @@ Page({
     })
     //支付
     event.on('payOrder', this, () => {
-      if (this.data.current_status == null) {
+      if (this.data.currentStatus == null) {
         this.data.list[this.data.index].status = 1
       } else {
         this.data.list.splice(this.data.index, 1)
@@ -120,7 +121,7 @@ Page({
     })
     //确认收货
     event.on('confirmReceipt', this, () => {
-      if (this.data.current_status == null) {
+      if (this.data.currentStatus == null) {
         this.data.list[this.data.index].status = 3
       } else {
         this.data.list.splice(this.data.index, 1)
@@ -152,21 +153,21 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     this.getOrderList()
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
     event.remove('closeOrder', this)
     event.remove('payOrder', this)
     event.remove('confirmReceipt', this)
@@ -177,14 +178,14 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
@@ -195,8 +196,8 @@ Page({
     console.log(e)
     let item = e.currentTarget.dataset.item
     this.setData({
-      current_status: e.currentTarget.dataset.item.status,
-      distribution_type: e.currentTarget.dataset.item.distribution_type,
+      currentStatus: e.currentTarget.dataset.item.status,
+      distributionType: e.currentTarget.dataset.item.distributionType,
       page: 1,
       list: []
     })
@@ -219,7 +220,7 @@ Page({
    */
   onBackTop() {
     this.setData({
-      scroll_top: 0
+      scrollTop: 0
     })
   },
 
@@ -227,9 +228,9 @@ Page({
    * 获取订单列表
    */
   getOrderList() {
-    http.postList(app.globalData.order_list, {
-      distributionType: this.data.distribution_type,
-      status: this.data.current_status,
+    http.postList(app.globalData.orderList, {
+      distributionType: this.data.distributionType,
+      status: this.data.currentStatus,
       keyword: '',
       page: this.data.page
     }).then(res => {
@@ -262,7 +263,7 @@ Page({
    */
   onSaleAfter() {
     wx.navigateTo({
-      url: '../after_sale/after_sale?distribution_type=' + this.data.distribution_type,
+      url: '../afterSale/afterSale?distributionType=' + this.data.distributionType,
     })
   },
 
@@ -271,7 +272,7 @@ Page({
    */
   onShopDetail(e) {
     wx.navigateTo({
-      url: '/nearby_shops/shop_detail/shop_detail?store_id=' + e.currentTarget.dataset.id,
+      url: '/nearbyShops/shopDetail/shopDetail?storeId=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -281,7 +282,7 @@ Page({
   onOrderDetail(e) {
     this.data.index = e.currentTarget.dataset.index
     wx.navigateTo({
-      url: '../order_detail/order_detail?id=' + e.currentTarget.dataset.id,
+      url: '../orderDetail/orderDetail?id=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -290,7 +291,7 @@ Page({
    */
   onDetail(e) {
     wx.navigateTo({
-      url: '/my/offline_detail/offline_detail?id=' + e.currentTarget.dataset.id,
+      url: '/my/offlineDetail/offlineDetail?id=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -299,7 +300,7 @@ Page({
    */
   onSearch() {
     wx.navigateTo({
-      url: '../search_order/search_order?distribution_type=' + this.data.distribution_type,
+      url: '../searchOrder/searchOrder?distributionType=' + this.data.distributionType,
     })
   },
 
@@ -309,20 +310,20 @@ Page({
   onLogistics(e) {
     let item = e.currentTarget.dataset.item
     //如果是同城
-    if (item.distribution_type == 1) {
+    if (item.distributionType == 1) {
       wx.navigateTo({
-        url: '/my/take_out/take_out?order_attach_id=' + item.order_attach_id,
+        url: '/my/takeOut/takeOut?orderAttachId=' + item.orderAttachId,
       })
       return
     }
     let info = {
-      express_number: item.express_number,
-      express_value: item.express_value,
-      order_attach_id: item.order_attach_id,
+      expressNumber: item.expressNumber,
+      expressValue: item.expressValue,
+      orderAttachId: item.orderAttachId,
       type: 'order'
     }
     wx.navigateTo({
-      url: '../logistics_detail/logistics_detail?info=' + JSON.stringify(info),
+      url: '../logisticsDetail/logisticsDetail?info=' + JSON.stringify(info),
     })
   },
 
@@ -331,11 +332,11 @@ Page({
    */
   cancelOrder(e) {
     let index = e.currentTarget.dataset.index
-    http.post(app.globalData.cancel_order, {
+    http.post(app.globalData.cancelOrder, {
       orderAttachId: e.currentTarget.dataset.id,
     }).then(res => {
       app.showSuccessToast('取消成功')
-      if (this.data.current_status == null) {
+      if (this.data.currentStatus == null) {
         this.data.list[index].status = -1
       } else {
         this.data.list.splice(index, 1)
@@ -352,7 +353,7 @@ Page({
   deleteOrder(e) {
     let index = e.currentTarget.dataset.index
     let id = e.currentTarget.dataset.id
-    if (this.data.list[index].has_refund == 1) {
+    if (this.data.list[index].hasRefund == 1) {
       app.showModal('', '删除订单会取消您的退款申请,确定继续吗?', () => {
         this.confirmDelete(id, index)
       })
@@ -365,7 +366,7 @@ Page({
    * 删除订单
    */
   confirmDelete(id, index) {
-    http.post(app.globalData.delete_order, {
+    http.post(app.globalData.deleteOrder, {
       orderAttachId: id
     }).then(res => {
       app.showSuccessToast('删除成功')
@@ -381,16 +382,16 @@ Page({
    */
   payOrder(e) {
     let item = e.currentTarget.dataset.item
-    let order_info = {
-      total_price: item.subtotal_price,
-      order_number: '',
-      order_type: item.order_type,
-      order_attach_number: item.order_attach_number,
-      order_attach_id: item.order_attach_id,
+    let orderInfo = {
+      totalPrice: item.subtotalPrice,
+      orderNumber: '',
+      orderType: item.orderType,
+      orderAttachNumber: item.orderAttachNumber,
+      orderAttachId: item.orderAttachId,
       type: 2
     }
     wx.navigateTo({
-      url: '/pages/cashier_desk/cashier_desk?order_info=' + JSON.stringify(order_info),
+      url: '/pages/cashierDesk/cashierDesk?orderInfo=' + JSON.stringify(orderInfo),
     })
     this.data.index = e.currentTarget.dataset.index
   },
@@ -400,16 +401,16 @@ Page({
    */
   confirmReceipt(e) {
     console.log(e)
-    let order_obj = e.detail
-    let group_take = order_obj.group_take == undefined ? '' : order_obj.group_take
-    if (group_take == 1) {
+    let orderObj = e.detail
+    let groupTake = orderObj.groupTake == undefined ? '' : orderObj.groupTake
+    if (groupTake == 1) {
       app.showToast('该订单团购尚未成功,暂不能提货')
     }
-    if (this.data.list[order_obj.index].order_goods_list[0].status == 2.2) {
+    if (this.data.list[orderObj.index].orderGoodsList[0].status == 2.2) {
       app.showToast('该订单团购尚未成功,暂不能提货')
       return
     }
-    if (this.data.list[order_obj.index].has_refund == 1) {
+    if (this.data.list[orderObj.index].hasRefund == 1) {
       app.showModal('', '确认收货会取消您的退款申请,确定继续吗?', () => {
         this.confirmCollect(e)
       })
@@ -430,16 +431,15 @@ Page({
    * 确认收货
    */
   confirmCollect(e) {
-    let order_obj = e.detail
-    console.log(e.detail)
-    http.post(app.globalData.confirm_collect, {
-      orderAttachId: order_obj.id
+    let orderObj = e.detail
+    http.post(app.globalData.confirmCollect, {
+      orderAttachId: orderObj.id
     }).then(res => {
       app.showSuccessToast('收货成功')
-      if (this.data.current_status == null) {
-        this.data.list[order_obj.index].status = 3
+      if (this.data.currentStatus == null) {
+        this.data.list[orderObj.index].status = 3
       } else {
-        this.data.list.splice(order_obj.index, 1)
+        this.data.list.splice(orderObj.index, 1)
       }
       this.setData({
         list: this.data.list
@@ -454,45 +454,34 @@ Page({
     let item = e.currentTarget.dataset.item,
       list = []
     this.data.index = e.currentTarget.dataset.index
-    for (var i = 0; i < item.order_goods_list.length; i++) {
-      item.order_goods_list[i].file = encodeURIComponent(item.order_goods_list[i].file)
-      if (item.order_goods_list[i].status != 4.2 && item.order_goods_list[i].status != 4.3) {
-        list.push(item.order_goods_list[i])
+    for (var i = 0; i < item.orderGoodsList.length; i++) {
+      item.orderGoodsList[i].file = encodeURIComponent(item.orderGoodsList[i].file)
+      if (item.orderGoodsList[i].status != 4.2 && item.orderGoodsList[i].status != 4.3) {
+        list.push(item.orderGoodsList[i])
       }
     }
     wx.navigateTo({
       url: '/pages/comment/comment?info=' + JSON.stringify(list),
     })
-    // if (this.data.list[this.data.index].has_refund == 1) {
-    //   app.showModal('', '评价会取消您的退款申请,确定继续吗?', () => {
-    //     wx.navigateTo({
-    //       url: '/pages/comment/comment?info=' + JSON.stringify(list),
-    //     })
-    //   })
-    // } else {
-    //   wx.navigateTo({
-    //     url: '/pages/comment/comment?info=' + JSON.stringify(list),
-    //   })
-    // }
 
   },
 
   /**
    * 申请重开发票
    */
-  invoice_anew(e) {
+  invoiceAnew(e) {
     let item = e.currentTarget.dataset.item
     wx.navigateTo({
-      url: '/nearby_shops/invoice_detail/invoice_detail?order_attach_id=' + item.order_attach_id + '&status=' + item.status,
+      url: '/nearbyShops/invoiceDetail/invoiceDetail?orderAttachId=' + item.orderAttachId + '&status=' + item.status,
     })
   },
   /**
    * 申请发票
    */
-  invoice_apply(e) {
+  invoiceApply(e) {
     let item = e.currentTarget.dataset.item
     wx.navigateTo({
-      url: '/nearby_shops/invoice_info/invoice_info?order_attach_id=' + item.order_attach_id + '&store_id=' + item.store_id,
+      url: '/nearbyShops/invoiceInfo/invoiceInfo?orderAttachId=' + item.orderAttachId + '&storeId=' + item.storeId,
     })
   },
 })

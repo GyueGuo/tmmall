@@ -1,5 +1,3 @@
-/* my/fx_grade/fx_grade.wxss */
-
 page {
   background-color: #fefefe;
 }

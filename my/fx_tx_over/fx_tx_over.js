@@ -1,6 +1,5 @@
-// my/fx_tx_over/fx_tx_over.js
 const app = getApp();
-const http = require('../../utils/http.js');
+
 Page({
 
   /**
@@ -15,7 +14,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -72,7 +71,7 @@ Page({
    */
   submit(){
     wx.navigateTo({
-      url: '/my/fx_record_list/fx_record_list',
+      url: '/my/fxRecordList/fxRecordList',
     })
   }
 })

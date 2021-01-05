@@ -57,7 +57,7 @@ Page({
     //   isApplication: false
     // }
     // this.setData(obj)
-    app.app_DIY(() => {
+    app.appDIY(() => {
       this.location()
     })
   },
@@ -196,7 +196,7 @@ Page({
       }
     })
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       configSwitch: app.globalData.configSwitch,
       model: app.globalData.model
     })
@@ -215,7 +215,7 @@ Page({
    */
   blendent() {
     let obj = {
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     }
     this.selectComponent("#cart").blendent(obj)
     this.selectComponent("#buy_board").blendent(obj)

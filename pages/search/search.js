@@ -20,7 +20,7 @@ Page({
   onLoad: function(options) {
     this.setData({
       current_tab: options.type,
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       configSwitch: app.globalData.configSwitch
     })
   },

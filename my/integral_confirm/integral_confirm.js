@@ -17,7 +17,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
     this.data.id = options.id
   },
@@ -68,7 +68,7 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.integral_conversion, {
+    http.post(app.globalData.integralConversion, {
       integralId: this.data.id
     }).then(res => {
       this.setData({
@@ -100,7 +100,7 @@ Page({
       return
     }
     if (Number(this.data.result.price) > 0) {
-      http.post(app.globalData.integral_preOrder, {
+      http.post(app.globalData.integralPreOrder, {
         integralId: this.data.id,
         number: 1,
         province: this.data.address.province,
@@ -115,17 +115,17 @@ Page({
         from: '2'
       }).then(res => {
         let data = {
-          total_price: this.data.result.price,
+          totalPrice: this.data.result.price,
           address: this.data.address,
           id: this.data.id,
-          order_number: res.data.orderNumber
+          orderNumber: res.data.orderNumber
         }
         wx.redirectTo({
-          url: `/pages/integral_cashier_desk/integral_cashier_desk?data=${JSON.stringify(data)}`,
+          url: `/pages/integralCashierDesk/integralCashierDesk?data=${JSON.stringify(data)}`,
         })
       })
     } else {
-      http.encPost(app.globalData.integral_confirm, {
+      http.encPost(app.globalData.integralConfirm, {
         integralId: this.data.id,
         number: 1,
         province: this.data.address.province,
@@ -142,7 +142,7 @@ Page({
         event.emit('refreshIntegral')
         app.showSuccessToast(res.message, () => {
           wx.redirectTo({
-            url: '/my/integral_record/integral_record',
+            url: '/my/integralRecord/integralRecord',
           })
         })
       })

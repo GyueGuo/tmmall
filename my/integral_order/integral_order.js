@@ -21,7 +21,7 @@ Page({
     this.setData({
       id: options.id,
       index: options.index,
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -71,7 +71,7 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.integral_order, {
+    http.post(app.globalData.integralOrder, {
       integralOrderId: this.data.id
     }).then(res => {
       this.setData({
@@ -84,7 +84,7 @@ Page({
    * 确认收货
    */
   confirmReceipt() {
-    http.post(app.globalData.confirm_receipt, {
+    http.post(app.globalData.confirmReceipt, {
       integralOrderId: this.data.id,
       status: 2
     }).then(res => {
@@ -101,15 +101,15 @@ Page({
   onLogistics() {
     let info = {
       file: encodeURIComponent(this.data.info.file),
-      goods_name: this.data.info.integral_name,
-      subtotal_price: this.data.info.price,
-      express_number: this.data.info.express_number,
-      express_value: this.data.info.express_value,
-      order_attach_id: this.data.id,
+      goodsName: this.data.info.integralName,
+      subtotalPrice: this.data.info.price,
+      expressNumber: this.data.info.expressNumber,
+      expressValue: this.data.info.expressValue,
+      orderAttachId: this.data.id,
       type: 'integral'
     }
     wx.navigateTo({
-      url: '../logistics_detail/logistics_detail?info=' + JSON.stringify(info),
+      url: '../logisticsDetail/logisticsDetail?info=' + JSON.stringify(info),
     })
   },
 
@@ -118,7 +118,7 @@ Page({
    */
   copyOrder() {
     wx.setClipboardData({
-      data: this.data.info.order_number,
+      data: this.data.info.orderNumber,
     })
   },
 })

@@ -73,7 +73,7 @@ var util = {
   /**
    * vip价格
    */
-  vip_price: function(price, discount) {
+  vipPrice: function(price, discount) {
     if (price) {
       return parseFloat(price * discount * 0.01).toFixed(2)
     }
@@ -121,7 +121,7 @@ var util = {
   /**
    * 图片换色盒子
    */
-  diy_imgbox: function(w) {
+  diyImgbox: function(w) {
     var box = 'display: block;' +
       'width: ' + w + 'rpx!important;' +
       'overflow: hidden;';
@@ -130,7 +130,7 @@ var util = {
   /**
    * 图片换色
    */
-  diy_imgcolor: function(color, w, h, y) {
+  diyImgcolor: function(color, w, h, y) {
     var y = y || 0
     var style = 'position: relative;' +
       'transform: translate(-' + w + 'rpx,' + y + 'px);' +
@@ -143,7 +143,7 @@ var util = {
   /**
    * 换色
    */
-  diy_color: function(color, bg, border, opacity) {
+  diyColor: function(color, bg, border, opacity) {
     var diy = ''
     if (color) {
       diy += 'color:' + color + ' !important;'
@@ -163,7 +163,7 @@ var util = {
   /**
    * 客服时间
    */
-  service_time: function(TIME) {
+  serviceTime: function(TIME) {
     // 消息时间
     var time = getDate(parseInt(TIME));
     var y = time.getFullYear();
@@ -187,7 +187,7 @@ var util = {
       return hh + ':' + mm
     }
   },
-  servicelist_time: function(TIME) {
+  servicelistTime: function(TIME) {
     // 消息时间
     var time = getDate(parseInt(TIME));
     var y = time.getFullYear();
@@ -209,15 +209,15 @@ module.exports = {
   decimals: util.decimals,
   percent: util.percent,
   oPercent: util.oPercent,
-  vip_price: util.vip_price,
+  vipPrice: util.vipPrice,
   toFixed: util.toFixed,
   cutFirst: util.cutFirst,
   cutDate: util.cutDate,
   cal: util.cal,
   add: util.add,
-  diy_imgcolor: util.diy_imgcolor,
-  diy_color: util.diy_color,
-  diy_imgbox: util.diy_imgbox,
-  service_time: util.service_time,
-  servicelist_time: util.servicelist_time
+  diyImgcolor: util.diyImgcolor,
+  diyColor: util.diyColor,
+  diyImgbox: util.diyImgbox,
+  serviceTime: util.serviceTime,
+  servicelistTime: util.servicelistTime
 }

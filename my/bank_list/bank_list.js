@@ -1,4 +1,4 @@
-// my/bank_list/bank_list.js
+
 const app = getApp();
 const http = require('../../utils/http.js');
 Page({
@@ -22,7 +22,7 @@ Page({
       })
     }
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -81,7 +81,7 @@ Page({
    * 获取数据
    */
   geData() {
-    http.post(app.globalData.card_index, {
+    http.post(app.globalData.cardIndex, {
       page: this.data.page
     }).then(res => {
       if (this.data.page == 1) {
@@ -98,7 +98,7 @@ Page({
         let pages = getCurrentPages()
         let prevPage = pages[pages.length - 2];
         prevPage.setData({
-          card_details: null,
+          cardDetails: null,
         })
       }
     })
@@ -108,7 +108,7 @@ Page({
    */
   addCard() {
     wx.navigateTo({
-      url: '/my/add_bank/add_bank',
+      url: '/my/addBank/addBank',
     })
   },
   /**
@@ -119,12 +119,12 @@ Page({
       let pages = getCurrentPages()
       let prevPage = pages[pages.length - 2];
       prevPage.setData({
-        card_details: e.currentTarget.dataset.item,
+        cardDetails: e.currentTarget.dataset.item,
       })
       wx.navigateBack({})
     } else {
       wx.navigateTo({
-        url: `/my/bank_details/bank_details?card_id=${e.currentTarget.dataset.item.card_id}`,
+        url: `/my/bankDetails/bankDetails?cardId=${e.currentTarget.dataset.item.cardId}`,
       })
     }
   }

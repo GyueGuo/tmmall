@@ -9,7 +9,7 @@ Page({
     common: 0,
     express: 0,
     activity: 0,
-    service_list: [] //聊天列表
+    serviceList: [] //聊天列表
   },
 
   /**
@@ -17,7 +17,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -68,7 +68,7 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.message_statistics, {}).then(res => {
+    http.post(app.globalData.messageStatistics, {}).then(res => {
       this.setData({
         common: res.result.common,
         express: res.result.express,
@@ -77,30 +77,30 @@ Page({
     })
     //客服消息
     http.post(app.globalData.getCustomerList, {
-      memberId: app.globalData.member_id
+      memberId: app.globalData.memberId
     }).then(res => {
       console.log(res)
       this.setData({
-        service_list: res.data
+        serviceList: res.data
       })
     })
   },
 
   onMessage(e) {
     wx.navigateTo({
-      url: '../message_list/message_list?tab=' + e.currentTarget.dataset.index,
+      url: '../messageList/messageList?tab=' + e.currentTarget.dataset.index,
     })
   },
   /**
    * 平台客服
    */
-  service_pt(e) {
-    let service_info = {
-      TARGET_ID: '0',
-      DIVERSION_ID: '5000'
+  servicePt(e) {
+    let serviceInfo = {
+      TARGETID: '0',
+      DIVERSIONID: '5000'
     }
     wx.navigateTo({
-      url: '/my/service/service?service_info=' + JSON.stringify(service_info),
+      url: '/my/service/service?serviceInfo=' + JSON.stringify(serviceInfo),
     })
   },
 
@@ -110,24 +110,24 @@ Page({
   goService(e) {
     console.log(e)
     let data = e.currentTarget.dataset.data
-    let service_info
-    if (data.store_id != '0') {
-      service_info = {
-        store_title: data.store_name,
-        form_type: 'platform',
-        TARGET_ID: data.store_id,
-        DIVERSION_ID: '1000'
+    let serviceInfo
+    if (data.storeId != '0') {
+      serviceInfo = {
+        storeTitle: data.storeName,
+        formType: 'platform',
+        TARGETID: data.storeId,
+        DIVERSIONID: '1000'
       }
-    } else if (data.store_id == '0') {
-      service_info = {
-        store_title: '平台客服',
-        form_type: 'platform',
-        TARGET_ID: data.store_id,
-        DIVERSION_ID: '5000'
+    } else if (data.storeId == '0') {
+      serviceInfo = {
+        storeTitle: '平台客服',
+        formType: 'platform',
+        TARGETID: data.storeId,
+        DIVERSIONID: '5000'
       }
     }
     wx.navigateTo({
-      url: '/my/service/service?service_info=' + JSON.stringify(service_info),
+      url: '/my/service/service?serviceInfo=' + JSON.stringify(serviceInfo),
     })
   }
 })

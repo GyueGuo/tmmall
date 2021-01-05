@@ -10,7 +10,7 @@
   </view>
 </view>
 <view class="submit">
-  <button bindtap="card_del" hover-class='hover-class' hover-stay-time='400' style='{{util.diy_color("",diy_color.z_color,"")}}'>
+  <button bindtap="card_del" hover-class='hover-class' hover-stay-time='400' style='{{util.diyColor("",diyColor.zColor,"")}}'>
     <view>解绑银行卡</view>
   </button>
 </view>

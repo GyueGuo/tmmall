@@ -1,4 +1,3 @@
-// nearby_shops/shop_audit/shop_audit.js
 const http = require('../../utils/http.js');
 const app = getApp();
 Page({
@@ -16,7 +15,7 @@ Page({
   onLoad: function(options) {
     this.setData({
       data: JSON.parse(options.data),
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 

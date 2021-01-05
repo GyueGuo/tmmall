@@ -1,4 +1,3 @@
-<!--my/fx_grade/fx_grade.wxml-->
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='warp'>
   <view class='grade_bg' style='background: url({{util.HTTP}}mobile/small/image/fx/wddj-bj.png) no-repeat;background-size:100% 100%;'>
@@ -11,90 +10,90 @@
     </view>
     <view class='level-con'>
       <view class='list' wx:for='{{level}}'>
-        <view class='level-icon {{level_index>=index?"on":""}}'>
+        <view class='level-icon {{levelIndex>=index?"on":""}}'>
           <text class='level'>{{item.level}}</text>
           <view class='progress' hidden='{{level.length-1==index}}'>
-            <view hidden='{{level_index<index}}' style='{{index!=level_index?"width:100%":""}}'></view>
+            <view hidden='{{levelIndex<index}}' style='{{index!=levelIndex?"width:100%":""}}'></view>
           </view>
         </view>
-        <text class='level_name' style='{{level_index>=index?"color:#fff;":""}}'>{{item.level_title}}</text>
+        <text class='level_name' style='{{levelIndex>=index?"color:#fff;":""}}'>{{item.levelTitle}}</text>
       </view>
     </view>
   </view>
   <view class='content'>
-    <view class='grade_con grade_statistics' wx:if='{{level[rule_index].upgrade_total_order_sum!=0&&levelList[rule_index].upgrade_total_order_num!=0&&levelList[rule_index].upgrade_total_brokerage!=0&&levelList[rule_index].upgrade_direct_next_num!=0&&levelList[rule_index].upgrade_next_num!=0}}'>
+    <view class='grade_con grade_statistics' wx:if='{{level[ruleIndex].upgradeTotalOrderSum!=0&&levelList[ruleIndex].upgradeTotalOrderNum!=0&&levelList[ruleIndex].upgradeTotalBrokerage!=0&&levelList[ruleIndex].upgradeDirectNextNum!=0&&levelList[ruleIndex].upgradeNextNum!=0}}'>
       <view class='grade_title' style='margin-top:0;'>代言统计
-        <text>{{levelList[rule_index].upgrade_relation==1?'(全部满足才可晋级)':'(满足其一即可晋级)'}}</text>
+        <text>{{levelList[ruleIndex].upgradeRelation==1?'(全部满足才可晋级)':'(满足其一即可晋级)'}}</text>
       </view>
       <view class='grade_warp'>
-        <view class='grade_list' wx:if='{{level[rule_index].upgrade_total_order_sum!=0}}'>
+        <view class='grade_list' wx:if='{{level[ruleIndex].upgradeTotalOrderSum!=0}}'>
           <view class='name'>订单总金额</view>
           <view class='progress_bar'>
-            <view class='rate' style='width:{{util.oPercent(levelList[rule_index].upgrade_total_order_sum,info.cycle_up_order_sum)}}%'>
+            <view class='rate' style='width:{{util.oPercent(levelList[ruleIndex].upgradeTotalOrderSum,info.cycleUpOrderSum)}}%'>
               <view class='tip'>
-                <text>{{info.cycle_up_order_sum}}</text>
+                <text>{{info.cycleUpOrderSum}}</text>
               </view>
             </view>
           </view>
           <view class='units'>
             <view class='start'>0</view>
-            <view class='end'>{{levelList[rule_index].upgrade_total_order_sum}}</view>
+            <view class='end'>{{levelList[ruleIndex].upgradeTotalOrderSum}}</view>
           </view>
         </view>
-        <view class='grade_list' wx:if='{{levelList[rule_index].upgrade_total_order_num!=0}}'>
+        <view class='grade_list' wx:if='{{levelList[ruleIndex].upgradeTotalOrderNum!=0}}'>
           <view class='name'>订单笔数</view>
           <view class='progress_bar'>
-            <view class='rate' style='width:{{util.oPercent(levelList[rule_index].upgrade_total_order_num,info.cycle_up_order_num)}}%'>
+            <view class='rate' style='width:{{util.oPercent(levelList[ruleIndex].upgradeTotalOrderNum,info.cycleUpOrderNum)}}%'>
               <view class='tip'>
-                <text>{{info.cycle_up_order_num}}</text>
+                <text>{{info.cycleUpOrderNum}}</text>
               </view>
             </view>
           </view>
           <view class='units'>
             <view class='start'>0</view>
-            <view class='end'>{{levelList[rule_index].upgrade_total_order_num}}</view>
+            <view class='end'>{{levelList[ruleIndex].upgradeTotalOrderNum}}</view>
           </view>
         </view>
-        <view class='grade_list' wx:if='{{levelList[rule_index].upgrade_total_brokerage!=0}}'>
+        <view class='grade_list' wx:if='{{levelList[ruleIndex].upgradeTotalBrokerage!=0}}'>
           <view class='name'>佣金总金额</view>
           <view class='progress_bar'>
-            <view class='rate' style='width:{{util.oPercent(levelList[rule_index].upgrade_total_brokerage,info.cycle_up_brokerage)}}%'>
+            <view class='rate' style='width:{{util.oPercent(levelList[ruleIndex].upgradeTotalBrokerage,info.cycleUpBrokerage)}}%'>
               <view class='tip'>
-                <text>{{info.cycle_up_brokerage}}</text>
+                <text>{{info.cycleUpBrokerage}}</text>
               </view>
             </view>
           </view>
           <view class='units'>
             <view class='start'>0</view>
-            <view class='end'>{{levelList[rule_index].upgrade_total_brokerage}}</view>
+            <view class='end'>{{levelList[ruleIndex].upgradeTotalBrokerage}}</view>
           </view>
         </view>
-        <view class='grade_list' wx:if='{{levelList[rule_index].upgrade_direct_next_num!=0}}'>
+        <view class='grade_list' wx:if='{{levelList[ruleIndex].upgradeDirectNextNum!=0}}'>
           <view class='name'>直属下级分销商数量</view>
           <view class='progress_bar'>
-            <view class='rate' style='width:{{util.oPercent(levelList[rule_index].upgrade_direct_next_num,info.cycle_up_referrer_num)}}%'>
+            <view class='rate' style='width:{{util.oPercent(levelList[ruleIndex].upgradeDirectNextNum,info.cycleUpReferrerNum)}}%'>
               <view class='tip'>
-                <text>{{info.cycle_up_referrer_num}}</text>
+                <text>{{info.cycleUpReferrerNum}}</text>
               </view>
             </view>
           </view>
           <view class='units'>
             <view class='start'>0</view>
-            <view class='end'>{{levelList[rule_index].upgrade_direct_next_num}}</view>
+            <view class='end'>{{levelList[ruleIndex].upgradeDirectNextNum}}</view>
           </view>
         </view>
-        <view class='grade_list' wx:if='{{levelList[rule_index].upgrade_next_num!=0}}'>
+        <view class='grade_list' wx:if='{{levelList[ruleIndex].upgradeNextNum!=0}}'>
           <view class='name'>下级分销商数量</view>
           <view class='progress_bar'>
-            <view class='rate' style='width:{{util.oPercent(levelList[rule_index].upgrade_next_num,info.cycle_up_relation_num)}}%'>
+            <view class='rate' style='width:{{util.oPercent(levelList[ruleIndex].upgradeNextNum,info.cycleUpRelationNum)}}%'>
               <view class='tip'>
-                <text>{{info.cycle_up_relation_num}}</text>
+                <text>{{info.cycleUpRelationNum}}</text>
               </view>
             </view>
           </view>
           <view class='units'>
             <view class='start'>0</view>
-            <view class='end'>{{levelList[rule_index].upgrade_next_num}}</view>
+            <view class='end'>{{levelList[ruleIndex].upgradeNextNum}}</view>
           </view>
         </view>
       </view>
@@ -117,17 +116,17 @@
       <view class='grade_warp' wx:for='{{levelList}}'>
         <view class='rule_list'>
           <view class='title'>
-            <image class='title_img' src='{{item.mark_alias}}'></image>
-            <text>{{item.level_title}}</text>
+            <image class='title_img' src='{{item.markAlias}}'></image>
+            <text>{{item.levelTitle}}</text>
           </view>
           <view class='info'>
             <view class='up'>
               <image class='icon' src='{{util.HTTP}}mobile/small/image/fx/wddj-s.png'></image>
-              <view class='text'>{{item.upgrade_rule}}</view>
+              <view class='text'>{{item.upgradeRule}}</view>
             </view>
             <view class='down'>
               <image class='icon' src='{{util.HTTP}}mobile/small/image/fx/wddj-xia.png'></image>
-              <view class='text'>{{item.down_rule}}</view>
+              <view class='text'>{{item.downRule}}</view>
             </view>
           </view>
         </view>

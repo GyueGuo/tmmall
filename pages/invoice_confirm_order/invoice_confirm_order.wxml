@@ -55,7 +55,7 @@
           <view class='operation'>
             <view class='right'>
               <text>共1件商品 小计:</text>
-              <text class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥{{util.toFixed(total)}}</text>
+              <text class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>￥{{util.toFixed(total)}}</text>
             </view>
           </view>
         </view>
@@ -64,10 +64,10 @@
   </scroll-view>
 
   <view class='footer'>
-    <view class='bg submit' hover-class='hover-class' hover-stay-time='400' bindtap='confirmOrder' style='{{util.diy_color("",diy_color.z_color,"")}}'>提交订单</view>
+    <view class='bg submit' hover-class='hover-class' hover-stay-time='400' bindtap='confirmOrder' style='{{util.diyColor("",diyColor.zColor,"")}}'>提交订单</view>
     <view>
       <text class='content'>合计:</text>
-      <text class='price cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥{{util.toFixed(total)}}</text>
+      <text class='price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>￥{{util.toFixed(total)}}</text>
     </view>
   </view>
 </view>

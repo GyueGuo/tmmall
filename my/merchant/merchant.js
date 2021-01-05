@@ -12,7 +12,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    category_id: '',
+    categoryId: '',
     category: '请选择主营类目',
     province: [],
     city: [],
@@ -31,15 +31,15 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       configSwitch: app.globalData.configSwitch,
       phone: app.globalData.phone
     })
     this.setData({
-      show: app.globalData.configSwitch.version_info.one_more == 0 && app.globalData.configSwitch ? false : true
+      show: app.globalData.configSwitch.versionInfo.oneMore == 0 && app.globalData.configSwitch ? false : true
     })
     wx.setNavigationBarTitle({
-      title: app.globalData.configSwitch.version_info.one_more == 0 && app.globalData.configSwitch ? '' : '创建店铺',
+      title: app.globalData.configSwitch.versionInfo.oneMore == 0 && app.globalData.configSwitch ? '' : '创建店铺',
     })
   },
 
@@ -122,7 +122,7 @@ Page({
    */
   onCategory() {
     wx.navigateTo({
-      url: '../merchant_category/merchant_category',
+      url: '../merchantCategory/merchantCategory',
     })
   },
 
@@ -139,7 +139,7 @@ Page({
       }
     }
     wx.navigateTo({
-      url: this.data.area.length == 0 ? '../merchant_region/merchant_region' : '../merchant_region/merchant_region?data=' + JSON.stringify(obj),
+      url: this.data.area.length == 0 ? '../merchantRegion/merchantRegion' : '../merchantRegion/merchantRegion?data=' + JSON.stringify(obj),
     })
   },
   /**
@@ -155,7 +155,7 @@ Page({
    * 检验是否可以创建
    */
   createWhether() {
-    if (this.data.category_id != '' && this.data.area.area_name != undefined && this.data.name != '' && this.data.address != '' && reg.test(this.data.address)) {
+    if (this.data.categoryId != '' && this.data.area.areaName != undefined && this.data.name != '' && this.data.address != '' && reg.test(this.data.address)) {
       this.setData({
         create: true
       })
@@ -200,7 +200,7 @@ Page({
       })
       return
     }
-    if (this.data.category_id == '') {
+    if (this.data.categoryId == '') {
       wx.showToast({
         title: '请选择主营类目',
         icon: 'none',
@@ -245,7 +245,7 @@ Page({
       })
       return
     }
-    if (this.data.pswInput == '' && this.data.info.password_state == 0) {
+    if (this.data.pswInput == '' && this.data.info.passwordState == 0) {
       wx.showToast({
         title: '请输入店铺密码',
         icon: 'none',
@@ -254,22 +254,21 @@ Page({
       })
       return
     }
-    http.post(app.globalData.applet_my_saveFormId, {
+    http.post(app.globalData.appletMySaveFormId, {
       microFormId: this.data.formId.join()
     }).then(res => {})
     if (this.data.create) {
-      http.post(app.globalData.create_store, {
+      http.post(app.globalData.createStore, {
         storeName: this.data.name,
-        category: this.data.category_id,
-        province: this.data.province.area_name,
-        city: this.data.city.area_name,
-        area: this.data.area.area_name,
+        category: this.data.categoryId,
+        province: this.data.province.areaName,
+        city: this.data.city.areaName,
+        area: this.data.area.areaName,
         address: this.data.address,
         phone: this.data.phone,
         shop: '1',
         password: this.data.pswInput
       }).then(res => {
-        // app.globalData.in_state = 1
         app.showSuccessToast(res.message, () => {
           wx.navigateBack()
         })
@@ -286,11 +285,11 @@ Page({
   onWeb(e) {
     if (e.currentTarget.dataset.id == 1) {
       wx.navigateTo({
-        url: '/my/web_view/web_view?id=34',
+        url: '/my/webView/webView?id=34',
       })
     } else {
       wx.navigateTo({
-        url: '/my/web_view/web_view?id=35',
+        url: '/my/webView/webView?id=35',
       })
     }
   },
@@ -304,13 +303,13 @@ Page({
         let data = res.result
         this.setData({
           province: {
-            area_name: data.address_component.province
+            areaName: data.addressComponent.province
           },
           city: {
-            area_name: data.address_component.city
+            areaName: data.addressComponent.city
           },
           area: {
-            area_name: data.address_component.district
+            areaName: data.addressComponent.district
           }
         })
       }
@@ -321,7 +320,7 @@ Page({
    */
   callPhone() {
     wx.makePhoneCall({
-      phoneNumber: this.data.configSwitch.app_info.contact,
+      phoneNumber: this.data.configSwitch.appInfo.contact,
     })
   },
   /**

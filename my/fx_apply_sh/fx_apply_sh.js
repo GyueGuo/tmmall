@@ -1,4 +1,3 @@
-// my/fx_apply_sh/fx_apply_sh.js
 const http = require('../../utils/http.js');
 const app = getApp();
 Page({
@@ -15,7 +14,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 

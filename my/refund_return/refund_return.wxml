@@ -31,11 +31,11 @@
 <view class='upload-wrap'>
   <view class='head'>上传凭证</view>
   <view class='pic-list'>
-    <view wx:for="{{pic_list}}">
+    <view wx:for="{{picList}}">
       <image class='pic' src='{{item}}'></image>
       <image class='delete' src='{{util.HTTP}}{{"mobile/small/image/wd-pj-sc.png"}}' hover-class='hover-class' hover-stay-time='400' bindtap='delectPic' data-index='{{index}}'></image>
     </view>
-    <view hidden='{{pic_list.length == 3}}'>
+    <view hidden='{{picList.length == 3}}'>
       <image class='pic' src='{{util.HTTP}}{{"mobile/small/image/wd-pj-sczp.png"}}' hover-class='hover-class' hover-stay-time='400' bindtap='choosePic'></image>
     </view>
   </view>

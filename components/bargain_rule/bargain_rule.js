@@ -1,4 +1,3 @@
-// components/bargain_rule/bargain_rule.js
 const app = getApp();
 Component({
   /**
@@ -19,7 +18,7 @@ Component({
 
   ready() {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -27,7 +26,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    rule_board: true,
+    ruleBoard: true,
     //透明度
     opacity: 0,
   },

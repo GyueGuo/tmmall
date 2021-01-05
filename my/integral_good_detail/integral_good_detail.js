@@ -9,9 +9,9 @@ Page({
     id: '',
     //轮播图
     banner: [],
-    current_banner: 1,
+    currentBanner: 1,
     info: {
-      web_content:''
+      webContent:''
     },
   },
 
@@ -20,7 +20,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       id: options.id
     })
   },
@@ -71,7 +71,7 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.integral_view, {
+    http.post(app.globalData.integralView, {
       integralId: this.data.id
     }).then(res => {
       if (res.result.video != null) {
@@ -92,7 +92,7 @@ Page({
           finish: true,
           info: res.result,
           banner: this.data.banner,
-          banner_length: res.result.video != null ? res.result.multiple_file.length + 1 : res.result.multipleFile.length
+          bannerLength: res.result.video != null ? res.result.multipleFile.length + 1 : res.result.multipleFile.length
         })
       })
     })
@@ -103,15 +103,15 @@ Page({
    */
   exchange() {
     if (app.login()) {
-      if (this.data.info.integral > this.data.info.pay_points) {
+      if (this.data.info.integral > this.data.info.payPoints) {
         this.selectComponent("#modal").showModal()
         return
       }
-      http.post(app.globalData.applet_my_saveFormId, {
+      http.post(app.globalData.appletMySaveFormId, {
         microFormId: this.data.formId
       }).then(res => { })
       wx.navigateTo({
-        url: `/my/integral_confirm/integral_confirm?id=${this.data.id}`,
+        url: `/my/integralConfirm/integralConfirm?id=${this.data.id}`,
       })
     }
   },
@@ -121,7 +121,7 @@ Page({
   onTask() {
     if (app.login()) {
       wx.navigateTo({
-        url: '/my/integral_task/integral_task',
+        url: '/my/integralTask/integralTask',
       })
     }
   },

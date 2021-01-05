@@ -11,7 +11,7 @@
     <view class='rule-content'>4)砍价完成以后需要支付砍价后的商品金额;</view>
     <view class='rule-content'>5)主办方享有对活动的最终解释权</view>
     <view class='rule-close' catchtap='closeBoard'>
-      <view class='close-bg' style='border-right:84rpx solid {{diy_color.z_color}};border-top:84rpx solid {{diy_color.z_color}};border-bottom:84rpx solid transparent;border-left:84rpx solid transparent;'></view>
+      <view class='close-bg' style='border-right:84rpx solid {{diyColor.zColor}};border-top:84rpx solid {{diyColor.zColor}};border-bottom:84rpx solid transparent;border-left:84rpx solid transparent;'></view>
       <image src='{{util.HTTP}}mobile/small/image/sy-xrzx-gb.png' class='close-icon'></image>
     </view>
   </view>

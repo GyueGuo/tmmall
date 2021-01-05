@@ -9,13 +9,13 @@
         <view class='filtrate-item'>
           <view class='filtrate-title'>通用筛选</view>
           <view class='filtrate-content'>
-            <view hover-class='hover-class' hover-stay-time='400' bindtap='onCityWide' class="{{city_wide?'cur':''}}" style='{{city_wide?util.diy_color(diy_color.z_color,diy_color.f_color,diy_color.z_color):""}}' wx:if='{{configSwitch.show_switch.is_city==1}}'>同城配送</view>
-            <view hover-class='hover-class' hover-stay-time='400' bindtap='onStore' class="{{store?'cur':''}}" style='{{store?util.diy_color(diy_color.z_color,diy_color.f_color,diy_color.z_color):""}}' wx:if='{{configSwitch.show_switch.is_shop==1}}'>门店自提</view>
-            <!-- <view hover-class='hover-class' hover-stay-time='400' bindtap='onExemption' class="{{exemption?'cur':''}}" style='{{exemption?util.diy_color(diy_color.z_color,diy_color.f_color,diy_color.z_color):""}}'>包邮</view> -->
-            <view hover-class='hover-class' hover-stay-time='400' bindtap='onPlatform' wx:if='{{util.isShops==0&&configSwitch.version_info.one_more==1}}' class="{{platform?'cur':''}}" style='{{platform?util.diy_color(diy_color.z_color,diy_color.f_color,diy_color.z_color):""}}'>平台自营</view>
-            <view hover-class='hover-class' hover-stay-time='400' bindtap='onIndividual' wx:if='{{util.isShops==0&&configSwitch.version_info.one_more==1}}' class="{{individual?'cur':''}}" style='{{individual?util.diy_color(diy_color.z_color,diy_color.f_color,diy_color.z_color):""}}'>个人店铺</view>
-            <view hover-class='hover-class' hover-stay-time='400' bindtap='onBusinesses' wx:if='{{util.isShops==0&&configSwitch.version_info.one_more==1}}' class="{{businesses?'cur':''}}" style='{{businesses?util.diy_color(diy_color.z_color,diy_color.f_color,diy_color.z_color):""}}'>企业店铺</view>
-            <view hover-class='hover-class' hover-stay-time='400' bindtap='onStock' class="{{is_stock?'cur':''}}" style='{{is_stock?util.diy_color(diy_color.z_color,diy_color.f_color,diy_color.z_color):""}}'>仅显示有货</view>
+            <view hover-class='hover-class' hover-stay-time='400' bindtap='onCityWide' class="{{city_wide?'cur':''}}" style='{{city_wide?util.diyColor(diyColor.zColor,diyColor.fColor,diyColor.zColor):""}}' wx:if='{{configSwitch.show_switch.is_city==1}}'>同城配送</view>
+            <view hover-class='hover-class' hover-stay-time='400' bindtap='onStore' class="{{store?'cur':''}}" style='{{store?util.diyColor(diyColor.zColor,diyColor.fColor,diyColor.zColor):""}}' wx:if='{{configSwitch.show_switch.is_shop==1}}'>门店自提</view>
+            <!-- <view hover-class='hover-class' hover-stay-time='400' bindtap='onExemption' class="{{exemption?'cur':''}}" style='{{exemption?util.diyColor(diyColor.zColor,diyColor.fColor,diyColor.zColor):""}}'>包邮</view> -->
+            <view hover-class='hover-class' hover-stay-time='400' bindtap='onPlatform' wx:if='{{util.isShops==0&&configSwitch.version_info.one_more==1}}' class="{{platform?'cur':''}}" style='{{platform?util.diyColor(diyColor.zColor,diyColor.fColor,diyColor.zColor):""}}'>平台自营</view>
+            <view hover-class='hover-class' hover-stay-time='400' bindtap='onIndividual' wx:if='{{util.isShops==0&&configSwitch.version_info.one_more==1}}' class="{{individual?'cur':''}}" style='{{individual?util.diyColor(diyColor.zColor,diyColor.fColor,diyColor.zColor):""}}'>个人店铺</view>
+            <view hover-class='hover-class' hover-stay-time='400' bindtap='onBusinesses' wx:if='{{util.isShops==0&&configSwitch.version_info.one_more==1}}' class="{{businesses?'cur':''}}" style='{{businesses?util.diyColor(diyColor.zColor,diyColor.fColor,diyColor.zColor):""}}'>企业店铺</view>
+            <view hover-class='hover-class' hover-stay-time='400' bindtap='onStock' class="{{is_stock?'cur':''}}" style='{{is_stock?util.diyColor(diyColor.zColor,diyColor.fColor,diyColor.zColor):""}}'>仅显示有货</view>
           </view>
         </view>
         <view class='filtrate-item'>
@@ -31,7 +31,7 @@
     </view>
     <view class='footer'>
       <view catchtap='onFiltrateReset'>重置</view>
-      <view catchtap='onFiltrateConfirm' style='{{util.diy_color("",diy_color.z_color,"")}}'>确定</view>
+      <view catchtap='onFiltrateConfirm' style='{{util.diyColor("",diyColor.zColor,"")}}'>确定</view>
     </view>
   </view>
 </view>

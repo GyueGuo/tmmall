@@ -14,7 +14,7 @@
     <scroll-view scroll-y class='pickup-list'>
       <view class='pickup-item' wx:for="{{list}}" hover-class='hover-class' hover-stay-time='400' bindtap='selectPick' data-id='{{item.take_id}}' data-item='{{item}}'>
         <view class='select-img'>
-          <view class='font_family imager {{id == item.take_id?"icon-syt-gx1":"icon-syt-gx"}}' style='{{id == item.take_id?util.diy_color(diy_color.z_color,"",""):""}}'></view>
+          <view class='font_family imager {{id == item.take_id?"icon-syt-gx1":"icon-syt-gx"}}' style='{{id == item.take_id?util.diyColor(diyColor.zColor,"",""):""}}'></view>
         </view>
         <view class='pickup-info'>
           <view>
@@ -35,6 +35,6 @@
       </view>
       <view class='no-list' hidden='{{list.length != 0}}'>暂无自提门店</view>
     </scroll-view>
-    <view class='finish' hover-class='hover-class' hover-stay-time='400' bindtap='confirmSelect' style='{{util.diy_color("",diy_color.z_color,"")}}'>完成</view>
+    <view class='finish' hover-class='hover-class' hover-stay-time='400' bindtap='confirmSelect' style='{{util.diyColor("",diyColor.zColor,"")}}'>完成</view>
   </view>
 </view>

@@ -1,27 +1,26 @@
-<!--nearby_shops/pay_result/pay_result.wxml-->
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='warp'>
-  <view class='dy_con' style='background:url({{util.HTTP}}mobile/small/image/fx/xdcg.png) no-repeat;background-size:100% 100%;' wx:if='{{share_info.is_first_tobe!=0}}'>
+  <view class='dy_con' style='background:url({{util.HTTP}}mobile/small/image/fx/xdcg.png) no-repeat;background-size:100% 100%;' wx:if='{{shareInfo.isFirstTobe!=0}}'>
     <text>恭喜您已成为代言人</text>
   </view>
-  <view class='warp_pay_con' style='background: linear-gradient(to right,{{diy_color.f_color_6}},{{diy_color.z_color}});'>
+  <view class='warp_pay_con' style='background: linear-gradient(to right,{{diyColor.fColor6}},{{diyColor.zColor}});'>
     <view class='pay_title'>
       <image src='{{util.HTTP}}mobile/small/image/fx/cg.png'></image>
-      <text>{{item.total_price==0?'操作成功':'支付成功'}}</text>
+      <text>{{item.totalPrice==0?'操作成功':'支付成功'}}</text>
     </view>
-    <view class='pay_price' wx:if='{{item.total_price!=0}}'>实付￥{{item.total_price}}</view>
-    <view class='pay_btn' style='{{share_info.is_first_tobe==0?"justify-content:center;":""}}'>
-      <view hover-class='hover-class' hover-stay-time='400' bindtap='goHome' style='{{share_info.is_first_tobe==0?"margin:0 20rpx;":""}}'>返回首页</view>
-      <view hover-class='hover-class' hover-stay-time='400' bindtap='goMy' wx:if='{{share_info.is_first_tobe!=0}}'>前往代言中心</view>
-      <view hover-class='hover-class' hover-stay-time='400' bindtap='goOrder' style='{{share_info.is_first_tobe==0?"margin:0 20rpx;":""}}'>返回我的</view>
+    <view class='pay_price' wx:if='{{item.totalPrice!=0}}'>实付￥{{item.totalPrice}}</view>
+    <view class='pay_btn' style='{{shareInfo.isFirstTobe==0?"justify-content:center;":""}}'>
+      <view hover-class='hover-class' hover-stay-time='400' bindtap='goHome' style='{{shareInfo.isFirstTobe==0?"margin:0 20rpx;":""}}'>返回首页</view>
+      <view hover-class='hover-class' hover-stay-time='400' bindtap='goMy' wx:if='{{shareInfo.isFirstTobe!=0}}'>前往代言中心</view>
+      <view hover-class='hover-class' hover-stay-time='400' bindtap='goOrder' style='{{shareInfo.isFirstTobe==0?"margin:0 20rpx;":""}}'>返回我的</view>
     </view>
   </view>
   <view class='pay_banner' style='background:url({{util.HTTP}}mobile/small/image/fx/hwmynmg.png) no-repeat #fff;background-size:100% 100%;'>
-    <view class='tip_h3' style='{{util.diy_color(diy_color.z_color,"","")}}'>好的生活没有那么贵</view>
+    <view class='tip_h3' style='{{util.diyColor(diyColor.zColor,"","")}}'>好的生活没有那么贵</view>
     <view class='tip_p'>琳琅宝贝任你挑选</view>
   </view>
   <view class='recommend_goods'>
-    <good_list bind:addCart="addCart" list="{{recommend_list}}" discount="{{discount}}" />
+    <good_list bind:addCart="addCart" list="{{recommendList}}" discount="{{discount}}" />
   </view>
 </view>
-<buy catchtap="none" id="buy_board" bind:closeBuy="closeBuy" type="3" nav='{{true}}' info="{{info}}" discount="{{discount}}" group_buy="{{false}}" diy_color='{{diy_color}}'/>
+<buy catchtap="none" id="buy_board" bind:closeBuy="closeBuy" type="3" nav='{{true}}' info="{{info}}" discount="{{discount}}" groupBuy="{{false}}" diyColor='{{diyColor}}'/>

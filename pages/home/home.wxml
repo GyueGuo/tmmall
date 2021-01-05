@@ -84,7 +84,7 @@
   }
 </wxs>
 <view class='wrap'>
-  <view class='header' style='{{util.diy_color("",diy_color.z_color,"")}}'>
+  <view class='header' style='{{util.diyColor("",diyColor.zColor,"")}}'>
     <view class='nav-con {{scrollTop>20?"on":""}}' style='{{wxs_common.headerAnimation(scrollTop)}}'>
       <view class='h-btn-con'>
         <view class='item' bindtap='onScan' hover-class='hover-class' hover-stay-time='300'>
@@ -115,7 +115,7 @@
       </view>
       <view class='banner-indicator-con'>
         <view class='indicator-con'>
-          <view style='{{banner_swiper_idx==index?util.diy_color("",diy_color.z_color,"#fff"):""}}' wx:for='{{dataInfo.banner}}' wx:key='index'></view>
+          <view style='{{banner_swiper_idx==index?util.diyColor("",diyColor.zColor,"#fff"):""}}' wx:for='{{dataInfo.banner}}' wx:key='index'></view>
         </view>
       </view>
       <image class='banner-bg' src='{{util.HTTP}}mobile/small/image/shop_common/1.png'></image>
@@ -131,7 +131,7 @@
         <swiper class='headline-swiper' autoplay='{{isHotAutoplay}}' interval='3000' circular vertical>
           <swiper-item wx:for='{{dataInfo.hot_list}}' wx:key='index' catchtouchmove='stopTouchMove'>
             <view bindtap='onHotSpotContent' hover-class='hover-class' hover-stay-time='300' data-id='{{item.article_id}}'>
-              <text class='tip' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>热门</text>
+              <text class='tip' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>热门</text>
               <view class='title'>{{item.title}}</view>
             </view>
           </swiper-item>
@@ -162,7 +162,7 @@
       <block wx:if='{{dataInfo.nav.length>8}}'>
         <view class='nav-indicator'>
           <view class='nav-indicator-con'>
-            <view class='nav-indicator-active' style='{{util.diy_color("",diy_color.z_color,"")}}transform: translateX({{wxs_common.navScroll(navScroll,navAttr)}}%)'></view>
+            <view class='nav-indicator-active' style='{{util.diyColor("",diyColor.zColor,"")}}transform: translateX({{wxs_common.navScroll(navScroll,navAttr)}}%)'></view>
           </view>
         </view>
       </block>
@@ -186,14 +186,14 @@
       </scroll-view>
     </view>
     <!--<view class='limit-con'>
-      <view class='limit-con-tit' style='{{util.diy_color("",diy_color.z_color,"")}}' hover-class='hover-class' hover-stay-time='300' bindtap='onLimit'>
+      <view class='limit-con-tit' style='{{util.diyColor("",diyColor.zColor,"")}}' hover-class='hover-class' hover-stay-time='300' bindtap='onLimit'>
         <image class='limit-tit-icon' src='{{util.HTTP}}mobile/small/image/shop_common/23.png'></image>
         <view class='limit-newTime'>
-          <view class='t' style='{{util.diy_color(diy_color.z_color,"","")}}'>{{wxs_common.limitTime(limitTime,'h')}}</view>
+          <view class='t' style='{{util.diyColor(diyColor.zColor,"","")}}'>{{wxs_common.limitTime(limitTime,'h')}}</view>
           <text>:</text>
-          <view class='t' style='{{util.diy_color(diy_color.z_color,"","")}}'>{{wxs_common.limitTime(limitTime,'m')}}</view>
+          <view class='t' style='{{util.diyColor(diyColor.zColor,"","")}}'>{{wxs_common.limitTime(limitTime,'m')}}</view>
           <text>:</text>
-          <view class='t' style='{{util.diy_color(diy_color.z_color,"","")}}'>{{wxs_common.limitTime(limitTime,'s')}}</view>
+          <view class='t' style='{{util.diyColor(diyColor.zColor,"","")}}'>{{wxs_common.limitTime(limitTime,'s')}}</view>
         </view>
         <view class='limit-site'>{{wxs_common.limitTimeName(dataInfo.limit.time.interval_name)}}点场</view>
         <view class='more-con' bindtap='onLimit' hover-class='hover-class' hover-stay-time='300'>
@@ -207,7 +207,7 @@
           <view class='goods-con'>
             <view class='item' wx:for='{{dataInfo.limit.list}}' wx:key='{{index}}' bindtap='onGood' data-id='{{item.goods_id}}' hover-class='hover-class' hover-stay-time='300'>
               <view class='goods-name'>{{item.goods_name}}</view>
-              <view class='goods-price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+              <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text>￥</text>
                 <text class='price'>{{item.time_limit_price}}</text>
               </view>
@@ -243,30 +243,30 @@
             <view class='goods-jianjie'>{{item.goods_jianjie}}</view>
             <view class='goods-bot'>
               <block wx:if='{{item.is_limit==1}}'>
-                <view class='goods-price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+                <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                   <text>￥</text>
                   <text class='price'>{{item.time_limit_price}}</text>
                 </view>
               </block>
               <block wx:elif='{{item.is_group==1}}'>
-                <view class='goods-price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+                <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                   <text>￥</text>
                   <text class='price'>{{item.group_price}}</text>
                 </view>
               </block>
               <block wx:elif='{{item.is_bargain==1}}'>
-                <view class='goods-price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+                <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                   <text>￥</text>
                   <text class='price'>{{item.cut_price}}</text>
                 </view>
               </block>
               <block wx:else>
-                <view class='goods-price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+                <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                   <text>￥</text>
                   <text class='price'>{{item.shop_price}}</text>
                 </view>
               </block>
-              <view class="buynow" style='{{util.diy_color("",diy_color.z_color,"")}}'>立即抢购</view>
+              <view class="buynow" style='{{util.diyColor("",diyColor.zColor,"")}}'>立即抢购</view>
             </view>
           </view>
         </view>
@@ -294,32 +294,32 @@
                 <view class='goods-jianjie'>{{goodsItem.goods_jianjie}}</view>
                 <view class='goods-bottom'>
                   <block wx:if='{{goodsItem.is_limit==1}}'>
-                    <view class='goods-price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+                    <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                       <text>￥</text>
                       <text class='price'>{{goodsItem.time_limit_price}}</text>
                     </view>
                   </block>
                   <block wx:elif='{{goodsItem.is_bargain==1}}'>
-                    <view class='goods-price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+                    <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                       <text>￥</text>
                       <text class='price'>{{goodsItem.cut_price}}</text>
                     </view>
                   </block>
                   <block wx:elif='{{goodsItem.is_group==1}}'>
-                    <view class='goods-price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+                    <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                       <text>￥</text>
                       <text class='price'>{{goodsItem.group_price}}</text>
                     </view>
                   </block>
                   <block wx:else>
-                    <view class='goods-price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+                    <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                       <text>￥</text>
                       <text class='price'>{{goodsItem.shop_price}}</text>
                     </view>
                   </block>
                   <view class='goods-sales'>{{goodsItem.sales_volume}}人付款</view>
                 </view>
-                <view class='shop-btn' style='{{util.diy_color("",diy_color.z_color,"")}}'>立即订购</view>
+                <view class='shop-btn' style='{{util.diyColor("",diyColor.zColor,"")}}'>立即订购</view>
               </view>
             </view>
             <view class='goods-item-end'></view>
@@ -347,30 +347,30 @@
           <view class='goods-tip'>{{item.goods_jianjie}}</view>
           <view class='goods-bot'>
             <block wx:if='{{item.is_limit}}'>
-              <view class='goods-price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+              <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text>￥</text>
                 <text class='price'>{{item.time_limit_price}}</text>
               </view>
             </block>
             <block wx:elif='{{item.is_group}}'>
-              <view class='goods-price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+              <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text>￥</text>
                 <text class='price'>{{item.group_price}}</text>
               </view>
             </block>
             <block wx:elif='{{item.is_bargain}}'>
-              <view class='goods-price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+              <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text>￥</text>
                 <text class='price'>{{item.cut_price}}</text>
               </view>
             </block>
             <block wx:else>
-              <view class='goods-price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+              <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text>￥</text>
                 <text class='price'>{{item.shop_price}}</text>
               </view>
             </block>
-            <view class="buynow" style='{{util.diy_color("",diy_color.z_color,"")}}'>立即抢购</view>
+            <view class="buynow" style='{{util.diyColor("",diyColor.zColor,"")}}'>立即抢购</view>
           </view>
         </view>
       </view>
@@ -378,17 +378,17 @@
 
   </view>
   <view class='footer' style='{{model.phone=="iPhone X"?"height:130rpx;":""}}'>
-    <template is="tabBar" data="{{tabBar:bindData.tabBar,diy_color:diy_color,model:model}}" />
+    <template is="tabBar" data="{{tabBar:bindData.tabBar,diyColor:diyColor,model:model}}" />
   </view>
 </view>
 
 <!--返回顶部  -->
 <go_top id="go_top" hover-class='hover-class' hover-stay-time='400' bindtap='onBackTop' />
 <!-- 购物车 -->
-<cart id="cart" diy_color='{{diy_color}}' />
+<cart id="cart" diyColor='{{diyColor}}' />
 <!--新人专享  -->
 <view class='exclusive' catchtouchmove='none' wx:if='{{dataInfo.set.popup_adv_status == 1&&configSwitch.show_switch.is_coupon==1}}'>
   <image class='exclusive-logo' src='{{util.HTTP}}mobile/small/image/sy-xrlb-lb.png' hover-class='hover-class' hover-stay-time='400' bindtap='onNewGift'></image>
   <image class='exclusive-cancel' src='{{util.HTTP}}mobile/small/image/sy-xrlb-gb.png' hover-class='hover-class' hover-stay-time='400' bindtap='closeExclusive'></image>
 </view>
-<buy catchtap="none" id="buy_board" bind:closeBuy="closeBuy" type="3" nav='{{true}}' info="{{info}}" discount="{{discount}}" group_buy="{{false}}" diy_color='{{diy_color}}' />
+<buy catchtap="none" id="buy_board" bind:closeBuy="closeBuy" type="3" nav='{{true}}' info="{{info}}" discount="{{discount}}" group_buy="{{false}}" diyColor='{{diyColor}}' />

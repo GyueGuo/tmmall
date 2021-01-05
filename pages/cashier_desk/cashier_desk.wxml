@@ -1,7 +1,7 @@
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='pay-head'>
   <text>需支付:</text>
-  <text class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥{{order_info.total_price}}元</text>
+  <text class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>￥{{order_info.total_price}}元</text>
 </view>
 <view class='pay-way-head'>支付方式</view>
 
@@ -9,19 +9,19 @@
   <view hover-class='hover-class' hover-stay-time='400' bindtap='onWx'>
     <image class='logo' src='{{util.HTTP}}mobile/small/image/syt-wx.png'></image>
     <text>微信</text>
-    <view class='font_family check {{pay_type == 2?"icon-syt-gx1":"icon-syt-gx"}}' style='{{pay_type == 2?util.diy_color(diy_color.z_color,"",""):""}}'></view>
+    <view class='font_family check {{pay_type == 2?"icon-syt-gx1":"icon-syt-gx"}}' style='{{pay_type == 2?util.diyColor(diyColor.zColor,"",""):""}}'></view>
   </view>
   <view hover-class='hover-class' hover-stay-time='400' bindtap='onBalance' wx:if='{{configSwitch.show_switch.is_balance==1}}'>
     <image class='logo' src='{{util.HTTP}}mobile/small/image/syt-qb.png'></image>
     <text>余额</text>
-    <view class='font_family check {{pay_type == 1?"icon-syt-gx1":"icon-syt-gx"}}' style='{{pay_type == 1?util.diy_color(diy_color.z_color,"",""):""}}'></view>
+    <view class='font_family check {{pay_type == 1?"icon-syt-gx1":"icon-syt-gx"}}' style='{{pay_type == 1?util.diyColor(diyColor.zColor,"",""):""}}'></view>
   </view>
 </view>
 
-<!-- <view class='submit' hover-class='hover-class' hover-stay-time='400' bindtap='commit' style='{{util.diy_color("",diy_color.z_color,"")}}'>确认付款</view> -->
+<!-- <view class='submit' hover-class='hover-class' hover-stay-time='400' bindtap='commit' style='{{util.diyColor("",diyColor.zColor,"")}}'>确认付款</view> -->
 
 <form report-submit='true' bindsubmit='formId'>
-  <button class='submit' hover-class='hover-class' hover-stay-time='400' formType="submit" bindtap='commit' style='{{util.diy_color("",diy_color.z_color,"")}}'>确认付款</button>
+  <button class='submit' hover-class='hover-class' hover-stay-time='400' formType="submit" bindtap='commit' style='{{util.diyColor("",diyColor.zColor,"")}}'>确认付款</button>
 </form>
 
 <enter_psw id="enter_psw" />

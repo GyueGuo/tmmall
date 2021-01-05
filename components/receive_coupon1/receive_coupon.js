@@ -17,7 +17,7 @@ Component({
   },
   ready() {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
     let iconPath = `<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"	 viewBox="0 0 131 199.9" style="enable-background:new 0 0 131 199.9;" xml:space="preserve"><style type="text/css">	.st0{fill:url(#SVGID_1_);}</style><linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="126.7745" y1="199.8241" x2="12.7888" y2="2.3951">	<stop  offset="0.1" style="stop-color:#F23030"/>	<stop  offset="0.89" style="stop-color:#FE552B"/></linearGradient><path class="st0" d="M125,0H17c0,0.3,0,0.6,0,0.9c0,9-7.2,16.2-16,16.2c-0.3,0-0.7,0-1-0.1v12c2.2,0,4,2.9,4,6.5S2.2,42,0,42v12	c2.2,0,4,2.9,4,6.5S2.2,67,0,67v14c2.2,0,4,2.9,4,6.5S2.2,94,0,94v12c2.2,0,4,2.9,4,6.5S2.2,119,0,119v13c2.2,0,4,2.9,4,6.5	S2.2,145,0,145v13c2.2,0,4,2.9,4,6.5S2.2,171,0,171v12c0.3,0,0.7-0.1,1-0.1c8.8,0,16,7.3,16,16.2c0,0.3,0,0.5,0,0.8h108	c3.3,0,6-2.7,6-6V6C131,2.7,128.3,0,125,0z"/></svg>`
     let sIconPath = Base64.encode(iconPath)

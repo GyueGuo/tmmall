@@ -9,15 +9,15 @@
   </view>
 
   <view class='tab-view'>
-    <view wx:for="{{tab_view}}" hover-class='hover-class' hover-stay-time='400' bindtap='onTab' data-index='{{index}}'>
-      <view class="{{current_tab == index?'cur':''}}">
+    <view wx:for="{{tabView}}" hover-class='hover-class' hover-stay-time='400' bindtap='onTab' data-index='{{index}}'>
+      <view class="{{currentTab == index?'cur':''}}">
         {{item}}
       </view>
     </view>
   </view>
 </view>
 
-<scroll-view scroll-with-animation scroll-y class='order-list' scroll-top="{{scroll_top}}" bindscroll='scroll'>
+<scroll-view scroll-with-animation scroll-y class='order-list' scroll-top="{{scrollTop}}" bindscroll='scroll'>
   <view class='order-item' wx:for="{{list}}">
     <view class='order-item-shop'>
       <view>
@@ -61,4 +61,4 @@
 </scroll-view>
 
 <!--返回顶部  -->
-<image class='back-top' hover-class='hover-class' hover-stay-time='400' bindtap='onBackTop' src='{{util.HTTP}}{{"mobile/small/image/top.png"}}' animation="{{animation_top}}"></image>
+<image class='back-top' hover-class='hover-class' hover-stay-time='400' bindtap='onBackTop' src='{{util.HTTP}}{{"mobile/small/image/top.png"}}' animation="{{animationTop}}"></image>

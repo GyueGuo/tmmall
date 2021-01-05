@@ -1,4 +1,3 @@
-// pages/search_order/search_order.js
 Page({
 
   /**
@@ -7,15 +6,15 @@ Page({
   data: {
     key: '',
     //历史搜索
-    history_list: [],
-    distribution_type: ''
+    historyList: [],
+    distributionType: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.data.distribution_type = options.distribution_type
+    this.data.distributionType = options.distributionType
   },
 
   /**
@@ -23,7 +22,7 @@ Page({
    */
   onReady: function() {
     this.setData({
-      history_list: wx.getStorageSync('order_history').length == 0 ? [] : wx.getStorageSync('order_history')
+      historyList: wx.getStorageSync('orderHistory').length == 0 ? [] : wx.getStorageSync('orderHistory')
     })
   },
 
@@ -66,15 +65,15 @@ Page({
    * 历史搜索
    */
   setHistroy() {
-    for (let i = 0, len = this.data.history_list.length; i < len; i++) {
-      if (this.data.key == this.data.history_list[i]) {
-        this.data.history_list.splice(i, 1)
+    for (let i = 0, len = this.data.historyList.length; i < len; i++) {
+      if (this.data.key == this.data.historyList[i]) {
+        this.data.historyList.splice(i, 1)
       }
     }
-    this.data.history_list.splice(0, 0, this.data.key)
-    wx.setStorageSync('order_history', this.data.history_list)
+    this.data.historyList.splice(0, 0, this.data.key)
+    wx.setStorageSync('orderHistory', this.data.historyList)
     this.setData({
-      history_list: this.data.history_list
+      historyList: this.data.historyList
     })
   },
 
@@ -82,9 +81,9 @@ Page({
    * 清空历史搜索
    */
   onClearHistory() {
-    wx.removeStorageSync('order_history')
+    wx.removeStorageSync('orderHistory')
     this.setData({
-      history_list: []
+      historyList: []
     })
   },
 
@@ -122,7 +121,7 @@ Page({
     }
     this.setHistroy()
     wx.navigateTo({
-      url: '../search_order_result/search_order_result?keyword=' + this.data.key + '&distribution_type=' + this.data.distribution_type,
+      url: '../searchOrderResult/searchOrderResult?keyword=' + this.data.key + '&distributionType=' + this.data.distributionType,
     })
   },
 

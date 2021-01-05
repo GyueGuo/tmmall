@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    store_id: ''
+    storeId: ''
   },
 
   /**
@@ -14,7 +14,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      store_id: options.id
+      storeId: options.id
     })
   },
 
@@ -64,8 +64,8 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.store_info, {
-      store_id: this.data.store_id
+    http.post(app.globalData.storeInfo, {
+      storeId: this.data.storeId
     }).then(res => {
       this.setData({
         info: res.result
@@ -81,7 +81,7 @@ Page({
       latitude: parseFloat(this.data.info.lat),
       longitude: parseFloat(this.data.info.lng),
       scale: 18,
-      name: this.data.info.store_name,
+      name: this.data.info.storeName,
       address: this.data.info.address,
       fail(e) {}
     })
@@ -106,23 +106,23 @@ Page({
    */
   goCredential(e) {
     let data = {}
-    data.licence_file = e.currentTarget.dataset.data.licence_file
-    data.business_file = e.currentTarget.dataset.data.business_file
+    data.licenceFile = e.currentTarget.dataset.data.licenceFile
+    data.businessFile = e.currentTarget.dataset.data.businessFile
     wx.navigateTo({
-      url: '/nearby_shops/shop_credential/shop_credential?data=' + JSON.stringify(data),
+      url: '/nearbyShops/shopCredential/shopCredential?data=' + JSON.stringify(data),
     })
   },
   /**
    * 客服
    */
   service() {
-    let service_info = {
-      store_title: this.data.info.describe,
-      TARGET_ID: this.data.store_id,
-      DIVERSION_ID: '1003'
+    let serviceInfo = {
+      storeTitle: this.data.info.describe,
+      TARGETID: this.data.storeId,
+      DIVERSIONID: '1003'
     }
     wx.navigateTo({
-      url: '/my/service/service?service_info=' + JSON.stringify(service_info),
+      url: '/my/service/service?serviceInfo=' + JSON.stringify(serviceInfo),
     })
   }
 })

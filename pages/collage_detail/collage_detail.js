@@ -19,7 +19,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    app.app_DIY(() => {
+    app.appDIY(() => {
       this.blendent()
     }, this)
     this.setData({
@@ -232,7 +232,7 @@ Page({
    */
   blendent() {
     let obj = {
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     }
     this.selectComponent("#buy_board").blendent(obj)
   },

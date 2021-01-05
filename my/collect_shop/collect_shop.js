@@ -12,7 +12,7 @@ Page({
     total: '',
     list: [],
     //是否是长按
-    is_long: false,
+    isLong: false,
     //当前选中item
     item: '',
     //当前索引
@@ -112,7 +112,7 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.collect_store_list, {
+    http.post(app.globalData.collectStoreList, {
       page: this.data.page
     }).then(res => {
       if (this.data.page == 1) {
@@ -129,20 +129,20 @@ Page({
   },
 
   onShop(e) {
-    if (!this.data.is_long) {
+    if (!this.data.isLong) {
       let item = e.currentTarget.dataset.item
       wx.navigateTo({
-        url: '/nearby_shops/shop_detail/shop_detail?store_id=' + item.store_id,
+        url: '/nearbyShops/shopDetail/shopDetail?storeId=' + item.storeId,
       })
     }
-    this.data.is_long = false
+    this.data.isLong = false
   },
 
   /**
    * 删除
    */
   deleteShop(e) {
-    this.data.is_long = true
+    this.data.isLong = true
     this.data.item = e.currentTarget.dataset.item
     this.data.index = e.currentTarget.dataset.index
     this.selectComponent("#modal").showModal()
@@ -152,9 +152,9 @@ Page({
    * 删除店铺关注
    */
   delectConfirm() {
-    http.post(app.globalData.collect_store_delete, {
-      collectStoreId: this.data.item.collect_store_id + '',
-      storeId: this.data.item.store_id + ''
+    http.post(app.globalData.collectStoreDelete, {
+      collectStoreId: this.data.item.collectStoreId + '',
+      storeId: this.data.item.storeId + ''
     }).then(res => {
       this.data.list.splice(this.data.index, 1)
       this.setData({

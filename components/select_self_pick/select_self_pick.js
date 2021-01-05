@@ -21,7 +21,7 @@ Component({
   },
   ready(){
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 

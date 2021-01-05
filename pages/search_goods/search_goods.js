@@ -45,7 +45,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       configSwitch: app.globalData.configSwitch
     })
     //搜索关键字
@@ -439,7 +439,7 @@ Page({
    */
   blendent() {
     let obj = {
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     }
     this.selectComponent("#cart").blendent(obj)
     this.selectComponent("#buy_board").blendent(obj)

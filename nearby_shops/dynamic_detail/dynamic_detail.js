@@ -7,10 +7,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    store_article_id: '',
-    article_id: '',
+    storeArticleId: '',
+    articleId: '',
     info: null,
-    web_content: ''
+    webContent: ''
   },
 
   /**
@@ -18,9 +18,9 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
-      article_id: options.id,
-      store_id: options.store_id
+      diyColor: app.globalData.diyColor,
+      articleId: options.id,
+      storeId: options.storeId
     })
   },
 
@@ -72,13 +72,13 @@ Page({
    */
   getData() {
     //动态详情
-    http.post(app.globalData.article_view, {
-      articleId: this.data.article_id,
-      storeId: this.data.store_id
+    http.post(app.globalData.articleView, {
+      articleId: this.data.articleId,
+      storeId: this.data.storeId
     }).then(res => {
       this.setData({
         info: res,
-        web_content: res.result.web_content
+        webContent: res.result.webContent
       })
     })
   },
@@ -98,12 +98,12 @@ Page({
   collectStore() {
     let url = ''
     if (this.data.info.result.shop.state == 0) {
-      url = app.globalData.collect_store
+      url = app.globalData.collectStore
     } else {
-      url = app.globalData.store_index_delete
+      url = app.globalData.storeIndexDelete
     }
     http.post(url, {
-      store_id: this.data.store_id
+      storeId: this.data.storeId
     }).then(res => {
       if (this.data.info.result.shop.state == 0) {
         this.data.info.result.shop.state = 1

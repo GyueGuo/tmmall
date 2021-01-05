@@ -1,12 +1,11 @@
-// pages/self_delivery /self_delivery .js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    tab_view: ['全部', '待付款', '待自提', '待评价'],
-    current_tab: 0,
+    tabView: ['全部', '待付款', '待自提', '待评价'],
+    currentTab: 0,
     list: [{
       status: 1
     }, {
@@ -72,7 +71,7 @@ Page({
    */
   onTab(e) {
     this.setData({
-      current_tab: e.currentTarget.dataset.index
+      currentTab: e.currentTarget.dataset.index
     })
   },
 
@@ -97,7 +96,7 @@ Page({
     })
     animation.translateY(-90).step()
     this.setData({
-      animation_top: animation.export()
+      animationTop: animation.export()
     })
   },
 
@@ -111,7 +110,7 @@ Page({
     })
     animation.translateY(90).step()
     this.setData({
-      animation_top: animation.export()
+      animationTop: animation.export()
     })
   },
 
@@ -120,7 +119,7 @@ Page({
    */
   onBackTop() {
     this.setData({
-      scroll_top: 0
+      scrollTop: 0
     })
   },
 
@@ -129,7 +128,7 @@ Page({
    */
   onSaleAfter() {
     wx.navigateTo({
-      url: '../after_sale/after_sale',
+      url: '../afterSale/afterSale',
     })
   },
 
@@ -138,7 +137,7 @@ Page({
    */
   onOrderDetail() {
     wx.navigateTo({
-      url: '../order_detail/order_detail',
+      url: '../orderDetail/orderDetail',
     })
   },
 
@@ -147,7 +146,7 @@ Page({
   */
   onSearch() {
     wx.navigateTo({
-      url: '../search_order/search_order',
+      url: '../searchOrder/searchOrder',
     })
   }
 })

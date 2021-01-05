@@ -28,7 +28,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       configSwitch: app.globalData.configSwitch,
       first_goods_classify_id: options.first_goods_classify_id != undefined ? options.first_goods_classify_id : ''
     })

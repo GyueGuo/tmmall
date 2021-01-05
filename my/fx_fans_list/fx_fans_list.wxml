@@ -1,36 +1,40 @@
-<!--my/fx_fans_list/fx_fans_list.wxml-->
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='container'>
   <view class='navTab'>
     <view wx:for='{{navTab}}' wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='navTab' data-index='{{index}}'>
-      <text style='{{navIndex == index?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{item}}</text>
+      <text style='{{navIndex == index?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>
+        {{item}}
+      </text>
     </view>
   </view>
   <view class='rank-warp'>
     <view class='rankTab'>
-      <view class='title {{current_tab==1?"cur":""}}' style='{{current_tab==1?util.diy_color(diy_color.z_color,"",""):""}}' data-index='1' hover-class='hover-class' hover-stay-time='400' bindtap='current_tab'>订单数量
+      <view class='title {{currentTab==1?"cur":""}}' style='{{currentTab==1?util.diyColor(diyColor.zColor,"",""):""}}' data-index='1' hover-class='hover-class' hover-stay-time='400' bindtap='currentTab'>
+        订单数量
         <view>
-          <text class="caret up {{(current_tab==1) &&(sort == '2')?'cur-bg':''}}" style="{{(current_tab==1) &&(sort == '2')?'border-top:8rpx solid ':''}}{{diy_color.z_color}}"></text>
-          <text class="caret down {{(current_tab==1) &&(sort == '1')?'cur-bg':''}}" style="{{(current_tab==1) &&(sort == '1')?'border-top:8rpx solid ':''}}{{diy_color.z_color}}"></text>
+          <text class="caret up {{(currentTab==1) &&(sort == '2')?'cur-bg':''}}" style="{{(currentTab==1) &&(sort == '2')?'border-top:8rpx solid ':''}}{{diyColor.zColor}}"></text>
+          <text class="caret down {{(currentTab==1) &&(sort == '1')?'cur-bg':''}}" style="{{(currentTab==1) &&(sort == '1')?'border-top:8rpx solid ':''}}{{diyColor.zColor}}"></text>
         </view>
       </view>
-      <view class='title {{current_tab==2?"cur":""}}' style='{{current_tab==2?util.diy_color(diy_color.z_color,"",""):""}}' data-index='2' hover-class='hover-class' hover-stay-time='400' bindtap='current_tab'>累计收益
+      <view class='title {{currentTab==2?"cur":""}}' style='{{currentTab==2?util.diyColor(diyColor.zColor,"",""):""}}' data-index='2' hover-class='hover-class' hover-stay-time='400' bindtap='currentTab'>
+        累计收益
         <view>
-          <text class="caret up {{(current_tab==2) &&(sort == '2')?'cur-bg':''}}" style="{{(current_tab==2) &&(sort == '2')?'border-top:8rpx solid ':''}}{{diy_color.z_color}}"></text>
-          <text class="caret down {{(current_tab==2) &&(sort == '1')?'cur-bg':''}}" style="{{(current_tab==2) &&(sort == '1')?'border-top:8rpx solid ':''}}{{diy_color.z_color}}"></text>
+          <text class="caret up {{(currentTab==2) &&(sort == '2')?'cur-bg':''}}" style="{{(currentTab==2) &&(sort == '2')?'border-top:8rpx solid ':''}}{{diyColor.zColor}}"></text>
+          <text class="caret down {{(currentTab==2) &&(sort == '1')?'cur-bg':''}}" style="{{(currentTab==2) &&(sort == '1')?'border-top:8rpx solid ':''}}{{diyColor.zColor}}"></text>
         </view>
       </view>
-      <view class='title {{current_tab==3?"cur":""}}' style='{{current_tab==3?util.diy_color(diy_color.z_color,"",""):""}}' data-index='3' hover-class='hover-class' hover-stay-time='400' bindtap='current_tab'>推荐日期
+      <view class='title {{currentTab==3?"cur":""}}' style='{{currentTab==3?util.diyColor(diyColor.zColor,"",""):""}}' data-index='3' hover-class='hover-class' hover-stay-time='400' bindtap='currentTab'>
+        推荐日期
         <view>
-          <text class="caret up {{(current_tab==3) &&(sort == '2')?'cur-bg':''}}" style="{{(current_tab==3) &&(sort == '2')?'border-top:8rpx solid ':''}}{{diy_color.z_color}}"></text>
-          <text class="caret down {{(current_tab==3) &&(sort == '1')?'cur-bg':''}}" style="{{(current_tab==3) &&(sort == '1')?'border-top:8rpx solid ':''}}{{diy_color.z_color}}"></text>
+          <text class="caret up {{(currentTab==3) &&(sort == '2')?'cur-bg':''}}" style="{{(currentTab==3) &&(sort == '2')?'border-top:8rpx solid ':''}}{{diyColor.zColor}}"></text>
+          <text class="caret down {{(currentTab==3) &&(sort == '1')?'cur-bg':''}}" style="{{(currentTab==3) &&(sort == '1')?'border-top:8rpx solid ':''}}{{diyColor.zColor}}"></text>
         </view>
       </view>
     </view>
-    <view class='fansNum' style='{{util.diy_color(diy_color.z_color,"","")}}'>{{total}}位</view>
+    <view class='fansNum' style='{{util.diyColor(diyColor.zColor,"","")}}'>{{total}}位</view>
   </view>
   <view class='list'>
-    <scroll-view scroll-y style='height:100%;' bindscrolltolower="loadmore" hidden='{{good_list.length == 0 && !loading}}' scroll-with-animation>
+    <scroll-view scroll-y style='height:100%;' bindscrolltolower="loadmore" hidden='{{goodList.length == 0 && !loading}}' scroll-with-animation>
       <view class='list-item' wx:for='{{list}}' wx:key='{{index}}' data-item='{{item}}' hover-class='hover-class' hover-stay-time='400' bindtap='goDetails'>
         <view class='left'>
           <view class='user_img'>
@@ -38,19 +42,22 @@
           </view>
           <view class='fx_info'>
             <view class='fx_name'>{{item.nickname}}</view>
-            <view class='fx_time'>推荐日 {{item.recommend_time}}</view>
+            <view class='fx_time'>推荐日 {{item.recommendTime}}</view>
           </view>
         </view>
         <view class='rigth'>
-          <view class='fx_pic' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥{{item.total_brokerage}}</view>
-          <view class='fx_num' style='{{util.diy_color("",diy_color.z_color,"")}}box-shadow: 0 0 10rpx 0 {{diy_color.f_color}};'>
+          <view class='fx_pic' style='{{util.diyColor(diyColor.zColor,"","")}}'>
+            ￥{{item.totalBrokerage}}
+          </view>
+          <view class='fx_num' style='{{util.diyColor("",diyColor.zColor,"")}}box-shadow: 0 0 10rpx 0 {{diyColor.fColor}};'>
             <image src='{{util.HTTP}}mobile/small/image/fx/fs-h.png'></image>
             <view>
-              <text>{{item.order_num}}</text> 单</view>
+              <text>{{item.orderNum}}</text>
+              单
+            </view>
           </view>
         </view>
       </view>
-
       <view class='no-order' hidden="{{list.length != 0 || loading}}">
         <view>
           <image src='{{util.HTTP}}mobile/small/image/kby-zwyh.png'></image>

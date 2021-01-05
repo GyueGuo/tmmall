@@ -10,12 +10,12 @@ Page({
     //当前显示 1为会员卡 2为付款码
     tab: 1,
     //起始的Y坐标
-    start_y: '',
+    startY: '',
     //是否可见
     see: false,
     cardcode: '',
     barcode: '',
-    pay_number:null
+    payNumber:null
   },
 
   /**
@@ -44,7 +44,7 @@ Page({
   onShow: function() {
     if (this.data.tab == 2) {
       this.getCode()
-      this.data.count_down = setInterval(() => {
+      this.data.countDown = setInterval(() => {
         this.getCode()
       }, 1000)
     }
@@ -54,14 +54,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-    clearInterval(this.data.count_down)
+    clearInterval(this.data.countDown)
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-    clearInterval(this.data.count_down)
+    clearInterval(this.data.countDown)
   },
 
   /**
@@ -82,27 +82,27 @@ Page({
    * 开始滑动
    */
   touchStart(e) {
-    this.data.start_y = e.changedTouches[0].pageY
+    this.data.startY = e.changedTouches[0].pageY
   },
 
   /**
    * 结束滑动
    */
   touchEnd(e) {
-    if (this.data.start_y - e.changedTouches[0].pageY > 20) {
+    if (this.data.startY - e.changedTouches[0].pageY > 20) {
       this.setData({
         tab: 2
       })
       this.getCode()
-      this.data.count_down = setInterval(() => {
+      this.data.countDown = setInterval(() => {
         this.getCode()
       }, 1000)
     }
-    if (e.changedTouches[0].pageY - this.data.start_y > 20) {
+    if (e.changedTouches[0].pageY - this.data.startY > 20) {
       this.setData({
         tab: 1
       })
-      clearInterval(this.data.count_down)
+      clearInterval(this.data.countDown)
     }
   },
 
@@ -114,7 +114,7 @@ Page({
       this.setData({
         tab: 1
       })
-      clearInterval(this.data.count_down)
+      clearInterval(this.data.countDown)
     }
   },
 
@@ -127,14 +127,14 @@ Page({
         tab: 2
       })
       this.getCode()
-      this.data.count_down = setInterval(() => {
+      this.data.countDown = setInterval(() => {
         this.getCode()
       }, 1000)
     }
   },
 
   getData() {
-    http.post(app.globalData.rank_card, {}).then(res => {
+    http.post(app.globalData.rankCard, {}).then(res => {
       this.setData({
         info: res.result
       })
@@ -142,10 +142,10 @@ Page({
     })
   },
   getCode() {
-    http.postList(app.globalData.payment_code, {}).then(res => {
-      if (this.data.pay_number ==null||this.data.pay_number != res.number) {
+    http.postList(app.globalData.paymentCode, {}).then(res => {
+      if (this.data.payNumber ==null||this.data.payNumber != res.number) {
         this.setData({
-          pay_number: res.number,
+          payNumber: res.number,
           balance: res.usableMoney
         })
         wxbarcode.barcode('barcode', res.number, 584, 126, this);
@@ -167,7 +167,7 @@ Page({
   },
   onNumber() {
     this.setData({
-      number_see: !this.data.number_see
+      numberSee: !this.data.numberSee
     })
   }
 })

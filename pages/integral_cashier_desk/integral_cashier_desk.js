@@ -17,7 +17,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       data: JSON.parse(options.data),
       configSwitch: app.globalData.configSwitch
     })

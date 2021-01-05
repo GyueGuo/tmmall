@@ -17,7 +17,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -67,7 +67,7 @@ Page({
    * 获取充值列表
    */
   getRecharge() {
-    http.post(app.globalData.recharge_list).then(res => {
+    http.post(app.globalData.rechargeList).then(res => {
       this.setData({
         list: res.result
       })
@@ -97,11 +97,8 @@ Page({
    */
   onChargeInfo() {
     wx.navigateTo({
-      url: '/my/web_view/web_view?id=24',
+      url: '/my/webView/webView?id=24',
     })
-    // this.setData({
-    //   charge_board: true
-    // })
   },
 
   /**
@@ -109,7 +106,7 @@ Page({
    */
   closeCharge() {
     this.setData({
-      charge_board: false
+      chargeBoard: false
     })
   },
 
@@ -118,13 +115,13 @@ Page({
    */
   pay() {
     if (app.login()) {
-      http.post(app.globalData.common_order).then(res => {
-        http.post(app.globalData.wx_pay, {
+      http.post(app.globalData.commonOrder).then(res => {
+        http.post(app.globalData.wxPay, {
           openId: app.globalData.openid,
           outTradeNo: res.result,
           body: '充值',
-          attach: `recharge|2|${app.globalData.member_id}|${this.data.list[this.data.current].recharge_id}`,
-          total_fee: this.data.list[this.data.current].recharge_money
+          attach: `recharge|2|${app.globalData.memberId}|${this.data.list[this.data.current].rechargeId}`,
+          totalFee: this.data.list[this.data.current].rechargeMoney
         }).then(res => {
           wx.requestPayment({
             timeStamp: res.result.timestamp,

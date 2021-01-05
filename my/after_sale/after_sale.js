@@ -6,10 +6,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    distribution_type: '',
+    distributionType: '',
     page: 1,
     total: '',
-    order_list: []
+    orderList: []
   },
 
   /**
@@ -17,8 +17,8 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
-      distribution_type: options.distribution_type
+      diyColor: app.globalData.diyColor,
+      distributionType: options.distributionType
     })
   },
 
@@ -68,15 +68,15 @@ Page({
    * 获取列表
    */
   getOrderList() {
-    http.post(app.globalData.order_fter_sale_ist, {}).then(res => {
+    http.post(app.globalData.orderAfterSaleList, {}).then(res => {
       if (this.data.page == 1) {
         this.setData({
-          order_list: res.result.data,
+          orderList: res.result.data,
           total: res.result.total
         })
       } else {
         this.setData({
-          order_list: [...this.data.order_list, ...res.result.data]
+          orderList: [...this.data.orderList, ...res.result.data]
         })
       }
     })
@@ -89,7 +89,7 @@ Page({
     console.log(e)
     let item = e.currentTarget.dataset.item
     wx.navigateTo({
-      url: `/pages/return_detail/return_detail?id=${item.order_goods_id}&status=${item.order_attach_status}`,
+      url: `/pages/returnDetail/returnDetail?id=${item.orderGoodsId}&status=${item.orderAttachStatus}`,
     })
   }
 })

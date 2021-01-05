@@ -13,7 +13,7 @@
     </view>
     <view class='operation'>
       <view hover-class='hover-class' hover-stay-time='400' bindtap='onChangeCancel'>取消</view>
-      <view class='cur' hover-class='hover-class' hover-stay-time='400' bindtap='onChangeSubmit' style='{{util.diy_color(diy_color.z_color,"","")}}'>确定</view>
+      <view class='cur' hover-class='hover-class' hover-stay-time='400' bindtap='onChangeSubmit' style='{{util.diyColor(diyColor.zColor,"","")}}'>确定</view>
     </view>
   </view>
 </view>

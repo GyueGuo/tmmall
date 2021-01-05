@@ -7,7 +7,7 @@ Page({
    */
   data: {
     //选项卡
-    tab_list: [{
+    tabList: [{
       title: '未使用',
       status: '0'
     }, {
@@ -18,7 +18,7 @@ Page({
       status: '2'
     }],
     //当前选项卡
-    current_status: 0,
+    currentStatus: 0,
     list: [],
     total: '',
     page: 1
@@ -27,9 +27,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad() {
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       configSwitch: app.globalData.configSwitch
     })
   },
@@ -37,14 +37,14 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady() {
     this.getCouponList()
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow () {
 
   },
 
@@ -85,7 +85,7 @@ Page({
    */
   onTab(e) {
     this.setData({
-      current_status: e.currentTarget.dataset.status,
+      currentStatus: e.currentTarget.dataset.status,
       page: 1,
       list: []
     })
@@ -95,18 +95,18 @@ Page({
   goUse(e) {
     let item = e.currentTarget.dataset.item
     if (item.type == 0) {
-      if (this.data.configSwitch.version_info.one_more == 1 && app.globalData.isShops == 0) {
+      if (this.data.configSwitch.versionInfo.oneMore == 1 && app.globalData.isShops == 0) {
         wx.navigateTo({
-          url: '/nearby_shops/shop_detail/shop_detail?store_id=' + item.store_id,
+          url: '/nearbyShops/shopDetail/shopDetail?storeId=' + item.storeId,
         })
       } else {
         wx.navigateTo({
-          url: '/pages/search_goods/search_goods'
+          url: '/pages/searchGoods/searchGoods'
         })
       }
     } else {
       wx.navigateTo({
-        url: '/pages/search_goods/search_goods?goods_classify_id=' + item.goods_classify_id,
+        url: '/pages/searchGoods/searchGoods?goodsClassifyId=' + item.goodsClassifyId,
       })
     }
   },
@@ -116,7 +116,7 @@ Page({
    */
   onCouponCenter() {
     wx.navigateTo({
-      url: '../coupon_center/coupon_center',
+      url: '../couponCenter/couponCenter',
     })
   },
 
@@ -125,7 +125,7 @@ Page({
    */
   onChangeCoupon() {
     wx.navigateTo({
-      url: '../change_coupon/change_coupon',
+      url: '../changeCoupon/changeCoupon',
     })
   },
 
@@ -133,22 +133,22 @@ Page({
    * 获取数据
    */
   getCouponList() {
-    http.post(app.globalData.member_coupon, {
-      status: this.data.current_status + '',
+    http.post(app.globalData.memberCoupon, {
+      status: this.data.currentStatus + '',
       page: this.data.page
     }).then(res => {
       for (let i of res.result.data) {
-        i.start_time = i.start_time.replace(/-/g, '.')
-        i.end_time = i.end_time.replace(/-/g, '.')
+        i.startTime = i.startTime.replace(/-/g, '.')
+        i.endTime = i.endTime.replace(/-/g, '.')
       }
       if (this.data.page == 1) {
-        this.data.tab_list[0].title = '未使用(' + res.statistics.unused + ')'
-        this.data.tab_list[1].title = '已使用(' + res.statistics.been_used + ')'
-        this.data.tab_list[2].title = '已过期(' + res.statistics.have_expired + ')'
+        this.data.tabList[0].title = '未使用(' + res.statistics.unused + ')'
+        this.data.tabList[1].title = '已使用(' + res.statistics.beenUsed + ')'
+        this.data.tabList[2].title = '已过期(' + res.statistics.haveExpired + ')'
         this.setData({
           list: res.result.data,
           total: res.result.total,
-          tab_list: this.data.tab_list
+          tabList: this.data.tabList
         })
       } else {
         this.setData({

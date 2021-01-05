@@ -12,31 +12,31 @@ Page({
    */
   data: {
     currentIndex: 0, //商品详情 0商品 1详情 2评价
-    goods_id: '', //商品id
-    shop_tab: 1, //店铺推荐 排行榜
-    buy_type: 1, //选择属性1 立即购买2
-    order_type: 1, //商品类型 1普通线上 2拼团 3砍价 4限时抢购
+    goodsId: '', //商品id
+    shopTab: 1, //店铺推荐 排行榜
+    buyType: 1, //选择属性1 立即购买2
+    orderType: 1, //商品类型 1普通线上 2拼团 3砍价 4限时抢购
     info: {
-      web_content: '' //商品详情图
+      webContent: '' //商品详情图
     },
-    group_interval: {}, //拼团列表计时器
-    collage_interval: {}, //滚动定时器
-    bargain_interval: {}, //砍价倒计时
-    limit_interval: {}, //限时抢购倒计时
+    groupInterval: {}, //拼团列表计时器
+    collageInterval: {}, //滚动定时器
+    bargainInterval: {}, //砍价倒计时
+    limitInterval: {}, //限时抢购倒计时
     discount: '',
-    qr_code_file: '',
-    sup_id: null,
+    qrCodeFile: '',
+    supId: null,
     //----
-    current_banner: 1, //商品轮播下标
+    currentBanner: 1, //商品轮播下标
     preIndex: 0,
     isVideoPlay: 0,
     //--------
     //评价
-    evaluate_current_tab: 0, //评价按钮下标
-    evaluate_page: 1, //评价页数
-    evaluate_total: 0, //评价数量
-    evaluate_list: [], //评价列表
-    evaluate_arr: [{
+    evaluateCurrentTab: 0, //评价按钮下标
+    evaluatePage: 1, //评价页数
+    evaluateTotal: 0, //评价数量
+    evaluateList: [], //评价列表
+    evaluateArr: [{
       title: '全部(0)',
       type: 0,
     }, {
@@ -66,7 +66,7 @@ Page({
       id: 1
     }],
     bannerType: 1,
-    tag_bind_goods_id: '' //标签id
+    tagBindGoodsId: '' //标签id
   },
 
   /**
@@ -74,43 +74,43 @@ Page({
    */
   onLoad: function (options) {
     //上级代言id
-    if (options.sup_id) {
-      app.globalData.sup_id = options.sup_id
+    if (options.supId) {
+      app.globalData.supId = options.supId
       this.setData({
-        sup_id: options.sup_id,
-        goods_id: options.goods_id
+        supId: options.supId,
+        goodsId: options.goodsId
       })
-      if (app.globalData.member_id != '') {
-        this.distribution_bindDistribution(options.sup_id)
+      if (app.globalData.memberId != '') {
+        this.distributionBindDistribution(options.supId)
       }
     }
     if (options.label) {
       this.setData({
-        tag_bind_goods_id: options.label
+        tagBindGoodsId: options.label
       })
     }
     if (options.scene) {
       let obj = http.scene(options.scene)
       //上级代言id
-      if (obj.sup_id) {
-        app.globalData.sup_id = obj.sup_id
-        if (app.globalData.member_id != '') {
-          this.distribution_bindDistribution(obj.sup_id)
+      if (obj.supId) {
+        app.globalData.supId = obj.supId
+        if (app.globalData.memberId != '') {
+          this.distributionBindDistribution(obj.supId)
         }
         this.setData({
-          sup_id: options.sup_id
+          supId: options.supId
         })
       }
       this.setData({
-        goods_id: obj.goods
+        goodsId: obj.goods
       })
     } else {
       this.setData({
-        goods_id: options.goods_id,
-        sup_id: app.globalData.sup_id
+        goodsId: options.goodsId,
+        supId: app.globalData.supId
       })
     }
-    app.app_DIY(() => {}, this)
+    app.appDIY(() => {}, this)
     this.getSystemInfo()
   },
 
@@ -135,20 +135,20 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    clearInterval(this.data.group_interval)
-    clearInterval(this.data.collage_interval)
-    clearInterval(this.data.bargain_interval)
-    clearInterval(this.data.limit_interval)
+    clearInterval(this.data.groupInterval)
+    clearInterval(this.data.collageInterval)
+    clearInterval(this.data.bargainInterval)
+    clearInterval(this.data.limitInterval)
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    clearInterval(this.data.group_interval)
-    clearInterval(this.data.collage_interval)
-    clearInterval(this.data.bargain_interval)
-    clearInterval(this.data.limit_interval)
+    clearInterval(this.data.groupInterval)
+    clearInterval(this.data.collageInterval)
+    clearInterval(this.data.bargainInterval)
+    clearInterval(this.data.limitInterval)
   },
 
   /**
@@ -169,25 +169,25 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (res) {
-    let sup_id = null
-    if (this.data.share_type == 'distribution') {
-      sup_id = `&sup_id=${app.globalData.distribution.cur.distribution_id}`
+    let supId = null
+    if (this.data.shareType == 'distribution') {
+      supId = `&supId=${app.globalData.distribution.cur.distributionId}`
     } else {
-      sup_id = ''
+      supId = ''
     }
     if (res.from === 'button') {
       http.post(app.globalData.notify, {}).then(res => {})
-    } else {}
+    }
     return {
-      title: this.data.info.goods_name,
-      path: '/nearby_shops/good_detail/good_detail?goods_id=' + this.data.goods_id + sup_id
+      title: this.data.info.goodsName,
+      path: '/nearbyShops/goodDetail/goodDetail?goodsId=' + this.data.goodsId + supId
     }
   },
 
   /**
    * 商品详情屏幕切换 0商品 1详情 2评价
    */
-  wrap_swiper(e) {
+  wrapSwiper(e) {
     this.setData({
       currentIndex: e.detail.current
     })
@@ -208,79 +208,76 @@ Page({
 
   /**
    * 获取数据
-   * order_type: 商品类型 1普通 2拼团 3砍价 4限时抢购
+   * orderType: 商品类型 1普通 2拼团 3砍价 4限时抢购
    */
   getData() {
-    http.post(app.globalData.goods_view, {
-      goodsId: this.data.goods_id,
-      tagBindGoodsId: this.data.tag_bind_goods_id
+    http.post(app.globalData.goodsView, {
+      goodsId: this.data.goodsId,
+      tagBindGoodsId: this.data.tagBindGoodsId
     }).then(res => {
       this.data.info = res.result
       if (res.result.video != null && res.result.video != '') {
         let oVideo = {
           content: res.result.video,
-          video_snapshot: res.result.videoSnapshot
+          videoSnapshot: res.result.videoSnapshot
         }
         wx.nextTick(() => {
           this.setData({
-            video_file: oVideo,
+            videoFile: oVideo,
             bannerType: 0
           })
         })
       }
       this.setData({
-        qr_code_file: res.appletGoodsCodeFile,
-        qr_code_file_distribution: res.appletDistributionCodeFile,
+        qrCodeFile: res.appletGoodsCodeFile,
+        qrCodeFileDistribution: res.appletDistributionCodeFile,
         info: res.result,
         discount: res.discount == null ? 100 : res.discount,
-        collage_num: res.result.groupList.length == 1 ? 1 : 2
+        collageNum: res.result.groupList.length == 1 ? 1 : 2
       })
       wx.setNavigationBarTitle({
         title: res.result.goodsName,
       })
-      // wx.setNavigationBarTitle({
-      //   title: res.result.goods_name,
-      // })
-      clearInterval(this.data.group_interval)
+      clearInterval(this.data.groupInterval)
       //团购推荐倒计时
-      if (this.data.info.is_group == 1 && this.data.info.group_list.length != 0) {
+      if (this.data.info.isGroup == 1 && this.data.info.groupList.length != 0) {
         this.calGroupCount()
-        this.data.group_interval = setInterval(() => {
+        this.data.groupInterval = setInterval(() => {
           this.calGroupCount()
         }, 1000)
       }
-      clearInterval(this.data.collage_interval)
-      if (this.data.info.is_group == 1) {
+      clearInterval(this.data.collageInterval)
+      if (this.data.info.isGroup == 1) {
         this.setData({
-          order_type: 2
+          orderType: 2
         })
-        this.data.collage_interval = setInterval(() => {
+        this.data.collageInterval = setInterval(() => {
           this.getCollageData()
         }, 300000)
         this.getCollageData()
       }
 
-      clearInterval(this.data.bargain_interval)
+      clearInterval(this.data.bargainInterval)
       //砍价
-      if (this.data.info.is_bargain == 1) {
+      if (this.data.info.isBargain == 1) {
         this.setData({
-          order_type: 3
+          orderType: 3
         })
-        this.calBargainCount(this.data.info.continue_time)
-        this.data.bargain_interval = setInterval(() => {
-          this.calBargainCount(this.data.info.continue_time)
+        this.calBargainCount(this.data.info.continueTime)
+        this.data.bargainInterval = setInterval(() => {
+          this.calBargainCount(this.data.info.continueTime)
         }, 1000)
       }
 
-      clearInterval(this.data.limit_interval)
+      clearInterval(this.data.limitInterval)
       //限时抢购
-      if (this.data.info.is_limit == 1) {
+      if (this.data.info.isLimit == 1) {
         this.setData({
-          order_type: 4
+          orderType: 4
         })
-        this.calBargainCount(this.data.info.continue_time)
-        this.data.limit_interval = setInterval(() => {
-          this.calBargainCount(this.data.info.continue_time)
+        this.calBargainCount(this.data.info.continueTime)
+        this.data.limitInterval = setInterval(() => {
+          this.calBargainCount(this.data.info.continueTime)
         }, 1000)
       }
     })
@@ -327,12 +324,12 @@ Page({
     if (this.data.info.video != null && this.data.info.video != '') {
       let obj = {
         content: this.data.info.video,
-        video_snapshot: this.data.info.video_snapshot
+        videoSnapshot: this.data.info.videoSnapshot
       }
     }
     wx.nextTick(() => {
       this.setData({
-        video_file: obj
+        videoFile: obj
       })
     })
   },
@@ -349,7 +346,7 @@ Page({
    */
   bannerChange(e) {
     this.setData({
-      current_banner: e.detail.current + 1,
+      currentBanner: e.detail.current + 1,
       current: e.detail.current
     })
     if (e.detail.current = 1) {
@@ -364,9 +361,9 @@ Page({
   onEvaluateType(e) {
     let item = e.currentTarget.dataset
     this.setData({
-      evaluate_current_tab: item.type
+      evaluateCurrentTab: item.type
     })
-    this.data.evaluate_page = 1
+    this.data.evaluatePage = 1
     this.getEvaluateList()
   },
 
@@ -374,24 +371,24 @@ Page({
    * 获取评价数据
    */
   getEvaluateList() {
-    let star_level = ''
-    if (this.data.evaluate_current_tab == 2) {
-      star_level = "good"
-    } else if (this.data.evaluate_current_tab == 3) {
-      star_level = "medium"
-    } else if (this.data.evaluate_current_tab == 4) {
-      star_level = "negative"
+    let starLevel = ''
+    if (this.data.evaluateCurrentTab == 2) {
+      starLevel = "good"
+    } else if (this.data.evaluateCurrentTab == 3) {
+      starLevel = "medium"
+    } else if (this.data.evaluateCurrentTab == 4) {
+      starLevel = "negative"
     }
-    http.post(app.globalData.evaluate_list, {
-      goodsId: this.data.goods_id,
-      newest: this.data.evaluate_current_tab == 1 ? '1' : '',
-      file: this.data.evaluate_current_tab == 5 ? '1' : '',
-      video: this.data.evaluate_current_tab == 6 ? '1' : '',
-      starLevel: star_level,
-      page: this.data.evaluate_page
+    http.post(app.globalData.evaluateList, {
+      goodsId: this.data.goodsId,
+      newest: this.data.evaluateCurrentTab == 1 ? '1' : '',
+      file: this.data.evaluateCurrentTab == 5 ? '1' : '',
+      video: this.data.evaluateCurrentTab == 6 ? '1' : '',
+      starLevel: starLevel,
+      page: this.data.evaluatePage
     }).then(res => {
-      if (this.data.evaluate_page == 1) {
-        let evaluate_arr = this.data.evaluate_arr.map(val => {
+      if (this.data.evaluatePage == 1) {
+        let evaluateArr = this.data.evaluateArr.map(val => {
           switch (val.type) {
             case 0:
               val.title = `全部(${res.statistics.all})`
@@ -415,13 +412,13 @@ Page({
           return val
         })
         this.setData({
-          evaluate_arr: evaluate_arr,
-          evaluate_total: res.result.total,
-          evaluate_list: res.result.data
+          evaluateArr: evaluateArr,
+          evaluateTotal: res.result.total,
+          evaluateList: res.result.data
         })
       } else {
         this.setData({
-          evaluate_list: [...this.data.evaluate_list, ...res.result.data]
+          evaluateList: [...this.data.evaluateList, ...res.result.data]
         })
       }
     })
@@ -430,9 +427,9 @@ Page({
   /**
    * 评价加载更多
    */
-  evaluate_loadMore(e) {
-    if (this.data.evaluate_total > this.data.evaluate_list.length) {
-      this.data.evaluate_page++;
+  evaluateLoadMore(e) {
+    if (this.data.evaluateTotal > this.data.evaluateList.length) {
+      this.data.evaluatePage++;
       this.getEvaluateList()
     }
   },
@@ -444,10 +441,10 @@ Page({
 
   share(e) {
     this.setData({
-      share_type: e.currentTarget.dataset.type == 'distribution' ? e.currentTarget.dataset.type : null
+      shareType: e.currentTarget.dataset.type == 'distribution' ? e.currentTarget.dataset.type : null
     })
     this.selectComponent("#share").fadeIn()
-    this.selectComponent("#share").share_btn()
+    this.selectComponent("#share").shareBtn()
   },
 
   shareCircle(e) {
@@ -456,61 +453,55 @@ Page({
 
   drawPoster(e) {
     let price
-    if (this.data.info.is_bargain == 1) {
-      price = this.data.info.cut_price
-    } else if (this.data.info.is_group == 1) {
-      price = this.data.info.group_price
-    } else if (this.data.info.is_limit == 1) {
-      price = this.data.info.time_limit_price
+    if (this.data.info.isBargain == 1) {
+      price = this.data.info.cutPrice
+    } else if (this.data.info.isGroup == 1) {
+      price = this.data.info.groupPrice
+    } else if (this.data.info.isLimit == 1) {
+      price = this.data.info.timeLimitPrice
     } else {
-      price = this.data.info.shop_price
+      price = this.data.info.shopPrice
     }
     let poster
-    if (this.data.info.is_distribution == 1 && this.data.share_type == 'distribution') {
-      let distribution_gain;
-      if (this.data.is_limit == 1) {
+    if (this.data.info.isDistribution == 1 && this.data.shareType == 'distribution') {
+      let distributionGain;
+      if (this.data.isLimit == 1) {
         //限时
-        distribution_gain = this.data.info.distribution.limit_max_brokerage
-      } else if (this.data.is_group == 1) {
+        distributionGain = this.data.info.distribution.limitMaxBrokerage
+      } else if (this.data.isGroup == 1) {
         //拼团
-        distribution_gain = this.data.info.distribution.group_max_brokerage
-      } else if (this.data.is_bargain == 1) {
+        distributionGain = this.data.info.distribution.groupMaxBrokerage
+      } else if (this.data.isBargain == 1) {
         //砍价
-        distribution_gain = this.data.info.distribution.cut_max_brokerage
+        distributionGain = this.data.info.distribution.cutMaxBrokerage
       } else {
-        distribution_gain = this.data.info.distribution.shop_max_brokerage
+        distributionGain = this.data.info.distribution.shopMaxBrokerage
       }
       poster = {
         text: e,
         file: encodeURIComponent(this.data.info.file),
         price: price,
-        name: this.data.info.goods_name,
-        order_type: this.data.order_type,
-        // is_bargain: this.data.info.is_bargain,
-        // is_group: this.data.info.is_group,
-        // is_limit: this.data.info.is_limit,
-        shop_logo: app.globalData.isShops == 0 ? encodeURIComponent(this.data.info.logo) : encodeURIComponent(this.data.configSwitch.app_info.logo),
-        group_num: this.data.info.group_num,
-        sales_volume: this.data.info.sales_volume,
-        limit_number: this.data.info.limit_number ? this.data.info.limit_number : 0,
-        qrCode: this.data.qr_code_file_distribution,
-        distribution_gain: distribution_gain
+        name: this.data.info.goodsName,
+        orderType: this.data.orderType,
+        shopLogo: app.globalData.isShops == 0 ? encodeURIComponent(this.data.info.logo) : encodeURIComponent(this.data.configSwitch.appInfo.logo),
+        groupNum: this.data.info.groupNum,
+        salesVolume: this.data.info.salesVolume,
+        limitNumber: this.data.info.limitNumber ? this.data.info.limitNumber : 0,
+        qrCode: this.data.qrCodeFileDistribution,
+        distributionGain: distributionGain
       }
     } else {
       poster = {
         text: e,
         file: encodeURIComponent(this.data.info.file),
         price: price,
-        name: this.data.info.goods_name,
-        order_type: this.data.order_type,
-        // is_bargain: this.data.info.is_bargain,
-        // is_group: this.data.info.is_group,
-        // is_limit: this.data.info.is_limit,
-        shop_logo: app.globalData.isShops == 0 ? encodeURIComponent(this.data.info.logo) : encodeURIComponent(this.data.configSwitch.app_info.logo),
-        group_num: this.data.info.group_num,
-        sales_volume: this.data.info.sales_volume,
-        limit_number: this.data.info.limit_number ? this.data.info.limit_number : 0,
-        qrCode: this.data.qr_code_file
+        name: this.data.info.goodNname,
+        orderType: this.data.orderType,
+        shopLogo: app.globalData.isShops == 0 ? encodeURIComponent(this.data.info.logo) : encodeURIComponent(this.data.configSwitch.appInfo.logo),
+        groupNum: this.data.info.groupNum,
+        salesVolume: this.data.info.salesVolume,
+        limitNumber: this.data.info.limitNumber ? this.data.info.limitNumber : 0,
+        qrCode: this.data.qrCodeFile
       }
     }
     this.selectComponent("#poster").download(poster)
@@ -527,7 +518,7 @@ Page({
     })
     animation.translateY('-180px').step()
     this.setData({
-      animation_top: animation.export()
+      animationTop: animation.export()
     })
   },
 
@@ -541,7 +532,7 @@ Page({
     })
     animation.translateY(200 / 1334 * wx.getSystemInfoSync().screenHeight).step()
     this.setData({
-      animation_top: animation.export()
+      animationTop: animation.export()
     })
   },
 
@@ -556,7 +547,7 @@ Page({
     })
     animation.translateY('-84px').step()
     this.setData({
-      distribution_animation: animation.export()
+      distributionAnimation: animation.export()
     })
   },
 
@@ -570,7 +561,7 @@ Page({
     })
     animation.translateY('0').step()
     this.setData({
-      distribution_animation: animation.export()
+      distributionAnimation: animation.export()
     })
   },
 
@@ -593,15 +584,15 @@ Page({
   onBackTop() {
     if (this.data.currentIndex == 0) {
       this.setData({
-        currentScrollTop_0: 0
+        currentScrollTop0: 0
       })
     } else if (this.data.currentIndex == 1) {
       this.setData({
-        currentScrollTop_1: 0
+        currentScrollTop1: 0
       })
     } else if (this.data.currentIndex == 2) {
       this.setData({
-        currentScrollTop_2: 0
+        currentScrollTop2: 0
       })
     }
   },
@@ -610,26 +601,12 @@ Page({
    */
   onParameter() {
     this.setData({
-      parameter_board: true
+      parameterBoard: true
     })
   },
-
-  /**
-   * 优惠券
-   */
-  // onCoupon() {
-  //   if (app.login()) {
-  //     let obj = {
-  //       store_id: this.data.info.store_id,
-  //       goods_classify_id: this.data.info.goods_classify_id,
-  //       goods_id:this.data.goods_id
-  //     }
-  //     this.selectComponent("#receive_coupon").getCouponList(obj)
-  //   }
-  // },
   onCoupon() {
     if (app.login()) {
-      this.selectComponent("#receive_coupon").getCouponList(this.data.info.store_id, this.data.info.goods_classify_id)
+      this.selectComponent("#receive_coupon").getCouponList(this.data.info.storeId, this.data.info.goodsClassifyId)
     }
   },
 
@@ -638,7 +615,7 @@ Page({
    */
   onSalePromotion() {
     this.setData({
-      sale_board: true
+      saleBoard: true
     })
   },
 
@@ -663,7 +640,7 @@ Page({
       currentIndex: 2
     })
     // wx.navigateTo({
-    //   url: '../evaluate/evaluate?goods_id=' + this.data.goods_id,
+    //   url: '../evaluate/evaluate?goodsId=' + this.data.goodsId,
     // })
   },
 
@@ -672,7 +649,7 @@ Page({
    */
   onShopRecommend() {
     this.setData({
-      shop_tab: 1
+      shopTab: 1
     })
   },
 
@@ -681,7 +658,7 @@ Page({
    */
   onShopRank() {
     this.setData({
-      shop_tab: 2
+      shopTab: 2
     })
   },
 
@@ -692,17 +669,17 @@ Page({
     if (!app.login()) {
       return
     }
-    if (this.data.info.is_bargain == 1 || this.data.info.is_group == 1 || this.data.info.is_limit == 1) {
+    if (this.data.info.isBargain == 1 || this.data.info.isGroup == 1 || this.data.info.isLimit == 1) {
       this.setData({
-        buy_type: 2,
+        buyType: 2,
       })
     } else {
       this.setData({
-        buy_type: 1,
+        buyType: 1,
       })
     }
     let obj = {
-      order_type: this.data.order_type
+      orderType: this.data.orderType
     }
     this.selectComponent("#buy_board").show(obj)
   },
@@ -714,15 +691,15 @@ Page({
     if (!app.login()) {
       return
     }
-    if (this.data.info.is_own_shop == 1) {
+    if (this.data.info.isOwnShop == 1) {
       app.showToast('您的商品，留给别人购买')
       return
     }
-    http.encPost(app.globalData.cart_create, {
-      storeId: this.data.info.store_id,
-      goodsId: this.data.info.goods_id,
-      goodsName: this.data.info.goods_name,
-      file: this.data.info.cart_file,
+    http.encPost(app.globalData.cartCreate, {
+      storeId: this.data.info.storeId,
+      goodsId: this.data.info.goodsId,
+      goodsName: this.data.info.goodsName,
+      file: this.data.info.cartFile,
       number: 1,
       productsId: '',
       attr: '',
@@ -745,29 +722,29 @@ Page({
     if (!app.login()) {
       return
     }
-    if (this.data.info.is_own_shop == 1) {
+    if (this.data.info.isOwnShop == 1) {
       app.showToast('您的商品，留给别人购买')
       return
     }
     if (e.currentTarget.dataset.group == 1) {
       this.setData({
-        group_buy: true,
+        groupBuy: true,
       })
     } else if (e.currentTarget.dataset.group == 0) {
       this.setData({
-        group_buy: false,
-        'info.is_original': 1
+        groupBuy: false,
+        'info.isOriginal': 1
       })
     } else {
       this.setData({
-        group_buy: false
+        groupBuy: false
       })
     }
     this.setData({
-      buy_type: 2,
+      buyType: 2,
     })
     let obj = {
-      order_type: this.data.order_type == 2 && !this.data.group_buy ? 1 : this.data.order_type
+      orderType: this.data.orderType == 2 && !this.data.groupBuy ? 1 : this.data.orderType
     }
     this.selectComponent("#buy_board").show(obj)
   },
@@ -778,7 +755,7 @@ Page({
    */
   goShop() {
     wx.navigateTo({
-      url: '/nearby_shops/shop_detail/shop_detail?store_id=' + this.data.info.store_id,
+      url: '/nearbyShops/shopDetail/shopDetail?storeId=' + this.data.info.storeId,
     })
   },
   /**
@@ -786,7 +763,7 @@ Page({
    */
   goRanking() {
     wx.navigateTo({
-      url: '/pages/rank_good/rank_good?first_goods_classify_id=' + this.data.info.first_goods_classify_id,
+      url: '/pages/rankGood/rankGood?firstGoodsClassifyId=' + this.data.info.firstGoodsClassifyId,
     })
   },
   /**
@@ -803,7 +780,7 @@ Page({
    */
   goClassify() {
     wx.navigateTo({
-      url: '/nearby_shops/shop_classify/shop_classify?store_id=' + this.data.info.store_id,
+      url: '/nearbyShops/shopClassify/shopClassify?storeId=' + this.data.info.storeId,
     })
   },
 
@@ -812,7 +789,7 @@ Page({
    */
   onCollage(e) {
     wx.navigateTo({
-      url: '/pages/collage_detail/collage_detail?id=' + e.currentTarget.dataset.id,
+      url: '/pages/collageDetail/collageDetail?id=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -821,7 +798,7 @@ Page({
    */
   onBargainRule() {
     this.setData({
-      bargain_rule: true
+      bargainRule: true
     })
   },
 
@@ -829,12 +806,12 @@ Page({
    * 获取拼团信息
    */
   getCollageData() {
-    if (this.data.info.is_group == 1) {
+    if (this.data.info.isGroup == 1) {
       http.post(app.globalData.groupMsgList, {
-        goodsId: this.data.goods_id
+        goodsId: this.data.goodsId
       }).then(res => {
         this.setData({
-          collage_info: res.result
+          collageInfo: res.result
         })
       })
     }
@@ -847,7 +824,7 @@ Page({
     let item = e.currentTarget.dataset.item
     if (item.status != 2) {
       wx.navigateTo({
-        url: '/pages/collage_detail/collage_detail?id=' + item.group_activity_id,
+        url: '/pages/collageDetail/collageDetail?id=' + item.groupActivityId,
       })
     }
   },
@@ -856,20 +833,20 @@ Page({
    * 计算团购列表倒计时
    */
   calGroupCount() {
-    let group_count = this.data.info.group_list
-    for (let i = 0, len = group_count.length; i < len; i++) {
-      let second = group_count[i].continue_time;
+    let groupCount = this.data.info.groupList
+    for (let i = 0, len = groupCount.length; i < len; i++) {
+      let second = groupCount[i].continueTime;
       if (second == 0) {
         this.getData()
         return
       }
-      group_count[i]['hour'] = Math.floor(second / 3600) < 10 ? '0' + Math.floor(second / 3600) : Math.floor(second / 3600)
-      group_count[i]['min'] = Math.floor(second / 60 % 60) < 10 ? '0' + Math.floor(second / 60 % 60) : Math.floor(second / 60 % 60)
-      group_count[i]['sec'] = Math.floor(second % 60) < 10 ? '0' + Math.floor(second % 60) : Math.floor(second % 60)
-      group_count[i].continue_time--;
+      groupCount[i]['hour'] = Math.floor(second / 3600) < 10 ? '0' + Math.floor(second / 3600) : Math.floor(second / 3600)
+      groupCount[i]['min'] = Math.floor(second / 60 % 60) < 10 ? '0' + Math.floor(second / 60 % 60) : Math.floor(second / 60 % 60)
+      groupCount[i]['sec'] = Math.floor(second % 60) < 10 ? '0' + Math.floor(second % 60) : Math.floor(second % 60)
+      groupCount[i].continueTime--;
     }
     this.setData({
-      group_count: group_count
+      groupCount: groupCount
     })
   },
 
@@ -879,7 +856,7 @@ Page({
   calBargainCount(second) {
     if (second < 0) {
       this.setData({
-        order_type: 1
+        orderType: 1
       })
       return
     }
@@ -887,14 +864,14 @@ Page({
       this.getData()
       return
     }
-    let bargain_time = {}
-    bargain_time['day'] = parseInt((second) / (24 * 3600))
-    bargain_time['hour'] = Math.floor((second) % (24 * 3600) / 3600) < 10 ? '0' + Math.floor((second) % (24 * 3600) / 3600) : Math.floor((second) % (24 * 3600) / 3600)
-    bargain_time['min'] = Math.floor(second / 60 % 60) < 10 ? '0' + Math.floor(second / 60 % 60) : Math.floor(second / 60 % 60)
-    bargain_time['sec'] = Math.floor(second % 60) < 10 ? '0' + Math.floor(second % 60) : Math.floor(second % 60)
-    this.data.info.continue_time--;
+    let bargainTime = {}
+    bargainTime['day'] = parseInt((second) / (24 * 3600))
+    bargainTime['hour'] = Math.floor((second) % (24 * 3600) / 3600) < 10 ? '0' + Math.floor((second) % (24 * 3600) / 3600) : Math.floor((second) % (24 * 3600) / 3600)
+    bargainTime['min'] = Math.floor(second / 60 % 60) < 10 ? '0' + Math.floor(second / 60 % 60) : Math.floor(second / 60 % 60)
+    bargainTime['sec'] = Math.floor(second % 60) < 10 ? '0' + Math.floor(second % 60) : Math.floor(second % 60)
+    this.data.info.continueTime--;
     this.setData({
-      bargain_time: bargain_time
+      bargainTime: bargainTime
     })
   },
 
@@ -903,7 +880,7 @@ Page({
    */
   onCollageRule() {
     wx.navigateTo({
-      url: '/my/web_view/web_view?id=20',
+      url: '/my/webView/webView?id=20',
     })
   },
   /**
@@ -911,7 +888,7 @@ Page({
    */
   onGood(e) {
     wx.navigateTo({
-      url: '/nearby_shops/good_detail/good_detail?goods_id=' + e.currentTarget.dataset.id,
+      url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + e.currentTarget.dataset.id,
     })
   },
   /**
@@ -923,13 +900,13 @@ Page({
       return
     }
     if (this.data.info.collect == null) {
-      url = app.globalData.collect_goods
+      url = app.globalData.collectGoods
     } else {
-      url = app.globalData.collect_delete
+      url = app.globalData.collectDelete
     }
     http.post(url, {
-      goodsId: this.data.goods_id,
-      storeId: this.data.info.store_id,
+      goodsId: this.data.goodsId,
+      storeId: this.data.info.storeId,
     }).then(res => {
       this.data.info.collect = this.data.info.collect == null ? '1' : null
       this.setData({
@@ -953,9 +930,9 @@ Page({
    */
   onNotification() {
     if (app.login()) {
-      let price = this.data.info.shop_price
+      let price = this.data.info.shopPrice
       wx.navigateTo({
-        url: '/nearby_shops/price_notification/price_notification?goods_id=' + this.data.goods_id + '&price=' + price + '&store_id=' + this.data.info.store_id,
+        url: '/nearbyShops/priceNotification/priceNotification?goodsId=' + this.data.goodsId + '&price=' + price + '&storeId=' + this.data.info.storeId,
       })
     }
   },
@@ -966,7 +943,7 @@ Page({
   goFx() {
     if (app.login()) {
       wx.navigateTo({
-        url: '/my/fx_cwdy/fx_cwdy',
+        url: '/my/fxCwdy/fxCwdy',
       })
     }
   },
@@ -975,26 +952,26 @@ Page({
    * 获取代言信息
    */
   getDistributionData() {
-    http.post(app.globalData.distribution_share_info, {
-      distributionId: app.globalData.sup_id == '' ? 0 : app.globalData.sup_id
+    http.post(app.globalData.distributionShareInfo, {
+      distributionId: app.globalData.supId == '' ? 0 : app.globalData.supId
     }).then(res => {
       try {
         this.setData({
           distribution: res.data
         })
         app.globalData.distribution = res.data
-        let member_info = wx.getStorageSync('member_info')
-        if (member_info.distribution_record == null) {
-          let distribution_record = {
-            distribution_id: res.data.cur == null ? null : res.data.cur.distribution_id,
-            audit_status: res.data.cur == null ? null : res.data.cur.audit_status
+        let memberInfo = wx.getStorageSync('memberInfo')
+        if (memberInfo.distributionRecord == null) {
+          let distributionRecord = {
+            distributionId: res.data.cur == null ? null : res.data.cur.distributionId,
+            auditStatus: res.data.cur == null ? null : res.data.cur.auditStatus
           }
-          member_info.distribution_record = distribution_record
+          memberInfo.distributionRecord = distributionRecord
         } else {
-          member_info.distribution_record.distribution_id = res.data.cur == null ? null : res.data.cur.distribution_id
-          member_info.distribution_record.audit_status = res.data.cur == null ? null : res.data.cur.audit_status
+          memberInfo.distributionRecord.distributionId = res.data.cur == null ? null : res.data.cur.distributionId
+          memberInfo.distributionRecord.auditStatus = res.data.cur == null ? null : res.data.cur.auditStatus
         }
-        wx.setStorageSync('member_info', member_info)
+        wx.setStorageSync('memberInfo', memberInfo)
       } catch (e) {}
     })
   },
@@ -1002,40 +979,40 @@ Page({
    * 客服
    */
   service() {
-    let price = 0
-    if (this.data.info.is_bargain == 1) {
-      price = this.data.info.cut_price
-    } else if (this.data.info.is_group == 1) {
-      price = this.data.info.group_price
-    } else if (this.data.info.is_limit == 1) {
-      price = this.data.info.time_limit_price
-    } else {
-      price = this.data.info.shop_price
-    }
-    let data = {
-      file: encodeURIComponent(this.data.info.file),
-      goods_name: encodeURIComponent(this.data.info.goods_name),
-      goods_id: this.data.goods_id,
-      price: price
-    }
-    let service_info = {
-      store_title: encodeURIComponent(this.data.info.store_name),
-      form_type: 'goods',
-      detail: data,
-      TARGET_ID: this.data.info.store_id,
-      DIVERSION_ID: '1001'
-    }
     if (app.login()) {
+      let price = 0
+      if (this.data.info.isBargain == 1) {
+        price = this.data.info.cutPrice
+      } else if (this.data.info.isGroup == 1) {
+        price = this.data.info.groupPrice
+      } else if (this.data.info.isLimit == 1) {
+        price = this.data.info.timeLimitPrice
+      } else {
+        price = this.data.info.shopPrice
+      }
+      let data = {
+        file: encodeURIComponent(this.data.info.file),
+        goodsName: encodeURIComponent(this.data.info.goodsName),
+        goodsId: this.data.goodsId,
+        price: price
+      }
+      let serviceInfo = {
+        storeTitle: encodeURIComponent(this.data.info.storeName),
+        formType: 'goods',
+        detail: data,
+        TARGETID: this.data.info.storeId,
+        DIVERSIONID: '1001'
+      }
       wx.navigateTo({
-        url: '/my/service/service?service_info=' + JSON.stringify(service_info),
+        url: '/my/service/service?serviceInfo=' + JSON.stringify(serviceInfo),
       })
     }
   },
   /**
    * 绑定代言关系
    */
-  distribution_bindDistribution(superior) {
-    http.post(app.globalData.distribution_bindDistribution, {
+  distributionBindDistribution(superior) {
+    http.post(app.globalData.distributionBindDistribution, {
       superior,
     })
   },
@@ -1049,9 +1026,9 @@ Page({
     qqmapsdk.reverseGeocoder({
       success: data => {
         app.globalData.address = {
-          province: data.result.ad_info.province,
-          city: data.result.ad_info.city,
-          area: data.result.ad_info.district,
+          province: data.result.adInfo.province,
+          city: data.result.adInfo.city,
+          area: data.result.adInfo.district,
         }
         app.globalData.lat = data.result.location.lat
         app.globalData.lng = data.result.location.lng
@@ -1068,19 +1045,9 @@ Page({
    * banner预览
    */
   onPreviewSwiper(e) {
-    // if (e.currentTarget.dataset.type == 'video') {
-    //   let arr = []
-    //   arr.push(encodeURIComponent(this.data.video_file.content))
-    //   console.log(arr)
-    //   wx.previewImage({
-    //     current: encodeURIComponent(this.data.video_file.content),
-    //     urls: arr
-    //   })
-    //   return
-    // }
     wx.previewImage({
       current: e.currentTarget.dataset.path,
-      urls: this.data.info.multiple_file
+      urls: this.data.info.multipleFile
     })
   },
   /**
@@ -1090,24 +1057,24 @@ Page({
     let index = e.currentTarget.dataset.index,
       idx = parseInt(e.currentTarget.dataset.idx),
       current = 0
-    if (idx == -1 && this.data.evaluate_list[index].video != '') {
+    if (idx == -1 && this.data.evaluateList[index].video != '') {
       current = 0
-    } else if (this.data.evaluate_list[index].video != '') {
+    } else if (this.data.evaluateList[index].video != '') {
       current = idx + 1
     } else {
       current = idx
     }
-    let multiple_file = this.data.evaluate_list[index].multiple_file.map((val) => {
+    let multipleFile = this.data.evaluateList[index].multipleFile.map((val) => {
       return val = encodeURIComponent(val)
     })
 
     let list = {
-      multiple_file: multiple_file,
-      video: encodeURIComponent(this.data.evaluate_list[index].video),
+      multipleFile: multipleFile,
+      video: encodeURIComponent(this.data.evaluateList[index].video),
       current: current
     }
     wx.navigateTo({
-      url: '/nearby_shops/preview/preview?info=' + JSON.stringify(list),
+      url: '/nearbyShops/preview/preview?info=' + JSON.stringify(list),
     })
   },
 
@@ -1130,7 +1097,7 @@ Page({
    */
   callPhone() {
     wx.makePhoneCall({
-      phoneNumber: this.data.info.store_phone,
+      phoneNumber: this.data.info.storePhone,
     })
   },
   /**
@@ -1144,9 +1111,8 @@ Page({
     wx.createVideoContext('video').play()
   },
   onLabel(e) {
-    http.post(app.globalData.goods_tagClickLog, {
-      tag_bind_goods_id: e.currentTarget.dataset.id
+    http.post(app.globalData.goodsTagClickLog, {
+      tagBindGoodsId: e.currentTarget.dataset.id
     }).then(res => {})
   }
-
 })

@@ -1,4 +1,3 @@
-/* nearby_shops/invoice_over/invoice_over.wxss */
 page{
   background-color: #fff;
 }

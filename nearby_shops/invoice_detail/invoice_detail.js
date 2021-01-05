@@ -1,4 +1,3 @@
-// nearby_shops/invoice_detail/invoice_detail.js
 const app = getApp();
 const http = require('../../utils/http.js');
 Page({
@@ -7,9 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    invoice_info: {},
-    diy_color: app.globalData.diy_color,
-    order_attach_id: null,
+    invoiceInfo: {},
+    diyColor: app.globalData.diyColor,
+    orderAttachId: null,
     status: null
   },
 
@@ -18,7 +17,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      order_attach_id: options.order_attach_id,
+      orderAttachId: options.orderAttachId,
       status: options.status
     })
     this.getData()
@@ -77,53 +76,44 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.invoice_detail, {
-      orderAttachId: this.data.order_attach_id
+    http.post(app.globalData.invoiceDetail, {
+      orderAttachId: this.data.orderAttachId
     }).then(res => {
       this.setData({
-        invoice_info: res.result
+        invoiceInfo: res.result
       })
     })
   },
   /**
    * 修改发票
-   * show(invoice_info发票详情,0,店铺id传'',0确认订单用 1发票信息用)
+   * show(invoiceInfo发票详情,0,店铺id传'',0确认订单用 1发票信息用)
    */
   submit() {
-    this.selectComponent("#popup").show(this.data.invoice_info, 0, '', 1)
-    // wx.redirectTo({
-    //   url: '/nearby_shops/invoice_info/invoice_info?order_attach_id=' + this.data.order_attach_id + '&is_anew=1' + '&store_id=' + this.data.invoice_info.store_id,
-    // })
+    this.selectComponent("#popup").show(this.data.invoiceInfo, 0, '', 1)
   },
   /**
    * 查看物流
    */
   logistics() {
     let info = {
-      express_number: this.data.invoice_info.express_number,
-      express_value: this.data.invoice_info.express_value,
-      order_attach_id: this.data.invoice_info.order_attach_id,
+      expressNumber: this.data.invoiceInfo.expressNumber,
+      expressValue: this.data.invoiceInfo.expressValue,
+      orderAttachId: this.data.invoiceInfo.orderAttachId,
       type: 'invoice'
     }
     wx.navigateTo({
-      url: '/my/logistics_detail/logistics_detail?info=' + JSON.stringify(info),
+      url: '/my/logisticsDetail/logisticsDetail?info=' + JSON.stringify(info),
     })
   },
   /**
    * 复制链接
    */
   copylink() {
-    if (this.data.invoice_info.download_links == '' || this.data.invoice_info.download_links == null || this.data.invoice_info.download_links == undefined) {
+    if (this.data.invoiceInfo.downloadLinks == '' || this.data.invoiceInfo.downloadLinks == null || this.data.invoiceInfo.downloadLinks == undefined) {
       return
     }
-    // wx.downloadFile({
-    //   url: this.data.invoice_info.download_links,
-    //   success: res => {
-    //     app.showSuccessToast('下载成功', () => {})
-    //   }
-    // })
     wx.setClipboardData({
-      data: this.data.invoice_info.download_links,
+      data: this.data.invoiceInfo.downloadLinks,
       success: res => {
         app.showToast('复制成功,请去浏览器打开', res => {})
       }
@@ -132,19 +122,19 @@ Page({
   /**
    * 
    */
-  popup_invoice(e) {
+  popupInvoice(e) {
     this.setData({
       invoice: e.detail
     })
   },
   createWhether() {
     this.setData({
-      'invoice.province': this.data.province.area_name,
-      'invoice.city': this.data.city.area_name,
-      'invoice.area': this.data.area.area_name,
+      'invoice.province': this.data.province.areaName,
+      'invoice.city': this.data.city.areaName,
+      'invoice.area': this.data.area.areaName,
     })
   },
-  refresh_invoice(e) {
+  refreshInvoice(e) {
     this.getData()
   }
 })

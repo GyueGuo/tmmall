@@ -19,7 +19,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       phone: options.phone,
       type: options.type != undefined ? options.type : '',
     })
@@ -98,7 +98,7 @@ Page({
    */
   finish() {
     if (this.data.able) {
-      http.encPost(app.globalData.forget_pay_password, {
+      http.encPost(app.globalData.forgetPayPassword, {
         phone: this.data.phone,
         payPassword: this.data.psw
       }).then(res => {
@@ -117,7 +117,7 @@ Page({
       return
     }
     if (this.data.able) {
-      http.encPost(app.globalData.forget_password, {
+      http.encPost(app.globalData.forgetPassword, {
         phone: this.data.phone,
         password: this.data.psw
       }).then(res => {

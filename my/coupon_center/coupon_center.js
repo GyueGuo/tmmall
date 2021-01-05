@@ -8,10 +8,10 @@ Page({
   data: {
     //选项卡
     tab_list: [{
-      goods_classify_id: '',
+      goodsClassifyId: '',
       title: '精选'
     }],
-    current_tab: '',
+    currentTab: '',
     page: 1,
     list: [],
     total: '',
@@ -23,7 +23,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       configSwitch: app.globalData.configSwitch
     })
   },
@@ -99,7 +99,7 @@ Page({
    */
   onClassify(e) {
     this.setData({
-      current_tab: e.currentTarget.dataset.id,
+      currentTab: e.currentTarget.dataset.id,
       page: 1
     })
     this.getConponList()
@@ -110,7 +110,7 @@ Page({
    */
   onMore() {
     this.setData({
-      more_board: true
+      moreBoard: true
     })
   },
 
@@ -119,7 +119,7 @@ Page({
    */
   closeBoard() {
     this.setData({
-      more_board: false
+      moreBoard: false
     })
   },
 
@@ -130,7 +130,7 @@ Page({
     this.closeBoard()
     this.setData({
       sroll_id: 'a-' + e.currentTarget.dataset.index,
-      current_tab: e.currentTarget.dataset.id,
+      currentTab: e.currentTarget.dataset.id,
       page: 1
     })
     this.getConponList()
@@ -141,7 +141,7 @@ Page({
    */
   getConponList() {
     http.post(app.globalData.coupon_center, {
-      category: this.data.current_tab,
+      category: this.data.currentTab,
       page: this.data.page
     }).then(res => {
       if (this.data.page == 1) {
@@ -167,12 +167,12 @@ Page({
    */
   countDown() {
     for (let i = 0, len = this.data.list.length; i < len; i++) {
-      if (this.data.list[i].distance_start_time > 0) {
-        let second = this.data.list[i].distance_start_time
+      if (this.data.list[i].distanceStartTime > 0) {
+        let second = this.data.list[i].distanceStartTime
         this.data.list[i]['hour'] = Math.floor((second) % (24 * 3600) / 3600) < 10 ? '0' + Math.floor((second) % (24 * 3600) / 3600) : Math.floor((second) % (24 * 3600) / 3600)
         this.data.list[i]['min'] = Math.floor(second / 60 % 60) < 10 ? '0' + Math.floor(second / 60 % 60) : Math.floor(second / 60 % 60)
         this.data.list[i]['sec'] = Math.floor(second % 60) < 10 ? '0' + Math.floor(second % 60) : Math.floor(second % 60)
-        this.data.list[i].distance_start_time--
+        this.data.list[i].distanceStartTime--
       }
     }
     this.setData({
@@ -194,7 +194,7 @@ Page({
       goodsClassifyId: item.type == 1 ? item.classify_str : '',
       storeId: item.type == 0 ? item.classify_str : '',
     }).then(res => {
-      this.data.list[index].member_state = 1
+      this.data.list[index].memberState = 1
       this.setData({
         list: this.data.list
       })
@@ -216,7 +216,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: '/pages/search_goods/search_goods?goods_classify_id=' + item.classify_str,
+        url: '/pages/search_goods/search_goods?goodsClassifyId=' + item.classify_str,
       })
     }
   }

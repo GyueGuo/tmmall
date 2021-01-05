@@ -300,23 +300,23 @@ const throttle = (_this, callback, t) => {
  */
 const clearLoginState = () => {
   wx.clearStorageSync()
-  app.globalData.member_id = ''
+  app.globalData.memberId = ''
   app.globalData.phone = ''
   app.globalData.openid = ''
   app.globalData.unionId = ''
   app.globalData.token = ''
   //代言人ID
-  app.globalData.sup_id = ''
+  app.globalData.supId = ''
   app.globalData.distribution = {}
   wx.closeSocket()
-  clearTimeout(app.app_socketHeartTime)
-  if (app.globalData.PAST_LOGIN) {
+  clearTimeout(app.appSocketHeartTime)
+  if (app.globalData.PASTLOGIN) {
     return
   }
   wx.navigateTo({
     url: '/pages/accredit/accredit'
   })
-  app.globalData.PAST_LOGIN = true
+  app.globalData.PASTLOGIN = true
   return
 };
 

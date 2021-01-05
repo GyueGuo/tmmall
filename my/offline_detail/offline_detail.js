@@ -14,7 +14,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       configSwitch: app.globalData.configSwitch
     })
     this.getData(options.id)
@@ -66,10 +66,10 @@ Page({
    * 获取数据
    */
   getData(id) {
-    http.post(app.globalData.order_details, {
-      order_attach_id: id
+    http.post(app.globalData.orderDetails, {
+      orderAttachId: id
     }).then(res => {
-      res.result['total_price'] = parseFloat(res.result.subtotalPrice) + parseFloat(res.result.subtotalCouponPrice) + parseFloat(res.result.totalPacketPrice)
+      res.result['totalPrice'] = parseFloat(res.result.subtotalPrice) + parseFloat(res.result.subtotalCouponPrice) + parseFloat(res.result.totalPacketPrice)
       this.setData({
         discounts: (parseFloat(res.result.totalPacketPrice) + parseFloat(res.result.subtotalCouponPrice)).toFixed(2),
         info: res.result
@@ -79,7 +79,7 @@ Page({
 
   goShop() {
     wx.navigateTo({
-      url: '/nearby_shops/shop_detail/shop_detail?store_id=' + this.data.info.store_id,
+      url: '/nearbyShops/shopDetail/shopDetail?storeId=' + this.data.info.storeId,
     })
   },
 
@@ -88,7 +88,7 @@ Page({
    */
   callPhone() {
     wx.makePhoneCall({
-      phoneNumber: this.data.info.store_list.phone,
+      phoneNumber: this.data.info.storeList.phone,
     })
   },
   /**
@@ -96,7 +96,7 @@ Page({
    */
   callPtPhone() {
     wx.makePhoneCall({
-      phoneNumber: this.data.configSwitch.app_info.contact,
+      phoneNumber: this.data.configSwitch.appInfo.contact,
     })
   },
 
@@ -105,7 +105,7 @@ Page({
    */
   copyOrderNumber() {
     wx.setClipboardData({
-      data: this.data.info.order_attach_number,
+      data: this.data.info.orderAttachNumber,
     })
   }
 

@@ -35,5 +35,5 @@
 </scroll-view>
 
 <view class='sidebar' catchtouchmove='indexEvent' catchtap='selectWord'>
-  <view class='cur' wx:for="{{letters}}" style='{{util.diy_color(diy_color.z_color,"","")}}'>{{item}}</view>
+  <view class='cur' wx:for="{{letters}}" style='{{util.diyColor(diyColor.zColor,"","")}}'>{{item}}</view>
 </view>

@@ -55,7 +55,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       configSwitch: app.globalData.configSwitch,
       cart_id: options.cart_id,
       first: false

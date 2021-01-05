@@ -8,10 +8,10 @@ Page({
    */
   data: {
     //是否是长按
-    is_long: false,
+    isLong: false,
     list: [],
     page: 1,
-    last_page: '',
+    lastPage: '',
     //当前选中item
     item: {}
   },
@@ -21,7 +21,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -65,7 +65,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-    if (this.data.page != this.data.last_page) {
+    if (this.data.page != this.data.lastPage) {
       this.data.page++;
       this.getData()
     }
@@ -96,13 +96,13 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.record_goods, {
+    http.post(app.globalData.recordGoods, {
       page: this.data.page
     }).then(res => {
       if (this.data.page == 1) {
         this.setData({
           list: res.result.data,
-          last_page: res.result.lastPage,
+          lastPage: res.result.lastPage,
           discount: res.discount == null ? 100 : res.discount,
         })
       } else {
@@ -121,12 +121,12 @@ Page({
    * 商品详情
    */
   onGoods(e) {
-    if (!this.data.is_long) {
+    if (!this.data.isLong) {
       wx.navigateTo({
-        url: '/nearby_shops/good_detail/good_detail?goods_id=' + e.currentTarget.dataset.id,
+        url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + e.currentTarget.dataset.id,
       })
     }
-    this.data.is_long = false
+    this.data.isLong = false
   },
 
   /**
@@ -134,7 +134,7 @@ Page({
    */
   onDelectRecord(e) {
     this.data.item = e.currentTarget.dataset.item
-    this.data.is_long = true
+    this.data.isLong = true
     this.selectComponent("#modal").showModal()
   },
 
@@ -142,13 +142,13 @@ Page({
    * 确认删除
    */
   confirmDelete() {
-    http.post(app.globalData.delete_record, {
-      recordGoodsId: this.data.item.record_goods_id + ''
+    http.post(app.globalData.deleteRecord, {
+      recordGoodsId: this.data.item.recordGoodsId + ''
     }).then(res => {
       app.showSuccessToast('删除成功', () => {
         for (let i = 0; i < this.data.list.length; i++) {
           for (let j = 0; j < this.data.list[i].list.length; j++) {
-            if (this.data.list[i].list[j].record_goods_id == this.data.item.record_goods_id) {
+            if (this.data.list[i].list[j].recordGoodsId == this.data.item.recordGoodsId) {
               this.data.list[i].list.splice(j, 1)
             }
           }
@@ -165,17 +165,17 @@ Page({
       return
     }
     let item = e.currentTarget.dataset.item
-    item['attr'] = item.attribute_list
-    if (item.goods_number == 0) {
+    item['attr'] = item.attributeList
+    if (item.goodsNumber == 0) {
       app.showToast('该商品已经卖光了')
       return
     }
     if (item['attr'].length == 0) {
-      http.encPost(app.globalData.cart_create, {
-        storeId: item.store_id,
-        goodsId: item.goods_id,
-        goodsName: item.goods_name,
-        file: item.cart_file,
+      http.encPost(app.globalData.cartCreate, {
+        storeId: item.storeId,
+        goodsId: item.goodsId,
+        goodsName: item.goodsName,
+        file: item.cartFile,
         number: 1,
         productsId: '',
         attr: '',
@@ -189,7 +189,7 @@ Page({
       this.selectComponent("#buy_board").resetAll()
       this.setData({
         info: item,
-        buy_type: 3
+        buyType: 3
       })
       this.selectComponent("#buy_board").show()
     }

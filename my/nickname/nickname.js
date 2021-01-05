@@ -15,7 +15,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       nickname: options.name
     })
   },
@@ -68,22 +68,18 @@ Page({
    * 保存
    */
   save() {
-    let reg = '^[a-zA-Z0-9_\u4e00-\u9fa5]+$'
     if (this.data.nickname == '') {
       app.showToast('请输入昵称')
       return
     }
-    // if(){
-
-    // }
-    http.post(app.globalData.my_other, {
+    http.post(app.globalData.myOther, {
       other: 'nickname',
       nickname: this.data.nickname
     }).then(res => {
-      event.emit('refresh_info')
-      let member_info = wx.getStorageSync('member_info')
-      member_info.nickname = this.data.nickname
-      wx.setStorageSync('member_info', member_info)
+      event.emit('refreshInfo')
+      let memberInfo = wx.getStorageSync('memberInfo')
+      memberInfo.nickname = this.data.nickname
+      wx.setStorageSync('memberInfo', memberInfo)
       app.showSuccessToast(res.message, () => {
         wx.navigateBack()
       })

@@ -13,14 +13,14 @@
           <view class='row'>
             <view class='title'>发票类型</view>
             <view class='btn-con'>
-              <text style='{{item.type==invoice_type?util.diy_color(diy_color.z_color,diy_color.f_color_2,diy_color.z_color):""}}' wx:for='{{invoice_con}}' wx:key='{{index}}' wx:if='{{(is_added_value_tax==1&&item.type==1)||item.type==0}}' data-type='{{item.type}}'
+              <text style='{{item.type==invoice_type?util.diyColor(diyColor.zColor,diyColor.fColor2,diyColor.zColor):""}}' wx:for='{{invoice_con}}' wx:key='{{index}}' wx:if='{{(is_added_value_tax==1&&item.type==1)||item.type==0}}' data-type='{{item.type}}'
                 hover-class='hover-class' hover-stay-time='400' bindtap='invoiceClick'>{{item.name}}</text>
             </view>
           </view>
           <view class='row'>
             <view class='title'>发票抬头</view>
             <view class='btn-con'>
-              <text style='{{item.type==rise?util.diy_color(diy_color.z_color,diy_color.f_color_2,diy_color.z_color):""}}' wx:for='{{rise_con}}' wx:key='{{index}}' data-type='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='riseClick'>{{item.name}}</text>
+              <text style='{{item.type==rise?util.diyColor(diyColor.zColor,diyColor.fColor2,diyColor.zColor):""}}' wx:for='{{rise_con}}' wx:key='{{index}}' data-type='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='riseClick'>{{item.name}}</text>
             </view>
           </view>
           <!-- 个人 -->
@@ -89,7 +89,7 @@
           <view class='row'>
             <view class='title'>发票内容</view>
             <view class='btn-con'>
-              <text style='{{item.type==detail_type?util.diy_color(diy_color.z_color,diy_color.f_color_2,diy_color.z_color):""}}' wx:for='{{detail_con}}' data-type='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='detailClick'>{{item.name}}</text>
+              <text style='{{item.type==detail_type?util.diyColor(diyColor.zColor,diyColor.fColor2,diyColor.zColor):""}}' wx:for='{{detail_con}}' data-type='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='detailClick'>{{item.name}}</text>
             </view>
           </view>
           <view class='tip'>发票内容显示详细商品名称及价格信息</view>
@@ -97,8 +97,8 @@
       </view>
     </scroll-view>
     <view class='btn'>
-      <view class='submit flex3' style='{{util.diy_color(diy_color.text_color,diy_color.f_color,"")}}' hover-class='hover-class' hover-stay-time='400' bindtap='cancel' wx:if='{{i_typa==0}}'>不开发票</view>
-      <view class='submit flex7' style='{{util.diy_color("",diy_color.z_color,"")}}' hover-class='hover-class' hover-stay-time='400' bindtap='submit'>确定</view>
+      <view class='submit flex3' style='{{util.diyColor(diyColor.text_color,diyColor.fColor,"")}}' hover-class='hover-class' hover-stay-time='400' bindtap='cancel' wx:if='{{i_typa==0}}'>不开发票</view>
+      <view class='submit flex7' style='{{util.diyColor("",diyColor.zColor,"")}}' hover-class='hover-class' hover-stay-time='400' bindtap='submit'>确定</view>
     </view>
   </view>
 </view>

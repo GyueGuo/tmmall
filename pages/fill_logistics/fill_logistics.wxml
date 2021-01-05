@@ -3,8 +3,8 @@
   <view class='logistics-info return-way' wx:if='{{distribution_type==2}}'>
     <view>退回方式:</view>
     <view class='return-detail'>
-      <view style='{{return_way==1?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}' hover-class='hover-class' hover-stay-time='400' bindtap='onExpress'>快递至商家</view>
-      <view style='{{return_way==2?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}' hover-class='hover-class' hover-stay-time='400' bindtap='onSelfPick' wx:if='{{take_list.length != 0}}'>送货至门店自提</view>
+      <view style='{{return_way==1?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}' hover-class='hover-class' hover-stay-time='400' bindtap='onExpress'>快递至商家</view>
+      <view style='{{return_way==2?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}' hover-class='hover-class' hover-stay-time='400' bindtap='onSelfPick' wx:if='{{take_list.length != 0}}'>送货至门店自提</view>
     </view>
   </view>
 </view>
@@ -65,6 +65,6 @@
   </view>
 </view>
 
-<view class='commit' style='{{util.diy_color("",diy_color.z_color,"")}}' hover-class='hover-class' hover-stay-time='400' bindtap='commit'>提交</view>
+<view class='commit' style='{{util.diyColor("",diyColor.zColor,"")}}' hover-class='hover-class' hover-stay-time='400' bindtap='commit'>提交</view>
 
 <select_self_pick id="select_self_pick" bind:selectPick="selectPick" />

@@ -53,8 +53,8 @@
       <!-- <image class='slide_bg' src='{{util.HTTP}}mobile/small/image/slide_bg1.png'></image> -->
     </view>
     <view class='h-title-img' wx:if="{{banner.length != 0}}">
-      <view style='{{util.diy_imgbox(314)}}margin:0 auto;'>
-        <image src='{{util.HTTP}}mobile/small/image/sy-fjmd-fjmd.png' class='nearby-title' style='{{util.diy_imgcolor(diy_color.z_color,314,72)}}'></image>
+      <view style='{{util.diyImgbox(314)}}margin:0 auto;'>
+        <image src='{{util.HTTP}}mobile/small/image/sy-fjmd-fjmd.png' class='nearby-title' style='{{util.diyImgcolor(diyColor.zColor,314,72)}}'></image>
       </view>
     </view>
 
@@ -64,17 +64,17 @@
   <view style="{{fixed?'height:80rpx;':''}}"></view>
   <view class="list-title {{fixed?'fixed':''}}">
     <view class='list'>
-      <view class="title" data-index='1' hover-class='hover-class' hover-stay-time='400' bindtap='onClassify' style='{{util.diy_color(diy_color.z_color,"","")}}'>{{classify}}
+      <view class="title" data-index='1' hover-class='hover-class' hover-stay-time='400' bindtap='onClassify' style='{{util.diyColor(diyColor.zColor,"","")}}'>{{classify}}
         <view>
-          <text class="caret down" style='border-top:8rpx solid {{diy_color.z_color}};'></text>
+          <text class="caret down" style='border-top:8rpx solid {{diyColor.zColor}};'></text>
         </view>
       </view>
-      <view class="title" data-index='3' hover-class='hover-class' hover-stay-time='400' bindtap='onSort' style='{{sort?util.diy_color(diy_color.z_color,"",""):""}}'>距离最近</view>
-      <view class="title" data-index='2' hover-class='hover-class' hover-stay-time='400' bindtap='onSale' style='{{sale?util.diy_color(diy_color.z_color,"",""):""}}'>销量最高</view>
+      <view class="title" data-index='3' hover-class='hover-class' hover-stay-time='400' bindtap='onSort' style='{{sort?util.diyColor(diyColor.zColor,"",""):""}}'>距离最近</view>
+      <view class="title" data-index='2' hover-class='hover-class' hover-stay-time='400' bindtap='onSale' style='{{sale?util.diyColor(diyColor.zColor,"",""):""}}'>销量最高</view>
     </view>
-    <view class="choose" hover-class='hover-class' hover-stay-time='400' bindtap='OnChangeFilter' style='{{is_filtrate?util.diy_color(diy_color.z_color,"",""):""}}'>
+    <view class="choose" hover-class='hover-class' hover-stay-time='400' bindtap='OnChangeFilter' style='{{is_filtrate?util.diyColor(diyColor.zColor,"",""):""}}'>
       筛选
-      <view class='font_family icon-shaixuan choose-icon' style="{{is_filtrate?util.diy_color(diy_color.z_color,'',''):'color:#6d6d6d'}}"></view>
+      <view class='font_family icon-shaixuan choose-icon' style="{{is_filtrate?util.diyColor(diyColor.zColor,'',''):'color:#6d6d6d'}}"></view>
     </view>
   </view>
   <view class='shop-list'>
@@ -91,7 +91,7 @@
             <image wx:if='{{item.type!=null}}' src='{{util.HTTP}}mobile/small/image/shops/shop-icon{{item.type}}.png'></image>
           </view>
         </view>
-        <view class='go-shop cur' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>进店</view>
+        <view class='go-shop cur' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>进店</view>
       </view>
       <view class='shop-pic' wx:if='{{item.shop_goods.length!=0}}'>
         <view wx:for="{{item.shop_goods}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goods_id}}' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
@@ -131,12 +131,12 @@
   <view class='all-board' catchtouchmove='true' hidden='{{!classify_board}}' hover-class='hover-class' hover-stay-time='400' bindtap='closeClassify'>
     <scroll-view scroll-y class='board-first'>
       <view class='board-classify' wx:for="{{classify_condition}}" wx:key='{{index}}' catchtap='selectClassify' data-item='{{item}}'>
-        <view style="{{item.title == classify?util.diy_color(diy_color.z_color,'',''):''}}">{{item.title}}</view>
-        <view class='select font_family icon-arx' style="{{util.diy_color(diy_color.z_color,'','')}}" wx:if='{{item.title == classify}}'></view>
+        <view style="{{item.title == classify?util.diyColor(diyColor.zColor,'',''):''}}">{{item.title}}</view>
+        <view class='select font_family icon-arx' style="{{util.diyColor(diyColor.zColor,'','')}}" wx:if='{{item.title == classify}}'></view>
       </view>
     </scroll-view>
   </view>
   <!--筛选  -->
   <search_shop_filitrate isShow="{{filtrate_board}}" bind:onFiltrateReset="onFiltrateReset" bind:onFiltrateConfirm="onFiltrateConfirm" bind:closeFiltrate="closeFiltrate" />
 </view>
-<template is="tabBar" data="{{tabBar:bindData.tabBar,diy_color:diy_color,model:model}}" />
+<template is="tabBar" data="{{tabBar:bindData.tabBar,diyColor:diyColor,model:model}}" />

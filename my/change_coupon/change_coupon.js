@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    exchange_board: false,
+    exchangeBoard: false,
     page: 1,
     total: ''
   },
@@ -16,7 +16,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -70,7 +70,7 @@ Page({
    * 获取数据
    */
   getCouponList() {
-    http.post(app.globalData.coupon_exchange_list, {
+    http.post(app.globalData.couponExchangeList, {
       page: this.data.page
     }).then(res => {
       if (this.data.page == 1) {
@@ -92,18 +92,18 @@ Page({
   onExchange(e) {
     let item = e.currentTarget.dataset.item
     if (app.login()) {
-      if (item.exchange_num == 0) {
+      if (item.exchangeNum == 0) {
         wx.showToast({
           title: '已被抢光~',
           icon: 'none'
         })
         return
       }
-      http.post(app.globalData.coupon_exchange_view, {
-        couponId: item.coupon_id
+      http.post(app.globalData.couponExchangeView, {
+        couponId: item.couponId
       }).then(res => {
         this.setData({
-          exchange_board: true,
+          exchangeBoard: true,
           info: res.result
         })
       })
@@ -114,10 +114,10 @@ Page({
    * 兑换商品
    */
   changeCoupon() {
-    http.post(app.globalData.exchange_coupon, {
-      couponId: this.data.info.coupon_id,
+    http.post(app.globalData.exchangeCoupon, {
+      couponId: this.data.info.couponId,
       goodsClassifyId: this.data.info.type == 1 ? this.data.info.classifyStr : '',
-      storeId: this.data.info.type == 0 ? this.data.info.classify_str : '',
+      storeId: this.data.info.type == 0 ? this.data.info.classifyStr : '',
     }).then(res => {
       this.onCloseExchange()
       app.showSuccessToast('换取成功')
@@ -131,15 +131,15 @@ Page({
     let item = e.currentTarget.dataset.data;
     if (item.type == 0 && app.globalData.isShops == 0) {
       wx.navigateTo({
-        url: '/nearby_shops/shop_detail/shop_detail?store_id=' + item.classify_str,
+        url: '/nearbyShops/shopDetail/shopDetail?storeId=' + item.classifyStr,
       })
     } else if (app.globalData.isShops == 1) {
       wx.navigateTo({
-        url: '/pages/search_goods/search_goods',
+        url: '/pages/searchGoods/searchGoods',
       })
     } else {
       wx.navigateTo({
-        url: '/pages/search_goods/search_goods?goods_classify_id=' + item.classify_str,
+        url: '/pages/searchGoods/searchGoods?goodsClassifyId=' + item.classifyStr,
       })
     }
   },
@@ -149,7 +149,7 @@ Page({
    */
   onCloseExchange() {
     this.setData({
-      exchange_board: false
+      exchangeBoard: false
     })
   },
 
@@ -158,7 +158,7 @@ Page({
    */
   onCouponCenter() {
     wx.redirectTo({
-      url: '../coupon_center/coupon_center',
+      url: '../couponCenter/couponCenter',
     })
   },
 
@@ -175,19 +175,19 @@ Page({
    */
   goUse(e) {
     let item = e.currentTarget.dataset.item
-    if (this.data.configSwitch.version_info.one_more == 0) {
+    if (this.data.configSwitch.versionInfo.oneMore == 0) {
       wx.navigateTo({
-        url: '/pages/search_goods/search_goods',
+        url: '/pages/searchGoods/searchGoods',
       })
       return
     }
     if (item.type == 0) {
       wx.navigateTo({
-        url: '/nearby_shops/shop_detail/shop_detail?store_id=' + item.classify_str,
+        url: '/nearbyShops/shopDetail/shopDetail?storeId=' + item.classifyStr,
       })
     } else {
       wx.navigateTo({
-        url: '/pages/search_goods/search_goods?goods_classify_id=' + item.classify_str,
+        url: '/pages/searchGoods/searchGoods?goodsClassifyId=' + item.classifyStr,
       })
     }
   }

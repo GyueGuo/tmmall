@@ -5,11 +5,11 @@
       <view class='info'>
         <view class='name'>{{item.name}}</view>
         <view class='tel'>{{util.phoneEnc(item.phone)}}</view>
-        <view class='default bg' hidden='{{item.is_default == 0}}' style='{{util.diy_color("",diy_color.z_color,"")}}'>默认</view>
+        <view class='default bg' hidden='{{item.isDefault == 0}}' style='{{util.diyColor("",diyColor.zColor,"")}}'>默认</view>
       </view>
       <view class='detail'>{{item.province}} {{item.city}} {{item.area}} {{item.street}} {{item.address}}</view>
     </view>
-    <image src='{{util.HTTP}}mobile/small/image/gwc-sl-bj.png' catchtap='changeAddress' data-id='{{item.member_address_id}}' ></image>
+    <image src='{{util.HTTP}}mobile/small/image/gwc-sl-bj.png' catchtap='changeAddress' data-id='{{item.memberAddressId}}' ></image>
   </view>
 </scroll-view>
 
@@ -22,7 +22,7 @@
 
 
 <view class='increase' hover-class='hover-class' hover-stay-time='400' bindtap='increaseAddress' >
-  <view style='{{util.diy_color("",diy_color.z_color,"")}}'>+新增收货地址</view>
+  <view style='{{util.diyColor("",diyColor.zCcolor,"")}}'>+新增收货地址</view>
 </view>
 
 

@@ -1,8 +1,8 @@
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='month-con'>
-  <picker bindchange="month" value="{{index}}" range="{{month_list}}">
+  <picker bindchange="month" value="{{index}}" range="{{monthList}}">
     <view class='month'>
-      <text>{{month_text}}月</text>
+      <text>{{monthText}}月</text>
       <view class='iconPar'>
         <image class='iconColor' src='{{util.HTTP}}mobile/small/image/xl.png'></image>
       </view>
@@ -11,8 +11,8 @@
 </view>
 
 <view class='head-wrap'>
-  <view class='head' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>
-    <view wx:for="{{tab_list}}" class="{{current_tab == item.status?'cur-head':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onTab' data-status='{{item.status}}' style='{{current_tab == item.status?util.diy_color("",diy_color.z_color,diy_color.z_color):util.diy_color(diy_color.z_color,"",diy_color.z_color)}}' >{{item.title}}</view>
+  <view class='head' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>
+    <view wx:for="{{tabList}}" class="{{currentTab == item.status?'cur-head':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onTab' data-status='{{item.status}}' style='{{currentTab == item.status?util.diyColor("",diyColor.zColor,diyColor.zColor):util.diyColor(diyColor.zColor,"",diyColor.zColor)}}' >{{item.title}}</view>
   </view>
 </view>
 <view class='no-order' hidden="{{list.length != 0 || loading}}">
@@ -25,28 +25,28 @@
   <view wx:if="{{item.type == '充值'}}">
     <view>
       <view class='title'>充值</view>
-      <view class='time'>{{item.create_time}}</view>
+      <view class='time'>{{item.createTime}}</view>
     </view>
-    <view class='money' style='{{util.diy_color(diy_color.z_color,"","")}}'>+{{item.price}}</view>
+    <view class='money' style='{{util.diyColor(diyColor.zColor,"","")}}'>+{{item.price}}</view>
   </view>
   <view wx:if="{{item.type == '退款'}}">
     <view>
       <view class='title'>退款</view>
-      <view class='time'>{{item.create_time}}</view>
+      <view class='time'>{{item.createTime}}</view>
     </view>
-    <view class='money' style='{{util.diy_color(diy_color.z_color,"","")}}'>+{{item.price}}</view>
+    <view class='money' style='{{util.diyColor(diyColor.zColor,"","")}}'>+{{item.price}}</view>
   </view>
   <view wx:if="{{item.type == '佣金转入'}}">
     <view>
       <view class='title'>佣金转入</view>
-      <view class='time'>{{item.create_time}}</view>
+      <view class='time'>{{item.createTime}}</view>
     </view>
     <view class='money'>+{{item.price}}</view>
   </view>
   <view wx:if="{{item.type == '消费'}}">
     <view>
       <view class='title'>消费</view>
-      <view class='time'>{{item.create_time}}</view>
+      <view class='time'>{{item.createTime}}</view>
     </view>
     <view class='money'>-{{item.price}}</view>
   </view>

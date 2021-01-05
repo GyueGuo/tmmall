@@ -3,7 +3,7 @@
 <view class='warp'>
   <view class='nav'>
     <view class='nav_li' wx:for='{{nav}}' data-tab='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='nav_tab'>
-      <text class='{{index==current_tab?"on":""}}' style='{{index==current_tab?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{item}}</text>
+      <text class='{{index==current_tab?"on":""}}' style='{{index==current_tab?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>{{item}}</text>
     </view>
   </view>
   <view class='con-list'>
@@ -14,16 +14,16 @@
           <view class='tit'>{{item.prize_title}}</view>
           <view class='time'>{{item.create_time}}</view>
         </view>
-        <view class='li_type' wx:if='{{item.status==0}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>待领取</view>
-        <view class='li_type' wx:if='{{item.status==1}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>待发货</view>
-        <view class='li_type' wx:if='{{item.status==2}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>已发货</view>
-        <view class='li_type' wx:if='{{item.status==3}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>已完成</view>
+        <view class='li_type' wx:if='{{item.status==0}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>待领取</view>
+        <view class='li_type' wx:if='{{item.status==1}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>待发货</view>
+        <view class='li_type' wx:if='{{item.status==2}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>已发货</view>
+        <view class='li_type' wx:if='{{item.status==3}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>已完成</view>
       </view>
 
       <view class='li_bottom' hidden='{{item.goods_type!=1}}'>
-        <text class='' wx:if='{{item.status==2}}' data-index='{{index}}' data-id='{{item.order_id}}' hover-class='hover-class' hover-stay-time='400' catchtap='showModal' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}' data-confirmType='0'>确认收货</text>
-        <text class='' wx:if='{{item.status==0}}' data-item='{{item}}' hover-class='hover-class' hover-stay-time='400' catchtap='address' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>填写地址</text>
-        <text class='' wx:if='{{item.status==2}}' data-item='{{item}}' hover-class='hover-class' hover-stay-time='400' catchtap='logistics' style='{{item.status==2?"":util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>查看物流</text>
+        <text class='' wx:if='{{item.status==2}}' data-index='{{index}}' data-id='{{item.order_id}}' hover-class='hover-class' hover-stay-time='400' catchtap='showModal' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}' data-confirmType='0'>确认收货</text>
+        <text class='' wx:if='{{item.status==0}}' data-item='{{item}}' hover-class='hover-class' hover-stay-time='400' catchtap='address' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>填写地址</text>
+        <text class='' wx:if='{{item.status==2}}' data-item='{{item}}' hover-class='hover-class' hover-stay-time='400' catchtap='logistics' style='{{item.status==2?"":util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>查看物流</text>
       </view>
     </view>
     <view class='no-order' hidden="{{list.length != 0 || loading}}">

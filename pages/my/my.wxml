@@ -9,7 +9,7 @@
         </view>
         <view class='set-btn' hover-class='hover-class' hover-stay-time='400' bindtap='onMessage'>
           <image src='{{util.HTTP}}mobile/small/image/wd-xx.png'></image>
-          <view wx:if='{{information!=0}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>{{information
+          <view wx:if='{{information!=0}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>{{information
             < 99?information: "..."}}</view>
           </view>
         </view>
@@ -28,14 +28,14 @@
           </view>
         </view>
         <view class='user-wallet'>
-          <view class='icon' style='{{util.diy_imgbox(38)}}'>
-            <image src='{{util.HTTP}}mobile/small/image/qb.png' style='{{util.diy_imgcolor(diy_color.z_color,38,38)}}'></image>
+          <view class='icon' style='{{util.diyImgbox(38)}}'>
+            <image src='{{util.HTTP}}mobile/small/image/qb.png' style='{{util.diyImgcolor(diyColor.zColor,38,38)}}'></image>
           </view>
-          <view class='title' style='{{util.diy_color(diy_color.z_color,"","")}}'>查看我的钱包</view>
-          <view class='btn' hover-class='hover-class' hover-stay-time='400' bindtap='myWallet' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>立即进入</view>
+          <view class='title' style='{{util.diyColor(diyColor.zColor,"","")}}'>查看我的钱包</view>
+          <view class='btn' hover-class='hover-class' hover-stay-time='400' bindtap='myWallet' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>立即进入</view>
         </view>
       </view>
-      <view class='head-bg' style='background: linear-gradient(to left, {{diy_color.z_color}}, {{diy_color.f_color_8}});'>
+      <view class='head-bg' style='background: linear-gradient(to left, {{diyColor.zColor}}, {{diyColor.fColor_8}});'>
         <view class='circle circle1'></view>
         <view class='circle circle2'></view>
       </view>
@@ -53,7 +53,7 @@
           <view class='li' wx:for='{{info.orderStat}}' wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='order' data-item='{{item.key}}'>
             <image class='section-icon' src='{{util.HTTP+item.img}}'></image>
             <view class='section-name'>{{item.title}}</view>
-            <view class='section-num' wx:if='{{item.count!=0}}' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>{{item.count
+            <view class='section-num' wx:if='{{item.count!=0}}' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>{{item.count
               < 99?item.count: "..."}}</view>
             </view>
           </view>
@@ -91,4 +91,4 @@
         <view class='credentials' hover-class='hover-class' hover-stay-time='400' bindtap='credentials'>证照信息</view> -->
       </view>
     </view>
-    <template is="tabBar" data="{{tabBar:bindData.tabBar,diy_color:diy_color,model:model}}" />
+    <template is="tabBar" data="{{tabBar:bindData.tabBar,diyColor:diyColor,model:model}}" />

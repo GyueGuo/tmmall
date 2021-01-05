@@ -49,13 +49,13 @@
             <cover-view class='icon'></cover-view>
           </cover-view>
           <cover-view class='li_icon' wx:elif='{{list.length-1==index}}'>
-            <cover-view class='on-icon' style='{{util.diy_color("","",diy_color.z_color)}}'></cover-view>
+            <cover-view class='on-icon' style='{{util.diyColor("","",diyColor.zColor)}}'></cover-view>
           </cover-view>
           <cover-view class='tit'>{{item.tit}}</cover-view>
           <cover-view class='time'>{{item.time}}</cover-view>
         </cover-view>
       </cover-view>
-      <cover-view class='sub' hover-class='hover-class' hover-stay-time='400' bindtap='hiddenAnimation' style='{{util.diy_color("",diy_color.z_color,"")}}'>关闭</cover-view>
+      <cover-view class='sub' hover-class='hover-class' hover-stay-time='400' bindtap='hiddenAnimation' style='{{util.diyColor("",diyColor.zColor,"")}}'>关闭</cover-view>
     </cover-view>
   </cover-view>
 </view>

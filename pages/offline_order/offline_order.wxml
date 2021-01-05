@@ -6,7 +6,7 @@
       <view>{{item.store_name}}</view>
     </view>
     <view class='price-title'>线下消费金额</view>
-    <view class='price cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+    <view class='price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
       <view>
         <text class='unit'>￥</text>
         <text>{{item.total_price}}</text>

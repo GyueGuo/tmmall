@@ -7,17 +7,17 @@ Page({
    */
   data: {
     //店铺id
-    store_id: '',
+    storeId: '',
     //分类id
-    classify_id: '',
+    classifyId: '',
     //关键字
-    search_key: '',
+    searchKey: '',
     //一列 两列
     columns: 2,
     //选项卡
-    all_tab: 1,
+    allTab: 1,
     //综合排序
-    compre_type: 1,
+    compreType: 1,
     //排序
     rank: '',
     //综合排序
@@ -32,10 +32,10 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
-      search_key: options.key ? options.key : '',
-      store_id: options.store_id,
-      classify_id: options.classify_id ? options.classify_id : '',
+      diyColor: app.globalData.diyColor,
+      searchKey: options.key ? options.key : '',
+      storeId: options.storeId,
+      classifyId: options.classifyId ? options.classifyId : '',
     })
     this.getGoodList()
   },
@@ -86,7 +86,7 @@ Page({
    * 监听输入
    */
   searchInput(e) {
-    this.data.search_key = e.detail.value
+    this.data.searchKey = e.detail.value
   },
 
   /**
@@ -102,13 +102,13 @@ Page({
    */
   onClearKey() {
     this.setData({
-      search_key: ''
+      searchKey: ''
     })
   },
 
   onClassify() {
     wx.redirectTo({
-      url: '../shop_classify/shop_classify?store_id=' + this.data.store_id,
+      url: '../shopClassify/shopClassify?storeId=' + this.data.storeId,
     })
   },
 
@@ -128,14 +128,14 @@ Page({
    */
   onComposite() {
     //列表框
-    if (this.data.all_tab == 1) {
+    if (this.data.allTab == 1) {
       this.setData({
-        classify_board: !this.data.classify_board,
+        classifyBoard: !this.data.classifyBoard,
       })
     } else {
       //点击综合
       this.setData({
-        all_tab: 1,
+        allTab: 1,
         page: 1,
         rank: ''
       })
@@ -150,10 +150,10 @@ Page({
     //关闭综合列表框
     if (!this.closeSynthesisList()) {
       this.setData({
-        all_tab: 2,
+        allTab: 2,
         page: 1,
         rank: '',
-        compre_type: 2,
+        compreType: 2,
       })
       this.getGoodList()
     }
@@ -171,10 +171,10 @@ Page({
         this.data.rank = 'asc'
       }
       this.setData({
-        all_tab: 3,
+        allTab: 3,
         page: 1,
         rank: this.data.rank,
-        compre_type: 3,
+        compreType: 3,
       })
       this.getGoodList()
     }
@@ -184,9 +184,9 @@ Page({
    * 关闭综合列表
    */
   closeSynthesisList() {
-    if (this.data.classify_board) {
+    if (this.data.classifyBoard) {
       this.setData({
-        classify_board: false
+        classifyBoard: false
       })
       return true;
     }
@@ -198,8 +198,8 @@ Page({
    */
   onCompreRank() {
     this.setData({
-      compre_type: 1,
-      classify_board: false,
+      compreType: 1,
+      classifyBoard: false,
       page: 1,
       composite: '推荐'
     })
@@ -211,8 +211,8 @@ Page({
    */
   onNew() {
     this.setData({
-      compre_type: 2,
-      classify_board: false,
+      compreType: 2,
+      classifyBoard: false,
       page: 1,
       composite: '新品'
     })
@@ -245,7 +245,7 @@ Page({
    */
   onBackTop() {
     this.setData({
-      scroll_top: 0
+      scrollTop: 0
     })
   },
 
@@ -254,20 +254,20 @@ Page({
    */
   getGoodList() {
     let parameter = ""
-    if (this.data.compre_type == 2 && this.data.all_tab == 1) {
-      parameter = "create_time"
-    } else if (this.data.all_tab == 2) {
-      parameter = "sales_volume"
-    } else if (this.data.all_tab == 3) {
-      parameter = "shop_price"
+    if (this.data.compreType == 2 && this.data.allTab == 1) {
+      parameter = "createTime"
+    } else if (this.data.allTab == 2) {
+      parameter = "salesVolume"
+    } else if (this.data.allTab == 3) {
+      parameter = "shopPrice"
     }
-    http.post(app.globalData.store_goods_list, {
-      recommend: this.data.compre_type == 1 ? 1 : '',
+    http.post(app.globalData.storeGoodsList, {
+      recommend: this.data.compreType == 1 ? 1 : '',
       parameter: parameter,
       rank: this.data.rank,
-      storeId: this.data.store_id,
-      keyword: this.data.search_key,
-      classifyId: this.data.classify_id != 'undefined' ? this.data.classify_id : '',
+      storeId: this.data.storeId,
+      keyword: this.data.searchKey,
+      classifyId: this.data.classifyId != 'undefined' ? this.data.classifyId : '',
       page: this.data.page
     }).then(res => {
       if (this.data.page == 1) {

@@ -1,4 +1,3 @@
-// my/my_wallet/my_wallet.js
 const app = getApp();
 const http = require('../../utils/http.js');
 Page({
@@ -9,9 +8,9 @@ Page({
   data: {
     info: {
       coupon: 0,
-      pay_points: 0,
-      red_packet: 0,
-      usable_money: 0
+      payPoints: 0,
+      redPacket: 0,
+      usableMoney: 0
     }
   },
 
@@ -77,7 +76,7 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.my_myWallet, {}).then(res => {
+    http.post(app.globalData.myMyWallet, {}).then(res => {
       this.setData({
         info: res.data
       })
@@ -90,9 +89,9 @@ Page({
   route(e) {
     let item = e.currentTarget.dataset.item
     switch (item) {
-      case 'usable_money': //账户余额
+      case 'usableMoney': //账户余额
         wx.navigateTo({
-          url: `/my/account_balance/account_balance?balance=${this.data.info.usable_money}`
+          url: `/my/accountBalance/accountBalance?balance=${this.data.info.usableMoney}`
         })
         break;
       case 'coupon':
@@ -100,29 +99,29 @@ Page({
           url: `/my/coupon/coupon`
         })
         break;
-      case 'red_packet': //红包
+      case 'redPacket': //红包
         wx.navigateTo({
-          url: `/my/red_pocket/red_pocket`
+          url: `/my/redPocket/redPocket`
         })
         break;
-      case 'pay_points': //积分
+      case 'payPoints': //积分
         wx.navigateTo({
           url: `/my/integral/integral`
         })
         break;
-      case 'account_recharge': //充值
+      case 'accountRecharge': //充值
         wx.navigateTo({
-          url: `/my/account_recharge/account_recharge`
+          url: `/my/accountRecharge/accountRecharge`
         })
         break;
-      case 'payment_code': //付款码
+      case 'paymentCode': //付款码
         wx.navigateTo({
-          url: `/my/vip_card/vip_card?tab=2`
+          url: `/my/vipCard/vipCard?tab=2`
         })
         break;
       case 'bank': //银行卡
         wx.navigateTo({
-          url: `/my/bank_list/bank_list`
+          url: `/my/bankList/bankList`
         })
         break;
     }

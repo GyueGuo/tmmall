@@ -15,7 +15,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       configSwitch: app.globalData.configSwitch
     })
   },
@@ -72,11 +72,11 @@ Page({
     })
     if (e.detail.encryptedData) {
       wx.login({
-        success: login_res => {
-          if (login_res.code) {
+        success: loginRes => {
+          if (loginRes.code) {
             wx.getUserInfo({
-              success: info_res => {
-                this.Login(login_res.code, info_res)
+              success: (infoRes) => {
+                this.Login(loginRes.code, infoRes)
               }
             })
           } else {
@@ -105,49 +105,49 @@ Page({
   /**
    * 登录
    */
-  Login(code, info_res) {
+  Login(code, infoRes) {
     wx.getSetting({
-      success: set_res => {
-        if (set_res.authSetting['scope.userInfo']) {
-          let sup_id = app.globalData.sup_id
+      success: setRes => {
+        if (setRes.authSetting['scope.userInfo']) {
+          let supId = app.globalData.supId
           http.post(app.globalData.login, {
             code,
-            nickName: info_res.userInfo.nickName,
-            avatarUrl: info_res.userInfo.avatarUrl,
-            encryptedData: info_res.encryptedData,
-            iv: info_res.iv,
+            nickName: infoRes.userInfo.nickName,
+            avatarUrl: infoRes.userInfo.avatarUrl,
+            encryptedData: infoRes.encryptedData,
+            iv: infoRes.iv,
             memberId: '',
-            supId: sup_id,
+            supId,
             devType: 3
           }).then(res => {
             wx.hideLoading()
             //绑定代言关系
-            if (sup_id != '') {
-              this.getDistributionData(sup_id)
+            if (supId != '') {
+              this.getDistributionData(supId)
             }
-            wx.setStorageSync('member_id', res.member.memberId)
+            wx.setStorageSync('memberId', res.member.memberId)
             wx.setStorageSync('phone', res.member.phone == null ? '' : res.member.phone)
             wx.setStorageSync('openid', res.openid)
             wx.setStorageSync('unionId', res.unionId)
-            app.globalData.member_id = res.member.memberId
+            app.globalData.memberId = res.member.memberId
             app.globalData.phone = res.member.phone == null ? '' : res.member.phone
             app.globalData.openid = res.openid
             app.globalData.unionId = res.unionId
-            app.globalData.PAST_LOGIN = false
-            wx.setStorageSync('member_info', res.member)
+            app.globalData.PASTLOGIN = false
+            wx.setStorageSync('memberInfo', res.member)
             app.showSuccessToast('登录成功', () => {
               if (app.globalData.phone == '') {
                 wx.redirectTo({
-                  url: '../bind_phone/bind_phone',
+                  url: '../bindPhone/bindPhone',
                 })
               } else {
                 let page = getCurrentPages()
                 let route = page[page.length - 2].route //上一页地址
                 switch (route) {
-                  case 'nearby_shops/good_detail/good_detail': //是否是商品详情
+                  case 'nearbyShops/goodDetail/goodDetail': //是否是商品详情
                     page[page.length - 2].getData()
                     break;
-                  case 'my/integral_good_detail/integral_good_detail':
+                  case 'my/integralGoodDetail/integralGoodDetail':
                     page[page.length - 2].getData()
                     break;
                 }
@@ -159,10 +159,6 @@ Page({
                 })
               }
             })
-            // wx.nextTick(() => {
-            //   //客服
-            //   app.service()
-            // })
             this.setData({
               loading: false,
               disabled: false
@@ -189,25 +185,25 @@ Page({
 
   //获取代言信息
   getDistributionData(superior) {
-    http.post(app.globalData.distribution_share_info, {
+    http.post(app.globalData.distributionShareInfo, {
       distributionId: 0
     }).then(res => {
       if (res.data.cur == null) {
-        this.distribution_bindDistribution(superior)
+        this.distributionBindDistribution(superior)
       }
       app.globalData.distribution = res.data
-      let member_info = wx.getStorageSync('member_info')
-      if (member_info.distribution_record == null) {
-        let distribution_record = {
-          distribution_id: res.data.cur.distribution_id,
-          audit_status: res.data.cur.audit_status
+      let memberInfo = wx.getStorageSync('memberInfo')
+      if (memberInfo.distributionRecord == null) {
+        let distributionRecord = {
+          distributionId: res.data.cur.distributionId,
+          auditStatus: res.data.cur.auditStatus
         }
-        member_info.distribution_record = distribution_record
+        memberInfo.distributionRecord = distributionRecord
       } else {
-        member_info.distribution_record.distribution_id = res.data.cur.distribution_id
-        member_info.distribution_record.audit_status = res.data.cur.audit_status
+        memberInfo.distributionRecord.distributionId = res.data.cur.distributionId
+        memberInfo.distributionRecord.auditStatus = res.data.cur.auditStatus
       }
-      wx.setStorageSync('member_info', member_info)
+      wx.setStorageSync('memberInfo', memberInfo)
       this.setData({
         distribution: res.data
       })
@@ -215,8 +211,8 @@ Page({
     })
   },
   //绑定代言关系
-  distribution_bindDistribution(superior) {
-    http.post(app.globalData.distribution_bindDistribution, {
+  distributionBindDistribution(superior) {
+    http.post(app.globalData.distributionBindDistribution, {
       superior,
     })
   }

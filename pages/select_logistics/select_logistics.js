@@ -62,7 +62,7 @@ Page({
    * 获取列表
    */
   getData() {
-    http.post(app.globalData.express_list).then(res => {
+    http.post(app.globalData.expressLst).then(res => {
       this.setData({
         list: res.result
       })
@@ -77,7 +77,7 @@ Page({
     let pages = getCurrentPages();
     let prevPage = pages[pages.length - 2];
     prevPage.setData({
-      express_info: item
+      expressInfo: item
     })
     wx.navigateBack()
   }

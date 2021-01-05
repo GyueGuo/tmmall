@@ -13,7 +13,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      src: app.globalData.premium_price
+      src: app.globalData.premiumPrice
     })
   },
 

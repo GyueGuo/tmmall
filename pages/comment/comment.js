@@ -32,7 +32,7 @@ Page({
     info['express_content'] = ''
     this.setData({
       info: info,
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       write: options.write
     })
   },

@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tab_list: [{
+    tabList: [{
       title: '全部',
       status: null
     }, {
@@ -19,12 +19,12 @@ Page({
       title: '退款',
       status: "3"
     }],
-    current_tab: null,
+    currentTab: null,
     page: 1,
     total: '',
     list: [],
-    month_text: '1',
-    month_list: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
+    monthText: '1',
+    monthList: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
   },
 
   /**
@@ -33,8 +33,8 @@ Page({
   onLoad: function (options) {
     let myDate = new Date()
     this.setData({
-      diy_color: app.globalData.diy_color,
-      month_text: myDate.getMonth() + 1
+      diyColor: app.globalData.diyColor,
+      monthText: myDate.getMonth() + 1
     })
     this.getData()
   },
@@ -90,7 +90,7 @@ Page({
    */
   onTab(e) {
     this.setData({
-      current_tab: e.currentTarget.dataset.status,
+      currentTab: e.currentTarget.dataset.status,
       page: 1,
       list: []
     })
@@ -101,10 +101,10 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.balance_record, {
-      type: this.data.current_tab,
+    http.post(app.globalData.balanceRecord, {
+      type: this.data.currentTab,
       page: this.data.page,
-      month: this.data.month_text
+      month: this.data.monthText
     }).then(res=> {
       if (this.data.page == 1) {
         this.setData({
@@ -123,7 +123,7 @@ Page({
    */
   month(e) {
     this.setData({
-      month_text: parseInt(e.detail.value) + 1
+      monthText: parseInt(e.detail.value) + 1
     })
     this.getData()
   }

@@ -73,9 +73,9 @@ Page({
     http.post(app.globalData.license, {}).then(res => {
       let list = [{
         name: '营业执照',
-        path: res.data.business_license
+        path: res.data.businessLicense
       }]
-      let obj = res.data.other_licence
+      let obj = res.data.otherLicence
       this.setData({
         list: [...list, ...obj],
       })

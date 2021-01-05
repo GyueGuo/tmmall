@@ -1,7 +1,7 @@
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='tab-list'>
-  <view wx:for="{{tab_list}}" data-index='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='onTab'>
-    <text class="{{tab == item.type?'cur':''}}" style='{{tab == item.type?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{item.title}}</text>
+  <view wx:for="{{tabList}}" data-index='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='onTab'>
+    <text class="{{tab == item.type?'cur':''}}" style='{{tab == item.type?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>{{item.title}}</text>
   </view>
 </view>
 
@@ -9,13 +9,12 @@
   <view wx:for="{{list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onMessage' data-item='{{item}}'>
     <view class='head'>
       <view class='title'>{{item.title}}</view>
-      <view class='time'>{{item.date_time}}</view>
+      <view class='time'>{{item.dateTime}}</view>
     </view>
     <view class='content'>
       <image src='{{item.file}}'></image>
       <view>
         <view class='name'>{{item.describe}}</view>
-        <!-- <view class='number' hidden='{{item.express_number==null}}'>运单编号:{{item.express_number}}</view> -->
       </view>
     </view>
   </view>
@@ -25,7 +24,7 @@
   <view wx:for="{{list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onMessage' data-item='{{item}}'>
     <view class='head'>
       <view class='title'>{{item.title}}</view>
-      <view class='time'>{{item.date_time}}</view>
+      <view class='time'>{{item.dateTime}}</view>
     </view>
     <view class='content'>
       <image src='{{item.file}}'></image>
@@ -45,7 +44,7 @@
     </view>
     <view class='discounts-title'>{{item.describe}}</view>
     <view class='discounts-tip'>
-      <view>{{item.date_time}}</view>
+      <view>{{item.dateTime}}</view>
       <view class='discounts-look'>
         <view>点击查看</view>
         <image src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>

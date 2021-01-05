@@ -79,11 +79,11 @@
           <view class='add'>{{info.address.province}}{{info.address.city}}{{info.address.area}}{{info.address.address}}</view>
         </view>
         <view class='wingoods_btn winjf_btn' hidden='{{info.address.member_address_id!=undefined}}'>
-          <text style='{{util.diy_color("","#f23030","")}}' hover-class='hover-class' hover-stay-time='400' bindtap='address'>点击设置地址</text>
+          <text style='{{util.diyColor("","#f23030","")}}' hover-class='hover-class' hover-stay-time='400' bindtap='address'>点击设置地址</text>
         </view>
         <view class='wingoods_btn' hidden='{{info.address.member_address_id==undefined}}'>
-          <text hover-class='hover-class' hover-stay-time='400' bindtap='goDraw' style='{{util.diy_color("#f23030","","#f23030")}}padding: 10rpx 40rpx;'>我的抽奖</text>
-          <text data-data='{{info.data.id}}' hover-class='hover-class' hover-stay-time='400' bindtap='confirm' style='{{util.diy_color("","#f23030","#f23030")}}'>确认领取</text>
+          <text hover-class='hover-class' hover-stay-time='400' bindtap='goDraw' style='{{util.diyColor("#f23030","","#f23030")}}padding: 10rpx 40rpx;'>我的抽奖</text>
+          <text data-data='{{info.data.id}}' hover-class='hover-class' hover-stay-time='400' bindtap='confirm' style='{{util.diyColor("","#f23030","#f23030")}}'>确认领取</text>
         </view>
       </view>
     </view>
@@ -93,7 +93,7 @@
       <view class='jg'>{{win_info.prize_title}}</view>
       <view class='win_info'>
         <view class='wingoods_btn winjf_btn'>
-          <text hover-class='hover-class' hover-stay-time='400' bindtap='close' style='{{util.diy_color("","#f23030","#f23030")}}'>再抽一次</text>
+          <text hover-class='hover-class' hover-stay-time='400' bindtap='close' style='{{util.diyColor("","#f23030","#f23030")}}'>再抽一次</text>
           <!-- <text data-data='{{info.data.id}}' hover-class='hover-class' hover-stay-time='400' bindtap='confirm'>点击查看</text> -->
         </view>
       </view>
@@ -104,8 +104,8 @@
       <view class='jg'>{{win_info.prize_title}}</view>
       <view class='win_info'>
         <view class='wingoods_btn'>
-          <text hover-class='hover-class' hover-stay-time='400' bindtap='close' style='{{util.diy_color("#f23030","","#f23030")}}'>再抽一次</text>
-          <text data-data='{{info.data.id}}' hover-class='hover-class' hover-stay-time='400' bindtap='coupon' style='{{util.diy_color("","#f23030","#f23030")}}'>点击查看</text>
+          <text hover-class='hover-class' hover-stay-time='400' bindtap='close' style='{{util.diyColor("#f23030","","#f23030")}}'>再抽一次</text>
+          <text data-data='{{info.data.id}}' hover-class='hover-class' hover-stay-time='400' bindtap='coupon' style='{{util.diyColor("","#f23030","#f23030")}}'>点击查看</text>
         </view>
       </view>
     </view>

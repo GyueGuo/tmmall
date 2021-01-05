@@ -1,4 +1,3 @@
-/* components/banner_swiper/banner_swiper.wxss */
 ._warp .p-banner{
   width: 100%;
   height: 350rpx;

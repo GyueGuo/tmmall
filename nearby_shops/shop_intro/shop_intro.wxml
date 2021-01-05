@@ -4,7 +4,7 @@
   <view class='shop-intro'>
     <image src='{{info.logo}}'></image>
     <view>
-      <view class='shop-name'>{{info.store_name}}</view>
+      <view class='shop-name'>{{info.storeName}}</view>
       <view class='shop-attention'>{{info.collect}}人关注</view>
     </view>
   </view>
@@ -22,10 +22,6 @@
 
   <!--店家操作  -->
   <view class='shop-operation'>
-    <!-- <view hover-class='hover-class' hover-stay-time='400' bindtap='service'>
-      <view class='operation-title'>联系商家</view>
-      <image class='operation-icon' src='{{util.HTTP}}{{"mobile/small/image/dp-kf.png"}}'></image>
-    </view> -->
     <view hover-class='hover-class' hover-stay-time='400' bindtap='callPhone'>
       <view class='operation-title'>服务电话</view>
       <image class='operation-icon' src='{{util.HTTP}}{{"mobile/small/image/dp-dpxqdh.png"}}'></image>
@@ -41,7 +37,7 @@
     </view>
     <view>
       <view class='info-title'>开店时间</view>
-      <view class='info-content'>{{info.create_time}}</view>
+      <view class='info-content'>{{info.createTime}}</view>
     </view>
     <view>
       <view class=' info-title '>店铺简介</view>

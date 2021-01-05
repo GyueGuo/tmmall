@@ -1,4 +1,3 @@
-// pages/forget_psw_two/forget_psw_two.js
 const app = getApp();
 const http = require('../../utils/http.js');
 Page({
@@ -9,10 +8,10 @@ Page({
   data: {
     type: '',
     phone: '',
-    encrypt_phone: '',
+    encryptPhone: '',
     time: 60,
     content: '点击获取',
-    count_down: '',
+    countDown: '',
     //是否下一步
     able: false,
     //验证码
@@ -22,9 +21,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad(options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       phone: options.phone
     })
     let array = options.phone.split('')
@@ -33,7 +32,7 @@ Page({
     }
     this.setData({
       type: options.type != undefined ? options.type : '',
-      encrypt_phone: array.join('')
+      encryptPhone: array.join('')
     })
     if (this.data.type == 'login') {
       wx.setNavigationBarTitle({
@@ -45,18 +44,18 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
-    http.encPost(app.globalData.message_send, {
+  onReady() {
+    http.encPost(app.globalData.messageSend, {
       type: '2',
       phone: this.data.phone
     }).then(res => {
       this.countDown()
-      this.data.count_down = setInterval(() => {
+      this.data.countDown = setInterval(() => {
         this.countDown()
       }, 1000)
     })
     // this.countDown()
-    // this.data.count_down = setInterval(() => {
+    // this.data.countDown = setInterval(() => {
     //   this.countDown()
     // }, 1000)
   },
@@ -79,7 +78,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-    clearInterval(this.data.count_down)
+    clearInterval(this.data.countDown)
   },
 
   /**
@@ -105,7 +104,7 @@ Page({
         content: '点击获取',
         time: 60
       })
-      clearInterval(this.data.count_down)
+      clearInterval(this.data.countDown)
     } else {
       this.setData({
         content: this.data.time + 's后重新获取'
@@ -119,19 +118,15 @@ Page({
    */
   getCode() {
     if (this.data.content == '点击获取') {
-      http.encPost(app.globalData.message_send, {
+      http.encPost(app.globalData.messageSend, {
         type: '2',
         phone: this.data.phone
       }).then(res => {
         this.countDown()
-        this.data.count_down = setInterval(() => {
+        this.data.countDown = setInterval(() => {
           this.countDown()
         }, 1000)
       })
-      // this.countDown()
-      // this.data.count_down = setInterval(() => {
-      //   this.countDown()
-      // }, 1000)
     }
   },
 
@@ -154,13 +149,13 @@ Page({
    */
   onNext(e) {
     if (this.data.able) {
-      http.encPost(app.globalData.check_code, {
+      http.encPost(app.globalData.checkCode, {
         type: 2,
         phone: this.data.phone,
         code: this.data.code
       }).then(res => {
         wx.redirectTo({
-          url: '../forget_psw_three/forget_psw_three?phone=' + this.data.phone + '&type=' + this.data.type,
+          url: '../forgetPswThree/forgetPswThree?phone=' + this.data.phone + '&type=' + this.data.type,
         })
       })
     }

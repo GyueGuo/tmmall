@@ -8,7 +8,7 @@ Page({
    */
   data: {
     password: '',
-    p_type: ''
+    pType: ''
   },
 
   /**
@@ -16,8 +16,8 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
-      p_type: options.type
+      diyColor: app.globalData.diyColor,
+      pType: options.type
     })
   },
 
@@ -78,11 +78,10 @@ Page({
       app.showToast('请输入6位-20位字母、数组密码')
       return
     }
-    http.encPost(app.globalData.set_password_login, {
+    http.encPost(app.globalData.setPasswordLogin, {
       password: this.data.password
     }).then(res => {
       app.showSuccessToast(res.message, () => {
-        // event.emit('setPassword')
         wx.navigateBack()
       })
     })

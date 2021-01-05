@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    adv_info: {},
+    advInfo: {},
     list: [],
     total: '',
     page: 1
@@ -17,7 +17,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -76,7 +76,7 @@ Page({
   onMyBargain() {
     if (app.login()) {
       wx.redirectTo({
-        url: '/my/my_bargain/my_bargain',
+        url: '/my/myBargain/myBargain',
       })
     }
   },
@@ -85,13 +85,13 @@ Page({
    * 获取数据
    */
   getBargainList() {
-    http.postList(app.globalData.bargain_index, {
+    http.postList(app.globalData.bargainIndex, {
       page: this.data.page
     }).then(res => {
       if (this.data.page == 1) {
         this.setData({
           list: res.result.data,
-          adv_info: res.advInfo,
+          advInfo: res.advInfo,
           total: res.result.total
         })
       } else {
@@ -103,15 +103,15 @@ Page({
   },
 
   onAdvInfo() {
-    switch (this.data.adv_info.type) {
+    switch (this.data.advInfo.type) {
       case 1: // 商品
         wx.navigateTo({
-          url: '/nearby_shops/good_detail/good_detail?goods_id=' + this.data.adv_info.content,
+          url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + this.data.advInfo.content,
         })
         break;
       case 2: // 店铺
         wx.navigateTo({
-          url: '/nearby_shops/shop_detail/shop_detail?store_id=' + this.data.adv_info.content
+          url: '/nearbyShops/shopDetail/shopDetail?storeId=' + this.data.advInfo.content
         })
         break;
     }
@@ -122,7 +122,7 @@ Page({
    */
   onGood(e) {
     wx.navigateTo({
-      url: '/nearby_shops/good_detail/good_detail?goods_id=' + e.currentTarget.dataset.id,
+      url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + e.currentTarget.dataset.id,
     })
   }
 })

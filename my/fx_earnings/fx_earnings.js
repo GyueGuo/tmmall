@@ -1,4 +1,3 @@
-// pages/forget_psw_two/forget_psw_two.js
 import F2 from './f2-canvas/lib/f2';
 const app = getApp();
 const http = require('../../utils/http.js');
@@ -10,21 +9,21 @@ function initChart(canvas, width, height) {
     width,
     height
   });
-  http.post(app.globalData.dy_earnings_view, {
-    distributionId: app.globalData.distribution.cur.distribution_id
+  http.post(app.globalData.dyEarningsView, {
+    distributionId: app.globalData.distribution.cur.distributionId
   }).then(res => {
-    aData = res.data.seven_data
+    aData = res.data.sevenData
     let num = aData.map(val => {
       return {
         brokerage: Number(val.brokerage),
-        day_time: val.day_time
+        dayTime: val.dayTime
       }
     })
     chart.source(num);
-    chart.scale('day_time', {
+    chart.scale('dayTime', {
       tickCount: 7
     });
-    chart.axis('day_time', {
+    chart.axis('dayTime', {
       line: null
     })
     chart.axis('brokerage', false)
@@ -61,7 +60,7 @@ function initChart(canvas, width, height) {
     // 柱状图添加文本
     aData.map(function(obj) {
       chart.guide().text({
-        position: [obj.day_time, obj.brokerage],
+        position: [obj.dayTime, obj.brokerage],
         content: obj.brokerage,
         style: {
           textAlign: 'center',
@@ -72,9 +71,9 @@ function initChart(canvas, width, height) {
       });
     });
 
-    chart.area().position('day_time*brokerage').color('l(90) 0:#f23030 1:#f7f7f7').shape('smooth');
-    chart.line().position('day_time*brokerage').color('l(90) 0:#f23030 1:#f23030').shape('smooth');
-    chart.point().position('day_time*brokerage').color('#fff').shape('smooth').style({
+    chart.area().position('dayTime*brokerage').color('l(90) 0:#f23030 1:#f7f7f7').shape('smooth');
+    chart.line().position('dayTime*brokerage').color('l(90) 0:#f23030 1:#f23030').shape('smooth');
+    chart.point().position('dayTime*brokerage').color('#fff').shape('smooth').style({
       stroke: '#f23030',
       lineWidth: 2
     });
@@ -100,7 +99,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -150,8 +149,8 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.dy_earnings_view, {
-      distributionId: app.globalData.distribution.cur.distribution_id
+    http.post(app.globalData.dyEarningsView, {
+      distributionId: app.globalData.distribution.cur.distributionId
     }).then(res => {
       this.setData({
         info: res.data
@@ -162,27 +161,27 @@ Page({
   /**
    * 累计收入
    */
-  fx_earnings_list(e) {
+  fxEarningsList(e) {
     let type = e.currentTarget.dataset.type,
       title = e.currentTarget.dataset.title
     if (title == 'total') {
       if (type == 0) {
         wx.navigateTo({
-          url: '/my/fx_earnings_list/fx_earnings_list?title=' + title + '&type=' + type,
+          url: '/my/fxEarningsList/fxEarningsList?title=' + title + '&type=' + type,
         })
       } else if (type == 1) {
         wx.navigateTo({
-          url: '/my/fx_earnings_list/fx_earnings_list?title=' + title + '&type=' + type,
+          url: '/my/fxEarningsList/fxEarningsList?title=' + title + '&type=' + type,
         })
       }
     } else if (title == 'today') {
       if (type == 0) {
         wx.navigateTo({
-          url: '/my/fx_earnings_list/fx_earnings_list?title=' + title + '&type=' + type,
+          url: '/my/fxEarningsList/fxEarningsList?title=' + title + '&type=' + type,
         })
       } else if (type == 1) {
         wx.navigateTo({
-          url: '/my/fx_earnings_list/fx_earnings_list?title=' + title + '&type=' + type,
+          url: '/my/fxEarningsList/fxEarningsList?title=' + title + '&type=' + type,
         })
       }
     }
@@ -190,9 +189,9 @@ Page({
   /**
    * 提现
    */
-  fx_withdrawal(e) {
+  fxWithdrawal(e) {
     wx.navigateTo({
-      url: '/my/fx_withdrawal/fx_withdrawal'
+      url: '/my/fxWithdrawal/fxWithdrawal'
     })
   },
 
@@ -201,7 +200,7 @@ Page({
    */
   goExplain() {
     wx.navigateTo({
-      url: '/my/web_view/web_view?id=distribution'
+      url: '/my/webView/webView?id=distribution'
     })
   }
 

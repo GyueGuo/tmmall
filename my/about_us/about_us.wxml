@@ -1,5 +1,5 @@
 <wxs module="util" src="../../utils/util.wxs" />
-<image class='logo' src='{{configSwitch.app_info.logo}}'></image>
+<image class='logo' src='{{configSwitch.appInfo.logo}}'></image>
 <view class='version'>当前版本号:2.0.0</view>
 
 <view class='content' hover-class='hover-class' hover-stay-time='400' bindtap='onHelp'>

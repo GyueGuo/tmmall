@@ -1,4 +1,3 @@
-// components/bargainModal/bargainModal.js
 const app = getApp();
 const http = require('../../utils/http.js');
 Component({
@@ -10,7 +9,7 @@ Component({
   },
   ready(){
     this.setData({
-      z_color: app.globalData.diy_color
+      zColor: app.globalData.diyColor
     })
   },
 
@@ -36,7 +35,7 @@ Component({
       this.setData({
         show: false
       })
-      http.post(app.globalData.applet_my_saveFormId, {
+      http.post(app.globalData.appletMySaveFormId, {
         microFormId: this.data.formId
       })
     },

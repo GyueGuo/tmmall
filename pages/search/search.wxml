@@ -11,8 +11,8 @@
 
 
 <!-- <view class="tab" wx:if='{{util.isShops==0&&configSwitch.version_info.one_more==1}}'>
-  <view hover-class='hover-class' hover-stay-time='400' bindtap='onGood' style='{{current_tab == 1?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>商品</view>
-  <view hover-class='hover-class' hover-stay-time='400' bindtap='onShop' style='{{current_tab == 2?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>店铺</view>
+  <view hover-class='hover-class' hover-stay-time='400' bindtap='onGood' style='{{current_tab == 1?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>商品</view>
+  <view hover-class='hover-class' hover-stay-time='400' bindtap='onShop' style='{{current_tab == 2?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>店铺</view>
 </view> -->
 
 

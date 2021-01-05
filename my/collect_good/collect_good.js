@@ -14,7 +14,7 @@ Page({
     //当前选中的index
     index: '',
     tab: 1,
-    inventory_board: false,
+    inventoryBoard: false,
     list: [],
     page: 1,
     total: '',
@@ -26,7 +26,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -117,7 +117,7 @@ Page({
    */
   onInventory() {
     this.setData({
-      inventory_board: !this.data.inventory_board
+      inventoryBoard: !this.data.inventoryBoard
     })
   },
 
@@ -126,7 +126,7 @@ Page({
    */
   closeBoard() {
     this.setData({
-      inventory_board: false
+      inventoryBoard: false
     })
   },
 
@@ -144,7 +144,7 @@ Page({
    * 获取数据
    */
   getData() {
-    http.postList(app.globalData.collect_goods_list, {
+    http.postList(app.globalData.collectGoodsList, {
       page: this.data.page
     }).then(res => {
       if (this.data.page == 1) {
@@ -170,7 +170,7 @@ Page({
       return
     }
     wx.navigateTo({
-      url: '/nearby_shops/good_detail/good_detail?goods_id=' + e.currentTarget.dataset.item.goods_id,
+      url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + e.currentTarget.dataset.item.goodsId,
     })
   },
 
@@ -188,9 +188,9 @@ Page({
    * 确认删除
    */
   confirmDelete() {
-    http.post(app.globalData.collect_goods_delete, {
-      collectGoodsId: this.data.item.collect_goods_id + '',
-      goodsId: this.data.item.goods_id + ''
+    http.post(app.globalData.collectGoodsDelete, {
+      collectGoodsId: this.data.item.collectGoodsId + '',
+      goodsId: this.data.item.goodsId + ''
     }).then(res => {
       app.showSuccessToast(res.message, () => {
         this.data.list.splice(this.data.index, 1)
@@ -212,23 +212,23 @@ Page({
       return
     }
     wx.navigateTo({
-      url: '/nearby_shops/price_notification/price_notification?goods_id=' + item.goods_id + '&price=' + (parseFloat(item.shop_price)).toFixed(2) + '&store_id=' + item.store_id,
+      url: '/nearbyShops/priceNotification/priceNotification?goodsId=' + item.goodsId + '&price=' + (parseFloat(item.shopPrice)).toFixed(2) + '&storeId=' + item.storeId,
     })
   },
 
   addCart(e) {
     let item = e.currentTarget.dataset.item
-    item['attr'] = item.attribute_list
-    if (item.goods_number == 0) {
+    item['attr'] = item.attributeList
+    if (item.goodsNumber == 0) {
       app.showToast('该商品已经卖光了')
       return
     }
     if (item['attr'].length == 0) {
-      http.encPost(app.globalData.cart_create, {
-        storeId: item.store_id,
-        goodsId: item.goods_id,
-        goodsName: item.goods_name,
-        file: item.cart_file,
+      http.encPost(app.globalData.cartCreate, {
+        storeId: item.storeId,
+        goodsId: item.goodsId,
+        goodsName: item.goodsName,
+        file: item.cartFile,
         number: 1,
         productsId: '',
         attr: '',

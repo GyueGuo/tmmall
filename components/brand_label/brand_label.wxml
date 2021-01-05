@@ -8,8 +8,8 @@
     <view class='delivery-content'>
       <scroll-view scroll-y>
         <view class='item' wx:for='{{info}}' wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' data-id='{{item.tag_bind_goods_id}}' bindtap='onLabel'>
-          <view class='icon' style='{{util.diy_color("","",diy_color.z_color)}}'>
-            <view style='{{util.diy_color("",diy_color.z_color,"")}}'></view>
+          <view class='icon' style='{{util.diyColor("","",diyColor.zColor)}}'>
+            <view style='{{util.diyColor("",diyColor.zColor,"")}}'></view>
           </view>
           <view class='delivery-content-detail'>
             <view class='delivery-content-title'>{{item.name}}</view>
@@ -19,6 +19,6 @@
         </view>
       </scroll-view>
     </view>
-    <view class='delivery-finish' hover-class='hover-class' hover-stay-time='400' bindtap='closeDelivery' style='{{util.diy_color("",diy_color.z_color,"")}}'>完成</view>
+    <view class='delivery-finish' hover-class='hover-class' hover-stay-time='400' bindtap='closeDelivery' style='{{util.diyColor("",diyColor.zColor,"")}}'>完成</view>
   </view>
 </view>

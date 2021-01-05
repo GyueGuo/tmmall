@@ -1,4 +1,3 @@
-// components/banner_swiper/banner_swiper.js
 Component({
   /**
    * 组件的属性列表
@@ -11,9 +10,9 @@ Component({
    * 组件的初始数据
    */
   data: {
-    advertising_index: 0,
-    popularity_index: 0,
-    popularity_space: 105,
+    advertisingIndex: 0,
+    popularityIndex: 0,
+    popularitySpace: 105,
   },
 
   /**
@@ -23,42 +22,42 @@ Component({
     advertising(e) {
       console.log(e)
       this.setData({
-        advertising_index: e.detail.current
+        advertisingIndex: e.detail.current
       })
     },
 
-    popularity_start(e) {
+    popularityStart(e) {
       this.setData({
-        touch_start: e.touches["0"].pageX
+        touchStart: e.touches["0"].pageX
       })
     },
-    popularity_move(e) {
+    popularityMove(e) {
       this.setData({
-        touch_move: e.touches["0"].pageX
+        touchMove: e.touches["0"].pageX
       })
     },
-    popularity_end(e) {
-      if (this.data.touch_start - this.data.touch_move > 40) {
-        if (this.data.popularity_index >= this.data.popularity.length - 1) {
-          this.data.popularity_index++
+    popularityEnd(e) {
+      if (this.data.touchStart - this.data.touchMove > 40) {
+        if (this.data.popularityIndex >= this.data.popularity.length - 1) {
+          this.data.popularityIndex++
           setTimeout(() => {
-            this.data.popularity_index = 0
+            this.data.popularityIndex = 0
             this.setData({
-              popularity_index: this.data.popularity_index
+              popularityIndex: this.data.popularityIndex
             })
           }, 500)
         } else {
-          this.data.popularity_index++
+          this.data.popularityIndex++
         }
-      } else if (this.data.touch_move - this.data.touch_start > 40) {
-        if (this.data.popularity_index == 0) {
+      } else if (this.data.touchMove - this.data.touchStart > 40) {
+        if (this.data.popularityIndex == 0) {
         } else {
-          this.data.popularity_index--
+          this.data.popularityIndex--
         }
       }
 
       this.setData({
-        popularity_index: this.data.popularity_index
+        popularityIndex: this.data.popularityIndex
       })
     }
   }

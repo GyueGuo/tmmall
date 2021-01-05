@@ -1,7 +1,7 @@
 <wxs module="util" src="../../utils/util.wxs" />
 <view hidden='{{!show}}'>
   <!--底部  -->
-  <view class='shop-footer' hidden='{{all_view}}'>
+  <view class='shop-footer' hidden='{{allView}}'>
     <view class='shop-operation'>
       <view class='shop-detail' hover-class='hover-class' hover-stay-time='400' bindtap='onShopIntro'>店铺详情</view>
       <view class='hot-classify' hover-class='hover-class' hover-stay-time='400' bindtap='onHotClassify'>
@@ -18,36 +18,33 @@
     </view>
   </view>
 
-  <view class='plan-b-tabbar' wx:if="{{store_head.goods_style == 1 && all_view}}">
-    <view class='plan-b-tabbar-left deputy-bg' hover-class='hover-class' hover-stay-time='400' bindtap='oCart' style='{{util.diy_color("",diy_color.c_color,"")}}'>
+  <view class='plan-b-tabbar' wx:if="{{storeHead.goodsStyle == 1 && allView}}">
+    <view class='plan-b-tabbar-left deputy-bg' hover-class='hover-class' hover-stay-time='400' bindtap='oCart' style='{{util.diyColor("",diyColor.color,"")}}'>
       <view>
-        <view class='font_family icon-icon-test3 cart-icon' style='{{util.diy_color(diy_color.z_color,"","")}}'></view>
-        <view class='border-cur view' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>{{cartNum}}</view>
+        <view class='font_family icon-icon-test3 cart-icon' style='{{util.diyColor(diyColor.zColor,"","")}}'></view>
+        <view class='border-cur view' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>{{cartNum}}</view>
       </view>
-      <view style='{{util.diy_color(diy_color.text_color,"","")}}'>￥{{cart_total}}元</view>
+      <view style='{{util.diyColor(diyColor.textColor,"","")}}'>￥{{cartTotal}}元</view>
     </view>
-    <view class='plan-b-tabbar-right bg' hover-class='hover-class' hover-stay-time='400' bindtap='settleDown' style='{{util.diy_color("",diy_color.z_color,"")}}'>去结算</view>
+    <view class='plan-b-tabbar-right bg' hover-class='hover-class' hover-stay-time='400' bindtap='settleDown' style='{{util.diyColor("",diyColor.zColor,"")}}'>去结算</view>
   </view>
   <!--购物车  -->
-  <cart diy_color='{{diy_color}}' style="{{store_head.goods_style == 1 && all_view?'display:none':''}}" />
-  <!-- <button hover-class='none' open-type='contact' hidden='{{store_head.goods_style != 1 || !all_view}}'>
-    <image src='{{util.HTTP}}mobile/small/image/fl-kf.png' class='customer-service'></image>
-  </button> -->
+  <cart diyColor='{{diyColor}}' style="{{storeHead.goodsStyle == 1 && allView?'display:none':''}}" />
 
   <!--返回顶部  -->
-  <go_top id="go_top" hover-class='hover-class' hover-stay-time='400' bindtap='onBackTop' hidden='{{current_tab==2||store_head.goods_style==1}}' />
+  <go_top id="go_top" hover-class='hover-class' hover-stay-time='400' bindtap='onBackTop' hidden='{{currentTab==2||storeHead.goodsStyle==1}}' />
 
   <!--热门分类  -->
-  <view class='board' hidden='{{!classify_board}}' hover-class='hover-class' hover-stay-time='400' bindtap='closeClassify'>
+  <view class='board' hidden='{{!classifyBoard}}' hover-class='hover-class' hover-stay-time='400' bindtap='closeClassify'>
     <view class='hot-classify-list'>
-      <view catchtap='onSearch' wx:for="{{hot_classify}}" wx:key='{{index}}' data-id='{{item.store_goods_classify_id}}'>{{item.title}}</view>
+      <view catchtap='onSearch' wx:for="{{hotClassify}}" wx:key='{{index}}' data-id='{{item.storeGoodsClassifyId}}'>{{item.title}}</view>
     </view>
   </view>
 
   <view class='wrap-head'>
     <!--搜索头  -->
     <view class='shop-search' id='bar'>
-      <image src='{{store_head.back_image}}'></image>
+      <image src='{{storeHead.backImage}}'></image>
       <view class='shade'></view>
       <view class='shop-search-head'>
         <view class='shop-search-bg'>
@@ -59,52 +56,52 @@
       </view>
       <view class='shop-info'>
         <view class='store_logo' style='background:url({{util.HTTP}}mobile/small/image/p_img_shops_180x180-2.png) no-repeat center;background-size:100% 100%;'>
-          <image src='{{store_head.logo}}'></image>
+          <image src='{{storeHead.logo}}'></image>
         </view>
         <!-- 分类（公司店铺 | 自营店铺） 0 普通店 1 旗舰店 2 专卖店 3 直营店 -->
         <view>
-          <view class='shop-name'>{{store_head.store_name}}</view>
-          <image wx:if='{{store_head.type!=null}}' class='shop-classify' src='{{util.HTTP}}mobile/small/image/shops/shop-icon{{store_head.type}}.png'></image>
+          <view class='shop-name'>{{storeHead.storeName}}</view>
+          <image wx:if='{{storeHead.type!=null}}' class='shop-classify' src='{{util.HTTP}}mobile/small/image/shops/shop-icon{{storeHead.type}}.png'></image>
         </view>
       </view>
       <view class='attention' hover-class='hover-class' hover-stay-time='400' bindtap='collectStore'>
-        <image src="{{util.HTTP}}{{store_head.state == 0?'mobile/small/image/dp-gz.png':'mobile/small/image/dp-ygz.png'}}"></image>
-        <view>{{store_head.collect}}人</view>
+        <image src="{{util.HTTP}}{{storeHead.state == 0?'mobile/small/image/dp-gz.png':'mobile/small/image/dp-ygz.png'}}"></image>
+        <view>{{storeHead.collect}}人</view>
       </view>
     </view>
 
     <!--选项卡  -->
     <view class='shop-tab' style="{{fixed?'position:fixed':''}}">
       <view hover-class='hover-class' hover-stay-time='400' bindtap='onHome'>
-        <text style='{{current_tab==1?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>首页</text>
+        <text style='{{currentTab==1?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>首页</text>
       </view>
       <view hover-class='hover-class' hover-stay-time='400' bindtap='onAllGood'>
-        <text style='{{current_tab==2?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>全部商品</text>
+        <text style='{{currentTab==2?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>全部商品</text>
       </view>
       <view hover-class='hover-class' hover-stay-time='400' bindtap='onNew'>
-        <text style='{{current_tab==3?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>新品</text>
+        <text style='{{currentTab==3?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>新品</text>
       </view>
       <view hover-class='hover-class' hover-stay-time='400' bindtap='onDynamic'>
-        <text style='{{current_tab==4?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>动态</text>
+        <text style='{{currentTab==4?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>动态</text>
       </view>
     </view>
   </view>
 
   <!--首页  -->
-  <view class='home' hidden="{{!home_view}}" style="{{fixed?'margin-top:100rpx;':''}}">
+  <view class='home' hidden="{{!homeView}}" style="{{fixed?'margin-top:100rpx;':''}}">
     <view class='shop-banner' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:130rpx 130rpx;'>
-      <image src='{{store_index.banner.recomme_file}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' data-id='{{store_index.banner.goods_id}}' wx:if='{{store_index.banner != null&&store_index.banner.recomme_file!=undefined}}'></image>
+      <image src='{{storeIndex.banner.recommeFile}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' data-id='{{storeIndex.banner.goodsId}}' wx:if='{{storeIndex.banner != null&&storeIndex.banner.recommeFile!=undefined}}'></image>
     </view>
-    <view class='coupon-center' wx:if='{{store_index.coupon.length != 0&&configSwitch.show_switch.is_coupon==1}}'>
+    <view class='coupon-center' wx:if='{{storeIndex.coupon.length != 0&&configSwitch.showSwitch.isCoupon==1}}'>
       <image src='{{util.HTTP}}mobile/small/image/dp-yhqbj.png'></image>
       <view class='coupon-list'>
-        <view wx:for="{{store_index.coupon}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='receiveCoupon' data-id='{{item.coupon_id}}'>
+        <view wx:for="{{storeIndex.coupon}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='receiveCoupon' data-id='{{item.couponId}}'>
           <image src='{{util.HTTP}}mobile/small/image/dp-yhq.png'></image>
-          <view class='price'>{{util.integer(item.actual_price)}}</view>
-          <block wx:if='{{item.full_subtraction_price!=0}}'>
-            <view class='tips'>满{{util.integer(item.full_subtraction_price)}}元使用</view>
+          <view class='price'>{{util.integer(item.actualPrice)}}</view>
+          <block wx:if='{{item.fullSubtractionPrice!=0}}'>
+            <view class='tips'>满{{util.integer(item.fullSubtractionPrice)}}元使用</view>
           </block>
-          <block wx:elif='{{item.full_subtraction_price==0}}'>
+          <block wx:elif='{{item.fullSubtractionPrice==0}}'>
             <view class='tips'>无门槛</view>
           </block>
         </view>
@@ -113,29 +110,29 @@
 
     <!--掌柜推荐  -->
     <image class='hot-sale' src='{{util.HTTP}}mobile/small/image/dp-bt2.png'></image>
-    <view hidden='{{store_index.particularly_recommend.length == 0}}'>
-      <view class='recommend' wx:for="{{store_index.particularly_recommend}}" wx:key='{{index}}' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:130rpx 130rpx;'>
-        <image src='{{item.recomme_file}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' data-id='{{item.goods_id}}'></image>
+    <view hidden='{{storeIndex.particularlyRecommend.length == 0}}'>
+      <view class='recommend' wx:for="{{storeIndex.particularlyRecommend}}" wx:key='{{index}}' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:130rpx 130rpx;'>
+        <image src='{{item.recommeFile}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' data-id='{{item.goodsId}}'></image>
       </view>
     </view>
     <view class='recommand-list'>
-      <view wx:for="{{recommand_list}}" wx:key='{{index}}' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
-        <image src='{{item.file}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' data-id='{{item.goods_id}}'></image>
+      <view wx:for="{{recommandList}}" wx:key='{{index}}' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
+        <image src='{{item.file}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' data-id='{{item.goodsId}}'></image>
       </view>
     </view>
   </view>
 
   <!--全部商品  -->
-  <view class='all-good' hidden='{{!all_view}}'>
+  <view class='all-good' hidden='{{!allView}}'>
     <!--选项卡  -->
-    <view class='list-title' wx:if="{{store_head.goods_style == 0}}" style="{{fixed?'position:fixed;left:0;top:100rpx;':''}}">
+    <view class='list-title' wx:if="{{storeHead.goodsStyle == 0}}" style="{{fixed?'position:fixed;left:0;top:100rpx;':''}}">
       <view class='list'>
-        <view class="title" style='{{all_tab==2?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}' data-index='2' hover-class='hover-class' hover-stay-time='400' bindtap='onSaleClick'>销量</view>
-        <view class="title" style='{{all_tab==1?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}' data-index='1' hover-class='hover-class' hover-stay-time='400' bindtap='onComposite'>推荐</view>
-        <view class="title" style='{{all_tab==3?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}' data-index='3' hover-class='hover-class' hover-stay-time='400' bindtap='onPriceClick'>价格
+        <view class="title" style='{{allTab==2?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}' data-index='2' hover-class='hover-class' hover-stay-time='400' bindtap='onSaleClick'>销量</view>
+        <view class="title" style='{{allTab==1?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}' data-index='1' hover-class='hover-class' hover-stay-time='400' bindtap='onComposite'>推荐</view>
+        <view class="title" style='{{allTab==3?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}' data-index='3' hover-class='hover-class' hover-stay-time='400' bindtap='onPriceClick'>价格
           <view>
-            <text class="caret up" style="{{(all_tab==3) &&(rank == 'asc')?'border-top:8rpx solid ':''}}{{diy_color.z_color}} !important"></text>
-            <text class="caret down" style="{{(all_tab==3) &&(rank == 'desc')?'border-top:8rpx solid ':''}}{{diy_color.z_color}} !important"></text>
+            <text class="caret up" style="{{(allTab==3) &&(rank == 'asc')?'border-top:8rpx solid ':''}}{{diyColor.zColor}} !important"></text>
+            <text class="caret down" style="{{(allTab==3) &&(rank == 'desc')?'border-top:8rpx solid ':''}}{{diyColor.zColor}} !important"></text>
           </view>
         </view>
       </view>
@@ -145,10 +142,10 @@
     </view>
 
     <!--列表  -->
-    <view style="{{fixed?'padding-top:188rpx':''}}" wx:if="{{store_head.goods_style == 0}}">
-      <good_list list="{{all_list}}" bind:addCart="addCart" columns="{{columns}}" discount="{{discount}}" />
+    <view style="{{fixed?'padding-top:188rpx':''}}" wx:if="{{storeHead.goodsStyle == 0}}">
+      <good_list list="{{allList}}" bind:addCart="addCart" columns="{{columns}}" discount="{{discount}}" />
 
-      <view class='no-order' hidden="{{all_list.length != 0 || loading}}">
+      <view class='no-order' hidden="{{allList.length != 0 || loading}}">
         <view>
           <image src='{{util.HTTP}}mobile/small/image/zwsp.png'></image>
           <view class='no-order-head'>暂无相关商品</view>
@@ -156,90 +153,79 @@
       </view>
     </view>
 
-    <view class='plan-b' style="{{fixed?'margin-top:120rpx;':''}}" wx:elif="{{store_head.goods_style == 1}}">
-      <scroll-view bindscroll="bLeftScroll" scroll-y="{{fixed || b_left_scroll}}" class="plan-b-left">
-        <view class='classify-con' wx:for="{{classify}}" wx:key='{{index}}' style='{{item.select?util.diy_color("","#fff",""):""}}'>
-          <view class="plan-b-title" data-item='{{item}}' hover-class='hover-class' hover-stay-time='400' bindtap='onStoreClassify' style='{{item.select?util.diy_color(diy_color.z_color,"",""):""}}'>
+    <view class='plan-b' style="{{fixed?'margin-top:120rpx;':''}}" wx:elif="{{storeHead.goodsStyle == 1}}">
+      <scroll-view bindscroll="bLeftScroll" scroll-y="{{fixed || bLeftScroll}}" class="plan-b-left">
+        <view class='classify-con' wx:for="{{classify}}" wx:key='{{index}}' style='{{item.select?util.diyColor("","#fff",""):""}}'>
+          <view class="plan-b-title" data-item='{{item}}' hover-class='hover-class' hover-stay-time='400' bindtap='onStoreClassify' style='{{item.select?util.diyColor(diyColor.zColor,"",""):""}}'>
             <view class='f-title'>
-              <text style='{{item.select?util.diy_color("","",diy_color.z_color):""}}'>{{item.title}}</text>
+              <text style='{{item.select?util.diyColor("","",diyColor.zColor):""}}'>{{item.title}}</text>
             </view>
             <view class='{{item.subset.length!=0?"font_family icon-sy-xl":""}} btn' style='{{item.select?"transform:rotate(180deg);":""}}'></view>
           </view>
-          <view class="plan-b-second-title" hidden='{{!item.select}}' wx:for="{{item.subset}}" wx:key='{{index}}' wx:for-item="second" hover-class='hover-class' hover-stay-time='400' bindtap='onSecondClassify' data-id='{{second.store_goods_classify_id}}'>
-            <view style='{{second_classify == second.store_goods_classify_id?util.diy_color(diy_color.z_color,"",""):""}}'>{{second.title}}</view>
+          <view class="plan-b-second-title" hidden='{{!item.select}}' wx:for="{{item.subset}}" wx:key='{{index}}' wx:for-item="second" hover-class='hover-class' hover-stay-time='400' bindtap='onSecondClassify' data-id='{{second.storeGoodsClassifyId}}'>
+            <view style='{{secondClassify == second.storeGoodsClassifyId?util.diyColor(diyColor.zColor,"",""):""}}'>{{second.title}}</view>
           </view>
         </view>
       </scroll-view>
       <view class='plan-b-right'>
         <view class='plan-b-tab'>
-          <view data-index='2' hover-class='hover-class' hover-stay-time='400' bindtap='onSaleClick' style='{{all_tab==2?util.diy_color(diy_color.z_color,"",""):""}}'>销量</view>
-          <view data-index='1' hover-class='hover-class' hover-stay-time='400' bindtap='onComposite' style='{{all_tab==1?util.diy_color(diy_color.z_color,"",""):""}}'>推荐</view>
-          <view data-index='3' hover-class='hover-class' hover-stay-time='400' bindtap='onPriceClick' style='{{all_tab==3?util.diy_color(diy_color.z_color,"",""):""}}'>价格
+          <view data-index='2' hover-class='hover-class' hover-stay-time='400' bindtap='onSaleClick' style='{{allTab==2?util.diyColor(diyColor.zColor,"",""):""}}'>销量</view>
+          <view data-index='1' hover-class='hover-class' hover-stay-time='400' bindtap='onComposite' style='{{allTab==1?util.diyColor(diyColor.zColor,"",""):""}}'>推荐</view>
+          <view data-index='3' hover-class='hover-class' hover-stay-time='400' bindtap='onPriceClick' style='{{allTab==3?util.diyColor(diyColor.zColor,"",""):""}}'>价格
             <view style='width:20rpx;'>
-              <text class="caret up" style="{{(all_tab==3) &&(rank == 'desc')?'border-top:8rpx solid ':''}}{{diy_color.z_color}} !important"></text>
-              <text class="caret down" style="{{(all_tab==3) &&(rank == 'asc')?'border-top:8rpx solid ':''}}{{diy_color.z_color}} !important"></text>
+              <text class="caret up" style="{{(allTab==3) &&(rank == 'desc')?'border-top:8rpx solid ':''}}{{diyColor.zColor}} !important"></text>
+              <text class="caret down" style="{{(allTab==3) &&(rank == 'asc')?'border-top:8rpx solid ':''}}{{diyColor.zColor}} !important"></text>
             </view>
           </view>
         </view>
-        <scroll-view bindscroll="bRightScroll" scroll-y="{{fixed || b_right_scroll}}" class='plan-b-Scroll' bindscrolltolower="loadMore">
-          <!-- <view class='plan-b-tab'>
-          <view data-index='2' hover-class='hover-class' hover-stay-time='400' bindtap='onSaleClick' style='{{all_tab==2?util.diy_color(diy_color.z_color,"",""):""}}'>销量</view>
-          <view data-index='1' hover-class='hover-class' hover-stay-time='400' bindtap='onComposite' style='{{all_tab==1?util.diy_color(diy_color.z_color,"",""):""}}'>推荐</view>
-          <view data-index='3' hover-class='hover-class' hover-stay-time='400' bindtap='onPriceClick' style='{{all_tab==3?util.diy_color(diy_color.z_color,"",""):""}}'>价格
-            <view style='width:20rpx;'>
-              <text class="caret up" style="{{(all_tab==3) &&(rank == 'desc')?'border-top:8rpx solid ':''}}{{diy_color.z_color}} !important"></text>
-              <text class="caret down" style="{{(all_tab==3) &&(rank == 'asc')?'border-top:8rpx solid ':''}}{{diy_color.z_color}} !important"></text>
-            </view>
-          </view>
-        </view> -->
-          <view class='plan-b-good' wx:for="{{all_list}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' data-id='{{item.goods_id}}'>
+        <scroll-view bindscroll="bRightScroll" scroll-y="{{fixed || bRightScroll}}" class='plan-b-Scroll' bindscrolltolower="loadMore">
+          <view class='plan-b-good' wx:for="{{allList}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' data-id='{{item.goodsId}}'>
             <view class='good-image' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
               <image src='{{item.file}}'></image>
             </view>
             <view class='good-detail'>
-              <view class='good-name'>{{item.goods_name}}</view>
-              <!-- <text class='self border-cur' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>自营</text> -->
+              <view class='good-name'>{{item.goodsName}}</view>
               <view class='goods-tip'>
                 <view class='label'>
-                  <view wx:for='{{item.relevaTagList}}' wx:for-item='label' wx:key='{{index}}' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}' data-id='{{label.tag_bind_goods_id}}' hover-class='hover-class' hover-stay-time='400' data-goods_id='{{item.goods_id}}'
+                  <view wx:for='{{item.relevaTagList}}' wx:for-item='label' wx:key='{{index}}' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}' data-id='{{label.tagBindGoodsId}}' hover-class='hover-class' hover-stay-time='400' data-goodsId='{{item.goodsId}}'
                     catchtap='onLabel'>{{label.name}}</view>
                 </view>
               </view>
-              <view class='price' wx:if="{{item.is_group == 1}}" style='{{util.diy_color(diy_color.z_color,"","")}}'>
+              <view class='price' wx:if="{{item.isGroup == 1}}" style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text class='unit'>￥</text>
-                <text class='integer'>{{util.integer(item.group_price)}}</text>
-                <text class='decimals'>.{{util.decimals(item.group_price)}}</text>
-                <text class='shop_price'>{{item.shop_price}}</text>
+                <text class='integer'>{{util.integer(item.groupPrice)}}</text>
+                <text class='decimals'>.{{util.decimals(item.groupPrice)}}</text>
+                <text class='shop_price'>{{item.shopPrice}}</text>
               </view>
-              <view class='price' wx:elif="{{item.is_bargain == 1}}" style='{{util.diy_color(diy_color.z_color,"","")}}'>
+              <view class='price' wx:elif="{{item.isBargain == 1}}" style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text class='unit'>￥</text>
-                <text class='integer'>{{util.integer(item.cut_price)}}</text>
-                <text class='decimals'>.{{util.decimals(item.cut_price)}}</text>
-                <text class='shop_price'>{{item.shop_price}}</text>
+                <text class='integer'>{{util.integer(item.cutPrice)}}</text>
+                <text class='decimals'>.{{util.decimals(item.cutPrice)}}</text>
+                <text class='shop_price'>{{item.shopPrice}}</text>
               </view>
-              <view class='price' wx:elif="{{item.is_limit == 1}}" style='{{util.diy_color(diy_color.z_color,"","")}}'>
+              <view class='price' wx:elif="{{item.isLimit == 1}}" style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text class='unit'>￥</text>
-                <text class='integer'>{{util.integer(item.time_limit_price)}}</text>
-                <text class='decimals'>.{{util.decimals(item.time_limit_price)}}</text>
-                <text class='shop_price'>￥{{item.shop_price}}</text>
+                <text class='integer'>{{util.integer(item.timeLimitPrice)}}</text>
+                <text class='decimals'>.{{util.decimals(item.timeLimitPrice)}}</text>
+                <text class='shop_price'>￥{{item.shopPrice}}</text>
               </view>
-              <view class='price' wx:else style='{{util.diy_color(diy_color.z_color,"","")}}'>
+              <view class='price' wx:else style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text class='unit'>￥</text>
-                <text class='integer'>{{util.integer(item.shop_price)}}</text>
-                <text class='decimals'>.{{util.decimals(item.shop_price)}}</text>
+                <text class='integer'>{{util.integer(item.shopPrice)}}</text>
+                <text class='decimals'>.{{util.decimals(item.shopPrice)}}</text>
               </view>
             </view>
             <view class='cart-number'>
-              <view class='font_family icon-fl-jian btn' hidden='{{item.is_group == 1 || item.is_bargain == 1 || item.is_limit == 1 || item.cart_number == 0}}' style='{{util.diy_color(diy_color.z_color,"","")}}' catchtap='subtractCart' data-item='{{item}}' data-index='{{index}}'></view>
-              <view class='cart_number' hidden='{{item.is_group == 1 || item.is_bargain == 1 || item.is_limit == 1 || item.cart_number == 0}}'>{{item.cart_number}}</view>
-              <view class='font_family icon--kj btn' wx:if="{{item.is_group == 1}}" style='{{util.diy_color(diy_color.z_color,"","")}}'></view>
-              <view class='font_family icon--kj1 btn' wx:elif="{{item.is_bargain == 1}}" style='{{util.diy_color(diy_color.z_color,"","")}}'></view>
-              <view class='font_family icon-cart-qg btn' wx:elif="{{item.is_limit == 1}}" style='{{util.diy_color(diy_color.z_color,"","")}}'></view>
-              <view class='font_family icon-fl-jahao btn' wx:else style='{{util.diy_color(diy_color.z_color,"","")}}' data-index='{{index}}' data-item='{{item}}' catchtap='addCartNumber'></view>
+              <view class='font_family icon-fl-jian btn' hidden='{{item.isGroup == 1 || item.isBargain == 1 || item.isLimit == 1 || item.cartNumber == 0}}' style='{{util.diyColor(diyColor.zColor,"","")}}' catchtap='subtractCart' data-item='{{item}}' data-index='{{index}}'></view>
+              <view class='cartNumber' hidden='{{item.isGroup == 1 || item.isBargain == 1 || item.isLimit == 1 || item.cartNumber == 0}}'>{{item.cartNumber}}</view>
+              <view class='font_family icon--kj btn' wx:if="{{item.isGroup == 1}}" style='{{util.diyColor(diyColor.zColor,"","")}}'></view>
+              <view class='font_family icon--kj1 btn' wx:elif="{{item.isBargain == 1}}" style='{{util.diyColor(diyColor.zColor,"","")}}'></view>
+              <view class='font_family icon-cart-qg btn' wx:elif="{{item.isLimit == 1}}" style='{{util.diyColor(diyColor.zColor,"","")}}'></view>
+              <view class='font_family icon-fl-jahao btn' wx:else style='{{util.diyColor(diyColor.zColor,"","")}}' data-index='{{index}}' data-item='{{item}}' catchtap='addCartNumber'></view>
             </view>
           </view>
 
-          <view class='no-order' hidden="{{all_list.length != 0 || loading}}">
+          <view class='no-order' hidden="{{allList.length != 0 || loading}}">
             <view>
               <image src='{{util.HTTP}}mobile/small/image/zwsp.png' mode='widthFix'></image>
               <view class='no-order-head'>暂无相关商品</view>
@@ -255,15 +241,15 @@
   </view>
 
   <!--新品  -->
-  <view class='new-good' style="{{fixed?'margin-top:100rpx;':''}}" hidden='{{!new_view}}'>
-    <view wx:for="{{new_list}}" wx:key='{{index}}'>
+  <view class='new-good' style="{{fixed?'margin-top:100rpx;':''}}" hidden='{{!newView}}'>
+    <view wx:for="{{newList}}" wx:key='{{index}}'>
       <view class='new-good-head'>
         <image src='{{util.HTTP}}mobile/small/image/dp-sysx.png'></image>
         <text>{{item.date}}本店上新</text>
       </view>
       <good_list list="{{item.list}}" bind:addCart="addCart" discount="{{discount}}" />
     </view>
-    <view class='no-order' hidden="{{new_list.length != 0 || loading}}">
+    <view class='no-order' hidden="{{newList.length != 0 || loading}}">
       <view>
         <image src='{{util.HTTP}}mobile/small/image/kby-zwsc.png'></image>
         <view class='no-order-head'>暂无相关新品</view>
@@ -272,39 +258,23 @@
   </view>
 
   <!--动态  -->
-  <view class='dynamic' style="{{fixed?'margin-top:100rpx;':''}}" hidden="{{!dynamic_view}}">
-    <view class='dynamic-head' hidden="{{article_list.length == 0}}">"下面是我店的动态,欢迎查看!"</view>
-    <view class='no-order' hidden="{{article_list.length != 0 || loading}}">
+  <view class='dynamic' style="{{fixed?'margin-top:100rpx;':''}}" hidden="{{!dynamicView}}">
+    <view class='dynamic-head' hidden="{{articleList.length == 0}}">"下面是我店的动态,欢迎查看!"</view>
+    <view class='no-order' hidden="{{articleList.length != 0 || loading}}">
       <view>
         <image src='{{util.HTTP}}mobile/small/image/kby-zwshjl.png'></image>
         <view class='no-order-head'>暂无相关动态</view>
       </view>
     </view>
-    <view class='dynamic-list' hidden="{{article_list.length == 0}}">
-      <view wx:for="{{article_list}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onArticleDetail' data-id='{{item.article_id}}'>
-        <view class='dynamic-date'>{{item.date_time}}</view>
+    <view class='dynamic-list' hidden="{{articleList.length == 0}}">
+      <view wx:for="{{articleList}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onArticleDetail' data-id='{{item.articleId}}'>
+        <view class='dynamic-date'>{{item.dateTime}}</view>
         <view class='dynamic-label'>#{{item.title}}#</view>
-        <image class='dynamic-pic' src='{{item.file}}' wx:if="{{item.multiple_file.length == 0}}"></image>
-        <image class='dynamic-pic' src='{{item.multiple_file[0]}}' wx:elif="{{item.multiple_file.length == 1}}"></image>
+        <image class='dynamic-pic' src='{{item.file}}' wx:if="{{item.multipleFile.length == 0}}"></image>
+        <image class='dynamic-pic' src='{{item.multipleFile[0]}}' wx:elif="{{item.multipleFile.length == 1}}"></image>
         <view class='dynamic-pic-list' wx:else>
-          <image wx:for="{{item.multiple_file}}" wx:key='{{index}}' src='{{item}}'></image>
+          <image wx:for="{{item.multipleFile}}" wx:key='{{index}}' src='{{item}}'></image>
         </view>
-        <!-- <view class='dynamic-tips'>
-              <view>
-                <view class='dynamic-tips-item'>
-                  <image src='/image/dp-sydtlll.png'></image>
-                  <text>2.2万</text>
-                </view>
-                <view class='dynamic-tips-item'>
-                  <image src='/image/dp-sydtpl.png'></image>
-                  <text>1595</text>
-                </view>
-                <view class='dynamic-tips-item'>
-                  <image src='/image/dp-sydtdz1.png'></image>
-                  <text>1020</text>
-                </view>
-              </view>
-            </view> -->
       </view>
     </view>
   </view>
@@ -312,6 +282,6 @@
 
 </view>
 
-<shop_cart id="cart-list" list="{{cart_list}}" bind:calculate="cartCalculate" bind:cart_delete="event_cart_delete" />
+<shop_cart id="cart-list" list="{{cartList}}" bind:calculate="cartCalculate" bind:cartDelete="eventCartDelete" />
 
-<buy catchtap="none" id="buy_board" bind:closeBuy="closeBuy" bind:buyCallback='buyCallback' type="3" info="{{info}}" discount="{{discount}}" group_buy="{{false}}" diy_color='{{diy_color}}' />
+<buy catchtap="none" id="buy_board" bind:closeBuy="closeBuy" bind:buyCallback='buyCallback' type="3" info="{{info}}" discount="{{discount}}" groupBuy="{{false}}" diyColor='{{diyColor}}' />

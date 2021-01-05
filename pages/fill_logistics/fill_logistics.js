@@ -36,7 +36,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       id: options.id,
       store_id: options.store_id,
       distribution_type: options.distribution_type

@@ -9,9 +9,9 @@ Page({
     //引导页
     tab: 1,
     feedback: '',
-    pic_list: [],
+    picList: [],
     //图片文件名
-    file_name: '',
+    fileName: '',
     contact: ''
   },
 
@@ -20,7 +20,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -93,10 +93,10 @@ Page({
    */
   choosePic() {
     wx.chooseImage({
-      count: 3 - this.data.pic_list.length,
+      count: 3 - this.data.picList.length,
       success: res => {
         this.setData({
-          pic_list: [...this.data.pic_list, ...res.tempFilePaths]
+          picList: [...this.data.picList, ...res.tempFilePaths]
         })
       },
     })
@@ -106,9 +106,9 @@ Page({
    * 删除图片
    */
   delectPic(e) {
-    this.data.pic_list.splice(e.currentTarget.dataset.index, 1)
+    this.data.picList.splice(e.currentTarget.dataset.index, 1)
     this.setData({
-      pic_list: this.data.pic_list
+      picList: this.data.picList
     })
   },
 
@@ -146,7 +146,7 @@ Page({
         return
       }
     }
-    this.data.file_name = ''
+    this.data.fileName = ''
     wx.showLoading({
       title: '加载中...',
       mask: true
@@ -158,18 +158,18 @@ Page({
    * 上传图片
    */
   uploadImage(i) {
-    if (i < this.data.pic_list.length) {
+    if (i < this.data.picList.length) {
       wx.uploadFile({
-        url: app.globalData.upload_pic,
-        filePath: this.data.pic_list[i],
+        url: app.globalData.uploadPic,
+        filePath: this.data.picList[i],
         name: 'image',
         formData: {
           type: 'feedback'
         },
         success: res => {
-          this.data.file_name += JSON.parse(res.data).url
-          if (i != this.data.pic_list.length - 1) {
-            this.data.file_name += ','
+          this.data.fileName += JSON.parse(res.data).url
+          if (i != this.data.picList.length - 1) {
+            this.data.fileName += ','
           }
           this.uploadImage(i + 1)
         }
@@ -187,7 +187,7 @@ Page({
       http.post(app.globalData.feedback, {
         type: type,
         content: this.data.feedback,
-        file: this.data.file_name,
+        file: this.data.fileName,
         contact: this.data.contact
       }).then(res => {
         app.showSuccessToast(res.message, () => {

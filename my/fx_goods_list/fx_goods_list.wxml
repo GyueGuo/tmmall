@@ -10,23 +10,23 @@
 
   <view class='list-title'>
     <view class='list'>
-      <view class="{{current_tab==1?'cur title':' title'}}" data-index='1' hover-class='hover-class' hover-stay-time='400' bindtap='onComposite' style='{{current_tab==1?util.diy_color(z_color,"",""):""}}'>{{compre}}
+      <view class="{{current_tab==1?'cur title':' title'}}" data-index='1' hover-class='hover-class' hover-stay-time='400' bindtap='onComposite' style='{{current_tab==1?util.diyColor.zColor,"",""):""}}'>{{compre}}
         <view>
           <text class="caret down {{current_tab==1?'cur-bg':''}}" style='{{current_tab==1?"border-top:8rpx solid ":""}}{{z_color}}'></text>
         </view>
       </view>
-      <view class="{{current_tab==2?'cur title':' title'}}" data-index='2' hover-class='hover-class' hover-stay-time='400' bindtap='onSaleClick' style='{{current_tab==2?util.diy_color(z_color,"",""):""}}'>销量</view>
-      <view class="{{current_tab==3?'cur title':' title'}}" data-index='3' hover-class='hover-class' hover-stay-time='400' bindtap='onPriceClick' style='{{current_tab==3?util.diy_color(z_color,"",""):""}}'>价格
+      <view class="{{current_tab==2?'cur title':' title'}}" data-index='2' hover-class='hover-class' hover-stay-time='400' bindtap='onSaleClick' style='{{current_tab==2?util.diyColor.zColor,"",""):""}}'>销量</view>
+      <view class="{{current_tab==3?'cur title':' title'}}" data-index='3' hover-class='hover-class' hover-stay-time='400' bindtap='onPriceClick' style='{{current_tab==3?util.diyColor.zColor,"",""):""}}'>价格
         <view>
           <text class="caret up {{(current_tab==3) &&(rank == 'asc')?'cur-bg':''}}" style="{{(current_tab==3) &&(rank == 'asc')?'border-top:8rpx solid ':''}}{{z_color}}"></text>
           <text class="caret down {{(current_tab==3) &&(rank == 'desc')?'cur-bg':''}}" style="{{(current_tab==3) &&(rank == 'desc')?'border-top:8rpx solid ':''}}{{z_color}}"></text>
         </view>
       </view>
     </view>
-    <view class="choose {{is_filtrate?'cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='OnChangeFilter' style="{{is_filtrate?util.diy_color(z_color,'',''):''}}">
+    <view class="choose {{is_filtrate?'cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='OnChangeFilter' style="{{is_filtrate?util.diyColor.zColor,'',''):''}}">
       筛选
-      <view style='{{util.diy_imgbox(19)}}'>
-        <image style='{{is_filtrate?util.diy_imgcolor(z_color,18,18):""}}' src="{{util.HTTP}}{{is_filtrate?'mobile/small/image/shaixuan-2.png':'mobile/small/image/shaixuan.png'}}"></image>
+      <view style='{{util.diyImgbox(19)}}'>
+        <image style='{{is_filtrate?util.diyImgcolor(z_color,18,18):""}}' src="{{util.HTTP}}{{is_filtrate?'mobile/small/image/shaixuan-2.png':'mobile/small/image/shaixuan.png'}}"></image>
       </view>
     </view>
   </view>
@@ -56,7 +56,7 @@
 </view>
 
 <!--购物车  -->
-<cart diy_color='{{diy_color}}'/>
+<cart diyColor='{{diyColor}}'/>
 
 <!--返回顶部  -->
 <go_top id="go_top" hover-class='hover-class' hover-stay-time='400' bindtap='onBackTop' />
@@ -112,23 +112,23 @@
 <!--综合选择列表  -->
 <!-- <view class='board classify-board' hidden="{{!classify_board}}" hover-class='hover-class' hover-stay-time='400' bindtap='closeTrans'>
   <view hover-class='hover-class' hover-stay-time='400' bindtap='onCompreRank'>
-    <view class="left {{compre_type==1?'cur':''}}" style="{{compre_type==1?util.diy_color(diy_color.z_color,'',''):''}}">综合排序</view>
-    <view class='right' style='{{util.diy_imgbox(28)}}'>
-      <image hidden='{{compre_type!=1}}' src='{{util.HTTP}}mobile/small/image/arx.png' style='{{compre_type==1?util.diy_imgcolor(diy_color.z_color,28,20):""}}transform:translate(-14px,-10px)'></image>
+    <view class="left {{compre_type==1?'cur':''}}" style="{{compre_type==1?util.diyColor(diyColor.zColor,'',''):''}}">综合排序</view>
+    <view class='right' style='{{util.diyImgbox(28)}}'>
+      <image hidden='{{compre_type!=1}}' src='{{util.HTTP}}mobile/small/image/arx.png' style='{{compre_type==1?util.diyImgcolor(diyColor.zColor,28,20):""}}transform:translate(-14px,-10px)'></image>
     </view>
   </view>
   <view hover-class='hover-class' hover-stay-time='400' bindtap='onNew'>
-    <view class="left {{compre_type==2?'cur':''}}" style="{{compre_type==2?util.diy_color(diy_color.z_color,'',''):''}}">新品优先</view>
-    <view class='right' style='{{util.diy_imgbox(28)}}'>
-      <image class='right' hidden='{{compre_type!=2}}' src='{{util.HTTP}}mobile/small/image/arx.png' style='{{compre_type==2?util.diy_imgcolor(diy_color.z_color,28,20):""}}transform:translate(-14px,-10px)'></image>
+    <view class="left {{compre_type==2?'cur':''}}" style="{{compre_type==2?util.diyColor(diyColor.zColor,'',''):''}}">新品优先</view>
+    <view class='right' style='{{util.diyImgbox(28)}}'>
+      <image class='right' hidden='{{compre_type!=2}}' src='{{util.HTTP}}mobile/small/image/arx.png' style='{{compre_type==2?util.diyImgcolor(diyColor.zColor,28,20):""}}transform:translate(-14px,-10px)'></image>
     </view>
   </view>
   <view hover-class='hover-class' hover-stay-time='400' bindtap='onComment'>
-    <view class="left {{compre_type==3?'cur':''}}" style="{{compre_type==3?util.diy_color(diy_color.z_color,'',''):''}}">评论数从高到低</view>
-    <view class='right' style='{{util.diy_imgbox(28)}}'>
-      <image class='right' hidden='{{compre_type!=3}}' src='{{util.HTTP}}mobile/small/image/arx.png' style='{{compre_type==3?util.diy_imgcolor(diy_color.z_color,28,20):""}}transform:translate(-14px,-10px)'></image>
+    <view class="left {{compre_type==3?'cur':''}}" style="{{compre_type==3?util.diyColor(diyColor.zColor,'',''):''}}">评论数从高到低</view>
+    <view class='right' style='{{util.diyImgbox(28)}}'>
+      <image class='right' hidden='{{compre_type!=3}}' src='{{util.HTTP}}mobile/small/image/arx.png' style='{{compre_type==3?util.diyImgcolor(diyColor.zColor,28,20):""}}transform:translate(-14px,-10px)'></image>
     </view>
   </view>
 </view> -->
 
-<buy catchtap="none" id="buy_board" bind:closeBuy="closeBuy" type="3" info="{{info}}" discount="{{discount}}" group_buy="{{false}}" diy_color='{{diy_color}}'/>
+<buy catchtap="none" id="buy_board" bind:closeBuy="closeBuy" type="3" info="{{info}}" discount="{{discount}}" group_buy="{{false}}" diyColor='{{diyColor}}'/>

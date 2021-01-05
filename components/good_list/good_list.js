@@ -21,9 +21,9 @@ Component({
     rank: Boolean
   },
   ready() {
-    if (app.globalData.diy_color != null && this.data.diy_color == null) {
+    if (app.globalData.diyColor != null && this.data.diyColor == null) {
       this.setData({
-        diy_color: app.globalData.diy_color
+        diyColor: app.globalData.diyColor
       })
     }
     this.setData({
@@ -35,7 +35,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    diy_color:null
+    diyColor:null
   },
 
   /**
@@ -44,7 +44,7 @@ Component({
   methods: {
     blendent(obj) {
       this.setData({
-        diy_color: obj.diy_color
+        diyColor: obj.diyColor
       })
     },
     /**

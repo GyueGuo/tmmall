@@ -1,4 +1,3 @@
-// my/my_card/my_card.js
 const app = getApp();
 Page({
 
@@ -13,9 +12,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    let src = app.globalData.index_web + '?parameter=' + decodeURIComponent(options.parameter)
+    let src = app.globalData.indexWeb + '?parameter=' + decodeURIComponent(options.parameter)
     this.setData({
-      src: src
+      src,
     })
   },
 

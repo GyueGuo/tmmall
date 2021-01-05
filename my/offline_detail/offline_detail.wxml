@@ -1,30 +1,9 @@
 <wxs module="util" src="../../utils/util.wxs" />
-<view hidden='{{!info.order_attach_id}}' style='padding-bottom:100rpx;'>
+<view hidden='{{!info.orderAttachId}}' style='padding-bottom:100rpx;'>
   <view class='order-head'>
-    <view class='imagebg' style='background-image: url({{util.HTTP}}mobile/small/image/ddxq-bj.png), linear-gradient({{diy_color.z_color}}, {{diy_color.z_color}});background-blend-mode: luminosity;background-size: cover;'>
-      <view style='{{util.diy_color("",diy_color.z_color,"")}}'></view>
+    <view class='imagebg' style='background-image: url({{util.HTTP}}mobile/small/image/ddxq-bj.png), linear-gradient({{diyColor.zColor}}, {{diyColor.zColor}});background-blend-mode: luminosity;background-size: cover;'>
+      <view style='{{util.diyColor("",diyColor.zColor,"")}}'></view>
     </view>
-
-    <!-- <view wx:if="{{info.status == 1}}">
-    <view>
-      <view>买家已付款</view>
-    </view>
-    <image src='{{util.HTTP}}mobile/small/image/ddxq-mjyfk.png'></image>
-  </view>
-
-
-  <view wx:elif="{{info.status == 3 }}">
-    <view>交易成功</view>
-    <image src='{{util.HTTP}}mobile/small/image/ddxq-jycg.png'></image>
-  </view>
-  <view wx:elif="{{info.status == -1 || info.status == 4 || info.status == 6}}">
-    <view>交易关闭</view>
-    <image src='{{util.HTTP}}mobile/small/image/ddxq-gbjy.png'></image>
-  </view>
-  <view wx:elif="{{info.status == 5 || info.status == 6}}">
-    <view>申请售后中</view>
-    <image src='{{util.HTTP}}mobile/small/image/ddxq-jycg.png'></image>
-  </view> -->
 
     <view>
       <view>交易关闭</view>
@@ -36,8 +15,8 @@
 
   <view class='good-wrap'>
     <view class='shop-info' hover-class='hover-class' hover-stay-time='400' bindtap='goShop' wx:if='{{util.isShops==0}}'>
-      <image class='shop-logo' src='{{info.store_list.logo}}'></image>
-      <view>{{info.store_list.store_name}}</view>
+      <image class='shop-logo' src='{{info.storeList.logo}}'></image>
+      <view>{{info.storeList.storeName}}</view>
       <image class='shop-next' src='{{util.HTTP}}mobile/small/image/ddxq-gd.png'></image>
     </view>
     <view class='price-info'>
@@ -45,22 +24,22 @@
       <view class='price'>
         <view>
           <text class='unit'>￥</text>
-          <text>{{info.subtotal_price}}</text>
+          <text>{{info.subtotalPrice}}</text>
         </view>
       </view>
     </view>
 
     <view class='return-integral'>
-      <view class='border-cur' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>积分</view>
+      <view class='border-cur' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>积分</view>
       <view>
         <text>返积分</text>
-        <text class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>{{info.subtotal_back_integral}}</text>
+        <text class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>{{info.subtotalBackIntegral}}</text>
         <text>点</text>
       </view>
     </view>
 
     <view class='operation'>
-      <button class='operation-do' hover-class='hover-class' hover-stay-time='400' open-type="{{configSwitch.version_info.one_more==1?'':'contact'}}" bindcontact="handleContact" bindtap="{{configSwitch.version_info.one_more==1?'callPhone':''}}">
+      <button class='operation-do' hover-class='hover-class' hover-stay-time='400' open-type="{{configSwitch.versionInfo.oneMore==1?'':'contact'}}" bindcontact="handleContact" bindtap="{{configSwitch.versionInfo.oneMore==1?'callPhone':''}}">
         <image src='{{util.HTTP}}mobile/small/image/ddxq-lxmj.png'></image>
         <view>联系卖家</view>
       </button>
@@ -75,34 +54,26 @@
     <view class='price-wrap'>
       <view>
         <view class='price-left'>商品总额</view>
-        <view class='price-right'>￥{{info.total_price}}</view>
+        <view class='price-right'>￥{{info.totalPrice}}</view>
       </view>
-      <!-- <view>
-        <view class='price-left'>红包</view>
-        <view class='price-right'>-￥{{info.total_packet_price}}</view>
-      </view>
-      <view>
-        <view class='price-left'>优惠券</view>
-        <view class='price-right'>-￥{{info.subtotal_coupon_price}}</view>
-      </view> -->
-      <view wx:if='{{configSwitch.show_switch.is_red_packet==1||configSwitch.show_switch.is_coupon==1}}'>
+      <view wx:if='{{configSwitch.showSwitch.isRedPacket==1||configSwitch.showSwitch.isCoupon==1}}'>
         <view class='price-left'>优惠</view>
         <view class='price-right'>-￥{{discounts}}</view>
       </view>
     </view>
     <view class='actually-pay'>
       <view>实付款:
-        <text class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥{{info.subtotal_price}}</text>
+        <text class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>￥{{info.subtotalPrice}}</text>
       </view>
     </view>
   </view>
 
   <view class='order-infor'>
     <view>
-      <text>订单编号:{{info.order_attach_number}}</text>
+      <text>订单编号:{{info.orderAttachNumber}}</text>
       <text class='copy' hover-class='hover-class' hover-stay-time='400' bindtap='copyOrderNumber'>复制</text>
     </view>
-    <view class=' order-time'>下单时间:{{info.create_time}}</view>
+    <view class=' order-time'>下单时间:{{info.createTime}}</view>
   </view>
 
   <view class='logistics'>

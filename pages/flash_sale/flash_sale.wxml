@@ -3,14 +3,14 @@
   <view>
     <view class='tab'>
       <scroll-view class='tab-scroll' scroll-x>
-        <view class='tab-con' style='{{util.diy_color("",diy_color.c_color,"")}}'>
+        <view class='tab-con' style='{{util.diyColor("",diyColor.c_color,"")}}'>
           <view wx:for="{{tab}}" wx:key='{{index}}' class='tab-item' hover-class='hover-class' hover-stay-time='400' bindtap='onTab' data-id='{{item.limit_interval_id}}' style='{{tab.length<2?"width:80%;":""}}'>
-            <view class="{{interval_id == item.limit_interval_id?'bg':''}}" style='{{interval_id == item.limit_interval_id?util.diy_color("",diy_color.z_color,""):""}}'>
+            <view class="{{interval_id == item.limit_interval_id?'bg':''}}" style='{{interval_id == item.limit_interval_id?util.diyColor("",diyColor.zColor,""):""}}'>
               <view class='title'>{{item.interval_name}}</view>
               <view class='status' wx:if="{{index == 0}}">抢购中</view>
               <view class='status' wx:else>即将开始</view>
             </view>
-            <view class='present' style="{{interval_id != item.limit_interval_id?'display:none;':'border-top:12rpx solid '}}{{diy_color.z_color}}"></view>
+            <view class='present' style="{{interval_id != item.limit_interval_id?'display:none;':'border-top:12rpx solid '}}{{diyColor.zColor}}"></view>
           </view>
         </view>
       </scroll-view>
@@ -37,12 +37,12 @@
         <view>
           <view class='good-name'>{{item.goods_name}}</view>
           <view class='good-price'>
-            <view class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+            <view class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
               <text class='unit'>￥</text>
               <text class='integer'>{{util.integer(item.time_limit_price)}}</text>
               <text class='decimals'>.{{util.decimals(item.time_limit_price)}}</text>
             </view>
-            <view class='rush-now bg' wx:if="{{state == 1 && item.exchange_num != 0}}" style='{{util.diy_color("",diy_color.z_color,"")}}'>立即抢购</view>
+            <view class='rush-now bg' wx:if="{{state == 1 && item.exchange_num != 0}}" style='{{util.diyColor("",diyColor.zColor,"")}}'>立即抢购</view>
             <view class='rush-now bg sack' wx:if="{{state == 1 && item.exchange_num == 0}}">已抢光</view>
             <!-- <view class='rush-now' wx:else>提醒我</view> -->
           </view>

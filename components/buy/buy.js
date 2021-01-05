@@ -24,7 +24,7 @@ Component({
         }
       }
     },
-    diy_color: Object,
+    diyColor: Object,
     // order_type: null,
     type: String,
     isShow: {
@@ -50,7 +50,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    diy_color: null,
+    diyColor: null,
     opacity: 0,
     //商品数量
     num: 1,
@@ -70,9 +70,9 @@ Component({
     order_type: 1
   },
   ready() {
-    if (app.globalData.diy_color != null && this.data.diy_color == null) {
+    if (app.globalData.diyColor != null && this.data.diyColor == null) {
       this.setData({
-        diy_color: app.globalData.diy_color
+        diyColor: app.globalData.diyColor
       })
     }
   },
@@ -83,7 +83,7 @@ Component({
   methods: {
     blendent(obj) {
       // this.setData({
-      //   diy_color: obj.diy_color
+      //   diyColor: obj.diyColor
       // })
     },
     /**

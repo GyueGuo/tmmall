@@ -6,9 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    account_status: true,
-    shopping_status: true,
-    interact_status: true
+    accountStatus: true,
+    shoppingStatus: true,
+    interactStatus: true
   },
 
   /**
@@ -16,7 +16,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       configSwitch: app.globalData.configSwitch,
     })
   },
@@ -67,9 +67,9 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.integral_task, {}).then(res => {
+    http.post(app.globalData.integralTask, {}).then(res => {
       this.setData({
-        adv_info: res.advInfo,
+        advInfo: res.advInfo,
         info: res.result
       })
     })
@@ -80,7 +80,7 @@ Page({
    */
   changeAccount() {
     this.setData({
-      account_status: !this.data.account_status
+      accountStatus: !this.data.accountStatus
     })
   },
 
@@ -89,7 +89,7 @@ Page({
    */
   changeShopping() {
     this.setData({
-      shopping_status: !this.data.shopping_status
+      shoppingStatus: !this.data.shoppingStatus
     })
   },
 
@@ -98,7 +98,7 @@ Page({
    */
   changeInteract() {
     this.setData({
-      interact_status: !this.data.interact_status
+      interactStatus: !this.data.interactStatus
     })
   },
 
@@ -122,35 +122,35 @@ Page({
    */
   onComment() {
     wx.navigateTo({
-      url: '/my/my_comment/my_comment',
+      url: '/my/myComment/myComment',
     })
   },
 
   onAdv() {
     wx.navigateTo({
-      url: '/pages/hot_spots/hot_spots',
+      url: '/pages/hotSpots/hotSpots',
     })
   },
   adv() {
-    switch (this.data.adv_info.type) {
+    switch (this.data.advInfo.type) {
       case 0:
         break;
       case 1:
         wx.navigateTo({
-          url: `/nearby_shops/good_detail/good_detail?goods_id=${this.data.adv_info.content}`,
+          url: `/nearbyShops/goodDetail/goodDetail?goodsId=${this.data.advInfo.content}`,
           success: () => {
-            http.post(app.globalData.index_adBrowseInc, {
-              advId: this.data.adv_info.adv_id
+            http.post(app.globalData.indexAdBrowseInc, {
+              advId: this.data.advInfo.advId
             }).then(res => {})
           }
         })
         break;
       case 2:
         wx.navigateTo({
-          url: `/nearby_shops/shop_detail/shop_detail?store_id=${this.data.adv_info.content}`,
+          url: `/nearbyShops/shopDetail/shopDetail?storeId=${this.data.advInfo.content}`,
           success: () => {
-            http.post(app.globalData.index_adBrowseInc, {
-              advId: this.data.adv_info.adv_id
+            http.post(app.globalData.indexAdBrowseInc, {
+              advId: this.data.advInfo.advId
             }).then(res => {})
           }
         })

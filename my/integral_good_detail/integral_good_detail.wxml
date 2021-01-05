@@ -3,30 +3,30 @@
   <view class='wrap'>
     <video_swiper info="{{info}}" />
     <view class='good-info'>
-      <view class='good-name'>{{info.integral_name}}</view>
+      <view class='good-name'>{{info.integralName}}</view>
       <view class='good-tips'>
-        <view class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+        <view class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
           <text class='integral'>{{info.integral}}</text>
           <text class='integral-unit'>积分</text>
           <text class='integral-unit' hidden='{{info.price==0}}'>+￥{{info.price}}</text>
         </view>
-        <view class='exchange-num'>{{info.add_number}}人已兑换</view>
+        <view class='exchange-num'>{{info.addNumber}}人已兑换</view>
       </view>
     </view>
 
     <view class='good-intro'>
-      <view class='line bg' style='{{util.diy_color("",diy_color.z_color,"")}}'></view>
+      <view class='line bg' style='{{util.diyColor("",diyColor.zColor,"")}}'></view>
       <view class='good-intro-title'>商品介绍</view>
     </view>
 
     <view class="wxParse">
-      <Parser html='{{info.web_content}}' bindparse='parse' />
+      <Parser html='{{info.webContent}}' bindparse='parse' />
     </view>
 
   </view>
   <form report-submit='true' bindsubmit='formId'>
-    <button class='exchange' hover-class='hover-class' hover-stay-time='400' formType="submit" bindtap='exchange' style='{{util.diy_color("",diy_color.z_color,"")}}'>兑换</button>
+    <button class='exchange' hover-class='hover-class' hover-stay-time='400' formType="submit" bindtap='exchange' style='{{util.diyColor("",diyColor.zColor,"")}}'>兑换</button>
   </form>
-  <!-- <view class='exchange' hover-class='hover-class' hover-stay-time='400' bindtap='exchange' style='{{util.diy_color("",diy_color.z_color,"")}}'>兑换</view> -->
+  <!-- <view class='exchange' hover-class='hover-class' hover-stay-time='400' bindtap='exchange' style='{{util.diyColor("",diyColor.zColor,"")}}'>兑换</view> -->
 </view>
 <modal title="提示" content="抱歉您的积分不足以兑换此商品" tip="做任务可以获取更多积分呦!" id="modal" bind:confirm="onTask" />

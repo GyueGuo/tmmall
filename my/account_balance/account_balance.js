@@ -1,4 +1,3 @@
-// pages/account_balance/account_balance.js
 const app = getApp();
 Page({
 
@@ -14,7 +13,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       balance: options.balance
     })
   },
@@ -66,7 +65,7 @@ Page({
    */
   chargeNow() {
     wx.navigateTo({
-      url: '../account_recharge/account_recharge',
+      url: '../accountRecharge/accountRecharge',
     })
   },
 
@@ -75,7 +74,7 @@ Page({
    */
   onRecord() {
     wx.navigateTo({
-      url: '../balance_record/balance_record',
+      url: '../balanceRecord/balanceRecord',
     })
   }
 })

@@ -92,7 +92,7 @@ Page({
    */
   onAccount() {
     wx.navigateTo({
-      url: '../account_safe/account_safe',
+      url: '../accountSafe/accountSafe',
     })
   },
 
@@ -117,7 +117,7 @@ Page({
    */
   onUs() {
     wx.navigateTo({
-      url: '../about_us/about_us',
+      url: '../aboutUs/aboutUs',
     })
   },
   showModal() {
@@ -129,18 +129,18 @@ Page({
    */
   exit() {
     wx.clearStorageSync()
-    app.globalData.member_id = ''
+    app.globalData.memberId = ''
     app.globalData.phone = ''
     app.globalData.openid = ''
     app.globalData.unionId = ''
     app.globalData.token = ''
     //代言人ID
-    app.globalData.sup_id = ''
+    app.globalData.supId = ''
     //是否入驻商家
-    app.globalData.in_state = ''
+    app.globalData.inState = ''
     app.globalData.distribution = {}
     wx.closeSocket()
-    clearTimeout(app.app_socketHeartTime)
+    clearTimeout(app.appSocketHeartTime)
     wx.reLaunch({
       url: '/pages/home/home'
     })

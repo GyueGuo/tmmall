@@ -1,35 +1,34 @@
-<!--my/fx_withdrawal/fx_withdrawal.wxml-->
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='container'>
   <view class='withdrawal_num'>
     <view class='title'>提现金额</view>
     <view class='input'>
       <text>￥</text>
-      <input type='digit' value='{{withdrawal_price}}' bindinput='bindinput'></input>
+      <input type='digit' value='{{withdrawalPrice}}' bindinput='bindinput'></input>
     </view>
     <view class='earnings'>
-      <view class='num'>当前收益：￥{{info.close_brokerage}}</view>
+      <view class='num'>当前收益：￥{{info.closeBrokerage}}</view>
       <view class='record' hover-class='hover-class' hover-stay-time='400' bindtap='record'>提现记录</view>
     </view>
   </view>
   <view class='withdrawal_way'>
     <view class='title'>提现方式</view>
-    <view class='way' wx:for='{{way_list}}' data-index='{{item.way_type}}' hover-class='hover-class' hover-stay-time='400' bindtap='way'>
-      <image class='icon' src='{{item.way_img}}'></image>
+    <view class='way' wx:for='{{wayList}}' data-index='{{item.wayType}}' hover-class='hover-class' hover-stay-time='400' bindtap='way'>
+      <image class='icon' src='{{item.wayImg}}'></image>
       <view class='tit'>{{item.title}}</view>
-      <view class='select' style='{{util.diy_imgbox(40)}}'>
-        <image src='{{util.HTTP}}{{way_index==item.way_type?"mobile/small/image/syt-gx1.png":"mobile/small/image/syt-gx2.png"}}' style='{{way_index==item.way_type?util.diy_imgcolor(diy_color.z_color,40,40):""}}'></image>
+      <view class='select' style='{{util.diyImgbox(40)}}'>
+        <image src='{{util.HTTP}}{{wayIndex==item.wayType?"mobile/small/image/syt-gx1.png":"mobile/small/image/syt-gx2.png"}}' style='{{wayIndex==item.wayType?util.diyImgcolor(diyColor.zColor,40,40):""}}'></image>
       </view>
     </view>
-    <view class="bankcard" wx:if="{{way_type==3&&card_details!=null}}" bindtap="bankcard" hover-class='hover-class' hover-stay-time='400'>
-      <view class="info">{{card_details.card_remark}} <text>**** **** ****{{card_details.card_number_enc}}</text></view>
+    <view class="bankcard" wx:if="{{wayType==3&&cardDetails!=null}}" bindtap="bankcard" hover-class='hover-class' hover-stay-time='400'>
+      <view class="info">{{cardDetails.cardRemark}} <text>**** **** ****{{cardDetails.cardNumberEnc}}</text></view>
       <image class='next' src='{{util.HTTP}}mobile/small/image/my/1-9.png'></image>
     </view>
   </view>
   <view class='notice_list'>
     <view class='title'>注意事项</view>
-    <view class='notice' wx:for='{{notice_list}}'>{{item}}</view>
+    <view class='notice' wx:for='{{noticeList}}'>{{item}}</view>
   </view>
-  <view class='submit' style='{{util.diy_color("",diy_color.z_color,"")}}' hover-class='hover-class' hover-stay-time='400' bindtap='submit'>立即提现</view>
+  <view class='submit' style='{{util.diyColor("",diyColor.zColor,"")}}' hover-class='hover-class' hover-stay-time='400' bindtap='submit'>立即提现</view>
 </view>
 <modal title="提示" content="需要您添加一张储蓄卡?" id="modal" bind:confirm="bankcard" />

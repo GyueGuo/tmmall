@@ -9,7 +9,7 @@
             <!-- <image class="icon" src='{{util.HTTP+item.img}}'></image> -->
             <image class="icon" src='data:image/svg+xml;base64,{{item.iconPath}}'></image>
           </view>
-          <view style="{{item.current== 1 ? util.diy_color(diy_color.z_color,'','') :''}}">{{item.title}}</view>
+          <view style="{{item.current== 1 ? util.diyColor(diyColor.zColor,'','') :''}}">{{item.title}}</view>
         </navigator>
       </view>
     </block>

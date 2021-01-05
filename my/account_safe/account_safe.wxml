@@ -1,33 +1,13 @@
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='wrap'>
-  <!--<view class='content' hover-class='hover-class' hover-stay-time='400' bindtap='onsetPassword' >
-    <view class='left'>
-      <view class='font_family {{info.password_state != 1?"icon-wd-zhyaq-wx":"icon-wd-zhyaq-anq"}}'></view>
-      <view class='title'>登录密码</view>
-    </view>
-    <view class='right'>
-      <view>{{info.password_state==1?'修改、忘记密码':'设置'}}</view>
-      <image src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
-    </view>
-  </view>-->
   <view class='content' hover-class='hover-class' hover-stay-time='400'>
     <view class='left'>
-      <view class='font_family {{info.phone_state != 1?"icon-wd-zhyaq-wx":"icon-wd-zhyaq-anq"}}'></view>
+      <view class='font_family {{info.phoneState != 1?"icon-wd-zhyaq-wx":"icon-wd-zhyaq-anq"}}'></view>
       <view class='title'>手机号码</view>
     </view>
     <view class='right'>
-      <view>{{info.phone_state==1?info.phone:'未绑定'}}</view>
+      <view>{{info.phoneState==1?info.phone:'未绑定'}}</view>
       <image src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
     </view>
   </view>
-  <!--<view class='content' hover-class='hover-class' hover-stay-time='400' bindtap='onPassword' >
-    <view class='left'>
-      <view class='font_family {{info.pay_state != 1?"icon-wd-zhyaq-wx":"icon-wd-zhyaq-anq"}}'></view>
-      <view class='title'>支付密码</view>
-    </view>
-    <view class='right'>
-      <view>{{info.pay_state==1?'修改、忘记密码':'设置'}}</view>
-      <image src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
-    </view>
-  </view>-->
 </view>

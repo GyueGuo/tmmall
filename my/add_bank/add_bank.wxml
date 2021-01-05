@@ -14,7 +14,7 @@
 </view>
 
 <view class="submit">
-  <button bindtap="submit" hover-class='hover-class' hover-stay-time='400' style='{{util.diy_color("",diy_color.z_color,"")}}'>
+  <button bindtap="submit" hover-class='hover-class' hover-stay-time='400' style='{{util.diyColor("",diyColor.zColor,"")}}'>
     <view>提交</view>
   </button>
 </view>

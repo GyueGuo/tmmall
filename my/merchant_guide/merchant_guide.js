@@ -14,10 +14,10 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      show: app.globalData.configSwitch.version_info.one_more == 0 && app.globalData.configSwitch ? false : true
+      show: app.globalData.configSwitch.versionInfo.oneMore == 0 && app.globalData.configSwitch ? false : true
     })
     wx.setNavigationBarTitle({
-      title: app.globalData.configSwitch.version_info.one_more == 0 && app.globalData.configSwitch ? '' : '商家入驻',
+      title: app.globalData.configSwitch.versionInfo.oneMore == 0 && app.globalData.configSwitch ? '' : '商家入驻',
     })
   },
 
@@ -68,7 +68,7 @@ Page({
    */
   settle() {
     if (app.login()) {
-      http.post(app.globalData.my_getInState, {}).then(res => {
+      http.post(app.globalData.myGetInState, {}).then(res => {
         let data = res.result
         switch (data.inState) {
           case -1:

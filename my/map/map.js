@@ -12,7 +12,7 @@ Page({
    */
   data: {
     key: app.globalData.MapKey,
-    search_key: '',
+    searchKey: '',
     latitude: '',
     longitude: '',
     location: {},
@@ -25,13 +25,13 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
     mapContext = wx.createMapContext('map', this)
     if (options.address) {
       let address = JSON.parse(options.address)
       this.setData({
-        search_key: `${address.province}${address.city}${address.area}${address.street}`,
+        searchKey: `${address.province}${address.city}${address.area}${address.street}`,
         address: address
       })
       let type = 1
@@ -73,7 +73,7 @@ Page({
    * 表单输入
    */
   searchInput(e) {
-    this.data.search_key = e.detail.value
+    this.data.searchKey = e.detail.value
   },
   /**
    * 搜索
@@ -81,7 +81,7 @@ Page({
   onSearch(type = 0) {
     if (type == 1) {
       qqmapsdk.geocoder({
-        address: this.data.search_key,
+        address: this.data.searchKey,
         success: res => {
           if (res.status != 0) {
             app.showToast('搜索不到地址', () => {})
@@ -91,7 +91,7 @@ Page({
             latitude: res.result.location.lat,
             longitude: res.result.location.lng
           }
-          this.map_search(location)
+          this.mapSearch(location)
         },
         fail: res => {
           if (res.status != 0) {
@@ -102,13 +102,13 @@ Page({
       })
     } else {
       console.log('b')
-      this.map_search()
+      this.mapSearch()
     }
   },
 
-  map_search(location) {
+  mapSearch(location) {
     qqmapsdk.getSuggestion({
-      keyword: this.data.search_key,
+      keyword: this.data.searchKey,
       location: location ? location : undefined,
       success: (res, data) => {
         console.log(data)

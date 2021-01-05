@@ -6,9 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    goods_id: '',
+    goodsId: '',
     //当前选中
-    current_tab: 1,
+    currentTab: 1,
     page: 1,
     total: -1,
     list: ''
@@ -18,9 +18,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.data.goods_id = options.goods_id
+    this.data.goodsId = options.goodsId
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -75,7 +75,7 @@ Page({
    */
   onAll() {
     this.setData({
-      current_tab: 1
+      currentTab: 1
     })
     this.data.page = 1
     this.getList()
@@ -86,7 +86,7 @@ Page({
    */
   onNewest() {
     this.setData({
-      current_tab: 2
+      currentTab: 2
     })
     this.data.page = 1
     this.getList()
@@ -97,7 +97,7 @@ Page({
    */
   onGood() {
     this.setData({
-      current_tab: 3
+      currentTab: 3
     })
     this.data.page = 1
     this.getList()
@@ -108,7 +108,7 @@ Page({
    */
   onMedium() {
     this.setData({
-      current_tab: 4
+      currentTab: 4
     })
     this.data.page = 1
     this.getList()
@@ -119,7 +119,7 @@ Page({
    */
   onNegative() {
     this.setData({
-      current_tab: 5
+      currentTab: 5
     })
     this.data.page = 1
     this.getList()
@@ -130,7 +130,7 @@ Page({
    */
   onPicture() {
     this.setData({
-      current_tab: 6
+      currentTab: 6
     })
     this.data.page = 1
     this.getList()
@@ -141,7 +141,7 @@ Page({
    */
   onVideo() {
     this.setData({
-      current_tab: 7
+      currentTab: 7
     })
     this.data.page = 1
     this.getList()
@@ -151,20 +151,20 @@ Page({
    * 获取数据
    */
   getList() {
-    let star_level = ''
-    if (this.data.current_tab == 3) {
-      star_level = "good"
-    } else if (this.data.current_tab == 4) {
-      star_level = "medium"
-    } else if (this.data.current_tab == 5) {
-      star_level = "negative"
+    let starLevel = ''
+    if (this.data.currentTab == 3) {
+      starLevel = "good"
+    } else if (this.data.currentTab == 4) {
+      starLevel = "medium"
+    } else if (this.data.currentTab == 5) {
+      starLevel = "negative"
     }
-    http.post(app.globalData.evaluate_list, {
-      goodsId: this.data.goods_id,
-      newest: this.data.current_tab == 2 ? '1' : '',
-      file: this.data.current_tab == 6 ? '1' : '',
-      video: this.data.current_tab == 7 ? '1' : '',
-      starLevel: star_level,
+    http.post(app.globalData.evaluateList, {
+      goodsId: this.data.goodsId,
+      newest: this.data.currentTab == 2 ? '1' : '',
+      file: this.data.currentTab == 6 ? '1' : '',
+      video: this.data.currentTab == 7 ? '1' : '',
+      starLevel: starLevel,
       page: this.data.page
     }).then(res => {
       if (this.data.page == 1) {
@@ -195,18 +195,18 @@ Page({
     } else {
       current = idx
     }
-    let multiple_file = []
-    for (let i = 0, len = this.data.list[index].multiple_file.length; i < len; i++) {
-      multiple_file.push(encodeURIComponent(this.data.list[index].multiple_file[i]))
+    let multipleFile = []
+    for (let i = 0, len = this.data.list[index].multipleFile.length; i < len; i++) {
+      multipleFile.push(encodeURIComponent(this.data.list[index].multipleFile[i]))
     }
 
     let list = {
-      multiple_file: multiple_file,
+      multipleFile: multipleFile,
       video: encodeURIComponent(this.data.list[index].video),
       current: current
     }
     wx.navigateTo({
-      url: '/nearby_shops/preview/preview?info=' + JSON.stringify(list),
+      url: '/nearbyShops/preview/preview?info=' + JSON.stringify(list),
     })
   },
 })

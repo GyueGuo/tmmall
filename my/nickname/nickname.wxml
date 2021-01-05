@@ -7,5 +7,5 @@
 <view class='nickname-rule'>昵称不能超过20个字符,支持中英文、数字、下划线</view>
 
 <view class='save'>
-  <view class='bg' hover-class='hover-class' hover-stay-time='400' bindtap='save' style='{{util.diy_color("",diy_color.z_color,"")}}' >保存</view>
+  <view class='bg' hover-class='hover-class' hover-stay-time='400' bindtap='save' style='{{util.diyColor("",diyColor.zColor,"")}}' >保存</view>
 </view>

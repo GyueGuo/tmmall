@@ -23,9 +23,9 @@ Page({
     //楼门
     detail: '',
     //选择地址
-    address_board: false,
+    addressBoard: false,
     //默认地址
-    is_default: null
+    isDefault: null
   },
 
   /**
@@ -33,7 +33,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
     if (options.id) {
       this.data.id = options.id
@@ -103,7 +103,7 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.address_find, {
+    http.post(app.globalData.addressFind, {
       memberAddressId: this.data.id
     }).then(res => {
       this.setData({
@@ -111,19 +111,19 @@ Page({
         phone: res.result.phone,
         address: {
           province: res.result.province,
-          province_id: res.result.provinceId,
+          provinceId: res.result.provinceId,
           city: res.result.city,
-          city_id: res.result.cityId,
+          cityId: res.result.cityId,
           area: res.result.area,
-          area_id: res.result.areaId,
+          areaId: res.result.areaId,
           street: res.result.street,
-          street_id: res.result.streetId,
+          streetId: res.result.streetId,
         },
         latitude: res.result.lat,
         longitude: res.result.lng,
         location: res.result.locationAddress,
         detail: res.result.address,
-        is_default: res.result.isDefault
+        isDefault: res.result.isDefault
       })
     })
   },
@@ -146,7 +146,7 @@ Page({
    */
   onAddress() {
     this.setData({
-      address_board: true
+      addressBoard: true
     })
   },
 
@@ -192,7 +192,7 @@ Page({
    */
   changeDefault() {
     this.setData({
-      is_default: !this.data.is_default
+      isDefault: !this.data.isDefault
     })
   },
 
@@ -224,9 +224,9 @@ Page({
       app.showToast('请输入详细地址')
       return
     }
-    let url = app.globalData.address_create
+    let url = app.globalData.addressCreate
     if (this.data.id != '') {
-      url = app.globalData.address_update
+      url = app.globalData.addressUpdate
     }
     http.post(url, {
       memberAddressId: this.data.id,
@@ -238,17 +238,17 @@ Page({
       street: this.data.address.street,
       address: this.data.detail,
       locationAddress: this.data.location,
-      isDefault: this.data.is_default ? 1 : 0,
+      isDefault: this.data.isDefault ? 1 : 0,
       lat: this.data.latitude,
       lng: this.data.longitude
     }).then(res => {
-      event.emit('refresh_address')
+      event.emit('refreshAddress')
       for (let i = 0, len = this.data.pages.length; i < len; i++) {
-        if (this.data.pages[i].route == 'pages/confirm_order/confirm_order' && i != this.data.pages.length) {
+        if (this.data.pages[i].route == 'pages/confirmOrder/confirmOrder' && i != this.data.pages.length) {
           if (this.data.id != '') {
-            this.data.pages[i].data.member_address_id = this.data.id
+            this.data.pages[i].data.memberAddressId = this.data.id
           } else {
-            this.data.pages[i].data.member_address_id = res.data.address_id
+            this.data.pages[i].data.memberAddressId = res.data.addressId
           }
           console.log(this.data.pages[i])
 
@@ -257,11 +257,11 @@ Page({
             delta: this.data.pages.length -1 - i
           })
           break;
-        } else if (this.data.pages[i].route == 'pages/cart_confirm_order/cart_confirm_order' && i != this.data.pages.length) {
+        } else if (this.data.pages[i].route == 'pages/cartConfirmOrder/cartConfirmOrder' && i != this.data.pages.length) {
           if (this.data.id != '') {
-            this.data.pages[i].data.member_address_id = this.data.id
+            this.data.pages[i].data.memberAddressId = this.data.id
           } else {
-            this.data.pages[i].data.member_address_id = res.data.address_id
+            this.data.pages[i].data.memberAddressId = res.data.addressId
           }
 
           this.data.pages[i].getData()

@@ -1,4 +1,3 @@
-// components/article_goods/article_goods.js
 const app = getApp();
 Component({
   /**
@@ -15,12 +14,12 @@ Component({
         }
       }
     },
-    good_list: {
+    goodList: {
       type: Object,
       observer: function() {
-        if (this.data.good_list) {
+        if (this.data.goodList) {
           this.setData({
-            good_list: this.data.good_list
+            goodList: this.data.goodList
           })
         }
       }
@@ -28,7 +27,7 @@ Component({
   },
   ready(){
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -109,7 +108,7 @@ Component({
      */
     onGood(e) {
       wx.navigateTo({
-        url: '/nearby_shops/good_detail/good_detail?goods_id=' + e.currentTarget.dataset.id,
+        url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + e.currentTarget.dataset.id,
       })
     },
 

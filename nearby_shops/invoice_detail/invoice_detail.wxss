@@ -1,4 +1,3 @@
-/* nearby_shops/invoice_detail/invoice_detail.wxss */
 .warp{}
 .logistics{
   box-sizing: border-box;

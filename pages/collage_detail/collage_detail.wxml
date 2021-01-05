@@ -13,23 +13,23 @@
   <view class='collage-success' wx:if="{{member_id == info.owner&&info.status == 2&&info.state != 0}}">
     <view>
       <view class='collage-logo'>
-        <view class='font_family icon icon-wd-zhyaq-anq' style='{{util.diy_color(diy_color.z_color,"","")}}'></view>
+        <view class='font_family icon icon-wd-zhyaq-anq' style='{{util.diyColor(diyColor.zColor,"","")}}'></view>
         <text>恭喜您拼团成功!</text>
       </view>
       <view class='look-collage'>
         <text>可在我的</text>
-        <text hover-class='hover-class' hover-stay-time='400' bindtap='onMyCollage' style='{{util.diy_color(diy_color.z_color,"","")}}'>查看我的拼团></text>
+        <text hover-class='hover-class' hover-stay-time='400' bindtap='onMyCollage' style='{{util.diyColor(diyColor.zColor,"","")}}'>查看我的拼团></text>
       </view>
     </view>
   </view>
 
   <view class='collage-detail'>
     <view class='good-info'>
-      <view style='{{util.diy_imgbox(116)}}position: absolute;right: 0;top: 0;' wx:if="{{info.status == 1}}">
-        <image class='order-status' src='{{util.HTTP}}mobile/small/image/pg-xq-jxz.png' style='{{util.diy_imgcolor(diy_color.z_color,116,116)}}'></image>
+      <view style='{{util.diyImgbox(116)}}position: absolute;right: 0;top: 0;' wx:if="{{info.status == 1}}">
+        <image class='order-status' src='{{util.HTTP}}mobile/small/image/pg-xq-jxz.png' style='{{util.diyImgcolor(diyColor.zColor,116,116)}}'></image>
       </view>
-      <view style='{{util.diy_imgbox(116)}}position: absolute;right: 0;top: 0;' wx:elif="{{info.status == 2}}">
-        <image class='order-status' src='{{util.HTTP}}mobile/small/image/pg-xq-chengg.png' style='{{util.diy_imgcolor(diy_color.z_color,116,116)}}'></image>
+      <view style='{{util.diyImgbox(116)}}position: absolute;right: 0;top: 0;' wx:elif="{{info.status == 2}}">
+        <image class='order-status' src='{{util.HTTP}}mobile/small/image/pg-xq-chengg.png' style='{{util.diyImgcolor(diyColor.zColor,116,116)}}'></image>
       </view>
       <image class='order-status' wx:elif="{{info.status == 3}}" src='{{util.HTTP}}mobile/small/image/pg-xq-shib.png'></image>
       <view class='good-pic' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
@@ -38,7 +38,7 @@
       <view>
         <view class='good-name'>{{info.goods_name}}</view>
         <view class='good-tips'>
-          <view class='present-price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+          <view class='present-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
             <text class='unit'>￥</text>
             <text class='integer'>{{util.integer(info.single_price)}}</text>
             <text class='decimals'>.{{util.decimals(info.single_price)}}</text>
@@ -46,8 +46,8 @@
           <view>
             <view class='origin-price'>￥{{info.original_price}}</view>
             <view class='good-sale'>
-              <view class='good-person' style='{{util.diy_color(diy_color.z_color,diy_color.f_color_2,"")}}'>{{info.group_num}}人团</view>
-              <view class='good-save' style='{{util.diy_color(diy_color.z_color,diy_color.f_color_2,"")}}'>拼团立省{{util.toFixed(info.original_price-info.single_price)}}元</view>
+              <view class='good-person' style='{{util.diyColor(diyColor.zColor,diyColor.fColor2,"")}}'>{{info.group_num}}人团</view>
+              <view class='good-save' style='{{util.diyColor(diyColor.zColor,diyColor.fColor2,"")}}'>拼团立省{{util.toFixed(info.original_price-info.single_price)}}元</view>
             </view>
           </view>
         </view>
@@ -60,7 +60,7 @@
         <view wx:if="{{info.status == 1}}">
           <view class='info-head'>
             <text>还差</text>
-            <text style='{{util.diy_color(diy_color.z_color,"","")}}'>{{info.need}}人</text>拼团成功,剩余时间</view>
+            <text style='{{util.diyColor(diyColor.zColor,"","")}}'>{{info.need}}人</text>拼团成功,剩余时间</view>
           <view class='info-count'>
             <text class='text'>{{info.hour_first}}</text>
             <text class='text'>{{info.hour_second}}</text>
@@ -88,7 +88,7 @@
               <view class='avatar' style='background:url({{util.HTTP}}mobile/small/image/placeholder_member.png) no-repeat center;background-size:100% 100%;'>
                 <image src='{{item.avatar}}'></image>
               </view>
-              <view class='tip' wx:if='{{index == 0}}' style='{{util.diy_color("",diy_color.z_color,"")}}'>团长</view>
+              <view class='tip' wx:if='{{index == 0}}' style='{{util.diyColor("",diyColor.zColor,"")}}'>团长</view>
             </view>
             <view class='item' wx:for="{{info.need}}">
               <view class='avatar' style='background:url({{util.HTTP}}mobile/small/image/placeholder_member.png) no-repeat center;background-size:100% 100%;'>
@@ -99,16 +99,16 @@
         </view>
       </view>
     </view>
-    <!-- <view class='wanna-collage' wx:if="{{(member_id != info.owner&&info.state == 0&&info.status==1)||(member_id==''&&info.state == 0&&info.status==1)}}" hover-class='hover-class' hover-stay-time='400' bindtap='onOffered' style='{{util.diy_color("",diy_color.z_color,"")}}'>我要参团</view> -->
+    <!-- <view class='wanna-collage' wx:if="{{(member_id != info.owner&&info.state == 0&&info.status==1)||(member_id==''&&info.state == 0&&info.status==1)}}" hover-class='hover-class' hover-stay-time='400' bindtap='onOffered' style='{{util.diyColor("",diyColor.zColor,"")}}'>我要参团</view> -->
     <block wx:if="{{(member_id != info.owner&&info.state == 0&&info.status==1)||(member_id==''&&info.state == 0&&info.status==1)}}">
       <form report-submit='true' bindsubmit='formId'>
-        <button class='wanna-collage' hover-class='hover-class' hover-stay-time='400' formType="submit" bindtap='onOffered' style='{{util.diy_color("",diy_color.z_color,"")}}'>我要参团</button>
+        <button class='wanna-collage' hover-class='hover-class' hover-stay-time='400' formType="submit" bindtap='onOffered' style='{{util.diyColor("",diyColor.zColor,"")}}'>我要参团</button>
       </form>
     </block>
-    <button open-type='share' class='wanna-collage' wx:if="{{member_id == info.owner && info.status == 1 && info.state!=0}}" style='{{util.diy_color("",diy_color.z_color,"")}}'>邀请好友参团</button>
-    <view class='wanna-collage' wx:if="{{member_id == info.owner&&info.status == 3}}" hover-class='hover-class' hover-stay-time='400' bindtap='onAgainCollage' style='{{util.diy_color("",diy_color.z_color,"")}}'>再开一团</view>
-    <view class='other-collage' wx:if='{{info.status == 3}}' hover-class='hover-class' hover-stay-time='400' bindtap='onOtherCollage' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>去逛逛其他拼团</view>
-    <view class='other-collage' wx:if='{{info.status == 2}}' hover-class='hover-class' hover-stay-time='400' bindtap='onOtherCollage' style='{{util.diy_color("#fff",diy_color.z_color,"")}}'>去逛逛其他拼团</view>
+    <button open-type='share' class='wanna-collage' wx:if="{{member_id == info.owner && info.status == 1 && info.state!=0}}" style='{{util.diyColor("",diyColor.zColor,"")}}'>邀请好友参团</button>
+    <view class='wanna-collage' wx:if="{{member_id == info.owner&&info.status == 3}}" hover-class='hover-class' hover-stay-time='400' bindtap='onAgainCollage' style='{{util.diyColor("",diyColor.zColor,"")}}'>再开一团</view>
+    <view class='other-collage' wx:if='{{info.status == 3}}' hover-class='hover-class' hover-stay-time='400' bindtap='onOtherCollage' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>去逛逛其他拼团</view>
+    <view class='other-collage' wx:if='{{info.status == 2}}' hover-class='hover-class' hover-stay-time='400' bindtap='onOtherCollage' style='{{util.diyColor("#fff",diyColor.zColor,"")}}'>去逛逛其他拼团</view>
   </view>
 
   <view class=' collage-rule'>
@@ -139,7 +139,7 @@
           <image src='{{item.file}}'></image>
         </view>
         <view class='good-name'>{{item.goods_name}}</view>
-        <view class='good-price' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+        <view class='good-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
           <view class='good-person'>{{item.group_num}}人拼</view>
           <view class='present-price'>
             <text class='unit'>￥</text>
@@ -156,4 +156,4 @@
   </view>
 </view>
 <!--立即购买  -->
-<buy isShow="{{buy_board}}" catchtap="none" id="buy_board" bind:closeBuy="closeBuy" order_type="2" type="2" info="{{goods_info}}" discount="{{discount}}" group_buy="{{true}}" group_activity_id="{{info.group_activity_id}}" diy_color='{{diy_color}}' />
+<buy isShow="{{buy_board}}" catchtap="none" id="buy_board" bind:closeBuy="closeBuy" order_type="2" type="2" info="{{goods_info}}" discount="{{discount}}" group_buy="{{true}}" group_activity_id="{{info.group_activity_id}}" diyColor='{{diyColor}}' />

@@ -8,8 +8,8 @@
 </view>
 <block wx:if='{{((dataInfo.distribution_type==1||dataInfo.distribution_type==3)&&dataInfo.status>=1)||(dataInfo.distribution_type==2&&dataInfo.status==2)}}'>
   <view class='operation' hover-class='hover-class' hover-stay-time='400' bindtap='onRefund'>
-    <view class='logo' style='{{util.diy_imgbox(46)}}'>
-      <image src='{{util.HTTP}}mobile/small/image/wd-pj-jtk.png' style='{{util.diy_imgcolor(diy_color.z_color,46,46)}}'></image>
+    <view class='logo' style='{{util.diyImgbox(46)}}'>
+      <image src='{{util.HTTP}}mobile/small/image/wd-pj-jtk.png' style='{{util.diyImgcolor(diyColor.zColor,46,46)}}'></image>
     </view>
     <view>
       <view class='head'>仅退款</view>
@@ -21,8 +21,8 @@
 
 <block wx:if='{{((dataInfo.distribution_type==1||dataInfo.distribution_type==3)&&dataInfo.status!=1)||(dataInfo.distribution_type==2&&dataInfo.status==3)||(dataInfo.distribution_type==2&&dataInfo.status==4)}}'>
   <view class='operation' hover-class='hover-class' hover-stay-time='400' bindtap='onRefundProduct'>
-    <view class='logo' style='{{util.diy_imgbox(46)}}'>
-      <image src='{{util.HTTP}}mobile/small/image/wd-pj-thtk.png' style='{{util.diy_imgcolor(diy_color.z_color,46,46)}}'></image>
+    <view class='logo' style='{{util.diyImgbox(46)}}'>
+      <image src='{{util.HTTP}}mobile/small/image/wd-pj-thtk.png' style='{{util.diyImgcolor(diyColor.zColor,46,46)}}'></image>
     </view>
     <view>
       <view class='head'>退货退款</view>

@@ -1,4 +1,3 @@
-// my/fx_cwdy/fx_cwdy.js
 const http = require('../../utils/http.js');
 const app = getApp();
 Page({
@@ -15,7 +14,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -72,7 +71,7 @@ Page({
    */
   goDY() {
     wx.navigateTo({
-      url: '/my/fx_apply_dy/fx_apply_dy',
+      url: '/my/fxApplyDy/fxApplyDy',
     })
   },
   /**
@@ -81,7 +80,7 @@ Page({
   goDyzq() {
     const page = getCurrentPages()
     for (let i = 0, len = page.length; i < len; i++) {
-      if (page[i].route == 'my/fx_goods_list/fx_goods_list') {
+      if (page[i].route == 'my/fxGoodsList/fxGoodsList') {
         console.log(i)
         wx.navigateBack({
           delta: page.length - i - 1
@@ -91,7 +90,7 @@ Page({
       }
     }
     wx.navigateTo({
-      url: '/my/fx_goods_list/fx_goods_list',
+      url: '/my/fxGoodsList/fxGoodsList',
     })
   },
   /**
@@ -100,7 +99,7 @@ Page({
   goHome() {
     let page = getCurrentPages()
     for (let i of page) {
-      if (i.route == 'my/fx_goods_list/fx_goods_list') {
+      if (i.route == 'my/fxGoodsList/fxGoodsList') {
         wx.navigateBack({
           delta: i
         })
@@ -109,14 +108,14 @@ Page({
       }
     }
     wx.navigateTo({
-      url: '/my/fx_goods_list/fx_goods_list',
+      url: '/my/fxGoodsList/fxGoodsList',
     })
   },
   /**
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.tobe_distributor_rule, {}).then(res => {
+    http.post(app.globalData.tobeDistributorRule, {}).then(res => {
       this.setData({
         info: res.data
       })
@@ -130,25 +129,25 @@ Page({
    * 获取代言信息
    */
   getDistributionData() {
-    http.post(app.globalData.distribution_share_info, {
+    http.post(app.globalData.distributionShareInfo, {
       distributionId: 0
     }).then(res => {
       app.globalData.distribution = res.data
       this.setData({
         distribution: res.data
       })
-      let member_info = wx.getStorageSync('member_info')
-      if (member_info.distribution_record == null) {
-        let distribution_record = {
-          distribution_id: res.data.cur == null ? null : res.data.cur.distribution_id,
-          audit_status: res.data.cur == null ? null : res.data.cur.audit_status
+      let memberInfo = wx.getStorageSync('memberInfo')
+      if (memberInfo.distributionRecord == null) {
+        let distributionRecord = {
+          distributionId: res.data.cur == null ? null : res.data.cur.distributionId,
+          auditStatus: res.data.cur == null ? null : res.data.cur.auditStatus
         }
-        member_info.distribution_record = distribution_record
+        memberInfo.distributionRecord = distributionRecord
       } else {
-        member_info.distribution_record.distribution_id = res.data.cur == null ? null : res.data.cur.distribution_id,
-          member_info.distribution_record.audit_status = res.data.cur == null ? null : res.data.cur.audit_status
+        memberInfo.distributionRecord.distributionId = res.data.cur == null ? null : res.data.cur.distributionId,
+          memberInfo.distributionRecord.auditStatus = res.data.cur == null ? null : res.data.cur.auditStatus
       }
-      wx.setStorageSync('member_info', member_info)
+      wx.setStorageSync('memberInfo', memberInfo)
 
     })
   },
@@ -156,9 +155,9 @@ Page({
    * 会员成为代言人
    */
   vipTurnDist() {
-    http.post(app.globalData.distribution_vipTurnDist, {}).then(res => {
+    http.post(app.globalData.distributionVipTurnDist, {}).then(res => {
       let obj = {
-        distribution_id: res.data.distribution_id
+        distributionId: res.data.distributionId
       }
       this.data.distribution.cur = obj
       this.setData({

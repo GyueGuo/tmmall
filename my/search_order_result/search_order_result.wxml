@@ -7,17 +7,15 @@
   </view>
 </view>
 <view class='order-item' wx:for="{{list}}" wx:key="{{index}}">
-  <block wx:if='{{item.distribution_type==4}}'>
+  <block wx:if='{{item.distributionType==4}}'>
     <view class='order-item-shop'>
-      <view wx:if='{{util.isShops==0&&configSwitch.version_info.one_more==1}}'>
+      <view wx:if='{{util.isShops==0&&configSwitch.versionInfo.oneMore==1}}'>
         <image class='item-shop-icon' src='{{util.HTTP}}mobile/small/image/xq-dp.png'></image>
-        <view class='item-shop-name'>{{item.store_list.store_name}}</view>
+        <view class='item-shop-name'>{{item.storeList.storeName}}</view>
         <image class='item-shop-next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
       </view>
       <view wx:else>
-        <!-- <image class='item-shop-icon' src='{{util.HTTP}}mobile/small/image/xq-dp.png'></image> -->
-        <view class='item-shop-name'>下单时间：{{item.create_time}}</view>
-        <!-- <image class='item-shop-next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image> -->
+        <view class='item-shop-name'>下单时间：{{item.createTime}}</view>
       </view>
       <view class='cur order-item-status'>
         <text wx:if="{{item.status == -1}}">交易关闭</text>
@@ -28,115 +26,118 @@
         <text wx:elif="{{item.status == 4}}">交易关闭</text>
       </view>
     </view>
-    <view class='order-item-good' hover-class='hover-class' hover-stay-time='400' bindtap='onDetail' wx:for="{{item.order_goods_list}}" data-id='{{item.order_attach_id}}' data-index='{{index}}'>
+    <view class='order-item-good' hover-class='hover-class' hover-stay-time='400' bindtap='onDetail' wx:for="{{item.orderGoodsList}}" data-id='{{item.orderAttachId}}' data-index='{{index}}'>
       <view class='file' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
-          <image src='{{itemName.file}}'></image>
-        </view>
+        <image src='{{itemName.file}}'></image>
+      </view>
       <view>
         <view class='order-item-good-info'>
           <view class='order-item-good-name'>线下订单</view>
-          <view class='order-item-good-price'>￥{{item.single_price}}</view>
+          <view class='order-item-good-price'>￥{{item.singlePrice}}</view>
         </view>
         <view class='order-item-good-tips'>
           <view class='order-item-good-attr'></view>
           <view class='order-item-good-number'>x{{item.quantity}}</view>
         </view>
-        <view class='order-item-good-status' wx:if="{{item.status == 4.2}}">
-          退款成功
-        </view>
-        <view class='order-item-good-status' wx:elif="{{item.status == 4.3}}">
-          退货成功
-        </view>
+        <view class='order-item-good-status' wx:if="{{item.status == 4.2}}">退款成功</view>
+        <view class='order-item-good-status' wx:elif="{{item.status == 4.3}}">退货成功</view>
         <view class='order-item-good-status' wx:elif="{{item.status == 5.1 || item.status == 5.2}}">
           申请退款中
         </view>
-        <view class='order-item-good-status' wx:elif="{{item.status == 5.3}}">
-          同意退货,请填写物流单号
-        </view>
-        <view class='order-item-good-status' wx:elif="{{item.status == 5.4}}">
-          同意退款等待退货
-        </view>
+        <view class='order-item-good-status' wx:elif="{{item.status == 5.3}}">同意退货,请填写物流单号</view>
+        <view class='order-item-good-status' wx:elif="{{item.status == 5.4}}">同意退款等待退货</view>
       </view>
     </view>
     <view class='order-item-total'>
       <!-- <view>共{{item.number}}件商品</view> -->
       <view>合计</view>
-      <view class='order-item-total-price'>{{item.subtotal_price}}</view>
-      <view>(含运费)￥{{item.subtotal_freight_price}}</view>
+      <view class='order-item-total-price'>{{item.subtotalPrice}}</view>
+      <view>(含运费)￥{{item.subtotalFreightPrice}}</view>
     </view>
     <view class='order-item-operation'>
-      <view wx:if="{{item.status == 0 }}" hover-class='hover-class' hover-stay-time='400' bindtap='cancelOrder' data-id='{{item.order_attach_id}}' data-index='{{index}}'>取消订单</view>
-      <view wx:if="{{item.status == 3 || item.status == 4 || item.status == -1}}" hover-class='hover-class' hover-stay-time='400' bindtap='deleteOrder' data-id='{{item.order_attach_id}}' data-index='{{index}}'>删除订单</view>
+      <view wx:if="{{item.status == 0 }}" hover-class='hover-class' hover-stay-time='400' bindtap='cancelOrder' data-id='{{item.orderAttachId}}' data-index='{{index}}'>
+        取消订单
+      </view>
+      <view wx:if="{{item.status == 3 || item.status == 4 || item.status == -1}}" hover-class='hover-class' hover-stay-time='400' bindtap='deleteOrder' data-id='{{item.orderAttachId}}' data-index='{{index}}'>
+        删除订单
+      </view>
       <!-- <view wx:if="{{item.status == 1 || item.status == 2 || item.status == 3 || item.status == 4 }}" hover-class='hover-class' hover-stay-time='400' bindtap='onLogistics' data-item='{{item}}'>查看物流</view> -->
-      <view class='border-cur' wx:if="{{item.status == 2}}" hover-class='hover-class' hover-stay-time='400' bindtap='confirmReceipt' data-id='{{item.order_attach_id}}' data-index='{{index}}'>确认收货</view>
-      <view class='border-cur' wx:if="{{item.status == 3 }}" hover-class='hover-class' hover-stay-time='400' bindtap='onComment' data-item='{{item}}'>评价</view>
-      <view class='border-cur' wx:if="{{item.status == 0 }}" hover-class='hover-class' hover-stay-time='400' bindtap='payOrder' data-item='{{item}}' data-index='{{index}}'>付款</view>
-    </view>
-    
-</block>
-<block wx:else>
-  <view class='order-item-shop'>
-    <view wx:if='{{util.isShops==0&&configSwitch.version_info.one_more==1}}'>
-      <image class='item-shop-icon' src='{{util.HTTP}}{{"mobile/small/image/xq-dp.png"}}'></image>
-      <view class='item-shop-name'>{{item.store_list.store_name}}</view>
-      <image class='item-shop-next' src='{{util.HTTP}}{{"mobile/small/image/xq-gd.png"}}'></image>
-    </view>
-    <view wx:else>
-      <!-- <image class='item-shop-icon' src='{{util.HTTP}}mobile/small/image/xq-dp.png'></image> -->
-      <view class='item-shop-name'>下单时间：{{item.create_time}}</view>
-      <!-- <image class='item-shop-next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image> -->
-    </view>
-    <view class='cur order-item-status'>
-      <text wx:if="{{item.status == -1}}">交易关闭</text>
-      <text wx:elif="{{item.status == 0}}">等待付款</text>
-      <text wx:elif="{{item.status == 1}}">待配送</text>
-      <text wx:elif="{{item.status == 2}}">配送中</text>
-      <text wx:elif="{{item.status == 3 }}">交易成功</text>
-      <text wx:elif="{{item.status == 4}}">交易关闭</text>
-    </view>
-  </view>
-  <view class='order-item-good' hover-class='hover-class' hover-stay-time='400' bindtap='onOrderDetail' wx:for="{{item.order_goods_list}}" data-id='{{item.order_attach_id}}' data-index='{{index}}'>
-    <image src='{{item.file}}'></image>
-    <view>
-      <view class='order-item-good-info'>
-        <view class='order-item-good-name'>{{item.goods_name}}</view>
-        <view class='order-item-good-price'>￥{{item.single_price}}</view>
+      <view class='border-cur' wx:if="{{item.status == 2}}" hover-class='hover-class' hover-stay-time='400' bindtap='confirmReceipt' data-id='{{item.orderAttachId}}' data-index='{{index}}'>
+        确认收货
       </view>
-      <view class='order-item-good-tips'>
-        <view class='order-item-good-attr'>{{item.attr}}</view>
-        <view class='order-item-good-number'>x{{item.quantity}}</view>
+      <view class='border-cur' wx:if="{{item.status == 3 }}" hover-class='hover-class' hover-stay-time='400' bindtap='onComment' data-item='{{item}}'>
+        评价
       </view>
-      <view class='order-item-good-status' wx:if="{{item.status == 4.2}}">
-        退款成功
-      </view>
-      <view class='order-item-good-status' wx:elif="{{item.status == 4.3}}">
-        退货成功
-      </view>
-      <view class='order-item-good-status' wx:elif="{{item.status == 5.1 || item.status == 5.2}}">
-        申请退款中
-      </view>
-      <view class='order-item-good-status' wx:elif="{{item.status == 5.3}}">
-        同意退货,请填写物流单号
-      </view>
-      <view class='order-item-good-status' wx:elif="{{item.status == 5.4}}">
-        同意退款等待退货
+      <view class='border-cur' wx:if="{{item.status == 0 }}" hover-class='hover-class' hover-stay-time='400' bindtap='payOrder' data-item='{{item}}' data-index='{{index}}'>
+        付款
       </view>
     </view>
-  </view>
-  <view class='order-item-total'>
-    <view>共{{item.number}}件商品</view>
-    <view>合计</view>
-    <view class='order-item-total-price'>{{item.subtotal_price}}</view>
-    <view>(含运费)￥{{item.subtotal_freight_price}}</view>
-  </view>
-  <view class='order-item-operation'>
-    <view wx:if="{{item.status == 0 }}" hover-class='hover-class' hover-stay-time='400' bindtap='cancelOrder' data-id='{{item.order_attach_id}}' data-index='{{index}}'>取消订单</view>
-    <view wx:if="{{item.status == 3 || item.status == 4 || item.status == -1}}" hover-class='hover-class' hover-stay-time='400' bindtap='deleteOrder' data-id='{{item.order_attach_id}}' data-index='{{index}}'>删除订单</view>
-    <view wx:if="{{item.status == 1 || item.status == 2 || item.status == 3 || item.status == 4 }}" hover-class='hover-class' hover-stay-time='400' bindtap='onLogistics' data-item='{{item}}'>查看物流</view>
-    <view class='border-cur' wx:if="{{item.status == 2}}" hover-class='hover-class' hover-stay-time='400' bindtap='confirmReceipt' data-id='{{item.order_attach_id}}' data-index='{{index}}'>确认收货</view>
-    <view class='border-cur' wx:if="{{item.status == 3 }}" hover-class='hover-class' hover-stay-time='400' bindtap='onComment' data-item='{{item}}'>评价</view>
-    <view class='border-cur' wx:if="{{item.status == 0 }}" hover-class='hover-class' hover-stay-time='400' bindtap='payOrder' data-item='{{item}}' data-index='{{index}}'>付款</view>
-  </view>
-</block>
+  </block>
+  <block wx:else>
+    <view class='order-item-shop'>
+      <view wx:if='{{util.isShops==0&&configSwitch.versionInfo.oneMore==1}}'>
+        <image class='item-shop-icon' src='{{util.HTTP}}{{"mobile/small/image/xq-dp.png"}}'></image>
+        <view class='item-shop-name'>{{item.storeList.storeName}}</view>
+        <image class='item-shop-next' src='{{util.HTTP}}{{"mobile/small/image/xq-gd.png"}}'></image>
+      </view>
+      <view wx:else>
+        <view class='item-shop-name'>下单时间：{{item.createTime}}</view>
+      </view>
+      <view class='cur order-item-status'>
+        <text wx:if="{{item.status == -1}}">交易关闭</text>
+        <text wx:elif="{{item.status == 0}}">等待付款</text>
+        <text wx:elif="{{item.status == 1}}">待配送</text>
+        <text wx:elif="{{item.status == 2}}">配送中</text>
+        <text wx:elif="{{item.status == 3 }}">交易成功</text>
+        <text wx:elif="{{item.status == 4}}">交易关闭</text>
+      </view>
+    </view>
+    <view class='order-item-good' hover-class='hover-class' hover-stay-time='400' bindtap='onOrderDetail' wx:for="{{item.orderGoodsList}}" data-id='{{item.orderAttachId}}' data-index='{{index}}'>
+      <image src='{{item.file}}'></image>
+      <view>
+        <view class='order-item-good-info'>
+          <view class='order-item-good-name'>{{item.goodsName}}</view>
+          <view class='order-item-good-price'>￥{{item.singlePrice}}</view>
+        </view>
+        <view class='order-item-good-tips'>
+          <view class='order-item-good-attr'>{{item.attr}}</view>
+          <view class='order-item-good-number'>x{{item.quantity}}</view>
+        </view>
+        <view class='order-item-good-status' wx:if="{{item.status == 4.2}}">退款成功</view>
+        <view class='order-item-good-status' wx:elif="{{item.status == 4.3}}">退货成功</view>
+        <view class='order-item-good-status' wx:elif="{{item.status == 5.1 || item.status == 5.2}}">
+          申请退款中
+        </view>
+        <view class='order-item-good-status' wx:elif="{{item.status == 5.3}}">同意退货,请填写物流单号</view>
+        <view class='order-item-good-status' wx:elif="{{item.status == 5.4}}">同意退款等待退货</view>
+      </view>
+    </view>
+    <view class='order-item-total'>
+      <view>共{{item.number}}件商品</view>
+      <view>合计</view>
+      <view class='order-item-total-price'>{{item.subtotalPrice}}</view>
+      <view>(含运费)￥{{item.subtotalFreightPrice}}</view>
+    </view>
+    <view class='order-item-operation'>
+      <view wx:if="{{item.status == 0 }}" hover-class='hover-class' hover-stay-time='400' bindtap='cancelOrder' data-id='{{item.orderAttachId}}' data-index='{{index}}'>
+        取消订单
+      </view>
+      <view wx:if="{{item.status == 3 || item.status == 4 || item.status == -1}}" hover-class='hover-class' hover-stay-time='400' bindtap='deleteOrder' data-id='{{item.orderAttachId}}' data-index='{{index}}'>
+        删除订单
+      </view>
+      <view wx:if="{{item.status == 1 || item.status == 2 || item.status == 3 || item.status == 4 }}" hover-class='hover-class' hover-stay-time='400' bindtap='onLogistics' data-item='{{item}}'>
+        查看物流
+      </view>
+      <view class='border-cur' wx:if="{{item.status == 2}}" hover-class='hover-class' hover-stay-time='400' bindtap='confirmReceipt' data-id='{{item.orderAttachId}}' data-index='{{index}}'>
+        确认收货
+      </view>
+      <view class='border-cur' wx:if="{{item.status == 3 }}" hover-class='hover-class' hover-stay-time='400' bindtap='onComment' data-item='{{item}}'>
+        评价
+      </view>
+      <view class='border-cur' wx:if="{{item.status == 0 }}" hover-class='hover-class' hover-stay-time='400' bindtap='payOrder' data-item='{{item}}' data-index='{{index}}'>
+        付款
+      </view>
+    </view>
+  </block>
 </view>
 <load_more show="{{loading}}" />

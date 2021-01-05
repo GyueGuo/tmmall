@@ -1,14 +1,12 @@
 <wxs module="util" src="../../utils/util.wxs" />
-<view class='order-wrap' hidden='{{!info.order_attach_id}}'>
+<view class='order-wrap' hidden='{{!info.orderAttachId}}'>
   <scroll-view scroll-y>
     <view class='order-head'>
-      <view class='imagebg' style='background-image: url({{util.HTTP}}mobile/small/image/ddxq-bj.png), linear-gradient({{diy_color.z_color}}, {{diy_color.z_color}});background-blend-mode: luminosity;background-size: cover;'>
-        <view style='{{util.diy_color("",diy_color.z_color,"")}}'></view>
+      <view class='imagebg' style='background-image: url({{util.HTTP}}mobile/small/image/ddxq-bj.png), linear-gradient({{diyColor.zColor}}, {{diyColor.zColor}});background-blend-mode: luminosity;background-size: cover;'>
+        <view style='{{util.diyColor("",diyColor.zColor,"")}}'></view>
       </view>
-      <!-- <image src='{{util.HTTP}}{{"mobile/small/image/ddxq-bj.png"}}'></image> -->
-
       <!-- 快递邮寄 -->
-      <block wx:if='{{info.distribution_type == 3}}'>
+      <block wx:if='{{info.distributionType == 3}}'>
         <view wx:if="{{info.status == 0}}">
           <view>
             <view>等待买家付款</view>
@@ -16,14 +14,12 @@
           </view>
           <image src='{{util.HTTP}}mobile/small/image/ddxq-dfk.png'></image>
         </view>
-
         <view wx:elif="{{info.status == 1}}">
           <view>
             <view>买家已付款</view>
           </view>
           <image src='{{util.HTTP}}mobile/small/image/ddxq-mjyfk.png'></image>
         </view>
-
         <view wx:elif="{{info.status == 2}}">
           <view>
             <view>卖家已发货</view>
@@ -32,7 +28,7 @@
         </view>
       </block>
       <!-- 预约自提 -->
-      <block wx:if='{{info.distribution_type == 2}}'>
+      <block wx:if='{{info.distributionType == 2}}'>
         <view wx:if="{{info.status == 0}}">
           <view>
             <view>等待买家付款</view>
@@ -45,9 +41,8 @@
           <image src='{{util.HTTP}}mobile/small/image/ddxq-dzt.png'></image>
         </view>
       </block>
-
       <!-- 同城速递 -->
-      <block wx:if='{{info.distribution_type == 1}}'>
+      <block wx:if='{{info.distributionType == 1}}'>
         <view wx:if="{{info.status == 0}}">
           <view>
             <view>等待买家付款</view>
@@ -64,7 +59,6 @@
           <image src='{{util.HTTP}}mobile/small/image/ddxq-psz.png'></image>
         </view>
       </block>
-
       <view wx:if="{{info.status == 3 }}">
         <view>交易成功</view>
         <image src='{{util.HTTP}}mobile/small/image/ddxq-jycg.png'></image>
@@ -78,40 +72,40 @@
         <image src='{{util.HTTP}}mobile/small/image/ddxq-jycg.png'></image>
       </view>
     </view>
-
     <view class='address-wrap'>
-      <view wx:if="{{info.distribution_type == 1||info.distribution_type == 3}}">
-        <!-- 同城 distribution_type:1 -->
-        <block wx:if='{{info.distribution_type == 1&&info.dada == 0 && (info.status != -1 || info.status != 0 || info.status != 1)&&info.distribution_tel!=null}}'>
+      <view wx:if="{{info.distributionType == 1||info.distributionType == 3}}">
+        <!-- 同城 distributionType:1 -->
+        <block wx:if='{{info.distributionType == 1&&info.dada == 0 && (info.status != -1 || info.status != 0 || info.status != 1)&&info.distributionTel!=null}}'>
           <view class='logistics-info' hover-class='hover-class' hover-stay-time='400' bindtap='onCourierPhone'>
-            <view>配送电话:{{info.distribution_tel}}</view>
+            <view>配送电话:{{info.distributionTel}}</view>
           </view>
         </block>
-        <!-- 同城 distribution_type:1 达达配送-->
-        <block wx:if='{{info.distribution_type == 1&&info.dada == 1 && (info.status != -1 || info.status != 0 || info.status != 1)}}'>
+        <!-- 同城 distributionType:1 达达配送 -->
+        <block wx:if='{{info.distributionType == 1&&info.dada == 1 && (info.status != -1 || info.status != 0 || info.status != 1)}}'>
           <view class='logistics-info' hover-class='hover-class' hover-stay-time='400' bindtap='onLogistics'>
             <image class='logo' src='{{util.HTTP}}mobile/small/image/ddxq-psxx.png'></image>
             <view>配送信息</view>
             <image class='next' src='{{util.HTTP}}mobile/small/image/ddxq-gd.png'></image>
           </view>
         </block>
-        <!-- 快递邮寄 distribution_type:3 -->
-        <block wx:if='{{info.distribution_type==3&&(info.status != -1 || info.status != 0 || info.status != 1)&&info.express_value != null}}'>
+        <!-- 快递邮寄 distributionType:3 -->
+        <block wx:if='{{info.distributionType==3&&(info.status != -1 || info.status != 0 || info.status != 1)&&info.expressValue != null}}'>
           <view class='logistics-info' hover-class='hover-class' hover-stay-time='400' bindtap='onLogistics'>
             <image class='logo' src='{{util.HTTP}}mobile/small/image/ddxq-psxx.png'></image>
             <view>配送信息</view>
             <image class='next' src='{{util.HTTP}}mobile/small/image/ddxq-gd.png'></image>
           </view>
         </block>
-
         <view class='address'>
           <image src='{{util.HTTP}}mobile/small/image/ddxq-dw.png'></image>
           <view>
             <view class='user-info'>
-              <text>{{info.consignee_name}}</text>
-              <text>{{util.phoneEnc(info.consignee_phone)}}</text>
+              <text>{{info.consigneeName}}</text>
+              <text>{{util.phoneEnc(info.consigneePhone)}}</text>
             </view>
-            <view class='address-detail'>地址:{{info.address_province}}{{info.address_city}}{{info.address_area}}{{info.address_street}}{{info.address_details}}</view>
+            <view class='address-detail'>
+              地址:{{info.addressProvince}}{{info.addressCity}}{{info.addressArea}}{{info.addressStreet}}{{info.addressDetails}}
+            </view>
           </view>
         </view>
       </view>
@@ -122,7 +116,7 @@
             <view>提货凭证</view>
           </view>
           <view class='self-right'>
-            <view>{{info.take_code}}</view>
+            <view>{{info.takeCode}}</view>
             <image src='{{util.HTTP}}mobile/small/image/sy-ewm-2.png'></image>
           </view>
         </view>
@@ -132,7 +126,7 @@
             <view>自提门店</view>
           </view>
           <view class='self-right'>
-            <view>{{info.take_name}}</view>
+            <view>{{info.takeName}}</view>
           </view>
         </view>
         <view class='self-address z-address'>
@@ -141,106 +135,123 @@
             <view>自提地址:</view>
           </view>
           <view class='self-right'>
-            <view>{{info.take_province}}{{info.take_city}}{{info.take_area}}{{info.take_address}}</view>
+            <view>{{info.takeProvince}}{{info.takeCity}}{{info.takeArea}}{{info.takeAddress}}</view>
           </view>
         </view>
-        <!-- <view class='self-address'>自提地址：{{info.take_province}}{{info.take_city}}{{info.take_area}}{{info.take_address}}</view> -->
       </view>
     </view>
-
-    <view class='collage-detail' wx:if="{{info.order_type == 2 && info.status != 0}}" hover-class='hover-class' hover-stay-time='400' bindtap='onCollageDetail'>
+    <view class='collage-detail' wx:if="{{info.orderType == 2 && info.status != 0}}" hover-class='hover-class' hover-stay-time='400' bindtap='onCollageDetail'>
       <view class='collage-left'>
         <image src='{{util.HTTP}}mobile/small/image/pg-dg-ptu.png'></image>
-        <view wx:if="{{info.group_activity_status == 1}}">拼团进行中</view>
-        <view wx:elif="{{info.group_activity_status == 2}}">拼团成功</view>
-        <view wx:elif="{{info.group_activity_status == 3}}">拼团失败</view>
+        <view wx:if="{{info.groupActivityStatus == 1}}">拼团进行中</view>
+        <view wx:elif="{{info.groupActivityStatus == 2}}">拼团成功</view>
+        <view wx:elif="{{info.groupActivityStatus == 3}}">拼团失败</view>
       </view>
       <view class='collage-right'>
         <view>拼团详情</view>
         <image src='{{util.HTTP}}mobile/small/image/ddxq-gd.png'></image>
       </view>
     </view>
-
-    <view class='collage-detail' wx:elif="{{info.order_type == 3 && info.status != 0}}">
+    <view class='collage-detail' wx:elif="{{info.orderType == 3 && info.status != 0}}">
       <view class='collage-left'>
         <image src='{{util.HTTP}}mobile/small/image/kj-dd-kj.png'></image>
-        <view wx:if="{{info.cut_activity_status == 1}}">砍价进行中</view>
-        <view wx:elif="{{info.cut_activity_status == 2}}">砍价成功</view>
-        <view wx:elif="{{info.cut_activity_status == 3}}">砍价失败</view>
+        <view wx:if="{{info.cutActivityStatus == 1}}">砍价进行中</view>
+        <view wx:elif="{{info.cutActivityStatus == 2}}">砍价成功</view>
+        <view wx:elif="{{info.cutActivityStatus == 3}}">砍价失败</view>
       </view>
       <view class='collage-right' hover-class='hover-class' hover-stay-time='400' bindtap='onBargainDetail'>
         <view>砍价详情</view>
         <image src='{{util.HTTP}}mobile/small/image/ddxq-gd.png'></image>
       </view>
     </view>
-
     <view class='good-wrap'>
-      <view class='shop-info' hover-class='hover-class' hover-stay-time='400' bindtap='goShop' wx:if='{{util.isShops==0&&configSwitch.version_info.one_more==1}}'>
-        <image class='shop-logo' src='{{info.store_list.logo}}'></image>
-        <view>{{info.store_list.store_name}}</view>
+      <view class='shop-info' hover-class='hover-class' hover-stay-time='400' bindtap='goShop' wx:if='{{util.isShops==0&&configSwitch.versionInfo.oneMore==1}}'>
+        <image class='shop-logo' src='{{info.storeList.logo}}'></image>
+        <view>{{info.storeList.storeName}}</view>
         <image class='shop-next' src='{{util.HTTP}}mobile/small/image/ddxq-gd.png'></image>
       </view>
       <view class='order-good-wrap'>
-        <view wx:for="{{info.order_goods_details}}">
-          <view hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goods_id}}'>
+        <view wx:for="{{info.orderGoodsDetails}}">
+          <view hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goodsId}}'>
             <view class='order-good-image' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
               <image src='{{item.file}}'></image>
             </view>
             <view class='order-good-info'>
-              <view class='order-good-name'>{{item.goods_name}}</view>
+              <view class='order-good-name'>{{item.goodsName}}</view>
               <view class='order-good-attr'>{{item.attr}}</view>
               <view class='order-good-tip'>
-                <view class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+                <view class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                   <text class='unit'>￥</text>
-                  <text class='integer'>{{util.integer(item.original_price)}}</text>
-                  <text class='decimals'>.{{util.decimals(item.original_price)}}</text>
+                  <text class='integer'>{{util.integer(item.originalPrice)}}</text>
+                  <text class='decimals'>.{{util.decimals(item.originalPrice)}}</text>
                 </view>
                 <view class='order-good-num'>x{{item.quantity}}</view>
               </view>
             </view>
           </view>
           <view class='refund'>
-            <block wx:if="{{(item.status == 1.1 || item.status == 2.1) && info.pay_type == 1}}">
-              <view hover-class='hover-class' hover-stay-time='400' bindtap='onRefund' data-item='{{item}}'>退款</view>
+            <block wx:if="{{(item.status == 1.1 || item.status == 2.1) && info.payType == 1}}">
+              <view hover-class='hover-class' hover-stay-time='400' bindtap='onRefund' data-item='{{item}}'>
+                退款
+              </view>
             </block>
-            <block wx:elif="{{(item.status == 3.1 || item.status == 4.1)  && info.after_sale_time != -1}}">
-              <view hover-class='hover-class' hover-stay-time='400' bindtap='onRefund' data-item='{{item}}'>申请售后</view>
+            <block wx:elif="{{(item.status == 3.1 || item.status == 4.1)  && info.afterSaleTime != -1}}">
+              <view hover-class='hover-class' hover-stay-time='400' bindtap='onRefund' data-item='{{item}}'>
+                申请售后
+              </view>
             </block>
             <block wx:elif="{{item.status == 4.2}}">
-              <view hover-class='hover-class' hover-stay-time='400' bindtap='refundDetail' data-id='{{item.order_goods_id}}'>退款成功</view>
+              <view hover-class='hover-class' hover-stay-time='400' bindtap='refundDetail' data-id='{{item.orderGoodsId}}'>
+                退款成功
+              </view>
             </block>
             <block wx:elif="{{item.status == 4.3}}">
-              <view hover-class='hover-class' hover-stay-time='400' bindtap='refundDetail' data-id='{{item.order_goods_id}}'>退货成功</view>
+              <view hover-class='hover-class' hover-stay-time='400' bindtap='refundDetail' data-id='{{item.orderGoodsId}}'>
+                退货成功
+              </view>
             </block>
             <block wx:elif="{{item.status == 5.1 || item.status == 5.2}}">
-              <view hover-class='hover-class' hover-stay-time='400' bindtap='refundDetail' data-id='{{item.order_goods_id}}'>申请退款中</view>
+              <view hover-class='hover-class' hover-stay-time='400' bindtap='refundDetail' data-id='{{item.orderGoodsId}}'>
+                申请退款中
+              </view>
             </block>
             <block wx:elif="{{item.status == 5.3}}">
-              <view hover-class='hover-class' hover-stay-time='400' bindtap='refundDetail' data-id='{{item.order_goods_id}}'>同意退货,请填写物流单号</view>
+              <view hover-class='hover-class' hover-stay-time='400' bindtap='refundDetail' data-id='{{item.orderGoodsId}}'>
+                同意退货,请填写物流单号
+              </view>
             </block>
             <block wx:elif="{{item.status == 5.4}}">
-              <view hover-class='hover-class' hover-stay-time='400' bindtap='refundDetail' data-id='{{item.order_goods_id}}'>申请退货中</view>
+              <view hover-class='hover-class' hover-stay-time='400' bindtap='refundDetail' data-id='{{item.orderGoodsId}}'>
+                申请退货中
+              </view>
             </block>
             <block wx:elif="{{item.status == 5.5 || item.status == 5.7}}">
-              <view hover-class='hover-class' hover-stay-time='400' bindtap='refundDetail' data-id='{{item.order_goods_id}}'>退款失败</view>
+              <view hover-class='hover-class' hover-stay-time='400' bindtap='refundDetail' data-id='{{item.orderGoodsId}}'>
+                退款失败
+              </view>
             </block>
             <block wx:elif="{{item.status == 5.6}}">
-              <view hover-class='hover-class' hover-stay-time='400' bindtap='refundDetail' data-id='{{item.order_goods_id}}'>退货失败</view>
+              <view hover-class='hover-class' hover-stay-time='400' bindtap='refundDetail' data-id='{{item.orderGoodsId}}'>
+                退货失败
+              </view>
             </block>
           </view>
         </view>
       </view>
       <view class='return-integral'>
-        <view class='border-cur' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>积分</view>
+        <view class='border-cur' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>
+          积分
+        </view>
         <view>
           <text>返积分</text>
-          <text class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>{{info.subtotal_back_integral}}</text>
+          <text class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
+            {{info.subtotalBackIntegral}}
+          </text>
           <text>点</text>
         </view>
       </view>
-
       <view class='operation'>
-        <button class='operation-do' hover-class='hover-class' hover-stay-time='400' open-type="{{configSwitch.version_info.one_more==1?'':'contact'}}" bindcontact="handleContact" bindtap="{{configSwitch.version_info.one_more==1?'callPhone':''}}">
+        <button class='operation-do' hover-class='hover-class' hover-stay-time='400' open-type="{{configSwitch.versionInfo.oneMore==1?'':'contact'}}" bindcontact="handleContact" bindtap="{{configSwitch.versionInfo.oneMore==1?'callPhone':''}}">
           <image src='{{util.HTTP}}mobile/small/image/ddxq-lxmj.png'></image>
           <view>联系卖家</view>
         </button>
@@ -250,91 +261,89 @@
         </button>
       </view>
     </view>
-
     <view class='price-bg'>
       <view class='price-wrap'>
         <view>
           <view class='price-left'>商品总额</view>
-          <view class='price-right'>￥{{info.subtotal_original_price}}</view>
+          <view class='price-right'>￥{{info.subtotalOriginalPrice}}</view>
         </view>
         <view>
           <view class='price-left'>运费</view>
-          <view class='price-right'>￥{{info.subtotal_freight_price}}</view>
+          <view class='price-right'>￥{{info.subtotalFreightPrice}}</view>
         </view>
-        <block wx:if='{{configSwitch.show_switch.is_red_packet==1||configSwitch.show_switch.is_coupon==1}}'>
-          <view hidden='{{info.order_type != 1}}'>
+        <block wx:if='{{configSwitch.showSwitch.isRedPacket==1||configSwitch.showSwitch.isCoupon==1}}'>
+          <view hidden='{{info.orderType != 1}}'>
             <view class='price-left'>优惠</view>
             <view class='price-right'>-￥{{discounts}}</view>
           </view>
         </block>
-        <!-- <wxs module="dp">
-          var dp_price = function(list) {
-            var price = 0
-            for (var i = 0; i < list.length; i++) {
-              price += parseFloat(list[i].discount_price) * parseFloat(list[i].quantity)
-            }
-            price = price.toFixed(2)
-            return price
-          }
-          module.exports.discount = dp_price;
-        </wxs> -->
-        <view wx:if='{{info.order_type == 1}}'>
+        <view wx:if='{{info.orderType == 1}}'>
           <view class='price-left'>折扣</view>
-          <view class='price-right'>-￥{{info.subtotal_discount_price}}</view>
+          <view class='price-right'>-￥{{info.subtotalDiscountPrice}}</view>
         </view>
-        <!-- <view hidden='{{info.order_type != 1}}'>
-          <view class='price-left'>优惠券</view>
-          <view class='price-right'>￥{{info.subtotal_coupon_price}}</view>
-        </view> -->
-        <!-- <view hidden='{{info.order_type != 1}}'>
-          <view class='price-left'>红包</view>
-          <view class='price-right'>￥{{info.subtotal_share_platform_packet_price}}</view>
-        </view> -->
-        <view wx:elif='{{info.order_type == 2}}'>
+        <view wx:elif='{{info.orderType == 2}}'>
           <view class='price-left'>拼团</view>
-          <view class='price-right'>-￥{{info.active_price}}</view>
+          <view class='price-right'>-￥{{info.activePrice}}</view>
         </view>
-        <view wx:elif='{{info.order_type == 3}}'>
+        <view wx:elif='{{info.orderType == 3}}'>
           <view class='price-left'>砍价</view>
-          <view class='price-right'>-￥{{info.active_price}}</view>
+          <view class='price-right'>-￥{{info.activePrice}}</view>
         </view>
-        <view wx:elif='{{info.order_type == 4}}'>
+        <view wx:elif='{{info.orderType == 4}}'>
           <view class='price-left'>限时抢购</view>
-          <view class='price-right'>-￥{{info.active_price}}</view>
+          <view class='price-right'>-￥{{info.activePrice}}</view>
         </view>
       </view>
       <view class='actually-pay'>
-        <view>实付款:
-          <text class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥{{info.subtotal_price}}</text>
+        <view>
+          实付款:
+          <text class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
+            ￥{{info.subtotalPrice}}
+          </text>
         </view>
       </view>
     </view>
-
     <view class='order-infor'>
       <view>订单备注:{{info.message}}</view>
       <view class='order-time'>
-        <text>订单编号:{{info.order_attach_number}}</text>
-        <text class='copy' hover-class='hover-class' hover-stay-time='400' bindtap='copyOrderNumber'>复制</text>
+        <text>订单编号:{{info.orderAttachNumber}}</text>
+        <text class='copy' hover-class='hover-class' hover-stay-time='400' bindtap='copyOrderNumber'>
+          复制
+        </text>
       </view>
-      <view class='order-time'>下单时间:{{info.create_time}}</view>
+      <view class='order-time'>下单时间:{{info.createTime}}</view>
     </view>
-
-    <!-- <self_voucher isShow="{{self_voucher}}" id="self_voucher" /> -->
   </scroll-view>
   <view class='logistics'>
-    <view wx:if="{{info.distribution_type==2&&info.status == 2}}" hover-class='hover-class' hover-stay-time='400' bindtap='onNavigation'>导航</view>
-    <view wx:if="{{info.is_invoice == 1}}" data-item='{{info}}' hover-class='hover-class' hover-stay-time='400' bindtap='invoice_anew'>查看发票</view>
-    <view wx:if="{{info.status == 0}}" hover-class='hover-class' hover-stay-time='400' bindtap='cancelOrder'>取消订单</view>
-    <view wx:if="{{info.status == -1 || info.status == 3 || info.status == 4 || info.status == 6}}" hover-class='hover-class' hover-stay-time='400' bindtap='deleteOrder' data-confirmType='2'>删除订单</view>
-    <view wx:if="{{(info.status == 1 || info.status == 2 || info.status == 3 || info.status == 4 || info.status == 6) && info.express_value != null && (info.distribution_type==1&&info.dada==1||info.distribution_type!=1)}}" hover-class='hover-class' hover-stay-time='400'
-      bindtap='onLogistics'>查看物流</view>
-    <view class='border-cur' wx:if="{{info.status == 3}}" hover-class='hover-class' hover-stay-time='400' bindtap='onComment' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>评价</view>
-    <view class='border-cur' wx:if="{{info.distribution_type==2&&info.status == 2&&info.order_goods_details[0].status!=2.2}}" hover-class='hover-class' hover-stay-time='400' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}' bindtap='showModal' data-confirmType='1'>确认提货</view>
-    <view class='border-cur' wx:if="{{info.distribution_type!=2&&info.status == 2}}" hover-class='hover-class' hover-stay-time='400' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}' bindtap='showModal' data-confirmType='0'>确认收货</view>
-    <view class='border-cur' wx:if="{{info.status == 0}}" hover-class='hover-class' hover-stay-time='400' bindtap='payOrder' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>付款</view>
+    <view wx:if="{{info.distributionType==2&&info.status == 2}}" hover-class='hover-class' hover-stay-time='400' bindtap='onNavigation'>
+      导航
+    </view>
+    <view wx:if="{{info.isInvoice == 1}}" data-item='{{info}}' hover-class='hover-class' hover-stay-time='400' bindtap='invoiceAnew'>
+      查看发票
+    </view>
+    <view wx:if="{{info.status == 0}}" hover-class='hover-class' hover-stay-time='400' bindtap='cancelOrder'>
+      取消订单
+    </view>
+    <view wx:if="{{info.status == -1 || info.status == 3 || info.status == 4 || info.status == 6}}" hover-class='hover-class' hover-stay-time='400' bindtap='deleteOrder' data-confirmType='2'>
+      删除订单
+    </view>
+    <view wx:if="{{(info.status == 1 || info.status == 2 || info.status == 3 || info.status == 4 || info.status == 6) && info.expressValue != null && (info.distributionType==1&&info.dada==1||info.distributionType!=1)}}" hover-class='hover-class' hover-stay-time='400' bindtap='onLogistics'>
+      查看物流
+    </view>
+    <view class='border-cur' wx:if="{{info.status == 3}}" hover-class='hover-class' hover-stay-time='400' bindtap='onComment' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>
+      评价
+    </view>
+    <view class='border-cur' wx:if="{{info.distributionType==2&&info.status == 2&&info.orderGoodsDetails[0].status!=2.2}}" hover-class='hover-class' hover-stay-time='400' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}' bindtap='showModal' data-confirmType='1'>
+      确认提货
+    </view>
+    <view class='border-cur' wx:if="{{info.distributionType!=2&&info.status == 2}}" hover-class='hover-class' hover-stay-time='400' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}' bindtap='showModal' data-confirmType='0'>
+      确认收货
+    </view>
+    <view class='border-cur' wx:if="{{info.status == 0}}" hover-class='hover-class' hover-stay-time='400' bindtap='payOrder' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>
+      付款
+    </view>
   </view>
 </view>
-
 <view class="board" hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard' hidden='{{!isShow}}' catchtouchmove='none'>
   <view catchtap='none'>
     <view class='voucher-head'>
@@ -345,31 +354,25 @@
       <image src='{{util.HTTP}}mobile/small/image/ddxq-ztpz-gb.png' hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'></image>
     </view>
     <view class='voucher-content'>
-
       <canvas canvas-id="barcode" class='bar-code' />
-      <view>提货码:{{info.take_code}}</view>
+      <view>提货码:{{info.takeCode}}</view>
       <canvas canvas-id="qrcode" class='qr-code' />
     </view>
     <image class='cut-line' src='{{util.HTTP}}mobile/small/image/ddxq-ztpz-bj-2.png'></image>
     <view class='voucher-info'>
       <view>
-        <text class='title'>自提门店: </text>
-        <text>{{info.take_name}}</text>
-      </view>
-      <!-- <view>
-        <text class='title'>自提时间: </text>
-        <text>2017年06月25日 09:15-09:30</text>
-      </view> -->
-      <view>
-        <text class='title'>商品信息: </text>
-        <text>{{info.order_goods_details[0].goods_name}}等{{info.order_goods_details.length}}件商品</text>
+        <text class='title'>自提门店:</text>
+        <text>{{info.takeName}}</text>
       </view>
       <view>
-        <text class='title'>实付金额: </text>
-        <text>{{info.subtotal_price}}元</text>
+        <text class='title'>商品信息:</text>
+        <text>{{info.orderGoodsDetails[0].goodsName}}等{{info.orderGoodsDetails.length}}件商品</text>
+      </view>
+      <view>
+        <text class='title'>实付金额:</text>
+        <text>{{info.subtotalPrice}}元</text>
       </view>
     </view>
   </view>
 </view>
-
-<modal title="{{modal_confirm[showModal].title}}" content="{{modal_confirm[showModal].content}}" id="modal" bind:confirm="{{modal_confirm[showModal].callback}}" />
+<modal title="{{modalConfirm[showModal].title}}" content="{{modalConfirm[showModal].content}}" id="modal" bind:confirm="{{modalConfirm[showModal].callback}}" />

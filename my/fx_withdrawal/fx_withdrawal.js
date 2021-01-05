@@ -1,4 +1,3 @@
-// my/fx_withdrawal/fx_withdrawal.js
 const app = getApp();
 const http = require('../../utils/http.js');
 Page({
@@ -8,14 +7,14 @@ Page({
    */
   data: {
     //提现方式
-    way_index: 1,
-    way_type: '',
-    way_list: [],
+    wayIndex: 1,
+    wayType: '',
+    wayList: [],
     //注意事项
-    notice_list: [],
+    noticeList: [],
     //提现金额
-    withdrawal_price: 0,
-    tx_price: 0,
+    withdrawalPrice: 0,
+    txPrice: 0,
   },
 
   /**
@@ -23,7 +22,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -31,7 +30,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.card_details()
+    this.cardDetails()
     this.getData()
   },
 
@@ -81,13 +80,13 @@ Page({
    * 选择提现方式
    */
   way(e) {
-    if (e.currentTarget.dataset.index == 3 && this.data.card_details == null) {
+    if (e.currentTarget.dataset.index == 3 && this.data.cardDetails == null) {
       this.showModal()
       return
     }
     this.setData({
-      way_index: e.currentTarget.dataset.index,
-      way_type: e.currentTarget.dataset.index
+      wayIndex: e.currentTarget.dataset.index,
+      wayType: e.currentTarget.dataset.index
     })
   },
 
@@ -96,7 +95,7 @@ Page({
    */
   bindinput(e) {
     this.setData({
-      withdrawal_price: e.detail.value
+      withdrawalPrice: e.detail.value
     })
   },
 
@@ -104,39 +103,39 @@ Page({
    * 立即提现
    */
   submit() {
-    if (parseFloat(this.data.withdrawal_price) < parseFloat(this.data.info.rule.min_price)) {
+    if (parseFloat(this.data.withdrawalPrice) < parseFloat(this.data.info.rule.minPrice)) {
       wx.showToast({
-        title: '提现金额不可低于' + this.data.info.rule.min_price + '元',
+        title: '提现金额不可低于' + this.data.info.rule.minPrice + '元',
         icon: 'none'
       })
       return
     }
-    if (parseFloat(this.data.withdrawal_price) > parseFloat(this.data.tx_price)) {
+    if (parseFloat(this.data.withdrawalPrice) > parseFloat(this.data.txPrice)) {
       wx.showToast({
         title: '提现金额不可大于当前收益',
         icon: 'none'
       })
       return
     }
-    if (this.data.withdrawal_price=='') {
+    if (this.data.withdrawalPrice=='') {
       wx.showToast({
         title: '请输入提现金额',
         icon: 'none'
       })
       return
     }
-    if (this.data.way_type == 3 && this.card_details == null) {
+    if (this.data.wayType == 3 && this.cardDetails == null) {
       this.showModal()
       return
     }
-    http.post(app.globalData.distribution_withdrawal_to_apply, {
-      distributionId: app.globalData.distribution.cur.distribution_id,
-      price: this.data.withdrawal_price,
-      distributionType: this.data.way_type,
-      cardId: this.data.way_type != 3 ? 1 : this.data.card_details.card_id
+    http.post(app.globalData.distributionWithdrawalToApply, {
+      distributionId: app.globalData.distribution.cur.distributionId,
+      price: this.data.withdrawalPrice,
+      distributionType: this.data.wayType,
+      cardId: this.data.wayType != 3 ? 1 : this.data.cardDetails.cardId
     }).then(res => {
       wx.redirectTo({
-        url: '/my/fx_tx_over/fx_tx_over',
+        url: '/my/fxTxOver/fxTxOver',
       })
     })
   },
@@ -146,67 +145,67 @@ Page({
    */
   record() {
     wx.navigateTo({
-      url: '/my/fx_record_list/fx_record_list',
+      url: '/my/fxRecordList/fxRecordList',
     })
   },
   /**
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.distribution_withdrawal_index, {
-      distributionId: app.globalData.distribution.cur.distribution_id
+    http.post(app.globalData.distributionWithdrawalIndex, {
+      distributionId: app.globalData.distribution.cur.distributionId
     }).then(res => {
       this.setData({
         info: res.data,
-        withdrawal_price: res.data.close_brokerage,
-        tx_price: res.data.close_brokerage,
-        notice_list: res.data.notify_explain,
-        way_index: res.data.rule.type[0],
-        way_type: res.data.rule.type[0],
+        withdrawalPrice: res.data.closeBrokerage,
+        txPrice: res.data.closeBrokerage,
+        noticeList: res.data.notifyExplain,
+        wayIndex: res.data.rule.type[0],
+        wayType: res.data.rule.type[0],
       })
-      let way_list = [],
+      let wayList = [],
         yue = {
-          way_type: 1,
-          way_img: app.globalData.HTTP + 'mobile/small/image/syt-qb.png',
+          wayType: 1,
+          wayImg: app.globalData.HTTP + 'mobile/small/image/syt-qb.png',
           title: '余额'
         },
         wx = {
-          way_type: 2,
-          way_img: app.globalData.HTTP + 'mobile/small/image/syt-wx.png',
+          wayType: 2,
+          wayImg: app.globalData.HTTP + 'mobile/small/image/syt-wx.png',
           title: '微信'
         },
         bank = {
-          way_type: 3,
-          way_img: app.globalData.HTTP + 'mobile/small/image/bank/bank_1.png',
+          wayType: 3,
+          wayImg: app.globalData.HTTP + 'mobile/small/image/bank/bank_1.png',
           title: '银行卡'
         }
       for (let i = 0, len = res.data.rule.type.length; i < len; i++) {
         switch (res.data.rule.type[i]) {
           case '1':
-            way_list.push(yue)
+            wayList.push(yue)
             break;
           case '2':
-            way_list.push(wx)
+            wayList.push(wx)
             break;
           case '3':
-            way_list.push(bank)
+            wayList.push(bank)
             break;
         }
       }
       this.setData({
-        way_list: way_list
+        wayList: wayList
       })
     })
   },
   /**
    * 获取银行卡
    */
-  card_details() {
-    http.post(app.globalData.card_details, {
+  cardDetails() {
+    http.post(app.globalData.cardDetails, {
       id: 0
     }).then(res => {
       this.setData({
-        card_details: res.result
+        cardDetails: res.result
       })
     })
   },
@@ -216,7 +215,7 @@ Page({
    */
   bankcard() {
     wx.navigateTo({
-      url: '/my/bank_list/bank_list?select=1',
+      url: '/my/bankList/bankList?select=1',
     })
   },
   showModal() {

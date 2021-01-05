@@ -11,7 +11,7 @@
         <view class='parameter-content'>{{item.parameter_val}}</view>
       </view>
     </scroll-view>
-    <view class='parameter-finish' hover-class='hover-class' hover-stay-time='400' bindtap='closeParameter' style='{{util.diy_color("",diy_color.z_color,"")}}'>完成</view>
+    <view class='parameter-finish' hover-class='hover-class' hover-stay-time='400' bindtap='closeParameter' style='{{util.diyColor("",diyColor.zColor,"")}}'>完成</view>
   </view>
 
 </view>

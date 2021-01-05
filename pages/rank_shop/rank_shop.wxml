@@ -4,7 +4,7 @@
     <view class='tab-view'>
       <scroll-view scroll-x class='tab-sroll' scroll-into-view="{{sroll_id}}" scroll-with-animation>
         <view class='tab-item' wx:for="{{classify}}" hover-class='hover-class' hover-stay-time='400' bindtap='onClassify' data-id='{{item.store_classify_id}}' id='a-{{index}}'>
-          <text style='{{current_tab==item.store_classify_id?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{item.title}}</text>
+          <text style='{{current_tab==item.store_classify_id?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>{{item.title}}</text>
         </view>
       </scroll-view>
       <view class='more' hover-class='hover-class' hover-stay-time='400' bindtap='onMore'>
@@ -21,7 +21,7 @@
         <image src='{{util.HTTP}}mobile/small/image/tsczz-sl.png' hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'></image>
       </view>
       <view class='tab-more-wrap'>
-        <view wx:for="{{classify}}" hover-class='hover-class' hover-stay-time='400' bindtap='onTabMoreItem' data-index='{{index}}' data-id='{{item.store_classify_id}}' style='{{current_tab==item.store_classify_id?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{item.title}}</view>
+        <view wx:for="{{classify}}" hover-class='hover-class' hover-stay-time='400' bindtap='onTabMoreItem' data-index='{{index}}' data-id='{{item.store_classify_id}}' style='{{current_tab==item.store_classify_id?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>{{item.title}}</view>
       </view>
     </view>
   </view>
@@ -48,7 +48,7 @@
               <image wx:if='{{item.type!=null}}' src='{{util.HTTP}}mobile/small/image/shops/shop-icon{{item.type}}.png'></image>
             </view>
           </view>
-          <view class='go-shop cur' hover-class='hover-class' hover-stay-time='400' bindtap='onShop' data-id='{{item.store_id}}' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>进店</view>
+          <view class='go-shop cur' hover-class='hover-class' hover-stay-time='400' bindtap='onShop' data-id='{{item.store_id}}' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>进店</view>
         </view>
         <view class='shop-pic' wx:if='{{item.shop_goods.length!=0}}'>
           <view wx:for="{{item.shop_goods}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goods_id}}' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
@@ -84,8 +84,8 @@
       <view class='title'>热卖榜</view>
     </view>
     <view>
-      <view class='font_family shop-icon icon-b' style='{{util.diy_color(diy_color.z_color,"","")}}'></view>
-      <view class='title' style='{{util.diy_color(diy_color.z_color,"","")}}'>店铺榜</view>
+      <view class='font_family shop-icon icon-b' style='{{util.diyColor(diyColor.zColor,"","")}}'></view>
+      <view class='title' style='{{util.diyColor(diyColor.zColor,"","")}}'>店铺榜</view>
     </view>
   </view>
 </view>

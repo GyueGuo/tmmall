@@ -37,7 +37,7 @@
               <view class='good-name'>{{item.goods_name}}</view>
               <view class='good-attr'>{{item.attr}}</view>
               <view class='good-tips'>
-                <view class='good-price cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+                <view class='good-price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                   <text class='unit'>￥</text>
                   <text class='integer'>{{util.integer(item.price)}}</text>
                   <text class='decimals'>.{{util.decimals(item.price)}}</text>
@@ -54,10 +54,10 @@
               <view class='no-bottom'>
                 <view class='left'>配送方式</view>
                 <view class='method'>
-                  <view class="item" wx:for="{{item.delivery_method}}" wx:key="{{index}}" wx:for-item="delivery_item" wx:for-index="idx" style="{{item.delivery_method_type==delivery_item.type?util.diy_color(diy_color.z_color,'',diy_color.z_color):''}}{{item.way!=1&&item.delivery_method_type == 1&&delivery_item.type!=1?util.diy_color('','#ccc',''):''}}" data-index='{{index}}' data-idx='{{idx}}' data-item="{{delivery_item}}" hover-class='hover-class' hover-stay-time='400' bindtap='onDeliveryWay'>{{delivery_item.title}}</view>
-                  <!-- <view class="{{item.delivery_method == 'is_express'? 'border-cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onDeliveryWay' data-method='is_express' data-index='{{index}}' wx:if="{{item.freight.express_freight_sup == 1}}" style='{{item.delivery_method == "is_express"?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}{{item.way!=1&&item.delivery_method == "is_city"?util.diy_color("","#ccc",""):""}}'>快递邮寄</view>
-                  <view class="{{item.delivery_method == 'is_city'? 'border-cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onDeliveryWay' data-method='is_city' data-index='{{index}}' wx:if="{{item.freight.city_freight_sup == 1}}" style='{{item.delivery_method == "is_city"?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>同城配送</view>
-                  <view class="{{item.delivery_method == 'is_shop'? 'border-cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onDeliveryWay' data-method='is_shop' data-index='{{index}}' wx:if="{{item.freight.take_freight_sup == 1}}" style='{{item.delivery_method == "is_shop"?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}{{item.way!=1&&item.delivery_method == "is_city"?util.diy_color("","#ccc",""):""}}'>预约自提</view> -->
+                  <view class="item" wx:for="{{item.delivery_method}}" wx:key="{{index}}" wx:for-item="delivery_item" wx:for-index="idx" style="{{item.delivery_method_type==delivery_item.type?util.diyColor(diyColor.zColor,'',diyColor.zColor):''}}{{item.way!=1&&item.delivery_method_type == 1&&delivery_item.type!=1?util.diyColor('','#ccc',''):''}}" data-index='{{index}}' data-idx='{{idx}}' data-item="{{delivery_item}}" hover-class='hover-class' hover-stay-time='400' bindtap='onDeliveryWay'>{{delivery_item.title}}</view>
+                  <!-- <view class="{{item.delivery_method == 'is_express'? 'border-cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onDeliveryWay' data-method='is_express' data-index='{{index}}' wx:if="{{item.freight.express_freight_sup == 1}}" style='{{item.delivery_method == "is_express"?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}{{item.way!=1&&item.delivery_method == "is_city"?util.diyColor("","#ccc",""):""}}'>快递邮寄</view>
+                  <view class="{{item.delivery_method == 'is_city'? 'border-cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onDeliveryWay' data-method='is_city' data-index='{{index}}' wx:if="{{item.freight.city_freight_sup == 1}}" style='{{item.delivery_method == "is_city"?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>同城配送</view>
+                  <view class="{{item.delivery_method == 'is_shop'? 'border-cur':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onDeliveryWay' data-method='is_shop' data-index='{{index}}' wx:if="{{item.freight.take_freight_sup == 1}}" style='{{item.delivery_method == "is_shop"?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}{{item.way!=1&&item.delivery_method == "is_city"?util.diyColor("","#ccc",""):""}}'>预约自提</view> -->
                 </view>
               </view>
               <view class='freight' hidden="{{item.delivery_method_type != 0}}">运费￥{{item.freight.express_freight_price}}元</view>
@@ -66,7 +66,7 @@
             <view class='pick-wrap' hidden="{{item.delivery_method_type != 2}}">
               <view class='pick-up'>
                 <view class='point'>自提点:{{item.take_freight.area}}</view>
-                <view class='cur change' hover-class='hover-class' hover-stay-time='400' bindtap='changeTake' data-index='{{index}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>点击修改>></view>
+                <view class='cur change' hover-class='hover-class' hover-stay-time='400' bindtap='changeTake' data-index='{{index}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>点击修改>></view>
               </view>
               <view class='pick-address'>{{item.take_freight.take_name}}</view>
             </view>
@@ -97,7 +97,7 @@
           <view class='operation'>
             <view class='right'>
               <text>共{{item.total_number}}件商品 小计:</text>
-              <text class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥{{util.toFixed(item.total_price)}}</text>
+              <text class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>￥{{util.toFixed(item.total_price)}}</text>
             </view>
           </view>
         </view>
@@ -171,12 +171,12 @@
   </scroll-view>
 
   <view class='footer'>
-    <!-- <view class='bg submit' hover-class='hover-class' hover-stay-time='400' bindtap='confirmOrder' style='{{util.diy_color("",diy_color.z_color,"")}}'>提交订单</view> -->
+    <!-- <view class='bg submit' hover-class='hover-class' hover-stay-time='400' bindtap='confirmOrder' style='{{util.diyColor("",diyColor.zColor,"")}}'>提交订单</view> -->
     <form report-submit='true' bindsubmit='formId'>
-      <button class='bg submit' hover-class='hover-class' hover-stay-time='400' formType="submit" bindtap='confirmOrder' style='{{util.diy_color("",diy_color.z_color,"")}}'>提交订单</button>
+      <button class='bg submit' hover-class='hover-class' hover-stay-time='400' formType="submit" bindtap='confirmOrder' style='{{util.diyColor("",diyColor.zColor,"")}}'>提交订单</button>
       <view>
         <text class='content'>合计:</text>
-        <text class='price cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥{{util.toFixed(total)}}</text>
+        <text class='price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>￥{{util.toFixed(total)}}</text>
       </view>
     </form>
   </view>

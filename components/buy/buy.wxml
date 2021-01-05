@@ -8,8 +8,8 @@
 		</view>
 		<image src='{{util.HTTP}}mobile/small/image/xq-gb.png' class='close-bg' hover-class='hover-class' hover-stay-time='400' bindtap='_close'></image>
 		<!-- 团购价 -->
-		<view class='good-info' wx:if="{{info.is_group == 1 && group_buy}}" style='{{util.diy_color(diy_color.z_color,"","")}}'>
-			<view class='collage' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>
+		<view class='good-info' wx:if="{{info.is_group == 1 && group_buy}}" style='{{util.diyColor(diyColor.zColor,"","")}}'>
+			<view class='collage' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>
 				<text class='font_family icon-pg-xq-pgjg icon'></text>
 				<view class='group_num'>{{info.group_num}}人拼团价</view>
 			</view>
@@ -22,28 +22,28 @@
 		</view>
 		<view class='good-info' wx:elif="{{info.is_bargain == 1}}">
 			<!-- <text class='unit cur'>单买价</text> -->
-			<text class='unit cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥</text>
-			<text class='integer cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>{{util.integer(info.cut_price)}}</text>
-			<text class='decimals cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>.{{util.decimals(info.cut_price)}}</text>
+			<text class='unit cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>￥</text>
+			<text class='integer cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>{{util.integer(info.cut_price)}}</text>
+			<text class='decimals cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>.{{util.decimals(info.cut_price)}}</text>
 			<!-- <text class='inventory'>(库存{{info.goods_number}})</text> -->
 		</view>
 		<!-- 限时抢购 -->
 		<view class='good-info' wx:elif="{{info.is_limit == 1}}">
-			<!-- <text class='unit cur' style='{{util.diy_color(z_color,"","")}}'>单买价</text> -->
+			<!-- <text class='unit cur' style='{{util.diyColor.zColor,"","")}}'>单买价</text> -->
 			<view class='price'>
-				<text class='unit cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥</text>
-				<text class='integer cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>{{util.integer(info.time_limit_price)}}</text>
-				<text class='decimals cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>.{{util.decimals(info.time_limit_price)}}</text>
+				<text class='unit cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>￥</text>
+				<text class='integer cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>{{util.integer(info.time_limit_price)}}</text>
+				<text class='decimals cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>.{{util.decimals(info.time_limit_price)}}</text>
 			</view>
 			<!-- <text class='inventory'>(库存{{info.goods_number}})</text> -->
 		</view>
 		<!-- 正常购买 -->
 		<view class='good-info' wx:else>
-			<!-- <text class='unit cur' style='{{util.diy_color(z_color,"","")}}'>单买价</text> -->
+			<!-- <text class='unit cur' style='{{util.diyColor.zColor,"","")}}'>单买价</text> -->
 			<view class='price'>
-				<text class='unit cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥</text>
-				<text class='integer cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>{{util.integer(info.shop_price)}}</text>
-				<text class='decimals cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>.{{util.decimals(info.shop_price)}}</text>
+				<text class='unit cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>￥</text>
+				<text class='integer cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>{{util.integer(info.shop_price)}}</text>
+				<text class='decimals cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>.{{util.decimals(info.shop_price)}}</text>
 			</view>
 			<!-- <text class='inventory'>(库存{{info.goods_number}})</text> -->
 		</view>
@@ -54,7 +54,7 @@
 				<view wx:for="{{info.attr}}" wx:key='{{idx}}' wx:for-index="idx" class='property-list'>
 					<view class='property-title'>{{item.attr_name}}</view>
 					<view class='property-option'>
-						<view wx:for="{{item.goods_attr}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='_onAttr' data-idx='{{idx}}' data-item='{{item}}' style='{{attr_array[idx].id == item.goods_attr_id?util.diy_color("#fff",diy_color.z_color,""):""}}'>{{item.attr_value}}</view>
+						<view wx:for="{{item.goods_attr}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='_onAttr' data-idx='{{idx}}' data-item='{{item}}' style='{{attr_array[idx].id == item.goods_attr_id?util.diyColor("#fff",diyColor.zColor,""):""}}'>{{item.attr_value}}</view>
 					</view>
 				</view>
 			</view>
@@ -70,27 +70,27 @@
 		</view>
 		<view class='operation'>
 			<!-- 选择属性 -->
-			<view class='add-cart' wx:if='{{type==1}}' hover-class='hover-class' hover-stay-time='400' bindtap='_addCart' style='{{util.diy_color(diy_color.text_color,diy_color.c_color,"")}}'>加入购物车</view>
+			<view class='add-cart' wx:if='{{type==1}}' hover-class='hover-class' hover-stay-time='400' bindtap='_addCart' style='{{util.diyColor(diyColor.text_color,diyColor.c_color,"")}}'>加入购物车</view>
 			<block wx:if='{{type==1}}'>
 				<form report-submit='true' bindsubmit='formId'>
-					<button class='buy-now bg' hover-class='hover-class' hover-stay-time='400' formType="submit" bindtap='_buyNow' style='{{util.diy_color("",diy_color.z_color,"")}}'>确定</button>
+					<button class='buy-now bg' hover-class='hover-class' hover-stay-time='400' formType="submit" bindtap='_buyNow' style='{{util.diyColor("",diyColor.zColor,"")}}'>确定</button>
 				</form>
 			</block>
-			<!-- <view class='buy-now bg' wx:if='{{type==1}}' hover-class='hover-class' hover-stay-time='400' bindtap='_buyNow' style='{{util.diy_color("",diy_color.z_color,"")}}'>立即购买</view> -->
+			<!-- <view class='buy-now bg' wx:if='{{type==1}}' hover-class='hover-class' hover-stay-time='400' bindtap='_buyNow' style='{{util.diyColor("",diyColor.zColor,"")}}'>立即购买</view> -->
 			<!-- 立即购买 -->
 			<block wx:if='{{type==2}}'>
 				<form report-submit='true' bindsubmit='formId'>
-					<button class='confirm bg' hover-class='hover-class' hover-stay-time='400' formType="submit" bindtap='_buyNow' style='{{util.diy_color("",diy_color.z_color,"")}}'>确定</button>
+					<button class='confirm bg' hover-class='hover-class' hover-stay-time='400' formType="submit" bindtap='_buyNow' style='{{util.diyColor("",diyColor.zColor,"")}}'>确定</button>
 				</form>
 			</block>
-			<!-- <view class='confirm bg' wx:if='{{type==2}}' hover-class='hover-class' hover-stay-time='400' bindtap='_buyNow' style='{{util.diy_color("",diy_color.z_color,"")}}'>确定</view> -->
+			<!-- <view class='confirm bg' wx:if='{{type==2}}' hover-class='hover-class' hover-stay-time='400' bindtap='_buyNow' style='{{util.diyColor("",diyColor.zColor,"")}}'>确定</view> -->
 			<!-- 加入购物车 -->
 			<block wx:if='{{type==3}}'>
 				<form report-submit='true' bindsubmit='formId'>
-					<button class='confirm bg' hover-class='hover-class' hover-stay-time='400' formType="submit" bindtap='_addCart' style='{{util.diy_color("",diy_color.z_color,"")}}'>确定</button>
+					<button class='confirm bg' hover-class='hover-class' hover-stay-time='400' formType="submit" bindtap='_addCart' style='{{util.diyColor("",diyColor.zColor,"")}}'>确定</button>
 				</form>
 			</block>
-			<!-- <view class='confirm bg' wx:if='{{type==3}}' hover-class='hover-class' hover-stay-time='400' bindtap='_addCart' style='{{util.diy_color("",diy_color.z_color,"")}}'>确定</view> -->
+			<!-- <view class='confirm bg' wx:if='{{type==3}}' hover-class='hover-class' hover-stay-time='400' bindtap='_addCart' style='{{util.diyColor("",diyColor.zColor,"")}}'>确定</view> -->
 		</view>
 	</view>
 </view>

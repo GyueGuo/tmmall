@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tab_list: [{
+    tabList: [{
       title: '交易通知',
       type: "1",
     }, {
@@ -27,7 +27,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       tab: options.tab
     })
   },
@@ -97,7 +97,7 @@ Page({
    * 获取列表
    */
   getList() {
-    http.post(app.globalData.message_list, {
+    http.post(app.globalData.messageList, {
       type: this.data.tab,
       page: this.data.page
     }).then(res => {
@@ -128,13 +128,13 @@ Page({
    */
   onLogistics(e) {
     let info = {
-      express_number: e.express_number,
-      express_value: e.express_value,
-      order_attach_id: e.attach_id,
-      type: e.express_type
+      expressNumber: e.expressNumber,
+      expressValue: e.expressValue,
+      orderAttachId: e.attachId,
+      type: e.expressType
     }
     wx.navigateTo({
-      url: '/my/logistics_detail/logistics_detail?info=' + JSON.stringify(info),
+      url: '/my/logisticsDetail/logisticsDetail?info=' + JSON.stringify(info),
     })
   },
 
@@ -143,47 +143,47 @@ Page({
    */
   onMessage(e) {
     let item = e.currentTarget.dataset.item
-    switch (item.jump_state) {
+    switch (item.jumpState) {
       case "-1": //无跳转
         break;
       case "0": //订单详情
         wx.navigateTo({
-          url: `/my/order_detail/order_detail?id=${item.attach_id}`,
+          url: `/my/orderDetail/orderDetail?id=${item.attachId}`,
         })
         break;
       case "1": //砍价详情
         wx.navigateTo({
-          url: `/pages/bargain/bargain?id=${item.attach_id}`,
+          url: `/pages/bargain/bargain?id=${item.attachId}`,
         })
         break;
       case "2": //拼团详情
         wx.navigateTo({
-          url: `/pages/collage_detail/collage_detail?id=${item.attach_id}`,
+          url: `/pages/collageDetail/collageDetail?id=${item.attachId}`,
         })
         break;
       case "3": //分销-我的等级
         wx.navigateTo({
-          url: `/my/fx_grade/fx_grade?`,
+          url: `/my/fxGrade/fxGrade?`,
         })
         break;
       case "4": //商品详情
         wx.navigateTo({
-          url: `/nearby_shops/good_detail/good_detail?goods_id=${item.attach_id}`,
+          url: `/nearbyShops/goodDetail/goodDetail?goodsId=${item.attachId}`,
         })
         break;
       case "5": //文章详情
         wx.navigateTo({
-          url: `/pages/info_detail/info_detail?article_id=${item.attach_id}`,
+          url: `/pages/infoDetail/infoDetail?articleId=${item.attachId}`,
         })
         break;
       case "6": //退款详情
         wx.navigateTo({
-          url: `/pages/return_detail/return_detail?id=${item.attach_id}`,
+          url: `/pages/returnDetail/returnDetail?id=${item.attachId}`,
         })
         break;
       case "7": //我的粉丝
         wx.navigateTo({
-          url: `/my/fx_fans_list/fx_fans_list`,
+          url: `/my/fxFansList/fxFansList`,
         })
         break;
       case "8": //我的-会员等级
@@ -193,22 +193,22 @@ Page({
         break;
       case "9": //入驻申请页
         wx.navigateTo({
-          url: `/my/merchant_guide/merchant_guide`,
+          url: `/my/merchantGuide/merchantGuide`,
         })
         break;
       case "10": //抽奖-订单详情
         wx.navigateTo({
-          url: `/my/games_order/games_order?id=${item.attach_id}`,
+          url: `/my/gamesOrder/gamesOrder?id=${item.attachId}`,
         })
         break;
       case "11": //积分-订单详情
         wx.navigateTo({
-          url: `/my/integral_order/integral_order?id=${item.attach_id}`,
+          url: `/my/integralOrder/integralOrder?id=${item.attachId}`,
         })
         break;
       case "12": //分销-代言规则
         wx.navigateTo({
-          url: `/my/fx_cwdy/fx_cwdy`,
+          url: `/my/fxCwdy/fxCwdy`,
         })
         break;
       case "13": //积分首页
@@ -218,7 +218,7 @@ Page({
         break;
       case "14": //红包列表
         wx.navigateTo({
-          url: `/my/red_pocket/red_pocket`,
+          url: `/my/redPocket/redPocket`,
         })
         break;
       case "15": //优惠券列表
@@ -231,7 +231,7 @@ Page({
           describe: item.describe
         }
         wx.navigateTo({
-          url: `/nearby_shops/shop_audit/shop_audit?data=${JSON.stringify(data)}`,
+          url: `/nearbyShops/shopAudit/shopAudit?data=${JSON.stringify(data)}`,
         })
         break;
     }

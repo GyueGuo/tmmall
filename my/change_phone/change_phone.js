@@ -12,8 +12,8 @@ Page({
     content: '获取验证码',
     time: 60,
     finish: '下一步',
-    count_down: '',
-    phone_able: true
+    countDown: '',
+    phoneAble: true
   },
 
   /**
@@ -21,7 +21,7 @@ Page({
    */
   onLoad: function(options) {
     let obj = {}
-    obj.diy_color = app.globalData.diy_color
+    obj.diyColor = app.globalData.diyColor
     
     if (options.status == 0) {
       //手机验证
@@ -35,14 +35,14 @@ Page({
         title: '修改手机',
       })
       obj.finish = '完成'
-      obj.phone_able = false
+      obj.phoneAble = false
     } else if (options.status == 2) {
       //绑定手机
       wx.setNavigationBarTitle({
         title: '绑定手机',
       })
       obj.finish = '完成'
-      obj.phone_able = false
+      obj.phoneAble = false
     }
     obj.status = options.status
     this.setData(obj)
@@ -73,7 +73,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-    clearInterval(this.data.count_down)
+    clearInterval(this.data.countDown)
   },
 
   /**
@@ -144,12 +144,12 @@ Page({
         break;
     }
     console.log(type)
-    http.encPost(app.globalData.message_send, {
+    http.encPost(app.globalData.messageSend, {
       type: type,
       phone: this.data.phone
     }).then(res => {
       this.countDown()
-      this.data.count_down = setInterval(() => {
+      this.data.countDown = setInterval(() => {
         this.countDown()
       }, 1000)
     })
@@ -164,7 +164,7 @@ Page({
         content: '获取验证码',
         time: 60
       })
-      clearInterval(this.data.count_down)
+      clearInterval(this.data.countDown)
     } else {
       this.setData({
         content: this.data.time + 's后重新发送'
@@ -181,17 +181,17 @@ Page({
       return
     }
     if (this.data.status == 0) {
-      http.encPost(app.globalData.check_code, {
+      http.encPost(app.globalData.checkCode, {
         type: this.data.status == 0 ? '2' : '1',
         phone: this.data.phone,
         code: this.data.code
       }).then(res => {
       wx.redirectTo({
-        url: '/my/change_phone/change_phone?status=1',
+        url: '/my/changePhone/changePhone?status=1',
       })
       })
     } else {
-      http.post(app.globalData.update_phone, {
+      http.post(app.globalData.updatePphone, {
         phone: this.data.phone,
         code: this.data.code
       }).then(res => {

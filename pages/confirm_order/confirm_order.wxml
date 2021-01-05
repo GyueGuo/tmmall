@@ -38,22 +38,22 @@
             <view class='good-name'>{{info.goods_name}}</view>
             <view class='good-attr'>{{info.attr_detail}}</view>
             <view class='good-tips'>
-              <view class='good-price cur' wx:if="{{info.good_type == 1}}" style='{{util.diy_color(diy_color.z_color,"","")}}'>
+              <view class='good-price cur' wx:if="{{info.good_type == 1}}" style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text class='unit'>￥</text>
                 <text class='integer'>{{util.integer(info.shop_price)}}</text>
                 <text class='decimals'>.{{util.decimals(info.shop_price)}}</text>
               </view>
-              <view class='good-price cur' wx:elif="{{info.good_type == 2}}" style='{{util.diy_color(diy_color.z_color,"","")}}'>
+              <view class='good-price cur' wx:elif="{{info.good_type == 2}}" style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text class='unit'>￥</text>
                 <text class='integer'>{{util.integer(info.group_price)}}</text>
                 <text class='decimals'>.{{util.decimals(info.group_price)}}</text>
               </view>
-              <view class='good-price cur' wx:elif="{{info.good_type == 3}}" style='{{util.diy_color(diy_color.z_color,"","")}}'>
+              <view class='good-price cur' wx:elif="{{info.good_type == 3}}" style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text class='unit'>￥</text>
                 <text class='integer'>{{util.integer(info.cut_price)}}</text>
                 <text class='decimals'>.{{util.decimals(info.cut_price)}}</text>
               </view>
-              <view class='good-price cur' wx:elif="{{info.good_type == 4}}" style='{{util.diy_color(diy_color.z_color,"","")}}'>
+              <view class='good-price cur' wx:elif="{{info.good_type == 4}}" style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text class='unit'>￥</text>
                 <text class='integer'>{{util.integer(info.time_limit_price)}}</text>
                 <text class='decimals'>.{{util.decimals(info.time_limit_price)}}</text>
@@ -78,18 +78,18 @@
           <view class='left'>砍价</view>
           <view class='right'>
             <text>已砍</text>
-            <text class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥{{info.price_spread}}</text>
+            <text class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>￥{{info.price_spread}}</text>
           </view>
         </view> -->
         <view class='delivery-method' wx:if='{{freight != null&&delivery_method.length!=0}}'>
           <view class='no-bottom'>
             <view class='left'>配送方式</view>
             <view class='method'>
-              <view class="item" wx:for="{{delivery_method}}" wx:key="{{index}}" wx:for-item="delivery_item" wx:for-index="idx" style="{{delivery_method_type==delivery_item.type?util.diy_color(diy_color.z_color,'',diy_color.z_color):''}}{{pay_way!=1&&delivery_method_type == 1&&delivery_item.type!=1?util.diy_color('','#ccc',''):''}}"
+              <view class="item" wx:for="{{delivery_method}}" wx:key="{{index}}" wx:for-item="delivery_item" wx:for-index="idx" style="{{delivery_method_type==delivery_item.type?util.diyColor(diyColor.zColor,'',diyColor.zColor):''}}{{pay_way!=1&&delivery_method_type == 1&&delivery_item.type!=1?util.diyColor('','#ccc',''):''}}"
                 data-index='{{index}}' data-idx='{{idx}}' data-item="{{delivery_item}}" hover-class='hover-class' hover-stay-time='400' bindtap='onDeliveryWay'>{{delivery_item.title}}</view>
-              <!-- <view wx:if='{{freight.express_freight_sup == 1}}' hover-class='hover-class' hover-stay-time='400' bindtap='onExpress' style='{{info.delivery_method == 3?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}{{pay_way!=1&&info.delivery_method == 1?util.diy_color("","#ccc",""):""}}'>快递邮寄</view>
-              <view wx:if='{{freight.city_freight_sup == 1}}' hover-class='hover-class' hover-stay-time='400' bindtap='onCityWide' style='{{info.delivery_method == 1?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>同城配送</view>
-              <view wx:if='{{freight.take_freight_sup == 1}}' hover-class='hover-class' hover-stay-time='400' bindtap='onPickup' style='{{info.delivery_method == 2?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}{{pay_way!=1&&info.delivery_method == 1?util.diy_color("","#ccc",""):""}}'>预约自提</view> -->
+              <!-- <view wx:if='{{freight.express_freight_sup == 1}}' hover-class='hover-class' hover-stay-time='400' bindtap='onExpress' style='{{info.delivery_method == 3?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}{{pay_way!=1&&info.delivery_method == 1?util.diyColor("","#ccc",""):""}}'>快递邮寄</view>
+              <view wx:if='{{freight.city_freight_sup == 1}}' hover-class='hover-class' hover-stay-time='400' bindtap='onCityWide' style='{{info.delivery_method == 1?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>同城配送</view>
+              <view wx:if='{{freight.take_freight_sup == 1}}' hover-class='hover-class' hover-stay-time='400' bindtap='onPickup' style='{{info.delivery_method == 2?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}{{pay_way!=1&&info.delivery_method == 1?util.diyColor("","#ccc",""):""}}'>预约自提</view> -->
 
             </view>
           </view>
@@ -99,7 +99,7 @@
         <view class='pick-wrap' wx:if='{{delivery_method_type == 2}}'>
           <view class='pick-up'>
             <view class='point'>自提点:{{take_item.take_name}}</view>
-            <view class='cur change' hover-class='hover-class' hover-stay-time='400' bindtap='changeTake' style='{{util.diy_color(diy_color.z_color,"","")}}'>点击修改>></view>
+            <view class='cur change' hover-class='hover-class' hover-stay-time='400' bindtap='changeTake' style='{{util.diyColor(diyColor.zColor,"","")}}'>点击修改>></view>
           </view>
           <view class='pick-address'>{{take_item.address}}</view>
         </view>
@@ -130,7 +130,7 @@
           <view class='right'>
             <text class='total-num'>共{{info.num}}件商品</text>
             <text>小计:</text>
-            <text style='{{util.diy_color(diy_color.z_color,"","")}}'>￥{{util.toFixed(info.subtotal)}}</text>
+            <text style='{{util.diyColor(diyColor.zColor,"","")}}'>￥{{util.toFixed(info.subtotal)}}</text>
           </view>
         </view>
 
@@ -204,11 +204,11 @@
 
 <view class='footer'>
   <form report-submit='true' bindsubmit='formId'>
-    <button class='bg submit' hover-class='hover-class' hover-stay-time='400' formType="submit" bindtap='submit' style='{{util.diy_color("",diy_color.z_color,"")}}'>提交订单</button>
-    <!-- <view class='bg submit' hover-class='hover-class' hover-stay-time='400' bindtap='submit' style='{{util.diy_color("",diy_color.z_color,"")}}'>提交订单</view> -->
+    <button class='bg submit' hover-class='hover-class' hover-stay-time='400' formType="submit" bindtap='submit' style='{{util.diyColor("",diyColor.zColor,"")}}'>提交订单</button>
+    <!-- <view class='bg submit' hover-class='hover-class' hover-stay-time='400' bindtap='submit' style='{{util.diyColor("",diyColor.zColor,"")}}'>提交订单</view> -->
     <view>
       <text class='content'>合计:</text>
-      <text class='price cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥{{info.total}}</text>
+      <text class='price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>￥{{info.total}}</text>
     </view>
   </form>
 </view>

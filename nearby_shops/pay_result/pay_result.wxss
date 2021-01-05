@@ -1,4 +1,3 @@
-/* nearby_shops/pay_result/pay_result.wxss */
 .warp .dy_con{
   display: flex;
   align-items: center;

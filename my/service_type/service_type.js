@@ -23,7 +23,7 @@ Page({
       state = 1
     }
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       dataInfo: this.data.dataInfo,
       state: state
     })

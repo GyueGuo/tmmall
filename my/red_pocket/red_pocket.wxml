@@ -1,7 +1,7 @@
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='tab-list'>
   <view wx:for="{{tab_list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onTab' data-index='{{index}}'>
-    <text class="{{tab == index?'cur':''}}" style='{{tab == index?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{item}}</text> </view>
+    <text class="{{tab == index?'cur':''}}" style='{{tab == index?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>{{item}}</text> </view>
 </view>
 
 <view class='wrap'>
@@ -16,7 +16,7 @@
       <view class="pocket-time {{tab==0?'':'gray'}}">{{util.cutDate(item.start_time)}}-{{util.cutDate(item.end_time)}}</view>
       <!-- <view class="pocket-time {{tab==0?'':'gray'}}" style='margin-top:0'>{{item.end_time}}</view> -->
     </view>
-    <view class="price cur {{tab==0?'':'gray'}}" style='{{tab==0?util.diy_color(diy_color.z_color,"",""):""}}'>
+    <view class="price cur {{tab==0?'':'gray'}}" style='{{tab==0?util.diyColor(diyColor.zColor,"",""):""}}'>
       <text class='unit'>￥</text>
       <text class='integer'>{{util.integer(item.actual_price)}}</text>
       <text class='decimals'>.{{util.decimals(item.actual_price)}}</text>

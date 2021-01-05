@@ -17,7 +17,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -106,29 +106,29 @@ Page({
     } else {
       current = idx
     }
-    let multiple_file = []
-    for (let i = 0, len = this.data.list[index].multiple_file.length; i < len; i++) {
-      multiple_file.push(encodeURIComponent(this.data.list[index].multiple_file[i]))
+    let multipleFile = []
+    for (let i = 0, len = this.data.list[index].multipleFile.length; i < len; i++) {
+      multipleFile.push(encodeURIComponent(this.data.list[index].multipleFile[i]))
     }
     let list = {
-      multiple_file: multiple_file,
+      multipleFile: multipleFile,
       video: encodeURIComponent(this.data.list[index].video),
       current: current
     }
     wx.navigateTo({
-      url: '/nearby_shops/preview/preview?info=' + JSON.stringify(list),
+      url: '/nearbyShops/preview/preview?info=' + JSON.stringify(list),
     })
   },
 
   goComment() {
     wx.redirectTo({
-      url: '/pages/comment_success/comment_success?write=1',
+      url: '/pages/commentSuccess/commentSuccess?write=1',
     })
   },
   onGoods(e) {
     let item = e.currentTarget.dataset.item
     wx.navigateTo({
-      url: '/nearby_shops/good_detail/good_detail?goods_id=' + item.goods_id,
+      url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + item.goodsId,
     })
   }
 })

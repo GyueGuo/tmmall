@@ -7,8 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    pic_list: [],
-    file_name: '',
+    picList: [],
+    fileName: '',
     //退款原因
     reason: '',
     //退款金额
@@ -24,7 +24,7 @@ Page({
     this.data.dataInfo = JSON.parse(options.dataInfo)
     this.data.dataInfo.info.file = decodeURIComponent(this.data.dataInfo.info.file)
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       dataInfo: this.data.dataInfo
     }, () => {
       this.getData()
@@ -114,10 +114,10 @@ Page({
    */
   choosePic() {
     wx.chooseImage({
-      count: 3 - this.data.pic_list.length,
+      count: 3 - this.data.picList.length,
       success: res => {
         this.setData({
-          pic_list: [...this.data.pic_list, ...res.tempFilePaths]
+          picList: [...this.data.picList, ...res.tempFilePaths]
         })
       },
     })
@@ -127,19 +127,19 @@ Page({
    * 删除图片
    */
   delectPic(e) {
-    this.data.pic_list.splice(e.currentTarget.dataset.index, 1)
+    this.data.picList.splice(e.currentTarget.dataset.index, 1)
     this.setData({
-      pic_list: this.data.pic_list
+      picList: this.data.picList
     })
   },
 
   getData() {
-    http.post(app.globalData.order_refundMoney, {
-      orderGoodsId: this.data.dataInfo.info.order_goods_id
+    http.post(app.globalData.orderRefundMoney, {
+      orderGoodsId: this.data.dataInfo.info.orderGoodsId
     }).then(res => {
       this.setData({
-        max_total: res.result.maxTotal,
-        sub_freight_price: res.result.subFreightPrice
+        maxTotal: res.result.maxTotal,
+        subFreightPrice: res.result.subFreightPrice
       })
     })
   },
@@ -175,20 +175,20 @@ Page({
       })
       return
     }
-    if (parseFloat(this.data.price).toFixed(2) > parseFloat(this.data.max_total)) {
-      app.showToast(`最多可退款金额为${this.data.max_total}元`)
+    if (parseFloat(this.data.price).toFixed(2) > parseFloat(this.data.maxTotal)) {
+      app.showToast(`最多可退款金额为${this.data.maxTotal}元`)
       this.setData({
         isSubmit: true
       })
       return
     }
 
-    this.data.file_name = ''
+    this.data.fileName = ''
     wx.showLoading({
       title: '加载中...',
     })
     this.uploadImage(0)
-    http.post(app.globalData.applet_my_saveFormId, {
+    http.post(app.globalData.appletMySaveFormId, {
       microFormId: this.data.formId
     }).then(res => {})
   },
@@ -197,18 +197,18 @@ Page({
    * 上传图片
    */
   uploadImage(i) {
-    if (i < this.data.pic_list.length) {
+    if (i < this.data.picList.length) {
       wx.uploadFile({
-        url: app.globalData.upload_pic,
-        filePath: this.data.pic_list[i],
+        url: app.globalData.uploadPic,
+        filePath: this.data.picList[i],
         name: 'image',
         formData: {
           type: 'goods'
         },
         success: res => {
-          this.data.file_name += JSON.parse(res.data).url
-          if (i != this.data.pic_list.length - 1) {
-            this.data.file_name += ','
+          this.data.fileName += JSON.parse(res.data).url
+          if (i != this.data.picList.length - 1) {
+            this.data.fileName += ','
           }
           this.uploadImage(i + 1)
         },
@@ -220,12 +220,12 @@ Page({
       })
     } else {
       http.post(app.globalData.refundAndReturn, {
-        orderGoodsId: this.data.dataInfo.info.order_goods_id,
+        orderGoodsId: this.data.dataInfo.info.orderGoodsId,
         type: this.data.dataInfo.type,
         refundAmount: this.data.price,
         reason: this.data.reason,
-        isGetGoods: (this.data.dataInfo.status != 2 && this.data.dataInfo.distribution_type != 2 && this.data.dataInfo.type == 1) || this.data.dataInfo.type == 1 ? this.data.dataInfo.state : 2,
-        multipleFile: this.data.file_name
+        isGetGoods: (this.data.dataInfo.status != 2 && this.data.dataInfo.distributionType != 2 && this.data.dataInfo.type == 1) || this.data.dataInfo.type == 1 ? this.data.dataInfo.state : 2,
+        multipleFile: this.data.fileName
       }).then(() => {
         wx.hideLoading()
         app.showSuccessToast('提交成功', () => {
@@ -233,13 +233,13 @@ Page({
           event.emit('refreshReturnDetail')
           const page = getCurrentPages()
           for (let i = 0, len = page.length; i < len; i++) {
-            if (page[i].route == 'my/order_detail/order_detail') {
+            if (page[i].route == 'my/orderDetail/orderDetail') {
               wx.navigateBack({
                 delta: page.length - i - 1
               })
               break;
               return
-            } else if (page[i].route != 'my/order_detail/order_detail' && i == page.length - 1) {
+            } else if (page[i].route != 'my/orderDetail/orderDetail' && i == page.length - 1) {
               wx.navigateBack({})
             }
           }

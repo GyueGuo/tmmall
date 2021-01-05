@@ -7,57 +7,56 @@ Page({
    * 页面的初始数据
    */
   data: {
-    store_id: '',
-    current_tab: 1,
+    storeId: '',
+    currentTab: 1,
     discount: '',
     //全部商品中的选项卡
-    all_tab: 2,
+    allTab: 2,
     //两排一排显示
     columns: 1,
     //是否显示首页
-    home_view: true,
+    homeView: true,
     //店铺信息
-    store_head: {},
+    storeHead: {},
     //搜索内容
     key: '',
     //首页分页
-    index_page: 1,
+    indexPage: 1,
     //首页推荐列表
-    recommand_list: [],
+    recommandList: [],
     //首页推荐列表长度
-    recommand_total: '',
+    recommandTotal: '',
     //全部商品分类
-    all_page: 1,
+    allPage: 1,
     //全部商品列表
-    all_list: [],
+    allList: [],
     //全部商品分类
     classify: [],
     //一级分类
-    first_classify: '',
+    firstClassify: '',
     //二级分类
-    second_classify: '',
+    secondClassify: '',
     //全部商品列表个数
-    all_total: '',
-    cart_total: 0,
-    cart_list: [],
-    cart_num: 0,
+    allTotal: '',
+    cartTotal: 0,
+    cartList: [],
     cartNum: 0,
     //当前操作的plan b item id
-    goods_id: '',
+    goodsId: '',
     //全部商品 价格排序
     rank: '',
     //新品
-    new_page: 1,
+    newPage: 1,
     //新品列表
-    new_list: [],
+    newList: [],
     //最后一页
-    last_page: '',
+    lastPage: '',
     //动态
-    article_page: 1,
+    articlePage: 1,
     //动态列表
-    article_list: [],
+    articleList: [],
     //动态列表长度
-    article_total: '',
+    articleTotal: '',
     oCart: false
   },
 
@@ -70,14 +69,14 @@ Page({
       let obj = http.scene(options.scene)
       console.log(obj)
       this.setData({
-        store_id: obj.store
+        storeId: obj.store
       })
     } else {
       this.setData({
-        store_id: options.store_id
+        storeId: options.storeId
       })
     }
-    app.app_DIY(() => {}, this)
+    app.appDIY(() => {}, this)
     this.getCartList()
     this.setData({
       configSwitch: app.globalData.configSwitch,
@@ -101,43 +100,43 @@ Page({
     event.on('shopAddCart', this, data => {
       console.log(data)
       if (data) {
-        this.data.goods_id = data.goods_id
+        this.data.goodsId = data.goodsId
       }
-      console.log(this.data.goods_id)
-      for (let i = 0, len = this.data.all_list.length; i < len; i++) {
-        if (this.data.all_list[i].goods_id == this.data.goods_id) {
-          this.data.all_list[i].cart_number += data.number
+      console.log(this.data.goodsId)
+      for (let i = 0, len = this.data.allList.length; i < len; i++) {
+        if (this.data.allList[i].goodsId == this.data.goodsId) {
+          this.data.allList[i].cartNumber += data.number
         }
       }
       this.setData({
-        all_list: this.data.all_list
+        allList: this.data.allList
       })
       this.getCartList()
     })
 
-    event.on('shopReduceCart', this, goods_id => {
-      if (goods_id) {
-        this.data.goods_id = goods_id
+    event.on('shopReduceCart', this, goodsId => {
+      if (goodsId) {
+        this.data.goodsId = goodsId
       }
-      for (let i = 0, len = this.data.all_list.length; i < len; i++) {
-        if (this.data.all_list[i].goods_id == this.data.goods_id) {
-          this.data.all_list[i].cart_number--;
+      for (let i = 0, len = this.data.allList.length; i < len; i++) {
+        if (this.data.allList[i].goodsId == this.data.goodsId) {
+          this.data.allList[i].cartNumber--;
         }
       }
       this.setData({
-        all_list: this.data.all_list
+        allList: this.data.allList
       })
       this.getCartList()
     })
 
     event.on('clearCart', this, () => {
-      for (let i = 0, len = this.data.all_list.length; i < len; i++) {
-        this.data.all_list[i].cart_number = 0
+      for (let i = 0, len = this.data.allList.length; i < len; i++) {
+        this.data.allList[i].cartNumber = 0
       }
       this.setData({
-        cart_list: [],
+        cartList: [],
         cartNum: 0,
-        all_list: this.data.all_list
+        allList: this.data.allList
       })
       // app.showToast('删除成功', () => {})
     })
@@ -170,21 +169,21 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-    switch (this.data.current_tab) {
+    switch (this.data.currentTab) {
       case 1:
-        this.data.index_page = 1
+        this.data.indexPage = 1
         this.getStoreIndex()
         break;
       case 2:
-        this.data.all_page = 1
+        this.data.allPage = 1
         this.getAllGoods()
         break;
       case 3:
-        this.data.new_page = 1
+        this.data.newPage = 1
         this.getNewGoods()
         break;
       case 4:
-        this.data.article_page = 1
+        this.data.articlePage = 1
         this.getArticle()
         break;
     }
@@ -207,8 +206,8 @@ Page({
 
     }
     return {
-      title: this.data.store_head.store_name,
-      path: '/nearby_shops/shop_detail/shop_detail?store_id=' + this.data.store_id
+      title: this.data.storeHead.storeName,
+      path: '/nearbyShops/shopDetail/shopDetail?storeId=' + this.data.storeId
     }
   },
 
@@ -238,7 +237,7 @@ Page({
    */
   scroll(e) {
     console.log(e.detail.scrollTop)
-    if (e.detail.scrollTop > 50 && (this.data.current_tab != 2 && this.data.store_head.goods_style != 1)) {
+    if (e.detail.scrollTop > 50 && (this.data.currentTab != 2 && this.data.storeHead.goods_style != 1)) {
       this.selectComponent("#go_top").rise()
     } else {
       this.selectComponent("#go_top").decline()
@@ -257,11 +256,11 @@ Page({
   bLeftScroll(e) {
     if (e.detail.scrollTop > 0) {
       this.setData({
-        b_left_scroll: true
+        bLeftScroll: true
       })
     } else {
       this.setData({
-        b_left_scroll: false
+        bLeftScroll: false
       })
     }
   },
@@ -269,11 +268,11 @@ Page({
   bRightScroll(e) {
     if (e.detail.scrollTop > 0) {
       this.setData({
-        b_right_scroll: true
+        bRightScroll: true
       })
     } else {
       this.setData({
-        b_right_scroll: false
+        bRightScroll: false
       })
     }
   },
@@ -293,10 +292,10 @@ Page({
       this.data.id = e.currentTarget.dataset.id
     }
     this.setData({
-      classify_board: false
+      classifyBoard: false
     })
     wx.navigateTo({
-      url: '/nearby_shops/search_in_shop/search_in_shop?classify_id=' + this.data.id + '&store_id=' + this.data.store_id + '&key=' + this.data.key,
+      url: '/nearbyShops/searchInShop/searchInShop?classifyId=' + this.data.id + '&storeId=' + this.data.storeId + '&key=' + this.data.key,
     })
   },
 
@@ -305,7 +304,7 @@ Page({
    */
   onClassify() {
     wx.navigateTo({
-      url: '/nearby_shops/shop_classify/shop_classify?store_id=' + this.data.store_id,
+      url: '/nearbyShops/shopClassify/shopClassify?storeId=' + this.data.storeId,
     })
   },
 
@@ -314,11 +313,11 @@ Page({
    */
   onHome() {
     this.setData({
-      current_tab: 1,
-      home_view: true,
-      all_view: false,
-      new_view: false,
-      dynamic_view: false,
+      currentTab: 1,
+      homeView: true,
+      allView: false,
+      newView: false,
+      dynamicView: false,
     })
   },
 
@@ -327,13 +326,13 @@ Page({
    */
   onAllGood() {
     this.setData({
-      current_tab: 2,
-      home_view: false,
-      all_view: true,
-      new_view: false,
-      dynamic_view: false,
+      currentTab: 2,
+      homeView: false,
+      allView: true,
+      newView: false,
+      dynamicView: false,
     })
-    if (this.data.all_list.length == 0) {
+    if (this.data.allList.length == 0) {
       this.getAllGoods()
     }
     if (this.data.classify.length == 0) {
@@ -346,11 +345,11 @@ Page({
    * 获取分类
    */
   getClassify() {
-    http.post(app.globalData.store_classify_list, {
-      storeId: this.data.store_id
+    http.post(app.globalData.storeClassifyList, {
+      storeId: this.data.storeId
     }).then(res => {
       this.data.classify.push({
-        store_goods_classify_id: '',
+        storeGoodsClassifyId: '',
         subset: [],
         select: true,
         title: '全部商品'
@@ -369,23 +368,19 @@ Page({
     console.log(item)
     if (!item.select) {
       for (let i = 0, len = this.data.classify.length; i < len; i++) {
-        if (item.store_goods_classify_id == this.data.classify[i].store_goods_classify_id) {
+        if (item.storeGoodsClassifyId == this.data.classify[i].storeGoodsClassifyId) {
           this.data.classify[i]['select'] = true
         } else {
           this.data.classify[i]['select'] = false
         }
       }
 
-    } else {
-      // for (let i = 0, len = this.data.classify.length; i < len; i++) {
-      //   this.data.classify[i]['select'] = false
-      // }
     }
     this.setData({
-      first_classify: item.store_goods_classify_id,
-      second_classify: '',
-      all_page: 1,
-      all_list: [],
+      firstClassify: item.storeGoodsClassifyId,
+      secondClassify: '',
+      allPage: 1,
+      allList: [],
       classify: this.data.classify
     })
     this.getAllGoods()
@@ -397,9 +392,9 @@ Page({
   onSecondClassify(e) {
     let id = e.currentTarget.dataset.id
     this.setData({
-      second_classify: id,
-      all_list: [],
-      all_page: 1,
+      secondClassify: id,
+      allList: [],
+      allPage: 1,
     })
     this.getAllGoods()
   },
@@ -408,12 +403,12 @@ Page({
    * 获取店铺购物车
    */
   getCartList() {
-    http.post(app.globalData.cart_index, {
-      storeId: this.data.store_id
+    http.post(app.globalData.cartIndex, {
+      storeId: this.data.storeId
     }, true).then(res => {
       if (res.result.length == 0) {
         this.setData({
-          cart_list: [],
+          cartList: [],
           cartNum: 0
         })
         return
@@ -424,7 +419,7 @@ Page({
         cartNum += res.result[0].list[i].number
       }
       this.setData({
-        cart_list: res.result[0].list,
+        cartList: res.result[0].list,
         cartNum: cartNum
       })
     })
@@ -438,33 +433,28 @@ Page({
       return
     }
     let dataset = e.currentTarget.dataset
-    this.data.goods_id = dataset.item.goods_id
-    if (dataset.item.attribute_list.length == 0) {
-      http.encPost(app.globalData.cart_create, {
-        storeId: this.data.store_id,
-        goodsId: dataset.item.goods_id,
-        goodsName: dataset.item.goods_name,
-        file: dataset.item.cart_file,
+    this.data.goodsId = dataset.item.goodsId
+    if (dataset.item.attributeList.length == 0) {
+      http.encPost(app.globalData.cartCreate, {
+        storeId: this.data.storeId,
+        goodsId: dataset.item.goodsId,
+        goodsName: dataset.item.goodsName,
+        file: dataset.item.cartFile,
         number: 1,
         productsId: '',
         attr: '',
         goodsAttr: '',
       }, true).then(res => {
         app.showToast('添加成功', () => {})
-        this.data.all_list[dataset.index].cart_number++
-          // for (let i = 0, len = this.data.all_list.length; i < len; i++) {
-          //   if (this.data.all_list[i].goods_id == dataset.item.goods_id) {
-          //     this.data.all_list[i].cart_number++
-          //   }
-          // }
+        this.data.allList[dataset.index].cartNumber++
           this.setData({
-            all_list: this.data.all_list
+            allList: this.data.allList
           })
         this.getCartList()
         event.emit('refreshCart')
       })
     } else {
-      dataset.item['attr'] = dataset.item.attribute_list
+      dataset.item['attr'] = dataset.item.attributeList
       this.setData({
         info: dataset.item
       })
@@ -479,37 +469,31 @@ Page({
     console.log(e)
     // let item = e.currentTarget.dataset.item
     let dataset = e.currentTarget.dataset
-    this.data.goods_id = dataset.item.goods_id
-    if (dataset.item.attribute_list.length != 0) {
+    this.data.goodsId = dataset.item.goodsId
+    if (dataset.item.attributeList.length != 0) {
       app.showToast('多规格商品请在购物车中减少')
       return
     }
-    let cart_id = ''
-    for (let i = 0, len = this.data.cart_list.length; i < len; i++) {
-      if (this.data.cart_list[i].goods_id == dataset.item.goods_id) {
-        cart_id = this.data.cart_list[i].cart_id
+    let cartId = ''
+    for (let i = 0, len = this.data.cartList.length; i < len; i++) {
+      if (this.data.cartList[i].goodsId == dataset.item.goodsId) {
+        cartId = this.data.cartList[i].cartId
       }
     }
-    if (dataset.item.cart_number > 1) {
-      http.post(app.globalData.cart_reduce, {
-        cartId: cart_id,
+    if (dataset.item.cartNumber > 1) {
+      http.post(app.globalData.cartReduce, {
+        cartId: cartId,
         number: 1
       }, true).then(res => {
-        this.data.all_list[dataset.index].cart_number--;
-        // for (let i = 0, len = this.data.all_list.length; i < len; i++) {
-        //   if (this.data.all_list[i].goods_id == dataset.item.goods_id) {
-        //     this.data.all_list[i].cart_number--
-        //   }
-        // }
+        this.data.allList[dataset.index].cartNumber--;
         this.setData({
-          all_list: this.data.all_list
+          allList: this.data.allList
         })
         this.getCartList()
         event.emit('refreshCart')
       })
-    } else if (dataset.item.cart_number == 1) {
-      console.log(cart_id)
-      this.cart_delete(cart_id, dataset)
+    } else if (dataset.item.cartNumber == 1) {
+      this.cartDelete(cartId, dataset)
     }
 
   },
@@ -517,31 +501,24 @@ Page({
   /**
    * 删除商品
    */
-  cart_delete(cart_id, dataset) {
+  cartDelete(cartId, dataset) {
     console.log(dataset)
     // return
-    http.post(app.globalData.cart_delete, {
-      cartId: cart_id
+    http.post(app.globalData.cartDelete, {
+      cartId,
     }, true).then(res => {
-      // this.data.all_list[dataset.index].cart_number = 0
-      for (let i = 0, len = this.data.all_list.length; i < len; i++) {
-        if (this.data.all_list[i].goods_id == dataset.item.goods_id) {
-          this.data.all_list[i].cart_number = 0
+      // this.data.allList[dataset.index].cartNumber = 0
+      for (let i = 0, len = this.data.allList.length; i < len; i++) {
+        if (this.data.allList[i].goodsId == dataset.item.goodsId) {
+          this.data.allList[i].cartNumber = 0
           break;
         }
       }
-      // for (let j = 0, len = this.data.cart_list.length; j < len; j++) {
-      //   if (this.data.cart_list[j].goods_id == dataset.item.goods_id) {
-      //     this.data.cart_list.splice(j, 1)
-      //   }
-      // }
-      // let cart_list = this.data.cart_list.filter((val) => val.goods_id == dataset.item.goods_id)
       this.setData({
-        all_list: this.data.all_list,
-        // cart_list: cart_list
+        allList: this.data.allList,
       })
       this.getCartList()
-      this.triggerEvent("changeNum", this.data.change_num)
+      this.triggerEvent("changeNum", this.data.changeNum)
       event.emit('refreshCartNumber')
     })
   },
@@ -549,9 +526,9 @@ Page({
   /**
    * 监听结算列表删除
    */
-  event_cart_delete(e) {
+  eventCartDelete(e) {
     let item = e.detail
-    this.cart_delete(item.cart_id, item.item)
+    this.cartDelete(item.cartId, item.item)
   },
 
 
@@ -560,7 +537,7 @@ Page({
    */
   cartCalculate(e) {
     this.setData({
-      cart_total: e.detail
+      cartTotal: e.detail
     })
   },
 
@@ -579,7 +556,7 @@ Page({
     }
   },
   showCart() {
-    if (this.data.cart_list.length == 0) {
+    if (this.data.cartList.length == 0) {
       app.showToast('购物车中暂无商品')
       return
     }
@@ -595,13 +572,13 @@ Page({
    */
   onNew() {
     this.setData({
-      current_tab: 3,
-      home_view: false,
-      all_view: false,
-      new_view: true,
-      dynamic_view: false,
+      currentTab: 3,
+      homeView: false,
+      allView: false,
+      newView: true,
+      dynamicView: false,
     })
-    if (this.data.new_list.length == 0) {
+    if (this.data.newList.length == 0) {
       this.getNewGoods()
     }
   },
@@ -611,13 +588,13 @@ Page({
    */
   onDynamic() {
     this.setData({
-      current_tab: 4,
-      home_view: false,
-      all_view: false,
-      new_view: false,
-      dynamic_view: true,
+      currentTab: 4,
+      homeView: false,
+      allView: false,
+      newView: false,
+      dynamicView: true,
     })
-    if (this.data.article_list.length == 0) {
+    if (this.data.articleList.length == 0) {
       this.getArticle()
     }
   },
@@ -626,22 +603,22 @@ Page({
    * 热门分类
    */
   onHotClassify() {
-    if (this.data.classify_board) {
+    if (this.data.classifyBoard) {
       this.setData({
-        classify_board: false
+        classifyBoard: false
       })
       return
     }
-    http.post(app.globalData.store_hot_classify_list, {
-      storeId: this.data.store_id
+    http.post(app.globalData.storeHotClassifyList, {
+      storeId: this.data.storeId
     }).then(res => {
       if (res.result.length == 0) {
         app.showToast('暂无热门分类')
         return
       }
       this.setData({
-        hot_classify: res.result,
-        classify_board: true
+        hotClassify: res.result,
+        classifyBoard: true
       })
     })
 
@@ -652,7 +629,7 @@ Page({
    */
   closeClassify() {
     this.setData({
-      classify_board: false
+      classifyBoard: false
     })
   },
 
@@ -661,9 +638,9 @@ Page({
    */
   receiveCoupon(e) {
     if (app.login()) {
-      http.post(app.globalData.get_coupon, {
+      http.post(app.globalData.getCoupon, {
         couponId: e.currentTarget.dataset.id,
-        storeId: this.data.store_id
+        storeId: this.data.storeId
       }).then(res => {
         app.showSuccessToast('领取成功')
       })
@@ -687,9 +664,9 @@ Page({
   onComposite() {
     //点击综合
     this.setData({
-      all_tab: 1,
+      allTab: 1,
       rank: '',
-      all_page: 1
+      allPage: 1
     })
     //列表框
     this.getAllGoods()
@@ -702,9 +679,9 @@ Page({
     //关闭综合列表框
     if (!this.closeSynthesisList()) {
       this.setData({
-        all_tab: 2,
+        allTab: 2,
         rank: '',
-        all_page: 1
+        allPage: 1
       })
       this.getAllGoods()
     }
@@ -722,9 +699,9 @@ Page({
         this.data.rank = 'asc'
       }
       this.setData({
-        all_tab: 3,
+        allTab: 3,
         rank: this.data.rank,
-        all_page: 1
+        allPage: 1
       })
       this.getAllGoods()
     }
@@ -734,9 +711,9 @@ Page({
    * 关闭综合列表
    */
   closeSynthesisList() {
-    if (this.data.classify_board) {
+    if (this.data.classifyBoard) {
       this.setData({
-        classify_board: false
+        classifyBoard: false
       })
       return true;
     }
@@ -748,7 +725,7 @@ Page({
    */
   onShopIntro() {
     wx.navigateTo({
-      url: '/nearby_shops/shop_intro/shop_intro?id=' + this.data.store_id,
+      url: '/nearbyShops/shopIntro/shopIntro?id=' + this.data.storeId,
     })
   },
 
@@ -756,15 +733,15 @@ Page({
    * 店铺头部
    */
   getStoreHead() {
-    http.post(app.globalData.store_head, {
-      storeId: this.data.store_id
+    http.post(app.globalData.storeHead, {
+      storeId: this.data.storeId
     }).then(res => {
       this.setData({
-        store_head: res.result,
+        storeHead: res.result,
         show: true
       })
       wx.setNavigationBarTitle({
-        title: res.result.store_name,
+        title: res.result.storeName,
       })
     })
   },
@@ -773,19 +750,19 @@ Page({
    * 获取店铺首页
    */
   getStoreIndex() {
-    http.post(app.globalData.store_index, {
-      storeId: this.data.store_id,
-      page: this.data.index_page
+    http.post(app.globalData.storeIndex, {
+      storeId: this.data.storeId,
+      page: this.data.indexPage
     }).then(res => {
-      if (this.data.index_page == 1) {
+      if (this.data.indexPage == 1) {
         this.setData({
-          store_index: res.result,
-          recommand_list: res.result.recommend.data,
-          recommand_total: res.result.recommend.total,
+          storeIndex: res.result,
+          recommandList: res.result.recommend.data,
+          recommandTotal: res.result.recommend.total,
         })
       } else {
         this.setData({
-          recommand_list: [...this.data.recommand_list, ...res.result.recommend.data]
+          recommandList: [...this.data.recommandList, ...res.result.recommend.data]
         })
       }
     })
@@ -795,41 +772,34 @@ Page({
    * 获取全部商品
    */
   getAllGoods() {
-    let recommend = this.data.all_tab == 1 ? 1 : '',
+    let recommend = this.data.allTab == 1 ? 1 : '',
       parameter = ''
-    if (this.data.all_tab == 2) {
-      parameter = 'sales_volume'
-    } else if (this.data.all_tab == 3) {
-      parameter = 'shop_price'
+    if (this.data.allTab == 2) {
+      parameter = 'salesVolume'
+    } else if (this.data.allTab == 3) {
+      parameter = 'shopPrice'
     }
-    http.postList(app.globalData.store_goods_list, {
-      page: this.data.all_page,
+    http.postList(app.globalData.storeGoodsList, {
+      page: this.data.allPage,
       recommend: recommend,
       parameter: parameter,
       rank: this.data.rank,
-      storeId: this.data.store_id,
-      classifyId: this.data.second_classify == '' ? this.data.first_classify : this.data.second_classify,
+      storeId: this.data.storeId,
+      classifyId: this.data.secondClassify == '' ? this.data.firstClassify : this.data.secondClassify,
     }).then(res => {
-      if (this.data.all_page == 1) {
+      if (this.data.allPage == 1) {
         this.setData({
           discount: res.discount == null ? 100 : res.discount,
-          all_list: res.result.data,
-          all_total: res.result.total,
+          allList: res.result.data,
+          allTotal: res.result.total,
         })
       } else {
         this.setData({
-          all_list: [...this.data.all_list, ...res.result.data]
+          allList: [...this.data.allList, ...res.result.data]
         })
       }
-      // for (let i = 0, len = this.data.all_list.length; i < len; i++) {
-      //   if (this.data.all_list[i].is_vip == 1) {
-      //     this.data.all_list[i].shop_price = parseFloat(parseFloat(this.data.all_list[i].shop_price) * 0.01 * res.discount).toFixed(2)
-      //   } else {
-      //     this.data.all_list[i].shop_price = this.data.all_list[i].shop_price
-      //   }
-      // }
       this.setData({
-        all_list: this.data.all_list
+        allList: this.data.allList
       })
     })
   },
@@ -838,23 +808,23 @@ Page({
    * 获取新品
    */
   getNewGoods() {
-    http.post(app.globalData.new_product_list, {
-      page: this.data.new_page,
-      storeId: this.data.store_id,
+    http.post(app.globalData.newProductList, {
+      page: this.data.newPage,
+      storeId: this.data.storeId,
     }).then(res => {
-      if (this.data.new_page == 1) {
+      if (this.data.newPage == 1) {
         this.setData({
           discount: res.discount == null ? 100 : res.discount,
-          new_list: res.result.data,
-          last_page: res.result.lastPage,
+          newList: res.result.data,
+          lastPage: res.result.lastPage,
         })
       } else {
-        if (this.data.new_list[this.data.new_list.length - 1].date == res.result.data[0].date) {
-          this.data.new_list[this.data.new_list.length - 1].list = this.data.new_list[this.data.new_list.length - 1].list.concat(res.result.data[0].list)
+        if (this.data.newList[this.data.newList.length - 1].date == res.result.data[0].date) {
+          this.data.newList[this.data.newList.length - 1].list = this.data.newList[this.data.newList.length - 1].list.concat(res.result.data[0].list)
           res.result.data.splice(0, 1)
         }
         this.setData({
-          new_list: [...this.data.new_list, ...res.result.data]
+          newList: [...this.data.newList, ...res.result.data]
         })
       }
     })
@@ -865,7 +835,7 @@ Page({
    */
   onGoods(e) {
     wx.navigateTo({
-      url: '/nearby_shops/good_detail/good_detail?goods_id=' + e.currentTarget.dataset.id,
+      url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -873,18 +843,18 @@ Page({
    * 获取动态
    */
   getArticle() {
-    http.post(app.globalData.store_article_list, {
-      storeId: this.data.store_id,
-      page: this.data.article_page
+    http.post(app.globalData.storeArticleList, {
+      storeId: this.data.storeId,
+      page: this.data.articlePage
     }).then(res => {
-      if (this.data.article_page == 1) {
+      if (this.data.articlePage == 1) {
         this.setData({
-          article_list: res.result.data,
-          atricle_total: res.result.total
+          articleList: res.result.data,
+          atricleTotal: res.result.total
         })
       } else {
         this.setData({
-          article_list: [...this.data.article_list, ...res.result.data]
+          articleList: [...this.data.articleList, ...res.result.data]
         })
       }
     })
@@ -895,7 +865,7 @@ Page({
    */
   onArticleDetail(e) {
     wx.navigateTo({
-      url: '/nearby_shops/dynamic_detail/dynamic_detail?id=' + e.currentTarget.dataset.id + '&store_id=' + this.data.store_id,
+      url: '/nearbyShops/dynamicDetail/dynamicDetail?id=' + e.currentTarget.dataset.id + '&storeId=' + this.data.storeId,
     })
   },
 
@@ -904,23 +874,23 @@ Page({
    */
   collectStore() {
     let url = ''
-    if (this.data.store_head.state == 0) {
-      url = app.globalData.collect_store
+    if (this.data.storeHead.state == 0) {
+      url = app.globalData.collectStore
     } else {
-      url = app.globalData.store_index_delete
+      url = app.globalData.storeIndexDelete
     }
     http.post(url, {
-      storeId: this.data.store_id
+      storeId: this.data.storeId
     }).then(res => {
-      if (this.data.store_head.state == 0) {
-        this.data.store_head.state = 1
-        this.data.store_head.collect++;
+      if (this.data.storeHead.state == 0) {
+        this.data.storeHead.state = 1
+        this.data.storeHead.collect++;
       } else {
-        this.data.store_head.state = 0
-        this.data.store_head.collect--;
+        this.data.storeHead.state = 0
+        this.data.storeHead.collect--;
       }
       this.setData({
-        store_head: this.data.store_head
+        storeHead: this.data.storeHead
       })
       app.showSuccessToast(res.message)
     })
@@ -930,28 +900,28 @@ Page({
    * 加载更多
    */
   loadMore() {
-    switch (this.data.current_tab) {
+    switch (this.data.currentTab) {
       case 1:
-        if (this.data.recommand_total > this.data.recommand_list.length) {
-          this.data.index_page++;
+        if (this.data.recommandTotal > this.data.recommandList.length) {
+          this.data.indexPage++;
           this.getStoreIndex()
         }
         break;
       case 2:
-        if (this.data.all_total > this.data.all_list.length) {
-          this.data.all_page++;
+        if (this.data.allTotal > this.data.allList.length) {
+          this.data.allPage++;
           this.getAllGoods()
         }
         break;
       case 3:
-        if (this.data.last_page > this.data.new_page) {
-          this.data.new_page++;
+        if (this.data.lastPage > this.data.newPage) {
+          this.data.newPage++;
           this.getNewGoods()
         }
         break;
       case 4:
-        if (this.data.article_total > this.data.article_list.length) {
-          this.data.article_page++;
+        if (this.data.articleTotal > this.data.articleList.length) {
+          this.data.articlePage++;
           this.getArticle()
         }
         break;
@@ -972,21 +942,12 @@ Page({
    */
   service() {
     wx.makePhoneCall({
-      phoneNumber: this.data.store_head.store_phone,
+      phoneNumber: this.data.storeHead.storePhone,
     })
-    // let service_info = {
-    //   store_title: this.data.store_head.store_name,
-    //   TARGET_ID: this.data.store_id,
-    //   DIVERSION_ID: '1002'
-    // }
-    // wx.navigateTo({
-    //   url: '/my/service/service?service_info=' + JSON.stringify(service_info),
-    // })
   },
   onLabel(e) {
-    console.log(e.currentTarget.dataset)
     wx.navigateTo({
-      url: `/nearby_shops/good_detail/good_detail?goods_id=${e.currentTarget.dataset.goods_id}&label=${e.currentTarget.dataset.id}`,
+      url: `/nearbyShops/goodDetail/goodDetail?goodsId=${e.currentTarget.dataset.goodsId}&label=${e.currentTarget.dataset.id}`,
     })
   }
 

@@ -1,4 +1,3 @@
-// pages/preview/preview.js
 Page({
 
   /**
@@ -13,8 +12,8 @@ Page({
    */
   onLoad: function(options) {
     let info = JSON.parse(options.info)
-    for (let i = 0, len = info.multiple_file.length; i < len; i++) {
-      info.multiple_file[i] = decodeURIComponent(info.multiple_file[i])
+    for (let i = 0, len = info.multipleFile.length; i < len; i++) {
+      info.multipleFile[i] = decodeURIComponent(info.multipleFile[i])
     }
     info.video = decodeURIComponent(info.video)
     this.setData({

@@ -1,4 +1,3 @@
-// nearby_shops/shop_intro/shop_code.js
 Component({
   /**
    * 组件的属性列表

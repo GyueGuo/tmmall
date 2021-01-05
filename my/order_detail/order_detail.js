@@ -8,10 +8,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    order_attach_id: '',
+    orderAttachId: '',
     info: {},
-    count_down: {},
-    modal_confirm: [{
+    countDown: {},
+    modalConfirm: [{
         title: '提示',
         content: '确认已收到货?',
         tip: '',
@@ -35,57 +35,57 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       configSwitch: app.globalData.configSwitch,
-      order_attach_id: options.id
+      orderAttachId: options.id
     })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
     event.on('refreshOrderDetail', this, () => {
       this.getDetail()
     })
-    
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     this.getDetail()
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
-    clearInterval(this.data.count_down)
+  onHide: function () {
+    clearInterval(this.data.countDown)
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
     event.remove('refreshOrderDetail', this)
-    clearInterval(this.data.count_down)
+    clearInterval(this.data.countDown)
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
@@ -93,25 +93,24 @@ Page({
    * 获取订单详情
    */
   getDetail() {
-    http.post(app.globalData.order_details, {
-      order_attach_id: this.data.order_attach_id
+    http.post(app.globalData.orderDetails, {
+      orderAttachId: this.data.orderAttachId
     }).then(res => {
       // 计算总价
-      // res.result['total'] = (parseFloat(res.result.subtotal_price) + parseFloat(res.result.subtotal_coupon_price) + parseFloat(res.result.total_packet_price) + parseFloat(res.result.total_cut_amount) - parseFloat(res.result.subtotal_freight_price)).toFixed(2)
-      res.result['total'] = (parseFloat(res.result.order_goods_details[0].original_price) * parseFloat(res.result.order_goods_details[0].quantity)).toFixed(2)
+      res.result['total'] = (parseFloat(res.result.orderGoodsDetails[0].originalPrice) * parseFloat(res.result.orderGoodsDetails[0].quantity)).toFixed(2)
       this.setData({
         info: res.result,
-        discounts: (parseFloat(res.result.subtotal_coupon_price) + parseFloat(res.result.total_packet_price)).toFixed(2)
+        discounts: (parseFloat(res.result.subtotalCouponPrice) + parseFloat(res.result.totalPacketPrice)).toFixed(2)
       })
-      if (res.result.distribution_type == 2) {
-        wxbarcode.barcode('barcode', res.result.take_code, 500, 136);
-        wxbarcode.qrcode('qrcode', res.result.take_code, 286, 286);
+      if (res.result.distributionType == 2) {
+        wxbarcode.barcode('barcode', res.result.takeCode, 500, 136);
+        wxbarcode.qrcode('qrcode', res.result.takeCode, 286, 286);
       }
-      clearInterval(this.data.count_down)
+      clearInterval(this.data.countDown)
       // 倒计时
       if (res.result.status == 0) {
         this.countDown()
-        this.data.count_down = setInterval(() => {
+        this.data.countDown = setInterval(() => {
           this.countDown()
         }, 1000)
       }
@@ -122,7 +121,7 @@ Page({
    * 倒计时
    */
   countDown() {
-    let second = this.data.info.remaining_time
+    let second = this.data.info.remainingTime
     if (second < 0) {
       this.data.info.status = -1
       this.setData({
@@ -136,7 +135,7 @@ Page({
       // this.data.info['hour'] = Math.floor(second / 3600) < 10 ? '0' + Math.floor(second / 3600) : Math.floor(second / 3600)
       this.data.info['min'] = Math.floor(second / 60 % 60) < 10 ? '0' + Math.floor(second / 60 % 60) : Math.floor(second / 60 % 60)
       this.data.info['sec'] = Math.floor(second % 60) < 10 ? '0' + Math.floor(second % 60) : Math.floor(second % 60)
-      this.data.info.remaining_time--;
+      this.data.info.remainingTime--;
       this.setData({
         'info.min': this.data.info['min'],
         'info.sec': this.data.info['sec']
@@ -150,7 +149,7 @@ Page({
    */
   callPhone() {
     wx.makePhoneCall({
-      phoneNumber: this.data.info.store_list.phone,
+      phoneNumber: this.data.info.storeList.phone,
     })
   },
   /**
@@ -158,13 +157,13 @@ Page({
    */
   callPtPhone() {
     wx.makePhoneCall({
-      phoneNumber: this.data.configSwitch.app_info.contact,
+      phoneNumber: this.data.configSwitch.appInfo.contact,
     })
   },
 
   goShop() {
     wx.navigateTo({
-      url: '/nearby_shops/shop_detail/shop_detail?store_id=' + this.data.info.store_id,
+      url: '/nearbyShops/shopDetail/shopDetail?storeId=' + this.data.info.storeId,
     })
   },
 
@@ -173,21 +172,21 @@ Page({
    */
   onLogistics() {
     //如果是同城 达达
-    if (this.data.info.distribution_type == 1 && this.data.info.dada == 1) {
+    if (this.data.info.distributionType == 1 && this.data.info.dada == 1) {
       wx.navigateTo({
-        url: `/my/take_out/take_out?order_attach_id=${this.data.order_attach_id}`,
+        url: `/my/takeOut/takeOut?orderAttachId=${this.data.orderAttachId}`,
       })
       return
     } else {
       //快递
       let info = {
-        express_number: this.data.info.express_number,
-        express_value: this.data.info.express_value,
-        order_attach_id: this.data.order_attach_id,
+        expressNumber: this.data.info.expressNumber,
+        expressValue: this.data.info.expressValue,
+        orderAttachId: this.data.orderAttachId,
         type: 'order'
       }
       wx.navigateTo({
-        url: `/my/logistics_detail/logistics_detail?info=${JSON.stringify(info)}`,
+        url: `/my/logisticsDetail/logisticsDetail?info=${JSON.stringify(info)}`,
       })
     }
   },
@@ -197,7 +196,7 @@ Page({
    */
   onCourierPhone() {
     wx.makePhoneCall({
-      phoneNumber: this.data.info.distribution_tel,
+      phoneNumber: this.data.info.distributionTel,
     })
   },
 
@@ -205,7 +204,6 @@ Page({
    * 提货凭证
    */
   onSelfDelivery() {
-    // this.selectComponent("#self_voucher").show(this.data.info)
     this.setData({
       isShow: true
     })
@@ -225,7 +223,7 @@ Page({
    */
   refundDetail(e) {
     wx.navigateTo({
-      url: `/pages/return_detail/return_detail?id=${e.currentTarget.dataset.id}&status=${this.data.info.status}`,
+      url: `/pages/returnDetail/returnDetail?id=${e.currentTarget.dataset.id}&status=${this.data.info.status}`,
     })
   },
 
@@ -237,11 +235,11 @@ Page({
     item['file'] = encodeURIComponent(item.file)
     let obj = {
       info: item,
-      distribution_type: this.data.info.distribution_type, //配送方式 1同城速递 2预约自提 3快递邮寄
+      distributionType: this.data.info.distributionType, //配送方式 1同城速递 2预约自提 3快递邮寄
       status: this.data.info.status // 订单状态 0待付款 1待配送 2配送中 3已完成 4已关闭 5退款中
     }
     wx.navigateTo({
-      url: `/my/service_type/service_type?dataInfo=${JSON.stringify(obj)}`,
+      url: `/my/serviceType/serviceType?dataInfo=${JSON.stringify(obj)}`,
     })
   },
 
@@ -251,7 +249,7 @@ Page({
   fillLogistics(e) {
     let item = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: `/pages/fill_logistics/fill_logistics?id=${item}`,
+      url: `/pages/fillLogistics/fillLogistics?id=${item}`,
     })
   },
 
@@ -259,9 +257,9 @@ Page({
    * 取消订单
    */
   cancelOrder(e) {
-    http.post(app.globalData.cancel_order, {
-      orderAttachId: this.data.order_attach_id
-    }).then(res => {
+    http.post(app.globalData.cancelOrder, {
+      orderAttachId: this.data.orderAttachId
+    }).then((res) => {
       app.showSuccessToast('取消成功')
       event.emit('closeOrder')
       event.emit('closeSearchOrder')
@@ -275,7 +273,7 @@ Page({
   deleteOrder(e) {
     console.log(e)
     // return
-    if (this.data.info.has_refund == 1) {
+    if (this.data.info.hasRefund == 1) {
       // app.showModal('', '删除订单会取消您的退款申请,确定继续吗?', () => {
       this.showModal(e)
       this.confirmDelete()
@@ -287,8 +285,8 @@ Page({
   },
 
   confirmDelete() {
-    http.post(app.globalData.delete_order, {
-      orderAttachId: this.data.order_attach_id
+    http.post(app.globalData.deleteOrder, {
+      orderAttachId: this.data.orderAttachId
     }).then(res => {
       app.showSuccessToast('删除成功', () => {
         wx.navigateBack()
@@ -300,42 +298,31 @@ Page({
 
   onComment() {
     let list = []
-    for (let i = 0, len = this.data.info.order_goods_details.length; i < len; i++) {
-      this.data.info.order_goods_details[i].file = encodeURIComponent(this.data.info.order_goods_details[i].file)
-      if (this.data.info.order_goods_details[i].status != 4.2 && this.data.info.order_goods_details[i].status != 4.3) {
-        list.push(this.data.info.order_goods_details[i])
+    for (let i = 0, len = this.data.info.orderGoodsDetails.length; i < len; i++) {
+      this.data.info.orderGoodsDetails[i].file = encodeURIComponent(this.data.info.orderGoodsDetails[i].file)
+      if (this.data.info.orderGoodsDetails[i].status != 4.2 && this.data.info.orderGoodsDetails[i].status != 4.3) {
+        list.push(this.data.info.orderGoodsDetails[i])
       }
     }
     wx.navigateTo({
       url: `/pages/comment/comment?info=${JSON.stringify(list)}`,
     })
-    // if (this.data.info.has_refund == 1) {
-    //   app.showModal('', '评论会取消您的退款申请,确定继续吗?', () => {
-    //     wx.navigateTo({
-    //       url: `/pages/comment/comment?info=${JSON.stringify(list)}`,
-    //     })
-    //   })
-    // } else {
-    //   wx.navigateTo({
-    //     url: `/pages/comment/comment?info=${JSON.stringify(list)}`,
-    //   })
-    // }
   },
 
   /**
    * 立即支付
    */
   payOrder() {
-    let order_info = {
-      total_price: this.data.info.subtotal_price,
-      order_number: '',
-      order_type: this.data.info.order_type,
-      order_attach_number: this.data.info.order_attach_number,
-      order_attach_id: this.data.info.order_attach_id,
+    let orderInfo = {
+      totalPrice: this.data.info.subtotalPrice,
+      orderNumber: '',
+      orderType: this.data.info.orderType,
+      orderAttachNumber: this.data.info.orderAttachNumber,
+      orderAttachId: this.data.info.orderAttachId,
       type: 1
     }
     wx.navigateTo({
-      url: `/pages/cashier_desk/cashier_desk?order_info=${JSON.stringify(order_info)}`,
+      url: `/pages/cashierDesk/cashierDesk?orderInfo=${JSON.stringify(orderInfo)}`,
     })
   },
 
@@ -343,7 +330,7 @@ Page({
    * 确认收货
    */
   confirmOrder() {
-    if (this.data.info.has_refund == 1) {
+    if (this.data.info.hasRefund == 1) {
       app.showModal('', '确认收货会取消您的退款申请,确定继续吗?', () => {
         this.confirmReceipt()
       })
@@ -356,9 +343,8 @@ Page({
    * 
    */
   confirmReceipt() {
-    // app.showModal('', '是否确定确认收货', () => {
-    http.post(app.globalData.confirm_collect, {
-      orderAttachId: this.data.order_attach_id
+    http.post(app.globalData.confirmCollect, {
+      orderAttachId: this.data.orderAttachId
     }).then(res => {
       app.showSuccessToast('收货成功', () => {
         this.getDetail()
@@ -366,7 +352,6 @@ Page({
         event.emit('confirmSearchReceipt')
       })
     })
-    // })
   },
 
   /**
@@ -374,7 +359,7 @@ Page({
    */
   onCollageDetail() {
     wx.navigateTo({
-      url: `/pages/collage_detail/collage_detail?id=${this.data.info.group_activity_attach_id}`,
+      url: `/pages/collageDetail/collageDetail?id=${this.data.info.groupActivityAttachId}`,
     })
   },
 
@@ -383,7 +368,7 @@ Page({
    */
   onBargainDetail() {
     wx.navigateTo({
-      url: `/pages/bargain/bargain?id=${this.data.info.cut_activity_id}`
+      url: `/pages/bargain/bargain?id=${this.data.info.cutActivityId}`
     })
   },
 
@@ -392,49 +377,48 @@ Page({
    */
   copyOrderNumber() {
     wx.setClipboardData({
-      data: this.data.info.order_attach_number,
+      data: this.data.info.orderAttachNumber,
     })
   },
 
   onGood(e) {
     wx.navigateTo({
-      url: `/nearby_shops/good_detail/good_detail?goods_id=${e.currentTarget.dataset.id}`
+      url: `/nearbyShops/goodDetail/goodDetail?goodsId=${e.currentTarget.dataset.id}`
     })
   },
   /**
    * 客服
    */
   service() {
-    let service_info = {
-      store_title: this.data.info.store_list.store_name,
-      TARGET_ID: this.data.info.store_id,
-      DIVERSION_ID: '1004'
+    let serviceInfo = {
+      storeTitle: this.data.info.storeList.storeName,
+      TARGETID: this.data.info.storeId,
+      DIVERSIONID: '1004'
     }
     wx.navigateTo({
-      url: `/my/service/service?service_info=${JSON.stringify(service_info)}`,
+      url: `/my/service/service?serviceInfo=${JSON.stringify(serviceInfo)}`,
     })
   },
   /**
    * 申请重开发票
    */
-  invoice_anew(e) {
+  invoiceAnew(e) {
     let item = e.currentTarget.dataset.item
     wx.navigateTo({
-      url: `/nearby_shops/invoice_detail/invoice_detail?order_attach_id=${item.order_attach_id}&status=${item.status}`
+      url: `/nearbyShops/invoiceDetail/invoiceDetail?orderAttachId=${item.orderAttachId}&status=${item.status}`
     })
   },
   /**
    * 申请发票
    */
-  invoice_apply(e) {
-    let order_attach_id = e.currentTarget.dataset.item
+  invoiceApply(e) {
+    let orderAttachId = e.currentTarget.dataset.item
     wx.navigateTo({
-      url: `/nearby_shops/invoice_info/invoice_info?order_attach_id=${order_attach_id}&store_id=${this.data.info.store_id}`
+      url: `/nearbyShops/invoiceInfo/invoiceInfo?orderAttachId=${orderAttachId}&storeId=${this.data.info.storeId}`
     })
   },
 
   showModal(e) {
-    console.log(e.currentTarget.dataset)
     this.setData({
       showModal: e.currentTarget.dataset.confirmtype
     })
@@ -445,11 +429,11 @@ Page({
    */
   onNavigation() {
     wx.openLocation({
-      latitude: parseFloat(this.data.info.take_lat),
-      longitude: parseFloat(this.data.info.take_lng),
+      latitude: parseFloat(this.data.info.takeLat),
+      longitude: parseFloat(this.data.info.takeLng),
       scale: 18,
-      name: this.data.info.store_list.store_name,
-      address: this.data.info.take_province + this.data.info.take_city + this.data.info.take_area + this.data.info.take_street + this.data.info.take_address,
+      name: this.data.info.storeList.storeName,
+      address: this.data.info.takeProvince + this.data.info.takeCity + this.data.info.takeArea + this.data.info.takeStreet + this.data.info.takeAddress,
     })
   },
 })

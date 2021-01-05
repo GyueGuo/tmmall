@@ -16,7 +16,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -71,7 +71,7 @@ Page({
    */
   onDetail(e) {
     wx.navigateTo({
-      url: '/my/offline_detail/offline_detail?id=' + e.currentTarget.dataset.id,
+      url: '/my/offlineDetail/offlineDetail?id=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -79,7 +79,7 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.order_under_line_list, {
+    http.post(app.globalData.orderUnderLineList, {
       page: this.data.page
     }).then(res=> {
       if (this.data.page == 1) {

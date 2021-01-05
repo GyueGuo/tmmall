@@ -1,4 +1,3 @@
-/* my/bank_list/bank_list.wxss */
 page{
   padding: 25rpx;
   box-sizing: border-box;

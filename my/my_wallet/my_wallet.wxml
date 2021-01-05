@@ -1,48 +1,39 @@
-<!--my/my_wallet/my_wallet.wxml-->
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='wrap'>
   <view class='section'>
-    <view class='li' data-item='usable_money' hover-class='hover-class' hover-stay-time='400' bindtap='route' wx:if='{{configSwitch.show_switch.is_balance==1}}' >
+    <view class='li' data-item='usableMoney' hover-class='hover-class' hover-stay-time='400' bindtap='route' wx:if='{{configSwitch.showSwitch.isBalance==1}}' >
       <image class='img' src='{{util.HTTP}}mobile/small/image/my/1-1.png'></image>
       <view class='title'>账户余额</view>
-      <view class='num'>{{info.usable_money}}</view>
+      <view class='num'>{{info.usableMoney}}</view>
       <image class='next' src='{{util.HTTP}}mobile/small/image/my/1-9.png'></image>
     </view>
-    <view class='li' data-item='coupon' hover-class='hover-class' hover-stay-time='400' bindtap='route' wx:if='{{configSwitch.show_switch.is_coupon==1}}' >
+    <view class='li' data-item='coupon' hover-class='hover-class' hover-stay-time='400' bindtap='route' wx:if='{{configSwitch.showSwitch.isCoupon==1}}' >
       <image class='img' src='{{util.HTTP}}mobile/small/image/my/1-2.png'></image>
       <view class='title'>优惠券</view>
       <view class='num'>{{info.coupon}}张</view>
       <image class='next' src='{{util.HTTP}}mobile/small/image/my/1-9.png'></image>
     </view>
-    <view class='li' data-item='red_packet' hover-class='hover-class' hover-stay-time='400' bindtap='route' wx:if='{{configSwitch.show_switch.is_red_packet==1}}' >
+    <view class='li' data-item='redPacket' hover-class='hover-class' hover-stay-time='400' bindtap='route' wx:if='{{configSwitch.showSwitch.isRedPacket==1}}' >
       <image class='img' src='{{util.HTTP}}mobile/small/image/my/1-3.png'></image>
       <view class='title'>红包</view>
-      <view class='num'>{{info.red_packet}}</view>
+      <view class='num'>{{info.redPacket}}</view>
       <image class='next' src='{{util.HTTP}}mobile/small/image/my/1-9.png'></image>
     </view>
-    <view class='li' data-item='pay_points' hover-class='hover-class' hover-stay-time='400' bindtap='route' wx:if='{{configSwitch.show_switch.is_integral_mall==1}}'>
+    <view class='li' data-item='payPoints' hover-class='hover-class' hover-stay-time='400' bindtap='route' wx:if='{{configSwitch.showSwitch.isIntegralMall==1}}'>
       <image class='img' src='{{util.HTTP}}mobile/small/image/my/1-4.png'></image>
       <view class='title'>积分</view>
-      <view class='num'>{{info.pay_points}}</view>
+      <view class='num'>{{info.payPoints}}</view>
       <image class='next' src='{{util.HTTP}}mobile/small/image/my/1-9.png'></image>
     </view>
-    <view class='li' data-item='account_recharge' hover-class='hover-class' hover-stay-time='400' bindtap='route' wx:if='{{configSwitch.show_switch.is_recharge==1}}' >
+    <view class='li' data-item='accountRecharge' hover-class='hover-class' hover-stay-time='400' bindtap='route' wx:if='{{configSwitch.showSwitch.isRecharge==1}}' >
       <image class='img' src='{{util.HTTP}}mobile/small/image/my/1-5.png'></image>
       <view class='title'>账户充值</view>
       <image class='next' src='{{util.HTTP}}mobile/small/image/my/1-9.png'></image>
     </view>
-    <view class='li' data-item='bank' hover-class='hover-class' hover-stay-time='400' bindtap='route' wx:if='{{configSwitch.show_switch.is_recharge1!=1}}' >
+    <view class='li' data-item='bank' hover-class='hover-class' hover-stay-time='400' bindtap='route' wx:if='{{configSwitch.showSwitch.isRecharge1!=1}}' >
       <image class='img' src='{{util.HTTP}}mobile/small/image/bank/bank_2.png'></image>
       <view class='title'>银行卡</view>
       <image class='next' src='{{util.HTTP}}mobile/small/image/my/1-9.png'></image>
     </view>
   </view>
-  <!-- <view class='section'>
-    
-    <view class='li' data-item='payment_code' hover-class='hover-class' hover-stay-time='400' bindtap='route' wx:if='{{configSwitch.show_switch.is_recharge==1}}'>
-      <image class='img' src='{{util.HTTP}}mobile/small/image/my/1-7.png'></image>
-      <view class='title'>付款码</view>
-      <image class='next' src='{{util.HTTP}}mobile/small/image/my/1-9.png'></image>
-    </view>
-  </view> -->
 </view>

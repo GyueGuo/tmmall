@@ -8,14 +8,14 @@ Page({
    */
   data: {
     //兑换 换购
-    exchange_tab: 1,
+    exchangeTab: 1,
     //个人信息
-    member_info: null,
+    memberInfo: null,
     //广告
     adv: null,
-    classify_id: '',
+    classifyId: '',
     //积分不足弹框
-    lack_integral: false,
+    lackIntegral: false,
     page: 1,
     total: '',
     result: []
@@ -26,7 +26,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       configSwitch: app.globalData.configSwitch,
     })
   },
@@ -45,7 +45,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    if (app.globalData.member_id != '' && app.globalData.phone != '') {
+    if (app.globalData.memberId != '' && app.globalData.phone != '') {
       this.getUserData()
     }
     this.getData()
@@ -86,9 +86,9 @@ Page({
    * 获取用户数据
    */
   getUserData() {
-    http.post(app.globalData.integral_index, {}).then(res => {
+    http.post(app.globalData.integralIndex, {}).then(res => {
       this.setData({
-        member_info: res.memberInfo,
+        memberInfo: res.memberInfo,
         adv: this.data.adv == undefined ? res.adv : this.data.adv,
       })
     })
@@ -98,9 +98,9 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.integral_classify, {}).then(res => {
+    http.post(app.globalData.integralClassify, {}).then(res => {
       let classify = [{
-        integral_classify_id: '',
+        integralClassify: '',
         title: '全部'
       }]
       this.setData({
@@ -113,9 +113,9 @@ Page({
    *  获取列表
    */
   getGoods() {
-    http.post(app.globalData.integral_goods, {
-      type: this.data.exchange_tab == 1 ? 0 : 1,
-      integralClassifyId: this.data.classify_id,
+    http.post(app.globalData.integralGoods, {
+      type: this.data.exchangeTab == 1 ? 0 : 1,
+      integralClassifyId: this.data.classifyId,
       page: this.data.page
     }).then(res => {
       if (this.data.page == 1) {
@@ -148,13 +148,13 @@ Page({
    */
   onDetail() {
     wx.navigateTo({
-      url: '../integral_detail/integral_detail',
+      url: '../integralDetail/integralDetail',
     })
   },
 
   onHelp() {
     wx.navigateTo({
-      url: '../web_view/web_view?src=' + app.globalData.integral_help,
+      url: '../webView/webView?src=' + app.globalData.integralHelp,
     })
   },
 
@@ -164,7 +164,7 @@ Page({
   onTask() {
     if (app.login()) {
       wx.navigateTo({
-        url: '../integral_task/integral_task',
+        url: '../integralTask/integralTask',
       })
     }
   },
@@ -174,7 +174,7 @@ Page({
    */
   onChangeCoupon() {
     wx.navigateTo({
-      url: '../change_coupon/change_coupon',
+      url: '../changeCoupon/changeCoupon',
     })
   },
 
@@ -184,7 +184,7 @@ Page({
   onRecord() {
     if (app.login()) {
       wx.navigateTo({
-        url: '../integral_record/integral_record',
+        url: '../integralRecord/integralRecord',
       })
     }
   },
@@ -194,8 +194,8 @@ Page({
    */
   creditsExchange() {
     this.setData({
-      exchange_tab: 1,
-      classify_id: 0,
+      exchangeTab: 1,
+      classifyId: 0,
       page: 1,
       result: []
     })
@@ -207,8 +207,8 @@ Page({
    */
   pointRedemption() {
     this.setData({
-      exchange_tab: 2,
-      classify_id: 0,
+      exchangeTab: 2,
+      classifyId: 0,
       page: 1,
       result: []
     })
@@ -220,7 +220,7 @@ Page({
    */
   onGood(e) {
     wx.navigateTo({
-      url: '/my/integral_good_detail/integral_good_detail?id=' + e.currentTarget.dataset.id
+      url: '/my/integralGoodDetail/integralGoodDetail?id=' + e.currentTarget.dataset.id
     })
   },
 
@@ -229,7 +229,7 @@ Page({
    */
   onTab(e) {
     this.setData({
-      classify_id: e.currentTarget.dataset.id,
+      classifyId: e.currentTarget.dataset.id,
       page: 1
     })
     this.getGoods()
@@ -240,7 +240,7 @@ Page({
    */
   closeBoard() {
     this.setData({
-      lack_integral: false
+      lackIntegral: false
     })
   },
   /**
@@ -254,7 +254,7 @@ Page({
   /**
    * 登录
    */
-  login_status() {
+  loginStatus() {
     app.login()
   },
 
@@ -264,20 +264,20 @@ Page({
         break;
       case 1:
         wx.navigateTo({
-          url: `/nearby_shops/good_detail/good_detail?goods_id=${this.data.adv.content}`,
+          url: `/nearbyShops/goodGetail/goodGetail?goodsId=${this.data.adv.content}`,
           success: () => {
-            http.post(app.globalData.index_adBrowseInc, {
-              advId: this.data.adv.adv_id
+            http.post(app.globalData.indexAdBrowseInc, {
+              advId: this.data.adv.advId
             }).then(res => {})
           }
         })
         break;
       case 2:
         wx.navigateTo({
-          url: `/nearby_shops/shop_detail/shop_detail?store_id=${this.data.adv.content}`,
+          url: `/nearbyShops/shopDetail/shopDetail?storeId=${this.data.adv.content}`,
           success: () => {
-            http.post(app.globalData.index_adBrowseInc, {
-              advId: this.data.adv.adv_id
+            http.post(app.globalData.indexAdBrowseInc, {
+              advId: this.data.adv.advId
             }).then(res => {})
           }
         })

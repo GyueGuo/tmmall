@@ -1,6 +1,4 @@
-// pages/about_us/about_us.js
 const app = getApp();
-const http = require('../../utils/http.js');
 Page({
 
   /**
@@ -66,7 +64,7 @@ Page({
    */
   onHelp(){
     wx.navigateTo({
-      url: '../help_center/help_center',
+      url: '../helpCenter/helpCenter',
     })
   },
   /**

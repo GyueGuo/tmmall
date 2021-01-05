@@ -1,32 +1,31 @@
-<!--my/fx_apply_dy/fx_apply_dy.wxml-->
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='warp'>
-  <view class='list' wx:if='{{info.real_name.display=="1"}}'>
+  <view class='list' wx:if='{{info.realName.display=="1"}}'>
     <view class='warp_title'>姓名：</view>
-    <input type='text' placeholder='请输入姓名' maxlength='20' placeholder-style='color:#959ba3;' bindinput='input_name'></input>
+    <input type='text' placeholder='请输入姓名' maxlength='20' placeholder-style='color:#959ba3;' bindinput='inputName'></input>
   </view>
   <view class='list' wx:if='{{info.phone.display=="1"}}'>
     <view class='warp_title'>手机号：</view>
-    <input type='number' placeholder='请输入手机号' placeholder-style='color:#959ba3;' maxlength='11' bindinput='input_phone'></input>
+    <input type='number' placeholder='请输入手机号' placeholder-style='color:#959ba3;' maxlength='11' bindinput='inputPhone'></input>
   </view>
-  <picker range='{{sex_arr}}' bindchange='sex' wx:if='{{info.sex.display=="1"}}'>
+  <picker range='{{sexArr}}' bindchange='sex' wx:if='{{info.sex.display=="1"}}'>
     <view class='list'>
       <view class='warp_title'>性别：</view>
-      <view class='warp_sex'>{{sex_text}}</view>
+      <view class='warp_sex'>{{sexText}}</view>
       <image class='more' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
     </view>
   </picker>
   <view class='list' wx:if='{{info.address.display=="1"}}'>
     <view class='warp_title'>地址：</view>
-    <input type='text' placeholder='请输入地址' placeholder-style='color:#959ba3;' bindinput='input_address'></input>
+    <input type='text' placeholder='请输入地址' placeholder-style='color:#959ba3;' bindinput='inputAddress'></input>
   </view>
-  <view class='list' wx:if='{{info.id_card.display=="1"}}'>
+  <view class='list' wx:if='{{info.idCard.display=="1"}}'>
     <view class='warp_title'>身份证号：</view>
     <input type='idcard' placeholder='请输入身份证号' placeholder-style='color:#959ba3;' bindinput='idcard'></input>
   </view>
-  <view class='list' wx:if='{{info.wechat_no.display=="1"}}'>
+  <view class='list' wx:if='{{info.wechatNo.display=="1"}}'>
     <view class='warp_title'>微信号：</view>
-    <input type='text' placeholder='请输入微信号' maxlength='50' placeholder-style='color:#959ba3;' bindinput='wx_code'></input>
+    <input type='text' placeholder='请输入微信号' maxlength='50' placeholder-style='color:#959ba3;' bindinput='wxCode'></input>
   </view>
-  <view class='submit' hover-class='hover-class' hover-stay-time='400' bindtap='subtap' style='{{isSubmit?util.diy_color("",diy_color.z_color,""):""}}'>申请</view>
+  <view class='submit' hover-class='hover-class' hover-stay-time='400' bindtap='subtap' style='{{isSubmit?util.diyColor("",diyColor.zColor,""):""}}'>申请</view>
 </view>

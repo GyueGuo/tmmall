@@ -1,6 +1,6 @@
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='detail-wrap' hidden='{{!info.order_goods_status}}'>
-  <view class='head bg' style='{{util.diy_color("",diy_color.z_color,"")}}'>
+  <view class='head bg' style='{{util.diyColor("",diyColor.zColor,"")}}'>
     <view class='title' wx:if="{{info.order_goods_status == 4.2 || info.order_goods_status == 4.3}}">退款成功</view>
     <view class='title' wx:elif="{{info.order_goods_status == 5.1 || info.order_goods_status == 5.2}}">申请退款中</view>
     <view class='title' wx:elif="{{info.order_goods_status == 5.3}}">请退货并填写物流信息</view>
@@ -44,13 +44,13 @@
         </view>
         <view class='logistics-operation'>
           <view hover-class='hover-class' hover-stay-time='400' bindtap='showModal' data-confirmType='0'>撤销申请</view>
-          <view class='cur border-cur' hover-class='hover-class' hover-stay-time='400' bindtap='changeApply' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>修改申请</view>
+          <view class='cur border-cur' hover-class='hover-class' hover-stay-time='400' bindtap='changeApply' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>修改申请</view>
         </view>
       </view>
     </view>
     <view class='refund-way'>
       <view>退款总金额</view>
-      <view class='cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>￥{{info.refund_amount}}</view>
+      <view class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>￥{{info.refund_amount}}</view>
     </view>
     <view class='refund-way'>
       <view>退款路径</view>
@@ -94,7 +94,7 @@
       <view class='refuse-title'>失败原因</view>
       <view class='refuse-reason'>{{info.refuse_reason}}</view>
     </view>
-    <view class='change-apply border-cur' hover-class='hover-class' hover-stay-time='400' bindtap='amend' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>修改申请</view>
+    <view class='change-apply border-cur' hover-class='hover-class' hover-stay-time='400' bindtap='amend' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>修改申请</view>
   </view>
 </view>
 <view class='footer'>

@@ -7,15 +7,15 @@ Page({
    */
   data: {
     //选项卡
-    tab_list: [{
-      goods_classify_id: '',
+    tabList: [{
+      goodsClassifyId: '',
       title: '精选'
     }],
-    current_tab: '',
+    currentTab: '',
     page: 1,
     list: [],
     total: '',
-    count_down: {}
+    countDown: {}
   },
 
   /**
@@ -23,7 +23,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -52,7 +52,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-    clearInterval(this.data.count_down)
+    clearInterval(this.data.countDown)
   },
 
   /**
@@ -77,7 +77,7 @@ Page({
    */
   onChangeCoupon() {
     wx.redirectTo({
-      url: '../change_coupon/change_coupon',
+      url: '../changeCoupon/changeCoupon',
     })
   },
 
@@ -85,9 +85,9 @@ Page({
    * 获取一级列表
    */
   getClassify() {
-    http.post(app.globalData.classify_parent).then(res=> {
+    http.post(app.globalData.classifyParent).then(res=> {
       this.setData({
-        classify: this.data.tab_list.concat(res.result)
+        classify: this.data.tabList.concat(res.result)
       })
       this.getConponList()
     })
@@ -98,7 +98,7 @@ Page({
    */
   onClassify(e) {
     this.setData({
-      current_tab: e.currentTarget.dataset.id,
+      currentTab: e.currentTarget.dataset.id,
       page: 1
     })
     this.getConponList()
@@ -109,7 +109,7 @@ Page({
    */
   onMore() {
     this.setData({
-      more_board: true
+      moreBoard: true
     })
   },
 
@@ -118,7 +118,7 @@ Page({
    */
   closeBoard() {
     this.setData({
-      more_board: false
+      moreBoard: false
     })
   },
 
@@ -128,8 +128,8 @@ Page({
   onTabMoreItem(e) {
     this.closeBoard()
     this.setData({
-      sroll_id: 'a-' + e.currentTarget.dataset.index,
-      current_tab: e.currentTarget.dataset.id,
+      srollId: 'a-' + e.currentTarget.dataset.index,
+      currentTab: e.currentTarget.dataset.id,
       page: 1
     })
     this.getConponList()
@@ -139,8 +139,8 @@ Page({
    * 获取优惠券列表
    */
   getConponList() {
-    http.post(app.globalData.coupon_center, {
-      category: this.data.current_tab,
+    http.post(app.globalData.couponCenter, {
+      category: this.data.currentTab,
       page: this.data.page
     }).then(res=> {
       if (this.data.page == 1) {
@@ -154,8 +154,8 @@ Page({
         })
       }
       this.countDown()
-      clearInterval(this.data.count_down)
-      this.data.count_down = setInterval(()=> {
+      clearInterval(this.data.countDown)
+      this.data.countDown = setInterval(()=> {
         this.countDown()
       }, 1000)
     })
@@ -166,12 +166,12 @@ Page({
    */
   countDown() {
     for (let i = 0, len = this.data.list.length; i < len; i++) {
-      if (this.data.list[i].distance_start_time > 0) {
-        let second = this.data.list[i].distance_start_time
+      if (this.data.list[i].distanceStartTime > 0) {
+        let second = this.data.list[i].distanceStartTime
         this.data.list[i]['hour'] = Math.floor((second) % (24 * 3600) / 3600) < 10 ? '0' + Math.floor((second) % (24 * 3600) / 3600) : Math.floor((second) % (24 * 3600) / 3600)
         this.data.list[i]['min'] = Math.floor(second / 60 % 60) < 10 ? '0' + Math.floor(second / 60 % 60) : Math.floor(second / 60 % 60)
         this.data.list[i]['sec'] = Math.floor(second % 60) < 10 ? '0' + Math.floor(second % 60) : Math.floor(second % 60)
-        this.data.list[i].distance_start_time--
+        this.data.list[i].distanceStartTime--
       }
     }
     this.setData({
@@ -188,12 +188,12 @@ Page({
     }
     let item = e.currentTarget.dataset.item,
         index = e.currentTarget.dataset.index
-    http.post(app.globalData.get_coupon, {
-      couponId: item.coupon_id,
-      goodsClassifyId: item.type == 1 ? item.classify_str : '',
-      storeId: item.type == 0 ? item.classify_str : '',
+    http.post(app.globalData.getCoupon, {
+      couponId: item.couponId,
+      goodsClassifyId: item.type == 1 ? item.classifyStr : '',
+      storeId: item.type == 0 ? item.classifyStr : '',
     }).then(res=> {
-      this.data.list[index].member_state = 1
+      this.data.list[index].memberState = 1
       this.setData({
         list: this.data.list
       })
@@ -205,11 +205,11 @@ Page({
     let item = e.currentTarget.dataset.item
     if (item.type == 0){
       wx.navigateTo({
-        url: '/nearby_shops/shop_detail/shop_detail?store_id=' + item.classify_str,
+        url: '/nearbyShops/shopDetail/shopDetail?storeId=' + item.classifyStr,
       })
     }else{
       wx.navigateTo({
-        url: '/pages/search_goods/search_goods?goods_classify_id=' + item.classify_str,
+        url: '/pages/searchGoods/searchGoods?goodsClassifyId=' + item.classifyStr,
       })
     }
   }

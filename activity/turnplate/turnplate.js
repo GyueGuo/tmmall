@@ -8,39 +8,39 @@ Page({
    * 页面的初始数据
    */
   data: {
-    scroll_index: 0,
+    scrollIndex: 0,
     isGame: true,
     info: {},
     list: [],
     light: 1,
-    active_index: 0,
-    win_id: 0,
+    activeIndex: 0,
+    winId: 0,
     speed: 300,
-    max_speed: 200,
+    maxSpeed: 200,
     oRun: '',
-    runs_now: 0,
-    CYCLE_NUM: 5,
-    roll_flag: true,
-    last_index: 0,
-    win_info: {},
+    runsNow: 0,
+    CYCLENUM: 5,
+    rollFlag: true,
+    lastIndex: 0,
+    winInfo: {},
     isShow: true,
-    member_address_id: '',
-    prize_type: '',
-    order_id: ''
+    memberAddressId: '',
+    prizeType: '',
+    orderid: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if (app.globalData.diy_color.z_color != undefined) {
+    if (app.globalData.diyColor.zColor != undefined) {
       this.setData({
-        diy_color: app.globalData.diy_color
+        diyColor: app.globalData.diyColor
       })
     } else {
-      app.app_DIY(() => {}, this)
+      app.appDIY(() => {}, this)
     }
-    this.data.light_scroll = setInterval(() => {
+    this.data.lightScroll = setInterval(() => {
       if (this.data.light == 1) {
         this.setData({
           light: 2
@@ -53,14 +53,14 @@ Page({
     }, 1000)
     event.on('changeAddress', this, res => {
       console.log(res)
-      this.data.member_address_id = res.member_address_id
+      this.data.memberAddressId = res.memberAddressId
       this.data.info.address = {
         address: res.address,
-        is_default: res.is_default,
+        isDefault: res.isDefault,
         lat: res.lat,
         lng: res.lng,
-        location_address: res.location_address,
-        member_address_id: res.member_address_id,
+        locationAddress: res.locationAddress,
+        memberAddressId: res.memberAddressId,
         name: res.name,
         phone: res.phone,
         province: res.province,
@@ -69,7 +69,7 @@ Page({
         street: res.street,
       }
       this.setData({
-        member_address_id: res.member_address_id,
+        memberAddressId: res.memberAddressId,
         info: this.data.info
       })
     })
@@ -94,7 +94,7 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-    clearInterval(this.data.light_scroll)
+    clearInterval(this.data.lightScroll)
     clearInterval(this.data._scroll)
   },
 
@@ -103,7 +103,7 @@ Page({
    */
   onUnload: function() {
     clearInterval(this.data._scroll)
-    clearInterval(this.data.light_scroll)
+    clearInterval(this.data.lightScroll)
     event.remove('changeAddress', this)
   },
 
@@ -126,11 +126,11 @@ Page({
    */
   onShareAppMessage: function(res) {
     if (res.from === 'button') {} else {
-      http.post(app.globalData.share_activity, {}).then(res => {
+      http.post(app.globalData.shareActivity, {}).then(res => {
         wx.showToast({
           title: res.message,
         })
-        this.data.info.draw_type = 1
+        this.data.info.drawType = 1
         this.setData({
           info: this.data.info,
         })
@@ -146,7 +146,7 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.activity_goods_list, {}).then(res => {
+    http.post(app.globalData.activityGoodsList, {}).then(res => {
       this.setData({
         info: res,
         list: res.data.lotteryPrize
@@ -155,10 +155,6 @@ Page({
         title: res.data.title
       })
     }).catch(res => {
-      // wx.showToast({
-      //   title: res.message,
-      //   icon: 'none'
-      // })
     })
   },
   /**
@@ -169,7 +165,7 @@ Page({
     this.data._scroll = setInterval(() => {
       if (_index < 14) {
         this.setData({
-          scroll_index: _index
+          scrollIndex: _index
         })
         _index++
       } else {
@@ -185,18 +181,6 @@ Page({
         })
       }
     }, 1500)
-
-    // this.data.light_scroll = setInterval(() => {
-    //   if (this.data.light == 1) {
-    //     this.setData({
-    //       light: 2
-    //     })
-    //   } else {
-    //     this.setData({
-    //       light: 1
-    //     })
-    //   }
-    // }, 1000)
   },
 
   /**
@@ -204,13 +188,13 @@ Page({
    */
   start() {
     if (app.login()) {
-      if (this.data.roll_flag) {
+      if (this.data.rollFlag) {
         this.setData({
-          roll_flag: false
+          rollFlag: false
         })
-        http.post(app.globalData.lottery_activity, {
-          activityId: this.data.info.data.activity_id,
-          updateTime: this.data.info.data.update_time
+        http.post(app.globalData.lotteryActivity, {
+          activityId: this.data.info.data.activityId,
+          updateTime: this.data.info.data.updateTime
         }).then(res => {
           if (res.data.prizeType == 0) {
             app.showToast(res.message, () => {
@@ -218,33 +202,29 @@ Page({
             })
             return
           }
-          this.data.info.draw_type = res.data.draw_type
+          this.data.info.drawType = res.data.drawType
           this.setData({
             info: this.data.info,
-            prize_type: res.data.prize_type,
-            win_data: res,
+            prizeType: res.data.prizeType,
+            winData: res,
           })
-          for (let i = 0, len = this.data.info.data.lottery_prize.length; i < len; i++) {
-            if (this.data.info.data.lottery_prize[i].prize_id == res.data.prize_id) {
+          for (let i = 0, len = this.data.info.data.lotteryPrize.length; i < len; i++) {
+            if (this.data.info.data.lotteryPrize[i].prizeId == res.data.prizeId) {
               this.setData({
-                win_id: i,
-                win_info: this.data.info.data.lottery_prize[i],
+                winId: i,
+                winInfo: this.data.info.data.lotteryPrize[i],
               })
             }
           }
           this.animate()
         }).catch(res => {
           this.setData({
-            roll_flag: true
+            rollFlag: true
           })
           wx.showToast({
             title: res.message,
             icon: 'none'
           })
-          // wx.showToast({
-          //   title: res.message,
-          //   icon: 'none'
-          // })
         })
       }
     }
@@ -263,11 +243,11 @@ Page({
     //圈数
     let num = Math.floor(Math.random() * 2 + 3)
     this.setData({
-      CYCLE_NUM: num
+      CYCLENUM: num
     })
     //初始化步数
     this.setData({
-      runs_now: 0,
+      runsNow: 0,
     })
     this.rolling();
   },
@@ -275,58 +255,58 @@ Page({
     this.data.oRun = setTimeout(() => {
       this.rolling()
     }, this.data.speed)
-    this.data.runs_now++;
-    this.data.active_index++;
-    if (this.data.active_index >= 8) {
+    this.data.runsNow++;
+    this.data.activeIndex++;
+    if (this.data.activeIndex >= 8) {
       this.setData({
-        active_index: 0
+        activeIndex: 0
       })
     } else {
       this.setData({
-        active_index: this.data.active_index
+        activeIndex: this.data.activeIndex
       })
     }
 
-    let count_num = this.data.CYCLE_NUM * 8 + this.data.win_id - this.data.last_index
+    let countNum = this.data.CYCLENUM * 8 + this.data.winId - this.data.lastIndex
 
     //加速
-    if (this.data.runs_now <= (count_num / 3) * 1) {
+    if (this.data.runsNow <= (countNum / 3) * 1) {
       this.data.speed -= 30
-      if (this.data.speed <= this.data.max_speed) {
-        this.data.speed = this.data.max_speed
+      if (this.data.speed <= this.data.maxSpeed) {
+        this.data.speed = this.data.maxSpeed
       }
     }
     //抽奖结束
-    else if (this.data.runs_now >= count_num) {
+    else if (this.data.runsNow >= countNum) {
       this.setData({
-        last_index: this.data.win_id,
-        roll_flag: true
+        lastIndex: this.data.winId,
+        rollFlag: true
       })
       clearInterval(this.data.oRun)
       setTimeout(() => {
         //中奖提示
-        if (this.data.prize_type == 1) {
+        if (this.data.prizeType == 1) {
           this.setData({
             isShow: false
           })
-        } else if (this.data.prize_type == 2) {
+        } else if (this.data.prizeType == 2) {
           this.setData({
             isShow: false
           })
-        } else if (this.data.prize_type == 3) {
+        } else if (this.data.prizeType == 3) {
           this.setData({
             isShow: false
           })
         } else {
           wx.showToast({
-            title: this.data.win_data.message,
+            title: this.data.winData.message,
             icon: 'none'
           })
         }
       }, 500)
     }
     //减速
-    else if (count_num - this.data.runs_now <= 10) {
+    else if (countNum - this.data.runsNow <= 10) {
       this.data.speed += 20
     } else {
       this.data.speed += 10
@@ -343,17 +323,17 @@ Page({
     this.data.isShow = true
     this.setData({
       isShow: true,
-      prize_type: '',
-      win_data: {}
+      prizeType: '',
+      winData: {}
     })
   },
   /**
    * 确定
    */
   confirm(e) {
-    http.post(app.globalData.set_addres, {
-      activityOrderId: this.data.win_data.order_id,
-      memberAddressId: this.data.info.address.member_address_id
+    http.post(app.globalData.setAddres, {
+      activityOrderId: this.data.winData.orderId,
+      memberAddressId: this.data.info.address.memberAddressId
     }).then(res => {
       this.close()
       wx.showToast({
@@ -372,9 +352,9 @@ Page({
    * 我的抽奖
    */
   goDraw(e) {
-    http.post(app.globalData.set_addres, {
-      activity_order_id: this.data.win_data.order_id,
-      member_address_id: this.data.info.address.member_address_id
+    http.post(app.globalData.setAddres, {
+      activityOrderId: this.data.winData.orderId,
+      memberAddressId: this.data.info.address.memberAddressId
     }).then(res => {
       this.close()
       wx.showToast({
@@ -382,7 +362,7 @@ Page({
         icon: 'none'
       })
       wx.navigateTo({
-        url: '/my/my_prize/my_prize',
+        url: '/my/myPrize/myPrize',
       })
     }).catch(res => {
       // wx.showToast({
@@ -410,9 +390,9 @@ Page({
   /**
    * 抽奖规则
    */
-  draw_text(e) {
+  drawText(e) {
     wx.navigateTo({
-      url: '/my/web_view/web_view?id=draw_activity' + '&draw_id=' + e.currentTarget.dataset.id,
+      url: '/my/webView/webView?id=drawActivity' + '&drawId=' + e.currentTarget.dataset.id,
     })
   }
 })

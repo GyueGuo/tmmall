@@ -1,4 +1,3 @@
-// pages/refund_return/refund_return.js
 Page({
 
   /**
@@ -10,7 +9,7 @@ Page({
     //快递公司名称
     dhl: '请选择快递公司',
     //凭证
-    pic_list: [],
+    picList: [],
   },
 
   /**
@@ -85,10 +84,10 @@ Page({
    */
   choosePic() {
     wx.chooseImage({
-      count: 3 - this.data.pic_list.length,
+      count: 3 - this.data.picList.length,
       success: res => {
         this.setData({
-          pic_list: [...this.data.pic_list, ...res.tempFilePaths]
+          picList: [...this.data.picList, ...res.tempFilePaths]
         })
       },
     })
@@ -98,9 +97,9 @@ Page({
    * 删除图片
    */
   delectPic(e) {
-    this.data.pic_list.splice(e.currentTarget.dataset.index, 1)
+    this.data.picList.splice(e.currentTarget.dataset.index, 1)
     this.setData({
-      pic_list: this.data.pic_list
+      picList: this.data.picList
     })
   }
 })

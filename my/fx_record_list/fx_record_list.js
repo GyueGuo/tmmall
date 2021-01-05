@@ -1,4 +1,3 @@
-// my/fx_record_list/fx_record_list.js
 const app = getApp();
 const http = require('../../utils/http.js');
 Page({
@@ -16,7 +15,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -82,8 +81,8 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.distribution_withdrawal_record, {
-      distributionId: app.globalData.distribution.cur.distribution_id,
+    http.post(app.globalData.distributionWithdrawalRecord, {
+      distributionId: app.globalData.distribution.cur.distributionId,
       page: this.data.page
     }).then(res => {
       if (this.data.page == 1) {

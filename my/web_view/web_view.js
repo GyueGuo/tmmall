@@ -18,65 +18,65 @@ Page({
         wx.setNavigationBarTitle({
           title: '注册协议',
         })
-        src = app.globalData.regist_web
+        src = app.globalData.registWeb
         break;
       case "20":
         wx.setNavigationBarTitle({
           title: '拼团玩法',
         })
-        src = app.globalData.collage_rule_web
+        src = app.globalData.collageRuleWeb
         break;
       case "21":
         wx.setNavigationBarTitle({
           title: '砍价活动规则',
         })
-        src = app.globalData.bargain_rule_web
+        src = app.globalData.bargainRuleWeb
         break;
       case "24":
         wx.setNavigationBarTitle({
           title: '充值说明',
         })
-        src = app.globalData.recharge_web
+        src = app.globalData.rechargeWeb
         break;
       case "33":
         wx.setNavigationBarTitle({
           title: '门店自提',
         })
-        src = app.globalData.store_self_web
+        src = app.globalData.storeSelfWeb
         break;
       case "34":
         wx.setNavigationBarTitle({
           title: '主营类目店铺',
         })
-        src = app.globalData.shop_category_web
+        src = app.globalData.shopCategoryWeb
         break;
       case "35":
         wx.setNavigationBarTitle({
           title: '店铺服务协议',
         })
-        src = app.globalData.shop_service_web
+        src = app.globalData.shopServiceWeb
         break;
-      case "draw_activity":
+      case "drawActivity":
         wx.setNavigationBarTitle({
           title: '抽奖规则',
         })
-        src = app.globalData.draw_activity_view + '?activity_id=' + options.draw_id
+        src = app.globalData.drawActivityView + '?activityId=' + options.drawId
         break;
       case "distribution":
         wx.setNavigationBarTitle({
           title: '收益说明',
         })
-        src = app.globalData.distribution_my_explain
+        src = app.globalData.distributionMyExplain
         break;
       default:
         wx.setNavigationBarTitle({
           title: '积分说明',
         })
-        src = app.globalData.integral_help
+        src = app.globalData.integralHelp
         break;
     }
     this.setData({
-      src: src
+      src,
     })
   },
 

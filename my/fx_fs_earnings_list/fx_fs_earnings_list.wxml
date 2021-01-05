@@ -2,8 +2,8 @@
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='container'>
   <view class='con_top'>
-    <view class='navTab' style='{{util.diy_color("","",diy_color.z_color)}}'>
-      <view style='{{navIndex==index?util.diy_color("#fff",diy_color.z_color,diy_color.z_color):util.diy_color(diy_color.z_color,"",diy_color.z_color)}}' wx:for='{{navTab}}' data-index='{{index}}' data-type='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='navTab'>{{item.name}}</view>
+    <view class='navTab' style='{{util.diyColor("","",diyColor.zColor)}}'>
+      <view style='{{navIndex==index?util.diyColor("#fff",diyColor.zColor,diyColor.zColor):util.diyColor(diyColor.zColor,"",diyColor.zColor)}}' wx:for='{{navTab}}' data-index='{{index}}' data-type='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='navTab'>{{item.name}}</view>
     </view>
   </view>
   <view class='con_bottom'>
@@ -15,13 +15,13 @@
       <view class='list-item' wx:for='{{list}}'>
         <view class='info'>
           <view class='month'>{{item.date}}月</view>
-          <view class='info_view t_yjs' hidden='{{type!=0}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>+
+          <view class='info_view t_yjs' hidden='{{type!=0}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>+
             <text>￥{{item.subtotal_price}}</text>
           </view>
-          <view class='info_view t_wjs' hidden='{{type!=1}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>+
+          <view class='info_view t_wjs' hidden='{{type!=1}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>+
             <text>￥{{item.subtotal_price}}</text>
           </view>
-          <view class='info_view t_wjs' hidden='{{type!=2}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>预估
+          <view class='info_view t_wjs' hidden='{{type!=2}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>预估
             <text>￥{{item.subtotal_price}}</text>
           </view>
         </view>
@@ -34,13 +34,13 @@
                 <view class='username'>{{cItem.nickname}}</view>
               </view>
               <view class='info'>
-                <view class='info_view t_yjs' hidden='{{type!=0}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>+
+                <view class='info_view t_yjs' hidden='{{type!=0}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>+
                   <text>￥{{cItem.brokerage}}</text>
                 </view>
-                <view class='info_view t_yjs' hidden='{{type!=1}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>+
+                <view class='info_view t_yjs' hidden='{{type!=1}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>+
                   <text>￥{{cItem.brokerage}}</text>
                 </view>
-                <view class='info_view t_wjs' hidden='{{type!=2}}' style='{{util.diy_color(diy_color.z_color,"","")}}'>预估
+                <view class='info_view t_wjs' hidden='{{type!=2}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>预估
                   <text>￥{{cItem.brokerage}}</text>
                 </view>
               </view>

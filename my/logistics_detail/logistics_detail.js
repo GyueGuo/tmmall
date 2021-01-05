@@ -17,7 +17,7 @@ Page({
   onLoad: function(options) {
     this.setData({
       obj: JSON.parse(options.info),
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -64,14 +64,14 @@ Page({
   },
 
   getData() {
-    http.post(app.globalData.express_view, {
-      expressValue: this.data.obj.express_value,
-      expressNumber: this.data.obj.express_number,
-      orderId: this.data.obj.order_attach_id,
+    http.post(app.globalData.expressView, {
+      expressValue: this.data.obj.expressValue,
+      expressNumber: this.data.obj.expressNumber,
+      orderId: this.data.obj.orderAttachId,
       type: this.data.obj.type
     }).then(res => {
       let obj = {
-        info: res.goods_view,
+        info: res.goodsView,
         address: res.address,
         state: res.result.state ? res.result.state : res.result.message
       }

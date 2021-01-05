@@ -9,9 +9,9 @@
 <view class='classify-list'>
   <view wx:for="{{list}}">
     <view class='head'>{{item.title}}</view>
-    <view class='look-all' hover-class='hover-class' hover-stay-time='400' bindtap='onSearch' data-id='{{item.store_goods_classify_id}}'>查看全部</view>
+    <view class='look-all' hover-class='hover-class' hover-stay-time='400' bindtap='onSearch' data-id='{{item.storeGoodsClassifyId}}'>查看全部</view>
     <view class='list'>
-      <view wx:for="{{item.subset}}" data-id='{{item.store_goods_classify_id}}' hover-class='hover-class' hover-stay-time='400' bindtap='onSearch'>{{item.title}}</view>
+      <view wx:for="{{item.subset}}" data-id='{{item.storeGoodsClassifyId}}' hover-class='hover-class' hover-stay-time='400' bindtap='onSearch'>{{item.title}}</view>
     </view>
   </view>
 </view>

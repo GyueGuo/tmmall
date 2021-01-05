@@ -42,7 +42,7 @@
         <view class='coupon'>
           <view class='info'>
             <view class='l-info'>
-              <view class='price-con' style='{{wxs_common.coupon_type(item.exchange_num,item.member_coupon_count,item.limit_num)==2?"":util.diy_color("#f23030","","")}}'>
+              <view class='price-con' style='{{wxs_common.coupon_type(item.exchange_num,item.member_coupon_count,item.limit_num)==2?"":util.diyColor("#f23030","","")}}'>
                 <text class='unit'>￥</text>
                 <text class='price'>{{item.actual_price}}</text>
               </view>
@@ -51,12 +51,12 @@
               </block>
               <block wx:else>
                 <view class='price-tag'>满
-                  <text style='{{wxs_common.coupon_type(item.exchange_num,item.member_coupon_count,item.limit_num)==2?"":util.diy_color("#f23030","","")}}'>{{item.full_subtraction_price}}</text>元使用</view>
+                  <text style='{{wxs_common.coupon_type(item.exchange_num,item.member_coupon_count,item.limit_num)==2?"":util.diyColor("#f23030","","")}}'>{{item.full_subtraction_price}}</text>元使用</view>
               </block>
             </view>
             <view class='r-info'>
               <view class='tag'>
-                <text style='{{util.diy_color("#f23030","","#f23030")}}'>{{item.flag_name}}</text>
+                <text style='{{util.diyColor("#f23030","","#f23030")}}'>{{item.flag_name}}</text>
               </view>
               <view class='time'>有效期至{{item.end_time}}</view>
             </view>
@@ -82,14 +82,14 @@
         data-item='{{item}}' data-index='{{index}}'>
         <view class='coupon-bg-con' wx:if='{{item.limit_num==0&&item.exchange_num!=0||(item.member_coupon_count<item.limit_num&&item.exchange_num!=0)}}'>
           <image class='coupon-bg' src="{{util.HTTP}}mobile/small/image/xq-yhq_01.png" style='width:513rpx;'></image>
-          <view style='{{util.diy_imgbox(160)}}margin-top:10rpx;'>
-            <image class='coupon-bg' src="{{util.HTTP}}mobile/small/image/xq-yhq_02.png" style='width:160rpx;' style='{{util.diy_imgcolor(diy_color.z_color,160)}}'></image>
+          <view style='{{util.diyImgbox(160)}}margin-top:10rpx;'>
+            <image class='coupon-bg' src="{{util.HTTP}}mobile/small/image/xq-yhq_02.png" style='width:160rpx;' style='{{util.diyImgcolor(diyColor.zColor,160)}}'></image>
           </view>
         </view>
         <image class='coupon-bg' src="{{util.HTTP}}mobile/small/image/spxq-yhq-ylq.png" wx:else></image>
         <view class='coupon-info'>
-          <view class="cur" style='{{util.diy_color(diy_color.z_color,"","")}}'>
-            <view class="{{item.limit_num==0&&item.exchange_num!=0||(item.member_coupon_count<item.limit_num&&item.exchange_num!=0)?'cur':'gray'}}" style='{{item.limit_num==0&&item.exchange_num!=0||(item.member_coupon_count<item.limit_num&&item.exchange_num!=0)?util.diy_color(diy_color.z_color,"",""):""}}'>
+          <view class="cur" style='{{util.diyColor(diyColor.zColor,"","")}}'>
+            <view class="{{item.limit_num==0&&item.exchange_num!=0||(item.member_coupon_count<item.limit_num&&item.exchange_num!=0)?'cur':'gray'}}" style='{{item.limit_num==0&&item.exchange_num!=0||(item.member_coupon_count<item.limit_num&&item.exchange_num!=0)?util.diyColor(diyColor.zColor,"",""):""}}'>
               <text class='unit'>￥</text>
               <text class='price'>{{item.actual_price}}</text>
             </view>
@@ -108,6 +108,6 @@
       </view> -->
 
     </scroll-view>
-    <view class='coupon-finish' hover-class='hover-class' hover-stay-time='400' bindtap='closeCoupon' style='{{util.diy_color("",diy_color.z_color,"")}}'>完成</view>
+    <view class='coupon-finish' hover-class='hover-class' hover-stay-time='400' bindtap='closeCoupon' style='{{util.diyColor("",diyColor.zColor,"")}}'>完成</view>
   </view>
 </view>

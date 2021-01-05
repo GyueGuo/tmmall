@@ -15,7 +15,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       card_id: options.card_id
     })
     this.getData()

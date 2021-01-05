@@ -16,7 +16,7 @@ function tabbarinit(bindName = "tabdata", id, that) {
         bindData = {}
       for (let i of otabbar) {
         i.iconPath = Base64.encode(i.iconPath)
-        i.selectedIconPath = Base64.encode(i.selectedIconPath.split('#7f7f7f').join(app.globalData.diy_color.z_color))
+        i.selectedIconPath = Base64.encode(i.selectedIconPath.split('#7f7f7f').join(app.globalData.diyColor.zColor))
       }
       //换当前的icon
       otabbar[id]['iconPath'] = otabbar[id]['selectedIconPath']

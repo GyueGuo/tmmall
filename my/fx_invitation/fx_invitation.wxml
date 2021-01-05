@@ -1,20 +1,16 @@
-<!--my/fx_invitation/fx_invitation.wxml-->
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='warp' style='background: url({{util.HTTP}}{{info.combination}}{{random}}) no-repeat;background-size: 100% 100%;'>
-  <view class='distribution' wx:if='{{d_scene!=undefined&&distribution.cur==null}}'>
+  <view class='distribution' wx:if='{{dScene!=undefined&&distribution.cur==null}}'>
     <view class='left'>
-      <image class='user_img' wx:if='{{d_scene.scene=="1"}}' src='{{distribution.dist.avatar}}'></image>
-      <text class='distribution_text' wx:if='{{d_scene.scene=="1"}}'>{{distribution.dist.nickname}}推荐你成为代言人</text>
-      <text class='distribution_text' wx:elif='{{d_scene.scene=="2"}}'>{{distribution.dist.nickname}}推荐你成为代言人</text>
-      <text class='distribution_text' wx:elif='{{d_scene.scene=="2"}}'>平台推荐你成为代言人</text>
+      <image class='user_img' wx:if='{{dScene.scene=="1"}}' src='{{distribution.dist.avatar}}'></image>
+      <text class='distribution_text' wx:if='{{dScene.scene=="1"}}'>{{distribution.dist.nickname}}推荐你成为代言人</text>
+      <text class='distribution_text' wx:elif='{{dScene.scene=="2"}}'>{{distribution.dist.nickname}}推荐你成为代言人</text>
+      <text class='distribution_text' wx:elif='{{dScene.scene=="2"}}'>平台推荐你成为代言人</text>
     </view>
-    <!-- <view class='right'>
-      <text class='distribution_btn' hover-class='hover-class' hover-stay-time='400' bindtap='goFx'>成为代言人</text>
-    </view> -->
   </view>
   <view class='btn-con'>
-    <view class='btn' hover-class='hover-class' hover-stay-time='400' bindtap='goDistribution' style='background: url({{util.HTTP}}mobile/small/image/fx/fx_yqbtn.png) no-repeat;background-size: 100% 100%;{{info.is_self!=1?"width:350rpx":""}}'>我要代言</view>
-    <view class='btn' hover-class='hover-class' hover-stay-time='400' bindtap='share' style='background: url({{util.HTTP}}mobile/small/image/fx/fx_yqbtn.png) no-repeat;background-size: 100% 100%;' wx:if='{{info.is_self==1}}'>分享</view>
+    <view class='btn' hover-class='hover-class' hover-stay-time='400' bindtap='goDistribution' style='background: url({{util.HTTP}}mobile/small/image/fx/fx_yqbtn.png) no-repeat;background-size: 100% 100%;{{info.isSelf!=1?"width:350rpx":""}}'>我要代言</view>
+    <view class='btn' hover-class='hover-class' hover-stay-time='400' bindtap='share' style='background: url({{util.HTTP}}mobile/small/image/fx/fx_yqbtn.png) no-repeat;background-size: 100% 100%;' wx:if='{{info.isSelf==1}}'>分享</view>
   </view>
 </view>
 <share_board id="share" bind:shareFriend="onShareAppMessage" bind:shareCircle="shareCircle" infoData='{{info}}' distribution="1"/>

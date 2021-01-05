@@ -12,7 +12,7 @@ Page({
     //订单索引
     index: '',
     info: {},
-    modal_confirm: [{
+    modalConfirm: [{
       title: '提示',
       content: '确认已收到货?',
       tip: '',
@@ -27,15 +27,15 @@ Page({
     this.setData({
       id: options.id,
       index: options.index,
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
     event.on('changeAddress', this, res => {
       this.setData({
-        member_address_id: res.address.member_address_id,
+        memberAddressId: res.address.memberAddressId,
       })
-      http.post(app.globalData.set_addres, {
-        activity_order_id: this.data.id,
-        member_address_id: res.member_address_id
+      http.post(app.globalData.setAddres, {
+        activityOrderId: this.data.id,
+        memberAddressId: res.memberAddressId
       }).then(res => {
         this.getData()
       })
@@ -88,10 +88,9 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.lottery_activity_order_info, {
+    http.post(app.globalData.lotteryActivityOrderInfo, {
       orderId: this.data.id
     }).then(res => {
-      console.log(res)
       this.setData({
         info: res.data
       })
@@ -102,33 +101,24 @@ Page({
    * 确认收货
    */
   confirmReceipt() {
-    http.post(app.globalData.confirm_take, {
+    http.post(app.globalData.confirmTake, {
       orderId: this.data.id
     }).then(res => {
       this.setData({
         'info.status': 3
       })
     })
-    // http.post(app.globalData.confirm_receipt, {
-    //   integral_order_id: this.data.id,
-    //   status: 2
-    // }).then(res => {
-    //   this.data.info.status = 3
-    //   this.setData({
-    //     info: this.data.info
-    //   })
-    // })
   },
 
   onLogistics() {
     let info = {
-      express_number: this.data.info.express_number,
-      express_value: this.data.info.express_value,
-      order_attach_id: this.data.id,
+      expressNumber: this.data.info.expressNumber,
+      expressValue: this.data.info.expressValue,
+      orderAttachId: this.data.id,
       type: 'draw'
     }
     wx.navigateTo({
-      url: '../logistics_detail/logistics_detail?info=' + JSON.stringify(info),
+      url: '../logisticsDetail/logisticsDetail?info=' + JSON.stringify(info),
     })
   },
 
@@ -137,7 +127,7 @@ Page({
    */
   copyOrder() {
     wx.setClipboardData({
-      data: this.data.info.order_number,
+      data: this.data.info.orderNumber,
     })
   },
   /**

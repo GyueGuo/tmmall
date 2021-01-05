@@ -1,21 +1,10 @@
 <wxs module="util" src="../../utils/util.wxs" />
 <view hidden='{{!classify}}'>
-  <!-- <view class='tab-view'>
-    <scroll-view scroll-x class='tab-sroll' scroll-into-view="{{sroll_id}}" scroll-with-animation>
-      <view class='tab-item ' wx:for="{{classify}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onClassify' data-id='{{item.goods_classify_id}}' id='a-{{index}}'>
-        <text style='{{current_tab==item.goods_classify_id?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{item.title}}</text>
-      </view>
-    </scroll-view>
-    <view class='more' hover-class='hover-class' hover-stay-time='400' bindtap='onMore'>
-      <view></view>
-      <image src='{{util.HTTP}}mobile/small/image/fl2_x.png'></image>
-    </view>
-  </view> -->
 
   <view class='coupon-list' hidden='{{list.length == 0}}'>
     <view wx:for="{{list}}" class='coupon' wx:key='{{index}}'>
       <!-- 未开抢 -->
-      <view wx:if="{{item.distance_start_time > 0}}">
+      <view wx:if="{{item.distanceStartTime > 0}}">
         <image src='{{util.HTTP}}mobile/small/image/sy-lqzx-yhq.png'></image>
         <view class='coupon-item'>
           <view class='left'>
@@ -23,13 +12,13 @@
               <image class='coupon-img' src='{{item.file}}'></image>
               <view class='coupon-info'>
                 <view class='coupon-title'>{{item.title}}</view>
-                <view class='coupon-price cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>
-                  <text class='favourable-price'>￥{{item.actual_price}}</text>
-                  <block wx:if='{{item.full_subtraction_price!=0}}'>
-                    <text class='off-price' style='{{util.diy_color("",diy_color.f_color_2,"")}}'>满{{item.full_subtraction_price}}可用</text>
+                <view class='coupon-price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
+                  <text class='favourable-price'>￥{{item.actualPrice}}</text>
+                  <block wx:if='{{item.fullSubtractionPrice!=0}}'>
+                    <text class='off-price' style='{{util.diyColor("",diyColor.fColor2,"")}}'>满{{item.fullSubtractionPrice}}可用</text>
                   </block>
-                  <block wx:elif='{{item.full_subtraction_price==0}}'>
-                    <text class='off-price' style='{{util.diy_color("",diy_color.f_color_2,"")}}'>无门槛</text>
+                  <block wx:elif='{{item.fullSubtractionPrice==0}}'>
+                    <text class='off-price' style='{{util.diyColor("",diyColor.fColor2,"")}}'>无门槛</text>
                   </block>
                 </view>
               </view>
@@ -38,48 +27,46 @@
           <view class='right'>
             <view>
               <view class='not-open'>
-                <view class='count-down' style='{{util.diy_color(diy_color.z_color,"","")}}'>距开抢还剩</view>
-                <view class='count-time' style='{{util.diy_color(diy_color.z_color,"","")}}'>
-                  <text class='text' style='{{util.diy_color("",diy_color.z_color,"")}}'>{{item.hour}}</text>
+                <view class='count-down' style='{{util.diyColor(diyColor.zColor,"","")}}'>距开抢还剩</view>
+                <view class='count-time' style='{{util.diyColor(diyColor.zColor,"","")}}'>
+                  <text class='text' style='{{util.diyColor("",diyColor.zColor,"")}}'>{{item.hour}}</text>
                   <text>:</text>
-                  <text class='text' style='{{util.diy_color("",diy_color.z_color,"")}}'>{{item.min}}</text>
+                  <text class='text' style='{{util.diyColor("",diyColor.zColor,"")}}'>{{item.min}}</text>
                   <text>:</text>
-                  <text class='text' style='{{util.diy_color("",diy_color.z_color,"")}}'>{{item.sec}}</text>
+                  <text class='text' style='{{util.diyColor("",diyColor.zColor,"")}}'>{{item.sec}}</text>
                 </view>
-                <!-- <view class='count-info' style='{{util.diy_color(diy_color.z_color,"","")}}'>39278人已提醒</view> -->
               </view>
-              <!-- <view class='opertation' style='{{util.diy_color("",diy_color.z_color,"")}}box-shadow: 0 5rpx 10rpx 0 {{diy_color.f_color}};'>提醒我</view> -->
             </view>
           </view>
         </view>
       </view>
 
       <!-- 已领取 -->
-      <view wx:elif="{{item.member_state != 0}}">
+      <view wx:elif="{{item.memberState != 0}}">
         <image src='{{util.HTTP}}mobile/small/image/sy-lqzx-yhqylq.png'></image>
         <view class='coupon-item'>
           <view class='coupon-good'>
             <view class='coupon-usable'>
-              <image wx:for="{{item.goods_list}}" wx:key='{{index}}' src='{{item.file!=""?item.file:util.HTTP+"mobile/small/image/coupon_01.png"}}'></image>
+              <image wx:for="{{item.goodsList}}" wx:key='{{index}}' src='{{item.file!=""?item.file:util.HTTP+"mobile/small/image/coupon_01.png"}}'></image>
             </view>
             <view class='tips'>
-              <block wx:if='{{item.full_subtraction_price!=0}}'>
-                <text style='{{util.diy_color(diy_color.z_color,"","")}}'>满{{item.full_subtraction_price}}减{{item.actual_price}} </text>
+              <block wx:if='{{item.fullSubtractionPrice!=0}}'>
+                <text style='{{util.diyColor(diyColor.zColor,"","")}}'>满{{item.fullSubtractionPrice}}减{{item.actualPrice}} </text>
               </block>
-              <block wx:elif='{{item.full_subtraction_price==0}}'>
-                <text style='{{util.diy_color(diy_color.z_color,"","")}}'>无门槛</text>
+              <block wx:elif='{{item.fullSubtractionPrice==0}}'>
+                <text style='{{util.diyColor(diyColor.zColor,"","")}}'>无门槛</text>
               </block>
               <text>{{item.title}}</text>
             </view>
           </view>
           <view class='received'>
-            <view class='opertation' hover-class='hover-class' hover-stay-time='400' bindtap='goUse' data-item='{{item}}' style='{{util.diy_color("",diy_color.z_color,"")}}box-shadow: 0 5rpx 10rpx 0 {{diy_color.f_color}};'>去使用</view>
+            <view class='opertation' hover-class='hover-class' hover-stay-time='400' bindtap='goUse' data-item='{{item}}' style='{{util.diyColor("",diyColor.zColor,"")}}box-shadow: 0 5rpx 10rpx 0 {{diyColor.fColor}};'>去使用</view>
           </view>
         </view>
       </view>
 
       <!-- 已售完 -->
-      <view wx:elif="{{item.exchange_num == 0}}">
+      <view wx:elif="{{item.exchangeNum == 0}}">
         <image src='{{util.HTTP}}mobile/small/image/sy-lqzx-yhqyqw.png'></image>
         <view class='coupon-item'>
           <view class='left'>
@@ -88,11 +75,11 @@
               <view class='coupon-info'>
                 <view class='coupon-title'>{{item.title}}</view>
                 <view class='coupon-price gray'>
-                  <text class='favourable-price'>￥{{item.actual_price}}</text>
-                  <block wx:if='{{item.full_subtraction_price!=0}}'>
-                    <text class='off-price'>满{{item.full_subtraction_price}}可用</text>
+                  <text class='favourable-price'>￥{{item.actualPrice}}</text>
+                  <block wx:if='{{item.fullSubtractionPrice!=0}}'>
+                    <text class='off-price'>满{{item.fullSubtractionPrice}}可用</text>
                   </block>
-                  <block wx:elif='{{item.full_subtraction_price==0}}'>
+                  <block wx:elif='{{item.fullSubtractionPrice==0}}'>
                     <text class='off-price'>无门槛</text>
                   </block>
                 </view>
@@ -114,13 +101,13 @@
               <image class='coupon-img' src='{{item.file!=""?item.file:util.HTTP+"mobile/small/image/coupon_01.png"}}'></image>
               <view class='coupon-info'>
                 <view class='coupon-title'>{{item.title}}</view>
-                <view class='coupon-price cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>
-                  <text class='favourable-price'>￥{{item.actual_price}}</text>
-                  <block wx:if='{{item.full_subtraction_price!=0}}'>
-                    <text class='off-price' style='{{util.diy_color("",diy_color.f_color_2,"")}}'>满{{item.full_subtraction_price}}可用</text>
+                <view class='coupon-price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
+                  <text class='favourable-price'>￥{{item.actualPrice}}</text>
+                  <block wx:if='{{item.fullSubtractionPrice!=0}}'>
+                    <text class='off-price' style='{{util.diyColor("",diyColor.fColor2,"")}}'>满{{item.fullSubtractionPrice}}可用</text>
                   </block>
-                  <block wx:elif='{{item.full_subtraction_price==0}}'>
-                    <text class='off-price' style='{{util.diy_color("",diy_color.f_color_2,"")}}'>无门槛</text>
+                  <block wx:elif='{{item.fullSubtractionPrice==0}}'>
+                    <text class='off-price' style='{{util.diyColor("",diyColor.fColor2,"")}}'>无门槛</text>
                   </block>
                 </view>
               </view>
@@ -128,8 +115,8 @@
           </view>
           <view class='right'>
             <view>
-              <arc percent='{{(item.total_num - item.exchange_num)/item.total_num*100}}' class='arc'></arc>
-              <view class='opertation' style='{{util.diy_color("",diy_color.z_color,"")}}box-shadow: 0 5rpx 10rpx 0 {{diy_color.f_color}};'>立即领取</view>
+              <arc percent='{{(item.totalNum - item.exchangeNum)/item.totalNum*100}}' class='arc'></arc>
+              <view class='opertation' style='{{util.diyColor("",diyColor.zColor,"")}}box-shadow: 0 5rpx 10rpx 0 {{diyColor.fColor}};'>立即领取</view>
             </view>
           </view>
         </view>
@@ -146,10 +133,10 @@
 
   <view class='footer'>
     <view>
-      <view style='{{util.diy_imgbox(96)}}'>
-        <image src='{{util.HTTP}}mobile/small/image/sy-hqzx-da1-2.png' style='{{util.diy_imgcolor(diy_color.z_color,96,96)}}transform:translateX(-58px);'></image>
+      <view style='{{util.diyImgbox(96)}}'>
+        <image src='{{util.HTTP}}mobile/small/image/sy-hqzx-da1-2.png' style='{{util.diyImgcolor(diyColor.zColor,96,96)}}transform:translateX(-58px);'></image>
       </view>
-      <view style='{{util.diy_color(diy_color.z_color,"","")}}'>领券</view>
+      <view style='{{util.diyColor(diyColor.zColor,"","")}}'>领券</view>
     </view>
     <view hover-class='hover-class' hover-stay-time='400' bindtap='onChangeCoupon'>
       <image src='{{util.HTTP}}mobile/small/image/sy-hqzx-da2.png'></image>
@@ -157,14 +144,14 @@
     </view>
   </view>
 
-  <view class='tab-more' hidden="{{!more_board}}" hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard' catchtouchmove='none'>
+  <view class='tab-more' hidden="{{!moreBoard}}" hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard' catchtouchmove='none'>
     <view catchtap='none'>
       <view class='tab-more-head'>
         <view>全部分类</view>
         <image src='{{util.HTTP}}mobile/small/image/tsczz-sl.png' hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'></image>
       </view>
       <view class='tab-more-wrap'>
-        <view wx:for="{{classify}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onTabMoreItem' data-index='{{index}}' data-id='{{item.goods_classify_id}}' style='{{item.goods_classify_id == current_tab?util.diy_color(diy_color.z_color,"",diy_color.z_color):""}}'>{{item.title}}</view>
+        <view wx:for="{{classify}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onTabMoreItem' data-index='{{index}}' data-id='{{item.goodsClassifyId}}' style='{{item.goodsClassifyId == currentTab?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>{{item.title}}</view>
       </view>
     </view>
   </view>

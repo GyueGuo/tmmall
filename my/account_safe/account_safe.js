@@ -22,7 +22,7 @@ Page({
    */
   onReady: function() {
     event.on('setPassword', this, () => {
-      this.data.info.pay_state = 1
+      this.data.info.payState = 1
       this.setData({
         info: this.data.info
       })
@@ -80,7 +80,7 @@ Page({
    */
   onPhone() {
     wx.navigateTo({
-      url: `${this.data.info.phone_state == 1 ? '/my/change_phone/change_phone?status=0':'/my/change_phone/change_phone?status=2'}`,
+      url: `${this.data.info.phoneState == 1 ? '/my/changePhone/changePhone?status=0':'/my/changePhone/changePhone?status=2'}`,
     })
   },
 
@@ -88,9 +88,9 @@ Page({
    * 支付密码
    */
   onPassword() {
-    if (this.data.info.pay_state == 0) {
+    if (this.data.info.payState == 0) {
       wx.navigateTo({
-        url: '/my/set_pay_psw/set_pay_psw',
+        url: '/my/setPayPsw/setPayPsw',
       })
     } else {
       wx.navigateTo({
@@ -102,9 +102,9 @@ Page({
    * 登录密码
    */
   onsetPassword() {
-    if (this.data.info.password_state == 0) {
+    if (this.data.info.passwordState == 0) {
       wx.navigateTo({
-        url: '../set_password/set_password?type=login',
+        url: '../setPassword/setPassword?type=login',
       })
     } else {
       wx.navigateTo({

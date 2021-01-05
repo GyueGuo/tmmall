@@ -7,10 +7,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    goods_id: '',
+    goodsId: '',
     price: '',
-    expect_price: '',
-    store_id: ''
+    expectPrice: '',
+    storeId: ''
   },
 
   /**
@@ -18,10 +18,10 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color,
+      diyColor: app.globalData.diyColor,
       price: options.price,
-      goods_id: options.goods_id,
-      store_id: options.store_id
+      goodsId: options.goodsId,
+      storeId: options.storeId
     })
   },
 
@@ -73,10 +73,10 @@ Page({
   priceInput(e) {
     if (e.detail.value == '.') {
       this.setData({
-        expect_price: '0.'
+        expectPrice: '0.'
       })
     }
-    this.data.expect_price = e.detail.value
+    this.data.expectPrice = e.detail.value
   },
 
   /**
@@ -84,28 +84,28 @@ Page({
    */
   submit() {
     let re = /^[0-9]+([.][0-9]+){0,1}$/
-    if (!re.test(this.data.expect_price)) {
+    if (!re.test(this.data.expectPrice)) {
       app.showToast('请输入正确的价格')
       return
     }
-    if (this.data.expect_price == '') {
+    if (this.data.expectPrice == '') {
       app.showToast('请输入期望价格')
       return
     }
-    if (parseFloat(this.data.expect_price) > parseFloat(this.data.price)) {
+    if (parseFloat(this.data.expectPrice) > parseFloat(this.data.price)) {
       app.showToast('期望价格不可超过当前价格')
       return
     }
 
-    http.post(app.globalData.depreciate_goods, {
-      goodsId: this.data.goods_id,
-      storeId: this.data.store_id,
-      price: this.data.expect_price,
+    http.post(app.globalData.depreciateGoods, {
+      goodsId: this.data.goodsId,
+      storeId: this.data.storeId,
+      price: this.data.expectPrice,
       goodsPrice: this.data.price
     }).then(res => {
       app.showSuccessToast('订阅成功', () => {
         wx.navigateBack()
-        event.emit('notifyPrice', parseFloat(this.data.expect_price).toFixed(2))
+        event.emit('notifyPrice', parseFloat(this.data.expectPrice).toFixed(2))
       })
     })
   }

@@ -1,25 +1,25 @@
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='wrap'>
-  <image class='logo' src='{{adv_info.file}}' wx:if='{{adv_info.file!=undefined&&adv_info.file!=""}}' hover-class='hover-class' hover-stay-time='400' bindtap='onAdvInfo'></image>
+  <image class='logo' src='{{advInfo.file}}' wx:if='{{advInfo.file!=undefined&&advInfo.file!=""}}' hover-class='hover-class' hover-stay-time='400' bindtap='onAdvInfo'></image>
   <view class='bargain-list' hidden='{{list.length == 0}}'>
-    <view class='bargain-item' wx:for="{{list}}" hidden='{{item.goods==null}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goods_id}}'>
+    <view class='bargain-item' wx:for="{{list}}" hidden='{{item.goods==null}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goodsId}}'>
       <view class='goods-img' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
         <image src='{{item.goods.file}}'></image>
       </view>
       <view class='goods-info'>
-        <view class='bargain-name'>{{item.goods.goods_name}}</view>
+        <view class='bargain-name'>{{item.goods.goodsName}}</view>
         <view class='bargain-time'>砍价时间:{{item.up_shelf_time}}至{{item.down_shelf_time}}</view>
         <view class='bargain-operation'>
           <view class='bargain-price'>
-            <view class='present-price cur' style='{{util.diy_color(diy_color.z_color,"","")}}'>
+            <view class='present-price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
               <text>底价</text>
               <text class='unit'>￥</text>
-              <text class='integer'>{{util.integer(item.goods.cut_price)}}</text>
-              <text class='decimals'>.{{util.decimals(item.goods.cut_price)}}</text>
+              <text class='integer'>{{util.integer(item.goods.cutPrice)}}</text>
+              <text class='decimals'>.{{util.decimals(item.goods.cutPrice)}}</text>
             </view>
-            <view class='origin-price'>原价￥{{item.goods.shop_price}}</view>
+            <view class='origin-price'>原价￥{{item.goods.shopPrice}}</view>
           </view>
-          <view class='bargain-now bg' style='{{util.diy_color("",diy_color.z_color,"")}}'>立即砍价</view>
+          <view class='bargain-now bg' style='{{util.diyColor("",diyColor.zColor,"")}}'>立即砍价</view>
         </view>
       </view>
     </view>
@@ -41,8 +41,8 @@
 </view>
 <view class='footer'>
   <view>
-    <view class='font_family shop-icon icon-kj-kjsp-' style='{{util.diy_color(diy_color.z_color,"","")}}'></view>
-    <view class='title' style='{{util.diy_color(diy_color.z_color,"","")}}'>砍价商品</view>
+    <view class='font_family shop-icon icon-kj-kjsp-' style='{{util.diyColor(diyColor.zColor,"","")}}'></view>
+    <view class='title' style='{{util.diyColor(diyColor.zColor,"","")}}'>砍价商品</view>
   </view>
   <view hover-class='hover-class' hover-stay-time='400' bindtap='onMyBargain'>
     <view class='font_family mykj-icon icon-kj-wd'></view>

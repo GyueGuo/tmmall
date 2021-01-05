@@ -1,4 +1,3 @@
-// nearby_shops/pay_result/pay_result.js
 const app = getApp();
 const http = require('../../utils/http.js');
 Page({
@@ -8,20 +7,20 @@ Page({
    */
   data: {
     item: {},
-    share_info: {
-      is_first_tobe: 0
+    shareInfo: {
+      isFirstTobe: 0
     },
-    recommend_list: [],
+    recommendList: [],
     discount: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad(options) {
     this.setData({
       item: JSON.parse(options.item),
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
 
   },
@@ -37,7 +36,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.getData_share_info()
+    this.getDataShareInfo()
   },
 
   /**
@@ -78,12 +77,12 @@ Page({
   /**
    * 获取邀请人信息
    */
-  getData_share_info() {
-    http.post(app.globalData.distribution_query_point, {
-      outTradeNo: this.data.item.out_trade_no
+  getDataShareInfo() {
+    http.post(app.globalData.distributionQueryPoint, {
+      outTradeNo: this.data.item.outTradeNo
     }).then(res => {
       this.setData({
-        share_info: res.data
+        shareInfo: res.data
       })
       this.getGoods()
     })
@@ -93,18 +92,18 @@ Page({
    * 获取商品列表
    */
   getGoods() {
-    let is_distribution
-    if (this.data.share_info.has_distribution == 1) {
-      is_distribution = 1
+    let isDistribution
+    if (this.data.shareInfo.hasDistribution == 1) {
+      isDistribution = 1
     } else {
-      is_distribution = 0
+      isDistribution = 0
     }
-    http.post(app.globalData.distribution_goods_list, {
-      isDistribution: is_distribution,
-      isDistributor: is_distribution
+    http.post(app.globalData.distributionGoodsList, {
+      isDistribution: isDistribution,
+      isDistributor: isDistribution
     }).then(res => {
       this.setData({
-        recommend_list: res.result.data,
+        recommendList: res.result.data,
         discount: res.discount == null ? 100 : res.discount,
       })
     })
@@ -131,7 +130,7 @@ Page({
    */
   goMy() {
     wx.redirectTo({
-      url: '/my/fx_goods_list/fx_goods_list',
+      url: '/my/fxGoodsList/fxGoodsList',
     })
   },
   /**

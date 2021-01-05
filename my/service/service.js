@@ -2,12 +2,10 @@
 const app = getApp();
 const http = require('../../utils/http.js');
 const service = require('../../utils/service.js');
-let s_socket, s_socketType = false,
-  s_socketHeartTime, s_socketAgainTime;
 const recorderManager = wx.getRecorderManager();
 const innerAudioContext = wx.createInnerAudioContext();
 
-let recorderManager_obj = {
+let recorderManagerObj = {
   duration: 60000,
   sampleRate: 44100,
   numberOfChannels: 1,
@@ -21,23 +19,23 @@ Page({
    */
   data: {
     mid: '',
-    service_info: {
-      TARGET_ID: '', //接收者店铺ID
-      DIVERSION_ID: ''
+    serviceInfo: {
+      TARGETID: '', //接收者店铺ID
+      DIVERSIONID: ''
     },
     chatType: 0, //0输入法 1语音
-    service_input: '',
-    show_confirm: false,
+    serviceInput: '',
+    showConfirm: false,
     fixed: true,
     spkStartY: 0,
     //聊天列表
     msglist: [],
-    msglist_index: '',
+    msglistIndex: '',
     userinfo: null,
     focus: false,
     isLogin: true,
     //功能按钮
-    funbtn_list: [{
+    funbtnList: [{
         img: 'mobile/small/image/service/kf-tjtp.png',
         name: '相册',
         route: 'photo'
@@ -46,59 +44,50 @@ Page({
         name: '拍照',
         route: 'takepictures'
       },
-      // {
-      //   img: 'mobile/small/image/service/btn-goods.png',
-      //   name: '商品',
-      //   route: 'goods'
-      // }, {
-      //   img: 'mobile/small/image/service/btn-shops.png',
-      //   name: '订单',
-      //   route: 'order'
-      // }
     ],
-    service_fun: false, //是否打开功能按钮节面
+    serviceFun: false, //是否打开功能按钮节面
     emojiList: [], //表情列表
     isEmoji: false, //是否打开表情列表
     recorderTitle: '按住 说话', //语音按钮提示语
     recorderTime: 0, //语音时间
     recorderIndex: '', //语音播放索引
-    service_enter: true,
+    serviceEnter: true,
     scrollTop: '',
     scrollAnimation: false,
     spkMoveY: 0,
-    orderList_type: false,
+    orderListType: false,
     orderList: [],
-    list_type: '1'
+    listType: '1'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    let service_info = ''
-    if (options.service_info) {
-      service_info = JSON.parse(options.service_info)
-      service_info.store_title = decodeURIComponent(service_info.store_title)
-      if (service_info.detail) {
-        service_info.detail.goods_name = decodeURIComponent(service_info.detail.goods_name)
-        service_info.detail.file = decodeURIComponent(service_info.detail.file)
+    let serviceInfo = ''
+    if (options.serviceInfo) {
+      serviceInfo = JSON.parse(options.serviceInfo)
+      serviceInfo.storeTitle = decodeURIComponent(serviceInfo.storeTitle)
+      if (serviceInfo.detail) {
+        serviceInfo.detail.goodsName = decodeURIComponent(serviceInfo.detail.goodsName)
+        serviceInfo.detail.file = decodeURIComponent(serviceInfo.detail.file)
       }
     }
     this.setData({
-      diy_color: app.globalData.diy_color,
-      service_info: service_info
+      diyColor: app.globalData.diyColor,
+      serviceInfo: serviceInfo
     })
-    app.app_socketSite = 1
-    if (this.data.service_info.TARGET_ID == '0' || app.globalData.isShops == 1) {
+    app.appSocketSite = 1
+    if (this.data.serviceInfo.TARGETID == '0' || app.globalData.isShops == 1) {
       wx.setNavigationBarTitle({
         title: '平台客服',
       })
-    } else if (this.data.service_info.TARGET_ID != '0' && app.globalData.isShops == 0) {
+    } else if (this.data.serviceInfo.TARGETID != '0' && app.globalData.isShops == 0) {
       wx.setNavigationBarTitle({
-        title: this.data.service_info.store_title,
+        title: this.data.serviceInfo.storeTitle,
       })
     }
-    console.log(app.app_socketSite)
+    console.log(app.appSocketSite)
 
     //-------------------------------------------------
     //录音监听
@@ -134,36 +123,36 @@ Page({
       }
       let timestamp = Date.parse(new Date())
       let list = {
-        MSG_TYPE: '',
-        MESSAGE_ID: timestamp,
-        FROM_ID: app.globalData.member_id,
-        MESSAGE_TYPE: 'VOICE',
+        MSGTYPE: '',
+        MESSAGEID: timestamp,
+        FROMID: app.globalData.memberId,
+        MESSAGETYPE: 'VOICE',
         HEADIMG: '',
-        MESSAGE_DATA: res.tempFilePath,
-        VOICE_TIME: this.data.recorderTime,
-        voiceplay_type: '0'
+        MESSAGEDATA: res.tempFilePath,
+        VOICETIME: this.data.recorderTime,
+        voiceplayType: '0'
       }
       this.data.msglist.push(list)
       this.setData({
         msglist: this.data.msglist,
-        msglist_index: `id${timestamp}`
+        msglistIndex: `id${timestamp}`
       })
 
       wx.uploadFile({
-        url: app.globalData.service_uploadFile,
+        url: app.globalData.serviceUploadFile,
         filePath: res.tempFilePath,
         name: 'file',
         success: resData => {
           let data = JSON.parse(resData.data)
           console.log(data)
           let DATA = {
-            "MESSAGE_ID": timestamp.toString(), // 字符串类型的毫秒级时间戳
-            "MESSAGE_TYPE": 'VOICE', // 文本
-            "MESSAGE_DATA": data.ossUrl, // 消息内容
-            "TARGET_TYPE": "CUSTOMER", // 接收者用户类型
-            "TARGET_ID": this.data.service_info.TARGET_ID.toString(), // 接收者店铺ID
-            "DIVERSION_ID": this.data.service_info.DIVERSION_ID.toString(), //客服分流ID
-            "VOICE_TIME": this.data.recorderTime.toString()
+            "MESSAGEID": timestamp.toString(), // 字符串类型的毫秒级时间戳
+            "MESSAGETYPE": 'VOICE', // 文本
+            "MESSAGEDATA": data.ossUrl, // 消息内容
+            "TARGETTYPE": "CUSTOMER", // 接收者用户类型
+            "TARGETID": this.data.serviceInfo.TARGETID.toString(), // 接收者店铺ID
+            "DIVERSIONID": this.data.serviceInfo.DIVERSIONID.toString(), //客服分流ID
+            "VOICETIME": this.data.recorderTime.toString()
           }
           this.socketSend(DATA)
           this.setData({
@@ -172,18 +161,8 @@ Page({
         }
       })
     })
-    //播放声音监听
-    // innerAudioContext.onStop(res => {
-    //   console.log(res)
-    //   console.log('播放停止1')
-    //   this.data.msglist[this.data.recorderIndex].voiceplay_type = 0
-    //   this.setData({
-    //     msglist: this.data.msglist
-    //   })
-    // })
     innerAudioContext.onEnded(res => {
-      console.log('播放停止2')
-      this.data.msglist[this.data.recorderIndex].voiceplay_type = 0
+      this.data.msglist[this.data.recorderIndex].voiceplayType = 0
       this.setData({
         msglist: this.data.msglist
       })
@@ -210,14 +189,14 @@ Page({
    */
   onShow: function() {
     this.setData({
-      mid: app.globalData.member_id
+      mid: app.globalData.memberId
     })
     if (this.data.userinfo == null) {
       this.getUserinfo()
     }
     this.getStoreinfo()
     console.log('客服进入')
-    if (app.globalData.member_id == '') {
+    if (app.globalData.memberId == '') {
       return
     }
     setTimeout(() => {
@@ -225,11 +204,11 @@ Page({
       let data = {
         "TYPE": "MATCH_CUSTOMER",
         "DATA": {
-          "TARGET_ID": this.data.service_info.TARGET_ID.toString(),
-          "DIVERSION_ID": this.data.service_info.DIVERSION_ID.toString()
+          "TARGETID": this.data.serviceInfo.TARGETID.toString(),
+          "DIVERSIONID": this.data.serviceInfo.DIVERSIONID.toString()
         }
       }
-      app.app_socket.send({
+      app.appSocket.send({
         data: JSON.stringify(data),
         success: res => {
           console.log(res)
@@ -251,7 +230,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-    app.app_socketSite = 0
+    app.appSocketSite = 0
     innerAudioContext.stop()
   },
 
@@ -280,7 +259,7 @@ Page({
    * 获取个人信息
    */
   getUserinfo() {
-    http.post(app.globalData.my_info, {}).then(res => {
+    http.post(app.globalData.myInfo, {}).then(res => {
       this.setData({
         userinfo: res.result
       })
@@ -290,8 +269,8 @@ Page({
    * 获取店铺信息
    */
   getStoreinfo() {
-    http.post(app.globalData.customer_getStoreInfo, {
-      storeId: this.data.service_info.TARGET_ID
+    http.post(app.globalData.customerGetStoreInfo, {
+      storeId: this.data.serviceInfo.TARGETID
     }).then(res => {
       this.setData({
         storeinfo: res.data
@@ -301,18 +280,18 @@ Page({
   /**
    * 输入文本
    */
-  service_text(e) {
+  serviceText(e) {
     this.setData({
-      service_input: e.detail.value
+      serviceInput: e.detail.value
     })
   },
   /**
    * 发送方式
    */
-  service_type() {
+  serviceType() {
     this.setData({
       chatType: this.data.chatType == 0 ? 1 : 0,
-      service_fun: false,
+      serviceFun: false,
       isEmoji: false
     })
   },
@@ -330,7 +309,7 @@ Page({
             spkStartY: spkStartY,
             recorderTitle: '松开 结束'
           })
-          recorderManager.start(recorderManager_obj)
+          recorderManager.start(recorderManagerObj)
         }
       }
     })
@@ -358,45 +337,45 @@ Page({
   },
   /**
    * 发送
-   * MESSAGE_ID 字符串类型的毫秒级时间戳
-   * MESSAGE_TYPE 文本
-   * MESSAGE_DATA 消息内容
-   * TARGET_ID 接收者店铺ID
-   * DIVERSION_ID 客服分流ID
+   * MESSAGEID 字符串类型的毫秒级时间戳
+   * MESSAGETYPE 文本
+   * MESSAGEDATA 消息内容
+   * TARGETID 接收者店铺ID
+   * DIVERSIONID 客服分流ID
    */
   submit() {
-    if (this.data.service_input == '' || this.data.service_input.length == 0) {
+    if (this.data.serviceInput == '' || this.data.serviceInput.length == 0) {
       return
     }
     console.log('fa')
     let timestamp = Date.parse(new Date())
     let list = {
-      MSG_TYPE: '',
-      MESSAGE_ID: timestamp,
-      FROM_ID: app.globalData.member_id,
-      MESSAGE_TYPE: 'TEXT',
+      MSGTYPE: '',
+      MESSAGEID: timestamp,
+      FROMID: app.globalData.memberId,
+      MESSAGETYPE: 'TEXT',
       HEADIMG: '',
-      MESSAGE_DATA: this.data.service_input,
-      VOICE_TIME: '',
-      voiceplay_type: '0'
+      MESSAGEDATA: this.data.serviceInput,
+      VOICETIME: '',
+      voiceplayType: '0'
     }
     this.data.msglist.push(list)
     this.setData({
       msglist: this.data.msglist,
-      msglist_index: `id${timestamp}`
+      msglistIndex: `id${timestamp}`
     })
     let DATA = {
-      "MESSAGE_ID": timestamp.toString(), // 字符串类型的毫秒级时间戳
-      "MESSAGE_TYPE": 'TEXT', // 文本
-      "MESSAGE_DATA": this.data.service_input, // 消息内容
-      "TARGET_TYPE": "CUSTOMER", // 接收者用户类型
-      "TARGET_ID": this.data.service_info.TARGET_ID.toString(), // 接收者店铺ID
-      "DIVERSION_ID": this.data.service_info.DIVERSION_ID.toString(), //客服分流ID
-      "VOICE_TIME": ''
+      "MESSAGEID": timestamp.toString(), // 字符串类型的毫秒级时间戳
+      "MESSAGETYPE": 'TEXT', // 文本
+      "MESSAGEDATA": this.data.serviceInput, // 消息内容
+      "TARGETTYPE": "CUSTOMER", // 接收者用户类型
+      "TARGETID": this.data.serviceInfo.TARGETID.toString(), // 接收者店铺ID
+      "DIVERSIONID": this.data.serviceInfo.DIVERSIONID.toString(), //客服分流ID
+      "VOICETIME": ''
     }
     this.socketSend(DATA)
     this.setData({
-      service_input: ''
+      serviceInput: ''
     })
   },
 
@@ -407,31 +386,31 @@ Page({
     let data = {
       "TYPE": "MESSAGE",
       "DATA": {
-        "MESSAGE_ID": DATA.MESSAGE_ID, // 字符串类型的毫秒级时间戳
-        "MESSAGE_TYPE": DATA.MESSAGE_TYPE, // 文本
-        "MESSAGE_DATA": DATA.MESSAGE_DATA, // 消息内容
-        "TARGET_TYPE": "CUSTOMER", // 接收者用户类型
-        "TARGET_ID": DATA.TARGET_ID, // 接收者店铺ID
-        "DIVERSION_ID": DATA.DIVERSION_ID, //客服分流ID
-        "VOICE_TIME": DATA.VOICE_TIME
+        "MESSAGEID": DATA.MESSAGEID, // 字符串类型的毫秒级时间戳
+        "MESSAGETYPE": DATA.MESSAGETYPE, // 文本
+        "MESSAGEDATA": DATA.MESSAGEDATA, // 消息内容
+        "TARGETTYPE": "CUSTOMER", // 接收者用户类型
+        "TARGETID": DATA.TARGETID, // 接收者店铺ID
+        "DIVERSIONID": DATA.DIVERSIONID, //客服分流ID
+        "VOICETIME": DATA.VOICETIME
       }
     }
 
-    app.app_socket.send({
+    app.appSocket.send({
       data: JSON.stringify(data),
       success: res => {
         console.log(res)
         for (let i = 0, len = this.data.msglist.length; i < len; i++) {
-          if (DATA.MESSAGE_ID == this.data.msglist[i].MESSAGE_ID) {
+          if (DATA.MESSAGEID == this.data.msglist[i].MESSAGEID) {
             let list = {
-              MSG_TYPE: 'success',
-              MESSAGE_ID: DATA.MESSAGE_ID,
-              FROM_ID: app.globalData.member_id,
-              MESSAGE_TYPE: DATA.MESSAGE_TYPE,
+              MSGTYPE: 'success',
+              MESSAGEID: DATA.MESSAGEID,
+              FROMID: app.globalData.memberId,
+              MESSAGETYPE: DATA.MESSAGETYPE,
               HEADIMG: '',
-              MESSAGE_DATA: DATA.MESSAGE_TYPE == 'TEXT' ? this.chat(DATA.MESSAGE_DATA) : DATA.MESSAGE_DATA,
-              VOICE_TIME: DATA.VOICE_TIME == undefined ? '' : DATA.VOICE_TIME,
-              voiceplay_type: '0'
+              MESSAGEDATA: DATA.MESSAGETYPE == 'TEXT' ? this.chat(DATA.MESSAGEDATA) : DATA.MESSAGEDATA,
+              VOICETIME: DATA.VOICETIME == undefined ? '' : DATA.VOICETIME,
+              voiceplayType: '0'
             }
             this.data.msglist[i] = list
             this.setData({
@@ -443,16 +422,16 @@ Page({
       },
       fail: res => {
         for (let i = 0, len = this.data.msglist.length; i < len; i++) {
-          if (DATA.MESSAGE_ID == this.data.msglist[i].MESSAGE_ID) {
+          if (DATA.MESSAGEID == this.data.msglist[i].MESSAGEID) {
             let list = {
-              MSG_TYPE: 'error',
-              MESSAGE_ID: DATA.MESSAGE_ID,
-              FROM_ID: app.globalData.member_id,
-              MESSAGE_TYPE: DATA.MESSAGE_TYPE,
+              MSGTYPE: 'error',
+              MESSAGEID: DATA.MESSAGEID,
+              FROMID: app.globalData.memberId,
+              MESSAGETYPE: DATA.MESSAGETYPE,
               HEADIMG: '',
-              MESSAGE_DATA: DATA.MESSAGE_TYPE == 'TEXT' ? this.chat(DATA.MESSAGE_DATA) : DATA.MESSAGE_DATA,
-              VOICE_TIME: DATA.VOICE_TIME == undefined ? '' : DATA.VOICE_TIME,
-              voiceplay_type: '0'
+              MESSAGEDATA: DATA.MESSAGETYPE == 'TEXT' ? this.chat(DATA.MESSAGEDATA) : DATA.MESSAGEDATA,
+              VOICETIME: DATA.VOICETIME == undefined ? '' : DATA.VOICETIME,
+              voiceplayType: '0'
             }
             this.data.msglist[i] = list
             this.setData({
@@ -468,10 +447,10 @@ Page({
   /**
    * 获取图片尺寸
    */
-  msg_image(e) {
+  msgImage(e) {
     console.log(e)
     this.setData({
-      msg_image_width: e.detail.width / 2
+      msgImageWidth: e.detail.width / 2
     })
   },
   /**
@@ -481,8 +460,8 @@ Page({
     console.log(e.currentTarget.dataset.url)
     let urls = []
     for (let arr of this.data.msglist) {
-      if (arr.MESSAGE_TYPE == 'IMAGE') {
-        urls.push(arr.MESSAGE_DATA)
+      if (arr.MESSAGETYPE == 'IMAGE') {
+        urls.push(arr.MESSAGEDATA)
       }
     }
     wx.previewImage({
@@ -493,7 +472,7 @@ Page({
   /**
    * 相册
    */
-  photo_uploadFile(sourceType) {
+  photoUploadFile(sourceType) {
     wx.chooseImage({
       sizeType: ['original', 'compressed'],
       sourceType: sourceType,
@@ -502,23 +481,23 @@ Page({
         for (let i = 0; i < tempFilePaths.length; i++) {
           let timestamp = Date.parse(new Date()) + i
           let list = {
-            MSG_TYPE: '',
-            MESSAGE_ID: timestamp,
-            FROM_ID: app.globalData.member_id,
-            MESSAGE_TYPE: 'IMAGE',
+            MSGTYPE: '',
+            MESSAGEID: timestamp,
+            FROMID: app.globalData.memberId,
+            MESSAGETYPE: 'IMAGE',
             HEADIMG: '',
-            MESSAGE_DATA: tempFilePaths[i],
-            VOICE_TIME: '',
-            voiceplay_type: '0'
+            MESSAGEDATA: tempFilePaths[i],
+            VOICETIME: '',
+            voiceplayType: '0'
           }
           this.data.msglist.push(list)
           this.setData({
             msglist: this.data.msglist,
-            msglist_index: `id${timestamp}`
+            msglistIndex: `id${timestamp}`
           })
 
           wx.uploadFile({
-            url: app.globalData.service_uploadFile,
+            url: app.globalData.serviceUploadFile,
             filePath: tempFilePaths[i],
             name: 'file',
             formData: {
@@ -528,13 +507,13 @@ Page({
               let data = JSON.parse(resData.data)
               console.log(data)
               let DATA = {
-                "MESSAGE_ID": timestamp.toString(), // 字符串类型的毫秒级时间戳
-                "MESSAGE_TYPE": 'IMAGE', // 文本
-                "MESSAGE_DATA": data.ossUrl, // 消息内容
-                "TARGET_TYPE": "CUSTOMER", // 接收者用户类型
-                "TARGET_ID": this.data.service_info.TARGET_ID.toString(), // 接收者店铺ID
-                "DIVERSION_ID": this.data.service_info.DIVERSION_ID.toString(), //客服分流ID
-                "VOICE_TIME": ''
+                "MESSAGEID": timestamp.toString(), // 字符串类型的毫秒级时间戳
+                "MESSAGETYPE": 'IMAGE', // 文本
+                "MESSAGEDATA": data.ossUrl, // 消息内容
+                "TARGETTYPE": "CUSTOMER", // 接收者用户类型
+                "TARGETID": this.data.serviceInfo.TARGETID.toString(), // 接收者店铺ID
+                "DIVERSIONID": this.data.serviceInfo.DIVERSIONID.toString(), //客服分流ID
+                "VOICETIME": ''
               }
               this.socketSend(DATA)
             }
@@ -546,16 +525,16 @@ Page({
   /**
    * 按钮
    */
-  service_funbtn(e) {
+  serviceFunbtn(e) {
     let sourceType
     switch (e.currentTarget.dataset.item.route) {
       case 'photo':
         sourceType = ['album', 'camera']
-        this.photo_uploadFile(sourceType)
+        this.photoUploadFile(sourceType)
         break;
       case 'takepictures':
         sourceType = ['camera']
-        this.photo_uploadFile(sourceType)
+        this.photoUploadFile(sourceType)
         break;
       case 'goods':
         this.setData({
@@ -574,7 +553,7 @@ Page({
   },
   inputtap() {
     this.setData({
-      service_fun: false,
+      serviceFun: false,
       isEmoji: false,
       focus: true
     })
@@ -582,9 +561,9 @@ Page({
   /**
    * 
    */
-  service_fun() {
+  serviceFun() {
     this.setData({
-      service_fun: !this.data.service_fun,
+      serviceFun: !this.data.serviceFun,
       chatType: 0,
       isEmoji: false
     })
@@ -592,7 +571,7 @@ Page({
 
   viewReset() {
     this.setData({
-      service_fun: false,
+      serviceFun: false,
       isEmoji: false
     })
   },
@@ -640,23 +619,23 @@ Page({
    */
   emojiBtn(e) {
     this.setData({
-      service_input: `${this.data.service_input}${e.currentTarget.dataset.item.name}`
+      serviceInput: `${this.data.serviceInput}${e.currentTarget.dataset.item.name}`
     })
   },
   /**
    * 删除
    */
-  emoji_del(e) {
+  emojiDel(e) {
     this.setData({
-      service_input: `${this.data.service_input}${e.currentTarget.dataset.item.name}`
+      serviceInput: `${this.data.serviceInput}${e.currentTarget.dataset.item.name}`
     })
   },
   /**
    * 
    */
-  emoji_type() {
+  emojiType() {
     this.setData({
-      service_fun: false,
+      serviceFun: false,
       isEmoji: !this.data.isEmoji
     })
   },
@@ -670,9 +649,9 @@ Page({
     innerAudioContext.stop()
     for (let i = 0, len = this.data.msglist.length; i < len; i++) {
       if (index == i) {
-        this.data.msglist[i].voiceplay_type = 1
+        this.data.msglist[i].voiceplayType = 1
       } else {
-        this.data.msglist[i].voiceplay_type = 0
+        this.data.msglist[i].voiceplayType = 0
       }
     }
     this.setData({
@@ -693,48 +672,48 @@ Page({
    * 获取历史消息
    */
   history() {
-    let last_id = 0,
-      first_message_time = 0;
+    let lastId = 0,
+      firstMessageTime = 0;
     if (this.data.msglist.length != 0) {
-      last_id = this.data.msglist[0].id
-      first_message_time = this.data.msglist[0].MESSAGE_ID
+      lastId = this.data.msglist[0].id
+      firstMessageTime = this.data.msglist[0].MESSAGEID
       this.setData({
         scrollAnimation: false
       })
     }
     http.post(app.globalData.getChatLog, {
       limit: 10,
-      storeId: this.data.service_info.TARGET_ID,
-      lastId: last_id,
-      memberId: app.globalData.member_id,
-      firstMessageTime: first_message_time
+      storeId: this.data.serviceInfo.TARGETID,
+      lastId: lastId,
+      memberId: app.globalData.memberId,
+      firstMessageTime: firstMessageTime
     }).then(res => {
-      let list_con = res.data
-      if (list_con.length != 0) {
-        let list_chat = []
-        for (let i = 0, len = list_con.length; i < len; i++) {
+      let listCon = res.data
+      if (listCon.length != 0) {
+        let listChat = []
+        for (let i = 0, len = listCon.length; i < len; i++) {
           let obj = {
-            id: list_con[i].id,
-            MSG_TYPE: 'success',
-            MESSAGE_ID: list_con[i].message.MESSAGE_ID,
-            FROM_ID: list_con[i].message.FROM_ID,
-            MESSAGE_TYPE: list_con[i].message.MESSAGE_TYPE,
+            id: listCon[i].id,
+            MSGTYPE: 'success',
+            MESSAGEID: listCon[i].message.MESSAGEID,
+            FROMID: listCon[i].message.FROMID,
+            MESSAGETYPE: listCon[i].message.MESSAGETYPE,
             HEADIMG: '',
-            MESSAGE_DATA: list_con[i].message.MESSAGE_TYPE == 'TEXT' ? this.chat(list_con[i].message.MESSAGE_DATA) : list_con[i].message.MESSAGE_DATA,
-            VOICE_TIME: list_con[i].message.VOICE_TIME,
-            GOODS_DATA: null,
+            MESSAGEDATA: listCon[i].message.MESSAGETYPE == 'TEXT' ? this.chat(listCon[i].message.MESSAGEDATA) : listCon[i].message.MESSAGEDATA,
+            VOICETIME: listCon[i].message.VOICETIME,
+            GOODSDATA: null,
           }
-          list_chat.push(obj)
+          listChat.push(obj)
 
-          if (list_con[i].message.MESSAGE_TYPE == 'GOODS') {
+          if (listCon[i].message.MESSAGETYPE == 'GOODS') {
             http.post(app.globalData.getGoodsInfo, {
-              goodsId: list_con[i].message.MESSAGE_DATA
+              goodsId: listCon[i].message.MESSAGEDATA
             }).then(ress => {
-              let goods_data = ress.data
+              let goodsData = ress.data
               for (let j = 0, len = this.data.msglist.length; j < len; j++) {
-                if (list_con[i].id == this.data.msglist[j].id) {
-                  console.log(goods_data)
-                  this.data.msglist[j].GOODS_DATA = goods_data
+                if (listCon[i].id == this.data.msglist[j].id) {
+                  console.log(goodsData)
+                  this.data.msglist[j].GOODSDATA = goodsData
                   this.setData({
                     msglist: this.data.msglist
                   })
@@ -744,13 +723,13 @@ Page({
             })
           }
         }
-        this.data.msglist = [...list_chat, ...this.data.msglist]
+        this.data.msglist = [...listChat, ...this.data.msglist]
         this.setData({
           msglist: this.data.msglist
         })
-        if (this.data.service_enter) {
+        if (this.data.serviceEnter) {
           this.setData({
-            msglist_index: `id${list_con[list_con.length - 1].message.MESSAGE_ID}`
+            msglistIndex: `id${listCon[listCon.length - 1].message.MESSAGEID}`
           })
         } else {
           this.setData({
@@ -768,10 +747,10 @@ Page({
   },
 
   bindscroll(e) {
-    if (this.data.service_enter) {
+    if (this.data.serviceEnter) {
       this.setData({
         scrollTops: e.detail.scrollTop,
-        service_enter: false
+        serviceEnter: false
       })
     }
   },
@@ -779,21 +758,21 @@ Page({
   /**
    * 进店
    */
-  go_shop(e) {
+  goShop(e) {
     //店铺id
-    let store_id = e.currentTarget.dataset.data
+    let storeId = e.currentTarget.dataset.data
     wx.navigateTo({
-      url: `/nearby_shops/shop_detail/shop_detail?store_id=${store_id}`,
+      url: `/nearbyShops/shopDetail/shopDetail?storeId=${storeId}`,
     })
   },
   /**
    * 去商品详情
    */
-  go_Goods(e) {
+  goGoods(e) {
     //店铺id
-    let goods_id = e.currentTarget.dataset.id
+    let goodsId = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: `/nearby_shops/good_detail/good_detail?goods_id=${goods_id}`,
+      url: `/nearbyShops/goodDetail/goodDetail?goodsId=${goodsId}`,
     })
   },
   /**
@@ -801,41 +780,41 @@ Page({
    */
   goodslink(e) {
     //商品id
-    const goods_id = e.currentTarget.dataset.id
+    const goodsId = e.currentTarget.dataset.id
     let timestamp = Date.parse(new Date())
     let list = {
-      MSG_TYPE: '',
-      MESSAGE_ID: timestamp,
-      FROM_ID: app.globalData.member_id,
-      MESSAGE_TYPE: 'GOODS',
+      MSGTYPE: '',
+      MESSAGEID: timestamp,
+      FROMID: app.globalData.memberId,
+      MESSAGETYPE: 'GOODS',
       HEADIMG: '',
-      MESSAGE_DATA: goods_id,
-      VOICE_TIME: '',
-      voiceplay_type: '0',
-      GOODS_DATA: null
+      MESSAGEDATA: goodsId,
+      VOICETIME: '',
+      voiceplayType: '0',
+      GOODSDATA: null
     }
     this.data.msglist.push(list)
     this.setData({
       msglist: this.data.msglist,
-      msglist_index: `id${timestamp}`
+      msglistIndex: `id${timestamp}`
     })
     let DATA = {
-      "MESSAGE_ID": timestamp.toString(), // 字符串类型的毫秒级时间戳
-      "MESSAGE_TYPE": 'GOODS', // 文本
-      "MESSAGE_DATA": goods_id.toString(), // 消息内容
-      "TARGET_TYPE": "CUSTOMER", // 接收者用户类型
-      "TARGET_ID": this.data.service_info.TARGET_ID.toString(), // 接收者店铺ID
-      "DIVERSION_ID": this.data.service_info.DIVERSION_ID.toString(), //客服分流ID
-      "VOICE_TIME": ''
+      "MESSAGEID": timestamp.toString(), // 字符串类型的毫秒级时间戳
+      "MESSAGETYPE": 'GOODS', // 文本
+      "MESSAGEDATA": goodsId.toString(), // 消息内容
+      "TARGETTYPE": "CUSTOMER", // 接收者用户类型
+      "TARGETID": this.data.serviceInfo.TARGETID.toString(), // 接收者店铺ID
+      "DIVERSIONID": this.data.serviceInfo.DIVERSIONID.toString(), //客服分流ID
+      "VOICETIME": ''
     }
     this.socketSend(DATA)
     http.post(app.globalData.getGoodsInfo, {
-      goodsId: goods_id
+      goodsId: goodsId
     }).then(res => {
-      const goods_data = res.data
+      const goodsData = res.data
       for (let i = 0, len = this.data.msglist.length; i < len; i++) {
-        if (this.data.msglist[i].MESSAGE_ID == timestamp) {
-          this.data.msglist[i].GOODS_DATA = goods_data
+        if (this.data.msglist[i].MESSAGEID == timestamp) {
+          this.data.msglist[i].GOODSDATA = goodsData
           this.setData({
             msglist: this.data.msglist
           })
@@ -850,9 +829,9 @@ Page({
    */
   xzOrder() {
     this.showUp()
-    http.post(app.globalData.customer_getStoreOrderList, {
-      memberId: app.globalData.member_id,
-      storeId: this.data.service_info.TARGET_ID,
+    http.post(app.globalData.customerGetStoreOrderList, {
+      memberId: app.globalData.memberId,
+      storeId: this.data.serviceInfo.TARGETID,
     }).then(res => {
       this.setData({
         orderList: res.data.data,
@@ -865,9 +844,9 @@ Page({
    */
   xzGoods() {
     this.showUp()
-    http.post(app.globalData.customer_getGoodsList, {
-      memberId: app.globalData.member_id,
-      listType: this.data.list_type,
+    http.post(app.globalData.customerGetGoodsList, {
+      memberId: app.globalData.memberId,
+      listType: this.data.listType,
     }).then(res => {
       this.setData({
         orderList: res.data.data,
@@ -884,7 +863,7 @@ Page({
 
   showUp() {
     this.setData({
-      orderList_type: true,
+      orderListType: true,
     })
     this.fadeIn()
     setTimeout(() => {
@@ -912,7 +891,7 @@ Page({
     })
     setTimeout(() => {
       this.setData({
-        orderList_type: false,
+        orderListType: false,
       })
     }, 400)
     this.fadeOut()

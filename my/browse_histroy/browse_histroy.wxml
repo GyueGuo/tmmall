@@ -3,81 +3,81 @@
   <view class='history-head'>{{item.date}}</view>
   <!-- <view wx:for="{{item.list}}" data-item='{{item}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' bindlongtap='onDelectRecord'> -->
   <view class="good-list good-list-one">
-    <view wx:for="{{item.list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' wx:key='{{index}}' data-id='{{item.goods_id}}' data-item='{{item}}' bindlongtap='onDelectRecord'>
+    <view wx:for="{{item.list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' wx:key='{{index}}' data-id='{{item.goodsId}}' data-item='{{item}}' bindlongtap='onDelectRecord'>
       <view class='pic-wrap' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
         <image class='pic' lazy-load src='{{item.file}}'></image>
       </view>
-      <view class='good-detail {{item.is_invalid==1?"invalid_type":""}}'>
-        <view class='good-name'>{{item.goods_name}}</view>
+      <view class='good-detail {{item.isInvalid==1?"invalid_type":""}}'>
+        <view class='good-name'>{{item.goodsName}}</view>
         <!-- 拼团 -->
-        <view wx:if='{{item.is_group == 1}}'>
+        <view wx:if='{{item.isGroup == 1}}'>
           <view class='good-tips-list'>
-            <text class='good-tips cur' wx:if='{{item.shop==0}}' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>自营</text>
+            <text class='good-tips cur' wx:if='{{item.shop==0}}' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>自营</text>
           </view>
           <view class='good-tips-list' style='top:150rpx;'>
             <view class='good-group-info'>
-              <view class='bg' style='{{item.is_invalid==0?util.diy_color("",diy_color.z_color,""):"background-color:#999fa5;"}}'>{{item.group_num}}人拼</view>
-              <view class='price-con' style='{{item.is_invalid==0?util.diy_color(diy_color.z_color,"",""):"color:#999fa5;"}}'>
+              <view class='bg' style='{{item.isInvalid==0?util.diyColor("",diyColor.zColor,""):"background-color:#999fa5;"}}'>{{item.groupNum}}人拼</view>
+              <view class='price-con' style='{{item.isInvalid==0?util.diyColor(diyColor.zColor,"",""):"color:#999fa5;"}}'>
                 <text class='unit'>￥</text>
-                <text class='integer'>{{util.integer(item.group_price)}}</text>
-                <text class='decimals'>.{{util.decimals(item.group_price)}}</text>
+                <text class='integer'>{{util.integer(item.groupPrice)}}</text>
+                <text class='decimals'>.{{util.decimals(item.groupPrice)}}</text>
               </view>
             </view>
             <view class='good-group-one'>
-              <text>￥{{item.shop_price}}</text>
+              <text>￥{{item.shopPrice}}</text>
             </view>
           </view>
         </view>
-        <view wx:elif="{{item.is_limit == 1}}">
+        <view wx:elif="{{item.isLimit == 1}}">
           <view class='good-tips-list'>
-            <text class='good-tips' wx:if='{{item.shop==0}}' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>自营</text>
+            <text class='good-tips' wx:if='{{item.shop==0}}' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>自营</text>
           </view>
-          <view class='price' style="{{!item.store_name?'top:190rpx;':''}}{{item.is_invalid==0?util.diy_color(diy_color.z_color,'',''):'color:#999fa5;'}}">
+          <view class='price' style="{{!item.storeName?'top:190rpx;':''}}{{item.isInvalid==0?util.diyColor(diyColor.zColor,'',''):'color:#999fa5;'}}">
             <text class='unit'>￥</text>
-            <text class='integer'>{{util.integer(item.time_limit_price)}}</text>
-            <text class='decimals'>.{{util.decimals(item.time_limit_price)}}</text>
+            <text class='integer'>{{util.integer(item.timeLimitPrice)}}</text>
+            <text class='decimals'>.{{util.decimals(item.timeLimitPrice)}}</text>
           </view>
           <view class='good-tips-list' style='top:200rpx'>
             <view class='good-group-one'>
-              <text>￥{{item.shop_price}}</text>
+              <text>￥{{item.shopPrice}}</text>
             </view>
           </view>
         </view>
         <!-- 砍价 -->
-        <view wx:elif='{{item.is_bargain == 1}}'>
+        <view wx:elif='{{item.isBargain == 1}}'>
           <view class='good-tips-list'>
-            <text class='good-tips cur' wx:if='{{item.shop==0}}' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>自营</text>
+            <text class='good-tips cur' wx:if='{{item.shop==0}}' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>自营</text>
           </view>
           <view class='good-tips-list'>
-            <view class='cur base-price' style='{{item.is_invalid==0?util.diy_color(diy_color.z_color,"",""):"color:#999fa5;"}}'>
+            <view class='cur base-price' style='{{item.isInvalid==0?util.diyColor(diyColor.zColor,"",""):"color:#999fa5;"}}'>
               <text class='base-title'>底价￥</text>
-              <text class='integer'>{{util.integer(item.cut_price)}}</text>
-              <text class='decimals'>.{{util.decimals(item.cut_price)}}</text>
+              <text class='integer'>{{util.integer(item.cutPrice)}}</text>
+              <text class='decimals'>.{{util.decimals(item.cutPrice)}}</text>
             </view>
             <view class='good-group-one'>
               <text>原价</text>
-              <text>￥{{item.shop_price}}</text>
+              <text>￥{{item.shopPrice}}</text>
             </view>
           </view>
         </view>
         <view wx:else>
           <view class='good-tips-list'>
-            <text class='good-tips' wx:if='{{item.shop==0}}' style='{{util.diy_color(diy_color.z_color,"",diy_color.z_color)}}'>自营</text>
+            <text class='good-tips' wx:if='{{item.shop==0}}' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>自营</text>
           </view>
-          <view class='price' style='{{item.is_invalid==0?util.diy_color(diy_color.z_color,"",""):"color:#999fa5;"}}top:180rpx;'>
+          <view class='price' style='{{item.isInvalid==0?util.diyColor(diyColor.zColor,"",""):"color:#999fa5;"}}top:180rpx;'>
             <text class='unit'>￥</text>
-            <text class='integer'>{{util.integer(item.shop_price)}}</text>
-            <text class='decimals'>.{{util.decimals(item.shop_price)}}</text>
+            <text class='integer'>{{util.integer(item.shopPrice)}}</text>
+            <text class='decimals'>.{{util.decimals(item.shopPrice)}}</text>
           </view>
         </view>
 
-        <block wx:if='{{item.is_invalid==0}}'>
-          <view class='add-cart font_family icon-pt' style='{{util.diy_color(diy_color.z_color,"","")}}' wx:if="{{item.is_group==1}}"></view>
-          <view class='add-cart font_family icon-kj' style='{{util.diy_color(diy_color.z_color,"","")}}' wx:elif="{{item.is_bargain==1}}"></view>
-          <view class='add-cart font_family icon-xs' style='{{util.diy_color(diy_color.z_color,"","")}}' wx:elif="{{item.is_limit==1}}"></view>
-          <view class='add-cart font_family icon-guc' style='{{util.diy_color(diy_color.z_color,"","")}}' data-item='{{item}}' wx:else catchtap='addCart'></view>
+        <block wx:if='{{item.isInvalid==0}}'>
+          <view class='add-cart font_family icon-pt' style='{{util.diyColor(diyColor.zColor,"","")}}' wx:if="{{item.isGroup==1}}"></view>
+          <view class='add-cart font_family icon-kj' style='{{util.diyColor(diyColor.zColor,"","")}}' wx:elif="{{item.isBargain==1}}"></view>
+          <view class='add-cart font_family icon-xs' style='{{util.diyColor(diyColor.zColor,"","")}}' wx:elif="{{item.isLimit==1}}"></view>
+          <view class='add-cart font_family icon-guc' style='{{util.diyColor(diyColor.zColor,"","")}}' data-item='{{item}}' wx:else catchtap='addCart'></view>
         </block>
-        <block wx:elif='{{item.is_invalid==1}}'>
+        <block wx:elif='{{item.isInvalid==1}}'>
         <view class='depreciate-info'>
           <view class='invalid'>
             <image class='icon' src='{{util.HTTP}}mobile/small/image/goods_sold_out.png'></image>
@@ -100,7 +100,7 @@
 </view>
 
 <!--  -->
-<cart diy_color='{{diy_color}}'/>
+<cart diyColor='{{diyColor}}'/>
 
 
 <!--返回顶部  -->
@@ -109,4 +109,4 @@
 <!--  -->
 <modal id="modal" title="提示" content="您确定删除记录吗?" bind:confirm="confirmDelete" />
 
-<buy catchtap="none" id="buy_board" bind:closeBuy="closeBuy" type="{{buy_type}}" info="{{info}}" discount="{{discount}}" group_buy="{{false}}" diy_color='{{diy_color}}'/>
+<buy catchtap="none" id="buy_board" bind:closeBuy="closeBuy" type="{{buyType}}" info="{{info}}" discount="{{discount}}" groupBuy="{{false}}" diyColor='{{diyColor}}'/>

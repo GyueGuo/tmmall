@@ -6,8 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tab_view: ['全部', '进行中', '成功', '失败'],
-    current_tab: 0,
+    tabView: ['全部', '进行中', '成功', '失败'],
+    currentTab: 0,
     page: 1,
     list: [],
     total: ''
@@ -18,7 +18,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -69,7 +69,7 @@ Page({
    */
   onTab(e) {
     this.setData({
-      current_tab: e.currentTarget.dataset.index,
+      currentTab: e.currentTarget.dataset.index,
       list: [],
       page: 1
     })
@@ -80,8 +80,8 @@ Page({
    * 获取订单列表
    */
   getOrderList() {
-    http.postList(app.globalData.group_my_index, {
-      status: this.data.current_tab,
+    http.postList(app.globalData.groupMyIndex, {
+      status: this.data.currentTab,
       page: this.data.page
     }).then(res=> {
       if (this.data.page == 1) {
@@ -113,7 +113,7 @@ Page({
    */
   onOrderDetail(e) {
     wx.navigateTo({
-      url: '../order_detail/order_detail?id=' + e.currentTarget.dataset.id,
+      url: '../orderDetail/orderDetail?id=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -122,7 +122,7 @@ Page({
    */
   onCollageDetail(e) {
     wx.navigateTo({
-      url: '/pages/collage_detail/collage_detail?id=' + e.currentTarget.dataset.id,
+      url: '/pages/collageDetail/collageDetail?id=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -131,7 +131,7 @@ Page({
    */
   onCollage() {
     wx.redirectTo({
-      url: '/pages/collage_buy/collage_buy',
+      url: '/pages/collageBuy/collageBuy',
     })
   }
 })

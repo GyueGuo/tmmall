@@ -5,13 +5,16 @@
     <input confirm-type="search" placeholder='请输入搜索关键字' value='{{key}}' bindinput='searchInput' bindconfirm='onSearch' placeholder-style='color:#bdbfc1;'></input>
     <view class='font_family icon-shanchu- clear' hover-class='hover-class' hover-stay-time='400' bindtap='onClearKey'></view>
   </view>
-  <view class='search-title' hover-class='hover-class' hover-stay-time='400' bindtap='onSearch'>搜订单</view>
+  <view class='search-title' hover-class='hover-class' hover-stay-time='400' bindtap='onSearch'>
+    搜订单
+  </view>
 </view>
-
 <view class='history-search'>
   <view class='history-title'>历史搜索</view>
   <image src='{{util.HTTP}}{{"mobile/small/image/sc.png"}}' class='delete' hover-class='hover-class' hover-stay-time='400' bindtap='onClearHistory'></image>
   <view class='history-list'>
-    <view class='title' wx:for="{{history_list}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onSearch' data-item='{{item}}'>{{item}}</view>
+    <view class='title' wx:for="{{historyList}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onSearch' data-item='{{item}}'>
+      {{item}}
+    </view>
   </view>
 </view>

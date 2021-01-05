@@ -9,7 +9,7 @@ Page({
   data: {
     list: [],
     keyword: '',
-    distribution_type: '',
+    distributionType: '',
     page: 1,
     total: ''
   },
@@ -21,7 +21,7 @@ Page({
     this.setData({
       keyword: options.keyword,
       configSwitch: app.globalData.configSwitch,
-      distribution_type: options.distribution_type
+      distributionType: options.distributionType
     })
   },
 
@@ -108,7 +108,7 @@ Page({
   onOrderDetail(e) {
     this.data.index = e.currentTarget.dataset.index
     wx.navigateTo({
-      url: '../order_detail/order_detail?id=' + e.currentTarget.dataset.id,
+      url: '../orderDetail/orderDetail?id=' + e.currentTarget.dataset.id,
     })
   },
   /**
@@ -116,7 +116,7 @@ Page({
    */
   onDetail(e) {
     wx.navigateTo({
-      url: '/my/offline_detail/offline_detail?id=' + e.currentTarget.dataset.id,
+      url: '/my/offlineDetail/offlineDetail?id=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -124,8 +124,8 @@ Page({
    * 获取数据
    */
   getOrderList() {
-    http.postList(app.globalData.order_list, {
-      distributionType: this.data.distribution_type,
+    http.postList(app.globalData.orderList, {
+      distributionType: this.data.distributionType,
       keyword: this.data.keyword,
       status: '',
       page: this.data.page
@@ -150,20 +150,20 @@ Page({
   onLogistics(e) {
     let item = e.currentTarget.dataset.item
     //如果是同城
-    if (item.distribution_type == 1) {
+    if (item.distributionType == 1) {
       wx.navigateTo({
-        url: '/my/take_out/take_out?order_attach_id=' + item.order_attach_id,
+        url: '/my/takeOut/takeOut?orderAttachId=' + item.orderAttachId,
       })
       return
     }
     let info = {
-      express_number: item.express_number,
-      express_value: item.express_value,
-      order_attach_id: item.order_attach_id,
+      expressNumber: item.expressNumber,
+      expressValue: item.expressValue,
+      orderAttachId: item.orderAttachId,
       type: 'order'
     }
     wx.navigateTo({
-      url: '../logistics_detail/logistics_detail?info=' + JSON.stringify(info),
+      url: '../logisticsDetail/logisticsDetail?info=' + JSON.stringify(info),
     })
   },
 
@@ -172,9 +172,9 @@ Page({
    */
   cancelOrder(e) {
     let index = e.currentTarget.dataset.index
-    http.post(app.globalData.cancel_order, {
+    http.post(app.globalData.cancelOrder, {
       orderAttachId: e.currentTarget.dataset.id
-    }).then(res => {
+    }).then((res) => {
       app.showSuccessToast('取消成功')
       this.data.list[index].status = -1
       this.setData({
@@ -188,7 +188,7 @@ Page({
    */
   deleteOrder(e) {
     let index = e.currentTarget.dataset.index
-    http.post(app.globalData.delete_order, {
+    http.post(app.globalData.deleteOrder, {
       orderAttachId: e.currentTarget.dataset.id
     }).then(res => {
       app.showSuccessToast('删除成功')
@@ -207,7 +207,7 @@ Page({
     this.data.index = e.currentTarget.dataset.index
     let item = e.currentTarget.dataset.item
     wx.navigateTo({
-      url: '/pages/cashier_desk/cashier_desk?total_price=' + item.subtotal_price + '&order_number=' + item.order_attach_number + '&order_id=',
+      url: '/pages/cashierDesk/cashierDesk?totalPrice=' + item.subtotalPrice + '&orderNumber=' + item.orderAttachNumber + '&orderId=',
     })
   },
 
@@ -216,7 +216,7 @@ Page({
    */
   confirmReceipt(e) {
     let index = e.currentTarget.dataset.index
-    http.post(app.globalData.confirm_collect, {
+    http.post(app.globalData.confirmCollect, {
       orderAttachId: e.currentTarget.dataset.id
     }).then(res => {
       app.showSuccessToast('收货成功')
@@ -232,11 +232,11 @@ Page({
    */
   onComment(e) {
     let item = e.currentTarget.dataset.item
-    for (let i = 0, len = item.order_goods_list.length; i < len; i++) {
-      item.order_goods_list[i].file = encodeURIComponent(item.order_goods_list[i].file)
+    for (let i = 0, len = item.orderGoodsList.length; i < len; i++) {
+      item.orderGoodsList[i].file = encodeURIComponent(item.orderGoodsList[i].file)
     }
     wx.navigateTo({
-      url: '/pages/comment/comment?info=' + JSON.stringify(item.order_goods_list),
+      url: '/pages/comment/comment?info=' + JSON.stringify(item.orderGoodsList),
     })
   }
 })

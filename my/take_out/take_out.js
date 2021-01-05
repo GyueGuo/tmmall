@@ -24,7 +24,7 @@ Page({
   onLoad: function(options) {
     this.setData({
       order_attach_id: options.order_attach_id,
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 

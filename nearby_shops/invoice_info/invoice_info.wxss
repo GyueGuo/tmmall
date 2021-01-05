@@ -1,5 +1,3 @@
-/* nearby_shops/invoice_info/invoice_info.wxss */
-
 page {
   width: 100%;
   height: 100%;

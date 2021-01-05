@@ -1,4 +1,3 @@
-// my/fx_fans_list/fx_fans_list.js
 const app = getApp();
 const http = require('../../utils/http.js');
 Page({
@@ -9,7 +8,7 @@ Page({
   data: {
     navTab: ['全部粉丝', '直属粉丝', '推荐粉丝'],
     navIndex: 0,
-    current_tab: 0,
+    currentTab: 0,
     page: 1,
     type: '0',
     order: '0',
@@ -22,7 +21,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      diy_color: app.globalData.diy_color
+      diyColor: app.globalData.diyColor
     })
   },
 
@@ -93,7 +92,7 @@ Page({
         this.setData({
           navIndex: e.currentTarget.dataset.index,
           type: e.currentTarget.dataset.index,
-          current_tab: 0,
+          currentTab: 0,
           page: 1,
           order: '1',
           sort: '1'
@@ -103,7 +102,7 @@ Page({
         this.setData({
           navIndex: e.currentTarget.dataset.index,
           type: e.currentTarget.dataset.index,
-          current_tab: 0,
+          currentTab: 0,
           page: 1,
           order: '1',
           sort: '1'
@@ -113,7 +112,7 @@ Page({
         this.setData({
           navIndex: e.currentTarget.dataset.index,
           type: e.currentTarget.dataset.index,
-          current_tab: 0,
+          currentTab: 0,
           page: 1,
           order: '1',
           sort: '1'
@@ -125,10 +124,10 @@ Page({
   /**
    * 筛选
    */
-  current_tab(e) {
+  currentTab(e) {
     switch (e.currentTarget.dataset.index) {
       case '1':
-        if (this.data.sort == 1 && this.data.current_tab == e.currentTarget.dataset.index) {
+        if (this.data.sort == 1 && this.data.currentTab == e.currentTarget.dataset.index) {
           this.setData({
             sort: '2'
           })
@@ -138,13 +137,13 @@ Page({
           })
         }
         this.setData({
-          current_tab: e.currentTarget.dataset.index,
+          currentTab: e.currentTarget.dataset.index,
           page: 1,
           order: '1',
         })
         break;
       case '2':
-        if (this.data.sort == 1 && this.data.current_tab == e.currentTarget.dataset.index) {
+        if (this.data.sort == 1 && this.data.currentTab == e.currentTarget.dataset.index) {
           this.setData({
             sort: '2'
           })
@@ -154,13 +153,13 @@ Page({
           })
         }
         this.setData({
-          current_tab: e.currentTarget.dataset.index,
+          currentTab: e.currentTarget.dataset.index,
           page: 1,
           order: '2',
         })
         break;
       case '3':
-        if (this.data.sort == 1 && this.data.current_tab == e.currentTarget.dataset.index) {
+        if (this.data.sort == 1 && this.data.currentTab == e.currentTarget.dataset.index) {
           this.setData({
             sort: '2'
           })
@@ -170,7 +169,7 @@ Page({
           })
         }
         this.setData({
-          current_tab: e.currentTarget.dataset.index,
+          currentTab: e.currentTarget.dataset.index,
           page: 1,
           order: '3',
         })
@@ -182,7 +181,7 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.distribution_my_fans, {
+    http.post(app.globalData.distributionMyFans, {
       type: this.data.type,
       order: this.data.order,
       sort: this.data.sort,
@@ -207,7 +206,7 @@ Page({
   goDetails(e) {
     let item = e.currentTarget.dataset.item
     wx.navigateTo({
-      url: `/my/fx_fs_earnings_list/fx_fs_earnings_list?distribution_id=${item.distribution_id}`,
+      url: `/my/fxFsEarningsList/fxFsEarningsList?distributionId=${item.distributionId}`,
     })
   }
 })

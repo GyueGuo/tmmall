@@ -1,4 +1,3 @@
-/* nearby_shops/shop_intro/shop_code.wxss */
 .warp{
   position: fixed;
   left: 0;

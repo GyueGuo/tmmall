@@ -4,7 +4,7 @@
     <view class='head-content'>
       <view>
         <image src='{{util.HTTP}}mobile/small/image/wd-xx-jywl.png'></image>
-        <view class='bg' hidden="{{express == 0}}" style='{{util.diy_color("",diy_color.z_color,"")}}'>{{express}}</view>
+        <view class='bg' hidden="{{express == 0}}" style='{{util.diyColor("",diyColor.zColor,"")}}'>{{express}}</view>
       </view>
       <view class='title'>交易通知</view>
     </view>
@@ -13,7 +13,7 @@
     <view class='head-content'>
       <view>
         <image src='{{util.HTTP}}mobile/small/image/wd-xx-tzgg.png'></image>
-        <view class='bg' hidden="{{common == 0}}" style='{{util.diy_color("",diy_color.z_color,"")}}'>{{common}}</view>
+        <view class='bg' hidden="{{common == 0}}" style='{{util.diyColor("",diyColor.zColor,"")}}'>{{common}}</view>
       </view>
       <view class='title'>通知</view>
     </view>
@@ -22,7 +22,7 @@
     <view class='head-content'>
       <view>
         <image src='{{util.HTTP}}mobile/small/image/wd-xx-yh.png'></image>
-        <view class='bg' hidden="{{activity == 0}}" style='{{util.diy_color("",diy_color.z_color,"")}}'>{{activity}}</view>
+        <view class='bg' hidden="{{activity == 0}}" style='{{util.diyColor("",diyColor.zColor,"")}}'>{{activity}}</view>
       </view>
       <view class='title'>优惠</view>
     </view>
@@ -30,17 +30,17 @@
 </view>
 <view class='service-list'>
   <scroll-view scroll-y>
-    <view class='list' wx:for='{{service_list}}' data-data='{{item}}' hover-class='hover-class' hover-stay-time='400' bindtap='goService'>
+    <view class='list' wx:for='{{serviceList}}' data-data='{{item}}' hover-class='hover-class' hover-stay-time='400' bindtap='goService'>
       <image class='store_img' src='{{item.logo}}'></image>
       <view class='store_con'>
-        <view class='store_name'>{{util.isShops==1?'平台客服':item.store_name}}</view>
-        <view class='store_data' wx:if='{{item.message.MESSAGE_TYPE=="TEXT"}}'>{{item.message.MESSAGE_DATA}}</view>
-        <view class='store_data' wx:elif='{{item.message.MESSAGE_TYPE=="IMAGE"}}'>[图片]</view>
-        <view class='store_data' wx:elif='{{item.message.MESSAGE_TYPE=="VOICE"}}'>[语音]</view>
-        <view class='store_data' wx:elif='{{item.message.MESSAGE_TYPE=="GOODS"}}'>[商品]</view>
-        <view class='store_data' wx:elif='{{item.message.MESSAGE_TYPE=="ORDER"}}'>[订单]</view>
+        <view class='store_name'>{{util.isShops==1?'平台客服':item.storeName}}</view>
+        <view class='store_data' wx:if='{{item.message.MESSAGETYPE=="TEXT"}}'>{{item.message.MESSAGEDATA}}</view>
+        <view class='store_data' wx:elif='{{item.message.MESSAGETYPE=="IMAGE"}}'>[图片]</view>
+        <view class='store_data' wx:elif='{{item.message.MESSAGETYPE=="VOICE"}}'>[语音]</view>
+        <view class='store_data' wx:elif='{{item.message.MESSAGETYPE=="GOODS"}}'>[商品]</view>
+        <view class='store_data' wx:elif='{{item.message.MESSAGETYPE=="ORDER"}}'>[订单]</view>
       </view>
-      <view class='store_time'>{{util.servicelist_time(item.after_chat_time*1000)}}</view>
+      <view class='store_time'>{{util.servicelistTime(item.afterChatTime*1000)}}</view>
     </view>
   </scroll-view>
 
