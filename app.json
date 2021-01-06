@@ -130,7 +130,7 @@
         "myWallet/myWallet",
         "setPayPsw/setPayPsw",
         "bankList/bankList",
-        "bankList/bankList",
+        "addBank/addBank",
         "bankDetails/bankDetails"
       ]
     },

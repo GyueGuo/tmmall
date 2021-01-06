@@ -15,7 +15,7 @@
     "nodeModules": false,
     "autoAudits": false,
     "showShadowRootInWxmlPanel": true,
-    "scopeDataCheck": true,
+    "scopeDataCheck": false,
     "uglifyFileName": false,
     "checkInvalidKey": true,
     "checkSiteMap": true,
@@ -51,17 +51,10 @@
   "simulatorPluginLibVersion": {},
   "appid": "wx23cb55929c57e33b",
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
-      "list": []
-    },
     "plugin": {
       "list": []
     },
     "game": {
-      "currentL": -1,
       "list": []
     },
     "gamePlugin": {
@@ -248,6 +241,11 @@
           "name": "pages/bindPhone/bindPhone",
           "pathName": "pages/bindPhone/bindPhone",
           "query": "",
+          "scene": null
+        },
+        {
+          "name": "口令红白",
+          "pathName": "pages/passwordRedPacket/index",
           "scene": null
         }
       ]

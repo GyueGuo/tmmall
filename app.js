@@ -1,5 +1,5 @@
 
-var HTTP = 'https://sc.tianmushenyang.cn/';
+var HTTP = 'https://sc.tianmushenyang.cn:8080/';
 
 App({
   onLaunch(data) {
