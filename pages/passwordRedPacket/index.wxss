@@ -1,0 +1,39 @@
+page {
+  background-color: #F5F5F5;
+}
+
+.wrap {
+  padding: 0 38rpx;
+  text-align: center;
+}
+
+.big-title {
+  font-size: 48rpx;
+  font-weight: bold;
+  line-height: 64rpx;
+  color: #000;
+}
+
+.password-input {
+  display: block;
+  width: 100%;
+  margin: 118rpx 0 56rpx;
+  border: 1rpx solid #999999;
+  height: 96rpx;
+  background-color: #fff;
+}
+
+.exchange-btn {
+  line-height: 42rpx;
+  font-size: 32rpx;
+  margin-bottom: 174rpx;
+  background-color: #981D0E;
+  color: #fff;
+}
+
+.desc-wrap {
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #999;
+  text-align: left;
+}

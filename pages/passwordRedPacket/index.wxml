@@ -1,0 +1,11 @@
+<view class="wrap">
+  <view class="big-title">兑换口令</view>
+  <input maxlength="1000" class="password-input" />
+  <view class="exchange-btn">立即兑换</button>
+  <view>
+     怎样兑换
+  </view>
+  <view>
+    输入您的口令即可获取兑换红包，一个口令仅可兑换一次，请谨慎操作。
+  </view>
+</view>
