@@ -14,9 +14,9 @@ Page({
    */
   data: {
     dataInfo: null, //首页数据
-    banner_swiper_idx: 0, //banner当前轮播下标
+    bannerSwiperIdx: 0, //banner当前轮播下标
     location: '全国', //默认定位
-    limit_index: 0, //限时选中下标
+    limitIndex: 0, //限时选中下标
     isApplication: true, //是否第一次进入应用
     isBannerAutoplay: true, //首页banner是否自动滚动
     isRefresh: false //首页是否刷新
@@ -26,14 +26,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    app.globalData.nav_type = 'only_1'
+    app.globalData.navType = 'only1'
     this.getSystemInfo()
-    let obj = null;
     //代言id
-    if (options.sup_id) {
+    if (options.supId) {
       wx.setStorage({
-        key: 'sup_id',
-        data: options.sup_id
+        key: 'supId',
+        data: options.supId
       })
     }
     // 分享二维码
@@ -41,16 +40,16 @@ Page({
       let obj = http.scene(options.scene)
       console.log(obj)
       //上级id
-      let s_id = obj.member
+      let sId = obj.member
       wx.setStorage({
-        key: 's_id',
-        data: s_id
+        key: 'sId',
+        data: sId
       })
       //上级代言id
-      let sup_id = obj.sup_id
+      let supId = obj.supId
       wx.setStorage({
-        key: 'sup_id',
-        data: sup_id
+        key: 'supId',
+        data: supId
       })
     }
     // obj = {
@@ -85,7 +84,7 @@ Page({
       this.location()
     }
     if (!this.data.isApplication) {
-      this.index_curLimitList()
+      this.indexCurLimitList()
       this.countDown() //倒计时
     }
   },
@@ -100,7 +99,7 @@ Page({
       isHotAutoplay: false,
       isRefresh: false
     })
-    clearInterval(this.data.count_down)
+    clearInterval(this.data.countDown)
   },
 
   /**
@@ -113,7 +112,7 @@ Page({
       isApplication: true,
       isRefresh: false
     })
-    clearInterval(this.data.count_down)
+    clearInterval(this.data.countDown)
   },
 
   /**
@@ -180,10 +179,10 @@ Page({
       success: res => {
         app.globalData.lat = res.result.location.lat
         app.globalData.lng = res.result.location.lng
-        app.globalData.location = res.result.address_component.city
-        app.globalData.current_location = res.result.address_component.city
+        app.globalData.location = res.result.addressComponent.city
+        app.globalData.currentLocation = res.result.addressComponent.city
         this.setData({
-          location: res.result.address_component.city
+          location: res.result.addressComponent.city
         })
       },
       fail: res => {
@@ -205,7 +204,7 @@ Page({
       this.blendent()
       navBar.tabbar("tabBar", 0, this) //0首页
       wx.setNavigationBarTitle({
-        title: this.data.configSwitch.app_info.title
+        title: this.data.configSwitch.appInfo.title
       })
     })
   },
@@ -225,7 +224,7 @@ Page({
    */
   bannerChange(e) {
     this.setData({
-      banner_swiper_idx: e.detail.current
+      bannerSwiperIdx: e.detail.current
     })
   },
   /**
@@ -249,30 +248,30 @@ Page({
    */
   limitTap(e) {
     this.setData({
-      limit_index: e.currentTarget.dataset.idx
+      limitIndex: e.currentTarget.dataset.idx
     })
   },
   /**
    * 倒计时
    */
   countDown() {
-    clearInterval(this.data.count_down)
-    this.data.limitTime = this.data.dataInfo.limit.time.count_down
-    this.count_callback()
-    this.data.count_down = setInterval(() => {
+    clearInterval(this.data.countDown)
+    this.data.limitTime = this.data.dataInfo.limit.time.countDown
+    this.countCallback()
+    this.data.countDown = setInterval(() => {
       this.data.limitTime--;
       this.setData({
         limitTime: this.data.limitTime
       })
-      this.count_callback()
+      this.countCallback()
     }, 1000)
   },
   /**
    * 倒计时回调
    */
-  count_callback() {
+  countCallback() {
     if (this.data.limitTime <= 0) {
-      this.index_curLimitList()
+      this.indexCurLimitList()
       return
     }
   },
@@ -281,7 +280,7 @@ Page({
    */
   onLocation() {
     wx.navigateTo({
-      url: '/pages/city_select/city_select',
+      url: '/pages/citySelect/citySelect',
     })
   },
   /**
@@ -308,12 +307,12 @@ Page({
         switch (data.split(",")[0]) {
           case 'goods':
             wx.navigateTo({
-              url: '/nearby_shops/good_detail/good_detail?goods_id=' + obj.goods
+              url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + obj.goods
             })
             break;
           case 'store':
             wx.navigateTo({
-              url: '/nearby_shops/shop_detail/shop_detail?store_id=' + obj.store
+              url: '/nearbyShops/shopDetail/shopDetail?storeId=' + obj.store
             })
             break;
         }
@@ -327,7 +326,7 @@ Page({
   onPayCode() {
     if (app.login()) {
       wx.navigateTo({
-        url: `/my/vip_card/vip_card?&tab=1`
+        url: `/my/vipCard/vipCard?&tab=1`
       })
     }
   },
@@ -339,10 +338,10 @@ Page({
     switch (item.type) {
       case 1: //商品
         wx.navigateTo({
-          url: '/nearby_shops/good_detail/good_detail?goods_id=' + item.content,
+          url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + item.content,
           success: () => {
-            http.post(app.globalData.index_adBrowseInc, {
-              advId: item.adv_id
+            http.post(app.globalData.indexAdBrowseInc, {
+              advId: item.advId
             }).then(res => {})
           }
         })
@@ -350,10 +349,10 @@ Page({
       case 2: //店铺
         return
         wx.navigateTo({
-          url: '/nearby_shops/shop_detail/shop_detail?store_id=' + item.content,
+          url: '/nearbyShops/shopDetail/shopDetail?storeId=' + item.content,
           success: () => {
-            http.post(app.globalData.index_adBrowseInc, {
-              advId: item.adv_id
+            http.post(app.globalData.indexAdBrowseInc, {
+              advId: item.advId
             }).then(res => {})
           }
         })
@@ -367,7 +366,7 @@ Page({
     let item = e.currentTarget.dataset.item
     if (item.type == 1) {
       switch (item.name) {
-        case 'sign_in': //签到
+        case 'signIn': //签到
           wx.navigateTo({
             url: '/my/integral/integral',
           })
@@ -381,43 +380,43 @@ Page({
           break;
         case 'group': //拼团
           wx.navigateTo({
-            url: '/pages/collage_buy/collage_buy',
+            url: '/pages/collageBuy/collageBuy',
           })
           break;
         case 'cut': //砍价
           wx.navigateTo({
-            url: '/pages/bargain_list/bargain_list',
+            url: '/pages/bargainList/bargainList',
           })
           break;
         case 'coupon': //领券
           wx.navigateTo({
-            url: '/my/coupon_center/coupon_center',
+            url: '/my/couponCenter/couponCenter',
           })
           break;
         case 'recharge': //充值
           wx.navigateTo({
-            url: '/my/account_recharge/account_recharge',
+            url: '/my/accountRecharge/accountRecharge',
           })
           break;
         case 'ranking': //排行榜
           wx.navigateTo({
-            url: '/pages/rank_good/rank_good',
+            url: '/pages/rankGood/rankGood',
           })
           break;
         case 'brand': //品牌甄选
           wx.navigateTo({
-            url: '/pages/brand_select/brand_select',
+            url: '/pages/brandSelect/brandSelect',
           })
           break;
         case 'merchant': //商家入驻
           if (app.login()) {
             wx.navigateTo({
-              url: '/my/merchant_guide/merchant_guide',
+              url: '/my/merchantGuide/merchantGuide',
             })
           }
           break;
         case 'distribution': //代言
-          http.post(app.globalData.distribution_jumpSign, {}).then(res => {
+          http.post(app.globalData.distributionJumpSign, {}).then(res => {
             wx.navigateTo({
               url: res.data.path
             })
@@ -426,7 +425,7 @@ Page({
         case 'vip': //会员卡
           if (app.login()) {
             wx.navigateTo({
-              url: '/my/vip_card/vip_card',
+              url: '/my/vipCard/vipCard',
             })
           }
           break;
@@ -438,7 +437,7 @@ Page({
       }
     } else if (item.type == 2) { //分类
       wx.navigateTo({
-        url: `/pages/search_goods/search_goods?goods_classify_id=${item.name}`
+        url: `/pages/searchGoods/searchGoods?goodsClassifyId=${item.name}`
       })
     }
   },
@@ -473,7 +472,7 @@ Page({
    */
   onHotSpot() {
     wx.navigateTo({
-      url: '/pages/hot_spots/hot_spots',
+      url: '/pages/hotSpots/hotSpots',
     })
   },
   /**
@@ -485,12 +484,12 @@ Page({
     }
     let item = e.currentTarget.dataset.item,
       index = e.currentTarget.dataset.index
-    http.post(app.globalData.get_coupon, {
-      couponId: item.coupon_id,
-      goodsClassifyId: item.type == 1 ? item.classify_str : '',
-      storeId: item.type == 0 ? item.classify_str : '',
+    http.post(app.globalData.getCoupon, {
+      couponId: item.couponId,
+      goodsClassifyId: item.type == 1 ? item.classifyStr : '',
+      storeId: item.type == 0 ? item.classifyStr : '',
     }).then(res => {
-      this.data.list[index].member_state = 1
+      this.data.list[index].memberState = 1
       this.setData({
         list: this.data.list
       })
@@ -502,7 +501,7 @@ Page({
    */
   onHotSpotContent(e) {
     wx.navigateTo({
-      url: '/pages/info_detail/info_detail?article_id=' + e.currentTarget.dataset.id,
+      url: '/pages/infoDetail/infoDetail?articleId=' + e.currentTarget.dataset.id,
     })
   },
   /**
@@ -510,7 +509,7 @@ Page({
    */
   onLimit() {
     wx.navigateTo({
-      url: '/pages/flash_sale/flash_sale',
+      url: '/pages/flashSale/flashSale',
     })
   },
   /**
@@ -518,15 +517,15 @@ Page({
    */
   onLimitGood(e) {
     wx.navigateTo({
-      url: '/nearby_shops/good_detail/good_detail?goods_id=' + e.currentTarget.dataset.id,
+      url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + e.currentTarget.dataset.id,
     })
   },
   /**
    * 限时抢购
    * type 0老版 1新版多店
    */
-  index_curLimitList() {
-    http.post(app.globalData.index_curLimitList, {
+  indexCurLimitList() {
+    http.post(app.globalData.indexCurLimitList, {
       type: 2
     }).then(res => {
       this.setData({
@@ -540,7 +539,7 @@ Page({
    */
   onGood(e) {
     wx.navigateTo({
-      url: '/nearby_shops/good_detail/good_detail?goods_id=' + e.currentTarget.dataset.id,
+      url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -558,7 +557,7 @@ Page({
    */
   onNew() {
     wx.navigateTo({
-      url: '/pages/search_goods/search_goods?key=' + '&type=new',
+      url: '/pages/searchGoods/searchGoods?key=' + '&type=new',
     })
   },
   /**
@@ -566,7 +565,7 @@ Page({
    */
   onBrand() {
     wx.navigateTo({
-      url: '/pages/brand_select/brand_select'
+      url: '/pages/brandSelect/brandSelect'
     })
   },
   /**
@@ -574,7 +573,7 @@ Page({
    */
   onRank() {
     wx.navigateTo({
-      url: '/pages/rank_good/rank_good',
+      url: '/pages/rankGood/rankGood',
     })
   },
   /**
@@ -586,32 +585,32 @@ Page({
     switch (item.adv.type) {
       case 1: //商品
         wx.navigateTo({
-          url: '/nearby_shops/good_detail/good_detail?goods_id=' + item.adv.content,
+          url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + item.adv.content,
           success: () => {
-            http.post(app.globalData.index_adBrowseInc, {
-              advId: item.adv_id
+            http.post(app.globalData.indexAdBrowseInc, {
+              advId: item.advId
             }).then(res => {})
           }
         })
         break;
       case 3: //店铺
-        if (this.data.configSwitch.version_info.one_more == 1) {
+        if (this.data.configSwitch.versionInfo.oneMore == 1) {
           wx.navigateTo({
-            url: '/nearby_shops/shop_detail/shop_detail?store_id=' + item.adv.content,
+            url: '/nearbyShops/shopDetail/shopDetail?storeId=' + item.adv.content,
             success: () => {
-              http.post(app.globalData.index_adBrowseInc, {
-                advId: item.adv_id
+              http.post(app.globalData.indexAdBrowseInc, {
+                advId: item.advId
               }).then(res => {})
             }
           })
         } else {
           
           wx.navigateTo({
-            url: '/pages/search_goods/search_goods?goods_classify_id=' + item.goods_classify_id,
+            url: '/pages/searchGoods/searchGoods?goodsClassifyId=' + item.goodsClassifyId,
             success: () => {
               if (e.currentTarget.dataset.adv == 1) {
-                http.post(app.globalData.index_adBrowseInc, {
-                  advId: item.adv_id
+                http.post(app.globalData.indexAdBrowseInc, {
+                  advId: item.advId
                 }).then(res => {})
               }
             }
@@ -628,18 +627,18 @@ Page({
       return
     }
     let item = e.currentTarget.dataset.item
-    item.add_cart_type = 2
-    item['attr'] = item.attribute_list
-    if (item.goods_number == 0) {
+    item.addCartType = 2
+    item['attr'] = item.attributeList
+    if (item.goodsNumber == 0) {
       app.showToast('该商品已经卖光了')
       return
     }
     if (item['attr'].length == 0) {
-      http.encPost(app.globalData.cart_create, {
-        storeId: item.store_id,
-        goodsId: item.goods_id,
-        goodsName: item.goods_name,
-        file: item.cart_file,
+      http.encPost(app.globalData.cartCreate, {
+        storeId: item.storeId,
+        goodsId: item.goodsId,
+        goodsName: item.goodsName,
+        file: item.cartFile,
         number: 1,
         productsId: '',
         attr: '',
@@ -662,7 +661,7 @@ Page({
   onNewGift() {
     this.closeExclusive()
     wx.navigateTo({
-      url: '/pages/new_gift/new_gift'
+      url: '/pages/newGift/newGift'
     })
   },
 
@@ -671,7 +670,7 @@ Page({
    */
   closeExclusive() {
     this.setData({
-      'dataInfo.set.popup_adv_status': 0
+      'dataInfo.set.popupAdvStatus': 0
     })
   },
   nav() {
@@ -686,7 +685,7 @@ Page({
   onLabel(e) {
     console.log(e.currentTarget.dataset)
     wx.navigateTo({
-      url: `/nearby_shops/good_detail/good_detail?goods_id=${e.currentTarget.dataset.goods_id}&label=${e.currentTarget.dataset.id}`,
+      url: `/nearbyShops/goodDetail/goodDetail?goodsId=${e.currentTarget.dataset.goodsId}&label=${e.currentTarget.dataset.id}`,
     })
   }
 

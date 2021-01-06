@@ -82,11 +82,11 @@ Page({
    * 获取省级数据
    */
   getProvince() {
-    http.post(app.globalData.address_linkage, {
+    http.post(app.globalData.addressLinkage, {
       parentId: 0
     }).then(res => {
       this.setData({
-        province_list: res.result
+        provinceList: res.result
       })
     })
   },
@@ -100,7 +100,7 @@ Page({
       province: item,
       city: {},
       area: {},
-      area_list: []
+      areaList: []
     })
     this.getCity()
   },
@@ -109,11 +109,11 @@ Page({
    * 获取市
    */
   getCity() {
-    http.post(app.globalData.address_linkage, {
-      parentId: this.data.province.area_id
+    http.post(app.globalData.addressLinkage, {
+      parentId: this.data.province.areaId
     }).then(res => {
       this.setData({
-        city_list: res.result,
+        cityList: res.result,
       })
     })
   },
@@ -134,11 +134,11 @@ Page({
    * 获取地区
    */
   getArea() {
-    http.post(app.globalData.address_linkage, {
-      parentId: this.data.city.area_id
+    http.post(app.globalData.addressLinkage, {
+      parentId: this.data.city.areaId
     }).then(res => {
       this.setData({
-        area_list: res.result,
+        areaList: res.result,
       })
     })
   },

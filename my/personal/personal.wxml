@@ -38,5 +38,5 @@
   </view>
 </view>
 
-<choose_sex isShow="{{sex_board}}" bind:confirm="confirmSex" />
-<choose_head isShow="{{head_board}}" bind:confirmAvatar="confirmAvatar" />
+<choose_sex isShow="{{sexBoard}}" bind:confirm="confirmSex" />
+<choose_head isShow="{{headBoard}}" bind:confirmAvatar="confirmAvatar" />

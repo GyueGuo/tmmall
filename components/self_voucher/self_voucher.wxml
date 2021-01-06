@@ -11,26 +11,22 @@
     <view class='voucher-content'>
 
       <canvas canvas-id="barcode" class='bar-code' />
-      <view>提货码:{{info.take_code}}</view>
+      <view>提货码:{{info.takeCode}}</view>
       <canvas canvas-id="qrcode" class='qr-code' />
     </view>
     <image class='cut-line' src='{{util.HTTP}}{{"mobile/small/image/ddxq-ztpz-bj-2.png"}}'></image>
     <view class='voucher-info'>
       <view>
         <text class='title'>自提门店: </text>
-        <text>{{info.take_address}}</text>
+        <text>{{info.takeAddress}}</text>
       </view>
-      <!-- <view>
-        <text class='title'>自提时间: </text>
-        <text>2017年06月25日 09:15-09:30</text>
-      </view> -->
       <view>
         <text class='title'>商品信息: </text>
         <text>特别好吃的大西瓜大南瓜不甜不要钱啊 等3件商品</text>
       </view>
       <view>
         <text class='title'>实付金额: </text>
-        <text>{{info.subtotal_price}}元</text>
+        <text>{{info.subtotalPrice}}元</text>
       </view>
     </view>
   </view>

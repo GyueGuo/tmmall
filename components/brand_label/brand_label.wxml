@@ -7,7 +7,7 @@
     <view class='delivery-head'>服务说明</view>
     <view class='delivery-content'>
       <scroll-view scroll-y>
-        <view class='item' wx:for='{{info}}' wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' data-id='{{item.tag_bind_goods_id}}' bindtap='onLabel'>
+        <view class='item' wx:for='{{info}}' wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' data-id='{{item.tagBindGoodsId}}' bindtap='onLabel'>
           <view class='icon' style='{{util.diyColor("","",diyColor.zColor)}}'>
             <view style='{{util.diyColor("",diyColor.zColor,"")}}'></view>
           </view>

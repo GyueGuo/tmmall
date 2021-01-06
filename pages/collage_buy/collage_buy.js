@@ -8,17 +8,17 @@ Page({
   data: {
     //一级分类
     classify: [{
-      group_classify_id: -1,
+      groupClassifyId: -1,
       title: '精选',
       subset: [{
-        group_classify_id: ''
+        groupClassifyId: ''
       }]
     }],
-    current_tab: -1,
+    currentTab: -1,
     //二级分类
-    sub_list: [],
-    sub_tab: -1,
-    good_list: [],
+    subList: [],
+    subTab: -1,
+    goodList: [],
     page: 1
   },
 
@@ -77,7 +77,7 @@ Page({
    * 获取分类
    */
   getClassify() {
-    http.post(app.globalData.group_class_index).then(res=> {
+    http.post(app.globalData.groupClassIndex).then(res=> {
       this.setData({
         classify: [...this.data.classify,...res.result]
       })
@@ -90,10 +90,10 @@ Page({
    */
   onClassify(e) {
     this.setData({
-      current_tab: e.currentTarget.dataset.id,
-      good_list: [],
+      currentTab: e.currentTarget.dataset.id,
+      goodList: [],
       subset: e.currentTarget.dataset.subset,
-      sub_tab: e.currentTarget.dataset.id,
+      subTab: e.currentTarget.dataset.id,
       page: 1
     })
     this.getGoodList()
@@ -104,7 +104,7 @@ Page({
    */
   onMore() {
     this.setData({
-      more_board: true
+      moreBoard: true
     })
   },
 
@@ -113,7 +113,7 @@ Page({
    */
   closeBoard() {
     this.setData({
-      more_board: false
+      moreBoard: false
     })
   },
 
@@ -123,13 +123,13 @@ Page({
   onTabMoreItem(e) {
     this.closeBoard()
     this.setData({
-      sroll_id: 'a-' + e.currentTarget.dataset.index,
-      current_tab: e.currentTarget.dataset.id,
+      srollId: 'a-' + e.currentTarget.dataset.index,
+      currentTab: e.currentTarget.dataset.id,
       subset: e.currentTarget.dataset.subset,
-      sub_tab: e.currentTarget.dataset.id,
-      // sub_tab: e.currentTarget.dataset.subset[0].group_classify_id,
+      subTab: e.currentTarget.dataset.id,
+      // subTab: e.currentTarget.dataset.subset[0].groupClassifyId,
       page: 1,
-      good_list: []
+      goodList: []
     })
     this.getGoodList()
   },
@@ -139,7 +139,7 @@ Page({
    */
   onSubClassify(e) {
     this.setData({
-      sub_tab: e.currentTarget.dataset.id,
+      subTab: e.currentTarget.dataset.id,
       page: 1
     })
     this.getGoodList()
@@ -149,19 +149,19 @@ Page({
    * 获取列表
    */
   getGoodList() {
-    http.post(app.globalData.group_index, {
-      isBest: this.data.current_tab == -1 ? 1 : '',
-      groupClassify_id: this.data.current_tab == -1 ? '' : this.data.sub_tab,
+    http.post(app.globalData.groupIndex, {
+      isBest: this.data.currentTab == -1 ? 1 : '',
+      groupClassifyId: this.data.currentTab == -1 ? '' : this.data.subTab,
       page: this.data.page
     }).then(res=> {
       if (this.data.page == 1) {
         this.setData({
           total: res.result.total,
-          good_list: res.result.data
+          goodList: res.result.data
         })
       } else {
         this.setData({
-          good_list: [...this.data.good_list,...res.result.data]
+          goodList: [...this.data.goodList,...res.result.data]
         })
       }
     })
@@ -171,7 +171,7 @@ Page({
    * 加载更多
    */
   loadMore() {
-    if (this.data.good_list.length < this.data.total) {
+    if (this.data.goodList.length < this.data.total) {
       this.data.page++
       this.getGoodList()
     }
@@ -181,7 +181,7 @@ Page({
    */
   onGood(e) {
     wx.navigateTo({
-      url: '/nearby_shops/good_detail/good_detail?goods_id=' + e.currentTarget.dataset.id,
+      url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -191,7 +191,7 @@ Page({
   onMyCollage() {
     if (app.login()) {
       wx.redirectTo({
-        url: '/my/my_collage/my_collage',
+        url: '/my/myCollage/myCollage',
       })
     }
   },

@@ -237,7 +237,7 @@ Page({
    */
   scroll(e) {
     console.log(e.detail.scrollTop)
-    if (e.detail.scrollTop > 50 && (this.data.currentTab != 2 && this.data.storeHead.goods_style != 1)) {
+    if (e.detail.scrollTop > 50 && (this.data.currentTab != 2 && this.data.storeHead.goodsStyle != 1)) {
       this.selectComponent("#go_top").rise()
     } else {
       this.selectComponent("#go_top").decline()

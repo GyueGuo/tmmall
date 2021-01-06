@@ -2,11 +2,11 @@
 <view class='good-wrap'>
   <image src='{{dataInfo.info.file}}'></image>
   <view>
-    <view class='good-name'>{{dataInfo.info.goods_name}}</view>
+    <view class='good-name'>{{dataInfo.info.goodsName}}</view>
     <view class='good-attr'>{{dataInfo.info.attr}}</view>
   </view>
 </view>
-<block wx:if='{{((dataInfo.distribution_type==1||dataInfo.distribution_type==3)&&dataInfo.status>=1)||(dataInfo.distribution_type==2&&dataInfo.status==2)}}'>
+<block wx:if='{{((dataInfo.distributionType==1||dataInfo.distributionType==3)&&dataInfo.status>=1)||(dataInfo.distributionType==2&&dataInfo.status==2)}}'>
   <view class='operation' hover-class='hover-class' hover-stay-time='400' bindtap='onRefund'>
     <view class='logo' style='{{util.diyImgbox(46)}}'>
       <image src='{{util.HTTP}}mobile/small/image/wd-pj-jtk.png' style='{{util.diyImgcolor(diyColor.zColor,46,46)}}'></image>
@@ -18,8 +18,7 @@
     <image class='next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
   </view>
 </block>
-
-<block wx:if='{{((dataInfo.distribution_type==1||dataInfo.distribution_type==3)&&dataInfo.status!=1)||(dataInfo.distribution_type==2&&dataInfo.status==3)||(dataInfo.distribution_type==2&&dataInfo.status==4)}}'>
+<block wx:if='{{((dataInfo.distributionType==1||dataInfo.distributionType==3)&&dataInfo.status!=1)||(dataInfo.distributionType==2&&dataInfo.status==3)||(dataInfo.distributionType==2&&dataInfo.status==4)}}'>
   <view class='operation' hover-class='hover-class' hover-stay-time='400' bindtap='onRefundProduct'>
     <view class='logo' style='{{util.diyImgbox(46)}}'>
       <image src='{{util.HTTP}}mobile/small/image/wd-pj-thtk.png' style='{{util.diyImgcolor(diyColor.zColor,46,46)}}'></image>

@@ -22,7 +22,7 @@ Component({
     focus: false,
     id: '',
     address: {},
-    adjust_position: false
+    adjustPosition: false
   },
 
   /**
@@ -32,17 +32,17 @@ Component({
     /**
      * 修改密码
      */
-    change_psw() {
+    changePsw() {
       wx.navigateTo({
-        url: '/my/change_password/change_password',
+        url: '/my/changePassword/changePassword',
       })
     },
     /**
      * 忘记密码
      */
-    forget_psw() {
+    forgetPsw() {
       wx.navigateTo({
-        url: '/my/forget_psw_one/forget_psw_one',
+        url: '/my/forgetPswOne/forgetPswOne',
       })
     },
     /**
@@ -119,11 +119,11 @@ Component({
     /**
      * 
      */
-    show(total_price, order_number) {
+    show(totalPrice, orderNumber) {
       this.showAnimation()
       this.setData({
-        order_number: order_number,
-        total_price: total_price
+        orderNumber,
+        totalPrice,
       })
     },
 
@@ -144,14 +144,14 @@ Component({
         password: e.detail.value
       })
       if (e.detail.value.length == 6) {
-        http.encPost(app.globalData.redemption_money, {
-          orderNumber: this.data.order_number,
+        http.encPost(app.globalData.redemptionMoney, {
+          orderNumber: this.data.orderNumber,
           from: "2",
           payPass: e.detail.value
         }).then(res => {
           app.showSuccessToast('支付成功', () => {
             wx.redirectTo({
-              url: '/my/integral_record/integral_record',
+              url: '/my/integralRecord/integralRecord',
             })
             event.emit('refreshIntegral')
           })

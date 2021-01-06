@@ -15,7 +15,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     this.setData({
       diyColor: app.globalData.diyColor
     })
@@ -24,11 +24,11 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
     this.getData()
     event.on('changeIntegralRecord', this, id => {
       for (let i = 0, len = this.data.list.length; i < len; i++) {
-        if (this.data.list[i].integral_order_id == id) {
+        if (this.data.list[i].integralOrderId == id) {
           this.data.list[i].status = 2
         }
       }
@@ -41,28 +41,28 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
     event.remove('changeIntegralRecord', this)
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     this.data.page = 1;
     this.getData()
   },
@@ -70,7 +70,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
     if (this.data.total > this.data.list.length) {
       this.data.page++;
       this.getData()
@@ -81,7 +81,7 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.integral_record, {
+    http.post(app.globalData.integralRecord, {
       page: this.data.page
     }).then(res => {
       if (this.data.page == 1) {
@@ -103,7 +103,7 @@ Page({
   onDelete(e) {
     let item = e.currentTarget.dataset.item,
       index = e.currentTarget.dataset.index
-    http.post(app.globalData.conversion_record_delete, {
+    http.post(app.globalData.conversionRecordDelete, {
       integralOrderId: item.integralOrderId
     }).then(res => {
       app.showSuccessToast(res.message, () => {
@@ -118,48 +118,29 @@ Page({
    */
   onDetail(e) {
     wx.navigateTo({
-      url: '../integral_order/integral_order?id=' + e.currentTarget.dataset.id + '&index=' + e.currentTarget.dataset.index,
+      url: '../integralOrder/integralOrder?id=' + e.currentTarget.dataset.id + '&index=' + e.currentTarget.dataset.index,
     })
   },
 
   onLogistics(e) {
     let item = e.currentTarget.dataset.item,
       info = {
-        express_number: item.express_number,
-        express_value: item.express_value,
-        order_attach_id: item.integral_order_id,
+        expressNumber: item.expressNumber,
+        expressValue: item.expressValue,
+        orderAttachId: item.integralOrderId,
         type: 'integral'
       }
     wx.navigateTo({
-      url: '../logistics_detail/logistics_detail?info=' + JSON.stringify(info),
+      url: '../logisticsDetail/logisticsDetail?info=' + JSON.stringify(info),
     })
   },
-
-  /**
-   * 确认收货
-   */
-  // confirmReceipt(e) {
-  //   let item = e.currentTarget.dataset.item,
-  //     index = e.currentTarget.dataset.index;
-  //   http.post(app.globalData.confirm_receipt, {
-  //     integral_order_id: item.integral_order_id,
-  //     status: 2
-  //   }).then(res => {
-  //     app.showSuccessToast(res.message, () => {
-  //       this.data.list[index].status = 2
-  //       this.setData({
-  //         list: this.data.list
-  //       })
-  //     })
-  //   })
-  // },
 
   confirmReceipt(e) {
     let item = e.currentTarget.dataset.item,
       index = e.currentTarget.dataset.index;
     app.showModal('', '是否确定确认收货?', () => {
-      http.post(app.globalData.confirm_receipt, {
-        integralOrderId: item.integral_order_id,
+      http.post(app.globalData.confirmReceipt, {
+        integralOrderId: item.integralOrderId,
         status: 2
       }).then(res => {
         app.showSuccessToast(res.message, () => {

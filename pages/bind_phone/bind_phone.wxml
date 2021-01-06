@@ -1,30 +1,26 @@
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='logo'>
   <image src="{{util.HTTP}}mobile/small/image/login.png" class="icon-wx"></image>
-  <image src="{{configSwitch.app_info.logo}}" class="icon-logo"></image>
+  <image src="{{configSwitch.appInfo.logo}}" class="icon-logo"></image>
 </view>
-
 <view class='content-bg'>
   <image src='{{util.HTTP}}mobile/small/image/sj.png'></image>
   <text>+86V</text>
   <input placeholder='请输入手机号' maxlength='11' type='number' bindinput='phoneInput' value='{{phone}}'></input>
 </view>
-
-<!-- <view class='content-bg'>
-  <image src='{{util.HTTP}}mobile/small/image/yzm.png'></image>
-  <input placeholder='请输入验证码' maxlength='6' type='number' bindinput='codeInput'></input>
-  <view hover-class='hover-class' hover-stay-time='400' bindtap='getCode'>{{code_intro}}</view>
-</view> -->
-
- <view class='content-bg'>
+<view class='content-bg'>
   <image src='{{util.HTTP}}mobile/small/image/mm.png'></image>
   <input placeholder='请输入6-20位密码' maxlength='20' type='text' value='{{password}}' bindinput='pswInput'></input>
-</view> 
-
-<view class='tips'>您填写手机号码和密码用于补全您的{{configSwitch.app_info.title}}账号信息。补全后,手机号或微信账号均可登录{{configSwitch.app_info.title}}商城。</view>
-
-<view class='content-bg submit' hover-class='hover-class' hover-stay-time='400' bindtap='submit' style='{{util.diyColor("",diyColor.zColor,"")}}'>关联</view>
-
-<view class='tips'>若您输入的手机号未注册,将为您直接注册,注册即视为同意
-  <text hover-class='hover-class' hover-stay-time='400' bindtap='onWeb' style='{{util.diyColor(diyColor.zColor,"","")}}'>《注册协议》</text>
+</view>
+<view class='tips'>
+  您填写手机号码和密码用于补全您的{{configSwitch.appInfo.title}}账号信息。补全后,手机号或微信账号均可登录{{configSwitch.appInfo.title}}商城。
+</view>
+<view class='content-bg submit' hover-class='hover-class' hover-stay-time='400' bindtap='submit' style='{{util.diyColor("",diyColor.zColor,"")}}'>
+  关联
+</view>
+<view class='tips'>
+  若您输入的手机号未注册,将为您直接注册,注册即视为同意
+  <text hover-class='hover-class' hover-stay-time='400' bindtap='onWeb' style='{{util.diyColor(diyColor.zColor,"","")}}'>
+    《注册协议》
+  </text>
 </view>

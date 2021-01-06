@@ -7,9 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    article_id: '',
+    articleId: '',
     info: {
-      web_content:''
+      webContent:''
     }
   },
 
@@ -19,7 +19,7 @@ Page({
   onLoad: function(options) {
     this.setData({
       diyColor: app.globalData.diyColor,
-      article_id: options.article_id
+      articleId: options.articleId
     })
   },
 
@@ -69,12 +69,12 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.hot_view, {
+    http.post(app.globalData.hotView, {
       articleId: this.data.articleId,
     }).then(res => {
       this.setData({
         info: res.result,
-        attention_state: res.result.attention_state
+        attentionState: res.result.attentionState
       })
     })
   },
@@ -95,11 +95,11 @@ Page({
     if (!app.login()) {
       return
     }
-    http.post(app.globalData.collect_article, {
+    http.post(app.globalData.collectArticle, {
       articleId: this.data.info.articleId
     }).then(res => {
       this.setData({
-        attention_state: 1
+        attentionState: 1
       })
       app.showSuccessToast('收藏成功')
     })
@@ -109,11 +109,11 @@ Page({
    * 取消收藏商品
    */
   onCancelCollect() {
-    http.post(app.globalData.view_collect_article_delete, {
+    http.post(app.globalData.viewCollectArticleDelete, {
       articleId: this.data.info.articleId
     }).then(res => {
       this.setData({
-        attention_state: null
+        attentionState: null
       })
       app.showToast('取消收藏成功')
     })

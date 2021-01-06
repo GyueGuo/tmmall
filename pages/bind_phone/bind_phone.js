@@ -8,7 +8,7 @@ Page({
    */
   data: {
     //发送验证码文字
-    code_intro: '获取验证码',
+    codeIntro: '获取验证码',
     //倒计时
     countdown: 60,
     //定时器
@@ -25,7 +25,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     this.setData({
       diyColor: app.globalData.diyColor,
       configSwitch: app.globalData.configSwitch
@@ -35,60 +35,60 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   setTime() {
     if (this.data.countdown == 0) {
-      this.data.code_intro = "获取验证码";
+      this.data.codeIntro = "获取验证码";
       this.data.countdown = 60;
       this.setData({
-        code_intro: this.data.code_intro
+        codeIntro: this.data.codeIntro
       })
       clearInterval(this.data.timer)
       return
     } else {
-      this.data.code_intro = "重新发送(" + this.data.countdown + ")";
+      this.data.codeIntro = "重新发送(" + this.data.countdown + ")";
       this.data.countdown--;
     }
     this.setData({
-      code_intro: this.data.code_intro
+      codeIntro: this.data.codeIntro
     })
   },
 
@@ -96,14 +96,14 @@ Page({
    * 获取验证码
    */
   getCode() {
-    if (this.data.code_intro != "获取验证码") {
+    if (this.data.codeIntro != "获取验证码") {
       return
     }
     if (!app.isPoneAvailable(this.data.phone)) {
       app.showToast('请输入正确手机号码')
       return
     }
-    http.encPost(app.globalData.message_send, {
+    http.encPost(app.globalData.messageSend, {
       phone: this.data.phone,
       wechatOpenId: app.globalData.unionId,
       qqOpenId: '',
@@ -158,38 +158,31 @@ Page({
       })
       return
     }
-    // if (this.data.code.length != 6) {
-    //   app.showToast('请输入6位验证码')
-    //   this.setData({
-    //     isSubmit: true
-    //   })
-    //   return
-    // }
 
     if (this.data.password < 6) {
       app.showToast('密码至少6位')
       return
     }
 
-    http.post(app.globalData.bind_phone, {
+    http.post(app.globalData.bindPhone, {
       phone: this.data.phone,
       password: this.data.password,
       code: this.data.code,
       unionId: app.globalData.unionId
     }).then(res => {
       app.showSuccessToast(res.message, () => {
-        wx.setStorageSync('member_id', res.member_id)
-        app.globalData.member_id = res.member_id
+        wx.setStorageSync('memberId', res.memberId)
+        app.globalData.memberId = res.memberId
         wx.setStorageSync('phone', this.data.phone)
         app.globalData.phone = this.data.phone
 
         let page = getCurrentPages()
         let route = page[page.length - 2].route //上一页地址
         switch (route) {
-          case 'nearby_shops/good_detail/good_detail': //是否是商品详情
+          case 'nearbyShops/goodDetail/goodDetail': //是否是商品详情
             page[page.length - 2].getData()
             break;
-          case 'my/integral_good_detail/integral_good_detail':
+          case 'my/integralGoodDetail/integralGoodDetail':
             page[page.length - 2].getData()
             break;
         }
@@ -198,10 +191,6 @@ Page({
           event.emit('refreshCart')
           event.emit('refreshHome')
         })
-        // wx.nextTick(() => {
-        //   //客服
-        //   app.service()
-        // })
 
       })
     }).catch(res => {
@@ -213,7 +202,7 @@ Page({
 
   onWeb() {
     wx.navigateTo({
-      url: '/my/web_view/web_view?id=17',
+      url: '/my/webView/webView?id=17',
     })
   }
 })

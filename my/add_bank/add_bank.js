@@ -1,4 +1,3 @@
-// my/add_bank/add_bank.js
 const app = getApp();
 const http = require('../../utils/http.js');
 Page({
@@ -124,7 +123,7 @@ Page({
         isSubmit: true
       })
     }, 5000)
-    http.post(app.globalData.card_create, {
+    http.post(app.globalData.cardCreate, {
       cardBankName: this.data.bankName,
       cardBankOwner: this.data.bankUserName,
       cardNumber: this.data.bankNumber

@@ -15,29 +15,29 @@
       <view class="{{tab == 4?'cur':''}}" hidden="{{street==''}}" hover-class='hover-class' hover-stay-time='400' bindtap='_chooseDetail' style='{{tab == 4?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>{{street}}</view>
     </view>
 
-    <scroll-view scroll-y scroll-with-animation class='address-list' scroll-into-view="{{current_id}}">
-      <view wx:for="{{list}}" hover-class='hover-class' hover-stay-time='400' bindtap='_onItem' data-item='{{item}}' id="{{'id-' + item.area_id}}">
+    <scroll-view scroll-y scroll-with-animation class='address-list' scroll-into-view="{{currentId}}">
+      <view wx:for="{{list}}" hover-class='hover-class' hover-stay-time='400' bindtap='_onItem' data-item='{{item}}' id="{{'id-' + item.areaId}}">
         <view class='address' wx:if="{{tab == 1}}">
-          <view class="{{item.area_name == province?'cur':''}}" style='{{item.area_name == province?util.diyColor(diyColor.zColor,"",""):""}}'>{{item.area_name}}</view>
-          <view style='{{util.diyImgbox(28)}}margin-left:20rpx;' wx:if='{{item.area_name == province}}'>
+          <view class="{{item.areaName == province?'cur':''}}" style='{{item.areaName == province?util.diyColor(diyColor.zColor,"",""):""}}'>{{item.areaName}}</view>
+          <view style='{{util.diyImgbox(28)}}margin-left:20rpx;' wx:if='{{item.areaName == province}}'>
             <image src='{{util.HTTP}}mobile/small/image/arx.png' style='{{util.diyImgcolor(diyColor.zColor,28,20)}}'></image>
           </view>
         </view>
         <view class='address' wx:elif="{{tab == 2}}">
-          <view class="{{item.area_name == city?'cur':''}}" style='{{item.area_name == city?util.diyColor(diyColor.zColor,"",""):""}}'>{{item.area_name}}</view>
-          <view style='{{util.diyImgbox(28)}}margin-left:20rpx;' wx:if='{{item.area_name == city}}'>
+          <view class="{{item.areaName == city?'cur':''}}" style='{{item.areaName == city?util.diyColor(diyColor.zColor,"",""):""}}'>{{item.areaName}}</view>
+          <view style='{{util.diyImgbox(28)}}margin-left:20rpx;' wx:if='{{item.areaName == city}}'>
             <image src='{{util.HTTP}}mobile/small/image/arx.png' style='{{util.diyImgcolor(diyColor.zColor,28,20)}}'></image>
           </view>
         </view>
         <view class='address' wx:elif="{{tab == 3}}">
-          <view class="{{item.area_name == area?'cur':''}}" style='{{item.area_name == area?util.diyColor(diyColor.zColor,"",""):""}}'>{{item.area_name}}</view>
-          <view style='{{util.diyImgbox(28)}}margin-left:20rpx;' wx:if='{{item.area_name == area}}'>
+          <view class="{{item.areaName == area?'cur':''}}" style='{{item.areaName == area?util.diyColor(diyColor.zColor,"",""):""}}'>{{item.areaName}}</view>
+          <view style='{{util.diyImgbox(28)}}margin-left:20rpx;' wx:if='{{item.areaName == area}}'>
             <image src='{{util.HTTP}}mobile/small/image/arx.png' style='{{util.diyImgcolor(diyColor.zColor,28,20)}}'></image>
           </view>
         </view>
         <view class='address' wx:else>
-          <view class="{{item.area_name == street?'cur':''}}" style='{{item.area_name == street?util.diyColor(diyColor.zColor,"",""):""}}'>{{item.area_name}}</view>
-          <view style='{{util.diyImgbox(28)}}margin-left:20rpx;' wx:if='{{item.area_name == street}}'>
+          <view class="{{item.areaName == street?'cur':''}}" style='{{item.areaName == street?util.diyColor(diyColor.zColor,"",""):""}}'>{{item.areaName}}</view>
+          <view style='{{util.diyImgbox(28)}}margin-left:20rpx;' wx:if='{{item.areaName == street}}'>
             <image src='{{util.HTTP}}mobile/small/image/arx.png' style='{{util.diyImgcolor(diyColor.zColor,28,20)}}'></image>
           </view>
         </view>

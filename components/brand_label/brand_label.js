@@ -94,7 +94,7 @@ Component({
     },
 
     onLabel(e){
-      http.post(app.globalData.goods_tagClickLog, {
+      http.post(app.globalData.goodsTagClickLog, {
         tagBindGoodsId: e.currentTarget.dataset.id
       }).then(res => {
       })

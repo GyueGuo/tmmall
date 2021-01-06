@@ -6,8 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    order_info: {},
-    pay_type: 2, //支付方式 1 余额 2 微信
+    orderInfo: {},
+    payType: 2, //支付方式 1 余额 2 微信
   },
 
   /**
@@ -17,7 +17,7 @@ Page({
     this.setData({
       diyColor: app.globalData.diyColor,
       configSwitch: app.globalData.configSwitch,
-      order_info: JSON.parse(options.order_info),
+      orderInfo: JSON.parse(options.orderInfo),
     })
   },
 
@@ -54,7 +54,7 @@ Page({
    */
   onBalance() {
     this.setData({
-      pay_type: 1
+      payType: 1
     })
   },
 
@@ -63,7 +63,7 @@ Page({
    */
   onWx() {
     this.setData({
-      pay_type: 2
+      payType: 2
     })
   },
 
@@ -71,33 +71,33 @@ Page({
    * 确认付款
    */
   commit() {
-    http.post(app.globalData.order_getOrderState, {
-      number: this.data.order_info.order_number != '' ? this.data.order_info.order_number : this.data.order_info.order_attach_number,
-      price:this.data.order_info.total_price,
-      orderAttachId: this.data.order_info.order_attach_id,
+    http.post(app.globalData.orderGetOrderState, {
+      number: this.data.orderInfo.orderNumber != '' ? this.data.orderInfo.orderNumber : this.data.orderInfo.orderAttachNumber,
+      price:this.data.orderInfo.totalPrice,
+      orderAttachId: this.data.orderInfo.orderAttachId,
       type: '1'
     }).then(res => {
       if (res.data.status == 0) {
         //余额支付
-        if (this.data.pay_type == 1) {
-          http.post(app.globalData.pay_recharge, {
+        if (this.data.payType == 1) {
+          http.post(app.globalData.payRecharge, {
             type: '0'
           }).then(res => {
             if (res.result.hasPayPassword == 1) {
-              this.selectComponent("#enter_psw").show(this.data.order_info)
+              this.selectComponent("#enter_psw").show(this.data.orderInfo)
             } else {
               app.showToast('请设置支付密码', (res) => {
                 wx.navigateTo({
-                  url: '/my/set_pay_psw/set_pay_psw',
+                  url: '/my/setPayPsw/setPayPsw',
                 })
               })
             }
           })
         } else {
-          http.post(app.globalData.wx_pay, {
+          http.post(app.globalData.wxPay, {
             body: '购买商品',
-            outTradeNo: this.data.order_info.order_number == '' ? this.data.order_info.order_attach_number : this.data.order_info.order_number,
-            totalFee: this.data.order_info.total_price,
+            outTradeNo: this.data.orderInfo.orderNumber == '' ? this.data.orderInfo.orderAttachNumber : this.data.orderInfo.orderNumber,
+            totalFee: this.data.orderInfo.totalPrice,
             openId: app.globalData.openid,
             casePayType: 2,
             attach: 'pay|2',
@@ -110,7 +110,7 @@ Page({
               paySign: res.result.paySign,
               success: res => {
                 app.showSuccessToast('支付成功', res => {
-                  this.pay_callback()
+                  this.payCallback()
                 })
               },
               fail: res => {
@@ -124,7 +124,7 @@ Page({
           wx.navigateBack({})
         })
       }
-      http.post(app.globalData.applet_my_saveFormId, {
+      http.post(app.globalData.appletMySaveFormId, {
         microFormId: this.data.formId
       }).then(res => { })
     })
@@ -133,46 +133,46 @@ Page({
   /**
    * 支付回调
    */
-  pay_callback() {
+  payCallback() {
     const item = {
-      total_price: this.data.order_info.total_price,
-      order_type: this.data.order_info.order_type,
-      order_attach_id: this.data.order_info.order_attach_id,
-      out_trade_no: this.data.order_info.order_number == '' ? this.data.order_info.order_attach_number : this.data.order_info.order_number,
+      totalPrice: this.data.orderInfo.totalPrice,
+      orderType: this.data.orderInfo.orderType,
+      orderAttachId: this.data.orderInfo.orderAttachId,
+      outTradeNo: this.data.orderInfo.orderNumber == '' ? this.data.orderInfo.orderAttachNumber : this.data.orderInfo.orderNumber,
     }
-    switch (this.data.order_info.order_type) {
+    switch (this.data.orderInfo.orderType) {
       case 1:
         wx.redirectTo({
-          url: '/nearby_shops/pay_result/pay_result?item=' + JSON.stringify(item)
+          url: '/nearbyShops/payResult/payResult?item=' + JSON.stringify(item)
         })
         
         break;
       case 2:
-        http.post(app.globalData.payInfo_getPayInfo, {
-          outTradeNo: this.data.order_info.order_number == '' ? this.data.order_info.order_attach_number : this.data.order_info.order_number
+        http.post(app.globalData.payInfoGetPayInfo, {
+          outTradeNo: this.data.orderInfo.orderNumber == '' ? this.data.orderInfo.orderAttachNumber : this.data.orderInfo.orderNumber
         }).then(res => {
           wx.redirectTo({
-            url: '/pages/collage_detail/collage_detail?id=' + res.data.group_activity_attach_id,
+            url: '/pages/collageDetail/collageDetail?id=' + res.data.groupActivityAttachId,
           })
         })
         break;
       case 3:
-        http.post(app.globalData.payInfo_getPayInfo, {
-          outTradeNo: this.data.order_info.order_number == '' ? this.data.order_info.order_attach_number : this.data.order_info.order_number
+        http.post(app.globalData.payInfoGetPayInfo, {
+          outTradeNo: this.data.orderInfo.orderNumber == '' ? this.data.orderInfo.orderAttachNumber : this.data.orderInfo.orderNumber
         }).then(res => {
           wx.redirectTo({
-            url: '/nearby_shops/pay_result/pay_result?item=' + JSON.stringify(item),
+            url: '/nearbyShops/payResult/payResult?item=' + JSON.stringify(item),
           })
         })
         break;
       case 4:
         wx.redirectTo({
-          url: '/nearby_shops/pay_result/pay_result?item=' + JSON.stringify(item),
+          url: '/nearbyShops/payResult/payResult?item=' + JSON.stringify(item),
         })
         break;
       case 'invoice':
         wx.redirectTo({
-          url: '/nearby_shops/invoice_over/invoice_over?item=' + JSON.stringify(item),
+          url: '/nearbyShops/invoiceOver/invoiceOver?item=' + JSON.stringify(item),
         })
         break;
     }

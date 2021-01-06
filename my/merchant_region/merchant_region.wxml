@@ -2,23 +2,23 @@
 <view class='wrap'>
   <view class='province-con'>
     <scroll-view scroll-y>
-      <view wx:for="{{province_list}}" class='province' hover-class='hover-class' hover-stay-time='400' bindtap='onProvince' data-item='{{item}}' style="{{province.area_name==item.area_name?'background:#f4f4f4':''}}">
-        <view style='{{province.area_name==item.area_name?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>{{item.area_name}}</view>
+      <view wx:for="{{provinceList}}" class='province' hover-class='hover-class' hover-stay-time='400' bindtap='onProvince' data-item='{{item}}' style="{{province.areaName==item.areaName?'background:#f4f4f4':''}}">
+        <view style='{{province.areaName==item.areaName?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>{{item.areaName}}</view>
       </view>
     </scroll-view>
   </view>
   <view class='city-con'>
     <scroll-view scroll-y>
-      <view wx:for="{{city_list}}" class='city' hover-class='hover-class' hover-stay-time='400' bindtap='onCity' data-item='{{item}}' style="{{city.area_name==item.area_name?'background:#f9f9f9':''}}">
-        <view style='{{city.area_name==item.area_name?util.diyColor(diyColor.zColor,"",""):""}}'>{{item.area_name}}</view>
+      <view wx:for="{{cityList}}" class='city' hover-class='hover-class' hover-stay-time='400' bindtap='onCity' data-item='{{item}}' style="{{city.areaName==item.areaName?'background:#f9f9f9':''}}">
+        <view style='{{city.areaName==item.areaName?util.diyColor(diyColor.zColor,"",""):""}}'>{{item.areaName}}</view>
       </view>
     </scroll-view>
   </view>
   <view class='area-con'>
     <scroll-view scroll-y>
-      <view wx:for="{{area_list}}" class='area' hover-class='hover-class' hover-stay-time='400' bindtap='onArea' data-item='{{item}}'>
-        <view style='{{area.area_name==item.area_name?util.diyColor(diyColor.zColor,"",""):""}}'>{{item.area_name}}</view>
-        <view class='font_family icon-arx' hidden='{{area.area_name!=item.area_name}}' style='{{util.diyColor(diyColor.zColor,"","")}}'></view>
+      <view wx:for="{{areaList}}" class='area' hover-class='hover-class' hover-stay-time='400' bindtap='onArea' data-item='{{item}}'>
+        <view style='{{area.areaName==item.areaName?util.diyColor(diyColor.zColor,"",""):""}}'>{{item.areaName}}</view>
+        <view class='font_family icon-arx' hidden='{{area.areaName!=item.areaName}}' style='{{util.diyColor(diyColor.zColor,"","")}}'></view>
       </view>
     </scroll-view>
   </view>

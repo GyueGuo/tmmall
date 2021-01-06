@@ -8,7 +8,7 @@
       </view>
       <view class='goods-info'>
         <view class='bargain-name'>{{item.goods.goodsName}}</view>
-        <view class='bargain-time'>砍价时间:{{item.up_shelf_time}}至{{item.down_shelf_time}}</view>
+        <view class='bargain-time'>砍价时间:{{item.upShelfTime}}至{{item.downShelfTime}}</view>
         <view class='bargain-operation'>
           <view class='bargain-price'>
             <view class='present-price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
@@ -25,12 +25,6 @@
     </view>
   </view>
   <load_more show="{{loading}}" />
-  <!-- <view class='empty-view' hidden='{{list.length != 0 || loading}}'>
-  <view>
-    <image src='{{util.HTTP}}mobile/small/image/zwsp.png'></image>
-    <view>暂无相关商品</view>
-  </view>
-</view> -->
   <view class='no-order' hidden="{{list.length != 0 || loading}}">
     <view>
       <image src='{{util.HTTP}}mobile/small/image/zwsp.png'></image>

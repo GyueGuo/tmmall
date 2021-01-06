@@ -71,7 +71,7 @@ Page({
    * 获取列表数据
    */
   getList() {
-    http.postList(app.globalData.hot_list).then(res => {
+    http.postList(app.globalData.hotList).then(res => {
       if (this.data.page == 1) {
         this.setData({
           total: res.result.total,
@@ -90,7 +90,7 @@ Page({
    */
   onDetail(e) {
     wx.navigateTo({
-      url: '../info_detail/info_detail?article_id=' + e.currentTarget.dataset.id,
+      url: '../infoDetail/infoDetail?articleId=' + e.currentTarget.dataset.id,
     })
   }
 })

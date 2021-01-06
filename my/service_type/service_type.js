@@ -1,4 +1,3 @@
-// pages/service_type/service_type.js
 const app = getApp();
 Page({
 
@@ -82,7 +81,7 @@ Page({
     dataInfo.type = 1
     dataInfo.info.file = encodeURIComponent(dataInfo.info.file)
     wx.navigateTo({
-      url: `/my/apply_refund/apply_refund?dataInfo=${JSON.stringify(dataInfo)}`
+      url: `/my/applyRefund/applyRefund?dataInfo=${JSON.stringify(dataInfo)}`
     })
     dataInfo.info.file = decodeURIComponent(dataInfo.info.file)
   },
@@ -98,7 +97,7 @@ Page({
     dataInfo.type = 2
     dataInfo.info.file = encodeURIComponent(dataInfo.info.file)
     wx.navigateTo({
-      url: `/my/apply_refund/apply_refund?dataInfo=${JSON.stringify(dataInfo)}`
+      url: `/my/applyRefund/applyRefund?dataInfo=${JSON.stringify(dataInfo)}`
     })
     dataInfo.info.file = decodeURIComponent(dataInfo.info.file)
   }

@@ -14,7 +14,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      face_bg_img: options.face_bg_img
+      faceBgImg: options.faceBgImg
     })
   },
 
@@ -22,7 +22,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    http.post(app.globalData.face_code, {}).then(res => {
+    http.post(app.globalData.faceCode, {}).then(res => {
       this.setData({
         code: res.appletFaceCodeFile,
         finish: true

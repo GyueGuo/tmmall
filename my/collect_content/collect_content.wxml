@@ -1,12 +1,12 @@
 <wxs module="util" src="../../utils/util.wxs" />
-<view class='content' wx:for="{{list}}" bindlongtap='deleteShop' hover-class='hover-class' hover-stay-time='400' bindtap='{{item.is_invalid==1?"":"onDetail"}}' data-id='{{item.article_id}}' data-index='{{index}}'>
+<view class='content' wx:for="{{list}}" bindlongtap='deleteShop' hover-class='hover-class' hover-stay-time='400' bindtap='{{item.isInvalid==1?"":"onDetail"}}' data-id='{{item.articleId}}' data-index='{{index}}'>
   <image src='{{item.file}}'></image>
-  <view class='{{item.is_invalid==1?"invalid_type":""}}'>
+  <view class='{{item.isInvalid==1?"invalid_type":""}}'>
     <view class='name'>{{item.title}}</view>
     <view class='tip'>
-      <view class='collect' wx:if='{{item.is_invalid==0}}'>{{item.collect}}人收藏</view>
+      <view class='collect' wx:if='{{item.isInvalid==0}}'>{{item.collect}}人收藏</view>
       <view class='collect' wx:else>已删除</view>
-      <view class='time'>{{item.date_time}}</view>
+      <view class='time'>{{item.dateTime}}</view>
     </view>
   </view>
 </view>
@@ -18,5 +18,4 @@
   </view>
 </view>
 <load_more show="{{loading}}" />
-
 <modal id='modal' title="提示" content="您确定取消收藏吗?" bind:confirm="deleteConfirm" />

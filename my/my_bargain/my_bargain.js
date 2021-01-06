@@ -7,10 +7,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tab_view: ['全部', '进行中', '成功', '失败'],
-    current_tab: 0,
+    tabView: ['全部', '进行中', '成功', '失败'],
+    currentTab: 0,
     //倒计时
-    count_down: {},
+    countDown: {},
     list: [],
     total: '',
     page: 1
@@ -19,7 +19,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     this.setData({
       diyColor: app.globalData.diyColor
     })
@@ -28,19 +28,19 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     //砍价成功
     event.on('refreshBargain', this, id => {
       for (var i = 0, len = this.data.list.length; i < len; i++) {
-        if (this.data.list[i].cut_activity_id == id) {
-          if (this.data.current_tab == 0) {
+        if (this.data.list[i].cutActivityId == id) {
+          if (this.data.currentTab == 0) {
             this.data.list[i].status = 2
           } else {
             this.data.list.splice(i, 1)
@@ -57,16 +57,16 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
     event.remove('bargainSuccess', this)
-    clearInterval(this.data.count_down)
+    clearInterval(this.data.countDown)
   },
 
   /**
@@ -74,7 +74,7 @@ Page({
    */
   onBargainGood() {
     wx.redirectTo({
-      url: '/pages/bargain_list/bargain_list',
+      url: '/pages/bargainList/bargainList',
     })
   },
 
@@ -83,7 +83,7 @@ Page({
    */
   onTab(e) {
     this.setData({
-      current_tab: e.currentTarget.dataset.index,
+      currentTab: e.currentTarget.dataset.index,
       page: 1,
       list: []
     })
@@ -94,8 +94,8 @@ Page({
    * 获取砍价列表
    */
   getBargainList() {
-    http.postList(app.globalData.my_bargain, {
-      status: this.data.current_tab == 0 ? '' : this.data.current_tab,
+    http.postList(app.globalData.myBargain, {
+      status: this.data.currentTab == 0 ? '' : this.data.currentTab,
       page: this.data.page
     }).then(res => {
       if (this.data.page == 1) {
@@ -108,9 +108,9 @@ Page({
           list: [...this.data.list, ...res.result.data]
         })
       }
-      clearInterval(this.data.count_down)
+      clearInterval(this.data.countDown)
       this.countDown()
-      this.data.count_down = setInterval(() => {
+      this.data.countDown = setInterval(() => {
         this.countDown()
       }, 1000)
     })
@@ -122,7 +122,7 @@ Page({
   countDown() {
     for (let i = 0, len = this.data.list.length; i < len; i++) {
       if (this.data.list[i].status == 1) {
-        let second = this.data.list[i].expiration_time
+        let second = this.data.list[i].expirationTime
         if (second == 0) {
           this.data.list[i].status = 3
         } else {
@@ -130,7 +130,7 @@ Page({
           this.data.list[i]['hour'] = Math.floor(second % 86400 / 3600) < 10 ? '0' + Math.floor(second % 86400 / 3600) : Math.floor(second % 86400 / 3600);
           this.data.list[i]['min'] = Math.floor(second % 86400 % 3600 / 60) < 10 ? '0' + Math.floor(second % 86400 % 3600 / 60) : Math.floor(second % 86400 % 3600 / 60);
           this.data.list[i]['sec'] = Math.floor(second % 60) < 10 ? '0' + Math.floor(second % 60) : Math.floor(second % 60);
-          this.data.list[i].expiration_time--;
+          this.data.list[i].expirationTime--;
         }
       }
     }
@@ -163,7 +163,7 @@ Page({
    */
   onOrderDetail(e) {
     wx.navigateTo({
-      url: '../order_detail/order_detail?id=' + e.currentTarget.dataset.id,
+      url: '../orderDetail/orderDetail?id=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -172,7 +172,7 @@ Page({
    */
   onAnother(e) {
     wx.redirectTo({
-      url: '/nearby_shops/good_detail/good_detail?goods_id=' + e.currentTarget.dataset.id,
+      url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -183,44 +183,44 @@ Page({
     let item = e.currentTarget.dataset.item,
       obj = {
         //商品类型 1正常商品 2团购 3砍价 4限时抢购
-        good_type: 3,
+        goodType: 3,
         //商品id
-        goods_id: item.goods_id,
+        goodsId: item.goodsId,
         //砍价id
-        cut_activity_id: item.cut_activity_id,
+        cutActivityId: item.cutActivityId,
         //参团id
-        group_activity_id: '',
+        groupActivityId: '',
         //购买数量
         num: 1,
         //店铺id
-        store_id: item.store_id,
+        storeId: item.storeId,
         //店铺名称
-        store_name: item.store_name,
+        storeName: item.storeName,
         //价格
-        shop_price: parseFloat(item.present_price).toFixed(2),
+        shopPrice: parseFloat(item.presentPrice).toFixed(2),
         //商品名称
-        goods_name: item.goods_name,
+        goodsName: item.goodsName,
         //商品规格id
-        products_id: item.products_id,
+        productsId: item.productsId,
         //规格展示
-        attr_detail: item.attr,
+        attrDetail: item.attr,
         //规格
-        attr: item.goods_attr,
+        attr: item.goodsAttr,
         //库存
-        goods_number: 1,
+        goodsNumber: 1,
         //团购价
-        group_price: '',
+        groupPrice: '',
         //砍价
-        cut_price: parseFloat(item.present_price).toFixed(2),
+        cutPrice: parseFloat(item.presentPrice).toFixed(2),
         //砍价的差价
-        price_spread: (parseFloat(item.original_price) - parseFloat(item.present_price)).toFixed(2),
+        priceSpread: (parseFloat(item.originalPrice) - parseFloat(item.presentPrice)).toFixed(2),
         //限时抢购价
-        limit_price: '',
+        limitPrice: '',
         //总金额
-        subtotal: parseFloat(item.present_price).toFixed(2)
+        subtotal: parseFloat(item.presentPrice).toFixed(2)
       }
     wx.navigateTo({
-      url: '/pages/confirm_order/confirm_order?info=' + JSON.stringify(obj) + '&good_image=' + encodeURIComponent(item.file),
+      url: '/pages/confirmOrder/confirmOrder?info=' + JSON.stringify(obj) + '&goodImage=' + encodeURIComponent(item.file),
     })
   }
 })

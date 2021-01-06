@@ -38,7 +38,7 @@ Component({
       })
       animation.translateY(-wx.getSystemInfoSync().windowHeight)
       this.setData({
-        animation_coupon: animation.step(),
+        animationCoupon: animation.step(),
         isShow: true
       })
       this.fadeIn()
@@ -54,7 +54,7 @@ Component({
       })
       animation.translateY(wx.getSystemInfoSync().windowHeight)
       this.setData({
-        animation_coupon: animation.step(),
+        animationCoupon: animation.step(),
         isShow: false
       })
       this.fadeOut()

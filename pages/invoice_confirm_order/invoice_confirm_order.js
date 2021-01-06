@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    member_address_id: '',
+    memberAddressId: '',
     //地址
     address: null,
     //运费
@@ -15,7 +15,7 @@ Page({
     //合计价格
     total: 0,
     //支付方式
-    pay_way: '在线支付',
+    payWay: '在线支付',
     way: '1',
     message: ''
   },
@@ -27,7 +27,7 @@ Page({
     this.setData({
       diyColor: app.globalData.diyColor,
       data: JSON.parse(options.info),
-      store_id: JSON.parse(options.info).store_id
+      storeId: JSON.parse(options.info).storeId
     })
 
   },
@@ -37,7 +37,7 @@ Page({
    */
   onReady: function() {
     event.on('changeAddress', this, () => {
-      this.data.member_address_id = this.data.address.member_address_id
+      this.data.memberAddressId = this.data.address.memberAddressId
       this.getData()
     })
     this.getData()
@@ -81,7 +81,7 @@ Page({
    */
   getData() {
     http.post(app.globalData.invoice_order_detail, {
-      storeId: this.data.store_id,
+      storeId: this.data.storeId,
       memberAddressId: ''
     }).then(res => {
       // for (var i = 0; i < res.result.length; i++) {
@@ -90,7 +90,7 @@ Page({
       // }
       this.setData({
         address: res.member_address,
-        member_address_id: res.member_address == null ? '' : res.member_address.member_address_id,
+        memberAddressId: res.member_address == null ? '' : res.member_address.memberAddressId,
         info: res.result,
         // freight: freight.toFixed(2),
         store: res.store
@@ -124,7 +124,7 @@ Page({
         delivery_method: this.data.info.delivery_method
       }
     array.push(obj)
-    this.selectComponent("#pay_way").show(array)
+    this.selectComponent("#payWay").show(array)
   },
 
   /**
@@ -132,7 +132,7 @@ Page({
    */
   confirmWay(e) {
     this.setData({
-      pay_way: e.detail[0].way == 1 ? '1在线支付' : '货到付款',
+      payWay: e.detail[0].way == 1 ? '1在线支付' : '货到付款',
       way: e.detail[0].way
     })
   },
@@ -160,14 +160,14 @@ Page({
         ways[i] = this.data.list[i].way
       }
       if (ways.indexOf(1) > -1 && ways.indexOf(2) > -1) {
-        this.data.pay_way = "在线支付 + 货到付款"
+        this.data.payWay = "在线支付 + 货到付款"
       } else if (ways.indexOf(1) > -1) {
-        this.data.pay_way = "在线支付"
+        this.data.payWay = "在线支付"
       } else if (ways.indexOf(2) > -1) {
-        this.data.pay_way = "货到付款"
+        this.data.payWay = "货到付款"
       }
       this.setData({
-        pay_way: this.data.pay_way
+        payWay: this.data.payWay
       })
     } else if (e.currentTarget.dataset.method == 'is_city') {
       //同城速递
@@ -204,7 +204,7 @@ Page({
   // selectPick(e) {
   //   var select_pick = e.detail
   //   for (var i = 0; i < this.data.list.length; i++) {
-  //     if (select_pick.store_id == this.data.list[i].store_id) {
+  //     if (select_pick.storeId == this.data.list[i].storeId) {
   //       this.data.list[i]['take_freight'] = select_pick
   //       this.data.list[i]['take_freight_id'] = select_pick.take_id
   //     }
@@ -308,7 +308,7 @@ Page({
 
     let store_set = [],
       store = {
-        store_id: this.data.info.store_id,
+        storeId: this.data.info.storeId,
         products_id: '',
         goods_attr: '',
         quantity: '1',
@@ -323,7 +323,7 @@ Page({
       }
     store_set.push(store)
     http.post(app.globalData.order_confirm, {
-      member_address_id: this.data.member_address_id,
+      memberAddressId: this.data.memberAddressId,
       pay_channel: 1,
       order_type: 1,
       cut_activity_id: null,

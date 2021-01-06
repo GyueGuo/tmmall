@@ -13,11 +13,11 @@ Component({
    */
   data: {
     opacity: 0,
-    parent_id: '',
-    area_list: [],
+    parentId: '',
+    areaList: [],
     list: [],
     //当前选中的门店
-    select_pick: {}
+    selectPick: {}
   },
   ready(){
     this.setData({
@@ -97,22 +97,22 @@ Component({
      * list 自提点列表
      * 市区id
      */
-    show(id, list, parent_id, select_pick) {
+    show(id, list, parentId, selectPick) {
       this.setData({
-        list: list,
-        id: id,
-        select_pick: select_pick,
-        parent_id: parent_id
+        list,
+        id,
+        selectPick,
+        parentId,
       })
       this.showAnimation()
     },
 
     getAreaList() {
-      http.post(app.globalData.address_linkage, {
-        pareparentIdnt_id: this.data.parent_id
+      http.post(app.globalData.addressLinkage, {
+        parentId: this.data.parentId
       }).then(res=> {
         this.setData({
-          area_list: res.result
+          areaList: res.result
         })
       })
     },
@@ -121,16 +121,16 @@ Component({
      * 选择地区
      */
     selectArea(e) {
-      http.post(app.globalData.take_list, {
-        storeID: this.data.store_id,
-        area: this.data.area_list[e.detail.value].area_name,
+      http.post(app.globalData.takeList, {
+        storeId: this.data.storeId,
+        area: this.data.areaList[e.detail.value].areaName,
         lat: '0',
         lng: '0',
         keyword: ''
       }).then(res=> {
         this.setData({
           list: res.result,
-          area: this.data.area_list[e.detail.value].area_name,
+          area: this.data.areaList[e.detail.value].areaName,
         })
       })
     },
@@ -141,7 +141,7 @@ Component({
     selectPick(e) {
       this.setData({
         id: e.currentTarget.dataset.id,
-        select_pick: e.currentTarget.dataset.item
+        selectPick: e.currentTarget.dataset.item
       })
     },
 
@@ -150,7 +150,7 @@ Component({
      */
     confirmSelect() {
       this.hiddenAnimation()
-      this.triggerEvent("selectPick", this.data.select_pick)
+      this.triggerEvent("selectPick", this.data.selectPick)
     }
   }
 })

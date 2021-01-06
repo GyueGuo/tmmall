@@ -1,27 +1,30 @@
 <wxs module="util" src="../../utils/util.wxs" />
-<!--背景   -->
+<!-- 背景 -->
 <view class='trans' hidden='{{!isShow}}' style='opacity:{{opacity}}'></view>
 <view class='board' hover-class='hover-class' hover-stay-time='400' bindtap='_close' animation="{{animation}}">
   <view class='buy-bg' id='buy_bg' catchtap='none'>
-    <image class='good-pic' id='good_pic' src='{{good_image}}'></image>
+    <image class='good-pic' id='good_pic' src='{{goodImage}}'></image>
     <image src='{{util.HTTP}}mobile/small/image/xq-gb.png' class='close-bg' hover-class='hover-class' hover-stay-time='400' bindtap='_close'></image>
     <!-- 正常购买 -->
     <view class='good-info'>
-      <!-- <text class='unit cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>单买价</text> -->
       <text class='unit cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>￥</text>
-      <text class='integer cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>{{util.integer(price)}}</text>
-      <text class='decimals cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>.{{util.decimals(price)}}</text>
+      <text class='integer cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
+        {{util.integer(price)}}
+      </text>
+      <text class='decimals cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
+        .{{util.decimals(price)}}
+      </text>
       <text class='inventory'>(库存{{info.inventory==null?0:info.inventory}})</text>
     </view>
     <view class='good-size'>{{attr}}</view>
     <view class='good-property'>
       <view>
         <view wx:for="{{info.attrs}}" wx:for-index="idx" wx:key='{{idx}}'>
-          <view class='property-title'>
-            {{item.attr_name}}
-          </view>
+          <view class='property-title'>{{item.attrName}}</view>
           <view class='property-option'>
-            <view wx:for="{{item.goods_attr}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='_onAttr' data-idx='{{idx}}' data-item='{{item}}' class="{{attr_array[idx] == item.attr_value?'cur-option':''}}" style='{{attr_array[idx] == item.attr_value?util.diyColor("",diyColor.zColor,""):""}}'>{{item.attr_value}}</view>
+            <view wx:for="{{item.goodsAttr}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='_onAttr' data-idx='{{idx}}' data-item='{{item}}' class="{{attrArray[idx] == item.attrValue?'cur-option':''}}" style='{{attrArray[idx] == item.attrValue?util.diyColor("",diyColor.zColor,""):""}}'>
+              {{item.attrValue}}
+            </view>
           </view>
         </view>
       </view>
@@ -35,7 +38,9 @@
       </view>
     </view>
     <view class='operation'>
-      <view class='confirm bg' hover-class='hover-class' hover-stay-time='400' bindtap='_onConfirm' style='{{util.diyColor("",diyColor.zColor,"")}}'>确定</view>
+      <view class='confirm bg' hover-class='hover-class' hover-stay-time='400' bindtap='_onConfirm' style='{{util.diyColor("",diyColor.zColor,"")}}'>
+        确定
+      </view>
     </view>
   </view>
 </view>

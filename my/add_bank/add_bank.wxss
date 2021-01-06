@@ -1,4 +1,3 @@
-/* my/add_bank/add_bank.wxss */
 .item{
   display: flex;
   align-items: center;

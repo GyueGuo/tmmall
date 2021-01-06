@@ -1,4 +1,3 @@
-// components/go_top/go_top.js
 Component({
   /**
    * 组件的属性列表
@@ -29,7 +28,7 @@ Component({
       animation.translateY('-180px').step()
       // animation.translateY(-180 / 1334 * wx.getSystemInfoSync().screenHeight).step()
       this.setData({
-        animation_top: animation.export()
+        animationTop: animation.export()
       })
     },
 
@@ -43,7 +42,7 @@ Component({
       })
       animation.translateY(180 / 1334 * wx.getSystemInfoSync().screenHeight).step()
       this.setData({
-        animation_top: animation.export()
+        animationTop: animation.export()
       })
     },
   }

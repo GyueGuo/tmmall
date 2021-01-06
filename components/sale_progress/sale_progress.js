@@ -1,4 +1,3 @@
-// components/sale_progress/sale_progress.js
 const app =getApp();
 Component({
   /**

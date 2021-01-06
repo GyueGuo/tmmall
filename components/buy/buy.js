@@ -15,17 +15,16 @@ Component({
         if (this.data.info.attr) {
           this.data.attrs = new Array(this.data.info.attr.length)
           this.setData({
-            good_image: this.data.info.file,
-            good_file_image: this.data.info.cart_file
+            goodImage: this.data.info.file,
+            goodFileImage: this.data.info.cartFile
           })
-          if (this.data.attr_array.length != 0) {
+          if (this.data.attrArray.length != 0) {
             this._getGoodPrice()
           }
         }
       }
     },
     diyColor: Object,
-    // order_type: null,
     type: String,
     isShow: {
       type: Boolean,
@@ -39,9 +38,9 @@ Component({
     },
     nav: Boolean,
     //是否是开团
-    group_buy: Boolean,
+    groupBuy: Boolean,
     //参团id
-    group_activity_id: String,
+    groupActivityId: String,
     //折扣
     discount: String,
   },
@@ -55,19 +54,19 @@ Component({
     //商品数量
     num: 1,
     //购买参数文字
-    attr_array: [],
+    attrArray: [],
     //购买参数id
-    attr_value: [],
+    attrValue: [],
     //购买参数文字
     attr: '请选择商品属性',
     //传入规格
-    attr_detail: '',
+    attrDetail: '',
     //商品图片
-    good_image: '',
-    good_file_image: '',
+    goodImage: '',
+    goodFileImage: '',
     //购买尺寸id
-    products_id: '',
-    order_type: 1
+    productsId: '',
+    orderType: 1
   },
   ready() {
     if (app.globalData.diyColor != null && this.data.diyColor == null) {
@@ -92,7 +91,7 @@ Component({
     show(obj) {
       this.showAnimation()
       this.setData({
-        order_type: obj ? obj.order_type : 1
+        orderType: obj ? obj.orderType : 1
       })
     },
     /**
@@ -161,7 +160,7 @@ Component({
     _close() {
       this.hiddenAnimation()
       this.triggerEvent("closeBuy")
-      if (this.data.info.add_cart_type == 2) {
+      if (this.data.info.addCartType == 2) {
         this.resetAll()
       }
     },
@@ -174,20 +173,19 @@ Component({
         //商品数量
         num: 1,
         //购买参数文字
-        attr_array: [],
+        attrArray: [],
         //购买参数id
-        attr_value: [],
+        attrValue: [],
         //购买参数文字
         attr: '请选择商品属性',
         //传入规格
-        attr_detail: '',
+        attrDetail: '',
         //商品图片
-        good_image: '',
-        good_file_image: '',
+        goodImage: '',
+        goodFileImage: '',
         //购买尺寸id
-        products_id: ''
+        productsId: ''
       })
-      console.log(this.data.attr_array)
     },
 
     /**
@@ -196,22 +194,22 @@ Component({
     _onAttr(e) {
       let idx = e.currentTarget.dataset.idx,
         item = e.currentTarget.dataset.item;
-      this.data.attr_array[idx] = {
-        value: item.attr_value,
-        id: item.goods_attr_id
+      this.data.attrArray[idx] = {
+        value: item.attrValue,
+        id: item.goodsAttrId
       }
       this.data.attr = ''
-      let attr_detail = ''
-      for (let i = 0, len = this.data.attr_array.length; i < len; i++) {
-        if (this.data.attr_array[i]) {
-          this.data.attr += this.data.attr_array[i].value + ','
-          attr_detail += this.data.info.attr[i].attr_name + ':' + this.data.attr_array[i].value + ' '
+      let attrDetail = ''
+      for (let i = 0, len = this.data.attrArray.length; i < len; i++) {
+        if (this.data.attrArray[i]) {
+          this.data.attr += this.data.attrArray[i].value + ','
+          attrDetail += this.data.info.attr[i].attrName + ':' + this.data.attrArray[i].value + ' '
         }
       }
       this.setData({
-        attr_array: this.data.attr_array,
+        attrArray: this.data.attrArray,
         attr: this.data.attr.substr(0, this.data.attr.length - 1),
-        attr_detail: attr_detail
+        attrDetail: attrDetail
       })
       if (this.data.attr.split(',').length == this.data.info.attr.length) {
         this._getGoodPrice()
@@ -227,29 +225,29 @@ Component({
         title: '加载中',
         mask: true
       })
-      http.post(app.globalData.attr_find, {
-        type: this.data.order_type,
+      http.post(app.globalData.attrFind, {
+        type: this.data.orderType,
         goodsAttr: this.data.info.attr.length != 0 ? this.data.attr : '',
-        goodsId: this.data.info.goods_id
+        goodsId: this.data.info.goodsId
       }).then(res => {
         this.setData({
-          good_image: res.result.attr_file_img,
-          good_file_image: res.result.attr_file
+          goodImage: res.result.attrFileImg,
+          goodFileImage: res.result.attrFile
         })
         //团购
-        this.data.info.group_price = res.result.attr_group_price
+        this.data.info.groupPrice = res.result.attrGroupPrice
         //砍价
-        this.data.info.cut_price = res.result.attr_cut_price
+        this.data.info.cutPrice = res.result.attrCutPrice
         //限时
-        this.data.info.time_limit_price = parseFloat(res.result.attr_time_limit_price).toFixed(2)
+        this.data.info.timeLimitPrice = parseFloat(res.result.attrTimeLimitPrice).toFixed(2)
         //正常
-        this.data.info.shop_price = parseFloat(res.result.attr_shop_price).toFixed(2)
+        this.data.info.shopPrice = parseFloat(res.result.attrShopPrice).toFixed(2)
         //库存
-        this.data.info.goods_number = res.result.attr_goods_number
-        this.data.products_id = res.result.products_id
-        if (this.data.num > res.result.attr_goods_number) {
-          this.data.num = res.result.attr_goods_number
-        } else if (this.data.num < res.result.attr_goods_number) {
+        this.data.info.goodsNumber = res.result.attrGoodsNumber
+        this.data.productsId = res.result.productsId
+        if (this.data.num > res.result.attrGoodsNumber) {
+          this.data.num = res.result.attrGoodsNumber
+        } else if (this.data.num < res.result.attrGoodsNumber) {
           this.data.num = 1
         }
         this.setData({
@@ -275,39 +273,39 @@ Component({
      * 增加商品数量
      */
     _increaseNum() {
-      if (this.data.info.is_own_shop == 1) {
+      if (this.data.info.isOwnShop == 1) {
         app.showToast('您的商品，留给别人购买')
         return
       }
       //拼团上限
-      if (this.data.info.is_group == 1 && this.data.group_buy && this.data.info.get_group_goods_num > this.data.info.buy_cum_limit && this.data.info.buy_cum_limit > 0) {
+      if (this.data.info.isGroup == 1 && this.data.groupBuy && this.data.info.getGroupGoodsNum > this.data.info.buyCumLimit && this.data.info.buyCumLimit > 0) {
         app.showToast('该拼团商品已达到购买上限')
         return
       } else {
-        if (this.data.info.is_group == 1 && this.data.group_buy && this.data.num >= this.data.info.buy_cum_limit - this.data.info.get_group_goods_num && this.data.info.buy_cum_limit > 0) {
+        if (this.data.info.isGroup == 1 && this.data.groupBuy && this.data.num >= this.data.info.buyCumLimit - this.data.info.getGroupGoodsNum && this.data.info.buyCumLimit > 0) {
           app.showToast('该拼团商品已达到购买上限')
           return
         }
       }
       /**
        * 限时抢购
-       * limit_number: 限时库存数量
-       * limit_purchase: 限时购买限制数量 等于0是无购买限制
-       * limit_purchase_used: 已购买数量
+       * limitNumber: 限时库存数量
+       * limitPurchase: 限时购买限制数量 等于0是无购买限制
+       * limitPurchaseUsed: 已购买数量
        */
-      if (this.data.info.is_limit == 1 && this.data.info.limit_purchase != 0) {
-        if (this.data.num >= ((this.data.info.limit_purchase - this.data.info.limit_purchase_used) || (this.data.info.limit_purchase - this.data.info.limit_purchase_used > 0)) || this.data.num >= this.data.info.limit_number || this.data.num >= this.data.info.limit_number) {
+      if (this.data.info.isLimit == 1 && this.data.info.limitPurchase != 0) {
+        if (this.data.num >= ((this.data.info.limitPurchase - this.data.info.limitPurchaseUsed) || (this.data.info.limitPurchase - this.data.info.limitPurchaseUsed > 0)) || this.data.num >= this.data.info.limitNumber || this.data.num >= this.data.info.limitNumber) {
           app.showToast('抢购已达到上限')
           return
         }
-      } else if (this.data.info.is_limit == 1 && this.data.info.limit_purchase == 0) {
-        if (this.data.num >= this.data.info.limit_number) {
+      } else if (this.data.info.isLimit == 1 && this.data.info.limitPurchase == 0) {
+        if (this.data.num >= this.data.info.limitNumber) {
           app.showToast('抢购已达到上限')
           return
         }
       }
       //正常购买上限
-      if (this.data.num < this.data.info.goods_number) {
+      if (this.data.num < this.data.info.goodsNumber) {
         if (this.data.num == 99) {
           app.showToast('已达到购买上限')
         } else {
@@ -325,44 +323,44 @@ Component({
      */
     _buyNow() {
       wx.nextTick(() => {
-        if (this.data.info.is_own_shop == 1) {
+        if (this.data.info.isOwnShop == 1) {
           app.showToast('您的商品，留给别人购买')
           return
         }
         /**
          * 限时抢购
-         * limit_number: 限时库存数量
-         * limit_purchase: 限时购买限制数量 等于0是无购买限制
-         * limit_purchase_used: 已购买数量
+         * limitNumber: 限时库存数量
+         * limitPurchase: 限时购买限制数量 等于0是无购买限制
+         * limitPurchaseUsed: 已购买数量
          */
-        if (this.data.info.is_limit == 1 && this.data.info.limit_purchase != 0) {
-          if (this.data.num > ((this.data.info.limit_purchase - this.data.info.limit_purchase_used) || (this.data.info.limit_purchase - this.data.info.limit_purchase_used > 0)) || this.data.num > this.data.info.limit_number || this.data.num > this.data.info.limit_number) {
+        if (this.data.info.isLimit == 1 && this.data.info.limitPurchase != 0) {
+          if (this.data.num > ((this.data.info.limitPurchase - this.data.info.limitPurchaseUsed) || (this.data.info.limitPurchase - this.data.info.limitPurchaseUsed > 0)) || this.data.num > this.data.info.limitNumber || this.data.num > this.data.info.limitNumber) {
             app.showToast('抢购已达到上限')
             return
           }
-        } else if (this.data.info.is_limit == 1 && this.data.info.limit_purchase == 0) {
-          if (this.data.num > this.data.info.limit_number) {
+        } else if (this.data.info.isLimit == 1 && this.data.info.limitPurchase == 0) {
+          if (this.data.num > this.data.info.limitNumber) {
             app.showToast('抢购已达到上限')
             return
           }
         }
         //拼团上限
-        if (this.data.info.is_group == 1 && this.data.group_buy && this.data.info.get_group_goods_num > this.data.info.buy_cum_limit && this.data.info.buy_cum_limit > 0) {
+        if (this.data.info.isGroup == 1 && this.data.groupBuy && this.data.info.getGroupGoodsNum > this.data.info.buyCumLimit && this.data.info.buyCumLimit > 0) {
           app.showToast('该拼团商品已达到购买上限')
           return
         } else {
-          if (this.data.info.is_group == 1 && this.data.group_buy && this.data.num > this.data.info.buy_cum_limit - this.data.info.get_group_goods_num && this.data.info.buy_cum_limit > 0) {
+          if (this.data.info.isGroup == 1 && this.data.groupBuy && this.data.num > this.data.info.buyCumLimit - this.data.info.getGroupGoodsNum && this.data.info.buyCumLimit > 0) {
             app.showToast('该拼团商品已达到购买上限')
             return
           }
         }
-        let is_attr_array = true
-        for (let i of this.data.attr_array) {
+        let isAttrArray = true
+        for (let i of this.data.attrArray) {
           if (!i) {
-            is_attr_array = false
+            isAttrArray = false
           }
         }
-        if (this.data.attr_array.length != this.data.info.attr.length || !is_attr_array) {
+        if (this.data.attrArray.length != this.data.info.attr.length || !isAttrArray) {
           app.showToast('请选择商品属性')
           return
         }
@@ -371,59 +369,59 @@ Component({
           return
         }
         //砍价商品
-        if (this.data.info.is_bargain == 1) {
+        if (this.data.info.isBargain == 1) {
           this.bargain()
         } else {
-          let fx_type;
-          if (this.data.info.is_distribution == 1 || this.data.info.is_distributor == 1) {
-            fx_type = 1
+          let fxType;
+          if (this.data.info.isDistribution == 1 || this.data.info.isDistributor == 1) {
+            fxType = 1
           }
           let obj = {
             //商品类型 1正常商品 2团购 3砍价 4限时抢购
-            good_type: this.data.order_type,
-            is_original: this.data.info.is_original ? '1' : '',
+            goodType: this.data.orderType,
+            isOriginal: this.data.info.isOriginal ? '1' : '',
             //商品id
-            goods_id: this.data.info.goods_id,
+            goodsId: this.data.info.goodsId,
             //砍价id
-            cut_activity_id: '',
+            cutActivityId: '',
             //参团id
-            group_activity_id: this.data.group_activity_id,
+            groupActivityId: this.data.groupActivityId,
             //购买数量
             num: this.data.num,
             //店铺id
-            store_id: this.data.info.store_id,
+            storeId: this.data.info.storeId,
             //店铺名称
-            store_name: encodeURIComponent(this.data.info.store_name),
+            storeName: encodeURIComponent(this.data.info.storeName),
             //价格
-            shop_price: this.data.info.shop_price,
+            shopPrice: this.data.info.shopPrice,
             //商品名称
-            goods_name: encodeURIComponent(this.data.info.goods_name),
+            goodsName: encodeURIComponent(this.data.info.goodsName),
             //商品规格id
-            products_id: this.data.products_id,
+            productsId: this.data.productsId,
             //规格展示
-            attr_detail: this.data.attr_detail,
+            attrDetail: this.data.attrDetail,
             //规格
             attr: this.data.attr,
             //库存
-            goods_number: this.data.info.goods_number,
+            goodsNumber: this.data.info.goodsNumber,
             //团购价
-            group_price: this.data.info.group_price,
+            groupPrice: this.data.info.groupPrice,
             //砍价
-            cut_price: this.data.info.cut_price,
+            cutPrice: this.data.info.cutPrice,
             //限时抢购价
-            time_limit_price: this.data.info.time_limit_price,
+            timeLimitPrice: this.data.info.timeLimitPrice,
             //总金额
-            subtotal: parseFloat(this.data.info.shop_price * this.data.num).toFixed(2),
+            subtotal: parseFloat(this.data.info.shopPrice * this.data.num).toFixed(2),
           }
           this.setData({
             isShow: false
           })
-          http.post(app.globalData.applet_my_saveFormId, {
+          http.post(app.globalData.appletMySaveFormId, {
             microFormId: this.data.formId
           })
           //跳转确认订单页
           wx.navigateTo({
-            url: '/pages/confirm_order/confirm_order?info=' + encodeURIComponent(JSON.stringify(obj)) + '&good_image=' + encodeURIComponent(this.data.good_image),
+            url: '/pages/confirmOrder/confirmOrder?info=' + encodeURIComponent(JSON.stringify(obj)) + '&goodImage=' + encodeURIComponent(this.data.goodImage),
           })
         }
       })
@@ -433,37 +431,37 @@ Component({
      * 立即砍价
      */
     bargain() {
-      let is_attr_array = true
-      for (let i of this.data.attr_array) {
+      let isAttrArray = true
+      for (let i of this.data.attrArray) {
         if (!i) {
-          is_attr_array = false
+          isAttrArray = false
         }
       }
-      if (this.data.attr_array.length != this.data.info.attr.length || !is_attr_array) {
+      if (this.data.attrArray.length != this.data.info.attr.length || !isAttrArray) {
         app.showToast('请选择商品属性')
         return
       }
       wx.nextTick(() => {
-        if (this.data.info.is_own_shop == 1) {
+        if (this.data.info.isOwnShop == 1) {
           app.showToast('您的商品，留给别人购买')
           return
         }
-        if (this.data.info.goods_number == 0) {
+        if (this.data.info.goodsNumber == 0) {
           app.showToast('暂无库存')
           return
         }
-        http.post(app.globalData.bargain_immediately, {
-          goodsId: this.data.info.goods_id,
-          attr: this.data.attr_detail,
+        http.post(app.globalData.bargainImmediately, {
+          goodsId: this.data.info.goodsId,
+          attr: this.data.attrDetail,
           goodsAttr: this.data.info.attr.length != 0 ? this.data.attr : '',
-          productsId: this.data.products_id,
-          price: this.data.info.cut_price
+          productsId: this.data.productsId,
+          price: this.data.info.cutPrice
         }).then(res => {
-          http.post(app.globalData.applet_my_saveFormId, {
+          http.post(app.globalData.appletMySaveFormId, {
             microFormId: this.data.formId
           }).then(res => {})
           wx.navigateTo({
-            url: '/pages/bargain/bargain?id=' + res.cut_activity_id + '&first=1'
+            url: '/pages/bargain/bargain?id=' + res.cutActivityId + '&first=1'
           })
         })
       })
@@ -474,17 +472,17 @@ Component({
      */
     _addCart() {
       wx.nextTick(() => {
-        let is_attr_array = true
-        for (let i of this.data.attr_array) {
+        let isAttrArray = true
+        for (let i of this.data.attrArray) {
           if (!i) {
-            is_attr_array = false
+            isAttrArray = false
           }
         }
-        if (this.data.info.is_own_shop == 1) {
+        if (this.data.info.isOwnShop == 1) {
           app.showToast('您的商品，留给别人购买')
           return
         }
-        if (this.data.attr_array.length != this.data.info.attr.length || !is_attr_array) {
+        if (this.data.attrArray.length != this.data.info.attr.length || !isAttrArray) {
           app.showToast('请选择商品属性')
           return
         }
@@ -492,20 +490,20 @@ Component({
           app.showToast('购买数量不可为0')
           return
         }
-        http.encPost(app.globalData.cart_create, {
-          storeId: this.data.info.store_id,
-          goodsId: this.data.info.goods_id,
-          goodsName: this.data.info.goods_name,
-          file: this.data.good_file_image,
+        http.encPost(app.globalData.cartCreate, {
+          storeId: this.data.info.storeId,
+          goodsId: this.data.info.goodsId,
+          goodsName: this.data.info.goodsName,
+          file: this.data.goodFileImage,
           number: this.data.num,
-          productsId: this.data.products_id,
-          attr: this.data.attr_detail,
+          productsId: this.data.productsId,
+          attr: this.data.attrDetail,
           goodsAttr: this.data.info.attr.length != 0 ? this.data.attr : '',
         }).then(res => {
           event.emit('refreshCart')
           event.emit('refreshCartNumber')
           let obj = {
-            goods_id: this.data.info.goods_id,
+            goodsId: this.data.info.goodsId,
             number: this.data.num
           }
           event.emit('shopAddCart', obj)

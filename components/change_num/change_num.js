@@ -11,7 +11,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    change_num: '',
+    changeNum: '',
     inventory: ''
   },
   ready() {
@@ -24,11 +24,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    show(change_num, inventory) {
+    show(changeNum, inventory) {
       this.setData({
         show: true,
-        change_num: change_num,
-        inventory: inventory
+        changeNum,
+        inventory,
       })
     },
 
@@ -36,10 +36,10 @@ Component({
      * 减少数量
      */
     onChangeMinus() {
-      if (this.data.change_num > 1) {
-        this.data.change_num--;
+      if (this.data.changeNum > 1) {
+        this.data.changeNum--;
         this.setData({
-          change_num: this.data.change_num
+          changeNum: this.data.changeNum
         })
       }
     },
@@ -48,17 +48,17 @@ Component({
      * 增加数量
      */
     onChangeAdd() {
-      if (this.data.change_num == this.data.inventory) {
+      if (this.data.changeNum == this.data.inventory) {
         app.showToast('最大库存为' + this.data.inventory)
         return
       }
-      if (this.data.change_num == 99) {
+      if (this.data.changeNum == 99) {
         app.showToast('已达到最大购买数量')
         return
       }
-      this.data.change_num++;
+      this.data.changeNum++;
       this.setData({
-        change_num: this.data.change_num
+        changeNum: this.data.changeNum
       })
     },
 
@@ -67,7 +67,7 @@ Component({
      */
     numInput(e) {
       this.setData({
-        change_num: e.detail.value
+        changeNum: e.detail.value
       })
     },
 
@@ -75,19 +75,19 @@ Component({
      * 确认修改
      */
     onChangeSubmit() {
-      if (this.data.change_num > this.data.inventory) {
+      if (this.data.changeNum > this.data.inventory) {
         app.showToast('最大库存为' + this.data.inventory)
         return
       }
-      if (this.data.change_num > 99) {
+      if (this.data.changeNum > 99) {
         app.showToast('已超过到最大购买数量')
         return
       }
-      if (this.data.change_num == 0) {
+      if (this.data.changeNum == 0) {
         app.showToast('商品数量不可为0')
         return
       }
-      this.triggerEvent("changeNum", this.data.change_num)
+      this.triggerEvent("changeNum", this.data.changeNum)
       this.setData({
         show: false
       })

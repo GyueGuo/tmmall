@@ -6,26 +6,26 @@ Component({
   properties: {
     info: {
       type: Object,
-      observer: function() {
-        if (this.data.info.multiple_file != undefined) {
+      observer: function () {
+        if (this.data.info.multipleFile != undefined) {
           if (this.data.info.video != 'null' && this.data.info.video != '') {
             this.setData({
               video: this.data.info.video
             })
           }
-          for (let i = 0, len = this.data.info.multiple_file.length; i < len; i++) {
+          for (let i = 0, len = this.data.info.multipleFile.length; i < len; i++) {
             let image = {
               type: 'image',
-              content: this.data.info.multiple_file[i]
+              content: this.data.info.multipleFile[i]
             }
             this.data.banner.push(image)
           }
 
           this.setData({
-            current_banner: this.data.info.current + 1,
+            currentBanner: this.data.info.current + 1,
             current: this.data.info.current,
             banner: this.data.banner,
-            banner_length: this.data.info.video != 'null' && this.data.info.video != '' ? this.data.info.multiple_file.length + 1 : this.data.info.multiple_file.length
+            bannerLength: this.data.info.video != 'null' && this.data.info.video != '' ? this.data.info.multipleFile.length + 1 : this.data.info.multipleFile.length
           })
         }
       }
@@ -37,7 +37,7 @@ Component({
    */
   data: {
     banner: [],
-    current_banner: 1,
+    currentBanner: 1,
     //图片滑动开始X
     moveX: '',
     current: 0,
@@ -53,7 +53,7 @@ Component({
      */
     bannerChange(e) {
       this.setData({
-        current_banner: e.detail.current + 1,
+        currentBanner: e.detail.current + 1,
         current: e.detail.current
       })
     },
@@ -63,7 +63,7 @@ Component({
      */
     _onVideo() {
       this.setData({
-        video_board: true
+        videoBoard: true
       })
       wx.createVideoContext('video', this).play()
     },
@@ -73,12 +73,12 @@ Component({
     },
 
     _videoMove(e) {
-      let length = this.data.info.multiple_file.length
+      let length = this.data.info.multipleFile.length
       if (e.touches[0].pageX - this.data.moveX < -50) {
         if (length >= 1) {
           this.setData({
             current: 1,
-            video_board: false
+            videoBoard: false
           })
           wx.createVideoContext('video').pause()
         }
@@ -88,7 +88,7 @@ Component({
         if (length >= 1) {
           this.setData({
             current: length,
-            video_board: false
+            videoBoard: false
           })
           wx.createVideoContext('video').pause()
         }
@@ -101,7 +101,7 @@ Component({
      */
     _videoEnd() {
       this.setData({
-        video_board: false
+        videoBoard: false
       })
     },
   }

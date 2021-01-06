@@ -7,12 +7,12 @@ Page({
    */
   data: {
     tab: [],
-    interval_id: 0,
+    intervalId: 0,
     page: 1,
     total: '',
-    limit_list: [],
+    limitList: [],
     //计时器
-    count_down: {},
+    countDown: {},
     time: ''
   },
 
@@ -50,7 +50,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-    clearInterval(this.data.count_down)
+    clearInterval(this.data.countDown)
   },
 
   /**
@@ -65,7 +65,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-    if (this.data.total > this.data.limit_list.length) {
+    if (this.data.total > this.data.limitList.length) {
       this.data.page++;
       this.getLimitList()
     }
@@ -76,7 +76,7 @@ Page({
    */
   onTab(e) {
     this.setData({
-      interval_id: e.currentTarget.dataset.id,
+      intervalId: e.currentTarget.dataset.id,
       page: 1,
       list: []
     })
@@ -87,9 +87,9 @@ Page({
    * 商品详情
    */
   onGood(e) {
-    if (this.data.interval_id == this.data.tab[0].limit_interval_id) {
+    if (this.data.intervalId == this.data.tab[0].limitIntervalId) {
       wx.navigateTo({
-        url: '/nearby_shops/good_detail/good_detail?goods_id=' + e.currentTarget.dataset.id,
+        url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + e.currentTarget.dataset.id,
       })
     } else {
       wx.showToast({
@@ -103,10 +103,10 @@ Page({
    * 抢购时间
    */
   getLimitTime() {
-    http.post(app.globalData.time_limit).then(res => {
+    http.post(app.globalData.timeLimit).then(res => {
       this.setData({
         tab: res.result,
-        interval_id: res.result[0].limitIntervalId
+        intervalId: res.result[0].limitIntervalId
       })
       this.getLimitList()
     })
@@ -116,26 +116,26 @@ Page({
    * 抢购列表
    */
   getLimitList() {
-    http.post(app.globalData.limit_list, {
-      intervalId: this.data.interval_id,
+    http.post(app.globalData.limitList, {
+      intervalId: this.data.intervalId,
       page: this.data.page
     }).then(res => {
       if (this.data.page == 1) {
         this.setData({
           finish: true,
           total: res.result.total,
-          limit_list: res.result.data,
+          limitList: res.result.data,
           state: res.when.state,
           time: res.when.time
         })
-        clearInterval(this.data.count_down)
+        clearInterval(this.data.countDown)
         this.countDown()
-        this.data.count_down = setInterval(() => {
+        this.data.countDown = setInterval(() => {
           this.countDown()
         }, 1000)
       } else {
         this.setData({
-          limit_list: [...this.data.limit_list, ...res.result.data]
+          limitList: [...this.data.limitList, ...res.result.data]
         })
       }
     })
@@ -175,7 +175,7 @@ Page({
    */
   onBackTop() {
     this.setData({
-      scroll_top: 0
+      scrollTop: 0
     })
   },
 

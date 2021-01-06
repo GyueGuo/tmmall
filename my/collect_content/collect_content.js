@@ -73,7 +73,7 @@ Page({
    * 获取数据
    */
   getList() {
-    http.postList(app.globalData.article_list, {
+    http.postList(app.globalData.articleList, {
       page: this.data.page
     }).then(res => {
       if (this.data.page == 1) {
@@ -93,19 +93,19 @@ Page({
    * 内容详情
    */
   onDetail(e) {
-    if (!this.data.is_long) {
+    if (!this.data.isLong) {
       wx.navigateTo({
-        url: '/pages/info_detail/info_detail?article_id=' + e.currentTarget.dataset.id,
+        url: '/pages/infoDetail/infoDetail?articleId=' + e.currentTarget.dataset.id,
       })
     }
-    this.data.is_long = false
+    this.data.isLong = false
   },
 
   /**
    * 删除
    */
   deleteShop(e) {
-    this.data.is_long = true
+    this.data.isLong = true
     this.selectComponent("#modal").showModal()
     this.data.index = e.currentTarget.dataset.index
   },
@@ -114,7 +114,7 @@ Page({
    * 确认删除
    */
   deleteConfirm() {
-    http.post(app.globalData.collect_article_delete, {
+    http.post(app.globalData.collectArticleDelete, {
       collectArticleId: this.data.list[this.data.index].collectArticleId + '',
       articleId: this.data.list[this.data.index].collectArticleId + '',
     }).then(() => {

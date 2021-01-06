@@ -1,4 +1,3 @@
-// components/sale_promotion/sale_promotion.js
 Component({
   /**
    * 组件的属性列表

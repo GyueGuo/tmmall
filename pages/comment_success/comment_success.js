@@ -104,21 +104,21 @@ Page({
   comment(e) {
     let index = this.data.index = e.currentTarget.dataset.index
     let item = e.currentTarget.dataset.item
-    if (item.has_refund == 1) {
+    if (item.hasRefund == 1) {
       app.showToast('退款退货商品不能去评价~', () => {})
       return
     }
-    for (let i = 0, len = this.data.list[index].order_goods_evaluate.length; i < len; i++) {
-      this.data.list[index].order_goods_evaluate[i].file = encodeURIComponent(this.data.list[index].order_goods_evaluate[i].file)
+    for (let i = 0, len = this.data.list[index].orderGoodsEvaluate.length; i < len; i++) {
+      this.data.list[index].orderGoodsEvaluate[i].file = encodeURIComponent(this.data.list[index].orderGoodsEvaluate[i].file)
     }
     wx.navigateTo({
-      url: '/pages/comment/comment?info=' + JSON.stringify(this.data.list[index].order_goods_evaluate) + '&write=' + this.data.write,
+      url: '/pages/comment/comment?info=' + JSON.stringify(this.data.list[index].orderGoodsEvaluate) + '&write=' + this.data.write,
     })
   },
 
   myComment() {
     wx.redirectTo({
-      url: '/my/my_comment/my_comment',
+      url: '/my/myComment/myComment',
     })
   }
 })

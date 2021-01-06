@@ -1,9 +1,10 @@
-<!--my/my_prize/my_prize.wxml-->
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='warp'>
   <view class='nav'>
-    <view class='nav_li' wx:for='{{nav}}' data-tab='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='nav_tab'>
-      <text class='{{index==current_tab?"on":""}}' style='{{index==current_tab?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>{{item}}</text>
+    <view class='nav_li' wx:for='{{nav}}' data-tab='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='navTab'>
+      <text class='{{index==currentTab?"on":""}}' style='{{index==currentTab?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>
+        {{item}}
+      </text>
     </view>
   </view>
   <view class='con-list'>
@@ -11,19 +12,32 @@
       <view class='li_top'>
         <image class='goods_img' src='{{item.file}}'></image>
         <view class='li_info'>
-          <view class='tit'>{{item.prize_title}}</view>
-          <view class='time'>{{item.create_time}}</view>
+          <view class='tit'>{{item.prizeTitle}}</view>
+          <view class='time'>{{item.createTime}}</view>
         </view>
-        <view class='li_type' wx:if='{{item.status==0}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>待领取</view>
-        <view class='li_type' wx:if='{{item.status==1}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>待发货</view>
-        <view class='li_type' wx:if='{{item.status==2}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>已发货</view>
-        <view class='li_type' wx:if='{{item.status==3}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>已完成</view>
+        <view class='li_type' wx:if='{{item.status==0}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>
+          待领取
+        </view>
+        <view class='li_type' wx:if='{{item.status==1}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>
+          待发货
+        </view>
+        <view class='li_type' wx:if='{{item.status==2}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>
+          已发货
+        </view>
+        <view class='li_type' wx:if='{{item.status==3}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>
+          已完成
+        </view>
       </view>
-
-      <view class='li_bottom' hidden='{{item.goods_type!=1}}'>
-        <text class='' wx:if='{{item.status==2}}' data-index='{{index}}' data-id='{{item.order_id}}' hover-class='hover-class' hover-stay-time='400' catchtap='showModal' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}' data-confirmType='0'>确认收货</text>
-        <text class='' wx:if='{{item.status==0}}' data-item='{{item}}' hover-class='hover-class' hover-stay-time='400' catchtap='address' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>填写地址</text>
-        <text class='' wx:if='{{item.status==2}}' data-item='{{item}}' hover-class='hover-class' hover-stay-time='400' catchtap='logistics' style='{{item.status==2?"":util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>查看物流</text>
+      <view class='li_bottom' hidden='{{item.goodsType!=1}}'>
+        <text class='' wx:if='{{item.status==2}}' data-index='{{index}}' data-id='{{item.orderId}}' hover-class='hover-class' hover-stay-time='400' catchtap='showModal' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}' data-confirmType='0'>
+          确认收货
+        </text>
+        <text class='' wx:if='{{item.status==0}}' data-item='{{item}}' hover-class='hover-class' hover-stay-time='400' catchtap='address' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>
+          填写地址
+        </text>
+        <text class='' wx:if='{{item.status==2}}' data-item='{{item}}' hover-class='hover-class' hover-stay-time='400' catchtap='logistics' style='{{item.status==2?"":util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>
+          查看物流
+        </text>
       </view>
     </view>
     <view class='no-order' hidden="{{list.length != 0 || loading}}">
@@ -34,5 +48,5 @@
       </view>
     </view>
   </view>
-  <modal title="{{modal_confirm[showModal].title}}" content="{{modal_confirm[showModal].content}}" id="modal" bind:confirm="{{modal_confirm[showModal].callback}}" />
+  <modal title="{{modalConfirm[showModal].title}}" content="{{modalConfirm[showModal].content}}" id="modal" bind:confirm="{{modalConfirm[showModal].callback}}" />
 </view>

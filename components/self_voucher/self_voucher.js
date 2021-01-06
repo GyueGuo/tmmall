@@ -23,8 +23,8 @@ Component({
         isShow: true,
         info: info
       })
-      wxbarcode.barcode('barcode', info.take_code + '', 584, 126);
-      wxbarcode.qrcode('qrcode', info.take_code + '', 330, 330);
+      wxbarcode.barcode('barcode', info.takeCode + '', 584, 126);
+      wxbarcode.qrcode('qrcode', info.takeCode + '', 330, 330);
     },
     /**
      * 关闭

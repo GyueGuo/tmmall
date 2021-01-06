@@ -7,39 +7,39 @@ Page({
    */
   data: {
     //搜索关键字
-    search_key: '',
+    searchKey: '',
     //单列 1 双列2
     columns: 1,
     //选项卡
-    current_tab: 1,
+    currentTab: 1,
     //价格 高低
     rank: '',
     //综合列表框
-    classify_board: false,
+    classifyBoard: false,
     //选中综合
-    compre_type: 1,
+    compreType: 1,
     //选中综合文字
     compre: '综合',
     //筛选列表显示
-    filtrate_board: false,
+    filtrateBoard: false,
     //筛选状态
-    is_filtrate: false,
+    isFiltrate: false,
     //参数
-    goods_classify_id: '',
-    brand_id: '',
+    goodsClassifyId: '',
+    brandId: '',
     shop: '',
-    freight_status: '',
-    is_freight: '',
-    goods_number: '',
-    minimum_price: '',
-    top_price: '',
+    freightStatus: '',
+    isFreight: '',
+    goodsNumber: '',
+    minimumPrice: '',
+    topPrice: '',
     //数据
-    good_list: [],
+    goodList: [],
     total: '',
     page: 1,
     loading: true,
     distribution: '',
-    distribution_type: 0 //0正常列表 1购买指定列表
+    distributionType: 0 //0正常列表 1购买指定列表
   },
 
   /**
@@ -52,13 +52,13 @@ Page({
     let obj = {}
     //搜索关键字
     if (options.key) {
-      obj.search_key = options.key
+      obj.searchKey = options.key
     }
-    if (options.goods_classify_id) {
-      obj.goods_classify_id = options.goods_classify_id
+    if (options.goodsClassifyId) {
+      obj.goodsClassifyId = options.goodsClassifyId
     }
-    if (options.brand_id) {
-      obj.brand_id = options.brand_id
+    if (options.brandId) {
+      obj.brandId = options.brandId
     }
     this.setData(obj)
   },
@@ -75,11 +75,9 @@ Page({
    */
   onShow: function() {
     this.setData({
-      sup_id: app.globalData.sup_id
+      supId: app.globalData.supId
     })
-    // if (app.globalData.member_id != '') {
     this.getDistributionData()
-    // }
   },
 
   /**
@@ -112,7 +110,7 @@ Page({
    */
   onBackTop() {
     this.setData({
-      scroll_top: 0
+      scrollTop: 0
     })
   },
 
@@ -120,7 +118,7 @@ Page({
    * 搜索框输入
    */
   searchInput(e) {
-    this.data.search_key = e.detail.value
+    this.data.searchKey = e.detail.value
   },
 
   /**
@@ -135,7 +133,7 @@ Page({
    */
   onClearKey() {
     this.setData({
-      search_key: ''
+      searchKey: ''
     })
   },
 
@@ -145,11 +143,11 @@ Page({
   onSearch() {
     this.setData({
       shop: '',
-      freight_status: '',
-      is_freight: '',
-      goods_number: '',
-      minimum_price: '',
-      top_price: '',
+      freightStatus: '',
+      isFreight: '',
+      goodsNumber: '',
+      minimumPrice: '',
+      topPrice: '',
       page: 1
     })
     this.getData()
@@ -173,54 +171,54 @@ Page({
     console.log('get')
     let parameter = '';
     //综合排序    
-    if (this.data.current_tab == 1) {
-      switch (this.data.compre_type) {
+    if (this.data.currentTab == 1) {
+      switch (this.data.compreType) {
         //综合
         case 1:
           parameter = ''
           break;
         case 2:
           //新品
-          parameter = 'create_time'
+          parameter = 'createTime'
           break;
         case 3:
           //评论
-          parameter = 'comments_number'
+          parameter = 'commentsNumber'
           break;
       }
-    } else if (this.data.current_tab == 2) {
+    } else if (this.data.currentTab == 2) {
       //销量
-      parameter = 'sales_volume'
+      parameter = 'salesVolume'
     } else {
       //价格
-      parameter = 'shop_price'
+      parameter = 'shopPrice'
     }
-    http.postList(app.globalData.good_list, {
-      goodsClassifyId: this.data.goods_classify_id,
-      brandId: this.data.brand_id,
+    http.postList(app.globalData.goodList, {
+      goodsClassifyId: this.data.goodsClassifyId,
+      brandId: this.data.brandId,
       parameter: parameter,
       rank: this.data.rank,
       shop: this.data.shop,
-      freightStatus: this.data.freight_status,
-      keyword: this.data.search_key,
-      goodsNumber: this.data.goods_number,
-      minimumPrice: this.data.minimum_price,
-      topPrice: this.data.top_price,
-      isFreight: this.data.is_freight,
-      isDistributor: this.data.distribution_type == 1 ? 2 : 0,
-      isDistribution: this.data.distribution_type == 1 ? 2 : 2,
+      freightStatus: this.data.freightStatus,
+      keyword: this.data.searchKey,
+      goodsNumber: this.data.goodsNumber,
+      minimumPrice: this.data.minimumPrice,
+      topPrice: this.data.topPrice,
+      isFreight: this.data.isFreight,
+      isDistributor: this.data.distributionType == 1 ? 2 : 0,
+      isDistribution: this.data.distributionType == 1 ? 2 : 2,
       page: this.data.page
     }).then(res => {
       if (this.data.page == 1) {
         this.onBackTop()
         this.setData({
-          good_list: res.result.data,
+          goodList: res.result.data,
           total: res.result.total,
           discount: res.discount == null ? 100 : res.discount,
         })
       } else {
         this.setData({
-          good_list: [...this.data.good_list, ...res.result.data]
+          goodList: [...this.data.goodList, ...res.result.data]
         })
       }
     })
@@ -231,14 +229,14 @@ Page({
    */
   onComposite() {
     //列表框
-    if (this.data.current_tab == 1) {
+    if (this.data.currentTab == 1) {
       this.setData({
-        classify_board: !this.data.classify_board,
+        classifyBoard: !this.data.classifyBoard,
       })
     } else {
       //点击综合
       this.setData({
-        current_tab: 1,
+        currentTab: 1,
         rank: ''
       })
       this.data.page = 1
@@ -254,7 +252,7 @@ Page({
     //关闭综合列表框
     if (!this.closeSynthesisList()) {
       this.setData({
-        current_tab: 2,
+        currentTab: 2,
         rank: 'desc'
       })
       this.data.page = 1
@@ -275,7 +273,7 @@ Page({
       }
       this.setData({
         parameter: '',
-        current_tab: 3,
+        currentTab: 3,
         rank: this.data.rank
       })
       this.data.page = 1
@@ -289,7 +287,7 @@ Page({
   OnChangeFilter() {
     if (!this.closeSynthesisList()) {
       this.setData({
-        filtrate_board: true
+        filtrateBoard: true
       })
     }
   },
@@ -299,7 +297,7 @@ Page({
    */
   onCompreRank() {
     this.setData({
-      compre_type: 1,
+      compreType: 1,
       compre: '综合'
     })
     this.closeSynthesisList()
@@ -312,7 +310,7 @@ Page({
    */
   onNew() {
     this.setData({
-      compre_type: 2,
+      compreType: 2,
       compre: '新品',
       rank: 'desc'
     })
@@ -326,7 +324,7 @@ Page({
    */
   onComment() {
     this.setData({
-      compre_type: 3,
+      compreType: 3,
       compre: '评论'
     })
     this.closeSynthesisList()
@@ -338,9 +336,9 @@ Page({
    * 关闭综合列表
    */
   closeSynthesisList() {
-    if (this.data.classify_board) {
+    if (this.data.classifyBoard) {
       this.setData({
-        classify_board: false
+        classifyBoard: false
       })
       return true;
     }
@@ -352,8 +350,8 @@ Page({
    */
   closeTrans() {
     this.setData({
-      classify_board: false,
-      filtrate_board: false
+      classifyBoard: false,
+      filtrateBoard: false
     })
   },
 
@@ -362,16 +360,16 @@ Page({
    */
   onFiltrateReset() {
     this.setData({
-      filtrate_board: false,
-      is_filtrate: false,
+      filtrateBoard: false,
+      isFiltrate: false,
       parameter: '',
       rank: '',
       shop: '',
-      freight_status: '',
-      is_freight: '',
-      goods_number: '',
-      minimum_price: '',
-      top_price: '',
+      freightStatus: '',
+      isFreight: '',
+      goodsNumber: '',
+      minimumPrice: '',
+      topPrice: '',
       page: 1
     })
     this.getData()
@@ -382,16 +380,16 @@ Page({
    */
   onFiltrateConfirm(e) {
     this.setData({
-      filtrate_board: false,
-      is_filtrate: true,
+      filtrateBoard: false,
+      isFiltrate: true,
       page: 1
     })
     this.data.shop = e.detail.shop
-    this.data.freight_status = e.detail.freight_status
-    this.data.goods_number = e.detail.goods_number
-    this.data.is_freight = e.detail.is_freight
-    this.data.minimum_price = e.detail.minimum_price
-    this.data.top_price = e.detail.top_price
+    this.data.freightStatus = e.detail.freightStatus
+    this.data.goodsNumber = e.detail.goodsNumber
+    this.data.isFreight = e.detail.isFreight
+    this.data.minimumPrice = e.detail.minimumPrice
+    this.data.topPrice = e.detail.topPrice
     this.getData()
   },
 
@@ -399,7 +397,7 @@ Page({
    * 加载更多
    */
   loadMore() {
-    if (this.data.total > this.data.good_list.length) {
+    if (this.data.total > this.data.goodList.length) {
       this.data.page++;
       this.getData()
     }
@@ -410,7 +408,7 @@ Page({
    */
   onGoods(e) {
     wx.navigateTo({
-      url: '/nearby_shops/good_detail/good_detail?goods_id=' + e.currentTarget.dataset.id,
+      url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -419,7 +417,7 @@ Page({
    */
   onShop(e) {
     wx.navigateTo({
-      url: '/pages/shop_detail/shop_detail?store_id=' + e.currentTarget.dataset.id,
+      url: '/pages/shopDetail/shopDetail?storeId=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -435,7 +433,7 @@ Page({
   goFx() {
     if (app.login()) {
       wx.navigateTo({
-        url: '/my/fx_cwdy/fx_cwdy',
+        url: '/my/fxCwdy/fxCwdy',
       })
     }
   },
@@ -444,28 +442,28 @@ Page({
    * 获取代言信息
    */
   getDistributionData() {
-    http.post(app.globalData.distribution_share_info, {
-      distributionId: app.globalData.sup_id == '' ? 0 : app.globalData.sup_id
+    http.post(app.globalData.distributionShareinfo, {
+      distributionId: app.globalData.supId == '' ? 0 : app.globalData.supId
     }).then(res => {
       try {
         this.setData({
           distribution: res.data,
-          distribution_type: res.data.click != "appointSpeaker" ? 0 : 1
+          distributionType: res.data.click != "appointSpeaker" ? 0 : 1
         })
         this.getData()
         app.globalData.distribution = res.data
-        let member_info = wx.getStorageSync('member_info')
-        if (member_info.distribution_record == null) {
-          let distribution_record = {
-            distribution_id: res.data.cur == null ? null : res.data.cur.distribution_id,
-            audit_status: res.data.cur == null ? null : res.data.cur.audit_status
+        let memberInfo = wx.getStorageSync('memberInfo')
+        if (memberInfo.distributionRecord == null) {
+          let distributionRecord = {
+            distributionId: res.data.cur == null ? null : res.data.cur.distributionId,
+            auditStatus: res.data.cur == null ? null : res.data.cur.auditStatus
           }
-          member_info.distribution_record = distribution_record
+          memberInfo.distributionRecord = distributionRecord
         } else {
-          member_info.distribution_record.distribution_id = res.data.cur == null ? null : res.data.cur.distribution_id
-          member_info.distribution_record.audit_status = res.data.cur == null ? null : res.data.cur.audit_status
+          memberInfo.distributionRecord.distributionId = res.data.cur == null ? null : res.data.cur.distributionId
+          memberInfo.distributionRecord.auditStatus = res.data.cur == null ? null : res.data.cur.auditStatus
         }
-        wx.setStorageSync('member_info', member_info)
+        wx.setStorageSync('memberInfo', memberInfo)
       } catch (e) {}
     })
   },

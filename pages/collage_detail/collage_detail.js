@@ -7,12 +7,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-
     //拼团id
     id: '',
     //商品id
-    goods_id: '',
-    count_down: {},
+    goodsId: '',
+    countDown: {},
   },
 
   /**
@@ -43,7 +42,7 @@ Page({
     })
     this.getData()
     this.setData({
-      member_id: app.globalData.member_id
+      memberId: app.globalData.memberId
     })
   },
 
@@ -72,10 +71,10 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function (res) {
-    if (res.from === 'button') { } else { }
+    if (res.from === 'button') {} else {}
     return {
-      title: this.data.info.goods_name,
-      path: '/pages/collage_detail/collage_detail?id=' + this.data.id,
+      title: this.data.info.goodsName,
+      path: '/pages/collageDetail/collageDetail?id=' + this.data.id,
       success: res => {
         wx.showToast({
           title: '转发成功',
@@ -101,12 +100,12 @@ Page({
    * 获取信息
    */
   getData() {
-    http.post(app.globalData.group_view, {
+    http.post(app.globalData.groupView, {
       groupActivityAttachId: this.data.id
     }).then(res => {
       res.result['need'] = res.result.groupNum - res.result.participant.length
       for (let i = 0, len = res.result.participant.length; i < len; i++) {
-        if (res.result.participant[i].member_id == res.result.owner) {
+        if (res.result.participant[i].memberId == res.result.owner) {
           let item = res.result.participant[i]
           res.result.participant.splice(i, 1)
           let array = []
@@ -117,12 +116,12 @@ Page({
       }
       this.setData({
         info: res.result,
-        goods_id: res.result.goodsId,
-        group_list: res.groupList,
+        goodsId: res.result.goodsId,
+        groupList: res.groupList,
       })
-      clearInterval(this.data.count_down)
+      clearInterval(this.data.countDown)
       this.countDown()
-      this.data.count_down = setInterval(() => {
+      this.data.countDown = setInterval(() => {
         this.countDown()
       }, 1000)
     })
@@ -132,7 +131,7 @@ Page({
    * 倒计时
    */
   countDown() {
-    let second = this.data.info.continue_time
+    let second = this.data.info.continueTime
     if (second == 0 && this.data.info.status != 2) {
       this.data.info.status = 3
       this.setData({
@@ -142,13 +141,13 @@ Page({
       this.data.info['hour'] = Math.floor(second / 3600) < 10 ? '0' + Math.floor(second / 3600) : Math.floor(second / 3600)
       this.data.info['min'] = Math.floor(second / 60 % 60) < 10 ? '0' + Math.floor(second / 60 % 60) : Math.floor(second / 60 % 60)
       this.data.info['sec'] = Math.floor(second % 60) < 10 ? '0' + Math.floor(second % 60) : Math.floor(second % 60)
-      this.data.info['hour_first'] = this.data.info['hour'].toString().substring(0, 1)
-      this.data.info['hour_second'] = this.data.info['hour'].toString().substring(1, 2)
-      this.data.info['min_first'] = this.data.info['min'].toString().substring(0, 1)
-      this.data.info['min_second'] = this.data.info['min'].toString().substring(1, 2)
-      this.data.info['sec_first'] = this.data.info['sec'].toString().substring(0, 1)
-      this.data.info['sec_second'] = this.data.info['sec'].toString().substring(1, 2)
-      this.data.info.continue_time--;
+      this.data.info['hourFirst'] = this.data.info['hour'].toString().substring(0, 1)
+      this.data.info['hourSecond'] = this.data.info['hour'].toString().substring(1, 2)
+      this.data.info['minFirst'] = this.data.info['min'].toString().substring(0, 1)
+      this.data.info['minSecond'] = this.data.info['min'].toString().substring(1, 2)
+      this.data.info['secFirst'] = this.data.info['sec'].toString().substring(0, 1)
+      this.data.info['secSecond'] = this.data.info['sec'].toString().substring(1, 2)
+      this.data.info.continueTime--;
       this.setData({
         info: this.data.info
       })
@@ -160,7 +159,7 @@ Page({
    */
   onMoreGood() {
     wx.navigateTo({
-      url: '/pages/collage_buy/collage_buy',
+      url: '/pages/collageBuy/collageBuy',
     })
   },
 
@@ -169,7 +168,7 @@ Page({
    */
   onGood(e) {
     wx.navigateTo({
-      url: '/nearby_shops/good_detail/good_detail?goods_id=' + e.currentTarget.dataset.id,
+      url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -178,18 +177,18 @@ Page({
    */
   onOffered() {
     if (app.login()) {
-      http.post(app.globalData.goods_view, {
-        goodsId: this.data.goods_id
+      http.post(app.globalData.goodsView, {
+        goodsId: this.data.goodsId
       }).then(res => {
         this.setData({
-          goods_info: res.result,
+          goodsInfo: res.result,
           discount: res.discount == null ? 100 : res.discount,
         })
-        http.post(app.globalData.applet_my_saveFormId, {
+        http.post(app.globalData.appletMySaveFormId, {
           microFormId: this.data.formId
-        }).then(res => { })
+        }).then(res => {})
         let obj = {
-          order_type: 2
+          orderType: 2
         }
         this.selectComponent("#buy_board").show(obj)
       })
@@ -201,7 +200,7 @@ Page({
    */
   onMyCollage() {
     wx.redirectTo({
-      url: '/my/my_collage/my_collage',
+      url: '/my/myCollage/myCollage',
     })
   },
 
@@ -210,7 +209,7 @@ Page({
    */
   onOtherCollage() {
     wx.redirectTo({
-      url: '/pages/collage_buy/collage_buy',
+      url: '/pages/collageBuy/collageBuy',
     })
   },
   /**
@@ -218,13 +217,13 @@ Page({
    */
   onAgainCollage() {
     wx.redirectTo({
-      url: '/nearby_shops/good_detail/good_detail?goods_id=' + this.data.info.goods_id,
+      url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + this.data.info.goodsId,
     })
   },
 
   onCollageRule() {
     wx.navigateTo({
-      url: '/my/web_view/web_view?id=20',
+      url: '/my/webView/webView?id=20',
     })
   },
   /**

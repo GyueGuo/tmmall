@@ -6,22 +6,22 @@
   <view class='delivery-info' catchtap="none">
     <view class='delivery-head'>配送说明</view>
     <view class='delivery-content'>
-      <view wx:if='{{info.is_city == 1}}'>
+      <view wx:if='{{info.isCity == 1}}'>
         <view style='{{util.diyImgbox(42)}}'>
           <image src='{{util.HTTP}}mobile/small/image/xq-ps-tc.png' style='{{util.diyImgcolor(diyColor.zColor,42,42)}}' class='delivery-content-logo'></image>
         </view>
         <view class='delivery-content-detail'>
           <view class='delivery-content-title'>
             <text>同城配送</text>
-            <text class='freight_tip' wx:if='{{data.city_post_list[0].discount_postage_rules==1}}'>满{{data.city_post_list[0].discount}}元{{data.city_post_list[0].postage=='0.00'?'包邮':'邮费'+data.city_post_list[0].postage+'元'}}</text>
-            <text class='freight_tip' wx:elif='{{data.city_post_list[0].discount_postage_rules==2}}'>满{{util.integer(data.city_post_list[0].discount)}}件{{data.city_post_list[0].postage=='0.00'?'包邮':'邮费'+data.city_post_list[0].postage+'元'}}</text>
-            <text class='freight_tip' wx:elif='{{data.city_post_list[0].discount_postage_rules==3}}'>满{{data.city_post_list[0].discount}}公斤{{data.city_post_list[0].postage=='0.00'?'包邮':'邮费'+data.city_post_list[0].postage+'元'}}</text>
+            <text class='freight_tip' wx:if='{{data.cityPostList[0].discountPostageRules==1}}'>满{{data.cityPostList[0].discount}}元{{data.cityPostList[0].postage=='0.00'?'包邮':'邮费'+data.cityPostList[0].postage+'元'}}</text>
+            <text class='freight_tip' wx:elif='{{data.cityPostList[0].discountPostageRules==2}}'>满{{util.integer(data.cityPostList[0].discount)}}件{{data.cityPostList[0].postage=='0.00'?'包邮':'邮费'+data.cityPostList[0].postage+'元'}}</text>
+            <text class='freight_tip' wx:elif='{{data.cityPostList[0].discountPostageRules==3}}'>满{{data.cityPostList[0].discount}}公斤{{data.cityPostList[0].postage=='0.00'?'包邮':'邮费'+data.cityPostList[0].postage+'元'}}</text>
           </view>
-          <view class='delivery-content-area'>{{result.city_explain}}</view>
+          <view class='delivery-content-area'>{{result.cityExplain}}</view>
 
         </view>
       </view>
-      <view hover-class='hover-class' hover-stay-time='400' bindtap='_onPickup' wx:if='{{info.is_shop == 1}}'>
+      <view hover-class='hover-class' hover-stay-time='400' bindtap='_onPickup' wx:if='{{info.isShop == 1}}'>
         <view style='{{util.diyImgbox(42)}}'>
           <image src='{{util.HTTP}}mobile/small/image/xq-ps-zt.png' style='{{util.diyImgcolor(diyColor.zColor,42,42)}}' class='delivery-content-logo'></image>
         </view>
@@ -31,7 +31,7 @@
         </view>
         <image src='{{util.HTTP}}mobile/small/image/xq-gd.png' class='next'></image>
       </view>
-      <view wx:if='{{info.is_delivery == 1}}'>
+      <view wx:if='{{info.isDelivery == 1}}'>
         <view style='{{util.diyImgbox(42)}}'>
           <image src='{{util.HTTP}}mobile/small/image/xq-ps-qg.png' style='{{util.diyImgcolor(diyColor.zColor,42,42)}}' class='delivery-content-logo'></image>
         </view>
@@ -49,10 +49,10 @@
           </view>
           <view class='deliver'>
             <text class='title'>运费</text>
-            <text class='freight'>{{express_freight_price}}元</text>
-            <text class='freight_tip' wx:if='{{data.express_post_list[0].discount_postage_rules==1}}'>满{{data.express_post_list[0].discount}}元{{data.express_post_list[0].postage=='0.00'?'包邮':'邮费'+data.express_post_list[0].postage+'元'}}</text>
-            <text class='freight_tip' wx:elif='{{data.express_post_list[0].discount_postage_rules==2}}'>满{{util.integer(data.express_post_list[0].discount)}}件{{data.express_post_list[0].postage=='0.00'?'包邮':'邮费'+data.express_post_list[0].postage+'元'}}</text>
-            <text class='freight_tip' wx:elif='{{data.express_post_list[0].discount_postage_rules==3}}'>满{{data.express_post_list[0].discount}}公斤{{data.express_post_list[0].postage=='0.00'?'包邮':'邮费'+data.express_post_list[0].postage+'元'}}</text>
+            <text class='freight'>{{expressFreightPrice}}元</text>
+            <text class='freight_tip' wx:if='{{data.expressPostList[0].discountPostageRules==1}}'>满{{data.expressPostList[0].discount}}元{{data.expressPostList[0].postage=='0.00'?'包邮':'邮费'+data.expressPostList[0].postage+'元'}}</text>
+            <text class='freight_tip' wx:elif='{{data.expressPostList[0].discountPostageRules==2}}'>满{{util.integer(data.expressPostList[0].discount)}}件{{data.expressPostList[0].postage=='0.00'?'包邮':'邮费'+data.expressPostList[0].postage+'元'}}</text>
+            <text class='freight_tip' wx:elif='{{data.expressPostList[0].discountPostageRules==3}}'>满{{data.expressPostList[0].discount}}公斤{{data.expressPostList[0].postage=='0.00'?'包邮':'邮费'+data.expressPostList[0].postage+'元'}}</text>
           </view>
         </view>
         <!-- <image src='{{util.HTTP}}mobile/small/image/xq-gd.png' class='next'></image> -->

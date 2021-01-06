@@ -1,4 +1,3 @@
-// my/fx_change_record/fx_change_record.js
 const http = require('../../utils/http.js');
 const app = getApp();
 Page({
@@ -74,8 +73,8 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.distribution_level_change_record, {
-      distributionId: app.globalData.distribution.cur.distribution_id,
+    http.post(app.globalData.distributionLevelChangeRecord, {
+      distributionId: app.globalData.distribution.cur.distributionId,
       page: this.data.page
     }).then(res => {
       if (this.data.page == 1) {

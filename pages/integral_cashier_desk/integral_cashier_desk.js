@@ -1,4 +1,3 @@
-// pages/cashier_desk/cashier_desk.js
 const app = getApp();
 const http = require('../../utils/http.js');
 Page({
@@ -9,7 +8,7 @@ Page({
   data: {
     data: {},
     //支付方式 1 余额 2 微信
-    pay_type: 2
+    payType: 2
   },
 
   /**
@@ -56,7 +55,7 @@ Page({
    */
   onBalance() {
     this.setData({
-      pay_type: 1
+      payType: 1
     })
   },
 
@@ -65,7 +64,7 @@ Page({
    */
   onWx() {
     this.setData({
-      pay_type: 2
+      payType: 2
     })
   },
 
@@ -73,34 +72,34 @@ Page({
    * 确认付款
    */
   commit() {
-    http.post(app.globalData.order_getOrderState, {
-      number: this.data.data.order_number != '' ? this.data.data.order_number : this.data.data.order_attach_number,
-      price: this.data.data.total_price,
+    http.post(app.globalData.orderGetOrderState, {
+      number: this.data.data.orderNumber != '' ? this.data.data.orderNumber : this.data.data.orderAttachNumber,
+      price: this.data.data.totalPrice,
       type: '2'
     }).then(res => {
       if (res.data.status == 0) {
         //余额支付
-        if (this.data.pay_type == 1) {
-          http.post(app.globalData.pay_recharge, {
+        if (this.data.payType == 1) {
+          http.post(app.globalData.payRecharge, {
             type: '0'
           }).then(res => {
             if (res.result.hasPayPassword == 1) {
-              this.selectComponent("#enter_psw").show(this.data.data.total_price, this.data.data.order_number)
+              this.selectComponent("#enter_psw").show(this.data.data.totalPrice, this.data.data.orderNumber)
             } else {
               app.showToast('请设置支付密码', (res) => {
                 wx.navigateTo({
-                  url: '/my/set_pay_psw/set_pay_psw',
+                  url: '/my/setPayPsw/setPayPsw',
                 })
               })
             }
           })
-        } else if (this.data.pay_type == 2) {
-          http.post(app.globalData.wx_pay, {
+        } else if (this.data.payType == 2) {
+          http.post(app.globalData.wxPay, {
             integralId: this.data.data.id,
-            outTradeNo: this.data.data.order_number,
-            memberAddressId: this.data.data.address.member_address_id,
-            attach: `exchange|2|${app.globalData.member_id}`,
-            totalFee: this.data.data.total_price,
+            outTradeNo: this.data.data.orderNumber,
+            memberAddressId: this.data.data.address.memberAddressId,
+            attach: `exchange|2|${app.globalData.memberId}`,
+            totalFee: this.data.data.totalPrice,
             openId: app.globalData.openid,
             body: '积分',
           }).then(res => {
@@ -113,7 +112,7 @@ Page({
               success: res => {
                 app.showSuccessToast('支付成功', () => {
                   wx.redirectTo({
-                    url: '/my/integral_record/integral_record',
+                    url: '/my/integralRecord/integralRecord',
                   })
                 })
               }

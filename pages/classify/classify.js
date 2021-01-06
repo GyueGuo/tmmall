@@ -9,13 +9,13 @@ Page({
     //当前模板显示列表等级
     level: '',
     classify: ['', '', ''],
-    brand_list: [],
+    brandList: [],
     //一级列表id
-    parent_id: '',
+    parentId: '',
     //一级列表广告id
-    adv_id: '',
+    advId: '',
     //广告信息
-    adv_info: {},
+    advInfo: {},
     information: 0
   },
 
@@ -80,7 +80,7 @@ Page({
    * 消息
    */
   getMsg() {
-    http.post(app.globalData.message_statistics).then(res => {
+    http.post(app.globalData.messageStatistics).then(res => {
       let result = res.result
       this.setData({
         information: result.activity + result.common + result.express
@@ -112,13 +112,13 @@ Page({
    * 获取一级列表
    */
   getFirstClassify() {
-    http.post(app.globalData.classify_parent).then(res => {
+    http.post(app.globalData.classifyParent).then(res => {
       this.setData({
         level: res.level,
-        first_classify: res.result,
-        adv_id: res.result[0].classifyAdvId,
-        parent_id: res.result[0].goodsClassifyId,
-        classify_title: res.result[0].title,
+        firstClassify: res.result,
+        advId: res.result[0].classifyAdvId,
+        parentId: res.result[0].goodsClassifyId,
+        classifyTitle: res.result[0].title,
       })
       if (this.data.level != 0) {
         this.getSubClassify()
@@ -132,12 +132,12 @@ Page({
   onFiristClassify(e) {
     let item = e.currentTarget.dataset.item
     this.setData({
-      parent_id: item.goods_classify_id,
-      sub_classify: [],
-      brand_list: [],
-      adv_id: item.classify_adv_id,
-      classify_title: item.title,
-      adv_info: {}
+      parentId: item.goodsClassifyId,
+      subClassify: [],
+      brandList: [],
+      advId: item.classifyAdvId,
+      classifyTitle: item.title,
+      advInfo: {}
     })
     if (this.data.level != 0) {
       this.getSubClassify()
@@ -149,17 +149,17 @@ Page({
    */
   getSubClassify() {
     this.setData({
-      sub_classify: [],
-      brand_list: []
+      subClassify: [],
+      brandList: []
     })
-    http.post(app.globalData.sub_classify, {
-      parentId: this.data.parent_id,
-      classifyAdvId: this.data.adv_id
+    http.post(app.globalData.subClassify, {
+      parentId: this.data.parentId,
+      classifyAdvId: this.data.advId
     }).then(res => {
       this.setData({
-        sub_classify: res.result,
-        adv_info: res.advInfo,
-        brand_list: res.brandList
+        subClassify: res.result,
+        advInfo: res.advInfo,
+        brandList: res.brandList
       })
     })
   },
@@ -169,7 +169,7 @@ Page({
    */
   onClassify(e) {
     wx.navigateTo({
-      url: '/pages/search_goods/search_goods?goods_classify_id=' + e.currentTarget.dataset.id,
+      url: '/pages/searchGoods/searchGoods?goodsClassifyId=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -178,7 +178,7 @@ Page({
    */
   onBandClassify(e) {
     wx.navigateTo({
-      url: '/pages/search_goods/search_goods?brand_id=' + e.currentTarget.dataset.id,
+      url: '/pages/searchGoods/searchGoods?brandId=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -186,14 +186,14 @@ Page({
    * 点击广告
    */
   onAdv() {
-    switch (this.data.adv_info.type) {
+    switch (this.data.advInfo.type) {
       //商品
       case 1:
         wx.navigateTo({
-          url: '/nearby_shops/good_detail/good_detail?goods_id=' + this.data.adv_info.content,
+          url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + this.data.advInfo.content,
           success: res => {
-            http.post(app.globalData.index_adBrowseInc, {
-              advId: this.data.adv_info.adv_id
+            http.post(app.globalData.indexAdBrowseInc, {
+              advId: this.data.advInfo.advId
             }).then(res => {})
           }
         })
@@ -201,10 +201,10 @@ Page({
         //店铺
       case 2:
         wx.navigateTo({
-          url: '/nearby_shops/shop_detail/shop_detail?store_id=' + this.data.adv_info.content,
+          url: '/nearbyShops/shopDetail/shopDetail?storeId=' + this.data.advInfo.content,
           success: res => {
-            http.post(app.globalData.index_adBrowseInc, {
-              advId: this.data.adv_info.adv_id
+            http.post(app.globalData.indexAdBrowseInc, {
+              advId: this.data.advInfo.advId
             }).then(res => {})
           }
         })
@@ -228,12 +228,12 @@ Page({
         switch (data.split(",")[0]) {
           case 'goods':
             wx.navigateTo({
-              url: '/nearby_shops/good_detail/good_detail?goods_id=' + obj.goods
+              url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + obj.goods
             })
             break;
           case 'store':
             wx.navigateTo({
-              url: '/nearby_shops/shop_detail/shop_detail?store_id=' + obj.store
+              url: '/nearbyShops/shopDetail/shopDetail?storeId=' + obj.store
             })
             break;
         }

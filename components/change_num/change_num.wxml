@@ -6,7 +6,7 @@
       <view class='wrap-bg'>
         <view class='change'>
           <image src='{{util.HTTP}}mobile/small/image/tc-jh.png' hover-class='hover-class' hover-stay-time='400' bindtap='onChangeMinus'></image>
-          <input type='number' value='{{change_num}}' bindinput='numInput'></input>
+          <input type='number' value='{{changeNum}}' bindinput='numInput'></input>
           <image src='{{util.HTTP}}mobile/small/image/tc-jiahao.png' hover-class='hover-class' hover-stay-time='400' bindtap='onChangeAdd'></image>
         </view>
       </view>

@@ -8,12 +8,12 @@
           <image src='{{util.HTTP}}mobile/small/image/wd-hy-vip.png'></image>
           <view>
             <view class='vip-number'>{{info.nickname}}</view>
-            <view class='vip-grade'>{{info.now.mark}}{{info.now.rank_name}}</view>
+            <view class='vip-grade'>{{info.now.mark}}{{info.now.rankName}}</view>
           </view>
         </view>
-        <canvas canvas-id="cardcode" class='card-code'/>
+        <canvas canvas-id="cardcode" class='card-code' />
         <image class='card-code' src='{{cardcode}}'></image>
-        <view class='card-number'>卡号: {{info.card_number}}</view>
+        <view class='card-number'>卡号: {{info.cardNumber}}</view>
         <view class='privileges'>
           <view>
             <image src='{{util.HTTP}}mobile/small/image/wd-hy-gx.png'></image>
@@ -23,7 +23,7 @@
             <image src='{{util.HTTP}}mobile/small/image/wd-hy-gx.png'></image>
             <view>累计积分</view>
           </view>
-          <view wx:if='{{configSwitch.show_switch.is_coupon==1}}'>
+          <view wx:if='{{configSwitch.showSwitch.isCoupon==1}}'>
             <image src='{{util.HTTP}}mobile/small/image/wd-hy-gx.png'></image>
             <view>使用优惠券</view>
           </view>
@@ -31,31 +31,4 @@
       </view>
     </view>
   </view>
-
-  <!-- <view class="pay-code-wrap {{tab == 1?'':'pay-code-anim'}}" catchtap='onPayCode'>
-    <view>
-      <view class='pay-code'>
-        <view class='code-head'>付款码</view>
-        <view class='code-content'>
-          <canvas canvas-id="barcode" class='bar-code' />
-          <image class='bar-code' src='{{barcode}}'></image>
-          <view class='pay-number' wx:if="{{!number_see}}" hover-class='hover-class' hover-stay-time='400' bindtap='onNumber'>点击可查看付款码数字</view>
-          <view class='pay-number' wx:else hover-class='hover-class' hover-stay-time='400' bindtap='onNumber'>{{pay_number}}</view>
-          <canvas canvas-id="qrcode" class='code-qr' />
-          <image class='code-qr' src='{{qrcode}}'></image>
-          <view class='balance' hover-class='hover-class' hover-stay-time='400' bindtap='changeSee' wx:if='{{configSwitch.show_switch.is_balance==1}}'>
-            <view wx:if="{{!see}}">
-              账户余额 ****元
-            </view>
-            <view wx:else>
-              账户余额 {{balance}}元
-            </view>
-            <image src="{{util.HTTP}}{{see?'mobile/small/image/hy-xians.png':'mobile/small/image/hy-yc.png'}}"></image>
-          </view>
-        </view>
-      </view>
-      <view class='set-psw' hover-class='hover-class' hover-stay-time='400' bindtap='setPassword'>设置支付密码,保护交易安全 ></view>
-    </view>
-  </view> -->
-
 </view>

@@ -22,9 +22,9 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    share_btn() {
+    shareBtn() {
       this.setData({
-        info: app.globalData.configSwitch.share_text
+        info: app.globalData.configSwitch.shareText
       })
     },
 

@@ -17,19 +17,19 @@ Page({
     let info = JSON.parse(options.info)
     for (let i = 0, len = info.length; i < len; i++) {
       info[i].file = decodeURIComponent(info[i].file)
-      info[i]['good_level'] = 5
-      info[i]['is_anonymous'] = 1
+      info[i]['goodLevel'] = 5
+      info[i]['isAnonymous'] = 1
       info[i]['content'] = ''
-      info[i]['multiple_file'] = ''
-      info[i]['video_src'] = ''
+      info[i]['multipleFile'] = ''
+      info[i]['videoSrc'] = ''
       info[i]['video'] = ''
-      info[i]['pic_list'] = []
+      info[i]['picList'] = []
       //匿名
       info[i]['anonymity'] = true
     }
-    info['store_level'] = 5
-    info['logistics_level'] = 5
-    info['express_content'] = ''
+    info['storeLevel'] = 5
+    info['logisticsLevel'] = 5
+    info['expressContent'] = ''
     this.setData({
       info: info,
       diyColor: app.globalData.diyColor,
@@ -83,7 +83,7 @@ Page({
    * 商品评分等级
    */
   goodStar(e) {
-    this.data.info[e.currentTarget.dataset.index].good_level = e.detail
+    this.data.info[e.currentTarget.dataset.index].goodLevel = e.detail
     this.setData({
       info: this.data.info
     })
@@ -93,7 +93,7 @@ Page({
    * 店铺评分
    */
   storeStar(e) {
-    this.data.info['store_level'] = e.detail
+    this.data.info['storeLevel'] = e.detail
     this.setData({
       info: this.data.info
     })
@@ -103,7 +103,7 @@ Page({
    * 物流评分
    */
   logisticsStar(e) {
-    this.data.info['logistics_level'] = e.detail
+    this.data.info['logisticsLevel'] = e.detail
     this.setData({
       info: this.data.info
     })
@@ -151,9 +151,9 @@ Page({
   choosePic(e) {
     let index = e.currentTarget.dataset.index
     wx.chooseImage({
-      count: 5 - this.data.info[index].pic_list.length,
+      count: 5 - this.data.info[index].picList.length,
       success: res => {
-        this.data.info[index].pic_list = [...this.data.info[index].pic_list, ...res.tempFilePaths]
+        this.data.info[index].picList = [...this.data.info[index].picList, ...res.tempFilePaths]
         this.setData({
           info: this.data.info
         })
@@ -167,7 +167,7 @@ Page({
   delectPic(e) {
     let idx = e.currentTarget.dataset.idx,
       index = e.currentTarget.dataset.index
-    this.data.info[idx].pic_list.splice(index, 1)
+    this.data.info[idx].picList.splice(index, 1)
     this.setData({
       info: this.data.info
     })
@@ -188,7 +188,7 @@ Page({
       current = idx
     }
     let list = {
-      multiple_file: this.data.info[index].pic_list,
+      multipleFile: this.data.info[index].picList,
       video: this.data.info[index].video,
       current: current
     }
@@ -209,7 +209,7 @@ Page({
   },
 
   expressInput(e) {
-    this.data.info.express_content = e.detail.value
+    this.data.info.expressContent = e.detail.value
   },
 
   commit() {
@@ -235,11 +235,11 @@ Page({
     if (index < this.data.info.length) {
       if (this.data.info[index].video != '') {
         wx.uploadFile({
-          url: app.globalData.upload_video,
+          url: app.globalData.uploadVideo,
           filePath: this.data.info[index].video,
           name: 'video',
           success: res => {
-            this.data.info[index].video_src = (JSON.parse(res.data)).url
+            this.data.info[index].videoSrc = (JSON.parse(res.data)).url
             this.uploadImage(index, 0)
           }
         })
@@ -256,18 +256,18 @@ Page({
    * 上传图片
    */
   uploadImage(index, i) {
-    if (i < this.data.info[index].pic_list.length) {
+    if (i < this.data.info[index].picList.length) {
       wx.uploadFile({
-        url: app.globalData.upload_pic,
-        filePath: this.data.info[index].pic_list[i],
+        url: app.globalData.uploadPic,
+        filePath: this.data.info[index].picList[i],
         name: 'image',
         formData: {
           type: 'goods'
         },
         success: res => {
-          this.data.info[index].multiple_file += JSON.parse(res.data).url
-          if (i != this.data.info[index].pic_list.length - 1) {
-            this.data.info[index].multiple_file += ','
+          this.data.info[index].multipleFile += JSON.parse(res.data).url
+          if (i != this.data.info[index].picList.length - 1) {
+            this.data.info[index].multipleFile += ','
             this.uploadImage(index, i + 1)
           } else {
             this.uploadVideo(index + 1)
@@ -288,18 +288,18 @@ Page({
     let list = []
     for (let i = 0, len = this.data.info.length; i < len; i++) {
       let obj = {
-        order_goods_id: this.data.info[i].orderGoodsId,
-        star_num: this.data.info[i].goodLevel,
+        orderGoodsId: this.data.info[i].orderGoodsId,
+        starNum: this.data.info[i].goodLevel,
         content: this.data.info[i].content,
-        multiple_file: this.data.info[i].multipleFile,
+        multipleFile: this.data.info[i].multipleFile,
         video: this.data.info[i].videoSrc,
         attr: this.data.info[i].goodsAttr,
-        is_anonymous: this.data.info[i].anonymity ? 1 : 0,
+        isAnonymous: this.data.info[i].anonymity ? 1 : 0,
       }
       list.push(obj)
     }
 
-    http.post(app.globalData.evaluate_report, {
+    http.post(app.globalData.evaluateReport, {
       storeStarNum: this.data.info.storeLevel,
       expressStarNum: this.data.info.logisticsLevel,
       expressContent: this.data.info.expressContent,
@@ -311,7 +311,7 @@ Page({
           wx.navigateBack({})
         } else {
           wx.redirectTo({
-            url: '/pages/comment_success/comment_success',
+            url: '/pages/commentSuccess/commentSuccess',
           })
         }
       })

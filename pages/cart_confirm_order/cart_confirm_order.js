@@ -8,9 +8,9 @@ Page({
    */
   data: {
     first: true,
-    member_address_id: '',
+    memberAddressId: '',
     //购物车id
-    cart_id: '',
+    cartId: '',
     //列表
     list: [],
     //地址
@@ -24,30 +24,30 @@ Page({
     //合计价格
     total: 0,
     //红包价格
-    packet_price: '0.00',
+    packetPrice: '0.00',
     //红包id
-    member_packet_id: '',
+    memberPacketId: '',
     //支付方式
-    pay_way: '在线支付',
+    payWay: '在线支付',
     invoice: {
-      is_invoice: 0
+      isInvoice: 0
     },
-    delivery_method: [{
+    deliveryMethod: [{
         isSupport: 0,
         title: '快递邮寄',
-        text: 'is_express'
+        text: 'isExpress'
       },
       {
         isSupport: 0,
         title: '同城配送',
-        text: 'is_city'
+        text: 'isCity'
       }, {
         isSupport: 0,
         title: '预约自提',
-        text: 'is_shop'
+        text: 'isShop'
       }
     ],
-    delivery_method_type: 0
+    deliveryMethodType: 0
   },
 
   /**
@@ -57,7 +57,7 @@ Page({
     this.setData({
       diyColor: app.globalData.diyColor,
       configSwitch: app.globalData.configSwitch,
-      cart_id: options.cart_id,
+      cartId: options.cartId,
       first: false
     })
 
@@ -68,7 +68,7 @@ Page({
    */
   onReady: function () {
     event.on('changeAddress', this, () => {
-      this.data.member_address_id = this.data.address.member_address_id
+      this.data.memberAddressId = this.data.address.memberAddressId
       this.getData()
     })
     this.getData()
@@ -78,7 +78,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (!this.data.first && (app.globalData.addressSelect.member_address_id == null || this.data.address.member_address_id != app.globalData.addressSelect.member_address_id)) {
+    if (!this.data.first && (app.globalData.addressSelect.memberAddressId == null || this.data.address.memberAddressId != app.globalData.addressSelect.memberAddressId)) {
       this.setData({
         address: {}
       })
@@ -115,43 +115,43 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.cart_confirm_order, {
-      cartId: this.data.cart_id,
-      memberAddressId: this.data.member_address_id
+    http.post(app.globalData.cartConfirmOrder, {
+      cartId: this.data.cartId,
+      memberAddressId: this.data.memberAddressId
     }).then(res => {
-      app.globalData.addressSelect.member_address_id = res.address.memberAddressId ? res.address.memberAddressId : null
+      app.globalData.addressSelect.memberAddressId = res.address.memberAddressId ? res.address.memberAddressId : null
       let freight = 0
       let ways = []
       for (let i = 0, len = res.result.length; i < len; i++) {
         if (res.result[i].freight != null) {
           res.result[i]['deliveryMethod'] = []
           //显示配送方式
-          if (res.result[i].freight.express_freight_sup == 1) {
+          if (res.result[i].freight.expressFreightSup == 1) {
             res.result[i]['deliveryMethod'].push({
               title: '快递邮寄',
-              text: 'is_express',
+              text: 'isExpress',
               type: 0
             })
           }
-          if (res.result[i].freight.city_freight_sup == 1) {
+          if (res.result[i].freight.cityFreightSup == 1) {
             res.result[i]['deliveryMethod'].push({
               title: '同城配送',
-              text: 'is_city',
+              text: 'isCity',
               type: 1
             })
           }
-          if (res.result[i].freight.take_freight_sup == 1) {
+          if (res.result[i].freight.takeFreightSup == 1) {
             res.result[i]['deliveryMethod'].push({
               title: '预约自提',
-              text: 'is_shop',
+              text: 'isShop',
               type: 2
             })
           }
 
-          let delivery_method_every = res.result[i]['deliveryMethod'].some((item) => {
-            return item.type + 1 == res.result[i].freight.default_express_type
+          let deliveryMethodEvery = res.result[i]['deliveryMethod'].some((item) => {
+            return item.type + 1 == res.result[i].freight.defaultExpressType
           })
-          if (!delivery_method_every && res.result[i]['deliveryMethod'].length != 0) {
+          if (!deliveryMethodEvery && res.result[i]['deliveryMethod'].length != 0) {
             //如果默认配送方式不支持
             switch (res.result[i]['deliveryMethod'][0].type) {
               case 0:
@@ -197,8 +197,8 @@ Page({
         }
         ways[i] = res.result[i].way
         res.result[i]['invoice'] = {
-          is_invoice: 0,
-          is_added_value_tax: res.result[i].isAddedValueTax
+          isInvoice: 0,
+          isAddedValueTax: res.result[i].isAddedValueTax
         }
         //优惠券
         res.result[i]['couponId'] = ''
@@ -206,14 +206,14 @@ Page({
         res.result[i]['message'] = ''
       }
       if (ways.indexOf(1) > -1 && ways.indexOf(2) > -1) {
-        this.data.pay_way = "在线支付 + 货到付款"
+        this.data.payWay = "在线支付 + 货到付款"
       } else if (ways.indexOf(1) > -1) {
-        this.data.pay_way = "在线支付"
+        this.data.payWay = "在线支付"
       } else if (ways.indexOf(2) > -1) {
-        this.data.pay_way = "货到付款"
+        this.data.payWay = "货到付款"
       }
       this.setData({
-        pay_way: this.data.pay_way
+        payWay: this.data.payWay
       })
 
       for (let i = 0, len = res.coupon.length; i < len; i++) {
@@ -231,12 +231,12 @@ Page({
       }
       this.setData({
         address: res.address,
-        member_address_id: res.address == null ? '' : res.address.member_address_id,
+        memberAddressId: res.address == null ? '' : res.address.memberAddressId,
         list: res.result,
-        coupon_price: res.couponPrice,
+        couponPrice: res.couponPrice,
         coupon: res.coupon,
-        packet_price: res.packet.length == 0 ? '0.00' : res.packet[0].actualPrice,
-        member_packet_id: res.packet.length == 0 ? '' : res.packet[0].memberPacketId,
+        packetPrice: res.packet.length == 0 ? '0.00' : res.packet[0].actualPrice,
+        memberPacketId: res.packet.length == 0 ? '' : res.packet[0].memberPacketId,
         freight: freight.toFixed(2),
         redpacket: res.packet
       })
@@ -266,18 +266,18 @@ Page({
       for (let j = 0, j_len = this.data.list[i].list.length; j < j_len; j++) {
         images.push(this.data.list[i].list[j].file)
       }
-      let is_pay_delivery = this.data.list[i].freight.is_pay_delivery
-      let city_freight_sup = this.data.list[i].freight.city_freight_sup
+      let isPayDelivery = this.data.list[i].freight.isPayDelivery
+      let cityFreightSup = this.data.list[i].freight.cityFreightSup
       let obj = {
         images: images,
-        is_pay_delivery: is_pay_delivery,
-        city_freight_sup: city_freight_sup,
+        isPayDelivery: isPayDelivery,
+        cityFreightSup: cityFreightSup,
         way: this.data.list[i].way, //支付方式 1在线 2货到
-        delivery_method: this.data.list[i].distribution_type
+        deliveryMethod: this.data.list[i].distributionType
       }
       array.push(obj)
     }
-    this.selectComponent("#pay_way").show(array)
+    this.selectComponent("#payWay").show(array)
   },
 
   /**
@@ -289,25 +289,25 @@ Page({
       this.data.list[i].way = e.detail[i].way
       ways[i] = e.detail[i].way
       if (e.detail[i].way == 1) {
-        this.data.list[i].distribution_type = '3'
-        this.data.list[i].delivery_method_type = 1
-        // this.data.list[i].delivery_method = 'is_express'
+        this.data.list[i].distributionType = '3'
+        this.data.list[i].deliveryMethodType = 1
+        // this.data.list[i].deliveryMethod = 'isExpress'
       }
       if (e.detail[i].way == 2) {
-        this.data.list[i].distribution_type = '1'
-        this.data.list[i].delivery_method_type = 1
+        this.data.list[i].distributionType = '1'
+        this.data.list[i].deliveryMethodType = 1
       }
     }
     if (ways.indexOf(1) > -1 && ways.indexOf(2) > -1) {
-      this.data.pay_way = "在线支付 + 货到付款"
+      this.data.payWay = "在线支付 + 货到付款"
     } else if (ways.indexOf(1) > -1) {
-      this.data.pay_way = "在线支付"
+      this.data.payWay = "在线支付"
     } else if (ways.indexOf(2) > -1) {
-      this.data.pay_way = "货到付款"
+      this.data.payWay = "货到付款"
     }
     this.setData({
       list: this.data.list,
-      pay_way: this.data.pay_way
+      payWay: this.data.payWay
     })
     this.calculate()
   },
@@ -323,7 +323,7 @@ Page({
     let index = e.currentTarget.dataset.index
     let idx = e.currentTarget.dataset.idx
     let item = e.currentTarget.dataset.item
-    this.data.list[index].delivery_method_type = item.type
+    this.data.list[index].deliveryMethodType = item.type
     if (this.data.list[index].way == 2) {
       return
     }
@@ -331,7 +331,7 @@ Page({
     //判断配送方式
     if (item.type == 2) {
       //预约自提
-      this.data.list[index].distribution_type = '2'
+      this.data.list[index].distributionType = '2'
       if (this.data.list[index].way == 2) {
         this.data.list[index].way = 1
       }
@@ -341,95 +341,53 @@ Page({
         ways[i] = this.data.list[i].way
       }
       if (ways.indexOf(1) > -1 && ways.indexOf(2) > -1) {
-        this.data.pay_way = "在线支付 + 货到付款"
+        this.data.payWay = "在线支付 + 货到付款"
       } else if (ways.indexOf(1) > -1) {
-        this.data.pay_way = "在线支付"
+        this.data.payWay = "在线支付"
       } else if (ways.indexOf(2) > -1) {
-        this.data.pay_way = "货到付款"
+        this.data.payWay = "货到付款"
       }
       this.setData({
-        pay_way: this.data.pay_way
+        payWay: this.data.payWay
       })
     } else if (item.type == 1) {
       //同城速递
-      this.data.list[index].distribution_type = '1'
+      this.data.list[index].distributionType = '1'
     } else if (item.type == 0) {
       //快递邮寄
-      this.data.list[index].distribution_type = '3'
+      this.data.list[index].distributionType = '3'
     }
 
     this.calculate()
     this.setData({
       list: this.data.list
     })
-    // ---------------------------------------
-    // return
-    // let index = e.currentTarget.dataset.index
-    // if (this.data.list[index].way == 2) {
-    //   return
-    // }
-    // this.data.list[index].delivery_method = e.currentTarget.dataset.method
-
-    // //预约自提
-    // if (e.currentTarget.dataset.method == 'is_shop') {
-    //   this.data.list[index].distribution_type = '2'
-
-    //   if (this.data.list[index].way == 2) {
-    //     this.data.list[index].way = 1
-    //   }
-    //   //更改支付方式
-    //   let ways = []
-    //   for (let i = 0, len = this.data.list.length; i < len; i++) {
-    //     ways[i] = this.data.list[i].way
-    //   }
-    //   if (ways.indexOf(1) > -1 && ways.indexOf(2) > -1) {
-    //     this.data.pay_way = "在线支付 + 货到付款"
-    //   } else if (ways.indexOf(1) > -1) {
-    //     this.data.pay_way = "在线支付"
-    //   } else if (ways.indexOf(2) > -1) {
-    //     this.data.pay_way = "货到付款"
-    //   }
-    //   this.setData({
-    //     pay_way: this.data.pay_way
-    //   })
-    // } else if (e.currentTarget.dataset.method == 'is_city') {
-    //   //同城速递
-    //   this.data.list[index].distribution_type = '1'
-    // } else if (e.currentTarget.dataset.method == 'is_express') {
-    //   //快递邮寄
-    //   this.data.list[index].distribution_type = '3'
-    // }
-    // this.calculate()
-    // this.setData({
-    //   list: this.data.list
-    // })
-
   },
 
   /**
    * 修改自提点
    */
   changeTake(e) {
-    let list = this.data.list[e.currentTarget.dataset.index].freight.take_freight_list,
-      id = this.data.list[e.currentTarget.dataset.index].freight.take_freight_list[0].take_id,
-      parent_id = this.data.list[e.currentTarget.dataset.index].freight.store_city_id,
-      select_pick = this.data.list[e.currentTarget.dataset.index].freight.take_freight_list[0],
+    let list = this.data.list[e.currentTarget.dataset.index].freight.takeFreightList,
+      id = this.data.list[e.currentTarget.dataset.index].freight.takeFreightList[0].takeId,
+      parentId = this.data.list[e.currentTarget.dataset.index].freight.storeCityId,
+      selectPick = this.data.list[e.currentTarget.dataset.index].freight.takeFreightList[0],
       newobj = {};
-    for (let attr in select_pick) {
-      newobj[attr] = select_pick[attr];
+    for (let attr in selectPick) {
+      newobj[attr] = selectPick[attr];
     }
-    this.selectComponent("#self_pick").show(id, list, parent_id, newobj)
+    this.selectComponent("#self_pick").show(id, list, parentId, newobj)
   },
 
   /**
    * 确定自提点
    */
   selectPick(e) {
-    let select_pick = e.detail
+    let selectPick = e.detail
     for (let i = 0, len = this.data.list.length; i < len; i++) {
-      if (select_pick.store_id == this.data.list[i].store_id) {
-        this.data.list[i]['take_freight'] = select_pick
-        this.data.list[i]['take_freight_id'] = select_pick.take_id
+      if (selectPick.storeId == this.data.list[i].storeId) {
+        this.data.list[i]['takeFreight'] = selectPick
+        this.data.list[i]['takeFreightId'] = selectPick.takeId
       }
     }
     this.setData({
@@ -460,14 +418,14 @@ Page({
    */
   confirmCoupon(e) {
     this.data.coupon = e.detail
-    let coupon_price = 0
+    let couponPrice = 0
     for (let i = 0, len = this.data.coupon.length; i < len; i++) {
       if (this.data.coupon[i].select) {
-        coupon_price += parseFloat(this.data.coupon[i].actual_price)
+        couponPrice += parseFloat(this.data.coupon[i].actualPrice)
       }
     }
     this.setData({
-      coupon_price: coupon_price.toFixed(2)
+      couponPrice: couponPrice.toFixed(2)
     })
     this.calculate()
   },
@@ -490,19 +448,19 @@ Page({
       return
     }
     let price = 0,
-      member_packet_id
+      memberPacketId
     this.data.redpacket = e.detail
     for (let i = 0, len = e.detail.length; i < len; i++) {
       if (e.detail[i].select) {
-        price = parseFloat(e.detail[i].actual_price)
-        member_packet_id = e.detail[i].member_packet_id
+        price = parseFloat(e.detail[i].actualPrice)
+        memberPacketId = e.detail[i].memberPacketId
       } else {
-        member_packet_id = ''
+        memberPacketId = ''
       }
     }
     this.setData({
-      packet_price: price,
-      member_packet_id: member_packet_id
+      packetPrice: price,
+      memberPacketId: memberPacketId
     })
     this.calculate()
   },
@@ -512,32 +470,30 @@ Page({
    */
   calculate() {
     let total = 0,
-      origin_total = 0,
+      originTotal = 0,
       freight = 0,
-      discount_price = 0;
+      discountPrice = 0;
     for (let i = 0; i < this.data.list.length; i++) {
-      this.data.list[i].total_price = 0;
+      this.data.list[i].totalPrice = 0;
       for (let j = 0; j < this.data.list[i].list.length; j++) {
-        this.data.list[i].total_price += parseFloat(this.data.list[i].list[j].price) * parseFloat(this.data.list[i].list[j].number)
-        discount_price += parseFloat(this.data.list[i].list[j].discount_price) * parseFloat(this.data.list[i].list[j].number)
+        this.data.list[i].totalPrice += parseFloat(this.data.list[i].list[j].price) * parseFloat(this.data.list[i].list[j].number)
+        discountPrice += parseFloat(this.data.list[i].list[j].discountPrice) * parseFloat(this.data.list[i].list[j].number)
         total += parseFloat(this.data.list[i].list[j].price) * parseFloat(this.data.list[i].list[j].number)
-        origin_total += parseFloat(this.data.list[i].list[j].price) * parseFloat(this.data.list[i].list[j].number)
+        originTotal += parseFloat(this.data.list[i].list[j].price) * parseFloat(this.data.list[i].list[j].number)
       }
-      // total += parseFloat(this.data.list[i].total_price)
-      // origin_total += parseFloat(this.data.list[i].total_price)
-      if (this.data.list[i].distribution_type == 1) {
+      if (this.data.list[i].distributionType == 1) {
         //同城
-        freight += parseFloat(this.data.list[i].freight.city_freight_price);
-      } else if (this.data.list[i].distribution_type == 2) {
+        freight += parseFloat(this.data.list[i].freight.cityFreightPrice);
+      } else if (this.data.list[i].distributionType == 2) {
         //预约自提
         freight += 0;
-      } else if (this.data.list[i].distribution_type == 3) {
+      } else if (this.data.list[i].distributionType == 3) {
         //快递邮寄
-        freight += parseFloat(this.data.list[i].freight.express_freight_price);
+        freight += parseFloat(this.data.list[i].freight.expressFreightPrice);
       }
     }
 
-    total = total - parseFloat(this.data.coupon_price) - parseFloat(this.data.packet_price) - parseFloat(discount_price);
+    total = total - parseFloat(this.data.couponPrice) - parseFloat(this.data.packetPrice) - parseFloat(discountPrice);
     if (total <= 0) {
       total = parseFloat(freight) > 0 ? 0 : 0.1;
     }
@@ -548,7 +504,7 @@ Page({
     }
     this.setData({
       total: total > 0 ? total : '0.00',
-      origin_total: origin_total,
+      originTotal: originTotal,
       freight: freight.toFixed(2),
       list: this.data.list
     })
@@ -564,12 +520,12 @@ Page({
       return
     }
 
-    let member_platform_coupon_id = ''
+    let memberPlatformCouponId = ''
     for (let i = 0, len = this.data.list.length; i < len; i++) {
-      this.data.list[i]['coupon_id'] = ''
+      this.data.list[i]['couponId'] = ''
       //配送是否为空
-      if (this.data.list[i].freight.city_freight_msg != '' && this.data.list[i].distribution_type == 1) {
-        app.showToast(this.data.list[i].freight.city_freight_msg)
+      if (this.data.list[i].freight.cityFreightMsg != '' && this.data.list[i].distributionType == 1) {
+        app.showToast(this.data.list[i].freight.cityFreightMsg)
         break
         return
       }
@@ -577,119 +533,119 @@ Page({
     for (let i = 0, len = this.data.coupon.length; i < len; i++) {
       //店铺优惠券
       for (let j = 0, j_len = this.data.list.length; j < j_len; j++) {
-        if (this.data.coupon[i].store_id == this.data.list[j].store_id && this.data.coupon[i].select) {
-          this.data.list[j]['coupon_id'] = this.data.coupon[i].member_coupon_id
+        if (this.data.coupon[i].storeId == this.data.list[j].storeId && this.data.coupon[i].select) {
+          this.data.list[j]['couponId'] = this.data.coupon[i].memberCouponId
         }
       }
 
       //平台优惠券
       if (this.data.coupon[i].state == "platform") {
-        member_platform_coupon_id = this.data.coupon[i].member_coupon_id
+        memberPlatformCouponId = this.data.coupon[i].memberCouponId
       } else {
-        member_platform_coupon_id = ''
+        memberPlatformCouponId = ''
       }
     }
 
-    let store_set = []
-    let total_order = 0
+    let storeSet = []
+    let totalOrder = 0
     for (let i = 0, len = this.data.list.length; i < len; i++) {
       let store = {
-        store_id: this.data.list[i].store_id,
-        products_id: '',
-        goods_attr: '',
+        storeId: this.data.list[i].storeId,
+        productsId: '',
+        goodsAttr: '',
         quantity: '',
-        member_shop_coupon_id: this.data.list[i].coupon_id,
+        memberShopCouponId: this.data.list[i].couponId,
         message: this.data.list[i].message,
-        distribution_type: this.data.list[i].distribution_type,
-        pay_type: this.data.list[i].way,
-        take_id: this.data.list[i].distribution_type == 2 ? this.data.list[i].take_freight_id : '',
+        distributionType: this.data.list[i].distributionType,
+        payType: this.data.list[i].way,
+        takeId: this.data.list[i].distributionType == 2 ? this.data.list[i].takeFreightId : '',
         //是否开发票 0不开 1开
-        invoice_set: this.data.list[i].invoice.is_invoice == 1 ? {
+        invoiceSet: this.data.list[i].invoice.isInvoice == 1 ? {
           //发票
           account: this.data.list[i].invoice.account, //开户账户
           bank: this.data.list[i].invoice.bank, //开户银行
           //company: this.data.invoice.company,//发票抬头内容
-          detail_type: this.data.list[i].invoice.detail_type, //发票类型
-          taxer_number: this.data.list[i].invoice.taxer_number, //纳税人识别号
+          detailType: this.data.list[i].invoice.detailType, //发票类型
+          taxerNumber: this.data.list[i].invoice.taxerNumber, //纳税人识别号
           address: this.data.list[i].invoice.address, //注册地址
           phone: this.data.list[i].invoice.phone, //注册电话
-          invoice_type: this.data.list[i].invoice.invoice_type, //发票类型：1电子发票 2普通纸质发票 3增值税纸质发票
+          invoiceType: this.data.list[i].invoice.invoiceType, //发票类型：1电子发票 2普通纸质发票 3增值税纸质发票
           rise: this.data.list[i].invoice.rise, //发票抬头：1个人或事业单位 2企业
-          rise_name: this.data.list[i].invoice.rise == 1 ? this.data.list[i].invoice.rise_name : this.data.list[i].invoice.company, //发票抬头内容（抬头为企业时将公司名称传进来）发票抬头：1个人 2公司
-          consignee_name: this.data.list[i].invoice.consignee_name,
-          consignee_phone: this.data.list[i].invoice.consignee_phone,
-          address_province: this.data.list[i].invoice.address_province,
-          address_city: this.data.list[i].invoice.address_city,
-          address_area: this.data.list[i].invoice.address_area,
-          address_street: this.data.list[i].invoice.address_street,
-          address_details: this.data.list[i].invoice.address_details
+          riseName: this.data.list[i].invoice.rise == 1 ? this.data.list[i].invoice.riseName : this.data.list[i].invoice.company, //发票抬头内容（抬头为企业时将公司名称传进来）发票抬头：1个人 2公司
+          consigneeName: this.data.list[i].invoice.consigneeName,
+          consigneePhone: this.data.list[i].invoice.consigneePhone,
+          addressProvince: this.data.list[i].invoice.addressProvince,
+          addressCity: this.data.list[i].invoice.addressCity,
+          addressArea: this.data.list[i].invoice.addressArea,
+          addressStreet: this.data.list[i].invoice.addressStreet,
+          addressDetails: this.data.list[i].invoice.addressDetails
         } : '',
       }
       if (this.data.list[i].way == 1) {
-        total_order += Number(this.data.list[i].total_price)
+        totalOrder += Number(this.data.list[i].totalPrice)
       }
-      store_set.push(store)
+      storeSet.push(store)
     }
     this.setData({
-      total_order: total_order
+      totalOrder: totalOrder
     })
-    http.post(app.globalData.order_confirm, {
-      memberAddressId: this.data.member_address_id,
+    http.post(app.globalData.orderConfirm, {
+      memberAddressId: this.data.memberAddressId,
       payChannel: 2,
       orderType: 1,
       cutActivityId: null,
       groupActivityid: null,
       usedIntegral: 0,
-      memberPacketId: this.data.member_packet_id,
-      memberPlatformCoupon_id: member_platform_coupon_id,
-      idSet: this.data.cart_id,
-      storeSet: store_set,
+      memberPacketId: this.data.memberPacketId,
+      memberPlatformCouponId: memberPlatformCouponId,
+      idSet: this.data.cartId,
+      storeSet: storeSet,
       invoiceAttr: 1,
       originType: 2
     }).then(res => {
       event.emit('refreshCart')
       event.emit('clearCart')
-      if (this.data.total_order == 0) {
+      if (this.data.totalOrder == 0) {
         let item = {
-          total_price: res.result.total_price,
-          order_type: 1,
-          order_attach_id: res.result.order_attach_id,
-          distribution_id: '',
-          out_trade_no: res.result.order_number,
+          totalPrice: res.result.totalPrice,
+          orderType: 1,
+          orderAttachId: res.result.orderAttachId,
+          distributionId: '',
+          outTradeNo: res.result.orderNumber,
         }
         wx.redirectTo({
-          url: '/nearby_shops/pay_result/pay_result?item=' + JSON.stringify(item),
+          url: '/nearbyShops/payResult/payResult?item=' + JSON.stringify(item),
         })
         return
       }
       if (this.data.total == '0.00') {
         app.showSuccessToast('提交成功', () => {
           let item = {
-            total_price: res.result.total_price,
-            order_type: this.data.info.good_type,
-            order_attach_id: res.result.order_attach_id,
-            distribution_id: ''
+            totalPrice: res.result.totalPrice,
+            orderType: this.data.info.goodType,
+            orderAttachId: res.result.orderAttachId,
+            distributionId: ''
           }
           wx.redirectTo({
-            url: '/nearby_shops/pay_result/pay_result?item=' + JSON.stringify(item),
+            url: '/nearbyShops/payResult/payResult?item=' + JSON.stringify(item),
           })
         })
         return
       }
-      let order_info = {
-        total_price: res.result.total_price,
-        order_number: res.result.order_number,
-        order_type: 1,
-        order_attach_number: '',
-        order_attach_id: res.result.order_attach_id,
-        distribution_id: '',
+      let orderInfo = {
+        totalPrice: res.result.totalPrice,
+        orderNumber: res.result.orderNumber,
+        orderType: 1,
+        orderAttachNumber: '',
+        orderAttachId: res.result.orderAttachId,
+        distributionId: '',
         type: 1
       }
-      http.post(app.globalData.applet_my_saveFormId, {
+      http.post(app.globalData.appletMySaveFormId, {
         microFormId: this.data.formId
       }).then(res => {})
       wx.redirectTo({
-        url: '../cashier_desk/cashier_desk?order_info=' + JSON.stringify(order_info),
+        url: '../cashierDesk/cashierDesk?orderInfo=' + JSON.stringify(orderInfo),
       })
     })
   },
@@ -703,32 +659,32 @@ Page({
     this.setData({
       popupIdx: idx
     })
-    this.selectComponent("#popup").show(item.invoice, idx, item.store_id, 0, this.data.address.member_address_id != undefined ? this.data.address : '')
+    this.selectComponent("#popup").show(item.invoice, idx, item.storeId, 0, this.data.address.memberAddressId != undefined ? this.data.address : '')
   },
   /**
    * 确定发票方式
    */
-  popup_invoice(e) {
+  popupInvoice(e) {
     let item = e.detail
     let data = {
       account: item.account,
       bank: item.bank,
       company: item.company,
-      detail_type: item.detail_type,
-      taxer_number: item.taxer_number,
+      detailType: item.detailType,
+      taxerNumber: item.taxerNumber,
       address: item.address,
       phone: item.phone,
-      invoice_type: item.invoice_type,
-      is_invoice: item.is_invoice,
+      invoiceType: item.invoiceType,
+      isInvoice: item.isInvoice,
       rise: item.rise,
-      rise_name: item.rise_name,
-      consignee_name: item.consignee_name,
-      consignee_phone: item.consignee_phone,
-      address_province: item.address_province,
-      address_city: item.address_city,
-      address_area: item.address_area,
-      address_street: item.address_street,
-      address_details: item.address_details
+      riseName: item.riseName,
+      consigneeName: item.consigneeName,
+      consigneePhone: item.consigneePhone,
+      addressProvince: item.addressProvince,
+      addressCity: item.addressCity,
+      addressArea: item.addressArea,
+      addressStreet: item.addressStreet,
+      addressDetails: item.addressDetails
     }
     this.data.list[item.idx].invoice = data
     this.setData({
@@ -736,9 +692,9 @@ Page({
     })
   },
   createWhether(idx) {
-    this.data.list[idx].invoice.address_province = this.data.province.area_name
-    this.data.list[idx].invoice.address_city = this.data.city.area_name
-    this.data.list[idx].invoice.address_area = this.data.area.area_name
+    this.data.list[idx].invoice.addressProvince = this.data.province.areaName
+    this.data.list[idx].invoice.addressCity = this.data.city.areaName
+    this.data.list[idx].invoice.addressArea = this.data.area.areaName
     this.setData({
       list: this.data.list
     })

@@ -6,9 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    account_status: true,
-    shopping_status: true,
-    interact_status: true
+    accountStatus: true,
+    shoppingStatus: true,
+    interactStatus: true
   },
 
   /**
@@ -65,7 +65,7 @@ Page({
    */
   changeAccount() {
     this.setData({
-      account_status: !this.data.account_status
+      accountStatus: !this.data.accountStatus
     })
   },
 
@@ -74,7 +74,7 @@ Page({
    */
   changeShopping() {
     this.setData({
-      shopping_status: !this.data.shopping_status
+      shoppingStatus: !this.data.shoppingStatus
     })
   },
 
@@ -83,7 +83,7 @@ Page({
    */
   changeInteract() {
     this.setData({
-      interact_status: !this.data.interact_status
+      interactStatus: !this.data.interactStatus
     })
   },
 
@@ -91,7 +91,7 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.my_task, {}).then(res => {
+    http.post(app.globalData.myTask, {}).then(res => {
       this.setData({
         info: res
       })
@@ -106,13 +106,13 @@ Page({
 
   goCommenting() {
     wx.navigateTo({
-      url: '/my/my_comment/my_comment',
+      url: '/my/myComment/myComment',
     })
   },
 
   goView() {
     wx.navigateTo({
-      url: '/pages/hot_spots/hot_spots',
+      url: '/pages/hotSpots/hotSpots',
     })
   }
 })

@@ -1,4 +1,3 @@
-/* my/fx_change_record/fx_change_record.wxss */
 .warp{
   padding: 23rpx 30rpx;
 }

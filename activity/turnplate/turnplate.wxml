@@ -2,7 +2,7 @@
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='warp' hidden='{{!info||list.length==0}}' style='background:url({{util.HTTP}}mobile/small/image/game-jggzp/g-bg.jpg) no-repeat;background-size: 100% 100%;'>
   <view class='regulation' style='background:url({{util.HTTP}}mobile/small/image/game-jggzp/g-icon3.png) no-repeat;background-size: 100%;'>
-    <view hover-class='hover-class' hover-stay-time='400' bindtap='draw_text' data-id='{{info.data.activity_id}}'>抽奖规则</view>
+    <view hover-class='hover-class' hover-stay-time='400' bindtap='drawText' data-id='{{info.data.activityId}}'>抽奖规则</view>
   </view>
   <view class='game-name'>{{info.data.title}}</view>
   <view class='game-con'>
@@ -16,10 +16,10 @@
     <view class='box-con'>
       <view class='box{{index}}' wx:for='{{list}}' wx:key='{{index}}'>
         <image class='box_bg' src='{{util.HTTP}}mobile/small/image/game-jggzp/box.png' mode='widthFix'></image>
-        <view class='prize-con {{active_index==index?"active":""}}'>
-          <block wx:if='{{item.is_open==1}}'>
+        <view class='prize-con {{activeIndex==index?"active":""}}'>
+          <block wx:if='{{item.isOpen==1}}'>
             <image src='{{item.file}}'></image>
-            <view>{{item.prize_title}}</view>
+            <view>{{item.prizeTitle}}</view>
           </block>
           <block wx:else>
             <view class='xxcy'>谢谢参与</view>
@@ -28,7 +28,7 @@
       </view>
       <view class='btn' hover-class='hover-class' hover-stay-time='400' bindtap='start'>
         <image class='box_bg' src='{{util.HTTP}}mobile/small/image/game-jggzp/anniu.png' mode='widthFix'></image>
-        <view class='btn-con' wx:if='{{info.draw_type>1}}'>
+        <view class='btn-con' wx:if='{{info.drawType>1}}'>
           <view>立即抽奖</view>
           <text>-{{info.data.integral}}积分</text>
         </view>
@@ -41,11 +41,11 @@
   <view class='win-list'>
     <image class='bg-img' src='{{util.HTTP}}mobile/small/image/game-jggzp/zjjl.png'></image>
     <view class='list-con'>
-      <scroll-view scroll-y scroll-with-animation scroll-into-view='s{{scroll_index}}' style='height:320rpx;'>
-        <view id='s{{index}}' class='row' wx:for='{{info.lottery_record}}'>
+      <scroll-view scroll-y scroll-with-animation scroll-into-view='s{{scrollIndex}}' style='height:320rpx;'>
+        <view id='s{{index}}' class='row' wx:for='{{info.lotteryRecord}}'>
           <view class='user_name'>{{item.member.nickname}}</view>
           <view class='phone'>{{item.member.phone}}</view>
-          <view class='win'>{{item.prize_title}}</view>
+          <view class='win'>{{item.prizeTitle}}</view>
         </view>
       </scroll-view>
     </view>
@@ -55,22 +55,21 @@
   <view>
     <image src='{{util.HTTP}}mobile/small/image/zwsp.png'></image>
     <view class='no-order-head'>暂无活动</view>
-    <!-- <view class='no-order-content'>"快来忙里偷闲下一单吧"</view> -->
   </view>
 </view>
 
 <view class='win_goods' wx:if='{{!isShow}}'>
-  <view class='win_warp' style='{{win_data.data.prize_type!=1||(win_data.data.prize_type==1&&info.address.member_address_id==undefined)?"height:500rpx;":""}}'>
+  <view class='win_warp' style='{{winData.data.prizeType!=1||(winData.data.prizeType==1&&info.address.memberAddressId==undefined)?"height:500rpx;":""}}'>
     <image class='bg_ray' src='{{util.HTTP}}mobile/small/image/game-jggzp/g-icon1.png'></image>
     <!-- 实物 -->
-    <view class='win_con' wx:if='{{win_data.data.prize_type==1}}'>
-      <image class='goods_img' src='{{win_info.file}}'></image>
-      <view class='jg'>恭喜您，抽中{{win_info.prize_title}}</view>
-      <view class='win_info'>
-        <view class='win_infowarp' hidden='{{info.address.member_address_id!=undefined}}'>
+    <view class='win_con' wx:if='{{winData.data.prizeType==1}}'>
+      <image class='goods_img' src='{{winInfo.file}}'></image>
+      <view class='jg'>恭喜您，抽中{{winInfo.prizeTitle}}</view>
+      <view class='winInfo'>
+        <view class='winInfowarp' hidden='{{info.address.memberAddressId!=undefined}}'>
           <view class='tiit center'>邮寄地址未设置</view>
         </view>
-        <view class='win_infowarp' hover-class='hover-class' hover-stay-time='400' bindtap='address' hidden='{{info.address.member_address_id==undefined}}'>
+        <view class='winInfowarp' hover-class='hover-class' hover-stay-time='400' bindtap='address' hidden='{{info.address.memberAddressId==undefined}}'>
           <view class='tiit'>邮寄地址</view>
           <view class='ems_info'>
             <view class='info'>{{info.address.name}} {{info.address.phone}}</view>
@@ -78,20 +77,20 @@
           </view>
           <view class='add'>{{info.address.province}}{{info.address.city}}{{info.address.area}}{{info.address.address}}</view>
         </view>
-        <view class='wingoods_btn winjf_btn' hidden='{{info.address.member_address_id!=undefined}}'>
+        <view class='wingoods_btn winjf_btn' hidden='{{info.address.memberAddressId!=undefined}}'>
           <text style='{{util.diyColor("","#f23030","")}}' hover-class='hover-class' hover-stay-time='400' bindtap='address'>点击设置地址</text>
         </view>
-        <view class='wingoods_btn' hidden='{{info.address.member_address_id==undefined}}'>
+        <view class='wingoods_btn' hidden='{{info.address.memberAddressId==undefined}}'>
           <text hover-class='hover-class' hover-stay-time='400' bindtap='goDraw' style='{{util.diyColor("#f23030","","#f23030")}}padding: 10rpx 40rpx;'>我的抽奖</text>
           <text data-data='{{info.data.id}}' hover-class='hover-class' hover-stay-time='400' bindtap='confirm' style='{{util.diyColor("","#f23030","#f23030")}}'>确认领取</text>
         </view>
       </view>
     </view>
     <!-- 积分 -->
-    <view class='win_con' wx:if='{{win_data.data.prize_type==2}}'>
-      <image class='goods_img' src='{{win_info.file}}'></image>
-      <view class='jg'>{{win_info.prize_title}}</view>
-      <view class='win_info'>
+    <view class='win_con' wx:if='{{winData.data.prizeType==2}}'>
+      <image class='goods_img' src='{{winInfo.file}}'></image>
+      <view class='jg'>{{winInfo.prizeTitle}}</view>
+      <view class='winInfo'>
         <view class='wingoods_btn winjf_btn'>
           <text hover-class='hover-class' hover-stay-time='400' bindtap='close' style='{{util.diyColor("","#f23030","#f23030")}}'>再抽一次</text>
           <!-- <text data-data='{{info.data.id}}' hover-class='hover-class' hover-stay-time='400' bindtap='confirm'>点击查看</text> -->
@@ -99,10 +98,10 @@
       </view>
     </view>
     <!-- 优惠卷 -->
-    <view class='win_con' wx:if='{{win_data.data.prize_type==3}}'>
-      <image class='goods_img' src='{{win_info.file}}'></image>
-      <view class='jg'>{{win_info.prize_title}}</view>
-      <view class='win_info'>
+    <view class='win_con' wx:if='{{winData.data.prizeType==3}}'>
+      <image class='goods_img' src='{{winInfo.file}}'></image>
+      <view class='jg'>{{winInfo.prizeTitle}}</view>
+      <view class='winInfo'>
         <view class='wingoods_btn'>
           <text hover-class='hover-class' hover-stay-time='400' bindtap='close' style='{{util.diyColor("#f23030","","#f23030")}}'>再抽一次</text>
           <text data-data='{{info.data.id}}' hover-class='hover-class' hover-stay-time='400' bindtap='coupon' style='{{util.diyColor("","#f23030","#f23030")}}'>点击查看</text>

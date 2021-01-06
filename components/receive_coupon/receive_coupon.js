@@ -28,14 +28,14 @@ Component({
     /**
      * 网络请求
      */
-    getCouponList(store_id, goods_classify_id) {
-      http.post(app.globalData.good_coupon_list, {
-        goodsClassifyId: goods_classify_id,
-        storeId: store_id
+    getCouponList(storeId, goodsClassifyId) {
+      http.post(app.globalData.goodCouponList, {
+        goodsClassifyId: goodsClassifyId,
+        storeId: storeId
       }).then(res => {
         for (let i of res.result) {
-          i.start_time = i.start_time.replace(/-/g, '.')
-          i.end_time = i.end_time.replace(/-/g, '.')
+          i.startTime = i.startTime.replace(/-/g, '.')
+          i.endTime = i.endTime.replace(/-/g, '.')
         }
         this.setData({
           coupon: res.result
@@ -54,7 +54,7 @@ Component({
       })
       animation.translateY(-wx.getSystemInfoSync().windowHeight)
       this.setData({
-        animation_coupon: animation.step(),
+        animationCoupon: animation.step(),
         isShow: true
       })
       this.fadeIn()
@@ -70,7 +70,7 @@ Component({
       })
       animation.translateY(wx.getSystemInfoSync().windowHeight)
       this.setData({
-        animation_coupon: animation.step(),
+        animationCoupon: animation.step(),
         isShow: false
       })
       this.fadeOut()
@@ -127,14 +127,14 @@ Component({
       }
       let item = e.currentTarget.dataset.item,
         index = e.currentTarget.dataset.index
-      http.post(app.globalData.get_coupon, {
-        couponId: item.coupon_id,
-        goodsClassifyId: item.type == 1 ? this.data.goods_classify_id : '',
-        storeId: item.type == 0 ? this.data.store_id : ''
+      http.post(app.globalData.getCoupon, {
+        couponId: item.couponId,
+        goodsClassifyId: item.type == 1 ? this.data.goodsClassifyId : '',
+        storeId: item.type == 0 ? this.data.storeId : ''
       }).then(res => {
         app.showSuccessToast('领取成功')
-        this.data.coupon[index].member_coupon_count++;
-        this.data.coupon[index].exchange_num--;
+        this.data.coupon[index].memberCouponCount++;
+        this.data.coupon[index].exchangeNum--;
         this.setData({
           coupon: this.data.coupon
         })

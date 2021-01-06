@@ -52,9 +52,9 @@ Component({
       // })
     },
     getData() {
-      if (app.globalData.member_id != '') {
+      if (app.globalData.memberId != '') {
         setTimeout(() => {
-          http.post(app.globalData.cart_number, {}).then(res => {
+          http.post(app.globalData.cartNumber, {}).then(res => {
             this.setData({
               number: res.result
             })

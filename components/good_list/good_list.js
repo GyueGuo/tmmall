@@ -52,13 +52,13 @@ Component({
      */
     onGoods(e) {
       wx.navigateTo({
-        url: '/nearby_shops/good_detail/good_detail?goods_id=' + e.currentTarget.dataset.id,
+        url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + e.currentTarget.dataset.id,
       })
     },
 
     onShop(e) {
       wx.navigateTo({
-        url: '/nearby_shops/shop_detail/shop_detail?store_id=' + e.currentTarget.dataset.id,
+        url: '/nearbyShops/shopDetail/shopDetail?storeId=' + e.currentTarget.dataset.id,
       })
     },
 
@@ -70,18 +70,18 @@ Component({
         return
       }
       let item = e.currentTarget.dataset.item
-      item.add_cart_type = 2
-      item['attr'] = item.attribute_list
-      if (item.goods_number == 0) {
+      item.addCartType = 2
+      item['attr'] = item.attributeList
+      if (item.goodsNumber == 0) {
         app.showToast('该商品已经卖光了')
         return
       }
       if (item['attr'].length == 0) {
-        http.encPost(app.globalData.cart_create, {
-          storeId: item.store_id,
-          goodsId: item.goods_id,
-          goodsName: item.goods_name,
-          file: item.cart_file,
+        http.encPost(app.globalData.cartCreate, {
+          storeId: item.storeId,
+          goodsId: item.goodsId,
+          goodsName: item.goodsName,
+          file: item.cartFile,
           number: 1,
           productsId: '',
           attr: '',
@@ -98,7 +98,7 @@ Component({
     onLabel(e) {
       console.log(e.currentTarget.dataset)
       wx.navigateTo({
-        url: `/nearby_shops/good_detail/good_detail?goods_id=${e.currentTarget.dataset.goods_id}&label=${e.currentTarget.dataset.id}`,
+        url: `/nearbyShops/goodDetail/goodDetail?goodsId=${e.currentTarget.dataset.goodsId}&label=${e.currentTarget.dataset.id}`,
       })
     }
   }

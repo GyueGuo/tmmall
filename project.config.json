@@ -72,20 +72,20 @@
         {
           "id": 0,
           "name": "商品",
-          "pathName": "nearby_shops/good_detail/good_detail",
-          "query": "goods_id=11",
+          "pathName": "nearbyShops/goodDetail/goodDetail",
+          "query": "goodsId=11",
           "scene": null
         },
         {
           "id": 1,
           "name": "订单",
-          "pathName": "my/order_detail/order_detail",
+          "pathName": "my/orderDetail/orderDetail",
           "query": "id=150"
         },
         {
           "id": 2,
           "name": "待评价",
-          "pathName": "my/express_order/express_order",
+          "pathName": "my/expressOrder/expressOrder",
           "query": ""
         },
         {
@@ -97,32 +97,32 @@
         {
           "id": 4,
           "name": "店铺",
-          "pathName": "pages/shop_detail/shop_detail",
-          "query": "store_id=5"
+          "pathName": "pages/shopDetail/shopDetail",
+          "query": "storeId=5"
         },
         {
           "id": -1,
           "name": "评价",
           "pathName": "pages/evaluate/evaluate",
-          "query": "goods_id=179"
+          "query": "goodsId=179"
         },
         {
           "id": -1,
           "name": "店铺",
-          "pathName": "pages/rank_good/rank_good",
-          "query": "store_id=49"
+          "pathName": "pages/rankGood/rankGood",
+          "query": "storeId=49"
         },
         {
           "id": 7,
           "name": "帮助中心",
-          "pathName": "my/help_center/help_center",
+          "pathName": "my/helpCenter/helpCenter",
           "query": "",
           "scene": null
         },
         {
           "id": 8,
           "name": "拼团详情",
-          "pathName": "pages/collage_detail/collage_detail",
+          "pathName": "pages/collageDetail/collageDetail",
           "query": "id=192",
           "scene": null
         },
@@ -136,13 +136,13 @@
         {
           "id": -1,
           "name": "我的抽奖",
-          "pathName": "my/my_prize/my_prize",
+          "pathName": "my/myPrize/myPrize",
           "query": ""
         },
         {
           "id": -1,
           "name": "达达",
-          "pathName": "my/take_out/take_out",
+          "pathName": "my/takeOut/takeOut",
           "query": ""
         },
         {
@@ -155,7 +155,7 @@
         {
           "id": -1,
           "name": "支付成功",
-          "pathName": "nearby_shops/pay_result/pay_result",
+          "pathName": "nearbyShops/payResult/payResult",
           "query": "",
           "scene": "1011"
         },
@@ -163,27 +163,27 @@
           "id": 14,
           "name": "客服",
           "pathName": "my/service/service",
-          "query": "service_info={\"store_title\":\"贝印化妆品专营店\",\"form_type\":\"goods\",\"detail\":{\"file\":\"https%3A%2F%2Fishop-bucket.oss-cn-beijing.aliyuncs.com%2Fgoods_file%2F20181027%2F0ef07012b4fb5e3c10b48768b6058701.jpg%2521upload-back%3FOSSAccessKeyId%3DLTAI1Fzp44FgTE0d%26Expires%3D1551244023%26Signature%3DMTkNWU1NzZOlKR7envatSAolXK8%253D\",\"goods_name\":\"玉兰油OLAY洗面奶细滑焕肤洁面乳100g（补水保湿 深层清\",\"goods_id\":\"212\",\"price\":\"19.90\"},\"TARGET_ID\":56,\"DIVERSION_ID\":\"1001\"}",
+          "query": "serviceInfo={\"storeTitle\":\"贝印化妆品专营店\",\"formType\":\"goods\",\"detail\":{\"file\":\"https%3A%2F%2Fishop-bucket.oss-cn-beijing.aliyuncs.com%2FgoodsFile%2F20181027%2F0ef07012b4fb5e3c10b48768b6058701.jpg%2521upload-back%3FOSSAccessKeyId%3DLTAI1Fzp44FgTE0d%26Expires%3D1551244023%26Signature%3DMTkNWU1NzZOlKR7envatSAolXK8%253D\",\"goodsName\":\"玉兰油OLAY洗面奶细滑焕肤洁面乳100g（补水保湿 深层清\",\"goodsId\":\"212\",\"price\":\"19.90\"},\"TARGETID\":56,\"DIVERSIONID\":\"1001\"}",
           "scene": null
         },
         {
           "id": -1,
           "name": "发票信息",
-          "pathName": "nearby_shops/invoice_detail/invoice_detail",
+          "pathName": "nearbyShops/invoiceDetail/invoiceDetail",
           "query": "",
           "scene": null
         },
         {
           "id": -1,
           "name": "收票人信息",
-          "pathName": "nearby_shops/invoice_info/invoice_info",
+          "pathName": "nearbyShops/invoiceInfo/invoiceInfo",
           "query": "",
           "scene": null
         },
         {
           "id": -1,
           "name": "开具发票",
-          "pathName": "nearby_shops/invoice_over/invoice_over",
+          "pathName": "nearbyShops/invoiceOver/invoiceOver",
           "query": "",
           "scene": null
         },
@@ -204,14 +204,14 @@
         {
           "id": -1,
           "name": "dy",
-          "pathName": "my/fx_cwdy/fx_cwdy",
+          "pathName": "my/fxCwdy/fxCwdy",
           "query": "",
           "scene": null
         },
         {
           "id": 21,
           "name": "设置密码",
-          "pathName": "my/set_pay_psw/set_pay_psw",
+          "pathName": "my/setPayPsw/setPayPsw",
           "query": "",
           "scene": null
         },
@@ -238,15 +238,15 @@
         },
         {
           "id": -1,
-          "name": "my/set_pay_psw/set_pay_psw",
-          "pathName": "my/set_pay_psw/set_pay_psw",
+          "name": "my/setPayPsw/setPayPsw",
+          "pathName": "my/setPayPsw/setPayPsw",
           "query": "",
           "scene": null
         },
         {
           "id": -1,
-          "name": "pages/bind_phone/bind_phone",
-          "pathName": "pages/bind_phone/bind_phone",
+          "name": "pages/bindPhone/bindPhone",
+          "pathName": "pages/bindPhone/bindPhone",
           "query": "",
           "scene": null
         }

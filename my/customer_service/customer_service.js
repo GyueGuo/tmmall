@@ -62,19 +62,19 @@ Page({
 
   callPhone() {
     wx.makePhoneCall({
-      phoneNumber: this.data.configSwitch.app_info.contact,
+      phoneNumber: this.data.configSwitch.appInfo.contact,
     })
   },
   /**
    * 平台客服
    */
-  service_pt() {
-    let service_info = {
-      TARGET_ID: '0',
-      DIVERSION_ID: '5001'
+  servicePt() {
+    let serviceInfo = {
+      TARGETID: '0',
+      DIVERSIONID: '5001'
     }
     wx.navigateTo({
-      url: '/my/service/service?service_info=' + JSON.stringify(service_info),
+      url: '/my/service/service?serviceInfo=' + JSON.stringify(serviceInfo),
     })
   },
 })

@@ -14,7 +14,7 @@ Component({
     opacity: 0,
     array: [],
   },
-  ready(){
+  ready() {
     this.setData({
       diyColor: app.globalData.diyColor
     })
@@ -34,7 +34,7 @@ Component({
       })
       animation.translateY(-wx.getSystemInfoSync().windowHeight)
       this.setData({
-        animation_coupon: animation.step(),
+        animationCoupon: animation.step(),
         isShow: true
       })
       this.fadeIn()
@@ -50,7 +50,7 @@ Component({
       })
       animation.translateY(wx.getSystemInfoSync().windowHeight)
       this.setData({
-        animation_coupon: animation.step(),
+        animationCoupon: animation.step(),
         isShow: false
       })
       this.fadeOut()
@@ -60,7 +60,7 @@ Component({
      * 淡入效果
      */
     fadeIn() {
-      let interval = setInterval(()=> {
+      let interval = setInterval(() => {
         if (this.data.opacity >= 0.3) {
           clearInterval(interval)
         }
@@ -74,7 +74,7 @@ Component({
      * 淡出效果
      */
     fadeOut() {
-      let interval = setInterval(()=> {
+      let interval = setInterval(() => {
         if (this.data.opacity <= 0) {
           clearInterval(interval)
         }
@@ -107,7 +107,7 @@ Component({
     onlinePay(e) {
       let index = e.currentTarget.dataset.index
       this.data.array[index].way = 1
-      this.data.array[index].delivery_method = 3
+      this.data.array[index].deliveryMethod = 3
       this.setData({
         array: this.data.array
       })
@@ -118,11 +118,7 @@ Component({
      */
     deliveryPay(e) {
       let index = e.currentTarget.dataset.index
-      // if (this.data.array[index].delivery_method == 2) {
-      //   app.showToast('预约自提只支持在线付款')
-      //   return
-      // }
-      this.data.array[index].delivery_method = 1
+      this.data.array[index].deliveryMethod = 1
       this.data.array[index].way = 2
       this.setData({
         array: this.data.array

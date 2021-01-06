@@ -12,7 +12,7 @@ Component({
     limit: true,
     ctx: {},
     file: '',
-    qr_code: '',
+    qrCode: '',
     opacity: 0,
     poster: '',
     tip: '保存图片到手机后,您可分享该商品图片到',
@@ -36,7 +36,7 @@ Component({
         title: '生成中...',
       })
       poster.file = decodeURIComponent(poster.file)
-      poster.shop_logo = decodeURIComponent(poster.shop_logo)
+      poster.shopLogo = decodeURIComponent(poster.shopLogo)
       wx.getImageInfo({
         src: poster.file,
         success: res => {
@@ -44,11 +44,11 @@ Component({
           wx.getImageInfo({
             src: poster.qrCode,
             success: res => {
-              this.data.qr_code = res.path
+              this.data.qrCode = res.path
               wx.getImageInfo({
-                src: poster.shop_logo,
+                src: poster.shopLogo,
                 success: res => {
-                  this.data.shop_logo = res.path
+                  this.data.shopLogo = res.path
                   this.draw(poster)
                 }
               })
@@ -64,22 +64,13 @@ Component({
         src: app.globalData.HTTP + 'mobile/small/hb-xsqqg-bj.png',
         success: res => {
           this.ctx.drawImage(res.path, 0, 0, 375, 667)
-          // if (poster.is_bargain == 1) {
-          //   this.ctx.drawImage('/image/hb-kj-xwz.png', 0, 628, 375, 38)
-          // } else if (poster.is_group == 1) {
-          //   this.ctx.drawImage('/image/hb-pt-xwz.png', 0, 628, 375, 38)
-          // } else if (poster.is_limit == 1) {
-          //   this.ctx.drawImage('/image/hb-xsqqg-xwz.png', 0, 628, 375, 38)
-          // } else {
-          //   this.ctx.drawImage('/image/hb-ptsp-xwz.png', 0, 628, 375, 38)
-          // }
           wx.getImageInfo({
             src: app.globalData.HTTP + 'mobile/small/image/hb-bj.png',
             success: res => {
               this.ctx.drawImage(res.path, 15, 35, 345, 590)
-              if (app.globalData.member_id != '' && app.globalData.phone != '') {
+              if (app.globalData.memberId != '' && app.globalData.phone != '') {
                 wx.getImageInfo({
-                  src: wx.getStorageSync('member_info').avatar,
+                  src: wx.getStorageSync('memberInfo').avatar,
                   success: res => {
                     this.ctx.save()
                     this.ctx.beginPath()
@@ -87,8 +78,8 @@ Component({
                     this.ctx.clip()
                     this.ctx.drawImage(res.path, 30, 50, 30, 30)
                     this.ctx.restore()
-                    if (poster.distribution_gain != undefined) {
-                      let title_name = {
+                    if (poster.distributionGain != undefined) {
+                      let titleName = {
                         x: 68,
                         y: 60,
                         width: 50,
@@ -98,12 +89,12 @@ Component({
                         size: 14,
                         align: 'left',
                         baseline: 'top',
-                        text: wx.getStorageSync('member_info').nickname,
+                        text: wx.getStorageSync('memberInfo').nickname,
                         bold: false
                       }
-                      this.textWrap(title_name)
-                      let metrics = this.ctx.measureText(wx.getStorageSync('member_info').nickname)
-                      let title_tip = {
+                      this.textWrap(titleName)
+                      let metrics = this.ctx.measureText(wx.getStorageSync('memberInfo').nickname)
+                      let titleTip = {
                         x: metrics.width > 50 ? 118 : 74 + metrics.width,
                         y: 60,
                         width: 200,
@@ -114,12 +105,12 @@ Component({
                         align: 'left',
                         baseline: 'top',
                         text: '(诚挚邀请您成为代言人)',
-                        // text: poster.distribution_gain != undefined ? '(诚挚邀请您成为代言人)' : '发现一个好物,推荐给你呀',
+                        // text: poster.distributionGain != undefined ? '(诚挚邀请您成为代言人)' : '发现一个好物,推荐给你呀',
                         bold: false
                       }
-                      this.textWrap(title_tip)
+                      this.textWrap(titleTip)
                     } else {
-                      let title_name = {
+                      let titleName = {
                         x: 68,
                         y: 60,
                         width: 50,
@@ -129,12 +120,12 @@ Component({
                         size: 14,
                         align: 'left',
                         baseline: 'top',
-                        text: wx.getStorageSync('member_info').nickname,
+                        text: wx.getStorageSync('memberInfo').nickname,
                         bold: false
                       }
-                      this.textWrap(title_name)
-                      let metrics = this.ctx.measureText(wx.getStorageSync('member_info').nickname)
-                      let title_tip = {
+                      this.textWrap(titleName)
+                      let metrics = this.ctx.measureText(wx.getStorageSync('memberInfo').nickname)
+                      let titleTip = {
                         x: metrics.width > 50 ? 118 : 74 + metrics.width,
                         y: 60,
                         width: 200,
@@ -145,39 +136,11 @@ Component({
                         align: 'left',
                         baseline: 'top',
                         text: '发现一个好物,推荐给你呀',
-                        // text: poster.distribution_gain != undefined ? '(诚挚邀请您成为代言人)' : '发现一个好物,推荐给你呀',
                         bold: false
                       }
-                      this.textWrap(title_tip)
-                      // let title_item = {
-                      //   x: 68,
-                      //   y: 60,
-                      //   width: 200,
-                      //   height: 18,
-                      //   line: 1,
-                      //   color: '#666c72',
-                      //   size: 14,
-                      //   align: 'left',
-                      //   baseline: 'top',
-                      //   text: wx.getStorageSync('member_info').nickname,
-                      //   bold: false
-                      // }
-                      // this.textWrap(title_item)
+                      this.textWrap(titleTip)
                     }
-                    // let title_text = {
-                    //   x: 38,
-                    //   y: 90,
-                    //   width: 200,
-                    //   height: 18,
-                    //   line: 2,
-                    //   color: 'black',
-                    //   size: 15,
-                    //   align: 'left',
-                    //   baseline: 'top',
-                    //   text: poster.distribution_gain != undefined ? '成为代言人,推广最高收益可达' : '发现一个好物,推荐给你呀',
-                    //   bold: false
-                    // }
-                    let title_text = {
+                    let titleText = {
                       x: 38,
                       y: 90,
                       width: 200,
@@ -190,39 +153,7 @@ Component({
                       text: '',
                       bold: false
                     }
-                    this.textWrap(title_text)
-                    let metrics = this.ctx.measureText(title_text.text)
-                    if (poster.distribution_gain != undefined) {
-                      // let distribution_text = {
-                      //   x: 38 + metrics.width + 4,
-                      //   y: 90,
-                      //   width: 200,
-                      //   height: 18,
-                      //   line: 2,
-                      //   color: '#f20230',
-                      //   size: 15,
-                      //   align: 'left',
-                      //   baseline: 'top',
-                      //   text: `${poster.distribution_gain}`,
-                      //   bold: false
-                      // }
-                      // this.textWrap(distribution_text)
-                      // let member = this.ctx.measureText(distribution_text.text)
-                      // var distribution_member = {
-                      //   x: 38 + metrics.width + 6 + member.width,
-                      //   y: 90,
-                      //   width: 200,
-                      //   height: 18,
-                      //   line: 2,
-                      //   color: 'black',
-                      //   size: 15,
-                      //   align: 'left',
-                      //   baseline: 'top',
-                      //   text: `元`,
-                      //   bold: false
-                      // }
-                      // this.textWrap(distribution_member)
-                    }
+                    this.textWrap(titleText)
                     this.ctx.drawImage(this.data.file, 32, 90, 310, 310)
                     this.ctx.setFillStyle('rgba(255,255,255,0.8)')
                     this.ctx.fillRect(32, 400, 310, 30)
@@ -248,18 +179,18 @@ Component({
                     }
                     this.ctx.font = 'normal normal 14px sans-serif';
                     let sale = '',
-                      kj_width = 0
-                    if (poster.is_limit == 1) {
+                      kjWidth = 0
+                    if (poster.isLimit == 1) {
                       wx.getImageInfo({
                         src: app.globalData.HTTP + 'mobile/small/image/hb-xsqqg-tb.png',
                         success: res => {
                           this.ctx.drawImage(res.path, 30, 452, 42, 14)
                         }
                       })
-                      sale = '已抢' + poster.limit_number + '件'
-                      kj_width = 48
-                    } else if (poster.is_group == 1) {
-                      sale = '已拼' + poster.limit_number + '件'
+                      sale = '已抢' + poster.limitNumber + '件'
+                      kjWidth = 48
+                    } else if (poster.isGroup == 1) {
+                      sale = '已拼' + poster.limitNumber + '件'
                       this.ctx.font = 'normal 10px sans-serif';
                       this.ctx.setFillStyle('#f20230')
                       wx.getImageInfo({
@@ -268,33 +199,33 @@ Component({
                           this.ctx.drawImage(res.path, 30, 452, 42, 14)
                         }
                       })
-                      this.ctx.fillText(poster.group_num + '人拼', 43, 462.4)
-                      kj_width = 48
-                    } else if (poster.is_bargain == 1) {
+                      this.ctx.fillText(poster.groupNum + '人拼', 43, 462.4)
+                      kjWidth = 48
+                    } else if (poster.isBargain == 1) {
                       wx.getImageInfo({
                         src: app.globalData.HTTP + 'mobile/small/image/hb-kj-tb.png',
                         success: res => {
                           this.ctx.drawImage(res.path, 30, 452, 42, 14)
                         }
                       })
-                      sale = '已售' + poster.sales_volume + '件'
-                      kj_width = 48
+                      sale = '已售' + poster.salesVolume + '件'
+                      kjWidth = 48
                     } else {
-                      sale = '已售' + poster.sales_volume + '件'
+                      sale = '已售' + poster.salesVolume + '件'
                     }
                     this.ctx.font = 'normal 19px sans-serif';
                     this.ctx.setFillStyle('#f20230')
-                    this.ctx.fillText('￥', 30 + kj_width, 466)
-                    let unit_width = this.ctx.measureText('￥').width
+                    this.ctx.fillText('￥', 30 + kjWidth, 466)
+                    let unitWidth = this.ctx.measureText('￥').width
                     this.ctx.font = 'normal bold 26px sans-serif';
-                    this.ctx.fillText(price.split('.')[0] + '.', 30 + unit_width + kj_width, 466)
+                    this.ctx.fillText(price.split('.')[0] + '.', 30 + unitWidth + kjWidth, 466)
                     let integer = this.ctx.measureText(price.split('.')[0] + '.').width
-                    let left = parseFloat(30 + unit_width + integer + kj_width)
+                    let left = parseFloat(30 + unitWidth + integer + kjWidth)
                     this.ctx.font = 'normal normal 19px sans-serif';
                     this.ctx.fillText(price.split('.')[1], left, 466)
-                    let sale_width = this.ctx.measureText(sale).width
-                    let goods_text = {
-                      x: 336 - sale_width,
+                    let saleWidth = this.ctx.measureText(sale).width
+                    let goodsText = {
+                      x: 336 - saleWidth,
                       y: 450,
                       width: 530,
                       height: 18,
@@ -306,15 +237,15 @@ Component({
                       text: sale,
                       bold: false
                     }
-                    this.textWrap(goods_text)
-                    this.ctx.drawImage(this.data.qr_code, 38, 500, 106, 106)
+                    this.textWrap(goodsText)
+                    this.ctx.drawImage(this.data.qrCode, 38, 500, 106, 106)
                     this.ctx.save()
                     this.ctx.beginPath()
                     this.ctx.arc(91, 553, 26.5, 0, 2 * Math.PI)
                     this.ctx.clip()
-                    this.ctx.drawImage(this.data.shop_logo, 64.5, 526.5, 53, 53)
+                    this.ctx.drawImage(this.data.shopLogo, 64.5, 526.5, 53, 53)
                     this.ctx.restore()
-                    let code_text = {
+                    let codeText = {
                       x: 170,
                       y: 520,
                       width: 530,
@@ -327,8 +258,8 @@ Component({
                       text: '长按识别二维码',
                       bold: true
                     }
-                    this.textWrap(code_text)
-                    let code_tip = {
+                    this.textWrap(codeText)
+                    let codeTip = {
                       x: 170,
                       y: 550,
                       width: 530,
@@ -341,7 +272,7 @@ Component({
                       text: '超值好货一起购',
                       bold: false
                     }
-                    this.textWrap(code_tip)
+                    this.textWrap(codeTip)
                     this.ctx.draw(false, () => {
                       setTimeout(() => {
                         wx.canvasToTempFilePath({
@@ -364,7 +295,7 @@ Component({
                   fail() { }
                 })
               } else {
-                let title_tip = {
+                let titleTip = {
                   x: 40,
                   y: 60,
                   width: 200,
@@ -375,39 +306,10 @@ Component({
                   align: 'left',
                   baseline: 'top',
                   text: '发现一个好物,推荐给你呀',
-                  // text: poster.distribution_gain != undefined ? '(诚挚邀请您成为代言人)' : '发现一个好物,推荐给你呀',
                   bold: false
                 }
-                this.textWrap(title_tip)
-                // let title_item = {
-                //   x: 68,
-                //   y: 60,
-                //   width: 200,
-                //   height: 18,
-                //   line: 1,
-                //   color: '#666c72',
-                //   size: 14,
-                //   align: 'left',
-                //   baseline: 'top',
-                //   text: wx.getStorageSync('member_info').nickname,
-                //   bold: false
-                // }
-                // this.textWrap(title_item)
-
-                // let title_text = {
-                //   x: 38,
-                //   y: 90,
-                //   width: 200,
-                //   height: 18,
-                //   line: 2,
-                //   color: 'black',
-                //   size: 15,
-                //   align: 'left',
-                //   baseline: 'top',
-                //   text: poster.distribution_gain != undefined ? '成为代言人,推广最高收益可达' : '发现一个好物,推荐给你呀',
-                //   bold: false
-                // }
-                let title_text = {
+                this.textWrap(titleTip)
+                let titleText = {
                   x: 38,
                   y: 90,
                   width: 200,
@@ -420,39 +322,7 @@ Component({
                   text: '',
                   bold: false
                 }
-                this.textWrap(title_text)
-                let metrics = this.ctx.measureText(title_text.text)
-                if (poster.distribution_gain != undefined) {
-                  // let distribution_text = {
-                  //   x: 38 + metrics.width + 4,
-                  //   y: 90,
-                  //   width: 200,
-                  //   height: 18,
-                  //   line: 2,
-                  //   color: '#f20230',
-                  //   size: 15,
-                  //   align: 'left',
-                  //   baseline: 'top',
-                  //   text: `${poster.distribution_gain}`,
-                  //   bold: false
-                  // }
-                  // this.textWrap(distribution_text)
-                  // let member = this.ctx.measureText(distribution_text.text)
-                  // var distribution_member = {
-                  //   x: 38 + metrics.width + 6 + member.width,
-                  //   y: 90,
-                  //   width: 200,
-                  //   height: 18,
-                  //   line: 2,
-                  //   color: 'black',
-                  //   size: 15,
-                  //   align: 'left',
-                  //   baseline: 'top',
-                  //   text: `元`,
-                  //   bold: false
-                  // }
-                  // this.textWrap(distribution_member)
-                }
+                this.textWrap(titleText)
                 this.ctx.drawImage(this.data.file, 32, 90, 310, 310)
                 this.ctx.setFillStyle('rgba(255,255,255,0.8)')
                 this.ctx.fillRect(32, 400, 310, 30)
@@ -478,18 +348,18 @@ Component({
                 }
                 this.ctx.font = 'normal normal 14px sans-serif';
                 let sale = '',
-                  kj_width = 0
-                if (poster.is_limit == 1) {
+                  kjWidth = 0
+                if (poster.isLimit == 1) {
                   wx.getImageInfo({
                     src: app.globalData.HTTP + 'mobile/small/image/hb-xsqqg-tb.png',
                     success: res => {
                       this.ctx.drawImage(res.path, 30, 452, 42, 14)
                     }
                   })
-                  sale = '已抢' + poster.limit_number + '件'
-                  kj_width = 48
-                } else if (poster.is_group == 1) {
-                  sale = '已拼' + poster.limit_number + '件'
+                  sale = '已抢' + poster.limitNumber + '件'
+                  kjWidth = 48
+                } else if (poster.isGroup == 1) {
+                  sale = '已拼' + poster.limitNumber + '件'
                   this.ctx.font = 'normal 10px sans-serif';
                   this.ctx.setFillStyle('#f20230')
                   wx.getImageInfo({
@@ -498,33 +368,33 @@ Component({
                       this.ctx.drawImage(res.path, 30, 452, 42, 14)
                     }
                   })
-                  this.ctx.fillText(poster.group_num + '人拼', 43, 462.4)
-                  kj_width = 48
-                } else if (poster.is_bargain == 1) {
+                  this.ctx.fillText(poster.groupNum + '人拼', 43, 462.4)
+                  kjWidth = 48
+                } else if (poster.isBargain == 1) {
                   wx.getImageInfo({
                     src: app.globalData.HTTP + 'mobile/small/image/hb-kj-tb.png',
                     success: res => {
                       this.ctx.drawImage(res.path, 30, 452, 42, 14)
                     }
                   })
-                  sale = '已售' + poster.sales_volume + '件'
-                  kj_width = 48
+                  sale = '已售' + poster.salesVolume + '件'
+                  kjWidth = 48
                 } else {
-                  sale = '已售' + poster.sales_volume + '件'
+                  sale = '已售' + poster.salesVolume + '件'
                 }
                 this.ctx.font = 'normal 19px sans-serif';
                 this.ctx.setFillStyle('#f20230')
-                this.ctx.fillText('￥', 30 + kj_width, 466)
-                let unit_width = this.ctx.measureText('￥').width
+                this.ctx.fillText('￥', 30 + kjWidth, 466)
+                let unitWidth = this.ctx.measureText('￥').width
                 this.ctx.font = 'normal bold 26px sans-serif';
-                this.ctx.fillText(price.split('.')[0] + '.', 30 + unit_width + kj_width, 466)
+                this.ctx.fillText(price.split('.')[0] + '.', 30 + unitWidth + kjWidth, 466)
                 let integer = this.ctx.measureText(price.split('.')[0] + '.').width
-                let left = parseFloat(30 + unit_width + integer + kj_width)
+                let left = parseFloat(30 + unitWidth + integer + kjWidth)
                 this.ctx.font = 'normal normal 19px sans-serif';
                 this.ctx.fillText(price.split('.')[1], left, 466)
-                let sale_width = this.ctx.measureText(sale).width
-                let goods_text = {
-                  x: 336 - sale_width,
+                let saleWidth = this.ctx.measureText(sale).width
+                let goodsText = {
+                  x: 336 - saleWidth,
                   y: 450,
                   width: 530,
                   height: 18,
@@ -536,15 +406,15 @@ Component({
                   text: sale,
                   bold: false
                 }
-                this.textWrap(goods_text)
-                this.ctx.drawImage(this.data.qr_code, 38, 500, 106, 106)
+                this.textWrap(goodsText)
+                this.ctx.drawImage(this.data.qrCode, 38, 500, 106, 106)
                 this.ctx.save()
                 this.ctx.beginPath()
                 this.ctx.arc(91, 553, 26.5, 0, 2 * Math.PI)
                 this.ctx.clip()
-                this.ctx.drawImage(this.data.shop_logo, 64.5, 526.5, 53, 53)
+                this.ctx.drawImage(this.data.shopLogo, 64.5, 526.5, 53, 53)
                 this.ctx.restore()
-                let code_text = {
+                let codeText = {
                   x: 170,
                   y: 520,
                   width: 530,
@@ -557,8 +427,8 @@ Component({
                   text: '长按识别二维码',
                   bold: true
                 }
-                this.textWrap(code_text)
-                let code_tip = {
+                this.textWrap(codeText)
+                let codeTip = {
                   x: 170,
                   y: 550,
                   width: 530,
@@ -571,7 +441,7 @@ Component({
                   text: '超值好货一起购',
                   bold: false
                 }
-                this.textWrap(code_tip)
+                this.textWrap(codeTip)
                 this.ctx.draw(false, () => {
                   setTimeout(() => {
                     wx.canvasToTempFilePath({

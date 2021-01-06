@@ -1,4 +1,3 @@
-// my/my_prize/my_prize.js
 const app = getApp();
 const http = require('../../utils/http.js');
 const event = require('../../utils/event.js');
@@ -8,17 +7,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    current_tab: 0,
+    currentTab: 0,
     page: 1,
     list: [],
     total: '',
     nav: ['全部', '待收货', '已获得'],
-    order_id: '',
-    modal_confirm: [{
+    orderId: '',
+    modalConfirm: [{
       title: '提示',
       content: '确认已收到货?',
       tip: '',
-      callback: 'confirm_take'
+      callback: 'confirmTake'
     }]
   },
 
@@ -31,11 +30,11 @@ Page({
     })
     event.on('changeAddress', this, res => {
       this.setData({
-        member_address_id: res.address.member_address_id,
+        memberAddressId: res.address.memberAddressId,
       })
-      http.post(app.globalData.set_addres, {
-        activity_order_id: this.data.order_id,
-        member_address_id: res.member_address_id
+      http.post(app.globalData.setAddres, {
+        activityOrderId: this.data.orderId,
+        memberAddressId: res.memberAddressId
       }).then(res => {
         this.getData()
       })
@@ -99,7 +98,7 @@ Page({
    */
   getData() {
     let tab = ''
-    switch (this.data.current_tab) {
+    switch (this.data.currentTab) {
       case 0:
         tab = 'all'
         break;
@@ -110,7 +109,7 @@ Page({
         tab = '3'
         break;
     }
-    http.post(app.globalData.lottery_activity_list, {
+    http.post(app.globalData.lotteryActivityList, {
       status: tab,
       page: this.data.page
     }).then(res => {
@@ -130,9 +129,9 @@ Page({
   /**
    * 切换导航
    */
-  nav_tab(e) {
+  navTab(e) {
     this.setData({
-      current_tab: e.currentTarget.dataset.tab,
+      currentTab: e.currentTarget.dataset.tab,
       page: 1,
       list: []
     })
@@ -148,10 +147,10 @@ Page({
   /**
    * 确认收货
    */
-  confirm_take(e) {
+  confirmTake(e) {
     let id = e.detail.id,
       index = e.detail.index
-    http.post(app.globalData.confirm_take, {
+    http.post(app.globalData.confirmTake, {
       orderId: id
     }).then(res => {
       this.data.list.splice(index, 1)
@@ -165,13 +164,13 @@ Page({
    */
   logistics(e) {
     let info = {
-      express_value: e.currentTarget.dataset.item.express_value,
-      express_number: e.currentTarget.dataset.item.express_number,
-      order_attach_id: e.currentTarget.dataset.item.order_id,
+      expressValue: e.currentTarget.dataset.item.expressValue,
+      expressNumber: e.currentTarget.dataset.item.expressNumber,
+      orderAttachId: e.currentTarget.dataset.item.orderId,
       type: 'draw'
     }
     wx.navigateTo({
-      url: '/my/logistics_detail/logistics_detail?info=' + JSON.stringify(info),
+      url: '/my/logisticsDetail/logisticsDetail?info=' + JSON.stringify(info),
     })
   },
   /**
@@ -179,26 +178,25 @@ Page({
    */
   address(e) {
     this.setData({
-      order_id: e.currentTarget.dataset.item.order_id
+      orderId: e.currentTarget.dataset.item.orderId
     })
     wx.navigateTo({
       url: '/my/address/address?choose=true&oType=3',
     })
   },
   onOrder(e){
-    console.log(e)
     return
     wx.navigateTo({
-      url: `/my/games_order/games_order?id=${e.currentTarget.dataset.item.order_id}&index=${e.currentTarget.dataset.index}`,
+      url: `/my/gamesOrder/gamesOrder?id=${e.currentTarget.dataset.item.orderId}&index=${e.currentTarget.dataset.index}`,
     })
   },
   changeAddress(res) {
     this.setData({
-      member_address_id: res.member_address_id,
+      memberAddressId: res.memberAddressId,
     })
-    http.post(app.globalData.set_addres, {
-      activity_order_id: this.data.order_id,
-      member_address_id: res.member_address_id
+    http.post(app.globalData.setAddres, {
+      activityOrderId: this.data.orderId,
+      memberAddressId: res.memberAddressId
     }).then(res => {
       this.getData()
     })

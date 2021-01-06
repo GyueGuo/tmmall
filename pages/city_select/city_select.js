@@ -65,13 +65,13 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.area_index).then(res => {
+    http.post(app.globalData.areaIndex).then(res => {
       let [letters,arr] = [res.result,[]]
       for (let letter of letters) {
         arr.push(letter.initials)
       }
       this.setData({
-        current_location: app.globalData.current_location,
+        currentoLation: app.globalData.currentoLation,
         list: res.result,
         hot: res.hot,
         letters: arr

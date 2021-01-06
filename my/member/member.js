@@ -59,7 +59,7 @@ Page({
   },
 
   getData() {
-    http.post(app.globalData.member_grade, {}).then(res => {
+    http.post(app.globalData.memberGrade, {}).then(res => {
       this.setData({
         info: res.result
       })
@@ -71,12 +71,12 @@ Page({
    */
   onMemberPrice() {
     wx.navigateTo({
-      url: '../member_price/member_price',
+      url: '../memberPrice/memberPrice',
     })
   },
   onValue() {
     wx.navigateTo({
-      url: '/pages/growth_value/growth_value',
+      url: '/pages/growthValue/growthValue',
     })
   }
 })

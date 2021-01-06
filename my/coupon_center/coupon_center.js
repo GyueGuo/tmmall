@@ -7,7 +7,7 @@ Page({
    */
   data: {
     //选项卡
-    tab_list: [{
+    tabList: [{
       goodsClassifyId: '',
       title: '精选'
     }],
@@ -15,7 +15,7 @@ Page({
     page: 1,
     list: [],
     total: '',
-    count_down: {}
+    countDown: {}
   },
 
   /**
@@ -53,7 +53,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-    clearInterval(this.data.count_down)
+    clearInterval(this.data.countDown)
   },
 
   /**
@@ -78,7 +78,7 @@ Page({
    */
   onChangeCoupon() {
     wx.redirectTo({
-      url: '../change_coupon/change_coupon',
+      url: '../changeCoupon/changeCoupon',
     })
   },
 
@@ -86,9 +86,9 @@ Page({
    * 获取一级列表
    */
   getClassify() {
-    http.post(app.globalData.classify_parent).then(res => {
+    http.post(app.globalData.classifyParent).then(res => {
       this.setData({
-        classify: this.data.tab_list.concat(res.result)
+        classify: this.data.tabList.concat(res.result)
       })
       this.getConponList()
     })
@@ -129,7 +129,7 @@ Page({
   onTabMoreItem(e) {
     this.closeBoard()
     this.setData({
-      sroll_id: 'a-' + e.currentTarget.dataset.index,
+      srollId: 'a-' + e.currentTarget.dataset.index,
       currentTab: e.currentTarget.dataset.id,
       page: 1
     })
@@ -140,7 +140,7 @@ Page({
    * 获取优惠券列表
    */
   getConponList() {
-    http.post(app.globalData.coupon_center, {
+    http.post(app.globalData.couponCenter, {
       category: this.data.currentTab,
       page: this.data.page
     }).then(res => {
@@ -155,8 +155,8 @@ Page({
         })
       }
       this.countDown()
-      clearInterval(this.data.count_down)
-      this.data.count_down = setInterval(() => {
+      clearInterval(this.data.countDown)
+      this.data.countDown = setInterval(() => {
         this.countDown()
       }, 1000)
     })
@@ -189,10 +189,10 @@ Page({
     }
     let item = e.currentTarget.dataset.item,
       index = e.currentTarget.dataset.index
-    http.post(app.globalData.get_coupon, {
-      couponId: item.coupon_id,
-      goodsClassifyId: item.type == 1 ? item.classify_str : '',
-      storeId: item.type == 0 ? item.classify_str : '',
+    http.post(app.globalData.getCoupon, {
+      couponId: item.couponId,
+      goodsClassifyId: item.type == 1 ? item.classifyStr : '',
+      storeId: item.type == 0 ? item.classifyStr : '',
     }).then(res => {
       this.data.list[index].memberState = 1
       this.setData({
@@ -204,19 +204,19 @@ Page({
 
   goUse(e) {
     let item = e.currentTarget.dataset.item
-    if (this.data.configSwitch.version_info.one_more == 0) {
+    if (this.data.configSwitch.versionInfo.oneMore == 0) {
       wx.navigateTo({
-        url: '/pages/search_goods/search_goods',
+        url: '/pages/searchGoods/searchGoods',
       })
       return
     }
     if (item.type == 0) {
       wx.navigateTo({
-        url: '/nearby_shops/shop_detail/shop_detail?store_id=' + item.classify_str,
+        url: '/nearbyShops/shopDetail/shopDetail?storeId=' + item.classifyStr,
       })
     } else {
       wx.navigateTo({
-        url: '/pages/search_goods/search_goods?goodsClassifyId=' + item.classify_str,
+        url: '/pages/searchGoods/searchGoods?goodsClassifyId=' + item.classifyStr,
       })
     }
   }

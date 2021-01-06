@@ -3,11 +3,7 @@
 <view class='wrap' hover-class='hover-class' hover-stay-time='400' bindtap='_close' animation="{{animation}}">
   <view class='shop-cart' catchtap='none'>
     <view class='shop-cart-head'>
-      <view class='head-left' hover-class='hover-class' hover-stay-time='400' bindtap='selectAll'>
-        <!-- <view class='font_family selectAll {{all_select?"icon-syt-gx1":"icon-syt-gx"}}' style='{{all_select?util.diyColor(diyColor.zColor,"",""):""}}'>
-        </view>
-        <view>全选(已选{{cartNum}}件)</view> -->
-      </view>
+      <view class='head-left' hover-class='hover-class' hover-stay-time='400' bindtap='selectAll'></view>
       <view class='head-right' hover-class='hover-class' hover-stay-time='400' bindtap='showModal'>
         <view class='delete font_family icon-sc-'></view>
         <view>清空全部</view>
@@ -15,13 +11,10 @@
     </view>
     <scroll-view style='height:504rpx;' scroll-y>
       <view class='cart-good-wrap' wx:for="{{list}}" hover-class='hover-class' hover-stay-time='400' bindtap='changeSelect' data-index='{{index}}'>
-        <!-- <view class='select'>
-          <view class='font_family {{item.select?"icon-syt-gx1":"icon-syt-gx"}}' style='{{item.select?util.diyColor(diyColor.zColor,"",""):""}}'></view>
-        </view> -->
         <view class='cart-good'>
           <image class='cart-good-image' src='{{item.file}}'></image>
           <view class='good-detail'>
-            <view class='good-name'>{{item.goods_name}}</view>
+            <view class='good-name'>{{item.goodsName}}</view>
             <view class='good-attr'>{{item.attr}}</view>
             <view class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
               <text class='unit'>￥</text>
@@ -34,7 +27,7 @@
               </view>
               <view>{{item.number}}</view>
               <view style='{{util.diyImgbox(46)}}margin:0'>
-              <image src='{{util.HTTP}}mobile/small/image/fl-jahao.png' catchtap='addCart' data-item='{{item}}' style='{{util.diyImgcolor(diyColor.zColor,46,46)}}'></image>
+                <image src='{{util.HTTP}}mobile/small/image/fl-jahao.png' catchtap='addCart' data-item='{{item}}' style='{{util.diyImgcolor(diyColor.zColor,46,46)}}'></image>
               </view>
             </view>
           </view>
@@ -43,4 +36,4 @@
     </scroll-view>
   </view>
 </view>
-<modal title="{{modal_confirm[showModal].title}}" content="{{modal_confirm[showModal].content}}" id="modal" bind:confirm="{{modal_confirm[showModal].callback}}" />
+<modal title="{{modalConfirm[showModal].title}}" content="{{modalConfirm[showModal].content}}" id="modal" bind:confirm="{{modalConfirm[showModal].callback}}" />

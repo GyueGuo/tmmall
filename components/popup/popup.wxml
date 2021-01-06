@@ -1,7 +1,7 @@
 <wxs module="util" src="../../utils/util.wxs" />
-<!--背景   -->
+<!-- 背景 -->
 <view class='trans' hidden='{{!isShow}}' style='opacity:{{opacity}}'></view>
-<view class='board' hover-class='hover-class' hover-stay-time='400' bindtap='close' animation="{{animation_coupon}}" catchtouchmove='none'>
+<view class='board' hover-class='hover-class' hover-stay-time='400' bindtap='close' animation="{{animationCoupon}}" catchtouchmove='none'>
   <view catchtap='none'>
     <view class='pay-way'>
       <view>发票</view>
@@ -13,83 +13,91 @@
           <view class='row'>
             <view class='title'>发票类型</view>
             <view class='btn-con'>
-              <text style='{{item.type==invoice_type?util.diyColor(diyColor.zColor,diyColor.fColor2,diyColor.zColor):""}}' wx:for='{{invoice_con}}' wx:key='{{index}}' wx:if='{{(is_added_value_tax==1&&item.type==1)||item.type==0}}' data-type='{{item.type}}'
-                hover-class='hover-class' hover-stay-time='400' bindtap='invoiceClick'>{{item.name}}</text>
+              <text style='{{item.type==invoiceType?util.diyColor(diyColor.zColor,diyColor.fColor2,diyColor.zColor):""}}' wx:for='{{invoiceCon}}' wx:key='{{index}}' wx:if='{{(isAddedValueTax==1&&item.type==1)||item.type==0}}' data-type='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='invoiceClick'>
+                {{item.name}}
+              </text>
             </view>
           </view>
           <view class='row'>
             <view class='title'>发票抬头</view>
             <view class='btn-con'>
-              <text style='{{item.type==rise?util.diyColor(diyColor.zColor,diyColor.fColor2,diyColor.zColor):""}}' wx:for='{{rise_con}}' wx:key='{{index}}' data-type='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='riseClick'>{{item.name}}</text>
+              <text style='{{item.type==rise?util.diyColor(diyColor.zColor,diyColor.fColor2,diyColor.zColor):""}}' wx:for='{{riseCon}}' wx:key='{{index}}' data-type='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='riseClick'>
+                {{item.name}}
+              </text>
             </view>
           </view>
           <!-- 个人 -->
-          <block wx:if='{{invoice_type==0&&rise==1}}'>
+          <block wx:if='{{invoiceType==0&&rise==1}}'>
             <view class='row'>
-              <input bindinput='rise_name' cursor-spacing='200' value='{{rise_name}}' placeholder='请填写抬头名称' placeholder-style='color:#b2b8bf' catchtap='historyShow'></input>
+              <input bindinput='riseName' cursor-spacing='200' value='{{riseName}}' placeholder='请填写抬头名称' placeholder-style='color:#b2b8bf' catchtap='historyShow'></input>
               <view class='rise-history-con' hidden='{{isHistory||riseHistory.personal.length==0}}'>
                 <scroll-view scroll-y>
-                  <view wx:for='{{riseHistory.personal}}' wx:key='{{index}}' bindtap='onHistory' data-type='personal' data-item='{{item}}'>{{item.rise_name}}</view>
+                  <view wx:for='{{riseHistory.personal}}' wx:key='{{index}}' bindtap='onHistory' data-type='personal' data-item='{{item}}'>
+                    {{item.riseName}}
+                  </view>
                 </scroll-view>
               </view>
             </view>
           </block>
           <!-- 公司 -->
-          <block wx:elif='{{invoice_type==1&&rise==2}}'>
+          <block wx:elif='{{invoiceType==1&&rise==2}}'>
             <view class='row'>
               <input bindinput='company' cursor-spacing='200' value='{{company}}' placeholder='请填写企业名称' placeholder-style='color:#b2b8bf' catchtap='historyShow'></input>
-              <input bindinput='taxer_number' value='{{taxer_number}}' placeholder='请填写纳税人识别码' placeholder-style='color:#b2b8bf'></input>
+              <input bindinput='taxerNumber' value='{{taxerNumber}}' placeholder='请填写纳税人识别码' placeholder-style='color:#b2b8bf'></input>
               <input bindinput='address' value='{{address}}' placeholder='请填写注册地址' placeholder-style='color:#b2b8bf'></input>
               <input bindinput='phone' value='{{phone}}' type='number' maxlength='11' placeholder='请填写注册电话' placeholder-style='color:#b2b8bf'></input>
               <input bindinput='bank' value='{{bank}}' placeholder='请填写开户银行' placeholder-style='color:#b2b8bf'></input>
               <input bindinput='account' value='{{account}}' type='number' placeholder='请填写银行账号' placeholder-style='color:#b2b8bf'></input>
               <view class='rise-history-con' hidden='{{isHistory||riseHistory.tax.length==0}}'>
                 <scroll-view scroll-y>
-                  <view wx:for='{{riseHistory.tax}}' wx:key='{{index}}' bindtap='onHistory' data-type='tax' data-item='{{item}}'>{{item.rise_name}}</view>
+                  <view wx:for='{{riseHistory.tax}}' wx:key='{{index}}' bindtap='onHistory' data-type='tax' data-item='{{item}}'>
+                    {{item.riseName}}
+                  </view>
                 </scroll-view>
               </view>
             </view>
           </block>
-          <block wx:elif='{{invoice_type==0&&rise==2}}'>
+          <block wx:elif='{{invoiceType==0&&rise==2}}'>
             <view class='row'>
               <input bindinput='company' cursor-spacing='200' value='{{company}}' placeholder='请填写企业名称' placeholder-style='color:#b2b8bf' catchtap='historyShow'></input>
-              <input bindinput='taxer_number' value='{{taxer_number}}' placeholder='请填写纳税人识别码' placeholder-style='color:#b2b8bf'></input>
+              <input bindinput='taxerNumber' value='{{taxerNumber}}' placeholder='请填写纳税人识别码' placeholder-style='color:#b2b8bf'></input>
               <view class='rise-history-con' hidden='{{isHistory||riseHistory.company.length==0}}'>
                 <scroll-view scroll-y>
-                  <view wx:for='{{riseHistory.company}}' wx:key='{{index}}' bindtap='onHistory' data-type='company' data-item='{{item}}'>{{item.rise_name}}</view>
+                  <view wx:for='{{riseHistory.company}}' wx:key='{{index}}' bindtap='onHistory' data-type='company' data-item='{{item}}'>
+                    {{item.riseName}}
+                  </view>
                 </scroll-view>
               </view>
             </view>
           </block>
-
           <!-- 收票人信息 -->
-          <!-- <block wx:if='{{invoice_type==1}}'> -->
-            <view class='row'>
-              <view class='title'>收票人信息</view>
+          <!-- <block wx:if='{{invoiceType==1}}'> -->
+          <view class='row'>
+            <view class='title'>收票人信息</view>
             <!-- <view class='tip'>增值税发票单独寄出，不与商品一起寄出</view> -->
-              <view class='info'>
-                <view class='name'>收票人姓名</view>
-                <input value='{{consignee_name}}' bindinput='consignee_name' maxlength='11' placeholder='请输入收票人姓名' placeholder-style='color:#71767b'></input>
-              </view>
-              <view class='info'>
-                <view class='name'>收票人手机</view>
-                <input value='{{consignee_phone}}' bindinput='consignee_phone' maxlength='11' placeholder='可通过手机号在发票服务平台查询' placeholder-style='color:#71767b'></input>
-              </view>
-              <view class='info'>
-                <view class='name'>所在地区</view>
-                <input disabled value='{{address_province}}{{address_city}}{{address_area}}{{address_street}}' bindtap='address_info' placeholder='请输入详细地址' placeholder-style='color:#71767b'></input>
-              </view>
-              <view class='info'>
-                <view class='name'>详细地址</view>
-                <input value='{{address_details}}' bindinput='address_details' placeholder='请输入详细地址' placeholder-style='color:#71767b'></input>
-              </view>
+            <view class='info'>
+              <view class='name'>收票人姓名</view>
+              <input value='{{consigneeName}}' bindinput='consigneeName' maxlength='11' placeholder='请输入收票人姓名' placeholder-style='color:#71767b'></input>
             </view>
-          <!-- </block> -->
-
+            <view class='info'>
+              <view class='name'>收票人手机</view>
+              <input value='{{consigneePhone}}' bindinput='consigneePhone' maxlength='11' placeholder='可通过手机号在发票服务平台查询' placeholder-style='color:#71767b'></input>
+            </view>
+            <view class='info'>
+              <view class='name'>所在地区</view>
+              <input disabled value='{{addressProvince}}{{addressCity}}{{addressArea}}{{addressStreet}}' bindtap='addressInfo' placeholder='请输入详细地址' placeholder-style='color:#71767b'></input>
+            </view>
+            <view class='info'>
+              <view class='name'>详细地址</view>
+              <input value='{{addressDetails}}' bindinput='addressDetails' placeholder='请输入详细地址' placeholder-style='color:#71767b'></input>
+            </view>
+          </view>
           <view class='row'>
             <view class='title'>发票内容</view>
             <view class='btn-con'>
-              <text style='{{item.type==detail_type?util.diyColor(diyColor.zColor,diyColor.fColor2,diyColor.zColor):""}}' wx:for='{{detail_con}}' data-type='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='detailClick'>{{item.name}}</text>
+              <text style='{{item.type==detailType?util.diyColor(diyColor.zColor,diyColor.fColor2,diyColor.zColor):""}}' wx:for='{{detailCon}}' data-type='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='detailClick'>
+                {{item.name}}
+              </text>
             </view>
           </view>
           <view class='tip'>发票内容显示详细商品名称及价格信息</view>
@@ -97,8 +105,12 @@
       </view>
     </scroll-view>
     <view class='btn'>
-      <view class='submit flex3' style='{{util.diyColor(diyColor.text_color,diyColor.fColor,"")}}' hover-class='hover-class' hover-stay-time='400' bindtap='cancel' wx:if='{{i_typa==0}}'>不开发票</view>
-      <view class='submit flex7' style='{{util.diyColor("",diyColor.zColor,"")}}' hover-class='hover-class' hover-stay-time='400' bindtap='submit'>确定</view>
+      <view class='submit flex3' style='{{util.diyColor(diyColor.textColor,diyColor.fColor,"")}}' hover-class='hover-class' hover-stay-time='400' bindtap='cancel' wx:if='{{iTypa==0}}'>
+        不开发票
+      </view>
+      <view class='submit flex7' style='{{util.diyColor("",diyColor.zColor,"")}}' hover-class='hover-class' hover-stay-time='400' bindtap='submit'>
+        确定
+      </view>
     </view>
   </view>
 </view>

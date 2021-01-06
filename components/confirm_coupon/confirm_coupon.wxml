@@ -1,7 +1,7 @@
 <wxs module="util" src="../../utils/util.wxs" />
 <!--背景   -->
 <view class='trans' hidden='{{!isShow}}' style='opacity:{{opacity}}'></view>
-<view class='board' animation="{{animation_coupon}}" hover-class='hover-class' hover-stay-time='400' bindtap='closeCoupon'>
+<view class='board' animation="{{animationCoupon}}" hover-class='hover-class' hover-stay-time='400' bindtap='closeCoupon'>
   <!--优惠券  -->
   <view class='good-coupon' catchtap="none">
     <view class='coupon-head'>优惠券</view>
@@ -15,12 +15,12 @@
             <view>
               <view class='coupon-price'>
                 <text>￥</text>
-                <text>{{util.integer(item.actual_price)}}</text>
+                <text>{{util.integer(item.actualPrice)}}</text>
               </view>
-              <block wx:if='{{item.full_subtraction_price!=0}}'>
-                <view class='coupon-used'>满{{util.integer(item.full_subtraction_price)}}元可用</view>
+              <block wx:if='{{item.fullSubtractionPrice!=0}}'>
+                <view class='coupon-used'>满{{util.integer(item.fullSubtractionPrice)}}元可用</view>
               </block>
-              <block wx:elif='{{item.full_subtraction_price==0}}'>
+              <block wx:elif='{{item.fullSubtractionPrice==0}}'>
                 <view class='coupon-used'>无门槛</view>
               </block>
             </view>
@@ -28,7 +28,7 @@
           <view class='coupon-right'>
             <view class='coupon-title'>{{item.title}}</view>
             <view class='coupon-tip'>
-              <view class='coupon-time'>{{item.start_time}}至{{item.end_time}}</view>
+              <view class='coupon-time'>{{item.startTime}}至{{item.endTime}}</view>
             </view>
           </view>
         </view>

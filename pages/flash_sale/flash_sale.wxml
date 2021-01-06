@@ -3,23 +3,21 @@
   <view>
     <view class='tab'>
       <scroll-view class='tab-scroll' scroll-x>
-        <view class='tab-con' style='{{util.diyColor("",diyColor.c_color,"")}}'>
-          <view wx:for="{{tab}}" wx:key='{{index}}' class='tab-item' hover-class='hover-class' hover-stay-time='400' bindtap='onTab' data-id='{{item.limit_interval_id}}' style='{{tab.length<2?"width:80%;":""}}'>
-            <view class="{{interval_id == item.limit_interval_id?'bg':''}}" style='{{interval_id == item.limit_interval_id?util.diyColor("",diyColor.zColor,""):""}}'>
-              <view class='title'>{{item.interval_name}}</view>
+        <view class='tab-con' style='{{util.diyColor("",diyColor.cColor,"")}}'>
+          <view wx:for="{{tab}}" wx:key='{{index}}' class='tab-item' hover-class='hover-class' hover-stay-time='400' bindtap='onTab' data-id='{{item.limitIntervalId}}' style='{{tab.length<2?"width:80%;":""}}'>
+            <view class="{{intervalId == item.limitIntervalId?'bg':''}}" style='{{intervalId == item.limitIntervalId?util.diyColor("",diyColor.zColor,""):""}}'>
+              <view class='title'>{{item.intervalName}}</view>
               <view class='status' wx:if="{{index == 0}}">抢购中</view>
               <view class='status' wx:else>即将开始</view>
             </view>
-            <view class='present' style="{{interval_id != item.limit_interval_id?'display:none;':'border-top:12rpx solid '}}{{diyColor.zColor}}"></view>
+            <view class='present' style="{{intervalId != item.limitIntervalId?'display:none;':'border-top:12rpx solid '}}{{diyColor.zColor}}"></view>
           </view>
         </view>
       </scroll-view>
     </view>
-
     <view class='info-tip'>
       <view class='left' wx:if="{{state == 1}}">抢购中,先下单先得哦</view>
       <view class='left' wx:else></view>
-      <!-- <view class='left' wx:else>设置提醒,预约好货</view> -->
       <view class='right'>
         <text class='finish' wx:if="{{state == 1}}">距离结束</text>
         <text class='finish' wx:else>距离开始</text>
@@ -30,41 +28,41 @@
         <text class='count deputy-bg'>{{sec}}</text>
       </view>
     </view>
-
-    <scroll-view class="good-list good-list-one" hidden='{{good_list.length == 0}}' scroll-y bindscrolltolower="loadMore" bindscroll="scroll" scroll-top="{{scroll_top}}">
-      <view class='flash-good' wx:for="{{limit_list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goods_id}}'>
+    <scroll-view class="good-list good-list-one" hidden='{{goodList.length == 0}}' scroll-y bindscrolltolower="loadMore" bindscroll="scroll" scroll-top="{{scrollTop}}">
+      <view class='flash-good' wx:for="{{limitList}}" hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goodsId}}'>
         <image lazy-load src='{{item.file}}'></image>
         <view>
-          <view class='good-name'>{{item.goods_name}}</view>
+          <view class='good-name'>{{item.goodsName}}</view>
           <view class='good-price'>
             <view class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
               <text class='unit'>￥</text>
-              <text class='integer'>{{util.integer(item.time_limit_price)}}</text>
-              <text class='decimals'>.{{util.decimals(item.time_limit_price)}}</text>
+              <text class='integer'>{{util.integer(item.timeLimitPrice)}}</text>
+              <text class='decimals'>.{{util.decimals(item.timeLimitPrice)}}</text>
             </view>
-            <view class='rush-now bg' wx:if="{{state == 1 && item.exchange_num != 0}}" style='{{util.diyColor("",diyColor.zColor,"")}}'>立即抢购</view>
-            <view class='rush-now bg sack' wx:if="{{state == 1 && item.exchange_num == 0}}">已抢光</view>
-            <!-- <view class='rush-now' wx:else>提醒我</view> -->
+            <view class='rush-now bg' wx:if="{{state == 1 && item.exchangeNum != 0}}" style='{{util.diyColor("",diyColor.zColor,"")}}'>
+              立即抢购
+            </view>
+            <view class='rush-now bg sack' wx:if="{{state == 1 && item.exchangeNum == 0}}">
+              已抢光
+            </view>
           </view>
           <view class='good-tip'>
-            <view class='origin-price'>￥{{item.shop_price}}</view>
+            <view class='origin-price'>￥{{item.shopPrice}}</view>
             <view class='sale-percent' wx:if="{{state == 1 }}">
-              <view>已售{{util.percent(item.available_sale,item.exchange_num)}}%</view>
-              <sale_progress percent="{{util.percent(item.available_sale,item.exchange_num)}}%" />
+              <view>已售{{util.percent(item.availableSale,item.exchangeNum)}}%</view>
+              <sale_progress percent="{{util.percent(item.availableSale,item.exchangeNum)}}%" />
             </view>
           </view>
         </view>
       </view>
     </scroll-view>
-    <view class='empty-view' hidden='{{limit_list.length != 0 || loading}}'>
+    <view class='empty-view' hidden='{{limitList.length != 0 || loading}}'>
       <view>
         <image src='{{util.HTTP}}mobile/small/image/kby-zwshjl.png'></image>
         <view>暂无商品</view>
       </view>
     </view>
   </view>
-
 </view>
-
-<!--返回顶部  -->
+<!-- 返回顶部 -->
 <go_top id="go_top" hover-class='hover-class' hover-stay-time='400' bindtap='onBackTop' />

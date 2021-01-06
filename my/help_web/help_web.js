@@ -17,7 +17,7 @@ Page({
       title: item.title,
     })
     this.setData({
-      src: app.globalData.service_web + item.article_id
+      src: app.globalData.serviceWeb + item.articleId
     })
   },
 

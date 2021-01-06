@@ -9,14 +9,14 @@ Component({
     width: String, //图片宽度
     height: String, //图片高度
     mode: String, //图片剪裁
-    default_mode: String //默认图片剪裁
+    defaultMode: String //默认图片剪裁
   },
 
   /**
    * 组件的初始数据
    */
   data: {
-    default_mode:'',
+    defaultMode:'',
     loading: false
   },
 

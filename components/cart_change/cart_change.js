@@ -24,18 +24,18 @@ Component({
     //商品信息
     info: {},
     //图片
-    good_image: '',
+    goodImage: '',
     //购买价格
     price: '',
     //商品数量
     num: 1,
     //购买参数文字
-    attr_array: [],
+    attrArray: [],
     //购买尺寸id
-    products_id: '',
+    productsId: '',
     //购买参数文字
     attr: '请选择尺寸',
-    attr_file_img: ''
+    attrFileImg: ''
   },
 
 
@@ -115,15 +115,15 @@ Component({
      */
     show(info) {
       this.showAnimation()
-      this.data.attr_array = info.goods_attr.split(',')
+      this.data.attrArray = info.goodsAttr.split(',')
       this.setData({
         info: info,
-        attr_file_img: info.cart_file,
-        good_image: info.file,
+        attrFileImg: info.cartFile,
+        goodImage: info.file,
         num: info.number,
         price: info.price,
-        attr: this.data.info.inventory != null ? info.goods_attr : '请选择尺寸',
-        attr_array: this.data.info.inventory != null ? this.data.attr_array : []
+        attr: this.data.info.inventory != null ? info.goodsAttr : '请选择尺寸',
+        attrArray: this.data.info.inventory != null ? this.data.attrArray : []
       })
     },
 
@@ -133,15 +133,15 @@ Component({
     _onAttr(e) {
       let idx = e.currentTarget.dataset.idx,
         item = e.currentTarget.dataset.item
-      this.data.attr_array[idx] = item.attr_value
+      this.data.attrArray[idx] = item.attrValue
       this.data.attr = ''
-      for (let i = 0, len = this.data.attr_array.length; i < len; i++) {
-        if (this.data.attr_array[i]) {
-          this.data.attr += this.data.attr_array[i] + ','
+      for (let i = 0, len = this.data.attrArray.length; i < len; i++) {
+        if (this.data.attrArray[i]) {
+          this.data.attr += this.data.attrArray[i] + ','
         }
       }
       this.setData({
-        attr_array: this.data.attr_array,
+        attrArray: this.data.attrArray,
         attr: this.data.attr.substr(0, this.data.attr.length - 1)
       })
       if (this.data.attr.split(',').length == this.data.info.attrs.length) {
@@ -153,35 +153,31 @@ Component({
      * 获取商品价格
      */
     _getGoodPrice() {
-      http.post(app.globalData.attr_find, {
+      http.post(app.globalData.attrFind, {
         goodsAttr: this.data.attr,
-        goodsId: this.data.info.goods_id,
+        goodsId: this.data.info.goodsId,
         type: 1
       }).then(res => {
         //图片
-        this.data.good_image = res.result.attr_file_img
+        this.data.goodImage = res.result.attrFileImg
         //
-        this.data.attr_file_img = res.result.attr_file
+        this.data.attrFileImg = res.result.attrFile
         //正常
-        // if (res.result.is_vip == 1) {
-        //   this.data.price = (res.result.attr_shop_price * res.discount * 0.01).toFixed(2)
-        // } else {
-        // }
-        this.data.price = parseFloat(res.result.attr_shop_price).toFixed(2)
+        this.data.price = parseFloat(res.result.attrShopPrice).toFixed(2)
 
         //库存
-        this.data.info.inventory = res.result.attr_goods_number
+        this.data.info.inventory = res.result.attrGoodsNumber
 
-        this.data.products_id = res.result.products_id
+        this.data.productsId = res.result.productsId
 
-        if (this.data.num > res.result.attr_goods_number) {
-          this.data.num = res.result.attr_goods_number
+        if (this.data.num > res.result.attrGoodsNumber) {
+          this.data.num = res.result.attrGoodsNumber
         }
         this.setData({
           price: this.data.price,
           info: this.data.info,
           num: this.data.num,
-          good_image: this.data.good_image
+          goodImage: this.data.goodImage
         })
       })
     },
@@ -217,7 +213,7 @@ Component({
      */
     _onConfirm() {
       if (this.data.info.attrs.length != 0) {
-        if (this.data.attr_array.length != this.data.info.attrs.length) {
+        if (this.data.attrArray.length != this.data.info.attrs.length) {
           app.showToast('请选择商品规格')
           return
         }
@@ -227,29 +223,28 @@ Component({
         app.showToast('购买数量不可为0')
         return
       }
-      let attr_detail = ''
+      let attrDetail = ''
       if (this.data.info.attrs.length != 0) {
-        for (let i = 0, len = this.data.attr_array.length; i < len; i++) {
-          attr_detail += this.data.info.attrs[i].attr_name + ':' + this.data.attr_array[i] + ' '
+        for (let i = 0, len = this.data.attrArray.length; i < len; i++) {
+          attrDetail += this.data.info.attrs[i].attrName + ':' + this.data.attrArray[i] + ' '
         }
       }
-      console.log(this.data.info)
-      http.encPost(app.globalData.cart_update, {
-        goodsId: this.data.info.goods_id,
-        goodsName: this.data.info.goods_name,
-        file: this.data.attr_file_img == null ? '' : this.data.attr_file_img,
+      http.encPost(app.globalData.cartUpdate, {
+        goodsId: this.data.info.goodsId,
+        goodsName: this.data.info.goodsName,
+        file: this.data.attrFileImg == null ? '' : this.data.attrFileImg,
         price: this.data.price,
         number: this.data.num,
-        productsId: this.data.products_id,
+        productsId: this.data.productsId,
         goodsAttr: this.data.attr,
-        attr: attr_detail,
-        cartId: this.data.info.cart_id
+        attr: attrDetail,
+        cartId: this.data.info.cartId
       }).then(res => {
-        this.data.info.file = this.data.good_image
+        this.data.info.file = this.data.goodImage
         this.data.info.price = this.data.price
         this.data.info.number = this.data.num
-        this.data.info.goods_attr = this.data.attr
-        this.data.info.attr = attr_detail
+        this.data.info.goodsAttr = this.data.attr
+        this.data.info.attr = attrDetail
         this.hiddenAnimation()
         this.triggerEvent("confirmChange", this.data.info)
       })

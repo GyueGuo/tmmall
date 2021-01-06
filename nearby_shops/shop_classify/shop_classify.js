@@ -6,14 +6,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    store_id: ''
+    storeId: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.data.store_id = options.store_id
+    this.data.storeId = options.storeId
   },
 
   /**
@@ -59,8 +59,8 @@ Page({
   },
 
   getData() {
-    http.post(app.globalData.store_classify_list, {
-      storeId: this.data.store_id
+    http.post(app.globalData.storeClassifyList, {
+      storeId: this.data.storeId
     }).then(res => {
       this.setData({
         list: res.result
@@ -73,7 +73,7 @@ Page({
    */
   onSearch(e) {
     wx.navigateTo({
-      url: '../search_in_shop/search_in_shop?store_id=' + this.data.store_id + '&classify_id=' + e.currentTarget.dataset.id,
+      url: '../searchInShop/searchInShop?storeId=' + this.data.storeId + '&classifyId=' + e.currentTarget.dataset.id,
     })
   }
 })

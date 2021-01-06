@@ -8,27 +8,27 @@ Page({
    */
   data: {
     id: '',
-    store_id: '',
+    storeId: '',
     //退回方式 1 快递商家 2送至门店
-    return_way: 1,
-    pic_list: [],
-    express_info: {
+    returnWay: 1,
+    picList: [],
+    expressInfo: {
       name: '',
       code: ''
     },
     //物流单号
-    track_num: '',
+    trackNum: '',
     //联系电话
     phone: '',
     //退货说明
     complain: '',
-    file_name: '',
+    fileName: '',
     //门店自提列表
-    take_list: [],
+    takeList: [],
     //当前选中的id
-    take_id: '',
-    //当前选中take_item
-    take_item: {}
+    takeId: '',
+    //当前选中takeItem
+    takeItem: {}
   },
 
   /**
@@ -38,8 +38,8 @@ Page({
     this.setData({
       diyColor: app.globalData.diyColor,
       id: options.id,
-      store_id: options.store_id,
-      distribution_type: options.distribution_type
+      storeId: options.storeId,
+      distributionType: options.distributionType
     })
   },
 
@@ -89,15 +89,15 @@ Page({
    * 获取门店自提列表
    */
   getTakeList() {
-    http.post(app.globalData.take_list, {
-      storeId: this.data.store_id,
+    http.post(app.globalData.takeList, {
+      storeId: this.data.storeId,
       lat: 0,
       lng: 0,
       keyword: '',
       area: ''
     }).then(res => {
       this.setData({
-        take_list: res.result
+        takeList: res.result
       })
     })
   },
@@ -106,7 +106,7 @@ Page({
    * 选择自提门店
    */
   selectSelfPick() {
-    this.selectComponent("#select_self_pick").show(this.data.take_id, this.data.take_list, '', this.data.take_item)
+    this.selectComponent("#select_self_pick").show(this.data.takeId, this.data.takeList, '', this.data.takeItem)
   },
 
   /**
@@ -114,8 +114,8 @@ Page({
    */
   selectPick(e) {
     this.setData({
-      take_id: e.detail.take_id,
-      take_item: e.detail
+      takeId: e.detail.takeId,
+      takeItem: e.detail
     })
   },
 
@@ -124,7 +124,7 @@ Page({
    */
   onExpress() {
     this.setData({
-      return_way: 1
+      returnWay: 1
     })
   },
 
@@ -133,7 +133,7 @@ Page({
    */
   onSelfPick() {
     this.setData({
-      return_way: 2
+      returnWay: 2
     })
   },
 
@@ -142,7 +142,7 @@ Page({
    */
   onSelectLogistics() {
     wx.navigateTo({
-      url: '../select_logistics/select_logistics',
+      url: '../selectLogistics/selectLogistics',
     })
   },
 
@@ -159,7 +159,7 @@ Page({
    * 物流单号输入
    */
   numberInput(e) {
-    this.data.track_num = e.detail.value
+    this.data.trackNum = e.detail.value
   },
 
   /**
@@ -181,10 +181,10 @@ Page({
    */
   choosePic() {
     wx.chooseImage({
-      count: 3 - this.data.pic_list.length,
+      count: 3 - this.data.picList.length,
       success: res => {
         this.setData({
-          pic_list: [...this.data.pic_list, ...res.tempFilePaths]
+          picList: [...this.data.picList, ...res.tempFilePaths]
         })
       },
     })
@@ -194,9 +194,9 @@ Page({
    * 删除图片
    */
   delectPic(e) {
-    this.data.pic_list.splice(e.currentTarget.dataset.index, 1)
+    this.data.picList.splice(e.currentTarget.dataset.index, 1)
     this.setData({
-      pic_list: this.data.pic_list
+      picList: this.data.picList
     })
   },
 
@@ -205,12 +205,12 @@ Page({
    */
   commit() {
     //快递至商家
-    if (this.data.return_way == 1) {
-      if (this.data.express_info.name == '') {
+    if (this.data.returnWay == 1) {
+      if (this.data.expressInfo.name == '') {
         app.showToast('请选择物流公司')
         return
       }
-      if (this.data.track_num == '') {
+      if (this.data.trackNum == '') {
         app.showToast('请填写物流单号')
         return
       }
@@ -223,7 +223,7 @@ Page({
       return
     }
 
-    this.data.file_name = ''
+    this.data.fileName = ''
     wx.showLoading({
       title: '加载中...',
     })
@@ -235,34 +235,34 @@ Page({
    * 上传图片
    */
   uploadImage(i) {
-    if (i < this.data.pic_list.length) {
+    if (i < this.data.picList.length) {
       wx.uploadFile({
-        url: app.globalData.upload_pic,
-        filePath: this.data.pic_list[i],
+        url: app.globalData.uploadPic,
+        filePath: this.data.picList[i],
         name: 'image',
         formData: {
           type: 'goods'
         },
         success: res => {
-          this.data.file_name += JSON.parse(res.data).url
-          if (i != this.data.pic_list.length - 1) {
-            this.data.file_name += ','
+          this.data.fileName += JSON.parse(res.data).url
+          if (i != this.data.picList.length - 1) {
+            this.data.fileName += ','
           }
           this.uploadImage(i + 1)
         }
       })
     } else {
       wx.hideLoading()
-      http.post(app.globalData.return_confirmed, {
+      http.post(app.globalData.returnConfirmed, {
         orderGoodsRefundid: this.data.id,
-        returnType: this.data.return_way,
-        takeId: this.data.take_id,
+        returnType: this.data.returnWay,
+        takeId: this.data.takeId,
         phone: this.data.phone,
         returnReason: this.data.complain,
-        returnMultiple_file: this.data.file_name,
-        expressName: this.data.express_info.name,
-        expressValue: this.data.express_info.code,
-        expressNumber: this.data.track_num
+        returnMultipleFile: this.data.fileName,
+        expressName: this.data.expressInfo.name,
+        expressValue: this.data.expressInfo.code,
+        expressNumber: this.data.trackNum
       }).then(res => {
         app.showSuccessToast('提交成功', () => {
           wx.navigateBack()

@@ -1,70 +1,66 @@
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='logistics-wrap'>
-  <view class='logistics-info return-way' wx:if='{{distribution_type==2}}'>
+  <view class='logistics-info return-way' wx:if='{{distributionType==2}}'>
     <view>退回方式:</view>
     <view class='return-detail'>
-      <view style='{{return_way==1?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}' hover-class='hover-class' hover-stay-time='400' bindtap='onExpress'>快递至商家</view>
-      <view style='{{return_way==2?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}' hover-class='hover-class' hover-stay-time='400' bindtap='onSelfPick' wx:if='{{take_list.length != 0}}'>送货至门店自提</view>
+      <view style='{{returnWay==1?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}' hover-class='hover-class' hover-stay-time='400' bindtap='onExpress'>
+        快递至商家
+      </view>
+      <view style='{{returnWay==2?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}' hover-class='hover-class' hover-stay-time='400' bindtap='onSelfPick' wx:if='{{takeList.length != 0}}'>
+        送货至门店自提
+      </view>
     </view>
   </view>
 </view>
-
-<view wx:if="{{return_way==1}}">
+<view wx:if="{{returnWay==1}}">
   <view class='logistics-wrap'>
     <view class='logistics-info company' hover-class='hover-class' hover-stay-time='400' bindtap='onSelectLogistics'>
       <view>物流公司:</view>
-      <input placeholder='请选择物流公司' value='{{express_info.name}}' disabled='false'></input>
+      <input placeholder='请选择物流公司' value='{{expressInfo.name}}' disabled='false'></input>
       <image class='next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
     </view>
   </view>
-
   <view class='logistics-wrap'>
     <view class='logistics-info'>
       <view>物流单号:</view>
       <input placeholder='请填写物流单号' type='number' bindinput='numberInput'></input>
-      <!-- <image class='scan' src='{{util.HTTP}}mobile/small/image/wd-th-wl-sysy.png'></image> -->
     </view>
   </view>
-
 </view>
-
 <view wx:else>
   <view class='logistics-wrap' hover-class='hover-class' hover-stay-time='400' bindtap='selectSelfPick'>
     <view class='logistics-info company' hover-class='hover-class' hover-stay-time='400' bindtap='onSelectShop'>
       <view style='width:120rpx;'>门店:</view>
-      <input placeholder='请选择门店' disabled='false' value='{{take_item.take_name}}'></input>
+      <input placeholder='请选择门店' disabled='false' value='{{takeItem.takeName}}'></input>
       <image class='next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
     </view>
   </view>
 </view>
-
 <view class='logistics-wrap'>
   <view class='logistics-info'>
     <view>联系电话:</view>
     <input placeholder='请填写手机号码' type='number' maxlength='11' bindinput='phoneInput'></input>
   </view>
 </view>
-
 <view class='logistics-wrap company'>
   <view class='logistics-info'>
     <view>退货说明:</view>
     <input placeholder='选填' bindinput='complainInput'></input>
   </view>
 </view>
-
 <view class='upload-wrap'>
   <view class='head'>上传凭证</view>
   <view class='pic-list'>
-    <view wx:for="{{pic_list}}">
+    <view wx:for="{{picList}}">
       <image class='pic' src='{{item}}'></image>
       <image class='delete' src='{{util.HTTP}}mobile/small/image/wd-pj-sc.png' hover-class='hover-class' hover-stay-time='400' bindtap='delectPic' data-index='{{index}}'></image>
     </view>
-    <view hidden='{{pic_list.length == 3}}'>
+    <view hidden='{{picList.length == 3}}'>
       <image class='pic' src='{{util.HTTP}}mobile/small/image/wd-pj-sczp.png' hover-class='hover-class' hover-stay-time='400' bindtap='choosePic'></image>
     </view>
   </view>
 </view>
-
-<view class='commit' style='{{util.diyColor("",diyColor.zColor,"")}}' hover-class='hover-class' hover-stay-time='400' bindtap='commit'>提交</view>
-
+<view class='commit' style='{{util.diyColor("",diyColor.zColor,"")}}' hover-class='hover-class' hover-stay-time='400' bindtap='commit'>
+  提交
+</view>
 <select_self_pick id="select_self_pick" bind:selectPick="selectPick" />

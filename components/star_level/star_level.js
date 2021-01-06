@@ -1,4 +1,3 @@
-// components/star_level/star_level.js
 const app = getApp();
 Component({
   /**

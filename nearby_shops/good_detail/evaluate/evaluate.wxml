@@ -1,15 +1,14 @@
 <wxs module="util" src="../../../utils/util.wxs" />
 <template name='evaluate'>
   <view class='evaluate-wrap' hidden="{{evaluateTotal == -1}}">
-    <!--评价选择  -->
+    <!-- 评价选择 -->
     <view class="evaluate-head">
       <view wx:for='{{evaluateArr}}' wx:key='{{index}}' data-type='{{item.type}}' data-index='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onEvaluateType' style='{{evaluateCurrentTab==index?util.diyColor(diyColor.zColor,diyColor.fColor2,diyColor.zColor):util.diyColor("",diyColor.fColor2,"")}}'>
         <view class='font_family icon-xq-pj-g icon' wx:if='{{evaluateCurrentTab==index}}'></view>
         <text>{{item.title}}</text>
       </view>
     </view>
-
-    <!--评价列表  -->
+    <!-- 评价列表 -->
     <view class='evaluate-list'>
       <view class='evaluate-detail' wx:for="{{evaluateList}}" wx:key='{{index}}'>
         <view class='detail-head'>
@@ -46,12 +45,10 @@
         <view class='reply' wx:if='{{item.reply != null}}'>回复: {{item.reply}}</view>
       </view>
     </view>
-    <!-- <view class='no-evaluate' hidden='{{evaluate_total != 0}}'>暂无评论</view> -->
     <view class='no-order' wx:if="{{evaluateList.length == 0 || loading}}">
       <view>
         <image src='{{util.HTTP}}mobile/small/image/kby-zanwpj.png'></image>
         <view class='no-order-head'>暂无评价</view>
-        <!-- <view class='no-order-content'>"快来忙里偷闲下一单吧"</view> -->
       </view>
     </view>
   </view>

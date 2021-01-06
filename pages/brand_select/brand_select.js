@@ -7,9 +7,9 @@ Page({
    */
   data: {
     //选项卡
-    tab_list: [],
+    tabList: [],
     //当前一级分类
-    current_tab: 0,
+    currentTab: 0,
     page: 1,
     list: [],
     total: ''
@@ -70,10 +70,10 @@ Page({
    * 获取一级列表
    */
   getClassify() {
-    http.post(app.globalData.brand_class_list).then(res => {
+    http.post(app.globalData.brandClassList).then(res => {
       this.setData({
         classify: res.result,
-        current_tab: res.result[0].brandClassifyId,
+        currentTab: res.result[0].brandClassifyId,
       })
       this.getList()
     })
@@ -84,7 +84,7 @@ Page({
    */
   onClassify(e) {
     this.setData({
-      current_tab: e.currentTarget.dataset.id,
+      currentTab: e.currentTarget.dataset.id,
       list: [],
       page: 1
     })
@@ -96,7 +96,7 @@ Page({
    */
   onMore() {
     this.setData({
-      more_board: true
+      moreBoard: true
     })
   },
 
@@ -105,7 +105,7 @@ Page({
    */
   closeBoard() {
     this.setData({
-      more_board: false
+      moreBoard: false
     })
   },
 
@@ -115,8 +115,8 @@ Page({
   onTabMoreItem(e) {
     this.closeBoard()
     this.setData({
-      sroll_id: 'a-' + e.currentTarget.dataset.index,
-      current_tab: e.currentTarget.dataset.id,
+      srollId: 'a-' + e.currentTarget.dataset.index,
+      currentTab: e.currentTarget.dataset.id,
       list: []
     })
     this.getList()
@@ -126,8 +126,8 @@ Page({
    * 获取列表
    */
   getList() {
-    http.postList(app.globalData.brand_list, {
-      brandClassifyId: this.data.current_tab,
+    http.postList(app.globalData.brandList, {
+      brandClassifyId: this.data.currentTab,
       page: this.data.page
     }).then(res => {
       if (this.data.page == 1) {
@@ -155,13 +155,13 @@ Page({
 
   onShop(e) {
     wx.navigateTo({
-      url: '/nearby_shops/shop_detail/shop_detail?store_id=' + e.currentTarget.dataset.id,
+      url: '/nearbyShops/shopDetail/shopDetail?storeId=' + e.currentTarget.dataset.id,
     })
   },
 
   onGood(e) {
     wx.navigateTo({
-      url: '/nearby_shops/good_detail/good_detail?goods_id=' + e.currentTarget.dataset.id,
+      url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + e.currentTarget.dataset.id,
     })
   },
   /**
@@ -180,7 +180,7 @@ Page({
    */
   onBackTop() {
     this.setData({
-      scroll_top: 0
+      scrollTop: 0
     })
   },
 })

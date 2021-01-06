@@ -22,13 +22,13 @@ Component({
    * 组件的初始数据
    */
   data: {
-    filtrate_board: true,
+    filtrateBoard: true,
     //透明度
     opacity: 0,
     //筛选触摸开始
     moveStart: '',
     //滑动距离
-    move_distance: '100%'
+    moveDistance: '100%'
   },
 
 
@@ -75,7 +75,7 @@ Component({
      */
     filtrateMove(e) {
       this.setData({
-        move_distance: e.touches[0].pageX - this.data.moveStart > 0 ? e.touches[0].pageX - this.data.moveStart : 0
+        moveDistance: e.touches[0].pageX - this.data.moveStart > 0 ? e.touches[0].pageX - this.data.moveStart : 0
       })
     },
 
@@ -83,11 +83,11 @@ Component({
      * 滑动结束
      */
     filtrateEnd(e) {
-      if (this.data.move_distance > 50) {
+      if (this.data.moveDistance > 50) {
         this.closeTrans()
       } else {
         this.setData({
-          move_distance: 0
+          moveDistance: 0
         })
       }
     },
@@ -99,7 +99,7 @@ Component({
     onFiltrateConfirm() {
       this.setData({
         isShow: false,
-        move_distance: '100%'
+        moveDistance: '100%'
       })
       this.fadeOut()
       this.triggerEvent("onFiltrateConfirm")
@@ -111,7 +111,7 @@ Component({
     closeTrans() {
       this.setData({
         isShow: false,
-        move_distance: '100%'
+        moveDistance: '100%'
       })
       this.fadeOut()
       this.triggerEvent("closeFiltrate")

@@ -37,16 +37,16 @@ Component({
      * 网络请求
      */
     getCouponList(obj) {
-      http.post(app.globalData.good_coupon_list, {
-        goodsClassifyId: obj.goods_classify_id,
-        storeId: obj.store_id,
-        goodsId: obj.goods_id,
+      http.post(app.globalData.goodCouponList, {
+        goodsClassifyId: obj.goodsClassifyId,
+        storeId: obj.storeId,
+        goodsId: obj.goodsId,
         page: this.data.page
       }).then(res => {
         let coupon = res.result.data
         for (let i of coupon) {
-          i.start_time = i.start_time.replace(/-/g, '.')
-          i.end_time = i.end_time.replace(/-/g, '.')
+          i.startTime = i.startTime.replace(/-/g, '.')
+          i.endTime = i.endTime.replace(/-/g, '.')
         }
         if (this.data.page == 1) {
           this.setData({
@@ -58,14 +58,6 @@ Component({
             coupon: [...this.data.coupon, ...coupon]
           })
         }
-
-        // for (let i of this.data.coupon) {
-        //   i.start_time = i.start_time.replace(/-/g, '.')
-        //   i.end_time = i.end_time.replace(/-/g, '.')
-        // }
-        // this.setData({
-        //   coupon: res.result.data
-        // })
         this.showAnimation()
       })
     },
@@ -90,7 +82,7 @@ Component({
       })
       animation.translateY(-wx.getSystemInfoSync().windowHeight)
       this.setData({
-        animation_coupon: animation.step(),
+        animationCoupon: animation.step(),
         isShow: true
       })
       this.fadeIn()
@@ -106,7 +98,7 @@ Component({
       })
       animation.translateY(wx.getSystemInfoSync().windowHeight)
       this.setData({
-        animation_coupon: animation.step(),
+        animationCoupon: animation.step(),
         isShow: false
       })
       this.fadeOut()
@@ -163,14 +155,14 @@ Component({
       }
       let item = e.currentTarget.dataset.item,
         index = e.currentTarget.dataset.index
-      http.post(app.globalData.get_coupon, {
-        couponId: item.coupon_id,
-        goodsClassifyId: item.type == 1 ? this.data.goods_classify_id : '',
-        storeId: item.type == 0 ? this.data.store_id : ''
+      http.post(app.globalData.getCoupon, {
+        couponId: item.couponId,
+        goodsClassifyId: item.type == 1 ? this.data.goodsClassifyId : '',
+        storeId: item.type == 0 ? this.data.storeId : ''
       }).then(res => {
         app.showSuccessToast(res.message)
-        this.data.coupon[index].member_coupon_count++;
-        this.data.coupon[index].exchange_num--;
+        this.data.coupon[index].memberCouponCount++;
+        this.data.coupon[index].exchangeNum--;
         this.setData({
           coupon: this.data.coupon
         })

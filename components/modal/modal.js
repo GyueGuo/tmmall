@@ -15,7 +15,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    is_show: false
+    isShow: false
   },
   ready() {
     this.setData({
@@ -30,7 +30,7 @@ Component({
     //隐藏弹框
     hideModal() {
       this.setData({
-        is_show: !this.data.is_show
+        isShow: !this.data.isShow
       })
     },
     //展示弹框
@@ -38,7 +38,7 @@ Component({
       console.log(e)
       this.setData({
         data: e,
-        is_show: !this.data.is_show
+        isShow: !this.data.isShow
       })
     },
 
@@ -47,9 +47,9 @@ Component({
      */
     _onConfirm() {
       this.setData({
-        is_show: false
+        isShow: false
       })
-      http.post(app.globalData.applet_my_saveFormId, {
+      http.post(app.globalData.appletMySaveFormId, {
         microFormId: this.data.formId
       }).then(res => { })
       this.triggerEvent("confirm", this.data.data)
@@ -60,7 +60,7 @@ Component({
      */
     _onCancel() {
       this.setData({
-        is_show: false
+        isShow: false
       })
       this.triggerEvent("cancel")
     },

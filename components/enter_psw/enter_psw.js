@@ -20,9 +20,9 @@ Component({
     password: '',
     //弹出键盘
     focus: false,
-    input_disabled: false,
-    order_info: {},
-    adjust_position:false
+    inputDisabled: false,
+    orderInfo: {},
+    adjustPosition:false
   },
 
   /**
@@ -32,17 +32,17 @@ Component({
     /**
      * 修改密码
      */
-    change_psw(){
+    changePsw(){
       wx.navigateTo({
-        url: '/my/change_password/change_password',
+        url: '/my/changePassword/changePassword',
       })
     },
     /**
      * 忘记密码
      */
-    forget_psw() {
+    forgetPsw() {
       wx.navigateTo({
-        url: '/my/forget_psw_one/forget_psw_one',
+        url: '/my/forgetPswOne/forgetPswOne',
       })
     },
     /**
@@ -119,10 +119,10 @@ Component({
     /**
      * 
      */
-    show(order_info) {
+    show(orderInfo) {
       this.showAnimation()
       this.setData({
-        order_info: order_info
+        orderInfo: orderInfo
       })
     },
 
@@ -144,17 +144,17 @@ Component({
       })
       if (e.detail.value.length == 6) {
         this.setData({
-          input_disabled: true,
+          inputDisabled: true,
           focus: false,
           password: e.detail.value
         })
-        http.post(app.globalData.balance_exec, {
-          outTradeNo: this.data.order_info.order_number == '' ? this.data.order_info.order_attach_number : this.data.order_info.order_number,
+        http.post(app.globalData.balanceExec, {
+          outTradeNo: this.data.orderInfo.orderNumber == '' ? this.data.orderInfo.orderAttachNumber : this.data.orderInfo.orderNumber,
           payPassword: this.data.password,
           casePayType: 2
         }).then(res=> {
           app.showSuccessToast('支付成功', ()=> {
-            this.pay_callback(res)
+            this.payCallback(res)
             // wx.navigateBack()
             event.emit('payOrder')
             event.emit('refreshCart')
@@ -165,7 +165,7 @@ Component({
         }).catch(res=> {
           this.setData({
             password: '',
-            input_disabled: false,
+            inputDisabled: false,
             focus: true
           })
           app.showToast(res.message)
@@ -175,44 +175,40 @@ Component({
     /**
      * 支付回调
      */
-    pay_callback(res) {
+    payCallback(res) {
       let item = {
-        total_price: this.data.order_info.total_price,
-        order_type: this.data.order_info.order_type,
-        order_attach_id: this.data.order_info.order_attach_id,
-        out_trade_no: this.data.order_info.order_number == '' ? this.data.order_info.order_attach_number : this.data.order_info.order_number,
+        totalPrice: this.data.orderInfo.totalPrice,
+        orderType: this.data.orderInfo.orderType,
+        orderAttachId: this.data.orderInfo.orderAttachId,
+        outTradeNo: this.data.orderInfo.orderNumber == '' ? this.data.orderInfo.orderAttachNumber : this.data.orderInfo.orderNumber,
       }
-      // wx.redirectTo({
-      //   url: '/nearby_shops/pay_result/pay_result?item=' + JSON.stringify(item),
-      // })
-      // return
       //商品类型 1正常商品 2团购 3砍价 4限时抢购
-      let order_type = this.data.order_info.order_type
-      console.log(order_type)
-      switch (order_type) {
+      let orderType = this.data.orderInfo.orderType
+      console.log(orderType)
+      switch (orderType) {
         case 1:
           wx.redirectTo({
-            url: '/nearby_shops/pay_result/pay_result?item=' + JSON.stringify(item),
+            url: '/nearbyShops/payResult/payResult?item=' + JSON.stringify(item),
           })
           break;
         case 2:
           wx.redirectTo({
-            url: '/pages/collage_detail/collage_detail?id=' + res.group_activity_attach_id,
+            url: '/pages/collageDetail/collageDetail?id=' + res.groupActivityAttachId,
           })
           break;
         case 3:
           wx.redirectTo({
-            url: '/nearby_shops/pay_result/pay_result?item=' + JSON.stringify(item),
+            url: '/nearbyShops/payResult/payResult?item=' + JSON.stringify(item),
           })
           break;
         case 4:
           wx.redirectTo({
-            url: '/nearby_shops/pay_result/pay_result?item=' + JSON.stringify(item),
+            url: '/nearbyShops/payResult/payResult?item=' + JSON.stringify(item),
           })
           break;
         case 'invoice':
           wx.redirectTo({
-            url: '/nearby_shops/invoice_over/invoice_over?item=' + JSON.stringify(item),
+            url: '/nearbyShops/invoiceOver/invoiceOver?item=' + JSON.stringify(item),
           })
           break;
       }

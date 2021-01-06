@@ -1,4 +1,3 @@
-<!--my/add_bank/add_bank.wxml-->
 <wxs module="util" src="../../utils/util.wxs" />
 <view class="item">
   <view class="item-title">开户银行</view>
@@ -12,7 +11,6 @@
   <view class="item-title">银行卡号</view>
   <input placeholder="请输入银行卡号" maxlength="20" type="number" bindinput="bankNumber"></input>
 </view>
-
 <view class="submit">
   <button bindtap="submit" hover-class='hover-class' hover-stay-time='400' style='{{util.diyColor("",diyColor.zColor,"")}}'>
     <view>提交</view>

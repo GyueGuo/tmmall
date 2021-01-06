@@ -1,4 +1,3 @@
-// my/take_out/take_out.js
 const app = getApp();
 const http = require('../../utils/http.js');
 Page({
@@ -10,7 +9,7 @@ Page({
     longitude: '',
     latitude: '',
     scale: '16',
-    order_attach_id: '',
+    orderAttachId: '',
     info: {},
     markers: [],
     list: [],
@@ -23,7 +22,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      order_attach_id: options.order_attach_id,
+      orderAttachId: options.orderAttachId,
       diyColor: app.globalData.diyColor
     })
   },
@@ -80,7 +79,7 @@ Page({
    */
   getData() {
     http.post(app.globalData.dadaExpress, {
-      orderAttachId: this.data.order_attach_id
+      orderAttachId: this.data.orderAttachId
     }).then((res) => {
       this.setData({
         info: res.result,
@@ -130,8 +129,8 @@ Page({
         name: res.result.data.supplierName,
         latitude: res.result.data.supplierLat,
         longitude: res.result.data.supplierLng,
-        company_phone: res.result.data.supplierPhone,
-        company_address: res.result.data.supplierAddress,
+        companyPhone: res.result.data.supplierPhone,
+        companyAddress: res.result.data.supplierAddress,
         width: 26,
         height: 34,
         iconPath: `${app.globalData.HTTP}mobile/small/image/img/shangj.png`
@@ -141,15 +140,15 @@ Page({
         name: res.result.data.transporterName,
         latitude: res.result.data.transporterLat,
         longitude: res.result.data.transporterLng,
-        company_phone: res.result.data.transporterPhone,
+        companyPhone: res.result.data.transporterPhone,
         width: 25,
         height: 21,
         iconPath: `${app.globalData.HTTP}mobile/small/image/img/qs.png`
       }
       destination = {
         id: 3,
-        latitude: res.result.time.address_lat,
-        longitude: res.result.time.address_lng,
+        latitude: res.result.time.addressLat,
+        longitude: res.result.time.addressLng,
         width: 26,
         height: 34,
         iconPath: `${app.globalData.HTTP}mobile/small/image/img/zhogd.png`
@@ -164,7 +163,7 @@ Page({
   /**
    * 骑手电话
    */
-  qs_phone() {
+  qsPhone() {
     wx.makePhoneCall({
       phoneNumber: this.data.info.data.transporterPhone
     })

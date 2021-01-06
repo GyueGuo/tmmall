@@ -12,7 +12,7 @@ Component({
       observer: function() {
         if (this.data.isShow) {
           this.setData({
-            move_distance:'0'
+            moveDistance:'0'
           })
           this.fadeIn()
         } else {
@@ -32,13 +32,13 @@ Component({
    * 组件的初始数据
    */
   data: {
-    filtrate_board: true,
+    filtrateBoard: true,
     //透明度
     opacity: 0,
     //筛选触摸开始
     moveStart: '',
     //滑动距离
-    move_distance: '100%',
+    moveDistance: '100%',
     platform: false,
     company: false,
     personal: false,
@@ -90,7 +90,7 @@ Component({
      */
     filtrateMove(e) {
       this.setData({
-        move_distance: e.touches[0].pageX - this.data.moveStart > 0 ? e.touches[0].pageX - this.data.moveStart : 0
+        moveDistance: e.touches[0].pageX - this.data.moveStart > 0 ? e.touches[0].pageX - this.data.moveStart : 0
       })
     },
 
@@ -98,11 +98,11 @@ Component({
      * 滑动结束
      */
     filtrateEnd(e) {
-      if (this.data.move_distance > 50) {
+      if (this.data.moveDistance > 50) {
         this.closeTrans()
       } else {
         this.setData({
-          move_distance: 0
+          moveDistance: 0
         })
       }
     },
@@ -159,7 +159,7 @@ Component({
     onFiltrateConfirm() {
       this.setData({
         isShow: false,
-        move_distance: '100%'
+        moveDistance: '100%'
       })
       this.fadeOut()
       let shop = ''
@@ -175,8 +175,8 @@ Component({
 
       let filtrate = {
         shop: shop.length == 0 ? '' : shop.substring(0, shop.length - 1),
-        is_shop: this.data.pickup ? '1' : '',
-        is_city: this.data.city ? '1' : '',
+        isShop: this.data.pickup ? '1' : '',
+        isCity: this.data.city ? '1' : '',
       }
 
       this.triggerEvent("onFiltrateConfirm", filtrate)
@@ -188,7 +188,7 @@ Component({
     onFiltrateReset() {
       this.setData({
         isShow: false,
-        move_distance: '100%',
+        moveDistance: '100%',
         platform: false,
         company: false,
         personal: false,
@@ -205,7 +205,7 @@ Component({
     closeTrans() {
       this.setData({
         isShow: false,
-        move_distance: '100%'
+        moveDistance: '100%'
       })
       this.fadeOut()
       this.triggerEvent("closeFiltrate")

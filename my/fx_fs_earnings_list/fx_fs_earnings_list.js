@@ -1,4 +1,3 @@
-// my/fx_total_earnings/fx_total_earnings.js
 const app = getApp();
 const http = require('../../utils/http.js');
 Page({
@@ -31,7 +30,7 @@ Page({
   onLoad: function(options) {
     this.setData({
       diyColor: app.globalData.diyColor,
-      distribution_id: options.distribution_id
+      distributionId: options.distributionId
     })
     // this.getYear()
   },
@@ -89,7 +88,7 @@ Page({
    * 加载更多
    */
   loadMore() {
-    if (this.data.page != this.data.last_page) {
+    if (this.data.page != this.data.lastPage) {
       this.data.page++;
       this.getData()
     }
@@ -103,8 +102,8 @@ Page({
    * month: 月份
    */
   getData() {
-    http.post(app.globalData.distribution_my_earnings_details, {
-      distribution_id: this.data.distribution_id,
+    http.post(app.globalData.distributionMyEarningsDetails, {
+      distributionId: this.data.distributionId,
       date: this.data.date,
       type: this.data.type,
       page: this.data.page
@@ -112,7 +111,7 @@ Page({
       if (this.data.page == 1) {
         this.setData({
           data: res.data,
-          last_page: res.data.last_page,
+          lastPage: res.data.lastPage,
           list: res.data.data
         })
       } else {
@@ -142,7 +141,7 @@ Page({
   /**
    * 选择发货时间
    */
-  sy_time(e) {
+  syTime(e) {
     let date = e.detail.value.split("-")
     this.setData({
       year: date[0],

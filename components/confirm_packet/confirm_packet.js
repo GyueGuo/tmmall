@@ -37,7 +37,7 @@ Component({
       })
       animation.translateY(-wx.getSystemInfoSync().windowHeight)
       this.setData({
-        animation_packet: animation.step(),
+        animationPacket: animation.step(),
         isShow: true
       })
       this.fadeIn()
@@ -53,7 +53,7 @@ Component({
       })
       animation.translateY(wx.getSystemInfoSync().windowHeight)
       this.setData({
-        animation_packet: animation.step(),
+        animationPacket: animation.step(),
         isShow: false
       })
       this.fadeOut()

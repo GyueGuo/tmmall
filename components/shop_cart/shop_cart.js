@@ -11,7 +11,7 @@ Component({
       observer: function() {
         this.setData({
           list: this.data.list,
-          all_select: true,
+          allSelect: true,
           num: this.data.list.length
         })
         this.calculate()
@@ -29,9 +29,9 @@ Component({
    */
   data: {
     opacity: 0,
-    all_select: true,
+    allSelect: true,
     num: 0,
-    modal_confirm: [{
+    modalConfirm: [{
       title: '提示',
       content: '确认清空购物车商品吗?',
       tip: '',
@@ -120,16 +120,16 @@ Component({
     calculate() {
       let total = 0,
         num = 0,
-        all_select = true
+        allSelect = true
       for (let i = 0, len = this.data.list.length; i < len; i++) {
-        all_select = all_select && this.data.list[i].select
+        allSelect = allSelect && this.data.list[i].select
         if (this.data.list[i].select) {
           total += parseFloat(this.data.list[i].price * this.data.list[i].number)
           num++
         }
       }
       this.setData({
-        all_select: all_select,
+        allSelect: allSelect,
         num: num
       })
       this.triggerEvent('calculate', total.toFixed(2))
@@ -137,30 +137,30 @@ Component({
 
     addCart(e) {
       let item = e.currentTarget.dataset.item
-      http.post(app.globalData.cart_add, {
-        cartId: item.cart_id,
+      http.post(app.globalData.cartAdd, {
+        cartId: item.cartId,
         number: 1
       }).then(res => {
-        event.emit('shopAddCart', item.goods_id)
+        event.emit('shopAddCart', item.goodsId)
       })
     },
 
     reduceCart(e) {
       let dataset = e.currentTarget.dataset
-      dataset.item.cart_number = dataset.item.number
+      dataset.item.cartNumber = dataset.item.number
       console.log(dataset)
       // return
       // let item = e.currentTarget.dataset.item
       if (dataset.item.number > 1) {
-        http.post(app.globalData.cart_reduce, {
-          cartId: dataset.item.cart_id,
+        http.post(app.globalData.cartReduce, {
+          cartId: dataset.item.cartId,
           number: 1
         }).then(res => {
-          event.emit('shopReduceCart', dataset.item.goods_id)
+          event.emit('shopReduceCart', dataset.item.goodsId)
         })
       } else if (dataset.item.number == 1) {
-        this.triggerEvent('cart_delete', {
-          cart_id: dataset.item.cart_id,
+        this.triggerEvent('cartDelete', {
+          cartId: dataset.item.cartId,
           item: dataset
         })
       }
@@ -176,13 +176,13 @@ Component({
     },
 
     selectAll() {
-      this.data.all_select = !this.data.all_select
+      this.data.allSelect = !this.data.allSelect
       for (let i = 0, len = this.data.list.length; i < len; i++) {
-        this.data.list[i].select = this.data.all_select
+        this.data.list[i].select = this.data.allSelect
       }
       this.calculate()
       this.setData({
-        all_select: this.data.all_select,
+        allSelect: this.data.allSelect,
         list: this.data.list
       })
     },
@@ -192,8 +192,8 @@ Component({
     },
 
     deleteAll() {
-      let list = this.data.list.map((val) => val = val.cart_id)
-      http.post(app.globalData.cart_delete, {
+      let list = this.data.list.map((val) => val = val.cartId)
+      http.post(app.globalData.cartDelete, {
         cartId: list.join(',')
       }).then(res => {
         this.setData({
@@ -208,7 +208,7 @@ Component({
       let id = ''
       for (let i = 0, len = this.data.list.length; i < len; i++) {
         if (this.data.list[i].select) {
-          id += this.data.list[i].cart_id + ','
+          id += this.data.list[i].cartId + ','
         }
       }
       if (id == '') {
@@ -217,7 +217,7 @@ Component({
       }
       id = id.substr(0, id.length - 1)
       wx.navigateTo({
-        url: '/pages/cart_confirm_order/cart_confirm_order?cart_id=' + id,
+        url: '/pages/cartConfirmOrder/cartConfirmOrder?cartId=' + id,
       })
     }
   },

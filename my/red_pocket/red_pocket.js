@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tab_list: ['未使用', '已使用', '已过期'],
+    tabList: ['未使用', '已使用', '已过期'],
     tab: 0,
     page: 1,
     total: '',
@@ -84,14 +84,14 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.member_packet, {
+    http.post(app.globalData.memberPacket, {
       status: this.data.tab + '',
       page: this.data.page
     }).then(res => {
       if (this.data.page == 1) {
-        this.data.tab_list = ['未使用(' + res.statistics.unused + ')', '已使用(' + res.statistics.been_used + ')', '已过期(' + res.statistics.have_expired + ')'],
+        this.data.tabList = ['未使用(' + res.statistics.unused + ')', '已使用(' + res.statistics.beenUsed + ')', '已过期(' + res.statistics.haveExpired + ')'],
           this.setData({
-            tab_list: this.data.tab_list,
+            tabList: this.data.tabList,
             list: res.result.data,
             total: res.result.total
           })

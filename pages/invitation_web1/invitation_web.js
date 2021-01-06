@@ -1,4 +1,3 @@
-// pages/invitation_web/invitation_web.js
 const app = getApp();
 const http = require('../../utils/http.js');
 Page({
@@ -27,7 +26,7 @@ Page({
       token = obj.token
     }
     this.setData({
-      invitation_url: `${app.globalData.HTTP}v2.0/register/invite?token=${token}&from_type=1`
+      invitationUrl: `${app.globalData.HTTP}v2.0/register/invite?token=${token}&fromType=1`
     })
   },
 

@@ -1,4 +1,3 @@
-// components/load_more/load_more.js
 Component({
   /**
    * 组件的属性列表

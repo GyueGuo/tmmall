@@ -7,7 +7,7 @@ Component({
    */
   properties: {
     info: Object,
-    store_id: String
+    storeId: String
   },
   ready() {
     this.setData({
@@ -107,10 +107,10 @@ Component({
     },
 
     getAddressInfo() {
-      http.post(app.globalData.shipping_instructions, {
-        storeId: this.data.info.store_id,
-        goodsId: this.data.info.goods_id,
-        goodsPrice: this.data.info.shop_price,
+      http.post(app.globalData.shippingInstructions, {
+        storeId: this.data.info.storeId,
+        goodsId: this.data.info.goodsId,
+        goodsPrice: this.data.info.shopPrice,
         goodsNumber: 1,
         province: app.globalData.address.province,
         city: app.globalData.address.city,
@@ -123,7 +123,7 @@ Component({
           result: res.result,
           data: res.freightService[0],
           address: res.address,
-          express_freight_price: res.freightService[0].expressFreightPrice,
+          expressFreightPrice: res.freightService[0].expressFreightPrice,
           isLoading: true
         })
       })
@@ -134,7 +134,7 @@ Component({
      */
     _onPickup() {
       wx.navigateTo({
-        url: '/pages/nearby_self_point/nearby_self_point?store_id=' + this.data.store_id,
+        url: '/pages/nearbySelfPoint/nearbySelfPoint?storeId=' + this.data.storeId,
       })
     }
   }

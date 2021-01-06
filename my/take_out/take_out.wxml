@@ -1,7 +1,6 @@
-<!--my/take_out/take_out.wxml-->
 <wxs module="util" src="../../utils/util.wxs" />
 <view class="map_container" hidden='{{!info}}'>
-  <!--定义页面结构，可以使用地图组件也能使用其他组件 -->
+  <!-- 定义页面结构，可以使用地图组件也能使用其他组件 -->
   <map id="map" class='map' longitude='{{longitude}}' latitude='{{latitude}}' scale='{{scale}}' markers='{{markers}}'></map>
   <view class='warp'>
     <view class='top' hover-class='hover-class' hover-stay-time='400' bindtap='showAnimation'>
@@ -18,14 +17,8 @@
       <text wx:if='{{info.data.statusCode==8}}'>订单已指派</text>
       <image src='{{util.HTTP}}mobile/small/image/distribution_map/gd.png'></image>
     </view>
-    <!-- <view class='yuji'>
-      <image src='{{util.HTTP}}mobile/small/image/distribution_map/yjsdsj.png'></image>
-      <view>预计送达：
-        <text>161</text>
-      </view>
-    </view> -->
     <view class='qs_con'>
-      <view class='qishou' hover-class='hover-class' hover-stay-time='400' bindtap='qs_phone'>
+      <view class='qishou' hover-class='hover-class' hover-stay-time='400' bindtap='qsPhone'>
         <image class='qs_img' src='{{util.HTTP}}mobile/small/image/distribution_map/qsimg.png'></image>
         <view class='qs_info'>
           <view class='name'>{{info.data.transporterName}}</view>
@@ -37,7 +30,6 @@
         <image class='phone' src='{{util.HTTP}}mobile/small/image/distribution_map/dh.png'></image>
       </view>
     </view>
-
   </view>
   <cover-view class='mu {{isMu?"mu-on":""}}' hover-class='hover-class' hover-stay-time='400' bindtap='hiddenAnimation' hidden='{{!isShow}}'></cover-view>
   <cover-view class='info_con' animation="{{animation}}">
@@ -55,7 +47,9 @@
           <cover-view class='time'>{{item.time}}</cover-view>
         </cover-view>
       </cover-view>
-      <cover-view class='sub' hover-class='hover-class' hover-stay-time='400' bindtap='hiddenAnimation' style='{{util.diyColor("",diyColor.zColor,"")}}'>关闭</cover-view>
+      <cover-view class='sub' hover-class='hover-class' hover-stay-time='400' bindtap='hiddenAnimation' style='{{util.diyColor("",diyColor.zColor,"")}}'>
+        关闭
+      </cover-view>
     </cover-view>
   </cover-view>
 </view>

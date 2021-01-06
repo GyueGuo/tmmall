@@ -21,14 +21,14 @@ Component({
         if (this.data.address != null) {
           this.setData({
             province: this.data.address.province,
-            province_id: this.data.address.province_id,
+            provinceId: this.data.address.provinceId,
             city: this.data.address.city,
-            city_id: this.data.address.city_id,
+            cityId: this.data.address.cityId,
             area: this.data.address.area,
-            area_id: this.data.address.area_id,
+            areaId: this.data.address.areaId,
             street: this.data.address.street,
-            street_id: this.data.address.street_id,
-            parent_id: this.data.address.area_id,
+            streetId: this.data.address.streetId,
+            parentId: this.data.address.areaId,
             tab: 4
           })
           this._getData()
@@ -49,16 +49,16 @@ Component({
     //透明度
     opacity: 0,
     province: '请选择',
-    province_id: '',
+    provinceId: '',
     city: '',
-    city_id: '',
+    cityId: '',
     area: '',
-    area_id: '',
+    areaId: '',
     street: '',
-    street_id: '',
+    streetId: '',
     tab: 1,
-    parent_id: 0,
-    current_id: 'id'
+    parentId: 0,
+    currentId: 'id'
   },
 
   attached: function() {
@@ -109,14 +109,14 @@ Component({
      * 获取数据
      */
     _getData() {
-      http.post(app.globalData.address_linkage, {
-        parentId: this.data.parent_id
+      http.post(app.globalData.addressLinkage, {
+        parentId: this.data.parentId
       }).then(res=> {
         wx.hideLoading()
         if (this.data.tab == 4) {
           let obj = [{
-            area_name: '暂不选择',
-            area_id: null
+            areaName: '暂不选择',
+            areaId: null
           }]
           this.setData({
             list: [...obj, ...res.result]
@@ -128,22 +128,22 @@ Component({
         }
         if (this.data.tab == 1) {
           this.setData({
-            current_id: 'id-' + this.data.province_id,
+            currentId: 'id-' + this.data.provinceId,
           })
         } else if (this.data.tab == 2) {
           this.setData({
             city: this.data.city == '请选择' || this.data.city == '' ? '请选择' : this.data.city,
-            current_id: 'id-' + this.data.city_id,
+            currentId: 'id-' + this.data.cityId,
           })
         } else if (this.data.tab == 3) {
           this.setData({
             area: this.data.area == '请选择' || this.data.area == '' ? '请选择' : this.data.area,
-            current_id: 'id-' + this.data.area_id,
+            currentId: 'id-' + this.data.areaId,
           })
         } else if (this.data.tab == 4) {
           this.setData({
             street: this.data.street == '请选择' || this.data.street == '' ? '请选择' : this.data.street,
-            current_id: 'id-' + this.data.street_id,
+            currentId: 'id-' + this.data.streetId,
           })
         }
       })
@@ -154,15 +154,15 @@ Component({
      */
     _onItem(e) {
       let item = e.currentTarget.dataset.item
-      this.data.parent_id = item.area_id
+      this.data.parentId = item.areaId
       wx.showLoading({
         title: '加载中',
         mask:true
       })
       if (this.data.tab == 1) {
         this.setData({
-          province: item.area_name,
-          province_id: item.area_id,
+          province: item.areaName,
+          provinceId: item.areaId,
           city: '请选择',
           area: '',
           street: '',
@@ -171,8 +171,8 @@ Component({
         this._getData()
       } else if (this.data.tab == 2) {
         this.setData({
-          city: item.area_name,
-          city_id: item.area_id,
+          city: item.areaName,
+          cityId: item.areaId,
           area: '请选择',
           street: '',
           tab: 3
@@ -180,27 +180,27 @@ Component({
         this._getData()
       } else if (this.data.tab == 3) {
         this.setData({
-          area: item.area_name,
-          area_id: item.area_id,
+          area: item.areaName,
+          areaId: item.areaId,
           street: '请选择',
           tab: 4
         })
         this._getData()
       } else if (this.data.tab == 4) {
         this.setData({
-          street: item.area_name,
-          street_id: item.area_id,
+          street: item.areaName,
+          streetId: item.areaId,
         })
         this.closeBoard()
         let address = {
           province: this.data.province,
-          province_id: this.data.province_id,
+          provinceId: this.data.provinceId,
           city: this.data.city,
-          city_id: this.data.city_id,
+          cityId: this.data.cityId,
           area: this.data.area,
-          area_id: this.data.area_id,
-          street: item.area_id != null ? this.data.street : '',
-          street_id: item.area_id != null ? this.data.street_id : '',
+          areaId: this.data.areaId,
+          street: item.areaId != null ? this.data.street : '',
+          streetId: item.areaId != null ? this.data.streetId : '',
         }
         this.triggerEvent('confirmAddress', address)
       }
@@ -212,7 +212,7 @@ Component({
     _chooseProvince() {
       this.setData({
         tab: 1,
-        parent_id: 0,
+        parentId: 0,
       })
       this._getData()
     },
@@ -223,7 +223,7 @@ Component({
     _chooseCity() {
       this.setData({
         tab: 2,
-        parent_id: this.data.province_id,
+        parentId: this.data.provinceId,
       })
       this._getData()
     },
@@ -234,7 +234,7 @@ Component({
     _chooseArea() {
       this.setData({
         tab: 3,
-        parent_id: this.data.city_id,
+        parentId: this.data.cityId,
       })
       this._getData()
     },
@@ -245,7 +245,7 @@ Component({
     _chooseDetail() {
       this.setData({
         tab: 4,
-        parent_id: this.data.area_id,
+        parentId: this.data.areaId,
       })
       this._getData()
     },

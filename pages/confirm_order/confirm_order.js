@@ -8,42 +8,42 @@ Page({
    */
   data: {
     first: true,
-    member_address_id: '',
+    memberAddressId: '',
     //商品信息
     info: {},
     //店铺信息
     store: {},
     //商品图片
-    good_image: '',
+    goodImage: '',
     //地址
     address: {},
     //买家留言
     message: '',
     //平台优惠券id
-    member_platform_coupon_id: '',
+    memberPlatformCouponId: '',
     //当前优惠券价格
-    coupon_price: '0.00',
+    couponPrice: '0.00',
     //当前红包价格
     packet: '0.00',
     //红包id
-    member_packet_id: '',
+    memberPacketId: '',
     //红包
     redpacket: [],
     //运费
-    freight_price: '0.00',
+    freightPrice: '0.00',
     //
-    take_id: '',
+    takeId: '',
     //
-    take_item: {},
+    takeItem: {},
     //支付方式
-    pay_way: 1,
+    payWay: 1,
     //优惠券
     coupon: [],
     invoice: {
-      is_invoice: 0 //是否开发票
+      isInvoice: 0 //是否开发票
     },
-    delivery_method: [],
-    delivery_method_type: 0
+    deliveryMethod: [],
+    deliveryMethodType: 0
   },
 
   /**
@@ -51,14 +51,14 @@ Page({
    */
   onLoad: function (options) {
     let info = JSON.parse(decodeURIComponent(options.info))
-    info.goods_name = decodeURIComponent(info.goods_name)
-    info.store_name = decodeURIComponent(info.store_name)
+    info.goodsName = decodeURIComponent(info.goodsName)
+    info.storeName = decodeURIComponent(info.storeName)
     this.setData({
       diyColor: app.globalData.diyColor,
       configSwitch: app.globalData.configSwitch,
       info: info,
       first: false,
-      good_image: decodeURIComponent(options.good_image)
+      goodImage: decodeURIComponent(options.goodImage)
     })
   },
 
@@ -73,7 +73,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (!this.data.first && (app.globalData.addressSelect.member_address_id == null || this.data.address.member_address_id != app.globalData.addressSelect.member_address_id)) {
+    if (!this.data.first && (app.globalData.addressSelect.memberAddressId == null || this.data.address.memberAddressId != app.globalData.addressSelect.memberAddressId)) {
       this.setData({
         address: {}
       })
@@ -112,14 +112,14 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.common_confirm_order, {
-      storeId: this.data.info.store_id,
-      price: this.data.info.shop_price,
-      goodsId: this.data.info.goods_id,
-      memberAddressId: this.data.member_address_id,
+    http.post(app.globalData.commonConfirmOrder, {
+      storeId: this.data.info.storeId,
+      price: this.data.info.shopPrice,
+      goodsId: this.data.info.goodsId,
+      memberAddressId: this.data.memberAddressId,
       number: this.data.info.num,
-      productsId: this.data.info.products_id,
-      isOriginal: this.data.info.is_original
+      productsId: this.data.info.productsId,
+      isOriginal: this.data.info.isOriginal
     }).then(res => {
 
       for (let i = 0; i < res.coupon.length; i++) {
@@ -130,41 +130,41 @@ Page({
       }
       if (res.freight.length != 0) {
         this.setData({
-          delivery_method: []
+          deliveryMethod: []
         })
         //显示配送方式
         if (res.freight[0].expressFreightSup == 1) {
-          this.data.delivery_method.push({
+          this.data.deliveryMethod.push({
             title: '快递邮寄',
-            text: 'is_express',
+            text: 'isExpress',
             type: 0
           })
         }
         if (res.freight[0].cityFreightSup == 1) {
-          this.data.delivery_method.push({
+          this.data.deliveryMethod.push({
             title: '同城配送',
-            text: 'is_city',
+            text: 'isCity',
             type: 1
           })
         }
         if (res.freight[0].takeFreightSup == 1) {
-          this.data.delivery_method.push({
+          this.data.deliveryMethod.push({
             title: '预约自提',
-            text: 'is_shop',
+            text: 'isShop',
             type: 2
           })
         }
         if (res.freight[0].takeFreightSup == 1) {
-          this.data.take_id = res.freight[0].takeFreighList[0].take_id
-          this.data.take_item = res.freight[0].takeFreighList[0]
+          this.data.takeId = res.freight[0].takeFreighList[0].takeId
+          this.data.takeItem = res.freight[0].takeFreighList[0]
         }
 
-        let delivery_method_every = this.data.delivery_method.some((item) => {
+        let deliveryMethodEvery = this.data.deliveryMethod.some((item) => {
           return item.type + 1 == res.freight[0].defaultExpressType
         })
-        if (!delivery_method_every && this.data.delivery_method.length != 0) {
+        if (!deliveryMethodEvery && this.data.deliveryMethod.length != 0) {
           //如果默认配送方式不支持
-          switch (this.data.delivery_method[0].type) {
+          switch (this.data.deliveryMethod[0].type) {
             case 0:
               res.freight[0].defaultExpressType = 1
               break;
@@ -178,24 +178,24 @@ Page({
         }
         //默认配送方式
         if (res.freight[0].defaultExpressType == 1) {
-          this.data.info.delivery_method = 3
-          this.data.delivery_method_type = 0
-          this.data.pay_way = 1
-          this.data.freight_price = res.freight[0].expressFreightPrice
+          this.data.info.deliveryMethod = 3
+          this.data.deliveryMethodType = 0
+          this.data.payWay = 1
+          this.data.freightPrice = res.freight[0].expressFreightPrice
         } else if (res.freight[0].defaultExpressType == 2) {
-          this.data.info.delivery_method = 1
-          this.data.delivery_method_type = 1
-          this.data.freight_price = res.freight[0].cityFreightPrice
-          this.data.pay_way = 1
+          this.data.info.deliveryMethod = 1
+          this.data.deliveryMethodType = 1
+          this.data.freightPrice = res.freight[0].cityFreightPrice
+          this.data.payWay = 1
         } else if (res.freight[0].defaultExpressType == 3) {
-          this.data.info.delivery_method = 2
-          this.data.delivery_method_type = 2
-          this.data.freight_price = 0
-          this.data.pay_way = 1
+          this.data.info.deliveryMethod = 2
+          this.data.deliveryMethodType = 2
+          this.data.freightPrice = 0
+          this.data.payWay = 1
         }
 
-        app.globalData.addressSelect.member_address_id = res.address.member_address_id ? res.address.member_address_id : null
-        if ((res.address == null || res.address.name == undefined) && this.data.delivery_method_type != 2) {
+        app.globalData.addressSelect.memberAddressId = res.address.memberAddressId ? res.address.memberAddressId : null
+        if ((res.address == null || res.address.name == undefined) && this.data.deliveryMethodType != 2) {
           this.selectComponent("#modal").showModal()
         }
       }
@@ -205,20 +205,20 @@ Page({
         address: res.address,
         store: res.result,
         coupon: res.coupon,
-        coupon_price: res.coupon.length == 0 ? '0.00' : res.coupon_price,
-        packet: res.packet.length == 0 ? '0.00' : res.packet[0].actual_price,
-        member_packet_id: res.packet.length == 0 ? '' : res.packet[0].member_packet_id,
+        couponPrice: res.coupon.length == 0 ? '0.00' : res.couponPrice,
+        packet: res.packet.length == 0 ? '0.00' : res.packet[0].actualPrice,
+        memberPacketId: res.packet.length == 0 ? '' : res.packet[0].memberPacketId,
         freight: res.freight == null ? null : res.freight[0],
-        take_id: this.data.take_id,
-        take_item: this.data.take_item,
-        freight_price: this.data.freight_price,
+        takeId: this.data.takeId,
+        takeItem: this.data.takeItem,
+        freightPrice: this.data.freightPrice,
         info: this.data.info,
         redpacket: res.packet,
-        pay_way: this.data.pay_way,
-        discount_price: res.discount_price,
-        'invoice.is_added_value_tax': res.result.is_added_value_tax,
-        delivery_method: this.data.delivery_method,
-        delivery_method_type: this.data.delivery_method_type
+        payWay: this.data.payWay,
+        discountPrice: res.discountPrice,
+        'invoice.isAddedValueTax': res.result.isAddedValueTax,
+        deliveryMethod: this.data.deliveryMethod,
+        deliveryMethodType: this.data.deliveryMethodType
       })
       this.calcTotal()
     })
@@ -228,7 +228,7 @@ Page({
    * 弹出修改窗口
    */
   onChangeNum() {
-    this.selectComponent("#change_num").show(this.data.info.num, this.data.info.goods_number)
+    this.selectComponent("#change_num").show(this.data.info.num, this.data.info.goodsNumber)
   },
 
   /**
@@ -277,25 +277,25 @@ Page({
    * 计算总价
    */
   calcTotal() {
-    if (this.data.info.good_type == 1) {
+    if (this.data.info.goodType == 1) {
       //普通商品
-      this.data.info.subtotal = parseFloat(this.data.info.num * this.data.info.shop_price)
-      this.data.info['total'] = parseFloat(this.data.info.num) * parseFloat(this.data.info.shop_price) - parseFloat(this.data.coupon_price) - parseFloat(this.data.packet) - (this.data.discount_price * this.data.info.num) > 0 ? parseFloat(this.data.info.num) * parseFloat(this.data.info.shop_price) - parseFloat(this.data.coupon_price) - parseFloat(this.data.packet) - (this.data.discount_price * this.data.info.num) : parseFloat(this.data.freight_price) > 0 ? 0 : 0.10;
-    } else if (this.data.info.good_type == 2) {
+      this.data.info.subtotal = parseFloat(this.data.info.num * this.data.info.shopPrice)
+      this.data.info['total'] = parseFloat(this.data.info.num) * parseFloat(this.data.info.shopPrice) - parseFloat(this.data.couponPrice) - parseFloat(this.data.packet) - (this.data.discountPrice * this.data.info.num) > 0 ? parseFloat(this.data.info.num) * parseFloat(this.data.info.shopPrice) - parseFloat(this.data.couponPrice) - parseFloat(this.data.packet) - (this.data.discountPrice * this.data.info.num) : parseFloat(this.data.freightPrice) > 0 ? 0 : 0.10;
+    } else if (this.data.info.goodType == 2) {
       //团购
-      this.data.info.subtotal = parseFloat(this.data.info.num * this.data.info.group_price) > 0 ? parseFloat(this.data.info.num * this.data.info.group_price).toFixed(2) : parseFloat(this.data.freight_price) > 0 ? 0 : 0.10;
+      this.data.info.subtotal = parseFloat(this.data.info.num * this.data.info.groupPrice) > 0 ? parseFloat(this.data.info.num * this.data.info.groupPrice).toFixed(2) : parseFloat(this.data.freightPrice) > 0 ? 0 : 0.10;
       this.data.info['total'] = parseFloat(this.data.info.subtotal)
-    } else if (this.data.info.good_type == 3) {
+    } else if (this.data.info.goodType == 3) {
       //砍价
-      this.data.info.subtotal = parseFloat(this.data.info.num * this.data.info.cut_price) > 0 ? parseFloat(this.data.info.num * this.data.info.cut_price).toFixed(2) : parseFloat(this.data.freight_price) > 0 ? 0 : 0.10;
+      this.data.info.subtotal = parseFloat(this.data.info.num * this.data.info.cutPrice) > 0 ? parseFloat(this.data.info.num * this.data.info.cutPrice).toFixed(2) : parseFloat(this.data.freightPrice) > 0 ? 0 : 0.10;
       this.data.info['total'] = parseFloat(this.data.info.subtotal)
-    } else if (this.data.info.good_type == 4) {
-      this.data.info.subtotal = parseFloat(this.data.info.num * this.data.info.time_limit_price) > 0 ? parseFloat(this.data.info.num * this.data.info.time_limit_price).toFixed(2) : parseFloat(this.data.freight_price) > 0 ? 0 : 0.10;
+    } else if (this.data.info.goodType == 4) {
+      this.data.info.subtotal = parseFloat(this.data.info.num * this.data.info.timeLimitPrice) > 0 ? parseFloat(this.data.info.num * this.data.info.timeLimitPrice).toFixed(2) : parseFloat(this.data.freightPrice) > 0 ? 0 : 0.10;
       this.data.info['total'] = parseFloat(this.data.info.subtotal)
     }
 
     //判断合计是否等于0
-    this.data.info['total'] = (parseFloat(this.data.info['total']) + parseFloat(this.data.freight_price)).toFixed(2) > 0 ? (parseFloat(this.data.info['total']) + parseFloat(this.data.freight_price)).toFixed(2) : parseFloat(this.data.freight_price) + 0.1
+    this.data.info['total'] = (parseFloat(this.data.info['total']) + parseFloat(this.data.freightPrice)).toFixed(2) > 0 ? (parseFloat(this.data.info['total']) + parseFloat(this.data.freightPrice)).toFixed(2) : parseFloat(this.data.freightPrice) + 0.1
     this.setData({
       info: this.data.info
     })
@@ -306,43 +306,43 @@ Page({
    */
   onPayWay() {
     let array = [],
-      images = [this.data.good_image],
+      images = [this.data.goodImage],
       obj = {
         images: images,
-        is_pay_delivery: this.data.freight.is_pay_delivery,
-        city_freight_sup: this.data.freight.city_freight_sup,
-        way: this.data.pay_way,
-        delivery_method: this.data.info.delivery_method
+        isPayDelivery: this.data.freight.isPayDelivery,
+        cityFreightSup: this.data.freight.cityFreightSup,
+        way: this.data.payWay,
+        deliveryMethod: this.data.info.deliveryMethod
       }
     array.push(obj)
-    this.selectComponent("#pay_way").show(array)
+    this.selectComponent("#payWay").show(array)
   },
 
   /**
    * 确定支付方式
    */
   confirmWay(e) {
-    let delivery_method, type
-    if (e.detail[0].delivery_method == 3 && this.data.delivery_method_type != 1) {
-      delivery_method = 0
-    } else if (e.detail[0].delivery_method == 2 && this.data.delivery_method_type == 1) {
-      delivery_method = 2
-    } else if (e.detail[0].delivery_method == 1 && this.data.delivery_method_type != 1) {
-      delivery_method = 1
+    let deliveryMethod, type
+    if (e.detail[0].deliveryMethod == 3 && this.data.deliveryMethodType != 1) {
+      deliveryMethod = 0
+    } else if (e.detail[0].deliveryMethod == 2 && this.data.deliveryMethodType == 1) {
+      deliveryMethod = 2
+    } else if (e.detail[0].deliveryMethod == 1 && this.data.deliveryMethodType != 1) {
+      deliveryMethod = 1
     }
     setTimeout(() => {
-      if (delivery_method = 0) {
+      if (deliveryMethod = 0) {
         type = 3
-      } else if (delivery_method = 1) {
+      } else if (deliveryMethod = 1) {
         type = 1
-      } else if (delivery_method = 2) {
+      } else if (deliveryMethod = 2) {
         type = 2
       }
       this.setData({
-        'info.delivery_method': type,
-        pay_way: e.detail[0].way,
-        delivery_method_type: delivery_method,
-        freight_price: e.detail[0].way == 2 || this.data.info.delivery_method == 1 ? this.data.freight.city_freight_price : this.data.freight.express_freight_price
+        'info.deliveryMethod': type,
+        payWay: e.detail[0].way,
+        deliveryMethodType: deliveryMethod,
+        freightPrice: e.detail[0].way == 2 || this.data.info.deliveryMethod == 1 ? this.data.freight.cityFreightPrice : this.data.freight.expressFreightPrice
       })
       this.calcTotal()
     }, 50)
@@ -358,32 +358,32 @@ Page({
       return
     }
 
-    if (this.data.pay_way == 2) {
+    if (this.data.payWay == 2) {
       return
     }
     this.setData({
-      delivery_method_type: item.type
+      deliveryMethodType: item.type
     })
     //判断配送方式
     if (item.type == 2) {
-      this.data.info.delivery_method = 2
+      this.data.info.deliveryMethod = 2
       this.setData({
         info: this.data.info,
-        freight_price: 0.00,
+        freightPrice: 0.00,
       })
     } else if (item.type == 1) {
       //同城速递
-      this.data.info.delivery_method = 1
+      this.data.info.deliveryMethod = 1
       this.setData({
         info: this.data.info,
-        freight_price: this.data.freight.city_freight_price
+        freightPrice: this.data.freight.cityFreightPrice
       })
     } else if (item.type == 0) {
       //快递邮寄
-      this.data.info.delivery_method = 3
+      this.data.info.deliveryMethod = 3
       this.setData({
         info: this.data.info,
-        freight_price: this.data.freight.express_freight_price
+        freightPrice: this.data.freight.expressFreightPrice
       })
     }
 
@@ -394,11 +394,11 @@ Page({
    * 同城速递
    */
   onCityWide() {
-    this.data.info.delivery_method = 1
+    this.data.info.deliveryMethod = 1
     this.setData({
       info: this.data.info,
-      // pay_way: 2,
-      freight_price: this.data.freight.city_freight_price
+      // payWay: 2,
+      freightPrice: this.data.freight.cityFreightPrice
     })
     this.calcTotal()
   },
@@ -407,14 +407,14 @@ Page({
    * 预约自提
    */
   onPickup() {
-    if (this.data.pay_way == 2) {
+    if (this.data.payWay == 2) {
       return
     }
-    this.data.info.delivery_method = 2
+    this.data.info.deliveryMethod = 2
     this.setData({
       info: this.data.info,
-      freight_price: 0.00,
-      // pay_way: 1
+      freightPrice: 0.00,
+      // payWay: 1
     })
     this.calcTotal()
   },
@@ -423,14 +423,14 @@ Page({
    * 快递邮寄
    */
   onExpress() {
-    if (this.data.pay_way == 2) {
+    if (this.data.payWay == 2) {
       return
     }
-    this.data.info.delivery_method = 3
+    this.data.info.deliveryMethod = 3
     this.setData({
       info: this.data.info,
-      freight_price: this.data.freight.express_freight_price,
-      // pay_way: 1
+      freightPrice: this.data.freight.expressFreightPrice,
+      // payWay: 1
     })
     this.calcTotal()
   },
@@ -439,27 +439,27 @@ Page({
    * 修改自提点
    */
   changeTake() {
-    let list = this.data.freight.take_freight_list
-    if (this.data.take_id == '') {
-      this.data.take_id = this.data.freight.take_freight_list[0].take_id
+    let list = this.data.freight.takeFreightList
+    if (this.data.takeId == '') {
+      this.data.takeId = this.data.freight.takeFreightList[0].takeId
     }
-    let parent_id = this.data.freight.store_city_id,
-      select_pick = this.data.freight.take_freight_list[0],
+    let parentId = this.data.freight.storeCityId,
+      selectPick = this.data.freight.takeFreightList[0],
       newobj = {};
-    for (let attr in select_pick) {
-      newobj[attr] = select_pick[attr];
+    for (let attr in selectPick) {
+      newobj[attr] = selectPick[attr];
     }
-    this.selectComponent("#self_pick").show(this.data.take_id, list, parent_id, newobj)
+    this.selectComponent("#self_pick").show(this.data.takeId, list, parentId, newobj)
   },
 
   /**
    * 确定自提点
    */
   selectPick(e) {
-    let select_pick = e.detail
+    let selectPick = e.detail
     this.setData({
-      take_item: select_pick,
-      take_id: select_pick.take_id
+      takeItem: selectPick,
+      takeId: selectPick.takeId
     })
   },
 
@@ -476,120 +476,120 @@ Page({
    * 提交订单
    */
   submit() {
-    let store_set = [],
-      member_shop_coupon_id = '';
+    let storeSet = [],
+      memberShopCouponId = '';
     //如果没有地址弹出
-    if ((this.data.address == null || this.data.address.name == undefined) && this.data.info.delivery_method != 2) {
+    if ((this.data.address == null || this.data.address.name == undefined) && this.data.info.deliveryMethod != 2) {
       this.selectComponent("#modal").showModal()
       return
     }
-    if (this.data.freight.express_freight_sup == 0 && this.data.freight.city_freight_sup == 0 && this.data.freight.take_freight_sup == 0 && this.data.freight.city_freight_msg != '') {
-      app.showToast(this.data.freight.city_freight_msg)
+    if (this.data.freight.expressFreightSup == 0 && this.data.freight.cityFreightSup == 0 && this.data.freight.takeFreightSup == 0 && this.data.freight.cityFreightMsg != '') {
+      app.showToast(this.data.freight.cityFreightMsg)
       return
     }
     for (let i = 0, len = this.data.coupon.length; i < len; i++) {
       if (this.data.coupon[i].select && this.data.coupon[i].state == "store") {
-        member_shop_coupon_id = this.data.coupon[i].member_coupon_id
+        memberShopCouponId = this.data.coupon[i].memberCouponId
       }
       if (this.data.coupon[i].state == "platform" && this.data.coupon[i].select) {
-        this.data.member_platform_coupon_id = this.data.coupon[i].member_coupon_id
+        this.data.memberPlatformCouponId = this.data.coupon[i].memberCouponId
       } else {
-        this.data.member_platform_coupon_id = ''
+        this.data.memberPlatformCouponId = ''
       }
     }
     let store = {
-      store_id: this.data.info.store_id,
-      pay_type: this.data.pay_way,
-      products_id: this.data.info.products_id,
-      goods_attr: this.data.info.attr == '请选择尺寸' ? '' : this.data.info.attr,
+      storeId: this.data.info.storeId,
+      payType: this.data.payWay,
+      productsId: this.data.info.productsId,
+      goodsAttr: this.data.info.attr == '请选择尺寸' ? '' : this.data.info.attr,
       quantity: this.data.info.num,
-      member_shop_coupon_id: this.data.info.good_type == 1 ? member_shop_coupon_id : '',
+      memberShopCouponId: this.data.info.goodType == 1 ? memberShopCouponId : '',
       message: this.data.message,
-      distribution_type: this.data.info.delivery_method,
-      take_id: this.data.info.delivery_method == 2 ? this.data.take_id : '',
+      distributionType: this.data.info.deliveryMethod,
+      takeId: this.data.info.deliveryMethod == 2 ? this.data.takeId : '',
       //是否开发票 0不开 1开
-      invoice_set: this.data.invoice.is_invoice == 1 ? {
+      invoiceSet: this.data.invoice.isInvoice == 1 ? {
         //发票
         account: this.data.invoice.account, //开户账户
         bank: this.data.invoice.bank, //开户银行
         //company: this.data.invoice.company,//发票抬头内容
-        detail_type: this.data.invoice.detail_type, //发票类型
-        taxer_number: this.data.invoice.taxer_number, //纳税人识别号
+        detailType: this.data.invoice.detailType, //发票类型
+        taxerNumber: this.data.invoice.taxerNumber, //纳税人识别号
         address: this.data.invoice.address, //注册地址
         phone: this.data.invoice.phone, //注册电话
-        invoice_type: this.data.invoice.invoice_type, //发票类型：1电子发票 2普通纸质发票 3增值税纸质发票
+        invoiceType: this.data.invoice.invoiceType, //发票类型：1电子发票 2普通纸质发票 3增值税纸质发票
         rise: this.data.invoice.rise, //发票抬头：1个人或事业单位 2企业
-        rise_name: this.data.invoice.rise == 1 ? this.data.invoice.rise_name : this.data.invoice.company, //发票抬头内容（抬头为企业时将公司名称传进来）发票抬头：1个人 2公司
-        consignee_name: this.data.invoice.consignee_name,
-        consignee_phone: this.data.invoice.consignee_phone,
-        address_province: this.data.invoice.address_province,
-        address_city: this.data.invoice.address_city,
-        address_area: this.data.invoice.address_area,
-        address_street: this.data.invoice.address_street,
-        address_details: this.data.invoice.address_details
+        riseName: this.data.invoice.rise == 1 ? this.data.invoice.riseName : this.data.invoice.company, //发票抬头内容（抬头为企业时将公司名称传进来）发票抬头：1个人 2公司
+        consigneeName: this.data.invoice.consigneeName,
+        consigneePhone: this.data.invoice.consigneePhone,
+        addressProvince: this.data.invoice.addressProvince,
+        addressCity: this.data.invoice.addressCity,
+        addressArea: this.data.invoice.addressArea,
+        addressStreet: this.data.invoice.addressStreet,
+        addressDetails: this.data.invoice.addressDetails
       } : ''
     }
-    store_set.push(store)
-    http.post(app.globalData.order_confirm, {
-      member_address_id: this.data.info.delivery_method != 2 ? this.data.address.member_address_id : '',
-      pay_channel: 1,
-      order_type: this.data.info.good_type,
-      cut_activity_id: this.data.info.cut_activity_id,
-      group_activity_id: this.data.info.group_activity_id,
-      used_integral: 0,
-      member_packet_id: this.data.info.good_type == 1 ? this.data.member_packet_id : '',
-      member_platform_coupon_id: this.data.info.good_type == 1 ? this.data.member_platform_coupon_id : '',
-      id_set: this.data.info.goods_id,
-      store_set: store_set,
-      origin_type: 2,
+    storeSet.push(store)
+    http.post(app.globalData.orderConfirm, {
+      memberAddressId: this.data.info.deliveryMethod != 2 ? this.data.address.memberAddressId : '',
+      payChannel: 1,
+      orderType: this.data.info.goodType,
+      cutActivityId: this.data.info.cutActivityId,
+      groupActivityId: this.data.info.groupActivityId,
+      usedIntegral: 0,
+      memberPacketId: this.data.info.goodType == 1 ? this.data.memberPacketId : '',
+      memberPlatformCouponId: this.data.info.goodType == 1 ? this.data.memberPlatformCouponId : '',
+      idSet: this.data.info.goodsId,
+      storeSet: storeSet,
+      originType: 2,
     }).then(res => {
-      event.emit('refreshBargain', this.data.info.cut_activity_id)
+      event.emit('refreshBargain', this.data.info.cutActivityId)
       event.emit('refreshBargainDetail')
       if (this.data.info['total'] == 0) {
         app.showSuccessToast('提交成功', () => {
           let item = {
-            total_price: res.result.total_price,
-            order_type: this.data.info.good_type,
-            order_attach_id: res.result.order_attach_id,
-            fx_type: this.data.info.fx_type,
-            out_trade_no: res.result.order_number,
+            totalPrice: res.result.totalPrice,
+            orderType: this.data.info.goodType,
+            orderAttachId: res.result.orderAttachId,
+            fxType: this.data.info.fxType,
+            outTradeNo: res.result.orderNumber,
           }
           wx.redirectTo({
-            url: '/nearby_shops/pay_result/pay_result?item=' + JSON.stringify(item),
+            url: '/nearbyShops/payResult/payResult?item=' + JSON.stringify(item),
           })
         })
         return
       }
-      if (this.data.pay_way == 2) {
+      if (this.data.payWay == 2) {
         app.showSuccessToast('提交成功', () => {
           let item = {
-            total_price: res.result.total_price,
-            order_type: this.data.info.good_type,
-            fx_type: this.data.info.fx_type,
-            order_attach_id: res.result.order_attach_id,
-            distribution_id: this.data.info.distribution_id,
-            out_trade_no: res.result.order_number,
+            totalPrice: res.result.totalPrice,
+            orderType: this.data.info.goodType,
+            fxType: this.data.info.fxType,
+            orderAttachId: res.result.orderAttachId,
+            distributionId: this.data.info.distributionId,
+            outTradeNo: res.result.orderNumber,
           }
           wx.redirectTo({
-            url: '/nearby_shops/pay_result/pay_result?item=' + JSON.stringify(item),
+            url: '/nearbyShops/payResult/payResult?item=' + JSON.stringify(item),
           })
         })
       } else {
-        let order_info = {
-          total_price: res.result.total_price,
-          order_number: res.result.order_number,
-          order_type: this.data.info.good_type,
-          order_attach_number: '',
-          fx_type: this.data.info.fx_type,
-          order_attach_id: res.result.order_attach_id,
-          distribution_id: this.data.info.distribution_id,
+        let orderInfo = {
+          totalPrice: res.result.totalPrice,
+          orderNumber: res.result.orderNumber,
+          orderType: this.data.info.goodType,
+          orderAttachNumber: '',
+          fxType: this.data.info.fxType,
+          orderAttachId: res.result.orderAttachId,
+          distributionId: this.data.info.distributionId,
           type: 1
         }
         wx.redirectTo({
-          url: '../cashier_desk/cashier_desk?order_info=' + JSON.stringify(order_info),
+          url: '../cashierDesk/cashierDesk?orderInfo=' + JSON.stringify(orderInfo),
         })
       }
-      http.post(app.globalData.applet_my_saveFormId, {
+      http.post(app.globalData.appletMySaveFormId, {
         microFormId: this.data.formId
       })
     })
@@ -621,11 +621,11 @@ Page({
     this.data.coupon = e.detail
     for (let i = 0, len = e.detail.length; i < len; i++) {
       if (e.detail[i].select) {
-        price += parseFloat(e.detail[i].actual_price)
+        price += parseFloat(e.detail[i].actualPrice)
       }
     }
     this.setData({
-      coupon_price: price
+      couponPrice: price
     })
     this.calcTotal()
   },
@@ -648,19 +648,19 @@ Page({
       return
     }
     let price = 0,
-      member_packet_id
+      memberPacketId
     this.data.redpacket = e.detail
     for (let i = 0, len = e.detail.length; i < len; i++) {
       if (e.detail[i].select) {
-        price = parseFloat(e.detail[i].actual_price)
-        member_packet_id = e.detail[i].member_packet_id
+        price = parseFloat(e.detail[i].actualPrice)
+        memberPacketId = e.detail[i].memberPacketId
       } else {
-        member_packet_id = ''
+        memberPacketId = ''
       }
     }
     this.setData({
       packet: price,
-      member_packet_id: member_packet_id
+      memberPacketId: memberPacketId
     })
     this.calcTotal()
   },
@@ -669,28 +669,28 @@ Page({
    * 发票
    */
   invoice() {
-    this.selectComponent("#popup").show(this.data.invoice, 0, this.data.store.store_id, 0, this.data.address.member_address_id != undefined ? this.data.address : '')
+    this.selectComponent("#popup").show(this.data.invoice, 0, this.data.store.storeId, 0, this.data.address.memberAddressId != undefined ? this.data.address : '')
   },
   /**
    * 
    */
-  popup_invoice(e) {
+  popupInvoice(e) {
     this.setData({
       invoice: e.detail
     })
   },
   createWhether() {
     this.setData({
-      'invoice.address_province': this.data.province.area_name,
-      'invoice.address_city': this.data.city.area_name,
-      'invoice.address_area': this.data.area.area_name,
+      'invoice.addressProvince': this.data.province.areaName,
+      'invoice.addressCity': this.data.city.areaName,
+      'invoice.addressArea': this.data.area.areaName,
     })
   },
   formId(e) {
     this.data.formId = e.detail.formId
   },
   changeAddress(e) {
-    this.data.member_address_id = this.data.address.member_address_id
+    this.data.memberAddressId = this.data.address.memberAddressId
     this.getData()
   }
 })

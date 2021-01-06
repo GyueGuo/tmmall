@@ -6,38 +6,37 @@
     </view>
     <view>
       <view class='slogan'>据说坚持写评价，经验值涨的快哦，加油!</view>
-      <view class='my-comment' hover-class='hover-class' hover-stay-time='400' bindtap='myComment'>查看我的评价</view>
+      <view class='my-comment' hover-class='hover-class' hover-stay-time='400' bindtap='myComment'>
+        查看我的评价
+      </view>
     </view>
   </view>
-
   <view class='then-comment'>
     <view class='line'></view>
     <view class='title' wx:if="{{total != 0}}">接着评下去吧</view>
     <view class='title' wx:else>暂无可评价订单</view>
     <view class='line'></view>
   </view>
-
   <view class='list'>
     <view wx:for="{{list}}">
-      <view class='shop' data-id='{{item.store_id}}' wx:if='{{util.isShops==0}}'>
+      <view class='shop' data-id='{{item.storeId}}' wx:if='{{util.isShops==0}}'>
         <image class='item-shop-icon' src='{{util.HTTP}}mobile/small/image/xq-dp.png'></image>
-        <view class='item-shop-name'>{{item.store_list.store_name}}</view>
+        <view class='item-shop-name'>{{item.storeList.storeName}}</view>
         <image class='item-shop-next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
       </view>
-      <view wx:for="{{item.order_goods_evaluate}}">
+      <view wx:for="{{item.orderGoodsEvaluate}}">
         <view class='list-item'>
           <image src='{{item.file}}'></image>
           <view>
-            <view class='good-name'>{{item.goods_name}}</view>
-
+            <view class='good-name'>{{item.goodsName}}</view>
           </view>
         </view>
       </view>
       <view class='comment'>
         <view class='go-comment border-cur' hover-class='hover-class' hover-stay-time='400' bindtap='comment' data-item="{{item}}" data-index='{{index}}' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>
-        <view style='{{util.diyImgbox(28)}}'>
-          <image src='{{util.HTTP}}mobile/small/image/wd-dpj-pj.png' style='{{util.diyImgcolor(diyColor.zColor,28,28)}}'></image>
-        </view>
+          <view style='{{util.diyImgbox(28)}}'>
+            <image src='{{util.HTTP}}mobile/small/image/wd-dpj-pj.png' style='{{util.diyImgcolor(diyColor.zColor,28,28)}}'></image>
+          </view>
           <view>去评价</view>
         </view>
       </view>

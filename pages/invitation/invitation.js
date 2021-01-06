@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    web_content: ''
+    webContent: ''
   },
 
   /**
@@ -52,7 +52,7 @@ Page({
    */
   onShareAppMessage: function() {
     return {
-      path: '/pages/invitation_web/invitation_web?mid=' + app.globalData.member_id
+      path: '/pages/invitationWeb/invitationWeb?mid=' + app.globalData.memberId
     }
   },
 
@@ -61,15 +61,15 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.packet_index, {}).then(res => {
+    http.post(app.globalData.packetIndex, {}).then(res => {
       this.setData({
         statistics: res.statistics,
-        invite_list: res.result,
+        inviteList: res.result,
       })
     })
-    http.get(app.globalData.red_pocket_rule).then(res => {
+    http.get(app.globalData.redPocketRule).then(res => {
       this.setData({
-        web_content: res.content
+        webContent: res.content
       })
     })
   },
@@ -78,7 +78,7 @@ Page({
    */
   onFace() {
     wx.navigateTo({
-      url: `../face_scan/face_scan?face_bg_img=${this.data.face_bg_img}`
+      url: `../faceScan/faceScan?faceBgImg=${this.data.faceBgImg}`
     })
   }
 })

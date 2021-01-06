@@ -21,7 +21,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    event.on('refresh_info', this, () => {
+    event.on('refreshInfo', this, () => {
       this.getData()
     })
     this.getData()
@@ -45,14 +45,14 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {
-    event.remove('refresh_info', this)
+    event.remove('refreshInfo', this)
   },
 
   /**
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.my_info, {}).then(res => {
+    http.post(app.globalData.myInfo, {}).then(res => {
       this.setData({
         info: res.result
       })
@@ -63,7 +63,7 @@ Page({
    */
   chooseHead() {
     this.setData({
-      head_board: true
+      headBoard: true
     })
   },
   /**
@@ -82,27 +82,12 @@ Page({
             this.setData({
               info: this.data.info
             })
-            let member_info = wx.getStorageSync('member_info')
-            member_info.avatar = JSON.parse(data.data).avatar
-            wx.setStorageSync('member_info', member_info)
+            let memberInfo = wx.getStorageSync('memberInfo')
+            memberInfo.avatar = JSON.parse(data.data).avatar
+            wx.setStorageSync('memberInfo', memberInfo)
           })
       }
     })
-    // wx.chooseImage({
-    //   count: 1,
-    //   success: res => {
-    //     http.uploadFile(app.globalData.avatar, res.tempFilePaths[0], 'image', {},
-    //       data => {
-    //         this.data.info.avatar = JSON.parse(data.data).avatar
-    //         this.setData({
-    //           info: this.data.info
-    //         })
-    //         let member_info = wx.getStorageSync('member_info')
-    //         member_info.avatar = JSON.parse(data.data).avatar
-    //         wx.setStorageSync('member_info', member_info)
-    //       })
-    //   }
-    // })
   },
 
   /**
@@ -116,7 +101,7 @@ Page({
 
   onMemberCode() {
     wx.navigateTo({
-      url: '/my/vip_card/vip_card',
+      url: '/my/vipCard/vipCard',
     })
   },
 
@@ -125,7 +110,7 @@ Page({
    */
   chooseSex() {
     this.setData({
-      sex_board: true
+      sexBoard: true
     })
   },
 
@@ -133,7 +118,7 @@ Page({
    * 确认性别
    */
   confirmSex(e) {
-    http.post(app.globalData.my_other, {
+    http.post(app.globalData.myOther, {
       other: 'sex',
       sex: e.detail
     }).then(res => {

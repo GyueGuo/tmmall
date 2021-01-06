@@ -1,4 +1,3 @@
-// components/good_parameter/good_parameter.js
 const app = getApp();
 Component({
   /**
