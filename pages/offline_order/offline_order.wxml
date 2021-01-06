@@ -1,15 +1,15 @@
 <wxs module="util" src="../../utils/util.wxs" />
-<view class='wrap' wx:for="{{list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onDetail' data-id='{{item.order_attach_id}}'>
+<view class='wrap' wx:for="{{list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onDetail' data-id='{{item.orderAttachId}}'>
   <view>
     <view class='shop-info'>
       <image src='{{util.HTTP}}mobile/small/image/xq-jrdp.png'></image>
-      <view>{{item.store_name}}</view>
+      <view>{{item.storeName}}</view>
     </view>
     <view class='price-title'>线下消费金额</view>
     <view class='price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
       <view>
         <text class='unit'>￥</text>
-        <text>{{item.total_price}}</text>
+        <text>{{item.totalPrice}}</text>
       </view>
     </view>
     <view class='bottom'>
@@ -18,7 +18,6 @@
     </view>
   </view>
 </view>
-
 <view class='no-order' hidden="{{list.length != 0 || loading}}">
   <view>
     <image src='{{util.HTTP}}mobile/small/image/wd-zwdd.png'></image>

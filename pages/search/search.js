@@ -7,11 +7,11 @@ Page({
    */
   data: {
     //选项卡 1商品 2店铺
-    current_tab: 1,
+    currentTab: 1,
     //搜索关键字
-    search_key: '',
+    searchKey: '',
     //历史搜索
-    history_list: []
+    historyList: []
   },
 
   /**
@@ -19,7 +19,7 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      current_tab: options.type,
+      currentTab: options.type,
       diyColor: app.globalData.diyColor,
       configSwitch: app.globalData.configSwitch
     })
@@ -30,10 +30,10 @@ Page({
    */
   onReady: function() {
     let obj = {}
-    if (this.data.current_tab == 1) {
-      obj.history_list = wx.getStorageSync('goods_history').length == 0 ? [] : wx.getStorageSync('goods_history')
-    } else if (this.data.current_tab == 2) {
-      obj.history_list = wx.getStorageSync('shops_history').length == 0 ? [] : wx.getStorageSync('shops_history')
+    if (this.data.currentTab == 1) {
+      obj.historyList = wx.getStorageSync('goodsHistory').length == 0 ? [] : wx.getStorageSync('goodsHistory')
+    } else if (this.data.currentTab == 2) {
+      obj.historyList = wx.getStorageSync('shopsHistory').length == 0 ? [] : wx.getStorageSync('shopsHistory')
     }
     this.setData(obj)
     this.getData()
@@ -78,9 +78,9 @@ Page({
    * 热门搜索
    */
   getData() {
-    http.post(app.globalData.hot_search).then(res => {
+    http.post(app.globalData.hotSearch).then(res => {
       this.setData({
-        hot_search: res.result
+        hotSearch: res.result
       })
     })
   },
@@ -90,7 +90,7 @@ Page({
    */
   onGood() {
     this.setData({
-      current_tab: 1
+      currentTab: 1
     })
   },
 
@@ -99,7 +99,7 @@ Page({
    */
   onShop() {
     this.setData({
-      current_tab: 2
+      currentTab: 2
     })
   },
 
@@ -108,7 +108,7 @@ Page({
    */
   searchInput(e) {
     this.setData({
-      search_key: e.detail.value.replace(/[ ]/g, "")
+      searchKey: e.detail.value.replace(/[ ]/g, "")
     })
   },
 
@@ -117,7 +117,7 @@ Page({
    */
   onClearKey() {
     this.setData({
-      search_key: ''
+      searchKey: ''
     })
   },
 
@@ -125,27 +125,27 @@ Page({
    * 历史搜索
    */
   setHistroy() {
-    let history_list = this.data.history_list.filter(val => {
-      return val != this.data.search_key
+    let historyList = this.data.historyList.filter(val => {
+      return val != this.data.searchKey
     })
     this.setData({
-      history_list: history_list
+      historyList: historyList
     })
-    if (this.data.history_list.length > 9) {
-      this.data.history_list.splice(this.data.history_list.length - 1, 1)
-      this.data.history_list.unshift(this.data.search_key)
+    if (this.data.historyList.length > 9) {
+      this.data.historyList.splice(this.data.historyList.length - 1, 1)
+      this.data.historyList.unshift(this.data.searchKey)
     } else {
-      this.data.history_list.unshift(this.data.search_key)
+      this.data.historyList.unshift(this.data.searchKey)
     }
 
-    if (this.data.current_tab == 1) {
-      wx.setStorageSync('goods_history', this.data.history_list)
-    } else if (this.data.current_tab == 2) {
-      wx.setStorageSync('shops_history', this.data.history_list)
+    if (this.data.currentTab == 1) {
+      wx.setStorageSync('goodsHistory', this.data.historyList)
+    } else if (this.data.currentTab == 2) {
+      wx.setStorageSync('shopsHistory', this.data.historyList)
     }
 
     this.setData({
-      history_list: this.data.history_list
+      historyList: this.data.historyList
     })
   },
 
@@ -153,15 +153,15 @@ Page({
    * 清空历史搜索
    */
   onClearHistory() {
-    if (this.data.current_tab == 1) {
-      wx.removeStorageSync('shops_history')
+    if (this.data.currentTab == 1) {
+      wx.removeStorageSync('shopsHistory')
       this.setData({
-        history_list: []
+        historyList: []
       })
-    } else if (this.data.current_tab == 2) {
-      wx.removeStorageSync('goods_history')
+    } else if (this.data.currentTab == 2) {
+      wx.removeStorageSync('goodsHistory')
       this.setData({
-        history_list: []
+        historyList: []
       })
     }
 
@@ -173,19 +173,19 @@ Page({
   onSearch(e) {
     if (e.currentTarget.dataset.item) {
       this.setData({
-        search_key: e.currentTarget.dataset.item
+        searchKey: e.currentTarget.dataset.item
       })
     }
-    if (this.data.search_key != '') {
+    if (this.data.searchKey != '') {
       this.setHistroy()
     }
-    if (this.data.current_tab == 1) {
+    if (this.data.currentTab == 1) {
       wx.navigateTo({
-        url: '../search_goods/search_goods?key=' + this.data.search_key,
+        url: '../searchGoods/searchGoods?key=' + this.data.searchKey,
       })
     } else {
       wx.navigateTo({
-        url: '../search_shops/search_shops?key=' + this.data.search_key,
+        url: '../searchGoods/searchGoods?key=' + this.data.searchKey,
       })
     }
   }

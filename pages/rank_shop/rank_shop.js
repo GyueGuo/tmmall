@@ -7,11 +7,11 @@ Page({
    */
   data: {
     //选项卡
-    tab_list: [],
+    tabList: [],
     //当前一级分类
-    current_tab: 0,
+    currentTab: 0,
     page: 1,
-    shop_list: [],
+    shopList: [],
     total: '',
     classify: []
   },
@@ -71,10 +71,10 @@ Page({
    * 获取一级列表
    */
   getClassify() {
-    http.post(app.globalData.platform_classify).then(res => {
+    http.post(app.globalData.platformClassify).then(res => {
       this.setData({
         classify: res.result,
-        current_tab: res.result[0].storeClassifyId,
+        currentTab: res.result[0].storeClassifyId,
       })
       this.getShopList()
     })
@@ -85,8 +85,8 @@ Page({
    */
   onClassify(e) {
     this.setData({
-      current_tab: e.currentTarget.dataset.id,
-      shop_list: [],
+      currentTab: e.currentTarget.dataset.id,
+      shopList: [],
       page: 1
     })
 
@@ -100,7 +100,7 @@ Page({
    */
   onMore() {
     this.setData({
-      more_board: true
+      moreBoard: true
     })
   },
 
@@ -109,7 +109,7 @@ Page({
    */
   closeBoard() {
     this.setData({
-      more_board: false
+      moreBoard: false
     })
   },
 
@@ -119,9 +119,9 @@ Page({
   onTabMoreItem(e) {
     this.closeBoard()
     this.setData({
-      sroll_id: 'a-' + e.currentTarget.dataset.index,
-      current_tab: e.currentTarget.dataset.id,
-      shop_list: []
+      srollId: 'a-' + e.currentTarget.dataset.index,
+      currentTab: e.currentTarget.dataset.id,
+      shopList: []
     })
     this.getShopList()
   },
@@ -130,18 +130,18 @@ Page({
    * 获取店铺列表
    */
   getShopList() {
-    http.postList(app.globalData.store_ranking, {
-      goodsClassifyId: this.data.current_tab,
+    http.postList(app.globalData.storeRanking, {
+      goodsClassifyId: this.data.currentTab,
       page: this.data.page
     }).then(res => {
       if (this.data.page == 1) {
         this.setData({
-          shop_list: res.result.data,
+          shopList: res.result.data,
           total: res.result.total
         })
       } else {
         this.setData({
-          shop_list: [...this.data.shop_list, ...res.result.data]
+          shopList: [...this.data.shopList, ...res.result.data]
         })
       }
     })
@@ -151,7 +151,7 @@ Page({
    * 加载更多
    */
   loadMore() {
-    if (this.data.total > this.data.shop_list.length) {
+    if (this.data.total > this.data.shopList.length) {
       this.data.page++;
       this.getShopList()
     }
@@ -162,7 +162,7 @@ Page({
    */
   onShop(e) {
     wx.navigateTo({
-      url: '/nearby_shops/shop_detail/shop_detail?store_id=' + e.currentTarget.dataset.id,
+      url: '/nearbyShops/shopDetail/shopDetail?storeId=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -171,7 +171,7 @@ Page({
    */
   onGood(e) {
     wx.navigateTo({
-      url: '/nearby_shops/good_detail/good_detail?goods_id=' + e.currentTarget.dataset.id,
+      url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -180,7 +180,7 @@ Page({
    */
   onRankGood() {
     wx.redirectTo({
-      url: '../rank_good/rank_good',
+      url: '../rankDood/rankDood',
     })
   },
   /**
@@ -199,7 +199,7 @@ Page({
    */
   onBackTop() {
     this.setData({
-      scroll_top: 0
+      scrollTop: 0
     })
   },
 })

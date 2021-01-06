@@ -20,8 +20,8 @@
             <image src="{{info.userInfo.avatar}}" wx:if='{{info.userInfo.avatar}}'></image>
           </view>
           <view class='user-details'>
-            <view class='user-nickname {{!login_status?"no-login":""}}' hover-class='hover-class' hover-stay-time='400' bindtap='login_status'>{{login_status?info.userInfo.nickname:'登录/注册'}}</view>
-            <image class='rank' hover-class='hover-class' hover-stay-time='400' bindtap='onMember' src='{{info.userInfo.rank_img}}' wx:if='{{login_status}}'></image>
+            <view class='user-nickname {{!loginStatus?"no-login":""}}' hover-class='hover-class' hover-stay-time='400' bindtap='loginStatus'>{{loginStatus?info.userInfo.nickname:'登录/注册'}}</view>
+            <image class='rank' hover-class='hover-class' hover-stay-time='400' bindtap='onMember' src='{{info.userInfo.rankImg}}' wx:if='{{loginStatus}}'></image>
           </view>
           <view class='user-card' hover-class='hover-class' hover-stay-time='400' bindtap='onVipCard' hover-class='hover-class'>
             <image class='card' src='{{util.HTTP}}mobile/small/image/wd-hyk.png'></image>
@@ -35,7 +35,7 @@
           <view class='btn' hover-class='hover-class' hover-stay-time='400' bindtap='myWallet' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>立即进入</view>
         </view>
       </view>
-      <view class='head-bg' style='background: linear-gradient(to left, {{diyColor.zColor}}, {{diyColor.fColor_8}});'>
+      <view class='head-bg' style='background: linear-gradient(to left, {{diyColor.zColor}}, {{diyColor.fColor8}});'>
         <view class='circle circle1'></view>
         <view class='circle circle2'></view>
       </view>
@@ -59,10 +59,10 @@
           </view>
         </view>
 
-        <view class='row distribution' wx:if='{{info.distribution.distribution_status=="1"}}'>
+        <view class='row distribution' wx:if='{{info.distribution.distributionStatus=="1"}}'>
           <view class='title'>
             <view class='h1'>代言中心</view>
-            <view class='dy_vicon' hover-class='hover-class' hover-stay-time='400' bindtap='goVicon' wx:if='{{login_status&&info.distribution.distribution_id!=0}}'>V{{info.distribution.level_pos}}{{info.distribution.level_title}}</view>
+            <view class='dy_vicon' hover-class='hover-class' hover-stay-time='400' bindtap='goVicon' wx:if='{{loginStatus&&info.distribution.distributionId!=0}}'>V{{info.distribution.levelPos}}{{info.distribution.levelTitle}}</view>
           </view>
           <view class='section-con'>
             <view class='li' wx:for='{{aDistribution}}' wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='distribution' data-item='{{item.key}}'>
@@ -85,10 +85,7 @@
           </view>
         </view>
       </view>
-      <!-- copyright -->
       <view class='copyright'>
-        <!-- <view class='company'>{{configSwitch.app_info.business_name}}</view>
-        <view class='credentials' hover-class='hover-class' hover-stay-time='400' bindtap='credentials'>证照信息</view> -->
       </view>
     </view>
     <template is="tabBar" data="{{tabBar:bindData.tabBar,diyColor:diyColor,model:model}}" />

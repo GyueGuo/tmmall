@@ -7,20 +7,20 @@ Page({
    */
   data: {
     //选项卡
-    tab_list: [{
-      goods_classify_id: 0,
+    tabList: [{
+      goodsClassifyId: 0,
       title: '推荐'
     }],
-    current_tab: 0,
+    currentTab: 0,
     page: 1,
-    good_list: [],
+    goodList: [],
     total: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     this.setData({
       diyColor: app.globalData.diyColor
     })
@@ -29,7 +29,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
     this.getClassify()
     this.getChoiceness()
   },
@@ -37,35 +37,35 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
@@ -73,9 +73,9 @@ Page({
    * 获取一级列表
    */
   getClassify() {
-    http.post(app.globalData.classify_parent).then(res => {
+    http.post(app.globalData.classifyParent).then(res => {
       this.setData({
-        tab_list: [...this.data.tab_list, ...res.result]
+        tabList: [...this.data.tabList, ...res.result]
       })
     })
   },
@@ -85,10 +85,10 @@ Page({
    */
   onClassify(e) {
     this.setData({
-      current_tab: e.currentTarget.dataset.id,
+      currentTab: e.currentTarget.dataset.id,
       page: 1
     })
-    if (this.data.current_tab == 0) {
+    if (this.data.currentTab == 0) {
       this.getChoiceness()
     } else {
       this.getGoodList()
@@ -102,7 +102,7 @@ Page({
    */
   onMore() {
     this.setData({
-      more_board: true
+      moreBoard: true
     })
   },
 
@@ -111,7 +111,7 @@ Page({
    */
   closeBoard() {
     this.setData({
-      more_board: false
+      moreBoard: false
     })
   },
 
@@ -121,10 +121,10 @@ Page({
   onTabMoreItem(e) {
     this.closeBoard()
     this.setData({
-      sroll_id: 'a-' + e.currentTarget.dataset.index,
-      current_tab: e.currentTarget.dataset.id
+      srollId: 'a-' + e.currentTarget.dataset.index,
+      currentTab: e.currentTarget.dataset.id
     })
-    if (this.data.current_tab == 0) {
+    if (this.data.currentTab == 0) {
       this.getChoiceness()
     } else {
       this.getGoodList()
@@ -135,7 +135,7 @@ Page({
    * 获得精选列表
    */
   getChoiceness() {
-    http.post(app.globalData.choiceness_list, {}).then(res => {
+    http.post(app.globalData.choicenessList, {}).then(res => {
       this.setData({
         discount: res.discount == null ? 100 : res.discount,
         choiceness: res.result
@@ -147,19 +147,19 @@ Page({
    * 获取商品
    */
   getGoodList() {
-    http.post(app.globalData.good_recommend_list, {
-      goodsClassifyId: this.data.current_tab,
+    http.post(app.globalData.goodRecommendList, {
+      goodsClassifyId: this.data.currentTab,
       page: this.data.page
     }).then(res => {
       if (this.data.page == 1) {
         this.setData({
           discount: res.discount == null ? 100 : res.discount,
-          good_list: res.result.data,
+          goodList: res.result.data,
           total: res.result.total
         })
       } else {
         this.setData({
-          good_list: [...this.data.good_list, ...res.result.data]
+          goodList: [...this.data.goodList, ...res.result.data]
         })
       }
     })
@@ -170,7 +170,7 @@ Page({
    */
   onGoods(e) {
     wx.navigateTo({
-      url: '/nearby_shops/good_detail/good_detail?goods_id=' + e.currentTarget.dataset.id,
+      url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + e.currentTarget.dataset.id,
     })
   },
   /**
@@ -181,18 +181,18 @@ Page({
       return
     }
     let item = e.currentTarget.dataset.item
-    item.add_cart_type = 2
-    item['attr'] = item.attribute_list
-    if (item.goods_number == 0) {
+    item.addCartType = 2
+    item['attr'] = item.attributeList
+    if (item.goodsNumber == 0) {
       app.showToast('该商品已经卖光了')
       return
     }
     if (item['attr'].length == 0) {
-      http.encPost(app.globalData.cart_create, {
-        storeId: item.store_id,
-        goodsId: item.goods_id,
-        goodsName: item.goods_name,
-        file: item.cart_file,
+      http.encPost(app.globalData.cartCreate, {
+        storeId: item.storeId,
+        goodsId: item.goodsId,
+        goodsName: item.goodsName,
+        file: item.cartFile,
         number: 1,
         productsId: '',
         attr: '',

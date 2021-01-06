@@ -7,7 +7,7 @@ Page({
    */
   data: {
     //搜索关键字
-    search_key: '',
+    searchKey: '',
     //单列 1 双列2
     columns: 1,
     //选项卡
@@ -23,18 +23,18 @@ Page({
     //筛选列表显示
     filtrate_board: false,
     //筛选状态
-    is_filtrate: false,
+    isFiltrate: false,
     //参数
     goods_classify_id: '',
     brand_id: '',
     shop: '',
-    freight_status: '',
-    is_freight: '',
-    goods_number: '',
-    minimum_price: '',
-    top_price: '',
+    freightStatus: '',
+    isFreight: '',
+    goodsNumber: '',
+    minimumPrice: '',
+    topPrice: '',
     //数据
-    good_list: [],
+    goodList: [],
     total: '',
     page: 1,
     loading: true
@@ -51,7 +51,7 @@ Page({
     //搜索关键字
     if (options.key) {
       this.setData({
-        search_key: options.key
+        searchKey: options.key
       })
     }
     if (options.goods_classify_id) {
@@ -126,7 +126,7 @@ Page({
    * 搜索框输入
    */
   searchInput(e) {
-    this.data.search_key = e.detail.value
+    this.data.searchKey = e.detail.value
   },
 
   /**
@@ -141,7 +141,7 @@ Page({
    */
   onClearKey() {
     this.setData({
-      search_key: ''
+      searchKey: ''
     })
   },
 
@@ -151,11 +151,11 @@ Page({
   onSearch() {
     this.setData({
       shop: '',
-      freight_status: '',
-      is_freight: '',
-      goods_number: '',
-      minimum_price: '',
-      top_price: '',
+      freightStatus: '',
+      isFreight: '',
+      goodsNumber: '',
+      minimumPrice: '',
+      topPrice: '',
       page: 1
     })
     this.getData()
@@ -201,31 +201,31 @@ Page({
       //价格
       parameter = 'shop_price'
     }
-    http.postList(app.globalData.good_list, {
+    http.postList(app.globalData.goodList, {
       goodsClassifyId: this.data.goods_classify_id,
       brandId: this.data.brand_id,
       parameter: parameter,
       rank: this.data.rank,
       shop: this.data.shop,
-      freightStatus: this.data.freight_status,
-      keyword: this.data.search_key,
-      goodsNumber: this.data.goods_number,
-      minimumPrice: this.data.minimum_price,
-      topPrice: this.data.top_price,
-      isFreight: this.data.is_freight,
+      freightStatus: this.data.freightStatus,
+      keyword: this.data.searchKey,
+      goodsNumber: this.data.goodsNumber,
+      minimumPrice: this.data.minimumPrice,
+      topPrice: this.data.topPrice,
+      isFreight: this.data.isFreight,
       page: this.data.page,
       isDistributor: 0
     }).then(res => {
       if (this.data.page == 1) {
         this.onBackTop()
         this.setData({
-          good_list: res.result.data,
+          goodList: res.result.data,
           total: res.result.total,
           discount: res.discount == null ? 100 : res.discount
         })
       } else {
         this.setData({
-          good_list: [...this.data.good_list, ...res.result.data]
+          goodList: [...this.data.goodList, ...res.result.data]
         })
       }
     })
@@ -368,15 +368,15 @@ Page({
   onFiltrateReset() {
     this.setData({
       filtrate_board: false,
-      is_filtrate: false,
+      isFiltrate: false,
       parameter: '',
       rank: '',
       shop: '',
-      freight_status: '',
-      is_freight: '',
-      goods_number: '',
-      minimum_price: '',
-      top_price: '',
+      freightStatus: '',
+      isFreight: '',
+      goodsNumber: '',
+      minimumPrice: '',
+      topPrice: '',
       page: 1
     })
     this.getData()
@@ -388,15 +388,15 @@ Page({
   onFiltrateConfirm(e) {
     this.setData({
       filtrate_board: false,
-      is_filtrate: true,
+      isFiltrate: true,
       page: 1
     })
     this.data.shop = e.detail.shop
-    this.data.freight_status = e.detail.freight_status
-    this.data.goods_number = e.detail.goods_number
-    this.data.is_freight = e.detail.is_freight
-    this.data.minimum_price = e.detail.minimum_price
-    this.data.top_price = e.detail.top_price
+    this.data.freightStatus = e.detail.freightStatus
+    this.data.goodsNumber = e.detail.goodsNumber
+    this.data.isFreight = e.detail.isFreight
+    this.data.minimumPrice = e.detail.minimumPrice
+    this.data.topPrice = e.detail.topPrice
     this.getData()
   },
 
@@ -404,7 +404,7 @@ Page({
    * 加载更多
    */
   loadMore() {
-    if (this.data.total > this.data.good_list.length) {
+    if (this.data.total > this.data.goodList.length) {
       this.data.page++;
       this.getData()
     }
@@ -415,7 +415,7 @@ Page({
    */
   onGoods(e) {
     wx.navigateTo({
-      url: '../good_detail/good_detail?goods_id=' + e.currentTarget.dataset.id,
+      url: '../goodDetail/goodDetail?goodsId=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -424,7 +424,7 @@ Page({
    */
   onShop(e) {
     wx.navigateTo({
-      url: '/pages/shop_detail/shop_detail?store_id=' + e.currentTarget.dataset.id,
+      url: '/pages/shopDetail/shopDetail?storeId=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -443,6 +443,6 @@ Page({
     }
     this.selectComponent("#cart").blendent(obj)
     this.selectComponent("#buy_board").blendent(obj)
-    this.selectComponent("#good_list").blendent(obj)
+    this.selectComponent("#goodList").blendent(obj)
   }
 })

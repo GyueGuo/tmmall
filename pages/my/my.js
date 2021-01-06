@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    login_status: false,
+    loginStatus: false,
     aDistribution: [{
       'title': '收益',
       'img': 'mobile/small/image/fx/wd-sy.png',
@@ -46,13 +46,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    if (app.globalData.member_id != '' && app.globalData.phone != '') {
+    if (app.globalData.memberId != '' && app.globalData.phone != '') {
       this.setData({
-        login_status: true
+        loginStatus: true
       })
     } else {
       this.setData({
-        login_status: false
+        loginStatus: false
       })
     }
     this.getData()
@@ -87,7 +87,7 @@ Page({
   /**
    * 登录
    */
-  login_status() {
+  loginStatus() {
     app.login()
   },
 
@@ -107,14 +107,14 @@ Page({
         url: '/pages/accredit/accredit',
       })
     })
-    navBar.tabbar("tabBar", app.globalData.isShops == 0 && this.data.configSwitch.version_info.one_more == 1 ? 4 : 3, this) // 我的 多店4，单店3
+    navBar.tabbar("tabBar", app.globalData.isShops == 0 && this.data.configSwitch.versionInfo.oneMore == 1 ? 4 : 3, this) // 我的 多店4，单店3
   },
 
   /**
    * 设置
    */
   onSetting() {
-    if (app.globalData.member_id == '') {
+    if (app.globalData.memberId == '') {
       wx.navigateTo({
         url: '/pages/accredit/accredit',
       })
@@ -153,7 +153,7 @@ Page({
   onVipCard() {
     if (app.login()) {
       wx.navigateTo({
-        url: `/my/vip_card/vip_card`
+        url: `/my/vipCard/vipCard`
       })
     }
   },
@@ -175,7 +175,7 @@ Page({
   myWallet() {
     if (app.login()) {
       wx.navigateTo({
-        url: `/my/my_wallet/my_wallet`
+        url: `/my/myWallet/myWallet`
       })
     }
   },
@@ -187,46 +187,46 @@ Page({
     if (app.login()) {
       let item = e.currentTarget.dataset.item
       let type = {
-        distribution_type: '0',
+        distributionType: '0',
         status: null
       }
       switch (item) {
         case 'all': //查看全部
           wx.navigateTo({
-            url: `/my/express_order/express_order`
+            url: `/my/expressOrder/expressOrder`
           })
           break;
         case 'notPay': //待付款
-          type.distribution_type = '0'
+          type.distributionType = '0'
           type.status = '0'
           wx.navigateTo({
-            url: `/my/express_order/express_order?type=${JSON.stringify(type)}`
+            url: `/my/expressOrder/expressOrder?type=${JSON.stringify(type)}`
           })
           break;
         case 'stayRec': //待收货
-          type.distribution_type = '1,3,4'
+          type.distributionType = '1,3,4'
           type.status = '1,2'
           wx.navigateTo({
-            url: `/my/express_order/express_order?type=${JSON.stringify(type)}`
+            url: `/my/expressOrder/expressOrder?type=${JSON.stringify(type)}`
           })
           break;
         case 'stayTake': //待自提
-          type.distribution_type = '2'
+          type.distributionType = '2'
           type.status = '2'
           wx.navigateTo({
-            url: `/my/express_order/express_order?type=${JSON.stringify(type)}`
+            url: `/my/expressOrder/expressOrder?type=${JSON.stringify(type)}`
           })
           break;
         case 'stayEval': //待评价
-          type.distribution_type = '0'
+          type.distributionType = '0'
           type.status = '3'
           wx.navigateTo({
-            url: `/my/express_order/express_order?type=${JSON.stringify(type)}`
+            url: `/my/expressOrder/expressOrder?type=${JSON.stringify(type)}`
           })
           break;
         case 'afterSale': //退换/售后
           wx.navigateTo({
-            url: `/my/after_sale/after_sale`
+            url: `/my/afterSale/afterSale`
           })
           break;
       }
@@ -238,32 +238,29 @@ Page({
    */
   distribution(e) {
     if (app.login()) {
-      if (this.data.info.distribution.distribution_id == 0) {
-        http.post(app.globalData.distribution_jumpSign, {}).then(res => {
+      if (this.data.info.distribution.distributionId == 0) {
+        http.post(app.globalData.distributionJumpSign, {}).then(res => {
           wx.navigateTo({
             url: res.data.path
           })
         })
-        // wx.navigateTo({
-        //   url: '/my/fx_cwdy/fx_cwdy',
-        // })
         return
       }
       let item = e.currentTarget.dataset.item
       switch (item) {
         case 'sy': //收益
           wx.navigateTo({
-            url: `/my/fx_earnings/fx_earnings`
+            url: `/my/fxEarnings/fxEarnings`
           })
           break;
         case 'fs': //粉丝
           wx.navigateTo({
-            url: `/my/fx_fans_list/fx_fans_list`
+            url: `/my/fxFansList/fxFansList`
           })
           break;
         case 'yq': //邀请
           wx.navigateTo({
-            url: `/my/fx_invitation/fx_invitation`
+            url: `/my/fxInvitation/fxInvitation`
           })
           break;
       }
@@ -279,52 +276,52 @@ Page({
       switch (item) {
         case 'goodsFoll': //商品关注
           wx.navigateTo({
-            url: `/my/collect_good/collect_good`
+            url: `/my/collectGood/collectGood`
           })
           break;
         case 'storeFoll': //店铺关注
           wx.navigateTo({
-            url: `/my/collect_shop/collect_shop`
+            url: `/my/collectShop/collectShop`
           })
           break;
         case 'contentColl': //内容收藏
           wx.navigateTo({
-            url: `/my/collect_content/collect_content`
+            url: `/my/collectContent/collectContent`
           })
           break;
         case 'browseRec': //浏览纪录
           wx.navigateTo({
-            url: `/my/browse_histroy/browse_histroy`
+            url: `/my/browseHistroy/browseHistroy`
           })
           break;
         case 'myGroup': //我的拼团
           wx.navigateTo({
-            url: `/my/my_collage/my_collage`
+            url: `/my/myCollage/myCollage`
           })
           break;
         case 'myCut': //我的砍价
           wx.navigateTo({
-            url: `/my/my_bargain/my_bargain`
+            url: `/my/myBargain/myBargain`
           })
           break;
         case 'myLuck': //我的抽奖
           wx.navigateTo({
-            url: `/my/my_prize/my_prize`
+            url: `/my/myPrize/myPrize`
           })
           break;
         case 'myEval': //我的评价
           wx.navigateTo({
-            url: `/my/my_comment/my_comment`
+            url: `/my/myComment/myComment`
           })
           break;
         case 'customer': //客户服务
           wx.navigateTo({
-            url: `/my/customer_service/customer_service`
+            url: `/my/customerService/customerService`
           })
           break;
         case 'storeIn': //商家入驻
           wx.navigateTo({
-            url: `/my/merchant_guide/merchant_guide`
+            url: `/my/merchantGuide/merchantGuide`
           })
           break;
       }
@@ -336,7 +333,7 @@ Page({
    */
   goVicon() {
     wx.navigateTo({
-      url: `/my/fx_grade/fx_grade`
+      url: `/my/fxGrade/fxGrade`
     })
   },
 
@@ -345,22 +342,22 @@ Page({
    * 获取代言信息
    */
   getDistributionData() {
-    http.post(app.globalData.distribution_share_info, {
-      distributionId: app.globalData.sup_id == '' ? 0 : app.globalData.sup_id
+    http.post(app.globalData.distributionShareInfo, {
+      distributionId: app.globalData.supId == '' ? 0 : app.globalData.supId
     }).then(res => {
       try {
-        let member_info = wx.getStorageSync('member_info')
-        if (member_info.distribution_record == null) {
-          let distribution_record = {
-            distribution_id: res.data.cur == null ? null : res.data.cur.distribution_id,
-            audit_status: res.data.cur == null ? null : res.data.cur.audit_status
+        let memberInfo = wx.getStorageSync('memberInfo')
+        if (memberInfo.distributionRecord == null) {
+          let distributionRecord = {
+            distributionId: res.data.cur == null ? null : res.data.cur.distributionId,
+            auditStatus: res.data.cur == null ? null : res.data.cur.auditStatus
           }
-          member_info['distribution_record'] = distribution_record
+          memberInfo['distributionRecord'] = distributionRecord
         } else {
-          member_info.distribution_record.distribution_id = res.data.cur == null ? null : res.data.cur.distribution_id
-          member_info.distribution_record.audit_status = res.data.cur == null ? null : res.data.cur.audit_status
+          memberInfo.distributionRecord.distributionId = res.data.cur == null ? null : res.data.cur.distributionId
+          memberInfo.distributionRecord.auditStatus = res.data.cur == null ? null : res.data.cur.auditStatus
         }
-        wx.setStorageSync('member_info', member_info)
+        wx.setStorageSync('memberInfo', memberInfo)
         app.globalData.distribution = res.data
         this.setData({
           distribution: res.data

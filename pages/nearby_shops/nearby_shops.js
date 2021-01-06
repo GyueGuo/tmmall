@@ -9,43 +9,43 @@ Page({
    */
   data: {
     banner: [],
-    isCurrent_banner: false,
+    isCurrentBanner: false,
     isBanner: true,
-    current_banner: 0,
-    current_tab: 1,
+    currentBanner: 0,
+    currentTab: 1,
     //固定标题
     fixed: false,
     //全部分类筛选条件
-    classify_condition: [{
+    classifyCondition: [{
       title: '全部分类',
-      store_classify_id: ''
+      storeClassifyId: ''
     }],
-    classify_board: false,
+    classifyBoard: false,
     //筛选文字
     classify: '全部分类',
     //销量排序
     sale: false,
     //距离最近
     sort: false,
-    is_filtrate: false,
+    isFiltrate: false,
     //参数
     lat: 0,
     lng: 0,
-    sales_volume: '',
+    salesVolume: '',
     shop: '',
-    is_shop: '',
-    is_city: '',
+    isShop: '',
+    isCity: '',
     category: '',
     distance: '',
-    nearby_page: 1,
-    nearby_list: [],
-    nearby_total: ''
+    nearbyPage: 1,
+    nearbyList: [],
+    nearbyTotal: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     this.setData({
       diyColor: app.globalData.diyColor,
       model: app.globalData.model
@@ -56,12 +56,12 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
     event.on('refreshNearby', this, () => {
       this.setData({
-        nearby_list: [],
-        nearby_page: 1,
-        nearby_total: ''
+        nearbyList: [],
+        nearbyPage: 1,
+        nearbyTotal: ''
       })
       this.getNeabyList()
     })
@@ -71,7 +71,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     this.setData({
       isBanner: true
     })
@@ -80,7 +80,7 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
     this.setData({
       isBanner: false
     })
@@ -89,30 +89,30 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
     event.remove('refreshNearby', this)
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     this.setData({
       classify: '全部分类',
       //销量排序
       sale: false,
       //距离最近
       sort: false,
-      is_filtrate: false,
-      sales_volume: '',
+      isFiltrate: false,
+      salesVolume: '',
       shop: '',
-      is_shop: '',
-      is_city: '',
+      isShop: '',
+      isCity: '',
       category: '',
       distance: '',
-      nearby_page: 1,
-      nearby_list: [],
-      nearby_total: ''
+      nearbyPage: 1,
+      nearbyList: [],
+      nearbyTotal: ''
     })
     this.getNeabyList()
   },
@@ -120,9 +120,9 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
-    if (this.data.nearby_total > this.data.nearby_list.length) {
-      this.data.nearby_page++;
+  onReachBottom: function () {
+    if (this.data.nearbyTotal > this.data.nearbyList.length) {
+      this.data.nearbyPage++;
       this.getNeabyList()
     }
   },
@@ -151,7 +151,7 @@ Page({
    */
   bannerChange(e) {
     this.setData({
-      current_banner: e.detail.current,
+      currentBanner: e.detail.current,
     })
   },
 
@@ -159,9 +159,9 @@ Page({
    * 全部分类
    */
   onClassify() {
-    if (this.data.classify_board) {
+    if (this.data.classifyBoard) {
       this.setData({
-        classify_board: true
+        classifyBoard: true
       })
       return
     }
@@ -169,23 +169,23 @@ Page({
       this.scrollFixedPosition()
     }
 
-    if (this.data.classify_condition.length == 1) {
-      http.postList(app.globalData.platform_classify).then(res => {
+    if (this.data.classifyCondition.length == 1) {
+      http.postList(app.globalData.platformClassify).then(res => {
         setTimeout(() => {
           this.setData({
-            classify_board: true,
+            classifyBoard: true,
             sort: false,
           })
           clearTimeout(this)
         }, 300)
         this.setData({
-          classify_condition: this.data.classify_condition.concat(res.result)
+          classifyCondition: this.data.classifyCondition.concat(res.result)
         })
       })
     } else {
       setTimeout(() => {
         this.setData({
-          classify_board: true,
+          classifyBoard: true,
           sort: false,
         })
         clearTimeout(this)
@@ -199,7 +199,7 @@ Page({
   onSale() {
     setTimeout(() => {
       this.setData({
-        classify_board: false,
+        classifyBoard: false,
         sale: true,
         sort: false,
       })
@@ -226,7 +226,7 @@ Page({
       this.setData({
         sort: true,
         sale: false,
-        classify_board: false
+        classifyBoard: false
       })
       this.getNeabyList()
       this.scrollFixedPosition()
@@ -252,7 +252,7 @@ Page({
    */
   closeClassify() {
     this.setData({
-      classify_board: false
+      classifyBoard: false
     })
   },
 
@@ -263,7 +263,7 @@ Page({
     let item = e.currentTarget.dataset.item
     this.setData({
       classify: item.title,
-      category: item.store_classify_id
+      category: item.storeClassifyId
     })
     this.closeClassify()
     this.scrollFixedPosition()
@@ -276,7 +276,7 @@ Page({
   OnChangeFilter() {
     this.closeClassify()
     this.setData({
-      filtrate_board: true,
+      filtrateBoard: true,
     })
   },
 
@@ -285,7 +285,7 @@ Page({
    */
   closeFiltrate() {
     this.setData({
-      filtrate_board: false,
+      filtrateBoard: false,
     })
   },
 
@@ -294,12 +294,12 @@ Page({
    */
   onFiltrateConfirm(e) {
     // this.setData({
-    //   is_filtrate: true
+    //   isFiltrate: true
     // })
     let filtrate = e.detail
     this.data.shop = filtrate.shop
-    this.data.is_shop = filtrate.is_shop
-    this.data.is_city = filtrate.is_city
+    this.data.isShop = filtrate.isShop
+    this.data.isCity = filtrate.isCity
     this.getNeabyList()
     this.scrollFixedPosition()
     this.closeFiltrate()
@@ -310,11 +310,11 @@ Page({
    */
   onFiltrateReset() {
     this.setData({
-      is_filtrate: false
+      isFiltrate: false
     })
     this.data.shop = ''
-    this.data.is_shop = ''
-    this.data.is_city = ''
+    this.data.isShop = ''
+    this.data.isCity = ''
     this.getNeabyList()
     this.scrollFixedPosition()
     this.closeFiltrate()
@@ -325,7 +325,7 @@ Page({
    */
   onFindShops() {
     wx.navigateTo({
-      url: '/nearby_shops/find_shops/find_shops',
+      url: '/nearbyShops/findShops/findShops',
     })
   },
 
@@ -334,7 +334,7 @@ Page({
    */
   goShop(e) {
     wx.navigateTo({
-      url: '/nearby_shops/shop_detail/shop_detail?store_id=' + e.currentTarget.dataset.id,
+      url: '/nearbyShops/shopDetail/shopDetail?storeId=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -343,7 +343,7 @@ Page({
    */
   onGood(e) {
     wx.navigateTo({
-      url: '/nearby_shops/good_detail/good_detail?goods_id=' + e.currentTarget.dataset.id,
+      url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -356,7 +356,7 @@ Page({
       latitude: parseFloat(item.lat),
       longitude: parseFloat(item.lng),
       scale: 18,
-      name: item.store_name,
+      name: item.storeName,
       address: item.address,
     })
   },
@@ -365,31 +365,31 @@ Page({
    * 获取数据
    */
   getNeabyList() {
-    this.data.sales_volume = this.data.sale ? '1' : ''
+    this.data.salesVolume = this.data.sale ? '1' : ''
     this.data.distance = this.data.sort ? '1' : ''
-    http.postList(app.globalData.store_nearby_list, {
+    http.postList(app.globalData.storeNearbyList, {
       lat: app.globalData.lat,
       lng: app.globalData.lng,
       city: app.globalData.location == '全国' ? '' : app.globalData.location,
-      salesVolume: this.data.sales_volume,
+      salesVolume: this.data.salesVolume,
       shop: this.data.shop,
-      isShop: this.data.is_shop,
-      isCity: this.data.is_city,
+      isShop: this.data.isShop,
+      isCity: this.data.isCity,
       category: this.data.category,
       distance: this.data.distance,
-      page: this.data.nearby_page
+      page: this.data.nearbyPage
     }).then(res => {
       let obj = {}
-      if (this.data.nearby_page == 1) {
+      if (this.data.nearbyPage == 1) {
         if (this.data.banner.length == 0) {
           obj.banner = res.result
         }
-        obj.nearby_list = res.storeList.data
-        obj.nearby_total = res.storeList.total
+        obj.nearbyList = res.storeList.data
+        obj.nearbyTotal = res.storeList.total
         this.setData(obj)
       } else {
         this.setData({
-          nearby_list: [...this.data.nearby_list, ...res.storeList.data]
+          nearbyList: [...this.data.nearbyList, ...res.storeList.data]
         })
       }
     })

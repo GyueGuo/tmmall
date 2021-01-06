@@ -7,19 +7,19 @@ Page({
    */
   data: {
     //选项卡
-    tab_list: [],
+    tabList: [],
     //二级列表
-    sub_list: [{
-      goods_classify_id: '',
+    subList: [{
+      goodsClassifyId: '',
       title: '总榜'
     }],
     //当前一级分类
-    current_tab: 0,
-    first_goods_classify_id: '',
+    currentTab: 0,
+    firstGoodsClassifyId: '',
     //当前二级分类
-    sub_tab: '',
+    subTab: '',
     page: 1,
-    good_list: [],
+    goodList: [],
     total: ''
   },
 
@@ -30,7 +30,7 @@ Page({
     this.setData({
       diyColor: app.globalData.diyColor,
       configSwitch: app.globalData.configSwitch,
-      first_goods_classify_id: options.first_goods_classify_id != undefined ? options.first_goods_classify_id : ''
+      firstGoodsClassifyId: options.firstGoodsClassifyId != undefined ? options.firstGoodsClassifyId : ''
     })
   },
 
@@ -60,7 +60,7 @@ Page({
    */
   onUnload: function () {
     this.setData({
-      first_goods_classify_id: ''
+      firstGoodsClassifyId: ''
     })
   },
 
@@ -82,11 +82,11 @@ Page({
    * 获取一级列表
    */
   getClassify() {
-    http.post(app.globalData.classify_parent).then(res=> {
+    http.post(app.globalData.classifyParent).then(res=> {
       this.setData({
         classify: res.result,
         level: res.level,
-        current_tab: this.data.firstGoodsClassifyId == '' ? res.result[0].goodsClassifyId : this.data.firstGoodsClassifyId,
+        currentTab: this.data.firstGoodsClassifyId == '' ? res.result[0].goodsClassifyId : this.data.firstGoodsClassifyId,
       })
       this.getGoodList(this.data.firstGoodsClassifyId == '' ? res.result[0].goodsClassifyId : this.data.firstGoodsClassifyId)
       this.getSub(this.data.firstGoodsClassifyId == '' ? res.result[0].goodsClassifyId : this.data.firstGoodsClassifyId)
@@ -96,18 +96,18 @@ Page({
   /**
    * 获取二级列表
    */
-  getSub(parent_id) {
-    http.post(app.globalData.sub_classify, {
-      parentId: parent_id,
+  getSub(parentId) {
+    http.post(app.globalData.subClassify, {
+      parentId: parentId,
       goodList: [],
       classifyAdvId: ''
     }).then(res=> {
-      this.data.sub_list = [{
-        goods_classify_id: '',
+      this.data.subList = [{
+        goodsClassifyId: '',
         title: '总榜'
       }]
       this.setData({
-        sub_list: [...this.data.sub_list,...res.result]
+        subList: [...this.data.subList,...res.result]
       })
     })
   },
@@ -117,9 +117,9 @@ Page({
    */
   onClassify(e) {
     this.setData({
-      current_tab: e.currentTarget.dataset.id,
-      good_list: [],
-      sub_tab: '',
+      currentTab: e.currentTarget.dataset.id,
+      goodList: [],
+      subTab: '',
       page: 1
     })
     this.getGoodList(e.currentTarget.dataset.id)
@@ -133,7 +133,7 @@ Page({
    */
   onMore() {
     this.setData({
-      more_board: true
+      moreBoard: true
     })
   },
 
@@ -142,7 +142,7 @@ Page({
    */
   closeBoard() {
     this.setData({
-      more_board: false
+      moreBoard: false
     })
   },
 
@@ -152,10 +152,10 @@ Page({
   onTabMoreItem(e) {
     this.closeBoard()
     this.setData({
-      sroll_id: 'a-' + e.currentTarget.dataset.index,
-      current_tab: e.currentTarget.dataset.id,
-      sub_tab: '',
-      good_list: []
+      srollId: 'a-' + e.currentTarget.dataset.index,
+      currentTab: e.currentTarget.dataset.id,
+      subTab: '',
+      goodList: []
     })
     this.getGoodList(e.currentTarget.dataset.id)
     this.getSub(e.currentTarget.dataset.id)
@@ -166,9 +166,9 @@ Page({
    */
   onSubClassify(e) {
     this.setData({
-      sub_tab: e.currentTarget.dataset.id,
+      subTab: e.currentTarget.dataset.id,
       page: 1,
-      good_list: [],
+      goodList: [],
     })
     this.getGoodList(e.currentTarget.dataset.id)
   },
@@ -177,19 +177,19 @@ Page({
    * 获取商品列表
    */
   getGoodList(id) {
-    http.postList(app.globalData.goods_ranking, {
-      goodsClassifyId: id == '' ? this.data.current_tab : id,
+    http.postList(app.globalData.goodsRanking, {
+      goodsClassifyId: id == '' ? this.data.currentTab : id,
       page: this.data.page
     }).then(res=> {
       if (this.data.page == 1) {
         this.setData({
-          good_list: res.result.data,
+          goodList: res.result.data,
           total: res.result.total,
           discount: res.discount == null ? 100 : res.discount,
         })
       } else {
         this.setData({
-          good_list: [...this.data.good_list,...res.result.data],
+          goodList: [...this.data.goodList,...res.result.data],
         })
       }
     })
@@ -199,9 +199,9 @@ Page({
    * 加载更多
    */
   loadMore() {
-    if (this.data.total > this.data.good_list.length) {
+    if (this.data.total > this.data.goodList.length) {
       this.data.page++
-      this.getGoodList(this.data.sub_tab)
+      this.getGoodList(this.data.subTab)
     }
   },
 
@@ -210,7 +210,7 @@ Page({
    */
   onGood(e) {
     wx.navigateTo({
-      url: '/nearby_shops/good_detail/good_detail?goods_id=' + e.currentTarget.dataset.id,
+      url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -219,14 +219,14 @@ Page({
    */
   onRankShop() {
     wx.redirectTo({
-      url: '../rank_shop/rank_shop',
+      url: '../rankShop/rankShop',
     })
   },
 
   addCart(e) {
     this.setData({
       info: e.detail,
-      buy_type: 3
+      buyType: 3
     })
     this.selectComponent("#buy_board").show()
   },
@@ -246,7 +246,7 @@ Page({
    */
   onBackTop() {
     this.setData({
-      scroll_top: 0
+      scrollTop: 0
     })
   },
 })

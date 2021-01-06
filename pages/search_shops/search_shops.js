@@ -7,18 +7,18 @@ Page({
    */
   data: {
     //搜索关键字
-    search_key: '',
+    searchKey: '',
     //选项卡
-    current_tab: 1,
+    currentTab: 1,
     //筛选状态
-    is_filtrate: false,
+    isFiltrate: false,
     //参数
     lat: 0,
     lng: 0,
-    sales_volume: '',
+    salesVolume: '',
     shop: '',
-    is_shop: '',
-    is_city: '',
+    isShop: '',
+    isCity: '',
     distance: ''
   },
 
@@ -28,7 +28,7 @@ Page({
   onLoad: function(options) {
     this.setData({
       diyColor: app.globalData.diyColor,
-      search_key: options.key
+      searchKey: options.key
     })
     wx.getLocation({
       success:res=> {
@@ -93,7 +93,7 @@ Page({
    */
   searchInput(e) {
     this.setData({
-      search_key: e.detail.value
+      searchKey: e.detail.value
     })
   },
 
@@ -102,7 +102,7 @@ Page({
    */
   onClearKey() {
     this.setData({
-      search_key: ''
+      searchKey: ''
     })
   },
 
@@ -111,12 +111,12 @@ Page({
    */
   onSearch() {
     this.setData({
-      current_tab: 1,
+      currentTab: 1,
       page: 1,
-      sales_volume: '',
+      salesVolume: '',
       shop: '',
-      is_shop: '',
-      is_city: '',
+      isShop: '',
+      isCity: '',
       distance: ''
     })
     this.getShopList()
@@ -126,13 +126,13 @@ Page({
    * 获取列表
    */
   getShopList() {
-    http.post(app.globalData.store_search_list, {
+    http.post(app.globalData.storeSearchList, {
       lat: this.data.lat,
       lng: this.data.lng,
-      salesVolume: this.data.sales_volume,
+      salesVolume: this.data.salesVolume,
       shop: this.data.shop,
-      isShop: this.data.is_shop,
-      keyword: this.data.search_key,
+      isShop: this.data.isShop,
+      keyword: this.data.searchKey,
       distance: this.data.distance,
       page: this.data.page
     }).then(res => {
@@ -155,8 +155,8 @@ Page({
    */
   onComposite() {
     this.setData({
-      current_tab: 1,
-      sales_volume: '',
+      currentTab: 1,
+      salesVolume: '',
       distance: '',
       page: 1
     })
@@ -169,8 +169,8 @@ Page({
   onSale() {
     //关闭综合列表框
     this.setData({
-      current_tab: 2,
-      sales_volume: '1',
+      currentTab: 2,
+      salesVolume: '1',
       distance: '',
       page: 1
     })
@@ -183,8 +183,8 @@ Page({
    */
   onDistance() {
     this.setData({
-      current_tab: 3,
-      sales_volume: '',
+      currentTab: 3,
+      salesVolume: '',
       distance: '1',
       page: 1
     })
@@ -196,7 +196,7 @@ Page({
    */
   OnChangeFilter() {
     this.setData({
-      filtrate_board: true
+      filtrateBoard: true
     })
     this.selectComponent("#search_shop_filitrate").isIndex()
   },
@@ -206,10 +206,10 @@ Page({
    */
   onFiltrateReset() {
     this.setData({
-      is_filtrate: false,
+      isFiltrate: false,
       shop: '',
-      is_city: '',
-      is_shop: '',
+      isCity: '',
+      isShop: '',
     })
     this.getShopList()
   },
@@ -219,10 +219,10 @@ Page({
    */
   onFiltrateConfirm(e) {
     this.setData({
-      is_filtrate: true,
+      isFiltrate: true,
       shop: e.detail.shop,
-      is_city: e.detail.is_city,
-      is_shop: e.detail.is_shop,
+      isCity: e.detail.isCity,
+      isShop: e.detail.isShop,
     })
     this.getShopList()
   },
@@ -242,7 +242,7 @@ Page({
    */
   onShopDetail(e) {
     wx.navigateTo({
-      url: '/nearby_shops/shop_detail/shop_detail?store_id=' + e.currentTarget.dataset.id,
+      url: '/nearbyShops/shopDetail/shopDetail?storeId=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -251,7 +251,7 @@ Page({
    */
   onGood(e) {
     wx.navigateTo({
-      url: '/nearby_shops/good_detail/good_detail?goods_id=' + e.currentTarget.dataset.id,
+      url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -264,7 +264,7 @@ Page({
       latitude: parseFloat(item.lat),
       longitude: parseFloat(item.lng),
       scale: 18,
-      name: item.store_name,
+      name: item.storeName,
       address: item.address,
     })
   },

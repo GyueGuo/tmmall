@@ -7,7 +7,7 @@ Page({
    */
   data: {
     list: [],
-    web_content: ''
+    webContent: ''
   },
 
   /**
@@ -28,10 +28,10 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.new_gift, {}).then(res => {
+    http.post(app.globalData.newGift, {}).then(res => {
       this.setData({
         list: res.result,
-        web_content: res.content
+        webContent: res.content
       })
     })
   },
@@ -41,7 +41,7 @@ Page({
    */
   getAll() {
     if (app.login()) {
-      http.post(app.globalData.get_gift, {}).then(res => {
+      http.post(app.globalData.getGift, {}).then(res => {
         app.showSuccessToast('领取成功', () => {
           wx.navigateBack()
         })

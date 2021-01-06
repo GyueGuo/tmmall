@@ -80,22 +80,17 @@ Page({
    * 获取数据
    */
   getData() {
-    http.post(app.globalData.invoice_order_detail, {
+    http.post(app.globalData.invoiceOrderDetail, {
       storeId: this.data.storeId,
       memberAddressId: ''
     }).then(res => {
-      // for (var i = 0; i < res.result.length; i++) {
-      //   //支付方式 1在线支付 2货到付款
-      //   res.result[i].way = 1
-      // }
       this.setData({
-        address: res.member_address,
-        memberAddressId: res.member_address == null ? '' : res.member_address.memberAddressId,
+        address: res.memberAddress,
+        memberAddressId: res.memberAddress == null ? '' : res.memberAddress.memberAddressId,
         info: res.result,
-        // freight: freight.toFixed(2),
         store: res.store
       })
-      if (res.member_address == null) {
+      if (res.memberAddress == null) {
         this.selectComponent("#modal").showModal()
       }
       this.calculate()
@@ -119,9 +114,9 @@ Page({
       images = [this.data.info.file],
       obj = {
         images: images,
-        is_pay_delivery: this.data.store.is_pay_delivery,
+        isPayDelivery: this.data.store.isPayDelivery,
         way: 1,
-        delivery_method: this.data.info.delivery_method
+        deliveryMethod: this.data.info.deliveryMethod
       }
     array.push(obj)
     this.selectComponent("#payWay").show(array)
@@ -146,11 +141,11 @@ Page({
       return
     }
     let index = e.currentTarget.dataset.index
-    this.data.list[index].delivery_method = e.currentTarget.dataset.method
+    this.data.list[index].deliveryMethod = e.currentTarget.dataset.method
 
     //预约自提
-    if (e.currentTarget.dataset.method == 'is_shop') {
-      this.data.list[index].distribution_type = '2'
+    if (e.currentTarget.dataset.method == 'isShop') {
+      this.data.list[index].distributionType = '2'
       if (this.data.list[index].way == 2) {
         this.data.list[index].way = 1
       }
@@ -169,12 +164,12 @@ Page({
       this.setData({
         payWay: this.data.payWay
       })
-    } else if (e.currentTarget.dataset.method == 'is_city') {
+    } else if (e.currentTarget.dataset.method == 'isCity') {
       //同城速递
-      this.data.list[index].distribution_type = '1'
-    } else if (e.currentTarget.dataset.method == 'is_express') {
+      this.data.list[index].distributionType = '1'
+    } else if (e.currentTarget.dataset.method == 'isExpress') {
       //快递邮寄
-      this.data.list[index].distribution_type = '3'
+      this.data.list[index].distributionType = '3'
     }
     this.calculate()
     this.setData({
@@ -184,116 +179,18 @@ Page({
   },
 
   /**
-   * 修改自提点
-   */
-  // changeTake(e) {
-  //   var list = this.data.list[e.currentTarget.dataset.index].freight.take_freight_list
-  //   var id = this.data.list[e.currentTarget.dataset.index].freight.take_freight_list[0].take_id
-  //   var parent_id = this.data.list[e.currentTarget.dataset.index].freight.store_city_id
-  //   var select_pick = this.data.list[e.currentTarget.dataset.index].freight.take_freight_list[0]
-  //   var newobj = {};
-  //   for (var attr in select_pick) {
-  //     newobj[attr] = select_pick[attr];
-  //   }
-  //   this.selectComponent("#self_pick").show(id, list, parent_id, newobj)
-  // },
-
-  /**
-   * 确定自提点
-   */
-  // selectPick(e) {
-  //   var select_pick = e.detail
-  //   for (var i = 0; i < this.data.list.length; i++) {
-  //     if (select_pick.storeId == this.data.list[i].storeId) {
-  //       this.data.list[i]['take_freight'] = select_pick
-  //       this.data.list[i]['take_freight_id'] = select_pick.take_id
-  //     }
-  //   }
-  //   this.setData({
-  //     list: this.data.list
-  //   })
-  // },
-
-  /**
    * 买家留言
    */
   messageInput(e) {
     this.data.message = e.detail.value
   },
-
-  /**
-   * 选择优惠券
-   */
-  // chooseCoupon() {
-  //   if (this.data.coupon.length == 0) {
-  //     app.showToast('暂无可使用优惠券')
-  //     return
-  //   }
-  //   this.selectComponent("#choose_coupon").show()
-  // },
-
-  /**
-   * 确定优惠券
-   */
-  // confirmCoupon(e) {
-  //   this.data.coupon = e.detail
-  //   var coupon_price = 0
-  //   for (var i = 0; i < this.data.coupon.length; i++) {
-  //     if (this.data.coupon[i].select) {
-  //       coupon_price += parseFloat(this.data.coupon[i].actual_price)
-  //     }
-  //   }
-  //   this.setData({
-  //     coupon_price: coupon_price.toFixed(2)
-  //   })
-  //   this.calculate()
-  // },
-
-  /**
-   * 选择红包
-   */
-  // chooseRacket() {
-  //   if (this.data.redpacket.length == 0) {
-  //     app.showToast('暂无可用红包')
-  //   } else {
-  //     this.selectComponent("#choose_packet").show(this.data.redpacket)
-  //   }
-  // },
-  /**
-   * 确认红包
-   */
-  // choosepacket(e) {
-  //   if (e.detail.length == 0) {
-  //     return
-  //   }
-  //   var price = 0
-  //   var member_packet_id
-  //   this.data.redpacket = e.detail
-  //   for (var i = 0; i < e.detail.length; i++) {
-  //     if (e.detail[i].select) {
-  //       price = parseFloat(e.detail[i].actual_price)
-  //       member_packet_id = e.detail[i].member_packet_id
-  //     } else {
-  //       member_packet_id = ''
-  //     }
-  //   }
-  //   this.setData({
-  //     packet_price: price,
-  //     member_packet_id: member_packet_id
-  //   })
-  //   this.calculate()
-  // },
-
   /**
    * 计算总价
    */
   calculate() {
-    let total = 0,
-      origin_total = 0,
-      freight = 0
     this.setData({
-      total: this.data.info.freight_price,
-      freight: this.data.info.freight_price
+      total: this.data.info.freightPrice,
+      freight: this.data.info.freightPrice
     })
   },
 
@@ -306,58 +203,56 @@ Page({
       return
     }
 
-    let store_set = [],
+    let storeSet = [],
       store = {
         storeId: this.data.info.storeId,
-        products_id: '',
-        goods_attr: '',
+        productsId: '',
+        goodsAttr: '',
         quantity: '1',
-        member_shop_coupon_id: '',
+        memberShopCouponId: '',
         message: this.data.message,
-        distribution_type: 3,
-        pay_type: this.data.way,
-        take_id: '',
-        is_invoice: 0,
-        is_invoice_template: 1,
-        invoice_order_id: this.data.data.order_attach_id
+        distributionType: 3,
+        payType: this.data.way,
+        takeId: '',
+        isInvoice: 0,
+        isInvoiceTemplate: 1,
+        invoiceOrderId: this.data.data.orderAttachId
       }
-    store_set.push(store)
-    http.post(app.globalData.order_confirm, {
+    storeSet.push(store)
+    http.post(app.globalData.orderConfirm, {
       memberAddressId: this.data.memberAddressId,
-      pay_channel: 1,
-      order_type: 1,
-      cut_activity_id: null,
-      group_activity_id: null,
-      used_integral: 0,
-      member_packet_id: '',
-      member_platform_coupon_id: '',
-      id_set: this.data.info.goods_id,
-      store_set: store_set,
-      origin_type: 2,
-      invoice_attr: this.data.data.is_anew
+      payChannel: 1,
+      orderType: 1,
+      cutActivityId: null,
+      groupActivityId: null,
+      usedIntegral: 0,
+      memberPacketId: '',
+      memberPlatformCouponId: '',
+      idSet: this.data.info.goodsId,
+      storeSet: storeSet,
+      originType: 2,
+      invoiceAttr: this.data.data.isAnew
     }).then(res => {
       event.emit('refreshCart')
       if (this.data.total == '0.00') {
         app.showSuccessToast('提交成功', () => {
-          let item = {
-
-          }
+          let item = {}
           wx.redirectTo({
-            url: '/nearby_shops/invoice_over/invoice_over?item=' + JSON.stringify(item),
+            url: '/nearbyShops/invoiceOver/invoiceOver?item=' + JSON.stringify(item),
           })
         })
         return
       }
-      let order_info = {
-        total_price: res.result.total_price,
-        order_number: res.result.order_number,
-        order_type: 'invoice',
-        order_attach_number: '',
-        order_attach_id: res.result.order_attach_id,
-        distribution_id: ''
+      let orderInfo = {
+        totalPrice: res.result.totalPrice,
+        orderNumber: res.result.orderNumber,
+        orderType: 'invoice',
+        orderAttachNumber: '',
+        orderAttachId: res.result.orderAttachId,
+        distributionId: ''
       }
       wx.redirectTo({
-        url: '../cashier_desk/cashier_desk?order_info=' + JSON.stringify(order_info),
+        url: '../cashierDesk/cashierDesk?orderInfo=' + JSON.stringify(orderInfo),
       })
     })
   }

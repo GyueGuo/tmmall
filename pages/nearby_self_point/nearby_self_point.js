@@ -6,15 +6,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    store_id: '',
+    storeId: '',
     lat: 0,
     lng: 0,
     city: '',
     area: '',
     keyword: '',
-    city_list: [{
-      area_id: '',
-      area_name: "全市"
+    cityList: [{
+      areaId: '',
+      areaName: "全市"
     }]
   },
 
@@ -24,7 +24,7 @@ Page({
   onLoad: function(options) {
     this.setData({
       diyColor: app.globalData.diyColor,
-      store_id: options.store_id
+      storeId: options.storeId
     })
   },
 
@@ -71,7 +71,7 @@ Page({
   },
 
   searchInput(e) {
-    this.data.search_key = e.detail.value
+    this.data.searchKey = e.detail.value
   },
 
   onSearch() {
@@ -98,18 +98,18 @@ Page({
    * 门店自提列表
    */
   getTakeList() {
-    http.post(app.globalData.take_list, {
-      storeId: this.data.store_id,
+    http.post(app.globalData.takeList, {
+      storeId: this.data.storeId,
       lat: this.data.lat,
       lng: this.data.lng,
-      keyword: this.data.search_key,
+      keyword: this.data.searchKey,
       area: this.data.area == '全市' ? '' : this.data.area
     }).then(res => {
       this.setData({
         list: res.result
       })
-      if (this.data.city_list.length == 1) {
-        this.getAreaList(res.province.city_id)
+      if (this.data.cityList.length == 1) {
+        this.getAreaList(res.province.cityId)
       }
     })
   },
@@ -118,11 +118,11 @@ Page({
    * 获取地区列表
    */
   getAreaList(id) {
-    http.post(app.globalData.address_linkage, {
+    http.post(app.globalData.addressLinkage, {
       parentId: id
     }).then(res => {
       this.setData({
-        city_list: [...this.data.city_list, ...res.result],
+        cityList: [...this.data.cityList, ...res.result],
         area: '全市'
       })
     })
@@ -133,7 +133,7 @@ Page({
    */
   changeArea(e) {
     this.setData({
-      area: this.data.city_list[e.detail.value].area_name
+      area: this.data.cityList[e.detail.value].areaName
     })
     this.getTakeList()
   },
@@ -142,7 +142,7 @@ Page({
    */
   onClearKey() {
     this.setData({
-      search_key: ''
+      searchKey: ''
     })
   },
 })
