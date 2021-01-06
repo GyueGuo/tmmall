@@ -33,7 +33,6 @@
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
-    "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
     "minifyWXSS": true
@@ -246,6 +245,12 @@
         {
           "name": "口令红白",
           "pathName": "pages/passwordRedPacket/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "nearbyShops/invoiceDetail/invoiceDetail",
+          "pathName": "nearbyShops/invoiceDetail/invoiceDetail",
           "scene": null
         }
       ]

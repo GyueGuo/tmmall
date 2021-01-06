@@ -1,4 +1,3 @@
-
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='warp'>
   <view class='logistics' wx:if='{{invoiceInfo.invoiceOpenType==0}}'>
@@ -12,60 +11,66 @@
     <view class='info'>
       <image class='icon' src='{{util.HTTP}}mobile/small/image/invoice_icon2.png'></image>
       <view class='title'>开具发票</view>
-      <view class='logistics_pic btn' hover-class='hover-class' hover-stay-time='400' bindtap='logistics' wx:if='{{invoiceInfo.billingType!=0&&invoiceInfo.invoiceOpenType==1}}'>查看物流</view>
-  </view>
-  <view class='invoice_con'>
-    <view class='section'>
-      <view class='row'>
-        <view class='title'>发票类型：</view>
-        <view class='text' wx:if='{{invoiceInfo.invoiceType==0}}'>普通发票</view>
-        <view class='text' wx:elif='{{invoiceInfo.invoiceType==1}}'>增值税专用发票</view>
-        <text class='invoiceType' style='{{util.diyColor(diyColor.zColor,diyColor.fColor2,"")}}' wx:if='{{invoiceInfo.billingType==1&&(invoiceInfo.status!=6||invoiceInfo.status!=0)}}'>已开票</text>
-        <text class='invoiceType' style='{{util.diyColor(diyColor.zColor,diyColor.fColor2,"")}}' wx:elif='{{invoiceInfo.billingType==2&&(invoiceInfo.status!=6||invoiceInfo.status!=0)}}'>已冲红</text>
-        <text class='invoiceType' wx:elif='{{invoiceInfo.billingType==0&&(invoiceInfo.status!=6&&invoiceInfo.status!=0)}}'>开票中</text>
-        <text class='invoiceType' wx:elif='{{invoiceInfo.billingType==0&&invoiceInfo.status==6}}'>未开票</text>
+      <view class='logistics_pic btn' hover-class='hover-class' hover-stay-time='400' bindtap='logistics'
+        wx:if='{{invoiceInfo.billingType!=0&&invoiceInfo.invoiceOpenType==1}}'>查看物流</view>
+    </view>
+    <view class='invoice_con'>
+      <view class='section'>
+        <view class='row'>
+          <view class='title'>发票类型：</view>
+          <view class='text' wx:if='{{invoiceInfo.invoiceType==0}}'>普通发票</view>
+          <view class='text' wx:elif='{{invoiceInfo.invoiceType==1}}'>增值税专用发票</view>
+          <text class='invoiceType' style='{{util.diyColor(diyColor.zColor,diyColor.fColor2,"")}}'
+            wx:if='{{invoiceInfo.billingType==1&&(invoiceInfo.status!=6||invoiceInfo.status!=0)}}'>已开票</text>
+          <text class='invoiceType' style='{{util.diyColor(diyColor.zColor,diyColor.fColor2,"")}}'
+            wx:elif='{{invoiceInfo.billingType==2&&(invoiceInfo.status!=6||invoiceInfo.status!=0)}}'>已冲红</text>
+          <text class='invoiceType'
+            wx:elif='{{invoiceInfo.billingType==0&&(invoiceInfo.status!=6&&invoiceInfo.status!=0)}}'>开票中</text>
+          <text class='invoiceType' wx:elif='{{invoiceInfo.billingType==0&&invoiceInfo.status==6}}'>未开票</text>
+        </view>
+        <view class='row'>
+          <view class='title'>发票抬头：</view>
+          <view class='text'>{{invoiceInfo.riseName}}</view>
+        </view>
+        <view class='row'>
+          <view class='title'>发票内容：</view>
+          <view class='text'>{{invoiceInfo.detailType}}</view>
+        </view>
+        <view class='row' wx:if='{{invoiceInfo.taxerNumber!=""}}'>
+          <view class='title'>纳税人识别号：</view>
+          <view class='text'>{{invoiceInfo.taxerNumber}}</view>
+        </view>
+        <view class='row' wx:if='{{invoiceInfo.invoiceType==1}}'>
+          <view class='title'>注册地址</view>
+          <view class='text'>{{invoiceInfo.address}}</view>
+        </view>
+        <view class='row' wx:if='{{invoiceInfo.invoiceType==1}}'>
+          <view class='title'>注册电话</view>
+          <view class='text'>{{invoiceInfo.phone}}</view>
+        </view>
+        <view class='row' wx:if='{{invoiceInfo.invoiceType==1}}'>
+          <view class='title'>开户银行</view>
+          <view class='text'>{{invoiceInfo.bank}}</view>
+        </view>
+        <view class='row' wx:if='{{invoiceInfo.invoiceType==1}}'>
+          <view class='title'>开户账号</view>
+          <view class='text'>{{invoiceInfo.account}}</view>
+        </view>
       </view>
-      <view class='row'>
-        <view class='title'>发票抬头：</view>
-        <view class='text'>{{invoiceInfo.riseName}}</view>
-      </view>
-      <view class='row'>
-        <view class='title'>发票内容：</view>
-        <view class='text'>{{invoiceInfo.detailType}}</view>
-      </view>
-      <view class='row' wx:if='{{invoiceInfo.taxerNumber!=""}}'>
-        <view class='title'>纳税人识别号：</view>
-        <view class='text'>{{invoiceInfo.taxerNumber}}</view>
-      </view>
-      <view class='row' wx:if='{{invoiceInfo.invoiceType==1}}'>
-        <view class='title'>注册地址</view>
-        <view class='text'>{{invoiceInfo.address}}</view>
-      </view>
-      <view class='row' wx:if='{{invoiceInfo.invoiceType==1}}'>
-        <view class='title'>注册电话</view>
-        <view class='text'>{{invoiceInfo.phone}}</view>
-      </view>
-      <view class='row' wx:if='{{invoiceInfo.invoiceType==1}}'>
-        <view class='title'>开户银行</view>
-        <view class='text'>{{invoiceInfo.bank}}</view>
-      </view>
-      <view class='row' wx:if='{{invoiceInfo.invoiceType==1}}'>
-        <view class='title'>开户账号</view>
-        <view class='text'>{{invoiceInfo.account}}</view>
+      <view class='section'>
+        <view class='row'>
+          <view class='title'>下单编号：</view>
+          <view class='text'>{{invoiceInfo.orderAttachNumber}}</view>
+        </view>
+        <view class='row'>
+          <view class='title'>下单时间：</view>
+          <view class='text'>{{invoiceInfo.createTime}}</view>
+        </view>
       </view>
     </view>
-    <view class='section'>
-      <view class='row'>
-        <view class='title'>下单编号：</view>
-        <view class='text'>{{invoiceInfo.orderAttachNumber}}</view>
-      </view>
-      <view class='row'>
-        <view class='title'>下单时间：</view>
-        <view class='text'>{{invoiceInfo.createTime}}</view>
-      </view>
-    </view>
+    <view class='submit' wx:if='{{status==0}}' style='{{util.diyColor("",diyColor.zColor,"")}}'
+      hover-class='hover-class' hover-stay-time='400' bindtap='submit'>修改发票</view>
   </view>
-  <view class='submit' wx:if='{{status==0}}' style='{{util.diyColor("",diyColor.zColor,"")}}' hover-class='hover-class' hover-stay-time='400' bindtap='submit'>修改发票</view>
+  <!-- 发票 -->
+  <popup id="popup" bind:confirmWay="popupInvoice" bind:refresh="refreshInvoice" invoice='{{invoice}}' />
 </view>
-<!-- 发票 -->
-<popup id="popup" bind:confirmWay="popupInvoice" bind:refresh="refreshInvoice" invoice='{{invoice}}' />
