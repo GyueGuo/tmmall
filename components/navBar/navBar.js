@@ -8,7 +8,7 @@ function tabbarinit(bindName = "tabdata", id, that) {
     data: {
       type: app.globalData.navType //底部导航样式 首页判断
     },
-    method: 'POST',
+    method: 'GET',
     success: (res) => {
       let otabbar = res.data.data,
         bindData = {}

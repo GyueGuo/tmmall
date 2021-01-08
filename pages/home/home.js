@@ -179,10 +179,11 @@ Page({
       success: res => {
         app.globalData.lat = res.result.location.lat
         app.globalData.lng = res.result.location.lng
-        app.globalData.location = res.result.addressComponent.city
-        app.globalData.currentLocation = res.result.addressComponent.city
+        const { city } = res.result.address_component;
+        app.globalData.location = city
+        app.globalData.currentLocation = city
         this.setData({
-          location: res.result.addressComponent.city
+          location: city
         })
       },
       fail: res => {
@@ -432,6 +433,11 @@ Page({
         case 'type': //分类
           wx.switchTab({
             url: '/pages/classify/classify',
+          })
+          break;
+        case 'redPacket': // 口令红包
+          wx.navigateTo({
+            url: '/pages/passwordRedPacket/index',
           })
           break;
       }

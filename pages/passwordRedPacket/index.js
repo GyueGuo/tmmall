@@ -9,6 +9,13 @@ Page({
       isModalVisible: true,
     })
   },
+  onLoad() {
+    if (!app.globalData.memberId || !app.globalData.phone) {
+      wx.redirectTo({
+        url: '/pages/accredit/accredit',
+      })
+    }
+  },
   handleCloseModal() {
     this.setData({
       isModalVisible: false,

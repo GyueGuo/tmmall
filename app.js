@@ -1,5 +1,6 @@
 
-var HTTP = 'https://sc.tianmushenyang.cn:8080/';
+// var HTTP = 'http://tmtest.tianmushenyang.com/';
+var HTTP = 'http://8.131.64.231/';
 
 App({
   onLaunch(data) {
