@@ -162,6 +162,12 @@
       ]
     }
   ],
+  "preloadRule": {
+    "pages/home/home": {
+      "network": "all",
+      "packages": ["my", "nearbyShops"]
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

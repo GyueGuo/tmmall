@@ -31,16 +31,13 @@ const dec = res => {
 };
 
 const get = (url, data = {}, hidden) => {
-  console.log(data)
-  let pages = getCurrentPages();
-  let currentPages = pages[pages.length - 1]
   let promise = new Promise((success, fail) => {
     wx.request({
       url: url,
       data: data,
       method: 'GET',
       header: {
-        "Content-Type": "json",
+        "Content-Type": "application/json;charset=UTF-8",
         "token": app.globalData.token || ''
       },
       success: res => {
@@ -50,8 +47,6 @@ const get = (url, data = {}, hidden) => {
           }
           getToken(res)
           success(res.data)
-          // wx.hideLoading()
-          console.log(res.data)
         } else if (res.data.code == -200) {
           clearLoginState()
         } else if (res.data.code == -201) {
@@ -60,9 +55,7 @@ const get = (url, data = {}, hidden) => {
           return
         } else {
           fail(res.data)
-          app.showToast(res.data.message, () => {
-            // wx.hideLoading()
-          })
+          app.showToast(res.data.message)
         }
 
       },
@@ -76,11 +69,6 @@ const get = (url, data = {}, hidden) => {
 };
 
 const postList = (url, data = {}) => {
-  // wx.showLoading({
-  //   title: '加载中',
-  // })
-  // wx.showNavigationBarLoading()
-  console.log(data)
   let pages = getCurrentPages();
   let currentPages = pages[pages.length - 1]
   currentPages.setData({
@@ -92,14 +80,13 @@ const postList = (url, data = {}) => {
       data: data,
       method: 'POST',
       header: {
-        "Content-Type": "json",
+        "Content-Type": "application/json;charset=UTF-8",
         "token": app.globalData.token || ''
       },
       success: res => {
         if (res.data.code == 0) {
           getToken(res)
           success(res.data)
-          console.log(res.data)
         } else if (res.data.code == -200) {
           clearLoginState()
         } else if (res.data.code == -201) {
@@ -127,26 +114,15 @@ const postList = (url, data = {}) => {
 };
 
 const post = (url, data = {}, hidden) => {
-  // data = data || {};
   if (!hidden) {
-    // wx.showLoading({
-    //   title: '加载中',
-    //   mask: true
-    // })
     wx.showNavigationBarLoading()
   }
-  console.log(data)
-  let pages = getCurrentPages();
-  let currentPages = pages[pages.length - 1]
-  // currentPages.setData({
-  //   loading: true,
-  // })
   let promise = new Promise((success, fail) => {
     wx.request({
       url: url,
       data: data,
       header: {
-        "Content-Type": "json",
+        "Content-Type": "application/json;charset=UTF-8",
         "token": app.globalData.token || ''
       },
       method: 'POST',
@@ -154,8 +130,6 @@ const post = (url, data = {}, hidden) => {
         if (res.data.code == 0) {
           getToken(res)
           success(res.data)
-          // wx.hideLoading()
-          console.log(res.data)
         } else if (res.data.code == -200) {
           clearLoginState()
         } else if (res.data.code == -201) {
@@ -169,15 +143,9 @@ const post = (url, data = {}, hidden) => {
           })
         }
       },
-      fail: res => {
-        // app.showToast(res.data.message)
-      },
       complete: () => {
         wx.hideNavigationBarLoading()
         wx.stopPullDownRefresh()
-        // currentPages.setData({
-        //   loading: false
-        // })
       }
     })
   });
@@ -194,7 +162,6 @@ const encPost = (url, data = {}, hidden) => {
     // })
     wx.showNavigationBarLoading()
   }
-  console.log(data)
   let promise = new Promise((success, fail) => {
     wx.request({
       url: url,

@@ -5,12 +5,12 @@
 </view>
 <view class='content-bg'>
   <image src='{{util.HTTP}}mobile/small/image/sj.png'></image>
-  <text>+86V</text>
+  <text>+86</text>
   <input placeholder='请输入手机号' maxlength='11' type='number' bindinput='phoneInput' value='{{phone}}'></input>
 </view>
 <view class='content-bg'>
   <image src='{{util.HTTP}}mobile/small/image/mm.png'></image>
-  <input placeholder='请输入6-20位密码' maxlength='20' type='text' value='{{password}}' bindinput='pswInput'></input>
+  <input placeholder='请输入6-20位密码' maxlength='20' type='text' password value='{{password}}' bindinput='pswInput'></input>
 </view>
 <view class='tips'>
   您填写手机号码和密码用于补全您的{{configSwitch.appInfo.title}}账号信息。补全后,手机号或微信账号均可登录{{configSwitch.appInfo.title}}商城。

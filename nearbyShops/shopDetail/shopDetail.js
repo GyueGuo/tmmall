@@ -64,7 +64,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options)
     if (options.scene) {
       let obj = http.scene(options.scene)
       console.log(obj)
@@ -81,9 +80,6 @@ Page({
     this.setData({
       configSwitch: app.globalData.configSwitch,
     })
-    // if (options.onAllGood == 0) {
-    //   this.onAllGood()
-    // }
   },
 
   /**
@@ -138,24 +134,8 @@ Page({
         cartNum: 0,
         allList: this.data.allList
       })
-      // app.showToast('删除成功', () => {})
     })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
   /**
    * 生命周期函数--监听页面卸载
    */
@@ -190,21 +170,9 @@ Page({
   },
 
   /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-    this.loadMore()
-  },
-
-  /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function(res) {
-    if (res.from === 'button') {
-
-    } else {
-
-    }
     return {
       title: this.data.storeHead.storeName,
       path: '/nearbyShops/shopDetail/shopDetail?storeId=' + this.data.storeId
@@ -266,15 +234,9 @@ Page({
   },
 
   bRightScroll(e) {
-    if (e.detail.scrollTop > 0) {
-      this.setData({
-        bRightScroll: true
-      })
-    } else {
-      this.setData({
-        bRightScroll: false
-      })
-    }
+    this.setData({
+      bRightScroll: e.detail.scrollTop > 0
+    })
   },
 
   /**
@@ -507,7 +469,6 @@ Page({
     http.post(app.globalData.cartDelete, {
       cartId,
     }, true).then(res => {
-      // this.data.allList[dataset.index].cartNumber = 0
       for (let i = 0, len = this.data.allList.length; i < len; i++) {
         if (this.data.allList[i].goodsId == dataset.item.goodsId) {
           this.data.allList[i].cartNumber = 0
@@ -543,15 +504,12 @@ Page({
 
 
   oCart() {
+    this.setData({
+      oCart: !this.data.oCart
+    })
     if (!this.data.oCart) {
-      this.setData({
-        oCart: !this.data.oCart
-      })
       this.showCart()
     } else {
-      this.setData({
-        oCart: !this.data.oCart
-      })
       this.selectComponent("#cart-list")._close()
     }
   },
