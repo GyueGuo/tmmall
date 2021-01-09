@@ -67,12 +67,10 @@ Page({
     http.encPost(app.globalData.my, {}).then(res => {
       this.setData({
         info: res.data,
-        parameter: res.data.encrypt.parameter,
         information: res.data.userInfo.information
       })
       this.getDistributionData()
     }).catch(res => {
-      debugger
       wx.navigateTo({
         url: '/pages/accredit/accredit',
       })

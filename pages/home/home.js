@@ -13,6 +13,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    navWidth: 0,
     dataInfo: null, //首页数据
     bannerSwiperIdx: 0, //banner当前轮播下标
     location: '全国', //默认定位
@@ -163,8 +164,11 @@ Page({
     http.post(app.globalData.index, {
       pattern: 1
     }).then(res => {
+      const dataInfo = res.data;
+      const navWidth = 25 * Math.ceil(dataInfo.nav.length / 2);
       this.setData({
-        dataInfo: res.data,
+        dataInfo,
+        navWidth,
       })
       this.countDown() //倒计时
       this.navAttr()
