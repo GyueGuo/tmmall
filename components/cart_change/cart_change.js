@@ -1,5 +1,5 @@
 const app = getApp();
-const http = require('../../utils/http.js');
+import http from '../../utils/http';
 Component({
   options: {
     multipleSlots: true // 在组件定义时的选项中启用多slot支持

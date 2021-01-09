@@ -1,7 +1,7 @@
 // activity/turnplate.js
 const app = getApp();
 const event = require('../../utils/event.js');
-const http = require('../../utils/http.js');
+import http from '../../utils/http';
 Page({
 
   /**

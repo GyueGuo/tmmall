@@ -1,5 +1,5 @@
 const app = getApp();
-const http = require('../../utils/http.js');
+import http from '../../utils/http';
 const Base64 = require('../../utils/base64.min.js').Base64;
 Component({
   /**

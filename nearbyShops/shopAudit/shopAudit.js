@@ -1,4 +1,4 @@
-const http = require('../../utils/http.js');
+import http from '../../utils/http';
 const app = getApp();
 Page({
 

@@ -1,6 +1,6 @@
 import F2 from './f2-canvas/lib/f2';
 const app = getApp();
-const http = require('../../utils/http.js');
+import http from '../../utils/http';
 let aData;
 
 function initChart(canvas, width, height) {

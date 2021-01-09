@@ -1,5 +1,5 @@
 const app = getApp();
-const http = require('../../utils/http.js');
+import http from '../../utils/http';
 const REpsw = /^(?!([a-zA-Z]+|\d+)$)[a-zA-Z\d]{6,20}$/;
 Page({
 

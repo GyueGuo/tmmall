@@ -1,5 +1,6 @@
 const app = getApp();
-const http = require('../../utils/http.js');
+import http from '../../utils/http';
+
 const navBar = require('../../components/navBar/navBar.js');
 Page({
 
@@ -46,47 +47,15 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    if (app.globalData.memberId != '' && app.globalData.phone != '') {
-      this.setData({
-        loginStatus: true
-      })
-    } else {
-      this.setData({
-        loginStatus: false
-      })
-    }
+    this.setData({
+      loginStatus: app.globalData.memberId != '' && app.globalData.phone != ''
+    })
     this.getData()
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {},
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
   onPullDownRefresh: function() {
     this.getData()
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 登录
-   */
   loginStatus() {
     app.login()
   },
@@ -103,6 +72,7 @@ Page({
       })
       this.getDistributionData()
     }).catch(res => {
+      debugger
       wx.navigateTo({
         url: '/pages/accredit/accredit',
       })

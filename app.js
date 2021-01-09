@@ -49,7 +49,7 @@ App({
       url: 'wss://ishop.zihaiwangluo.com/ws',
       // url: 'ws://125.211.218.59:60013',
       header: {
-        'content-type': 'application/json'
+        'content-type': 'application/json;charset=UTF-8'
       },
       method: 'GET',
     })
@@ -164,7 +164,6 @@ App({
         })
         break;
       case 'IMAGE':
-        console.log('收到图片')
         list = {
           MSGTYPE: 'success',
           MESSAGEID: resData.DATA.MESSAGEID,
@@ -241,7 +240,7 @@ App({
           url: this.globalData.getGoodsInfo,
           method: 'POST',
           header: {
-            "Content-Type": "json",
+            "Content-Type": "application/json;charset=UTF-8",
             "token": this.globalData.token
           },
           data: {

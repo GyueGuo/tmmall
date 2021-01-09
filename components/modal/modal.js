@@ -1,6 +1,6 @@
 // components/modal/modal.js
 const app = getApp();
-const http = require('../../utils/http.js');
+import http from '../../utils/http';
 Component({
   /**
    * 组件的属性列表

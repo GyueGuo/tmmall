@@ -1,5 +1,5 @@
 const app = getApp();
-const http = require('../../utils/http.js');
+import http from '../../utils/http';
 const event = require('../../utils/event.js');
 const QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
 let qqmapsdk = new QQMapWX({
@@ -1026,9 +1026,9 @@ Page({
     qqmapsdk.reverseGeocoder({
       success: data => {
         app.globalData.address = {
-          province: data.result.adInfo.province,
-          city: data.result.adInfo.city,
-          area: data.result.adInfo.district,
+          province: data.result.ad_info.province,
+          city: data.result.ad_info.city,
+          area: data.result.ad_info.district,
         }
         app.globalData.lat = data.result.location.lat
         app.globalData.lng = data.result.location.lng

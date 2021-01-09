@@ -1,6 +1,6 @@
 // my/credentials/credentials.js
 const app = getApp();
-const http = require('../../utils/http.js');
+import http from '../../utils/http';
 Page({
 
   /**

@@ -167,7 +167,7 @@ const encPost = (url, data = {}, hidden) => {
       url: url,
       data: enc(data),
       header: {
-        "Content-Type": "json",
+        "Content-Type": "application/json;charset=UTF-8",
         "token": app.globalData.token || ''
       },
       method: 'POST',
@@ -214,7 +214,7 @@ const uploadFile = (url, path, name, data, success) => {
   wx.uploadFile({
     url: url,
     header: {
-      "Content-Type": "json",
+      "Content-Type": "application/json;charset=UTF-8",
       "token": app.globalData.token || ''
     },
     filePath: path,
@@ -287,7 +287,7 @@ const clearLoginState = () => {
   return
 };
 
-module.exports = {
+export default {
   get,
   post,
   postList,

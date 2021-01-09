@@ -1,5 +1,5 @@
 const app = getApp();
-const http = require('../../utils/http.js');
+import http from '../../utils/http';
 const QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
 let qqmapsdk = new QQMapWX({
   key: app.globalData.MapKey

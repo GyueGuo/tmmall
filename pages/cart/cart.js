@@ -1,5 +1,5 @@
 const app = getApp();
-const http = require('../../utils/http.js');
+import http from '../../utils/http';
 const event = require('../../utils/event.js');
 const navBar = require('../../components/navBar/navBar.js');
 Page({

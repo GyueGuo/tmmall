@@ -1,6 +1,6 @@
 // my/service/service.js
 const app = getApp();
-const http = require('../../utils/http.js');
+import http from '../../utils/http';
 const service = require('../../utils/service.js');
 const recorderManager = wx.getRecorderManager();
 const innerAudioContext = wx.createInnerAudioContext();

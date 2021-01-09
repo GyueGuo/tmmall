@@ -1,7 +1,7 @@
 // pages/home/home.js
 const app = getApp();
 const event = require('../../utils/event.js');
-const http = require('../../utils/http.js');
+import http from '../../utils/http';
 const navBar = require('../../components/navBar/navBar.js');
 const QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
 let qqmapsdk = new QQMapWX({
