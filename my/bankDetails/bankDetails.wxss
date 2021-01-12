@@ -8,7 +8,7 @@ page{
   height: 218rpx;
   margin-bottom: 30rpx;
 }
-.item .list_info{
+.item .list-info{
   position: absolute;
   left: 0;
   top: 0;
@@ -22,14 +22,14 @@ page{
   box-sizing: border-box;
   color: #fff;
 }
-.item .list_info .bank_title{
+.item .list-info .bank-title{
   font-size: 36rpx;
   font-weight: bold;
 }
-.item .list_info .bank_number{
+.item .list-info .bank-number{
   font-size: 30rpx;
 }
-.item .list_bg{
+.item .list-bg{
   position: absolute;
   left: 0;
   top: 0;

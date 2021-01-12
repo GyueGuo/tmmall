@@ -100,7 +100,7 @@ Page({
       isHotAutoplay: false,
       isRefresh: false
     })
-    clearInterval(this.data.countDown)
+    this.data.countDown && clearInterval(this.data.countDown)
   },
 
   /**
@@ -113,7 +113,7 @@ Page({
       isApplication: true,
       isRefresh: false
     })
-    clearInterval(this.data.countDown)
+    this.data.countDown && clearInterval(this.data.countDown)
   },
 
   /**
@@ -260,7 +260,7 @@ Page({
    * 倒计时
    */
   countDown() {
-    clearInterval(this.data.countDown)
+    this.data.countDown && clearInterval(this.data.countDown)
     this.data.limitTime = this.data.dataInfo.limit.time.countDown
     this.countCallback()
     this.data.countDown = setInterval(() => {
@@ -540,7 +540,7 @@ Page({
     }).then(res => {
       this.setData({
         'dataInfo.limit': res.result, //限时抢购
-        limitTime: res.result.time.countDown //倒计时时间
+        limitTime: res.result.time ? res.result.time.countDown : 0 //倒计时时间
       })
     })
   },

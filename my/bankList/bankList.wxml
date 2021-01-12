@@ -1,11 +1,11 @@
 <wxs module="util" src="../../utils/util.wxs" />
 <view class="list">
   <view class="item" wx:for="{{list}}" wx:key="index" data-item="{{item}}" bindtap="select" hover-class='hover-class' hover-stay-time='400'>
-    <view class="listInfo">
-      <view class="bank_title">{{item.cardRemark}}</view>
-      <view class="bank_number">**** **** **** {{item.cardNumberEnc}}</view>
+    <view class="list-info">
+      <view class="bank-title">{{item.cardRemark}}</view>
+      <view class="bank-number">**** **** **** {{item.cardNumberEnc}}</view>
     </view>
-    <image class="list_bg" src="{{util.HTTP}}mobile/small/image/bank/1.png"></image>
+    <image class="list-bg" src="{{util.HTTP}}mobile/small/image/bank/1.png"></image>
   </view>
   <view class='empty-view' hidden='{{list.length != 0 || loading}}'>
     <view>

@@ -71,12 +71,12 @@ Component({
       }
       let item = e.currentTarget.dataset.item
       item.addCartType = 2
-      item['attr'] = item.attributeList
+      item.attr = item.attributeList || []
       if (item.goodsNumber == 0) {
         app.showToast('该商品已经卖光了')
         return
       }
-      if (item['attr'].length == 0) {
+      if (item.attr.length == 0) {
         http.encPost(app.globalData.cartCreate, {
           storeId: item.storeId,
           goodsId: item.goodsId,

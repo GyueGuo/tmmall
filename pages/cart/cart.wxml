@@ -11,7 +11,7 @@
           件宝贝
         </view>
       </view>
-      <view class='compile-btn' bindtap="onEdit" style="{{isEditState?'display:none':''}}">编辑</view>
+      <view wx:if="{{ cartInfo.totalNum}}" class='compile-btn' bindtap="onEdit" style="{{isEditState?'display:none':''}}">编辑</view>
       <view class='accomplish-btn' bindtap="onEdit" style="{{!isEditState?'display:none':''}}">
         完成
       </view>

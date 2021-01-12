@@ -1,6 +1,6 @@
 
-// var HTTP = 'http://tmtest.tianmushenyang.com/';
-var HTTP = 'http://8.131.64.231/';
+// var HTTP = 'https://tmtest.tianmushenyang.com/';
+var HTTP = 'https://8.131.64.231/';
 
 App({
   onLaunch(data) {
@@ -29,17 +29,8 @@ App({
     this.appLeave = false
     this.appDIY(() => {})
     this.updateManager() // 系统更新
-    this.checkClipBoard();
   },
   onHide() {},
-  // 口令红包
-  checkClipBoard() {
-    wx.getClipboardData({
-      success: ({ res }) => {
-        console.log(res); 
-      },
-    })
-  },
   /**
    * 客服
    */
