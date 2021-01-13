@@ -22,7 +22,7 @@
 
 
 <view class='increase' hover-class='hover-class' hover-stay-time='400' bindtap='increaseAddress' >
-  <view style='{{util.diyColor("",diyColor.zCcolor,"")}}'>+新增收货地址</view>
+  <view style='{{ util.diyColor("",diyColor.zColor,"") }}'>+新增收货地址</view>
 </view>
 
 
