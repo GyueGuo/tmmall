@@ -443,6 +443,6 @@ Page({
     }
     this.selectComponent("#cart").blendent(obj)
     this.selectComponent("#buy_board").blendent(obj)
-    this.selectComponent("#goodList").blendent(obj)
+    this.selectComponent("#good_list").blendent(obj)
   }
 })

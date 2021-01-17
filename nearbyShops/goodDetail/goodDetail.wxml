@@ -3,11 +3,8 @@
 <!-- banner -->
 <template name='banner-swiper'>
   <view class='banner-wrap'>
-    <video id='video' src='{{videoFile.content}}' wx:if='{{(videoFile.content!=""||videoFile.content!=undefined)}}'
-      autoplay='{{videoAutoplay}}' poster='{{videoFile.videoSnapshot}}'
-      style='{{isVideoPlay==1&&bannerType==0?"display:block;":"display:none;"}}'></video>
-    <view class='video-con' wx:if='{{(videoFile.content!=""||videoFile.content!=undefined)}}'
-      style='{{isVideoPlay!=1&&bannerType==0?"display:flex;":"display:none;"}}'>
+    <video id='video' src='{{videoFile.content}}' wx:if='{{(videoFile.content!=""||videoFile.content!=undefined)}}' autoplay='{{videoAutoplay}}' poster='{{videoFile.videoSnapshot}}' style='{{isVideoPlay==1&&bannerType==0?"display:block;":"display:none;"}}'></video>
+    <view class='video-con' wx:if='{{(videoFile.content!=""||videoFile.content!=undefined)}}' style='{{isVideoPlay!=1&&bannerType==0?"display:flex;":"display:none;"}}'>
       <image class='video-snapshot' mode='aspectFit' src='{{videoFile.videoSnapshot}}' catchtap='videoPlay'></image>
       <image class='v-play' src='{{util.HTTP}}mobile/small/image/pj-bf.png' catchtap='videoPlay'></image>
     </view>
@@ -17,9 +14,7 @@
       </swiper-item>
     </swiper>
     <view class='swiper-btn' wx:if='{{videoFile.content!=""&&videoFile.content!=undefined}}'>
-      <view class='item'
-        style='{{bannerType==index?"background: linear-gradient(to left, "+diyColor.zColor+", "+diyColor.fColor8+") #fff;color:#fff;":"background-color: rgba(255, 255, 255, 0.5);"}}'
-        wx:for='{{bannerContner}}' wx:key='{{index}}' data-id='{{item.id}}' bindtap='onBannerType'>
+      <view class='item' style='{{bannerType==index?"background: linear-gradient(to left, "+diyColor.zColor+", "+diyColor.fColor8+") #fff;color:#fff;":"background-color: rgba(255, 255, 255, 0.5);"}}' wx:for='{{bannerContner}}' wx:key='{{index}}' data-id='{{item.id}}' bindtap='onBannerType'>
         {{item.title}}
       </view>
     </view>
@@ -180,8 +175,7 @@
         <view wx:if='{{info.city != null}}'>{{info.province}}{{info.city}}</view>
       </view>
       <view class='goods-btn'>
-        <view class='item inform' wx:if='{{orderType==1}}' hover-class='hover-class' hover-stay-time='400'
-          bindtap='onNotification'>
+        <view class='item inform' wx:if='{{orderType==1}}' hover-class='hover-class' hover-stay-time='400' bindtap='onNotification'>
           <image src='{{util.HTTP}}mobile/small/image/xq-jj.png'></image>
           <view>降价通知</view>
         </view>
@@ -201,25 +195,19 @@
         <image src='{{util.HTTP}}mobile/small/image/xq-dp-2.png'></image>
         <view class='item-btn'>首页</view>
       </button>
-      <button class='item' hover-class='hover-class' hover-stay-time='400'
-        open-type="{{configSwitch.versionInfo.oneMore==1?'':'contact'}}"
-        bindcontact="{{configSwitch.versionInfo.oneMore==1?'':'handleContact'}}"
-        bindtap="{{configSwitch.versionInfo.oneMore==1?'service':''}}">
+      <button class='item' hover-class='hover-class' hover-stay-time='400' open-type="{{configSwitch.versionInfo.oneMore==1?'':'contact'}}" bindcontact="{{configSwitch.versionInfo.oneMore==1?'':'handleContact'}}" bindtap="{{configSwitch.versionInfo.oneMore==1?'service':''}}">
         <image src='{{util.HTTP}}mobile/small/image/xq-kf.png'></image>
         <view class='item-btn'>客服</view>
       </button>
       <button class='item' hover-class='hover-class' hover-stay-time='400' bindtap='onCollect'>
-        <view class='font_family star {{info.collect!=null?"icon-dp-dtxqsc1":"icon-dp-dtxqsc-"}}'
-          style='{{info.collect!=null?util.diyColor(diyColor.zColor,"",""):"color:#58595b"}}'></view>
+        <view class='font_family star {{info.collect!=null?"icon-dp-dtxqsc1":"icon-dp-dtxqsc-"}}' style='{{info.collect!=null?util.diyColor(diyColor.zColor,"",""):"color:#58595b"}}'></view>
         <view class='item-btn'>收藏</view>
       </button>
     </view>
     <view class='f-right-con'>
       <!-- 拼团商品 -->
       <block wx:if="{{orderType == 2}}">
-        <view class='btn' hover-class='hover-class' hover-stay-time='400' data-group='0'
-          bindtap='{{info.isPutaway == 0?"":"buyNow"}}'
-          style='{{util.diyColor(diyColor.textColor,diyColor.cColor,"")}}'>
+        <view class='btn' hover-class='hover-class' hover-stay-time='400' data-group='0' bindtap='{{info.isPutaway == 0?"":"buyNow"}}' style='{{util.diyColor(diyColor.textColor,diyColor.cColor,"")}}'>
           <view class='price'>
             <text class='unit'>￥</text>
             <text class='integer'>{{util.integer(info.shopPrice)}}</text>
@@ -227,8 +215,7 @@
           </view>
           <view class='b_title'>单独购买</view>
         </view>
-        <view class='btn' data-group='1' hover-class='hover-class' hover-stay-time='400'
-          bindtap='{{info.isPutaway == 0?"":"buyNow"}}' style='{{util.diyColor("",diyColor.zColor,"")}}'>
+        <view class='btn' data-group='1' hover-class='hover-class' hover-stay-time='400' bindtap='{{info.isPutaway == 0?"":"buyNow"}}' style='{{util.diyColor("",diyColor.zColor,"")}}'>
           <view class='price'>
             <text class='unit'>￥</text>
             <text class='integer'>{{util.integer(info.groupPrice)}}</text>
@@ -239,27 +226,22 @@
       </block>
       <!-- 砍价商品 -->
       <block wx:elif="{{orderType == 3}}">
-        <view class='btn' hover-class='hover-class' hover-stay-time='400' bindtap='{{info.isPutaway == 0?"":"buyNow"}}'
-          style='{{util.diyColor("",diyColor.zColor,"")}}'>
+        <view class='btn' hover-class='hover-class' hover-stay-time='400' bindtap='{{info.isPutaway == 0?"":"buyNow"}}' style='{{util.diyColor("",diyColor.zColor,"")}}'>
           <view class='b_title'>立即砍价</view>
         </view>
       </block>
       <!-- 限时抢购商品 -->
       <block wx:elif="{{orderType == 4}}">
-        <view class='btn' hover-class='hover-class' hover-stay-time='400' bindtap='{{info.isPutaway == 0?"":"buyNow"}}'
-          style='{{util.diyColor("",diyColor.zColor,"")}}'>
+        <view class='btn' hover-class='hover-class' hover-stay-time='400' bindtap='{{info.isPutaway == 0?"":"buyNow"}}' style='{{util.diyColor("",diyColor.zColor,"")}}'>
           <view class='b_title'>立即抢购</view>
         </view>
       </block>
       <!-- 普通商品 -->
       <block wx:else>
-        <view class='btn' hover-class='hover-class' hover-stay-time='400'
-          bindtap='{{info.isPutaway == 0?"":info.attr.length==0?"addCart":"chooseAttribute"}}'
-          style='{{util.diyColor(diyColor.textColor,diyColor.cColor,"")}}'>
+        <view class='btn' hover-class='hover-class' hover-stay-time='400' bindtap='{{info.isPutaway == 0?"":info.attr.length==0?"addCart":"chooseAttribute"}}' style='{{util.diyColor(diyColor.textColor,diyColor.cColor,"")}}'>
           <view class='b_title'>加入购物车</view>
         </view>
-        <view class='btn' hover-class='hover-class' hover-stay-time='400' bindtap='{{info.isPutaway == 0?"":"buyNow"}}'
-          style='{{util.diyColor("",diyColor.zColor,"")}}'>
+        <view class='btn' hover-class='hover-class' hover-stay-time='400' bindtap='{{info.isPutaway == 0?"":"buyNow"}}' style='{{util.diyColor("",diyColor.zColor,"")}}'>
           <view class='b_title'>立即购买</view>
         </view>
       </block>
@@ -271,9 +253,7 @@
     <!-- 第一屏 -->
     <swiper-item class='swiper-item'>
       <scroll-view class='section-info' scroll-y scroll-top="{{currentScrollTop0}}" bindscroll='scroll'>
-        <view class='distribution'
-          wx:if='{{distribution.cur.auditStatus!="1"&&info.isDistribution=="1"&&info.distributionIsOpen=="1"}}'
-          animation="{{distributionAnimation}}">
+        <view class='distribution' wx:if='{{distribution.cur.auditStatus!="1"&&info.isDistribution=="1"&&info.distributionIsOpen=="1"}}' animation="{{distributionAnimation}}">
           <view class='left'>
             <text class='distribution_text' wx:if='{{supId==null||supId==""}}'>快来成为代言人吧！</text>
             <image class='user_img' wx:if='{{supId!=null&&supId!=""}}' src='{{distribution.dist.avatar}}'></image>
@@ -287,12 +267,10 @@
             </text>
           </view>
         </view>
-        <template is='banner-swiper'
-          data='{{info,current,currentBanner,videoFile,bannerContner,bannerType,diyColor,isVideoPlay}}'></template>
+        <template is='banner-swiper' data='{{info,current,currentBanner,videoFile,bannerContner,bannerType,diyColor,isVideoPlay}}'></template>
         <template is='goods-detail' data='{{info,orderType,diyColor,bargainTime,discount}}'></template>
         <!-- 代言 -->
-        <view class='distribution_share'
-          wx:if='{{info.distributionIsOpen==1&&info.distribution.distributionId!=undefined}}'>
+        <view class='distribution_share' wx:if='{{info.distributionIsOpen==1&&info.distribution.distributionId!=undefined}}'>
           <view class='d_left'>
             <view class='d_info'>
               <image class='d_img' src='{{util.HTTP}}mobile/small/image/fx/dy-cshbtn.png'></image>
@@ -333,8 +311,7 @@
             </view>
           </view>
           <view class='d_right'>
-            <text wx:if='{{distribution.cur.auditStatus == 1}}' data-type='distribution' hover-class='hover-class'
-              hover-stay-time='400' bindtap='share'>
+            <text wx:if='{{distribution.cur.auditStatus == 1}}' data-type='distribution' hover-class='hover-class' hover-stay-time='400' bindtap='share'>
               我要推广
             </text>
             <text wx:else hover-class='hover-class' hover-stay-time='400' bindtap='goFx'>我要代言</text>
@@ -343,8 +320,7 @@
         </view>
         <!-- 商品领券 促销 配送 -->
         <view class='shop-favor'>
-          <view hover-class='hover-class' hover-stay-time='400' bindtap='onCoupon'
-            wx:if='{{info.coupon.length != 0&&configSwitch.showWwitch.isCoupon==1}}'>
+          <view hover-class='hover-class' hover-stay-time='400' bindtap='onCoupon' wx:if='{{info.coupon.length != 0&&configSwitch.showWwitch.isCoupon==1}}'>
             <view class='title'>领券</view>
             <view class='ticket-list'>
               <view class='ticket' wx:for="{{info.coupon}}" wx:key='{{index}}'>
@@ -368,8 +344,7 @@
             </view>
             <image src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
           </view>
-          <view wx:if="{{info.promotion.length != 0}}" hover-class='hover-class' hover-stay-time='400'
-            bindtap='onSalePromotion'>
+          <view wx:if="{{info.promotion.length != 0}}" hover-class='hover-class' hover-stay-time='400' bindtap='onSalePromotion'>
             <view class='title'>促销</view>
             <view class='promotion'>
               <image class='money-off' src='{{util.HTTP}}mobile/small/image/xq-mj.png'></image>
@@ -400,13 +375,11 @@
         </view>
         <!-- 选择属性 -->
         <view class='attribute'>
-          <view hover-class='hover-class' hover-stay-time='400' bindtap='chooseAttribute'
-            wx:if='{{info.attr.length!=0}}'>
+          <view hover-class='hover-class' hover-stay-time='400' bindtap='chooseAttribute' wx:if='{{info.attr.length!=0}}'>
             <view>选择属性</view>
             <image src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
           </view>
-          <view hover-class='hover-class' hover-stay-time='400' bindtap='onParameter'
-            wx:if='{{info.parameter.length != 0}}'>
+          <view hover-class='hover-class' hover-stay-time='400' bindtap='onParameter' wx:if='{{info.parameter.length != 0}}'>
             <view>商品参数</view>
             <image src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
           </view>
@@ -430,9 +403,7 @@
               </swiper-item>
             </swiper>
           </view>
-          <swiper class='go-collage' display-multiple-items="{{collageNum}}"
-            style='{{collageNum==1?"height:150rpx":""}}' autoplay circular vertical
-            hidden='{{info.groupList.length == 0}}'>
+          <swiper class='go-collage' display-multiple-items="{{collageNum}}" style='{{collageNum==1?"height:150rpx":""}}' autoplay circular vertical hidden='{{info.groupList.length == 0}}'>
             <block wx:for="{{groupCount}}" wx:key='{{index}}'>
               <swiper-item>
                 <view class='collage-item'>
@@ -448,8 +419,7 @@
                     </view>
                     <view class='item-time'>剩余{{item.hour}}:{{item.min}}:{{item.sec}}</view>
                   </view>
-                  <view class='collage-now bg' hover-class='hover-class' hover-stay-time='400' bindtap='onCollage'
-                    data-id='{{item.groupActivityAttachId}}' style='{{util.diyColor("",diyColor.zColor,"")}}'>
+                  <view class='collage-now bg' hover-class='hover-class' hover-stay-time='400' bindtap='onCollage' data-id='{{item.groupActivityAttachId}}' style='{{util.diyColor("",diyColor.zColor,"")}}'>
                     去参团
                   </view>
                 </view>
@@ -458,8 +428,7 @@
           </swiper>
         </view>
         <!-- 拼团玩法 -->
-        <view class='collage-rule' wx:if="{{orderType == 2}}" hover-class='hover-class' hover-stay-time='400'
-          bindtap='onCollageRule'>
+        <view class='collage-rule' wx:if="{{orderType == 2}}" hover-class='hover-class' hover-stay-time='400' bindtap='onCollageRule'>
           <view>
             <view class='rule-head'>
               <view class='rule-title'>拼团玩法</view>
@@ -479,8 +448,7 @@
           </view>
         </view>
         <!-- 砍价玩法 -->
-        <view class='bargain-rule' hover-class='hover-class' hover-stay-time='400' bindtap='onBargainRule'
-          wx:if="{{orderType == 3 }}">
+        <view class='bargain-rule' hover-class='hover-class' hover-stay-time='400' bindtap='onBargainRule' wx:if="{{orderType == 3 }}">
           <view class='bargain-left'>砍价玩法</view>
           <view class='bargain-right'>
             <view>砍价规则</view>
@@ -496,25 +464,18 @@
           <view class='evaluate-detail'>
             <view class='detail-head'>
               <view class='head1'>
-                <image
-                  src='{{info.evaluate.avatar!=""&&info.evaluate.isAnonymous == 0?info.evaluate.avatar:util.HTTP+"mobile/small/image/placeholder_member.png"}}'
-                  class='avatar'></image>
+                <image src='{{info.evaluate.avatar!=""&&info.evaluate.isAnonymous == 0?info.evaluate.avatar:util.HTTP+"mobile/small/image/placeholder_member.png"}}' class='avatar'></image>
                 <view class='user-name' wx:if="{{info.evaluate.isAnonymous == 0}}">
                   {{info.evaluate.nickname}}
                 </view>
                 <view class='user-name' wx:else>匿名</view>
               </view>
               <view class='detail-grade'>
-                <view class='font_family star icon-dp-dtxqsc1'
-                  style='{{info.evaluate.starNum >= 1?util.diyColor(diyColor.zColor,"",""):"color:#d2d3d5"}}'></view>
-                <view class='font_family star icon-dp-dtxqsc1'
-                  style='{{info.evaluate.starNum >= 2?util.diyColor(diyColor.zColor,"",""):"color:#d2d3d5"}}'></view>
-                <view class='font_family star icon-dp-dtxqsc1'
-                  style='{{info.evaluate.starNum >= 3?util.diyColor(diyColor.zColor,"",""):"color:#d2d3d5"}}'></view>
-                <view class='font_family star icon-dp-dtxqsc1'
-                  style='{{info.evaluate.starNum >= 4?util.diyColor(diyColor.zColor,"",""):"color:#d2d3d5"}}'></view>
-                <view class='font_family star icon-dp-dtxqsc1'
-                  style='{{info.evaluate.starNum >= 5?util.diyColor(diyColor.zColor,"",""):"color:#d2d3d5"}}'></view>
+                <view class='font_family star icon-dp-dtxqsc1' style='{{info.evaluate.starNum >= 1?util.diyColor(diyColor.zColor,"",""):"color:#d2d3d5"}}'></view>
+                <view class='font_family star icon-dp-dtxqsc1' style='{{info.evaluate.starNum >= 2?util.diyColor(diyColor.zColor,"",""):"color:#d2d3d5"}}'></view>
+                <view class='font_family star icon-dp-dtxqsc1' style='{{info.evaluate.starNum >= 3?util.diyColor(diyColor.zColor,"",""):"color:#d2d3d5"}}'></view>
+                <view class='font_family star icon-dp-dtxqsc1' style='{{info.evaluate.starNum >= 4?util.diyColor(diyColor.zColor,"",""):"color:#d2d3d5"}}'></view>
+                <view class='font_family star icon-dp-dtxqsc1' style='{{info.evaluate.starNum >= 5?util.diyColor(diyColor.zColor,"",""):"color:#d2d3d5"}}'></view>
               </view>
             </view>
             <view class='detail-content'>
@@ -565,8 +526,7 @@
           </view>
           <!-- 多店铺推荐 -->
           <view class='recommend-goods' hidden='{{shopTab !=1}}'>
-            <view wx:for='{{info.recommend}}' wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400'
-              bindtap='onGood' data-id='{{item.goodsId}}'>
+            <view wx:for='{{info.recommend}}' wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goodsId}}'>
               <image src='{{item.file}}'></image>
               <view class='recommend-name'>{{item.goodsName}}</view>
               <block wx:if='{{item.isBargain==1}}'>
@@ -590,13 +550,11 @@
                 </view>
               </block>
             </view>
-            <image class='placeholder' wx:if='{{info.recommend.length==0}}'
-              src='{{util.HTTP}}mobile/small/image/zwspp_1.jpg'></image>
+            <image class='placeholder' wx:if='{{info.recommend.length==0}}' src='{{util.HTTP}}mobile/small/image/zwspp_1.jpg'></image>
           </view>
           <!-- 多店排行榜 -->
           <view class='recommend-goods' hidden='{{shopTab !=2}}'>
-            <view wx:for='{{info.ranking}}' wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400'
-              bindtap='onGood' data-id='{{item.goodsId}}'>
+            <view wx:for='{{info.ranking}}' wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goodsId}}'>
               <image src='{{item.file}}'></image>
               <view class='recommend-name'>{{item.goodsName}}</view>
               <block wx:if='{{item.isBargain==1}}'>
@@ -625,16 +583,13 @@
                 <view class='rank-num'>{{index + 1}}</view>
               </view>
             </view>
-            <image class='placeholder' wx:if='{{info.ranking.length==0}}'
-              src='{{util.HTTP}}mobile/small/image/zwspp_1.jpg'></image>
+            <image class='placeholder' wx:if='{{info.ranking.length==0}}' src='{{util.HTTP}}mobile/small/image/zwspp_1.jpg'></image>
           </view>
         </view>
-        <view class='recommend-more' wx:if='{{shopTab==1&&configSwitch.versionInfo.oneMore==1}}'
-          hover-class='hover-class' hover-stay-time='400' bindtap='{{shopTab==1?"goShop":"goRanking"}}'>
+        <view class='recommend-more' wx:if='{{shopTab==1&&configSwitch.versionInfo.oneMore==1}}' hover-class='hover-class' hover-stay-time='400' bindtap='{{shopTab==1?"goShop":"goRanking"}}'>
           查看更多推荐
         </view>
-        <view class='recommend-more' wx:if='{{util.isShops==0&&shopTab==2&&configSwitch.showSwitch.isRanking==1}}'
-          hover-class='hover-class' hover-stay-time='400' bindtap='{{shopTab==1?"goShop":"goRanking"}}'>
+        <view class='recommend-more' wx:if='{{util.isShops==0&&shopTab==2&&configSwitch.showSwitch.isRanking==1}}' hover-class='hover-class' hover-stay-time='400' bindtap='{{shopTab==1?"goShop":"goRanking"}}'>
           查看完整优品推荐榜单
         </view>
         <!-- 单店铺推荐 -->
@@ -644,8 +599,7 @@
           </view>
           <!-- 排行榜 -->
           <view class='recommend-goods'>
-            <view wx:for="{{info.ranking}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400'
-              bindtap='onGood' data-id='{{item.goodsId}}'>
+            <view wx:for="{{info.ranking}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goodsId}}'>
               <image src='{{item.file}}'></image>
               <view class='recommend-name'>{{item.goodsName}}</view>
               <block wx:if='{{item.isBargain==1}}'>
@@ -676,8 +630,7 @@
             </view>
           </view>
         </view>
-        <view class='recommend-more' wx:if='{{util.isShops==1}}' hover-class='hover-class' hover-stay-time='400'
-          bindtap='goRanking'>
+        <view class='recommend-more' wx:if='{{util.isShops==1}}' hover-class='hover-class' hover-stay-time='400' bindtap='goRanking'>
           查看完整优品推荐榜单
         </view>
         <!-- 商品详情 -->
@@ -695,11 +648,28 @@
     </swiper-item>
     <!-- 第三屏 -->
     <swiper-item class='section-messges'>
-      <scroll-view class='scroll-view' scroll-y scroll-top="{{currentScrollTop2}}" bindscroll='scroll'
-        bindscrolltolower="evaluateLoadMore">
-        <template is='evaluate'
-          data='{{evaluateCurrentTab,evaluateTotal,evaluateList,diyColor,evaluateArr}}'></template>
+      <scroll-view class='scroll-view' scroll-y scroll-top="{{currentScrollTop2}}" bindscroll='scroll' bindscrolltolower="evaluateLoadMore">
+        <template is='evaluate' data='{{evaluateCurrentTab,evaluateTotal,evaluateList,diyColor,evaluateArr}}'></template>
       </scroll-view>
     </swiper-item>
   </swiper>
+  <template is='wrap-footer' data='{{diyColor,info,orderType,configSwitch}}'></template>
+  <!-- 返回顶部 -->
+  <image class='back-top' hover-class='hover-class' hover-stay-time='400' bindtap='onBackTop' src='{{util.HTTP}}mobile/small/image/xq-fhdb.png' animation="{{animationTop}}"></image>
+  <!-- 砍价玩法 -->
+  <bargain_rule isShow="{{bargainRule}}" />
+  <!-- 立即购买 -->
+  <buy isShow="{{buyBoard}}" catchtap="none" id="buy_board" bind:closeBuy="closeBuy" orderType="{{orderType}}" type="{{buyType}}" info="{{info}}" discount="{{discount}}" groupBuy="{{groupBuy}}" diyColor='{{diyColor}}' />
+  <!-- 领取优惠券 -->
+  <receive_coupon id="receive_coupon" goodsClassifyId="{{info.goodsClassifyId}}" storeId="{{info.storeId}}" />
+  <!-- 促销 -->
+  <sale_promotion isShow="{{saleBoard}}" info="{{info.promotion}}" />
+  <!-- 配送方式 -->
+  <delivery_info id="delivery_info" info="{{info}}" storeId="{{info.storeId}}" />
+  <!-- 配送方式 -->
+  <brand_label id="brand_label" info="{{info.relevaTagList}}" />
+  <!-- 商品参数 -->
+  <good_parameter isShow="{{parameterBoard}}" parameter="{{info.parameter}}" />
+  <share_board id="share" bind:shareFriend="onShareAppMessage" bind:shareCircle="shareCircle" />
+  <poster id="poster" />
 </view>

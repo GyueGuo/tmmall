@@ -823,7 +823,7 @@ App({
     //131.物流详情
     expressView: HTTP + 'v2.0/express/view',
     //132.降价通知
-    depreciateGgoods: HTTP + 'v2.0/goods/depreciateGoods',
+    depreciateGoods: HTTP + 'v2.0/goods/depreciateGoods',
     //133.web页 活动规则
     collageRuleWeb: HTTP + 'v2.0/html/articleView?articleId=20',
     //砍价规则

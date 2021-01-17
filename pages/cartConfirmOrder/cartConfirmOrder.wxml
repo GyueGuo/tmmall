@@ -94,10 +94,10 @@
           </view>
           <view class='operation'>
             <view class='right'>
-              <text>共{{item.totalNumber}}件商品 小计:</text>
-              <text class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
+              <view>共{{item.totalNumber}}件商品 小计:</view>
+              <view class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 ￥{{util.toFixed(item.totalPrice)}}
-              </text>
+              </view>
             </view>
           </view>
         </view>
@@ -168,16 +168,13 @@
     </view>
   </scroll-view>
   <view class='footer'>
-    <!-- <view class='bg submit' hover-class='hover-class' hover-stay-time='400' bindtap='confirmOrder' style='{{util.diyColor("",diyColor.zColor,"")}}'>提交订单</view> -->
     <form report-submit='true' bindsubmit='formId'>
       <button class='bg submit' hover-class='hover-class' hover-stay-time='400' formType="submit" bindtap='confirmOrder' style='{{util.diyColor("",diyColor.zColor,"")}}'>
         提交订单
       </button>
       <view>
         <text class='content'>合计:</text>
-        <text class='price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
-          ￥{{util.toFixed(total)}}
-        </text>
+        <text class='price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>￥{{util.toFixed(total)}}</text>
       </view>
     </form>
   </view>
