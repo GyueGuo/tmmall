@@ -32,6 +32,10 @@ page {
   color: #fff;
 }
 
+.exchange-btn.disabled {
+  background-color: #ccc;
+  color: #fff;
+}
 .desc-icon {
   margin: auto;
   width: 54rpx;

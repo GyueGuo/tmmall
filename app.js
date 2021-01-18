@@ -1026,7 +1026,8 @@ App({
     //银行卡详情
     cardDetails: HTTP + 'v2.0/card/details',
     //退款金额
-    orderRefundMoney: HTTP + 'v2.0/order/refundMoney'
-    //---------------------------------------------------------------------------------
+    orderRefundMoney: HTTP + 'v2.0/order/refundMoney',
+    // 口令红包兑换
+    getRedComandPacket: HTTP+ 'v2.0/red/getRedComandPacket',
   }
 })

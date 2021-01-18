@@ -1,7 +1,7 @@
 <view class="wrap">
   <view class="big-title">兑换口令</view>
-  <input maxlength="1000" class="password-input" />
-  <view class="exchange-btn" bindtap="handleExchange">立即兑换</view>
+  <input maxlength="1000" class="password-input" bindinput="handleInput" value=""/>
+  <view class="exchange-btn{{ redComand.length ? '' : ' disabled'}}" bindtap="handleExchange">立即兑换</view>
   <view class="desc-icon"></view>
   <view class="desc-title">
     <text class="line"></text>
@@ -14,8 +14,8 @@
   <view class="success-modal" hidden="{{!isModalVisible}}" bindtap="handleCloseModal">
     <view class="modal-wrap">
       <image src="../../image/passportRedPoket.png" />
-      <view class="amout-show">20.00元</view>
-      <navigator url="">已兑换成功，可查看我的钱包</navigator> 
+      <view class="amout-show">{{ redPacketInfo.actualPrice }}元</view>
+      <navigator url="/my/myWallet/myWallet">已兑换成功，可查看我的钱包</navigator> 
     </view>
   </view>
 </view>
