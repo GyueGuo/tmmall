@@ -1,6 +1,6 @@
 
-// var HTTP = 'https://tmtest.tianmushenyang.com/';
-var HTTP = 'https://8.131.64.231/';
+var HTTP = 'https://tmtest.tianmushenyang.com/';
+// var HTTP = 'https://8.131.64.231/';
 
 App({
   onLaunch(data) {
