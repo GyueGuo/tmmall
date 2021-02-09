@@ -111,9 +111,9 @@
           <view class='right'>
             <text class='total-num'>共{{info.num}}件商品</text>
             <text>小计:</text>
-            <text style='{{util.diyColor(diyColor.zColor,"","")}}'>
+            <view style='{{util.diyColor(diyColor.zColor,"","")}}'>
               ￥{{util.toFixed(info.subtotal)}}
-            </text>
+            </view>
           </view>
         </view>
       </view>
@@ -185,9 +185,9 @@
     <!-- <view class='bg submit' hover-class='hover-class' hover-stay-time='400' bindtap='submit' style='{{util.diyColor("",diyColor.zColor,"")}}'>提交订单</view> -->
     <view>
       <text class='content'>合计:</text>
-      <text class='price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
+      <view class='price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
         ￥{{info.total}}
-      </text>
+      </view>
     </view>
   </form>
 </view>

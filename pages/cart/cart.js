@@ -107,7 +107,7 @@ Page({
    */
   onBackTop() {
     wx.pageScrollTo({
-      scrollTop: 0
+      scrollTop: this.data.scrollTop ? 0 : -1
     })
   },
 

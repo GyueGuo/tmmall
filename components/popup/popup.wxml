@@ -95,9 +95,7 @@
           <view class='row'>
             <view class='title'>发票内容</view>
             <view class='btn-con'>
-              <text style='{{item.type==detailType?util.diyColor(diyColor.zColor,diyColor.fColor2,diyColor.zColor):""}}' wx:for='{{detailCon}}' data-type='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='detailClick'>
-                {{item.name}}
-              </text>
+              <text style='{{item.type==detailType?util.diyColor(diyColor.zColor,diyColor.fColor2,diyColor.zColor):""}}' wx:for='{{detailCon}}' data-type='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='detailClick'>{{item.name}}</text>
             </view>
           </view>
           <view class='tip'>发票内容显示详细商品名称及价格信息</view>

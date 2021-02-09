@@ -280,22 +280,22 @@ Page({
     if (this.data.info.goodType == 1) {
       //普通商品
       this.data.info.subtotal = parseFloat(this.data.info.num * this.data.info.shopPrice)
-      this.data.info['total'] = parseFloat(this.data.info.num) * parseFloat(this.data.info.shopPrice) - parseFloat(this.data.couponPrice) - parseFloat(this.data.packet) - (this.data.discountPrice * this.data.info.num) > 0 ? parseFloat(this.data.info.num) * parseFloat(this.data.info.shopPrice) - parseFloat(this.data.couponPrice) - parseFloat(this.data.packet) - (this.data.discountPrice * this.data.info.num) : parseFloat(this.data.freightPrice) > 0 ? 0 : 0.10;
+      this.data.info.total = parseFloat(this.data.info.num) * parseFloat(this.data.info.shopPrice) - parseFloat(this.data.couponPrice) - parseFloat(this.data.packet) - (this.data.discountPrice * this.data.info.num) > 0 ? parseFloat(this.data.info.num) * parseFloat(this.data.info.shopPrice) - parseFloat(this.data.couponPrice) - parseFloat(this.data.packet) - (this.data.discountPrice * this.data.info.num) : parseFloat(this.data.freightPrice) > 0 ? 0 : 0.10;
     } else if (this.data.info.goodType == 2) {
       //团购
       this.data.info.subtotal = parseFloat(this.data.info.num * this.data.info.groupPrice) > 0 ? parseFloat(this.data.info.num * this.data.info.groupPrice).toFixed(2) : parseFloat(this.data.freightPrice) > 0 ? 0 : 0.10;
-      this.data.info['total'] = parseFloat(this.data.info.subtotal)
+      this.data.info.total = parseFloat(this.data.info.subtotal)
     } else if (this.data.info.goodType == 3) {
       //砍价
       this.data.info.subtotal = parseFloat(this.data.info.num * this.data.info.cutPrice) > 0 ? parseFloat(this.data.info.num * this.data.info.cutPrice).toFixed(2) : parseFloat(this.data.freightPrice) > 0 ? 0 : 0.10;
-      this.data.info['total'] = parseFloat(this.data.info.subtotal)
+      this.data.info.total = parseFloat(this.data.info.subtotal)
     } else if (this.data.info.goodType == 4) {
       this.data.info.subtotal = parseFloat(this.data.info.num * this.data.info.timeLimitPrice) > 0 ? parseFloat(this.data.info.num * this.data.info.timeLimitPrice).toFixed(2) : parseFloat(this.data.freightPrice) > 0 ? 0 : 0.10;
-      this.data.info['total'] = parseFloat(this.data.info.subtotal)
+      this.data.info.total = parseFloat(this.data.info.subtotal)
     }
 
     //判断合计是否等于0
-    this.data.info['total'] = (parseFloat(this.data.info['total']) + parseFloat(this.data.freightPrice)).toFixed(2) > 0 ? (parseFloat(this.data.info['total']) + parseFloat(this.data.freightPrice)).toFixed(2) : parseFloat(this.data.freightPrice) + 0.1
+    this.data.info.total = (parseFloat(this.data.info['total']) + parseFloat(this.data.freightPrice)).toFixed(2) > 0 ? (parseFloat(this.data.info['total']) + parseFloat(this.data.freightPrice)).toFixed(2) : parseFloat(this.data.freightPrice) + 0.1
     this.setData({
       info: this.data.info
     })

@@ -11,22 +11,22 @@ Page({
     //单列 1 双列2
     columns: 1,
     //选项卡
-    current_tab: 1,
+    currentTab: 1,
     //价格 高低
     rank: '',
     //综合列表框
-    classify_board: false,
+    classifyBoard: false,
     //选中综合
-    compre_type: 1,
+    compreType: 1,
     //选中综合文字
     compre: '综合',
     //筛选列表显示
-    filtrate_board: false,
+    filtrateBoard: false,
     //筛选状态
     isFiltrate: false,
     //参数
-    goods_classify_id: '',
-    brand_id: '',
+    goodsClassifyId: '',
+    brandId: '',
     shop: '',
     freightStatus: '',
     isFreight: '',
@@ -37,7 +37,8 @@ Page({
     goodList: [],
     total: '',
     page: 1,
-    loading: true
+    loading: true,
+    scrollTop: 0,
   },
 
   /**
@@ -54,14 +55,14 @@ Page({
         searchKey: options.key
       })
     }
-    if (options.goods_classify_id) {
+    if (options.goodsClassifyId) {
       this.setData({
-        goods_classify_id: options.goods_classify_id
+        goodsClassifyId: options.goodsClassifyId
       })
     }
-    if (options.brand_id) {
+    if (options.brandId) {
       this.setData({
-        brand_id: options.brand_id
+        brandId: options.brandId
       })
     }
     if (options.type =='new') {
@@ -118,7 +119,7 @@ Page({
    */
   onBackTop() {
     this.setData({
-      scroll_top: 0
+      scrollTop: this.data.scrollTop ? 0 : 1,
     })
   },
 
@@ -178,33 +179,33 @@ Page({
   getData() {
     let parameter = '';
     //综合排序    
-    if (this.data.current_tab == 1) {
-      switch (this.data.compre_type) {
+    if (this.data.currentTab == 1) {
+      switch (this.data.compreType) {
         //综合
         case 1:
           parameter = ''
           break;
         case 2:
           //新品
-          parameter = 'create_time'
+          parameter = 'createTime'
           break;
         case 3:
           //评论
-          parameter = 'comments_number'
+          parameter = 'commentsNumber'
           break;
       }
-    } else if (this.data.current_tab == 2) {
+    } else if (this.data.currentTab == 2) {
       //销量
-      parameter = 'sales_volume'
+      parameter = 'salesVolume'
 
     } else {
       //价格
-      parameter = 'shop_price'
+      parameter = 'shopPrice'
     }
     http.postList(app.globalData.goodList, {
-      goodsClassifyId: this.data.goods_classify_id,
-      brandId: this.data.brand_id,
-      parameter: parameter,
+      goodsClassifyId: this.data.goodsClassifyId,
+      brandId: this.data.brandId,
+      parameter,
       rank: this.data.rank,
       shop: this.data.shop,
       freightStatus: this.data.freightStatus,
@@ -236,14 +237,14 @@ Page({
    */
   onComposite() {
     //列表框
-    if (this.data.current_tab == 1) {
+    if (this.data.currentTab == 1) {
       this.setData({
-        classify_board: !this.data.classify_board,
+        classifyBoard: !this.data.classifyBoard,
       })
     } else {
       //点击综合
       this.setData({
-        current_tab: 1,
+        currentTab: 1,
         rank: ''
       })
       this.data.page = 1
@@ -259,7 +260,7 @@ Page({
     //关闭综合列表框
     if (!this.closeSynthesisList()) {
       this.setData({
-        current_tab: 2,
+        currentTab: 2,
         rank: 'desc'
       })
       this.data.page = 1
@@ -280,7 +281,7 @@ Page({
       }
       this.setData({
         parameter: '',
-        current_tab: 3,
+        currentTab: 3,
         rank: this.data.rank
       })
       this.data.page = 1
@@ -294,7 +295,7 @@ Page({
   OnChangeFilter() {
     if (!this.closeSynthesisList()) {
       this.setData({
-        filtrate_board: true
+        filtrateBoard: true
       })
     }
   },
@@ -304,7 +305,7 @@ Page({
    */
   onCompreRank() {
     this.setData({
-      compre_type: 1,
+      compreType: 1,
       compre: '综合'
     })
     this.closeSynthesisList()
@@ -317,7 +318,7 @@ Page({
    */
   onNew() {
     this.setData({
-      compre_type: 2,
+      compreType: 2,
       compre: '新品',
       rank: 'desc'
     })
@@ -331,7 +332,7 @@ Page({
    */
   onComment() {
     this.setData({
-      compre_type: 3,
+      compreType: 3,
       compre: '评论'
     })
     this.closeSynthesisList()
@@ -343,9 +344,9 @@ Page({
    * 关闭综合列表
    */
   closeSynthesisList() {
-    if (this.data.classify_board) {
+    if (this.data.classifyBoard) {
       this.setData({
-        classify_board: false
+        classifyBoard: false
       })
       return true;
     }
@@ -357,8 +358,8 @@ Page({
    */
   closeTrans() {
     this.setData({
-      classify_board: false,
-      filtrate_board: false
+      classifyBoard: false,
+      filtrateBoard: false
     })
   },
 
@@ -367,7 +368,7 @@ Page({
    */
   onFiltrateReset() {
     this.setData({
-      filtrate_board: false,
+      filtrateBoard: false,
       isFiltrate: false,
       parameter: '',
       rank: '',
@@ -387,7 +388,7 @@ Page({
    */
   onFiltrateConfirm(e) {
     this.setData({
-      filtrate_board: false,
+      filtrateBoard: false,
       isFiltrate: true,
       page: 1
     })

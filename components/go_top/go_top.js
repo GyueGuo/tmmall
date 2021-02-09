@@ -18,8 +18,8 @@ Component({
    */
   methods: {
     /**
-       * 返回顶部上升动画
-       */
+     * 返回顶部上升动画
+     */
     rise() {
       let animation = wx.createAnimation({
         duration: 500,
