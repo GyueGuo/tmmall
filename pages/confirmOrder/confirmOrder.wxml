@@ -41,22 +41,22 @@
               <view class='good-price cur' wx:if="{{info.goodType == 1}}" style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text class='unit'>￥</text>
                 <text class='integer'>{{util.integer(info.shopPrice)}}</text>
-                <text class='decimals'>.{{util.decimals(info.shopPrice)}}</text>
+                <text class='decimals'>.{{util.decimals(info.shopPrice)}}元</text>
               </view>
               <view class='good-price cur' wx:elif="{{info.goodType == 2}}" style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text class='unit'>￥</text>
                 <text class='integer'>{{util.integer(info.groupPrice)}}</text>
-                <text class='decimals'>.{{util.decimals(info.groupPrice)}}</text>
+                <text class='decimals'>.{{util.decimals(info.groupPrice)}}元</text>
               </view>
               <view class='good-price cur' wx:elif="{{info.goodType == 3}}" style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text class='unit'>￥</text>
                 <text class='integer'>{{util.integer(info.cutPrice)}}</text>
-                <text class='decimals'>.{{util.decimals(info.cutPrice)}}</text>
+                <text class='decimals'>.{{util.decimals(info.cutPrice)}}元</text>
               </view>
               <view class='good-price cur' wx:elif="{{info.goodType == 4}}" style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text class='unit'>￥</text>
                 <text class='integer'>{{util.integer(info.timeLimitPrice)}}</text>
-                <text class='decimals'>.{{util.decimals(info.timeLimitPrice)}}</text>
+                <text class='decimals'>.{{util.decimals(info.timeLimitPrice)}}元</text>
               </view>
               <view class='good-num'>x{{info.num}}</view>
             </view>
@@ -112,7 +112,7 @@
             <text class='total-num'>共{{info.num}}件商品</text>
             <text>小计:</text>
             <view style='{{util.diyColor(diyColor.zColor,"","")}}'>
-              ￥{{util.toFixed(info.subtotal)}}
+              ￥{{util.toFixed(info.subtotal)}}元
             </view>
           </view>
         </view>
@@ -140,25 +140,25 @@
       <view class='operation promotion'>
         <view class='left'>商品总额</view>
         <view class='right'>
-          <text>￥{{util.toFixed(info.subtotal)}}</text>
+          <text>￥{{util.toFixed(info.subtotal)}}元</text>
         </view>
       </view>
       <view class='operation'>
         <view class='left'>运费</view>
         <view class='right'>
-          <text>￥{{freightPrice}}</text>
+          <text>￥{{freightPrice}}元</text>
         </view>
       </view>
       <view class='operation' wx:if='{{info.goodType==1&&configSwitch.showSwitch.isCoupon==1}}'>
         <view class='left'>优惠券</view>
         <view class='right'>
-          <text>-￥{{couponPrice}}</text>
+          <text>-￥{{couponPrice}}元</text>
         </view>
       </view>
       <view class='operation' wx:if='{{info.goodType==1&&configSwitch.showSwitch.isRredPacket==1}}'>
         <view class='left'>红包</view>
         <view class='right'>
-          <text>-￥{{packet}}</text>
+          <text>-￥{{packet}}元</text>
         </view>
       </view>
       <wxs module="dp">
@@ -171,7 +171,7 @@
       <view class='operation' wx:if='{{info.goodType==1}}'>
         <view class='left'>折扣</view>
         <view class='right'>
-          <text>-￥{{dp.discount(discountPrice,info.num)}}</text>
+          <text>-￥{{dp.discount(discountPrice,info.num)}}元</text>
         </view>
       </view>
     </view>
@@ -186,7 +186,7 @@
     <view>
       <text class='content'>合计:</text>
       <view class='price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
-        ￥{{info.total}}
+        ￥{{info.total}}元
       </view>
     </view>
   </form>

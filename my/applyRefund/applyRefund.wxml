@@ -27,7 +27,7 @@
 </view>
 
 <view class='tip'>
-  <text>最多￥{{maxTotal}}</text>
+  <text>最多￥{{maxTotal}}元</text>
   <text wx:if='{{dataInfo.status != 2 && dataInfo.status != 3&&dataInfo.status != 4&&dataInfo.status != 5.2}}'>,含运费{{subFreightPrice}}元</text>
 </view>
 

@@ -183,7 +183,7 @@
                 <view class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                   <text class='unit'>￥</text>
                   <text class='integer'>{{util.integer(item.originalPrice)}}</text>
-                  <text class='decimals'>.{{util.decimals(item.originalPrice)}}</text>
+                  <text class='decimals'>.{{util.decimals(item.originalPrice)}}元</text>
                 </view>
                 <view class='order-good-num'>x{{item.quantity}}</view>
               </view>
@@ -265,11 +265,11 @@
       <view class='price-wrap'>
         <view>
           <view class='price-left'>商品总额</view>
-          <view class='price-right'>￥{{info.subtotalOriginalPrice}}</view>
+          <view class='price-right'>￥{{info.subtotalOriginalPrice}}元</view>
         </view>
         <view>
           <view class='price-left'>运费</view>
-          <view class='price-right'>￥{{info.subtotalFreightPrice}}</view>
+          <view class='price-right'>￥{{info.subtotalFreightPrice}}元</view>
         </view>
         <block wx:if='{{configSwitch.showSwitch.isRedPacket==1||configSwitch.showSwitch.isCoupon==1}}'>
           <view hidden='{{info.orderType != 1}}'>
@@ -279,26 +279,26 @@
         </block>
         <view wx:if='{{info.orderType == 1}}'>
           <view class='price-left'>折扣</view>
-          <view class='price-right'>-￥{{info.subtotalDiscountPrice}}</view>
+          <view class='price-right'>-￥{{info.subtotalDiscountPrice}}元</view>
         </view>
         <view wx:elif='{{info.orderType == 2}}'>
           <view class='price-left'>拼团</view>
-          <view class='price-right'>-￥{{info.activePrice}}</view>
+          <view class='price-right'>-￥{{info.activePrice}}元</view>
         </view>
         <view wx:elif='{{info.orderType == 3}}'>
           <view class='price-left'>砍价</view>
-          <view class='price-right'>-￥{{info.activePrice}}</view>
+          <view class='price-right'>-￥{{info.activePrice}}元</view>
         </view>
         <view wx:elif='{{info.orderType == 4}}'>
           <view class='price-left'>限时抢购</view>
-          <view class='price-right'>-￥{{info.activePrice}}</view>
+          <view class='price-right'>-￥{{info.activePrice}}元</view>
         </view>
       </view>
       <view class='actually-pay'>
         <view>
           实付款:
           <text class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
-            ￥{{info.subtotalPrice}}
+            ￥{{info.subtotalPrice}}元
           </text>
         </view>
       </view>

@@ -43,7 +43,7 @@
             <view class='l-info'>
               <view class='price-con' style='{{wxs_common.couponType(item.exchangeNum,item.memberCouponCount,item.limitNum)==2?"":util.diyColor("#f23030","","")}}'>
                 <text class='unit'>￥</text>
-                <text class='price'>{{item.actualPrice}}</text>
+                <text class='price'>{{item.actualPrice}}元</text>
               </view>
               <block wx:if='{{item.fullSubtractionPrice<=0}}'>
                 <view class='price-tag'>无门槛</view>

@@ -66,7 +66,7 @@
                   <view class='price' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>
                     <text class='unit'>￥</text>
                     <text class='integer'>{{util.integer(itemGoods.price)}}</text>
-                    <text class='decimals'>.{{util.decimals(itemGoods.price)}}</text>
+                    <text class='decimals'>.{{util.decimals(itemGoods.price)}}元</text>
                   </view>
                   <view class='good-num'>
                     <image src='{{util.HTTP}}mobile/small/image/tc-jh.png' catchtap='onMinusNumber' data-id='{{itemGoods.cartId}}' data-shopdex='{{index}}' data-gooddex='{{idx}}'></image>

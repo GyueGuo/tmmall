@@ -11,13 +11,13 @@
         </text>
         <text class='unit'>￥</text>
         <text class='integer'>{{util.integer(item.groupPrice)}}</text>
-        <text class='decimals'>.{{util.decimals(item.groupPrice)}}</text>
+        <text class='decimals'>.{{util.decimals(item.groupPrice)}}元</text>
         <text class='shop_price'>￥{{item.shopPrice}}</text>
       </view>
       <view class='price' wx:elif="{{item.isBargain == 1}}" style='{{item.isInvalid==0?util.diyColor(diyColor.zColor,"","")+"margin-top:110rpx;":"color:#999fa5;"}}'>
         <text class='integer'>底价￥{{util.integer(item.cutPrice)}}</text>
-        <text class='decimals'>.{{util.decimals(item.cutPrice)}}</text>
-        <text class='shop_price'>原价￥{{item.shopPrice}}</text>
+        <text class='decimals'>.{{util.decimals(item.cutPrice)}}元</text>
+        <text class='shop_price'>原价￥{{item.shopPrice}}元</text>
       </view>
       <view class='price' wx:elif="{{item.isLimit == 1}}" style='{{item.isInvalid==0?util.diyColor(diyColor.zColor,"","")+"margin-top:110rpx;":"color:#999fa5;"}}'>
         <text class='limit bg' style='{{item.isInvalid==0?util.diyColor("",diyColor.zColor,""):"background-color:#999fa5;"}}'>
@@ -25,20 +25,20 @@
         </text>
         <text class='unit'>￥</text>
         <text class='integer'>{{util.integer(item.timeLimitPrice)}}</text>
-        <text class='decimals'>.{{util.decimals(item.timeLimitPrice)}}</text>
-        <text class='shop_price'>￥{{item.shopPrice}}</text>
+        <text class='decimals'>.{{util.decimals(item.timeLimitPrice)}}元</text>
+        <text class='shop_price'>￥{{item.shopPrice}}元</text>
       </view>
       <view class='price' wx:else style='{{item.isInvalid==0?util.diyColor(diyColor.zColor,"",""):"color:#999fa5;"}}'>
         <text class='unit'>￥</text>
         <text class='integer'>{{util.integer(item.shopPrice)}}</text>
-        <text class='decimals'>.{{util.decimals(item.shopPrice)}}</text>
+        <text class='decimals'>.{{util.decimals(item.shopPrice)}}元</text>
       </view>
       <view class='depreciate-info'>
         <view class='boder' wx:if="{{item.isGroup != 1 && item.isBargain != 1 && item.isLimit != 1&&item.price == 0&&item.isInvalid==0}}" catchtap='priceNotification' data-item='{{item}}' data-index='{{index}}'>
           降价通知
         </view>
         <view class='boder' wx:elif='{{(item.isGroup != 1 || item.isBargain != 1 || item.isLimit != 1)&&item.price != "0.00"&&item.isInvalid==0}}' catchtap='priceNotification' data-item='{{item}}' data-index='{{index}}'>
-          订阅价￥{{item.price}}
+          订阅价￥{{item.price}}元
         </view>
         <view class='invalid' wx:elif='{{item.isInvalid==1}}'>
           <image class='icon' src='{{util.HTTP}}mobile/small/image/goods_sold_out.png'></image>

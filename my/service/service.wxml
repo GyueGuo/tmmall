@@ -18,7 +18,7 @@
         <view class='goods_price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
           <text class='unit'>￥</text>
           <text class='integer'>{{util.integer(serviceInfo.detail.price)}}</text>
-          <text class='decimal'>.{{util.decimals(serviceInfo.detail.price)}}</text>
+          <text class='decimal'>.{{util.decimals(serviceInfo.detail.price)}}元</text>
         </view>
       </view>
     </view>
@@ -63,7 +63,7 @@
                       {{util.integer(item.GOODSDATA.price)}}
                     </text>
                     <text class='decimal' hidden='{{item.GOODSDATA== null}}'>
-                      .{{util.decimals(item.GOODSDATA.price)}}
+                      .{{util.decimals(item.GOODSDATA.price)}}元
                     </text>
                   </view>
                 </view>

@@ -8,7 +8,7 @@
       <image src='{{util.HTTP}}mobile/small/image/fx/cg.png'></image>
       <text>{{item.totalPrice==0?'操作成功':'支付成功'}}</text>
     </view>
-    <view class='pay_price' wx:if='{{item.totalPrice!=0}}'>实付￥{{item.totalPrice}}</view>
+    <view class='pay_price' wx:if='{{item.totalPrice!=0}}'>实付￥{{item.totalPrice}}元</view>
     <view class='pay_btn' style='{{shareInfo.isFirstTobe==0?"justify-content:center;":""}}'>
       <view hover-class='hover-class' hover-stay-time='400' bindtap='goHome' style='{{shareInfo.isFirstTobe==0?"margin:0 20rpx;":""}}'>返回首页</view>
       <view hover-class='hover-class' hover-stay-time='400' bindtap='goMy' wx:if='{{shareInfo.isFirstTobe!=0}}'>前往代言中心</view>

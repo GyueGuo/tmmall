@@ -175,11 +175,11 @@
             <image class='men' src='{{util.HTTP}}mobile/small/image/couponbg.png'></image>
             <view class="coupon-price">
               <text>￥</text>
-              {{item.actualPrice}}
+              {{item.actualPrice}}元
             </view>
             <view class="coupon-title">
               <view class="coupon-tit">{{item.title}}</view>
-              <view class="coupon-full">满{{item.fullSubtractionPrice}}可用</view>
+              <view class="coupon-full">满{{item.fullSubtractionPrice}}元可用</view>
             </view>
           </view>
         </view>
@@ -204,25 +204,25 @@
               <block wx:if='{{item.isLimit==1}}'>
                 <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                   <text>￥</text>
-                  <text class='price'>{{item.timeLimitPrice}}</text>
+                  <text class='price'>{{item.timeLimitPrice}}元</text>
                 </view>
               </block>
               <block wx:elif='{{item.isGroup==1}}'>
                 <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                   <text>￥</text>
-                  <text class='price'>{{item.groupPrice}}</text>
+                  <text class='price'>{{item.groupPrice}}元</text>
                 </view>
               </block>
               <block wx:elif='{{item.isBargain==1}}'>
                 <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                   <text>￥</text>
-                  <text class='price'>{{item.cutPrice}}</text>
+                  <text class='price'>{{item.cutPrice}}元</text>
                 </view>
               </block>
               <block wx:else>
                 <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                   <text>￥</text>
-                  <text class='price'>{{item.shopPrice}}</text>
+                  <text class='price'>{{item.shopPrice}}元</text>
                 </view>
               </block>
               <view class="buynow" style='{{util.diyColor("",diyColor.zColor,"")}}'>立即抢购</view>
@@ -255,25 +255,25 @@
                   <block wx:if='{{goodsItem.isLimit==1}}'>
                     <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                       <text>￥</text>
-                      <text class='price'>{{goodsItem.timeLimitPrice}}</text>
+                      <text class='price'>{{goodsItem.timeLimitPrice}}元</text>
                     </view>
                   </block>
                   <block wx:elif='{{goodsItem.isBargain==1}}'>
                     <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                       <text>￥</text>
-                      <text class='price'>{{goodsItem.cutPrice}}</text>
+                      <text class='price'>{{goodsItem.cutPrice}}元</text>
                     </view>
                   </block>
                   <block wx:elif='{{goodsItem.isGroup==1}}'>
                     <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                       <text>￥</text>
-                      <text class='price'>{{goodsItem.groupPrice}}</text>
+                      <text class='price'>{{goodsItem.groupPrice}}元</text>
                     </view>
                   </block>
                   <block wx:else>
                     <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                       <text>￥</text>
-                      <text class='price'>{{goodsItem.shopPrice}}</text>
+                      <text class='price'>{{goodsItem.shopPrice}}元</text>
                     </view>
                   </block>
                   <view class='goods-sales'>{{goodsItem.salesVolume}}人付款</view>
@@ -308,25 +308,25 @@
             <block wx:if='{{item.isLimit}}'>
               <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text>￥</text>
-                <text class='price'>{{item.timeLimitPrice}}</text>
+                <text class='price'>{{item.timeLimitPrice}}元</text>
               </view>
             </block>
             <block wx:elif='{{item.isGroup}}'>
               <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text>￥</text>
-                <text class='price'>{{item.groupPrice}}</text>
+                <text class='price'>{{item.groupPrice}}元</text>
               </view>
             </block>
             <block wx:elif='{{item.isBargain}}'>
               <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text>￥</text>
-                <text class='price'>{{item.cutPrice}}</text>
+                <text class='price'>{{item.cutPrice}}元</text>
               </view>
             </block>
             <block wx:else>
               <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text>￥</text>
-                <text class='price'>{{item.shopPrice}}</text>
+                <text class='price'>{{item.shopPrice}}元</text>
               </view>
             </block>
             <view class="buynow" style='{{util.diyColor("",diyColor.zColor,"")}}'>立即抢购</view>

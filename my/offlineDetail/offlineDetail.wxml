@@ -24,7 +24,7 @@
       <view class='price'>
         <view>
           <text class='unit'>￥</text>
-          <text>{{info.subtotalPrice}}</text>
+          <text>{{info.subtotalPrice}}元</text>
         </view>
       </view>
     </view>
@@ -54,16 +54,16 @@
     <view class='price-wrap'>
       <view>
         <view class='price-left'>商品总额</view>
-        <view class='price-right'>￥{{info.totalPrice}}</view>
+        <view class='price-right'>￥{{info.totalPrice}}元</view>
       </view>
       <view wx:if='{{configSwitch.showSwitch.isRedPacket==1||configSwitch.showSwitch.isCoupon==1}}'>
         <view class='price-left'>优惠</view>
-        <view class='price-right'>-￥{{discounts}}</view>
+        <view class='price-right'>-￥{{discounts}}元</view>
       </view>
     </view>
     <view class='actually-pay'>
       <view>实付款:
-        <text class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>￥{{info.subtotalPrice}}</text>
+        <text class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>￥{{info.subtotalPrice}}元</text>
       </view>
     </view>
   </view>

@@ -71,7 +71,7 @@
         <view class='info'>
           <view class='order-item-good-info'>
             <view class='order-item-good-name'>{{itemName.goodsName}}</view>
-            <view class='order-item-good-price'>￥{{itemName.originalPrice}}</view>
+            <view class='order-item-good-price'>￥{{itemName.originalPrice}}元</view>
           </view>
           <view class='order-item-good-tips'>
             <view class='order-item-good-attr'>{{itemName.attr}}</view>
@@ -102,7 +102,7 @@
         <view class='info'>
           <view class='order-item-good-info'>
             <view class='order-item-good-name'>线下订单</view>
-            <view class='order-item-good-price'>￥{{itemName.singlePrice}}</view>
+            <view class='order-item-good-price'>￥{{itemName.singlePrice}}元</view>
           </view>
           <!-- <view class='order-item-good-tips'>
           <view class='order-item-good-attr'>{{item.attr}}</view>
@@ -128,12 +128,12 @@
       <block wx:if='{{item.distributionType!=4}}'>
         <view>共{{item.number}}件商品</view>
         <view class='order-item-total-price'>合计</view>
-        <view class='order-item-total-price'>{{item.subtotalPrice}}</view>
+        <view class='order-item-total-price'>￥{{item.subtotalPrice}}元</view>
         <view>(含运费￥{{item.subtotalFreightPrice}})</view>
       </block>
       <block wx:if='{{item.distributionType==4}}'>
         <view class='order-item-total-price'>合计</view>
-        <view class='order-item-total-price'>{{item.subtotalPrice}}</view>
+        <view class='order-item-total-price'>{{item.subtotalPrice}}元</view>
       </block>
     </view>
     <view class='order-item-operation'>

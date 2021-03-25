@@ -48,7 +48,7 @@
           <view class='order-good-tip'>
             <view style='{{util.diyColor(diyColor.zColor,"","")}}'>
               <text class='integer'>{{info.integral}}积分</text>
-              <text class='integer' hidden='{{info.price == 0}}'>+￥{{info.price}}</text> </view>
+              <text class='integer' hidden='{{info.price == 0}}'>+￥{{info.price}}元</text> </view>
             <view class='order-good-num'>x1</view>
           </view>
         </view>
@@ -60,7 +60,7 @@
   <view class='actually-pay'>
     <view>实付款:
       <text style='{{util.diyColor(diyColor.zColor,"","")}}'>{{info.integral}}积分</text>
-      <text wx:if='{{info.price != 0}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>+￥{{info.price}}</text>
+      <text wx:if='{{info.price != 0}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>+￥{{info.price}}元</text>
     </view>
   </view>
 

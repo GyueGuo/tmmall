@@ -9,7 +9,7 @@
     <view class='price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
       <view>
         <text class='unit'>￥</text>
-        <text>{{item.totalPrice}}</text>
+        <text>{{item.totalPrice}}元</text>
       </view>
     </view>
     <view class='bottom'>

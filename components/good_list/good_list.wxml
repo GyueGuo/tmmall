@@ -34,11 +34,11 @@
             <view class='price-con' style='{{util.diyColor(diyColor.zColor,"","")}}'>
               <text class='unit'>￥</text>
               <text class='integer'>{{util.integer(item.groupPrice)}}</text>
-              <text class='decimals'>.{{util.decimals(item.groupPrice)}}</text>
+              <text class='decimals'>.{{util.decimals(item.groupPrice)}}元</text>
             </view>
           </view>
           <view class='good-group-one'>
-            <text>￥{{item.shopPrice}}</text>
+            <text>￥{{item.shopPrice}}元</text>
           </view>
         </view>
       </view>
@@ -57,11 +57,11 @@
           <view class='cur base-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
             <text class='base-title'>底价￥</text>
             <text class='integer'>{{util.integer(item.cutPrice)}}</text>
-            <text class='decimals'>.{{util.decimals(item.cutPrice)}}</text>
+            <text class='decimals'>.{{util.decimals(item.cutPrice)}}元</text>
           </view>
           <view class='good-group-one'>
             <text>原价</text>
-            <text>￥{{item.shopPrice}}</text>
+            <text>￥{{item.shopPrice}}元</text>
           </view>
         </view>
       </view>
@@ -79,11 +79,11 @@
         <view class='price' style='{{util.diyColor(diyColor.zColor,"","")}}{{!item.storeName?"top:190rpx;":""}}margin-top:0;'>
           <text class='unit'>￥</text>
           <text class='integer'>{{util.integer(item.timeLimitPrice)}}</text>
-          <text class='decimals'>.{{util.decimals(item.timeLimitPrice)}}</text>
+          <text class='decimals'>.{{util.decimals(item.timeLimitPrice)}}元</text>
         </view>
         <view class='good-tips-list'>
           <view class='good-group-one'>
-            <text>￥{{item.shopPrice}}</text>
+            <text>￥{{item.shopPrice}}元</text>
           </view>
         </view>
       </view>
@@ -101,7 +101,7 @@
         <view class='price' style="{{!item.storeName?'top:190rpx':''}}" style='{{util.diyColor(diyColor.zColor,"","")}}'>
           <text class='unit'>￥</text>
           <text class='integer'>{{util.integer(item.shopPrice)}}</text>
-          <text class='decimals'>.{{util.decimals(item.shopPrice)}}</text>
+          <text class='decimals'>.{{util.decimals(item.shopPrice)}}元</text>
         </view>
       </view>
       <view class='add-cart font_family icon-pt' style='{{util.diyColor(diyColor.zColor,"","")}}' wx:if="{{item.isGroup==1}}"></view>

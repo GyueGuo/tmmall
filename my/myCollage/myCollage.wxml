@@ -30,7 +30,7 @@
               <view class='collage-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text class='unit'>￥</text>
                 <text class='integer'>{{util.integer(item.singlePrice)}}</text>
-                <text class='decimals'>.{{util.decimals(item.singlePrice)}}</text>
+                <text class='decimals'>.{{util.decimals(item.singlePrice)}}元</text>
               </view>
             </view>
           </view>

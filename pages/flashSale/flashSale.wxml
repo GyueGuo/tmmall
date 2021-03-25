@@ -37,7 +37,7 @@
             <view class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
               <text class='unit'>￥</text>
               <text class='integer'>{{util.integer(item.timeLimitPrice)}}</text>
-              <text class='decimals'>.{{util.decimals(item.timeLimitPrice)}}</text>
+              <text class='decimals'>.{{util.decimals(item.timeLimitPrice)}}元</text>
             </view>
             <view class='rush-now bg' wx:if="{{state == 1 && item.exchangeNum != 0}}" style='{{util.diyColor("",diyColor.zColor,"")}}'>
               立即抢购
@@ -47,7 +47,7 @@
             </view>
           </view>
           <view class='good-tip'>
-            <view class='origin-price'>￥{{item.shopPrice}}</view>
+            <view class='origin-price'>￥{{item.shopPrice}}元</view>
             <view class='sale-percent' wx:if="{{state == 1 }}">
               <view>已售{{util.percent(item.availableSale,item.exchangeNum)}}%</view>
               <sale_progress percent="{{util.percent(item.availableSale,item.exchangeNum)}}%" />

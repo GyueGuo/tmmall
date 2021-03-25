@@ -58,16 +58,16 @@
           <view wx:for="{{item.shopGoods}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goodsId}}' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
             <image src='{{item.file}}'></image>
             <block wx:if='{{item.isBargain==1}}'>
-              <text>￥{{item.cutPrice}}</text>
+              <text>￥{{item.cutPrice}}元</text>
             </block>
             <block wx:elif='{{item.isGroup==1}}'>
-              <text>￥{{item.groupPrice}}</text>
+              <text>￥{{item.groupPrice}}元</text>
             </block>
             <block wx:elif='{{item.isLimit==1}}'>
-              <text>￥{{item.timeLimitPrice}}</text>
+              <text>￥{{item.timeLimitPrice}}元</text>
             </block>
             <block wx:else>
-              <text>￥{{item.shopPrice}}</text>
+              <text>￥{{item.shopPrice}}元</text>
             </block>
           </view>
         </view>

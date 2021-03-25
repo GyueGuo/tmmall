@@ -14,7 +14,14 @@
 .wrap-swiper swiper-item>scroll-view {
   height: 100%;
 }
-
+.fake-haoping {
+  padding: 0 26rpx;
+  line-height: 96rpx;
+  font-size: 28rpx;
+  color: #EE0A3B;
+  font-weight: bold;
+  background-color: #FFF4F4;
+}
 .wrap-footer {
   position: fixed;
   left: 0;

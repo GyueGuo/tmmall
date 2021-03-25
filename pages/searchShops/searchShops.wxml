@@ -45,7 +45,7 @@
       <view class='shop-pic'>
         <view wx:for="{{item.shopGoods}}" hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goodsId}}'>
           <image src='{{item.file}}'></image>
-          <text>￥{{item.shopPrice}}</text>
+          <text>￥{{item.shopPrice}}元</text>
         </view>
       </view>
       <view class='shop-tips'>

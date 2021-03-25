@@ -12,18 +12,18 @@
           <view class='month' wx:if='{{title!="today"}}'>{{item.date}}月</view>
           <block wx:if='{{title=="total"}}'>
             <view class='info_view t_yjs' hidden='{{type!=2}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>+
-              <text>￥{{item.subtotalPrice}}</text>
+              <text>￥{{item.subtotalPrice}}元</text>
             </view>
             <view class='info_view t_wjs' hidden='{{type!=1}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>预估
-              <text>￥{{item.subtotalPrice}}</text>
+              <text>￥{{item.subtotalPrice}}元</text>
             </view>
           </block>
           <block wx:elif='{{title=="today"}}'>
             <view class='info_view j_yjs' hidden='{{type!=2}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>+
-              <text>￥{{item.subtotalPrice}}</text>
+              <text>￥{{item.subtotalPrice}}元</text>
             </view>
             <view class='info_view j_wjs' hidden='{{type!=1}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>预估
-              <text>￥{{item.subtotalPrice}}</text>
+              <text>￥{{item.subtotalPrice}}元</text>
             </view>
           </block>
         </view>
@@ -59,7 +59,7 @@
               <view class='info'>
                 <view class='goodstitle'>{{itemName.goodsName}}</view>
                 <view class='goodsinfo'>
-                  <view class='goodsprice'>￥{{itemName.price}}</view>
+                  <view class='goodsprice'>￥{{itemName.price}}元</view>
                   <view class='goodstime'>下单日{{itemName.underOrderTime}}</view>
                 </view>
               </view>

@@ -19,7 +19,7 @@
         <view>
           <view class='coupon-price'>
             <text>￥</text>
-            <text>{{item.actualPrice}}</text>
+            <text>{{item.actualPrice}}元</text>
           </view>
           <block wx:if='{{item.fullSubtractionPrice!=0}}'>
             <view class='coupon-used'>满{{item.fullSubtractionPrice}}元可用</view>

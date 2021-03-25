@@ -12,7 +12,7 @@
         {{util.integer(price)}}
       </text>
       <text class='decimals cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
-        .{{util.decimals(price)}}
+        .{{util.decimals(price)}}元
       </text>
       <text class='inventory'>(库存{{info.inventory==null?0:info.inventory}})</text>
     </view>

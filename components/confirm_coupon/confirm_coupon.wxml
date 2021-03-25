@@ -15,7 +15,7 @@
             <view>
               <view class='coupon-price'>
                 <text>￥</text>
-                <text>{{util.integer(item.actualPrice)}}</text>
+                <text>{{util.integer(item.actualPrice)}}元</text>
               </view>
               <block wx:if='{{item.fullSubtractionPrice!=0}}'>
                 <view class='coupon-used'>满{{util.integer(item.fullSubtractionPrice)}}元可用</view>

@@ -51,6 +51,7 @@
                 <text class='price' wx:elif='{{item.isBargain==1}}'>{{item.cutPrice}}</text>
                 <text class='price' wx:elif='{{item.isLimit==1}}'>{{item.timeLimitPrice}}</text>
                 <text class='price' wx:else>{{item.shopPrice}}</text>
+                <text>元</text>
               </view>
               <view class='goods-btn'>抢购代言</view>
             </view>

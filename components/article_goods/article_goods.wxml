@@ -13,28 +13,28 @@
             <view class='price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
               <text class='unit'>￥</text>
               <text class='integer'>{{util.integer(item.cutPrice)}}</text>
-              <text class='decimals'>.{{util.decimals(item.cutPrice)}}</text>
+              <text class='decimals'>.{{util.decimals(item.cutPrice)}}元</text>
             </view>
           </block>
           <block wx:elif='{{item.isGroup==1}}'>
             <view class='price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
               <text class='unit'>￥</text>
               <text class='integer'>{{util.integer(item.groupPrice)}}</text>
-              <text class='decimals'>.{{util.decimals(item.groupPrice)}}</text>
+              <text class='decimals'>.{{util.decimals(item.groupPrice)}}元</text>
             </view>
           </block>
           <block wx:elif='{{item.isLimit==1}}'>
             <view class='price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
               <text class='unit'>￥</text>
               <text class='integer'>{{util.integer(item.timeLimitPrice)}}</text>
-              <text class='decimals'>.{{util.decimals(item.timeLimitPrice)}}</text>
+              <text class='decimals'>.{{util.decimals(item.timeLimitPrice)}}元</text>
             </view>
           </block>
           <block wx:else>
             <view class='price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
               <text class='unit'>￥</text>
               <text class='integer'>{{util.integer(item.shopPrice)}}</text>
-              <text class='decimals'>.{{util.decimals(item.shopPrice)}}</text>
+              <text class='decimals'>.{{util.decimals(item.shopPrice)}}元</text>
             </view>
           </block>
         </view>

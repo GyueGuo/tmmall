@@ -33,7 +33,7 @@
       <view>
         <view class='order-item-good-info'>
           <view class='order-item-good-name'>线下订单</view>
-          <view class='order-item-good-price'>￥{{item.singlePrice}}</view>
+          <view class='order-item-good-price'>￥{{item.singlePrice}}元</view>
         </view>
         <view class='order-item-good-tips'>
           <view class='order-item-good-attr'></view>
@@ -51,8 +51,8 @@
     <view class='order-item-total'>
       <!-- <view>共{{item.number}}件商品</view> -->
       <view>合计</view>
-      <view class='order-item-total-price'>{{item.subtotalPrice}}</view>
-      <view>(含运费)￥{{item.subtotalFreightPrice}}</view>
+      <view class='order-item-total-price'>{{item.subtotalPrice}}元</view>
+      <view>(含运费)￥{{item.subtotalFreightPrice}}元</view>
     </view>
     <view class='order-item-operation'>
       <view wx:if="{{item.status == 0 }}" hover-class='hover-class' hover-stay-time='400' bindtap='cancelOrder' data-id='{{item.orderAttachId}}' data-index='{{index}}'>
@@ -97,7 +97,7 @@
       <view>
         <view class='order-item-good-info'>
           <view class='order-item-good-name'>{{item.goodsName}}</view>
-          <view class='order-item-good-price'>￥{{item.singlePrice}}</view>
+          <view class='order-item-good-price'>￥{{item.singlePrice}}元</view>
         </view>
         <view class='order-item-good-tips'>
           <view class='order-item-good-attr'>{{item.attr}}</view>
@@ -115,8 +115,8 @@
     <view class='order-item-total'>
       <view>共{{item.number}}件商品</view>
       <view>合计</view>
-      <view class='order-item-total-price'>{{item.subtotalPrice}}</view>
-      <view>(含运费)￥{{item.subtotalFreightPrice}}</view>
+      <view class='order-item-total-price'>{{item.subtotalPrice}}元</view>
+      <view>(含运费)￥{{item.subtotalFreightPrice}}元</view>
     </view>
     <view class='order-item-operation'>
       <view wx:if="{{item.status == 0 }}" hover-class='hover-class' hover-stay-time='400' bindtap='cancelOrder' data-id='{{item.orderAttachId}}' data-index='{{index}}'>

@@ -31,7 +31,7 @@
       <view>
         <view class='good-name'>{{item.orderGoodsMyEvaluate.goodsName}}</view>
         <view class='good-tips'>
-          <text>￥{{item.orderGoodsMyEvaluate.subtotalPrice}}</text>
+          <text>￥{{item.orderGoodsMyEvaluate.subtotalPrice}}元</text>
           <text class='cur' wx:if="{{item.starNum == 1 || item.starNum == 2}}" style='{{util.diyColor(diyColor.zColor,"","")}}'>已差评</text>
           <text class='cur' wx:elif="{{item.starNum == 3}}" style='{{util.diyColor(diyColor.zColor,"","")}}'>已中评</text>
           <text class='cur' wx:elif="{{item.starNum == 4 || item.starNum == 5}}" style='{{util.diyColor(diyColor.zColor,"","")}}'>已好评</text>
