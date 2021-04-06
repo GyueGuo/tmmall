@@ -9,7 +9,7 @@
             <view class='address-phone'>{{address.phone}}</view>
           </view>
           <view class='address-detail'>
-            收货地址:{{address.province}}{{address.city}}{{address.area}}{{address.street}}{{address.address}}
+            收货地址:{{address.province || ''}}{{address.city || ''}}{{address.area || ''}}{{address.street || ''}}{{address.address || ''}}
           </view>
           <image class='next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
         </view>

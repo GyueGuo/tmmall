@@ -126,9 +126,21 @@ Page({
     })
   },
   onGoods(e) {
-    let item = e.currentTarget.dataset.item
+    const item = e.currentTarget.dataset.item
     wx.navigateTo({
       url: '/nearbyShops/goodDetail/goodDetail?goodsId=' + item.goodsId,
+    })
+  },
+  onDelete(e) {
+    const { item } = e.currentTarget.dataset;
+    http.post(app.globalData.deleteEvaluate, {
+      goodsEvaluateId: item.goodsEvaluateId,
+    }).then((res) => {
+      this.setData({
+        page: res.result.currentPage,
+        total: res.result.total,
+        list: res.result.data
+      });
     })
   }
 })

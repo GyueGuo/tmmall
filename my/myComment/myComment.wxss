@@ -7,7 +7,7 @@
   background: white;
 }
 
-.head  .head-left {
+.head .head-left {
   font-size: 28rpx;
   margin-left: 24rpx;
 }
@@ -33,7 +33,7 @@
   border-bottom: 2rpx solid #f6f6f6;
 }
 
-.comment-tab > view {
+.comment-tab>view {
   float: left;
   width: 50%;
   height: 100%;
@@ -42,7 +42,7 @@
   justify-content: center;
 }
 
-.comment-tab > view > view {
+.comment-tab>view>view {
   display: inline-block;
   font-size: 30rpx;
   line-height: 86rpx;
@@ -86,13 +86,13 @@
   margin-top: 50rpx;
 }
 
-.good-info > image {
+.good-info>image {
   width: 206rpx;
   height: 206rpx;
   float: left;
 }
 
-.good-info > view {
+.good-info>view {
   width: 450rpx;
   height: 206rpx;
   float: left;
@@ -124,7 +124,7 @@
   margin-top: 6rpx;
 }
 
-.comment-img > view {
+.comment-img>view {
   width: 226rpx;
   height: 226rpx;
   background: black;
@@ -134,7 +134,7 @@
   float: left;
 }
 
-.comment-img > view > image {
+.comment-img>view>image {
   width: 84rpx;
   height: 84rpx;
   position: absolute;
@@ -144,7 +144,7 @@
   margin-top: -42rpx;
 }
 
-.comment-img > image {
+.comment-img>image {
   width: 226rpx;
   height: 226rpx;
   margin-right: 10rpx;
@@ -152,13 +152,31 @@
   float: left;
 }
 
-.comment-img > image:nth-child(3n) {
+.comment-img>image:nth-child(3n) {
   margin-right: 0;
 }
 
 .single-img {
   width: 378rpx;
   height: 378rpx;
+}
+
+.btn-wrap {
+  border-bottom: 1rpx solid #f5f5f5;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.btn-wrap>view {
+  width: 150rpx;
+  font-size: 28rpx;
+  line-height: 52rpx;
+  border: 1rpx solid #f5f5f5;
+  border-radius: 30rpx;
+  text-align: center;
+  margin: 20rpx 24rpx 20rpx 0;
 }
 
 .empty-view {

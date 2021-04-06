@@ -1,11 +1,11 @@
 .wrap {
   display: flex;
   align-items: center;
+  flex-wrap: nowrap;
 }
 
 .star {
   width: 42rpx;
   height: 42rpx;
-  /* margin: 0 12rpx; */
-  display: block;
+  margin-right: 20rpx;
 }
