@@ -787,7 +787,7 @@ App({
     //113.删除订单
     deleteOrder: HTTP + 'v2.0/order/destroyOrder',
     //114.确认订单
-    confirmCollect: HTTP + 'v2.0/order/confirmCollect',
+    confirmCollect: HTTP + 'v2.0/order/updateOrderStatus',
     //115.订单退款
     refundAndReturn: HTTP + 'v2.0/order/refundAndReturn',
     //116.消息通知
