@@ -433,7 +433,8 @@ Page({
   confirmCollect(e) {
     let orderObj = e.detail
     http.post(app.globalData.confirmCollect, {
-      orderAttachId: orderObj.id
+      orderAttachId: orderObj.id,
+      orderStatus: 3,
     }).then(res => {
       app.showSuccessToast('收货成功')
       if (this.data.currentStatus == null) {
