@@ -11,9 +11,10 @@ Component({
    * 组件的初始数据
    */
   data: {
+    stars: [0, 0, 0, 0, 0],
     level: 5
   },
-  ready(){
+  ready() {
     this.setData({
       diyColor: app.globalData.diyColor
     })
@@ -23,35 +24,13 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    onOneStar() {
+    onStar(e) {
+      const index = e.target.dataset.index;
+      const level = index + 1;
+      this.triggerEvent("changeStar", level);
       this.setData({
-        level: 1
-      })
-      this.triggerEvent("changeStar", 1)
-    },
-    onTwoStar() {
-      this.setData({
-        level: 2
-      })
-      this.triggerEvent("changeStar", 2)
-    },
-    onThreeStar() {
-      this.setData({
-        level: 3
-      })
-      this.triggerEvent("changeStar", 3)
-    },
-    onFourStar() {
-      this.setData({
-        level: 4
-      })
-      this.triggerEvent("changeStar", 4)
-    },
-    onFiveStar() {
-      this.setData({
-        level: 5
-      })
-      this.triggerEvent("changeStar", 5)
+        level,
+      });
     },
   }
 })

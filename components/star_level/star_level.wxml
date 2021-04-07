@@ -1,18 +1,12 @@
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='wrap'>
-  <view class='star' style='{{util.diyImgbox(42)}}'>
-    <image src="{{util.HTTP}}{{level>=1?'mobile/small/image/wd-pj-x1.png':'mobile/small/image/wd-pj-x2.png'}}" hover-class='hover-class' hover-stay-time='400' bindtap='onOneStar' style='{{level>=1?util.diyImgcolor(diyColor.zColor,42,42):""}}'></image>
-  </view>
-  <view class='star' style='{{util.diyImgbox(42)}}'>
-  <image src="{{util.HTTP}}{{level>=2?'mobile/small/image/wd-pj-x1.png':'mobile/small/image/wd-pj-x2.png'}}" hover-class='hover-class' hover-stay-time='400' bindtap='onTwoStar' style='{{level>=1?util.diyImgcolor(diyColor.zColor,42,42):""}}'></image>
-  </view>
-  <view class='star' style='{{util.diyImgbox(42)}}'>
-  <image src="{{util.HTTP}}{{level>=3?'mobile/small/image/wd-pj-x1.png':'mobile/small/image/wd-pj-x2.png'}}" hover-class='hover-class' hover-stay-time='400' bindtap='onThreeStar' style='{{level>=1?util.diyImgcolor(diyColor.zColor,42,42):""}}'></image>
-  </view>
-  <view class='star' style='{{util.diyImgbox(42)}}'>
-  <image src="{{util.HTTP}}{{level>=4?'mobile/small/image/wd-pj-x1.png':'mobile/small/image/wd-pj-x2.png'}}" hover-class='hover-class' hover-stay-time='400' bindtap='onFourStar' style='{{level>=1?util.diyImgcolor(diyColor.zColor,42,42):""}}'></image>
-  </view>
-  <view class='star' style='{{util.diyImgbox(42)}}'>
-  <image src="{{util.HTTP}}{{level>=5?'mobile/small/image/wd-pj-x1.png':'mobile/small/image/wd-pj-x2.png'}}" hover-class='hover-class' hover-stay-time='400' bindtap='onFiveStar' style='{{level>=1?util.diyImgcolor(diyColor.zColor,42,42):""}}'></image>
-  </view>
-</view>
+  <image
+    class='star'
+    wx:for="{{ stars }}"
+    src="{{util.HTTP}}{{index < level ? 'mobile/small/image/wd-pj-x1.png' : 'mobile/small/image/wd-pj-x2.png' }}"
+    hover-class='hover-class'
+    hover-stay-time='400'
+    bindtap='onStar'
+    data-index="{{ index }}"
+  ></image>
+</view> 

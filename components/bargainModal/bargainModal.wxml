@@ -7,7 +7,7 @@
     </view>
     <view class='bargain-info'>
       <text>砍掉了</text>
-      <text class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>￥{{price}}</text>
+      <text class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>￥{{price}}元</text>
     </view>
     <image class='logo' src='{{util.HTTP}}{{"mobile/small/image/kj-tc.png"}}'></image>
     <form report-submit='true' bindsubmit='formId'>

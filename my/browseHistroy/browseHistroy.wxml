@@ -20,11 +20,11 @@
               <view class='price-con' style='{{item.isInvalid==0?util.diyColor(diyColor.zColor,"",""):"color:#999fa5;"}}'>
                 <text class='unit'>￥</text>
                 <text class='integer'>{{util.integer(item.groupPrice)}}</text>
-                <text class='decimals'>.{{util.decimals(item.groupPrice)}}</text>
+                <text class='decimals'>.{{util.decimals(item.groupPrice)}}元</text>
               </view>
             </view>
             <view class='good-group-one'>
-              <text>￥{{item.shopPrice}}</text>
+              <text>￥{{item.shopPrice}}元</text>
             </view>
           </view>
         </view>
@@ -35,11 +35,11 @@
           <view class='price' style="{{!item.store_name?'top:190rpx;':''}}{{item.isInvalid==0?util.diyColor(diyColor.zColor,'',''):'color:#999fa5;'}}">
             <text class='unit'>￥</text>
             <text class='integer'>{{util.integer(item.timeLimitPrice)}}</text>
-            <text class='decimals'>.{{util.decimals(item.timeLimitPrice)}}</text>
+            <text class='decimals'>.{{util.decimals(item.timeLimitPrice)}}元</text>
           </view>
           <view class='good-tips-list' style='top:200rpx'>
             <view class='good-group-one'>
-              <text>￥{{item.shopPrice}}</text>
+              <text>￥{{item.shopPrice}}元</text>
             </view>
           </view>
         </view>
@@ -52,11 +52,11 @@
             <view class='cur base-price' style='{{item.isInvalid==0?util.diyColor(diyColor.zColor,"",""):"color:#999fa5;"}}'>
               <text class='base-title'>底价￥</text>
               <text class='integer'>{{util.integer(item.cutPrice)}}</text>
-              <text class='decimals'>.{{util.decimals(item.cutPrice)}}</text>
+              <text class='decimals'>.{{util.decimals(item.cutPrice)}}元</text>
             </view>
             <view class='good-group-one'>
               <text>原价</text>
-              <text>￥{{item.shopPrice}}</text>
+              <text>￥{{item.shopPrice}}元</text>
             </view>
           </view>
         </view>
@@ -67,7 +67,7 @@
           <view class='price' style='{{item.isInvalid==0?util.diyColor(diyColor.zColor,"",""):"color:#999fa5;"}}top:180rpx;'>
             <text class='unit'>￥</text>
             <text class='integer'>{{util.integer(item.shopPrice)}}</text>
-            <text class='decimals'>.{{util.decimals(item.shopPrice)}}</text>
+            <text class='decimals'>.{{util.decimals(item.shopPrice)}}元</text>
           </view>
         </view>
 

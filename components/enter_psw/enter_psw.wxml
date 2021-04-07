@@ -8,7 +8,7 @@
       <image src='{{util.HTTP}}{{"mobile/small/image/close.png"}}' hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'></image>
     </view>
     <view class='content-title'>余额支付</view>
-    <view class='money'>￥{{orderInfo.totalPrice}}</view>
+    <view class='money'>￥{{orderInfo.totalPrice}}元</view>
     <view class='enter' hover-class='hover-class' hover-stay-time='400' bindtap='enterPassword'>
       <input type='number' focus="{{focus}}" disabled='{{inputDisabled}}' bindinput='pswInput' maxlength='6' adjust-position='{{adjustPosition}}' value='{{password}}'></input>
       <view>

@@ -19,7 +19,7 @@
             <view class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
               <text class='unit'>￥</text>
               <text class='integer'>{{util.integer(item.price)}}</text>
-              <text class='decimals'>.{{util.decimals(item.price)}}</text>
+              <text class='decimals'>.{{util.decimals(item.price)}}元</text>
             </view>
             <view class='cart-number'>
               <view style='{{util.diyImgbox(46)}}margin:0'>

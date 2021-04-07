@@ -7,7 +7,7 @@
         <view class='tel'>{{util.phoneEnc(item.phone)}}</view>
         <view class='default bg' hidden='{{item.isDefault == 0}}' style='{{util.diyColor("",diyColor.zColor,"")}}'>默认</view>
       </view>
-      <view class='detail'>{{item.province}} {{item.city}} {{item.area}} {{item.street}} {{item.address}}</view>
+      <view class='detail'>{{item.province || ''}} {{item.city || ''}} {{item.area || ''}} {{item.street || ''}} {{item.address || ''}}</view>
     </view>
     <image src='{{util.HTTP}}mobile/small/image/gwc-sl-bj.png' catchtap='changeAddress' data-id='{{item.memberAddressId}}' ></image>
   </view>

@@ -9,7 +9,7 @@
             <view class='address-phone'>{{address.phone}}</view>
           </view>
           <view class='address-detail'>
-            收货地址:{{address.province}}{{address.city}}{{address.area}}{{address.street}}{{address.address}}
+            收货地址:{{address.province || ''}}{{address.city || ''}}{{address.area || ''}}{{address.street || ''}}{{address.address || ''}}
           </view>
           <image class='next' src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
         </view>
@@ -39,7 +39,7 @@
                 <view class='good-price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
                   <text class='unit'>￥</text>
                   <text class='integer'>{{util.integer(item.price)}}</text>
-                  <text class='decimals'>.{{util.decimals(item.price)}}</text>
+                  <text class='decimals'>.{{util.decimals(item.price)}}元</text>
                 </view>
                 <view class='good-num'>x{{item.number}}</view>
               </view>
@@ -96,7 +96,7 @@
             <view class='right'>
               <view>共{{item.totalNumber}}件商品 小计:</view>
               <view class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
-                ￥{{util.toFixed(item.totalPrice)}}
+                ￥{{util.toFixed(item.totalPrice)}}元
               </view>
             </view>
           </view>
@@ -136,13 +136,13 @@
         <view class='operation' wx:if='{{configSwitch.showSwitch.isCoupon==1}}'>
           <view class='left'>优惠券</view>
           <view class='right'>
-            <text>-￥{{couponPrice}}</text>
+            <text>-￥{{couponPrice}}元</text>
           </view>
         </view>
         <view class='operation' wx:if='{{configSwitch.showSwitch.isRredPacket==1}}'>
           <view class='left'>红包</view>
           <view class='right'>
-            <text>-￥{{packetPrice}}</text>
+            <text>-￥{{packetPrice}}元</text>
           </view>
         </view>
         <wxs module="dp">
@@ -174,7 +174,7 @@
       </button>
       <view>
         <text class='content'>合计:</text>
-        <text class='price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>￥{{util.toFixed(total)}}</text>
+        <text class='price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>￥{{util.toFixed(total)}}元</text>
       </view>
     </form>
   </view>

@@ -67,7 +67,7 @@
     <view>
       <text class='content'>合计:</text>
       <text class='price cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
-        ￥{{util.toFixed(total)}}
+        ￥{{util.toFixed(total)}}元
       </text>
     </view>
   </view>

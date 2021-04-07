@@ -12,7 +12,7 @@
     <view>
       <view class='order-item-good-info'>
         <view class='order-item-good-name'>{{item.goodsName}}</view>
-        <view class='order-item-good-price'>￥{{item.singlePrice}}</view>
+        <view class='order-item-good-price'>￥{{item.singlePrice}}元</view>
       </view>
       <view class='order-item-good-tips'>
         <view class='order-item-good-attr'>{{item.attr}}</view>

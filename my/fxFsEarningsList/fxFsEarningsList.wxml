@@ -11,22 +11,22 @@
     <scroll-view scroll-y style='height:100%;' bindscrolltolower="loadMore" bindscroll="scroll" scroll-top="{{scrollTop}}" hidden='{{goodList.length == 0 && !loading}}' scroll-with-animation>
       <view class='order_info'>
         <view class='num'>订单总量：{{data.total}}</view>
-        <view class='price'>累计收益：{{data.totalPrice}}</view>
+        <view class='price'>累计收益：{{data.totalPrice}}元</view>
       </view>
       <view class='list-item' wx:for='{{list}}'>
         <view class='info'>
           <view class='month'>{{item.date}}月</view>
           <view class='info_view t_yjs' hidden='{{type!=0}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>
             +
-            <text>￥{{item.subtotalPrice}}</text>
+            <text>￥{{item.subtotalPrice}}元</text>
           </view>
           <view class='info_view t_wjs' hidden='{{type!=1}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>
             +
-            <text>￥{{item.subtotalPrice}}</text>
+            <text>￥{{item.subtotalPrice}}元</text>
           </view>
           <view class='info_view t_wjs' hidden='{{type!=2}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>
             预估
-            <text>￥{{item.subtotalPrice}}</text>
+            <text>￥{{item.subtotalPrice}}元</text>
           </view>
         </view>
         <view class='list'>
@@ -56,7 +56,7 @@
               <view class='info'>
                 <view class='goodstitle'>{{cItem.goodsName}}</view>
                 <view class='goodsinfo'>
-                  <view class='goodsprice'>￥{{cItem.price}}</view>
+                  <view class='goodsprice'>￥{{cItem.price}}元</view>
                   <view class='goodstime'>下单日{{cItem.underOrderTime}}</view>
                 </view>
               </view>

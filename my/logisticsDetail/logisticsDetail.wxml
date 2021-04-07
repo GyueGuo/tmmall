@@ -13,7 +13,7 @@
         <block wx:if='{{info.price!=0}}'>
           <text class='unit'>￥</text>
           <text class='integer'>{{util.integer(info.price)}}</text>
-          <text class='decimals'>.{{util.decimals(info.price)}}</text>
+          <text class='decimals'>.{{util.decimals(info.price)}}元</text>
         </block>
       </view>
     </view>

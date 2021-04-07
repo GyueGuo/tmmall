@@ -15,9 +15,9 @@
               <text>底价</text>
               <text class='unit'>￥</text>
               <text class='integer'>{{util.integer(item.goods.cutPrice)}}</text>
-              <text class='decimals'>.{{util.decimals(item.goods.cutPrice)}}</text>
+              <text class='decimals'>.{{util.decimals(item.goods.cutPrice)}}元</text>
             </view>
-            <view class='origin-price'>原价￥{{item.goods.shopPrice}}</view>
+            <view class='origin-price'>原价￥{{item.goods.shopPrice}}元</view>
           </view>
           <view class='bargain-now bg' style='{{util.diyColor("",diyColor.zColor,"")}}'>立即砍价</view>
         </view>

@@ -17,7 +17,7 @@
         <view class='time'>{{item.applyTime}}</view>
         <view class='price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
           <text>+</text>
-          <text>{{item.price}}</text>
+          <text>{{item.price}}元</text>
         </view>
       </view>
     </view>

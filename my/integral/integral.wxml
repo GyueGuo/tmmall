@@ -78,7 +78,7 @@
         <text>积分</text>
         <view class='price' hidden='{{exchangeTab==1}}'>
           <text>+</text>
-          <text style='{{util.diyColor(diyColor.zColor,"","")}}'>￥{{item.price}}</text>
+          <text style='{{util.diyColor(diyColor.zColor,"","")}}'>￥{{item.price}}元</text>
         </view>
       </view>
       <view class='go-exchange'>

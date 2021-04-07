@@ -18,7 +18,7 @@
           <view class="cur" style='{{util.diyColor(diyColor.zColor,"","")}}'>
             <view class="{{item.limitNum==0&&item.exchangeNum!=0||(item.memberCouponCount<item.limitNum&&item.exchangeNum!=0)?'cur':'gray'}}" style='{{item.limitNum==0&&item.exchangeNum!=0||(item.memberCouponCount<item.limitNum&&item.exchangeNum!=0)?util.diyColor(diyColor.zColor,"",""):""}}'>
               <text class='unit'>￥</text>
-              <text class='price'>{{item.actualPrice}}</text>
+              <text class='price'>{{item.actualPrice}}元</text>
             </view>
             <block wx:if='{{item.fullSubtractionPrice!=0}}'>
               <view class="tips {{item.limitNum==0&&item.exchangeNum!=0||(item.memberCouponCount<item.limitNum&&item.exchangeNum!=0)?'':'gray'}}">

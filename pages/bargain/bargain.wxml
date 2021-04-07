@@ -22,10 +22,10 @@
           <view class='good-name'>{{info.goods.goodsName}}</view>
           <view class='good-price'>
             <text class='base-price cur' style='{{util.diyColor("#f23030","","")}}'>底价{{info.cutPrice}}元</text>
-            <text class='origin-price'>￥{{info.originalPrice}}</text>
+            <text class='origin-price'>￥{{info.originalPrice}}元</text>
           </view>
           <view class='good-tips'>
-            <text class='present-price cur' style='{{util.diyColor("#f23030","","")}}'>￥{{info.presentPrice}}</text>
+            <text class='present-price cur' style='{{util.diyColor("#f23030","","")}}'>￥{{info.presentPrice}}元</text>
             <text class='bargain-num'>{{info.goods.cutSuccessNum}}人砍价成功</text>
           </view>
         </view>
@@ -46,8 +46,8 @@
           <view class='progress' style='width:{{(info.originalPrice - info.presentPrice)/(info.originalPrice - info.cutPrice) * 100}}%;'></view>
         </view>
         <view class='bargain-money'>
-          <view>原价{{info.originalPrice}}</view>
-          <view>底价{{info.cutPrice}}</view>
+          <view>原价{{info.originalPrice}}元</view>
+          <view>底价{{info.cutPrice}}元</view>
         </view>
       </view>
       <view class='bargain-operation' wx:if="{{info.state== 1 && info.status == 1 && !isCutout}}">

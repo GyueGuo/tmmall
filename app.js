@@ -1029,5 +1029,7 @@ App({
     orderRefundMoney: HTTP + 'v2.0/order/refundMoney',
     // 口令红包兑换
     getRedComandPacket: HTTP+ 'v2.0/red/getRedComandPacket',
+    // 
+    deleteEvaluate: HTTP+ 'v2.0/evaluate/deleteEvaluate'
   }
 })

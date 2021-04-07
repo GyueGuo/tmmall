@@ -217,6 +217,7 @@ Page({
       title: '上传中...',
       mask: true
     })
+    this.data.info[0].multipleFile = ''
     this.uploadFile(0)
   },
 
@@ -315,6 +316,8 @@ Page({
           })
         }
       })
+    }, (msg) => {
+      app.showSuccessToast(msg)
     })
   }
 

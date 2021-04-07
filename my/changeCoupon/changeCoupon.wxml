@@ -10,14 +10,14 @@
             <view class='coupon-title'>{{item.title}}</view>
             <block wx:if="{{item.exchangeNum!=0}}">
               <view class='coupon-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
-                <text class='favourable-price'>￥{{item.actualPrice}}</text>
-                <text class='off-price' style='{{util.diyColor("",diyColor.fColor2,"")}}'>满{{item.fullSubtractionPrice}}使用</text>
+                <text class='favourable-price'>￥{{item.actualPrice}}元</text>
+                <text class='off-price' style='{{util.diyColor("",diyColor.fColor2,"")}}'>满{{item.fullSubtractionPrice}}元使用</text>
               </view>
             </block>
             <block wx:else>
               <view class='coupon-price' style='color:#ccc;'>
-                <text class='favourable-price'>{{item.actualPrice}}</text>
-                <text class='off-price' style='{{util.diyColor("","#f7f7f7","")}}'>满{{item.fullSubtractionPrice}}使用</text>
+                <text class='favourable-price'>￥{{item.actualPrice}}元</text>
+                <text class='off-price' style='{{util.diyColor("","#f7f7f7","")}}'>满{{item.fullSubtractionPrice}}元使用</text>
               </view>
             </block>
           </view>
@@ -55,8 +55,8 @@
 
         <view class='exchange-info'>
           <text class='exchange-off'>￥</text>
-          <text class='exchange-price'>{{info.actualPrice}}</text>
-          <text class='exchange-off'>满{{info.fullSubtractionPrice}}使用</text>
+          <text class='exchange-price'>{{info.actualPrice}}元</text>
+          <text class='exchange-off'>满{{info.fullSubtractionPrice}}元使用</text>
         </view>
         <view class='exchange-fit'>{{info.title}}</view>
 

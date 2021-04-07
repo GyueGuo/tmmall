@@ -22,7 +22,7 @@
     <view class="price cur {{tab==0?'':'gray'}}" style='{{tab==0?util.diyColor(diyColor.zColor,"",""):""}}'>
       <text class='unit'>￥</text>
       <text class='integer'>{{util.integer(item.actualPrice)}}</text>
-      <text class='decimals'>.{{util.decimals(item.actualPrice)}}</text>
+      <text class='decimals'>.{{util.decimals(item.actualPrice)}}元</text>
     </view>
     <image class='logo' wx:if="{{tab == 1}}" src='{{util.HTTP}}mobile/small/image/hb-ysy.png'></image>
     <image class='logo' wx:elif="{{tab == 2}}" src='{{util.HTTP}}mobile/small/image/hb-ygq.png'></image>

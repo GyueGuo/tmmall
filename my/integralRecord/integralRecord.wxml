@@ -10,7 +10,7 @@
         <text class='unit'>积分</text>
         <text hidden='{{item.price == 0}}'> + </text>
         <text class='cur unit' hidden='{{item.price == 0}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>￥</text>
-        <text class='cur' hidden='{{item.price == 0}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>{{item.price}}</text>
+        <text class='cur' hidden='{{item.price == 0}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>{{item.price}}元</text>
       </view>
     </view>
     <view class='shipping-state cur' hidden='{{item.status != 0}}' style='{{item.status == 0?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>待发货</view>

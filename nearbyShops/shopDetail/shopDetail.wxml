@@ -194,25 +194,25 @@
               <view class='price' wx:if="{{item.isGroup == 1}}" style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text class='unit'>￥</text>
                 <text class='integer'>{{util.integer(item.groupPrice)}}</text>
-                <text class='decimals'>.{{util.decimals(item.groupPrice)}}</text>
-                <text class='shop_price'>{{item.shopPrice}}</text>
+                <text class='decimals'>.{{util.decimals(item.groupPrice)}}元</text>
+                <text class='shop_price'>{{item.shopPrice}}元</text>
               </view>
               <view class='price' wx:elif="{{item.isBargain == 1}}" style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text class='unit'>￥</text>
                 <text class='integer'>{{util.integer(item.cutPrice)}}</text>
-                <text class='decimals'>.{{util.decimals(item.cutPrice)}}</text>
-                <text class='shop_price'>{{item.shopPrice}}</text>
+                <text class='decimals'>.{{util.decimals(item.cutPrice)}}元</text>
+                <text class='shop_price'>{{item.shopPrice}}元</text>
               </view>
               <view class='price' wx:elif="{{item.isLimit == 1}}" style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text class='unit'>￥</text>
                 <text class='integer'>{{util.integer(item.timeLimitPrice)}}</text>
-                <text class='decimals'>.{{util.decimals(item.timeLimitPrice)}}</text>
-                <text class='shop_price'>￥{{item.shopPrice}}</text>
+                <text class='decimals'>.{{util.decimals(item.timeLimitPrice)}}元</text>
+                <text class='shop_price'>￥{{item.shopPrice}}元</text>
               </view>
               <view class='price' wx:else style='{{util.diyColor(diyColor.zColor,"","")}}'>
                 <text class='unit'>￥</text>
                 <text class='integer'>{{util.integer(item.shopPrice)}}</text>
-                <text class='decimals'>.{{util.decimals(item.shopPrice)}}</text>
+                <text class='decimals'>.{{util.decimals(item.shopPrice)}}元</text>
               </view>
             </view>
             <view class='cart-number'>

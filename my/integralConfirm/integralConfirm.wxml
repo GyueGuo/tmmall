@@ -24,7 +24,7 @@
         <view class='good-name'>{{result.integralName}}</view>
         <view class='good-tips cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
           <text>{{result.integral}}积分</text>
-          <text hidden='{{result.price == 0}}'> +￥{{result.price}}</text>
+          <text hidden='{{result.price == 0}}'> +￥{{result.price}}元</text>
         </view>
       </view>
     </view>
@@ -35,7 +35,7 @@
       <view>
         <text>消耗积分 : </text>
         <text class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>{{result.integral}}</text>
-        <text class='cur' hidden='{{result.price == 0}}' style='{{util.diyColor(diyColor.zColor,"","")}}'> +￥{{result.price}}</text>
+        <text class='cur' hidden='{{result.price == 0}}' style='{{util.diyColor(diyColor.zColor,"","")}}'> +￥{{result.price}}元</text>
       </view>
     </view>
     <view class='right bg' hover-class='hover-class' hover-stay-time='400' bindtap='confirm' style='{{util.diyColor("",diyColor.zColor,"")}}'>确认兑换</view>

@@ -21,10 +21,7 @@
       <view class='pic-list'>
         <view wx:if="{{item.video == ''}}" hover-class='hover-class' hover-stay-time='400' bindtap='chooseVideo' data-index='{{index}}'>
           <image class='pic' src='{{util.HTTP}}mobile/small/image/wd-pj-.png'></image>
-          <view class='try' style='{{util.diyImgbox(144)}}'>
-            <text>试试这个</text>
-            <image src='{{util.HTTP}}mobile/small/image/wd-pj-s-2.png' style='{{util.diyImgcolor(diyColor.zColor,144,58)}}'></image>
-          </view>
+          <view class='try'>试试这个</view>
         </view>
         <view class='video' wx:else>
           <image class='pic' style='background:black'></image>

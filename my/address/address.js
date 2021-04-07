@@ -180,7 +180,6 @@ Page({
       let prevPage = pages[pages.length - 2];
       switch (this.data.oType) {
         case '2':
-          console.log(address)
           prevPage.setData({
             'info.address': address,
             memberAddressId: address.memberAddressId

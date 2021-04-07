@@ -45,10 +45,10 @@
       <view class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
         <text class='unit'>￥</text>
         <text class='integer'>{{util.integer(item.groupPrice)}}</text>
-        <text class='decimals'>.{{util.decimals(item.groupPrice)}}</text>
+        <text class='decimals'>.{{util.decimals(item.groupPrice)}}元</text>
       </view>
     </view>
-    <view class='single-price'>￥{{item.shopPrice}}</view>
+    <view class='single-price'>￥{{item.shopPrice}}元</view>
     <view class='collage-logo' style='background:linear-gradient(to right,{{diyColor.zColor}},{{diyColor.fColor}});box-shadow:0 2rpx 10rpx 0 {{diyColor.zColor}};'>
       <image src='{{util.HTTP}}mobile/small/image/pg-wd-pim.png'></image>
     </view>

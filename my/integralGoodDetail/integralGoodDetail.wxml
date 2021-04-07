@@ -8,7 +8,7 @@
         <view class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
           <text class='integral'>{{info.integral}}</text>
           <text class='integral-unit'>积分</text>
-          <text class='integral-unit' hidden='{{info.price==0}}'>+￥{{info.price}}</text>
+          <text class='integral-unit' hidden='{{info.price==0}}'>+￥{{info.price}}元</text>
         </view>
         <view class='exchange-num'>{{info.addNumber}}人已兑换</view>
       </view>

@@ -8,7 +8,7 @@
       </view>
       <view class='sy-price'>{{info.closePro}}</view>
       <view class='sy-balance'>
-        <view class='sy-title'>账户余额：￥{{info.usableMoney}}</view>
+        <view class='sy-title'>账户余额：￥{{info.usableMoney}}元</view>
         <view class='sy-btn' hover-class='hover-class' hover-stay-time='400' bindtap='fxWithdrawal'>立即提现</view>
       </view>
     </view>
@@ -26,7 +26,7 @@
         <view class='name'>已结算</view>
       </view>
       <view class='line' data-type='1' data-title='total' hover-class='hover-class' hover-stay-time='400' bindtap='fxEarningsList'>
-        <view class='price'>￥{{info.waitPro==null?'0.00':info.waitPro}}</view>
+        <view class='price'>￥{{info.waitPro==null?'0.00':info.waitPro}}元</view>
         <view class='name'>未结算</view>
       </view>
     </view>
@@ -43,7 +43,7 @@
         <view class='name'>已结算</view>
       </view>
       <view class='line' data-type='1' data-title='today' hover-class='hover-class' hover-stay-time='400' bindtap='fxEarningsList'>
-        <view class='price'>￥{{info.todayWaitPro==null?'0.00':info.todayWaitPro}}</view>
+        <view class='price'>￥{{info.todayWaitPro==null?'0.00':info.todayWaitPro}}元</view>
         <view class='name'>未结算</view>
       </view>
     </view>

@@ -5,9 +5,10 @@
     <view class='input'>
       <text>￥</text>
       <input type='digit' value='{{withdrawalPrice}}' bindinput='bindinput'></input>
+      <text>元</text>
     </view>
     <view class='earnings'>
-      <view class='num'>当前收益：￥{{info.closeBrokerage}}</view>
+      <view class='num'>当前收益：￥{{info.closeBrokerage}}元</view>
       <view class='record' hover-class='hover-class' hover-stay-time='400' bindtap='record'>提现记录</view>
     </view>
   </view>
