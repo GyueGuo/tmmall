@@ -139,8 +139,8 @@ Page({
     if (this.signing) {
       return;
     }
-    this.signing = true
     if (app.login()) {
+      this.signing = true
       http
         .post(app.globalData.sign, {})
         .then(() => {
