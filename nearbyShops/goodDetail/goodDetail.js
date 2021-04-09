@@ -406,7 +406,7 @@ Page({
               val.title = `有图(${res.statistics.file})`
               break;
             case 6:
-              val.title = `视频(${res.statistics.video})`
+              val.title = `视频(${res.statistics.videos})`
               break;
           }
           return val
