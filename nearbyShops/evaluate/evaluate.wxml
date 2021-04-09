@@ -42,7 +42,7 @@
       <view style='{{util.diyImgbox(18)}}margin-right:6rpx;' wx:if='{{currentTab==7}}'>
         <image src='{{util.HTTP}}mobile/small/image/xq-pj-g.png' style='{{util.diyImgcolor(diyColor.zColor,18,12)}}margin-right:0'></image>
       </view>
-      <text>视频({{statistics.video}})</text>
+      <text>视频({{statistics.videos}})</text>
     </view>
   </view>
 
