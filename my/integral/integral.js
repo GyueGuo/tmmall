@@ -136,10 +136,23 @@ Page({
    * 签到
    */
   signIn() {
+    if (this.signing) {
+      return;
+    }
     if (app.login()) {
-      http.post(app.globalData.sign, {}).then(() => {
-        this.getUserData()
-      })
+      this.signing = true
+      http
+        .post(app.globalData.sign, {})
+        .then(() => {
+          this.getUserData()
+        }).catch(() => {
+          wx.showToast({
+            icon: 'none',
+            title: "系统错误，请稍后再试"
+          });
+        }).finally(() => {
+          this.signing = false
+        });
     }
   },
 
