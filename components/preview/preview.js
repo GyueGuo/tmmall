@@ -37,6 +37,7 @@ Component({
    */
   data: {
     banner: [],
+    bannerLength: 1,
     currentBanner: 1,
     //图片滑动开始X
     moveX: '',

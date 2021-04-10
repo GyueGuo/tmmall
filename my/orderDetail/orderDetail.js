@@ -344,7 +344,8 @@ Page({
    */
   confirmReceipt() {
     http.post(app.globalData.confirmCollect, {
-      orderAttachId: this.data.orderAttachId
+      orderAttachId: this.data.orderAttachId,
+      orderStatus: 3,
     }).then(res => {
       app.showSuccessToast('收货成功', () => {
         this.getDetail()

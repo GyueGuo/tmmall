@@ -217,7 +217,8 @@ Page({
   confirmReceipt(e) {
     let index = e.currentTarget.dataset.index
     http.post(app.globalData.confirmCollect, {
-      orderAttachId: e.currentTarget.dataset.id
+      orderAttachId: e.currentTarget.dataset.id,
+      orderStatus: 3,
     }).then(res => {
       app.showSuccessToast('收货成功')
       this.data.list[index].status = 3

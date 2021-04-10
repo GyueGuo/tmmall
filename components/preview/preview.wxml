@@ -17,6 +17,6 @@
   </view>
   <view class='banner-num'>
     <text>{{currentBanner}}</text>
-    <text>/{{currentBanner}}</text>
+    <text>/{{bannerLength}}</text>
   </view>
 </view>

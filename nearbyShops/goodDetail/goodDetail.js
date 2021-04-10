@@ -406,11 +406,16 @@ Page({
               val.title = `有图(${res.statistics.file})`
               break;
             case 6:
-              val.title = `视频(${res.statistics.video})`
+              val.title = `视频(${res.statistics.videos})`
               break;
           }
           return val
         })
+        res.result.data.forEach((item) => {
+          if (item.multipleFile) {
+            item.multipleFile = item.multipleFile.split(',')
+          }
+        });
         this.setData({
           evaluateArr: evaluateArr,
           evaluateTotal: res.result.total,

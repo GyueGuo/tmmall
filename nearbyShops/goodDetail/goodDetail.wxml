@@ -642,7 +642,7 @@
       </scroll-view>
     </swiper-item>
     <!-- 第二屏 -->
-    <swiper-item class='section-content'>
+    <swiper-item class='section-content' wx:if="{{info.webContent}}">
       <scroll-view class='scroll-view' scroll-y scroll-top="{{currentScrollTop1}}" bindscroll='scroll'>
         <Parser html='{{info.webContent}}' bindparse='parse' />
       </scroll-view>

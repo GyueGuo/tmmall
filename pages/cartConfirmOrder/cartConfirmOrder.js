@@ -614,7 +614,7 @@ Page({
           outTradeNo: res.result.orderNumber,
         }
         wx.redirectTo({
-          url: '/nearbyShops/payResult/payResult?item=' + JSON.stringify(item),
+          url: '/nearbyShops/payResult/payResult?item=' + encodeURIComponent(JSON.stringify(item))
         })
         return
       }
@@ -627,7 +627,7 @@ Page({
             distributionId: ''
           }
           wx.redirectTo({
-            url: '/nearbyShops/payResult/payResult?item=' + JSON.stringify(item),
+            url: '/nearbyShops/payResult/payResult?item=' + encodeURIComponent(JSON.stringify(item))
           })
         })
         return

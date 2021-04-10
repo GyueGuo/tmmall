@@ -137,8 +137,22 @@
     {
       "root": "nearbyShops",
       "pages": [
-        
-        "goodDetail/goodDetail"
+        "findShops/findShops",
+        "shopDetail/shopDetail",
+        "searchInShop/searchInShop",
+        "shopClassify/shopClassify",
+        "shopIntro/shopIntro",
+        "dynamicDetail/dynamicDetail",
+        "goodDetail/goodDetail",
+        "preview/preview",
+        "priceNotification/priceNotification",
+        "evaluate/evaluate",
+        "payResult/payResult",
+        "shopCredential/shopCredential",
+        "invoiceDetail/invoiceDetail",
+        "invoiceInfo/invoiceInfo",
+        "invoiceOver/invoiceOver",
+        "shopAudit/shopAudit"
       ]
     },
     {
