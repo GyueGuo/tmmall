@@ -19,7 +19,7 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      item: JSON.parse(options.item),
+      item: JSON.parse(decodeURIComponent(options.item)),
       diyColor: app.globalData.diyColor
     })
 

@@ -411,6 +411,11 @@ Page({
           }
           return val
         })
+        res.result.data.forEach((item) => {
+          if (item.multipleFile) {
+            item.multipleFile = item.multipleFile.split(',')
+          }
+        });
         this.setData({
           evaluateArr: evaluateArr,
           evaluateTotal: res.result.total,

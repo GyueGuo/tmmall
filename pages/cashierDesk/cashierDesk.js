@@ -143,7 +143,7 @@ Page({
     switch (this.data.orderInfo.orderType) {
       case 1:
         wx.redirectTo({
-          url: '/nearbyShops/payResult/payResult?item=' + JSON.stringify(item)
+          url: '/nearbyShops/payResult/payResult?item=' + encodeURIComponent(JSON.stringify(item))
         })
         
         break;
@@ -161,13 +161,13 @@ Page({
           outTradeNo: this.data.orderInfo.orderNumber == '' ? this.data.orderInfo.orderAttachNumber : this.data.orderInfo.orderNumber
         }).then(res => {
           wx.redirectTo({
-            url: '/nearbyShops/payResult/payResult?item=' + JSON.stringify(item),
+            url: '/nearbyShops/payResult/payResult?item=' + encodeURIComponent(JSON.stringify(item))
           })
         })
         break;
       case 4:
         wx.redirectTo({
-          url: '/nearbyShops/payResult/payResult?item=' + JSON.stringify(item),
+          url: '/nearbyShops/payResult/payResult?item=' + encodeURIComponent(JSON.stringify(item))
         })
         break;
       case 'invoice':

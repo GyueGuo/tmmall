@@ -188,7 +188,7 @@ Component({
       switch (orderType) {
         case 1:
           wx.redirectTo({
-            url: '/nearbyShops/payResult/payResult?item=' + JSON.stringify(item),
+            url: '/nearbyShops/payResult/payResult?item=' + encodeURIComponent(JSON.stringify(item))
           })
           break;
         case 2:
@@ -198,12 +198,12 @@ Component({
           break;
         case 3:
           wx.redirectTo({
-            url: '/nearbyShops/payResult/payResult?item=' + JSON.stringify(item),
+            url: '/nearbyShops/payResult/payResult?item=' + encodeURIComponent(JSON.stringify(item))
           })
           break;
         case 4:
           wx.redirectTo({
-            url: '/nearbyShops/payResult/payResult?item=' + JSON.stringify(item),
+            url: '/nearbyShops/payResult/payResult?item=' + encodeURIComponent(JSON.stringify(item))
           })
           break;
         case 'invoice':
