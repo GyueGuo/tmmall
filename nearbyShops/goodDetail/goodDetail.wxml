@@ -200,7 +200,7 @@
         <view class='item-btn'>客服</view>
       </button>
       <button class='item' hover-class='hover-class' hover-stay-time='400' bindtap='onCollect'>
-        <view class='font_family star {{info.collect!=null?"icon-dp-dtxqsc1":"icon-dp-dtxqsc-"}}' style='{{info.collect!=null?util.diyColor(diyColor.zColor,"",""):"color:#58595b"}}'></view>
+        <view class='font_family star {{info.collect?"icon-dp-dtxqsc1":"icon-dp-dtxqsc-"}}' style='{{info.collect?util.diyColor(diyColor.zColor,"",""):"color:#58595b"}}'></view>
         <view class='item-btn'>收藏</view>
       </button>
     </view>

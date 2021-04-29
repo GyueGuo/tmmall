@@ -27,7 +27,7 @@ Page({
         if (code === 0) {
           this.setData({
             isModalVisible: true,
-            redPacketInfo: res.result,
+            redPacketInfo: result,
           });
         } else {
           wx.showToast({

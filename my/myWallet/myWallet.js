@@ -78,7 +78,7 @@ Page({
   getData() {
     http.post(app.globalData.myMyWallet, {}).then(res => {
       this.setData({
-        info: res.data
+        info: res.result,
       })
     })
   },

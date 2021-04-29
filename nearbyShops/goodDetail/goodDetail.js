@@ -904,29 +904,23 @@ Page({
     if (!app.login()) {
       return
     }
-    if (this.data.info.collect == null) {
-      url = app.globalData.collectGoods
-    } else {
+    if (this.data.info.collect) {
       url = app.globalData.collectDelete
+    } else {
+      url = app.globalData.collectGoods
     }
     http.post(url, {
       goodsId: this.data.goodsId,
       storeId: this.data.info.storeId,
     }).then(res => {
-      this.data.info.collect = this.data.info.collect == null ? '1' : null
+      const { collect } = this.data.info
+      this.data.info.collect = collect ? 0 : 1
       this.setData({
         info: this.data.info
       })
-      if (this.data.info.collect != null) {
-        wx.showToast({
-          title: '收藏成功',
-        })
-      } else {
-        wx.showToast({
-          title: '取消收藏成功',
-          icon: 'none'
-        })
-      }
+      wx.showToast({
+        title: collect ? '取消收藏成功' : '收藏成功',
+      });
     })
   },
 

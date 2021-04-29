@@ -30,10 +30,10 @@
       <view class='title'>账户充值</view>
       <image class='next' src='{{util.HTTP}}mobile/small/image/my/1-9.png'></image>
     </view>
-    <view class='li' data-item='bank' hover-class='hover-class' hover-stay-time='400' bindtap='route' wx:if='{{configSwitch.showSwitch.isRecharge1!=1}}' >
+    <!-- <view class='li' data-item='bank' hover-class='hover-class' hover-stay-time='400' bindtap='route' wx:if='{{configSwitch.showSwitch.isRecharge1!=1}}' >
       <image class='img' src='{{util.HTTP}}mobile/small/image/bank/bank_2.png'></image>
       <view class='title'>银行卡</view>
       <image class='next' src='{{util.HTTP}}mobile/small/image/my/1-9.png'></image>
-    </view>
+    </view> -->
   </view>
 </view>
