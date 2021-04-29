@@ -500,7 +500,7 @@ Page({
         text: e,
         file: encodeURIComponent(this.data.info.file),
         price: price,
-        name: this.data.info.goodNname,
+        name: this.data.info.goodsName,
         orderType: this.data.orderType,
         shopLogo: app.globalData.isShops == 0 ? encodeURIComponent(this.data.info.logo) : encodeURIComponent(this.data.configSwitch.appInfo.logo),
         groupNum: this.data.info.groupNum,
@@ -1037,9 +1037,6 @@ Page({
         }
         app.globalData.lat = data.result.location.lat
         app.globalData.lng = data.result.location.lng
-      },
-      fail: () => {
-        app.showToast('定位失败,请检查网络或定位权限', () => {})
       }
     })
     wx.nextTick(() => {
