@@ -58,7 +58,7 @@ Component({
       })
     },
     draw(poster) {
-      let price = poster.price
+      let price = poster.price.toString();
       this.ctx = wx.createCanvasContext('poster', this)
       wx.getImageInfo({
         src: app.globalData.HTTP + 'mobile/small/hb-xsqqg-bj.png',
@@ -496,7 +496,7 @@ Component({
      */
     getTextLine(obj) {
       this.ctx.setFontSize(obj.size);
-      let arrText = obj.text.split('');
+      let arrText = (obj.text || '').split('');
       let line = '';
       let arrTr = [];
       for (let i = 0, len = arrText.length; i < len; i++) {
