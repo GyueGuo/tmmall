@@ -4,7 +4,7 @@ Page({
   data: {
     isModalVisible: false,
     redComand: '',
-    redPacketInfo: null,
+    redPacketInfo: {},
   },
   onLoad() {
     if (!app.globalData.memberId || !app.globalData.phone) {
