@@ -27,7 +27,7 @@
 
   <image class='ad' src='{{adv.file}}' wx:if='{{adv.file!=undefined}}' bindtap='adv'></image>
 
-  <view class='content-list'>
+  <!-- <view class='content-list'>
     <view hover-class='hover-class' hover-stay-time='400' bindtap='game'>
       <view>
         <image src='{{util.HTTP}}mobile/small/image/sy-jfsc-icon-wyx.png'></image>
@@ -52,19 +52,19 @@
         <view>兑换记录</view>
       </view>
     </view>
-  </view>
+  </view> -->
 
-  <view class='integer-list'>
+  <!-- <view class='integer-list'>
     <view class='list-head' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>
       <view  hover-class='hover-class' hover-stay-time='400' bindtap='creditsExchange' style='{{exchangeTab==1?util.diyColor("#fff",diyColor.zColor,""):""}}'>积分兑换</view>
       <view  hover-class='hover-class' hover-stay-time='400' bindtap='pointRedemption' style='{{exchangeTab==2?util.diyColor("#fff",diyColor.zColor,""):""}}'>积分换购</view>
     </view>
-  </view>
-  <scroll-view scroll-x class='tab-scroll'>
+  </view> -->
+  <!-- <scroll-view scroll-x class='tab-scroll'>
     <view class='tab' wx:for="{{classify}}" hover-class='hover-class' hover-stay-time='400' bindtap='onTab' data-id='{{item.integralClassifyId}}'>
       <text style='{{classifyId == item.integralClassifyId?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>{{item.title}}</text>
     </view>
-  </scroll-view>
+  </scroll-view> -->
 
   <view class='exchange-list'>
     <view wx:for="{{result}}" hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.integralId}}'>
