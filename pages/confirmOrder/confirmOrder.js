@@ -199,15 +199,26 @@ Page({
           this.selectComponent("#modal").showModal()
         }
       }
-
+      let couponPrice = '0.00';
+      if (res.coupon.length) {
+        couponPrice = res.couponPrice
+        res.coupon.selected;
+      }
+      let packet = '0.00';
+      let memberPacketId = '';
+      if (res.packet.length) {
+        res.packet[0].select = 1;
+        packet = res.packet[0].actualPrice;
+        memberPacketId = res.packet[0].memberPacketId;
+      }
       this.setData({
         finish: true,
         address: res.address,
         store: res.result,
         coupon: res.coupon,
-        couponPrice: res.coupon.length == 0 ? '0.00' : res.couponPrice,
-        packet: res.packet.length == 0 ? '0.00' : res.packet[0].actualPrice,
-        memberPacketId: res.packet.length == 0 ? '' : res.packet[0].memberPacketId,
+        couponPrice,
+        packet,
+        memberPacketId,
         freight: res.freight == null ? null : res.freight[0],
         takeId: this.data.takeId,
         takeItem: this.data.takeItem,
@@ -654,7 +665,7 @@ Page({
       if (e.detail[i].select) {
         price = parseFloat(e.detail[i].actualPrice)
         memberPacketId = e.detail[i].memberPacketId
-      } else {
+
         memberPacketId = ''
       }
     }

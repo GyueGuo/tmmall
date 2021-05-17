@@ -57,13 +57,13 @@ Page({
           url: '/nearbyShops/shopDetail/shopDetail?storeId=' + item.storeId,
         })
       } else {
-        wx.navigateTo({
+        wx.navigxateTo({
           url: '/pages/searchGoods/searchGoods'
         })
       }
     } else {
       wx.navigateTo({
-        url: '/pages/searchGoods/searchGoods?goodsClassifyId=' + item.goodsClassifyId,
+        url: '/pages/searchGoods/searchGoods',
       })
     }
   },
