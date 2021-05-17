@@ -38,7 +38,8 @@
     "pages/nearbyShops/nearbyShops",
     "pages/integralCashierDesk/integralCashierDesk",
     "pages/invitationWeb/invitationWeb",
-    "pages/passwordRedPacket/index"
+    "pages/passwordRedPacket/index",
+    "pages/passwordRedPacket/list"
   ],
   "subPackages": [
     {

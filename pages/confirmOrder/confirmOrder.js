@@ -123,10 +123,10 @@ Page({
     }).then(res => {
 
       for (let i = 0; i < res.coupon.length; i++) {
-        res.coupon[i].select = true
+        // res.coupon[i].select = true
       }
       if (res.packet.length != 0) {
-        res.packet[0].select = true
+        // res.packet[0].select = true
       }
       if (res.freight.length != 0) {
         this.setData({

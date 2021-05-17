@@ -1,4 +1,5 @@
 <view class="wrap">
+  <navigator url="/pages/passwordRedPacket/list" class="redpacket-list">已领红包</navigator>
   <view class="big-title">兑换口令</view>
   <input maxlength="1000" class="password-input" bindinput="handleInput" value=""/>
   <view class="exchange-btn{{ redComand.length ? '' : ' disabled'}}" bindtap="handleExchange">立即兑换</view>

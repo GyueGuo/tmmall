@@ -101,7 +101,7 @@ Page({
         break;
       case 'redPacket': //红包
         wx.navigateTo({
-          url: `/my/redPocket/redPocket`
+          url: '/pages/passwordRedPacket/list'
         })
         break;
       case 'payPoints': //积分

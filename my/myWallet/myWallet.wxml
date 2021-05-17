@@ -16,7 +16,7 @@
     <view class='li' data-item='redPacket' hover-class='hover-class' hover-stay-time='400' bindtap='route' wx:if='{{configSwitch.showSwitch.isRedPacket==1}}' >
       <image class='img' src='{{util.HTTP}}mobile/small/image/my/1-3.png'></image>
       <view class='title'>红包</view>
-      <view class='num'>{{info.redPacket}}</view>
+      <view class='num'>{{info.redPacket}}个</view>
       <image class='next' src='{{util.HTTP}}mobile/small/image/my/1-9.png'></image>
     </view>
     <view class='li' data-item='payPoints' hover-class='hover-class' hover-stay-time='400' bindtap='route' wx:if='{{configSwitch.showSwitch.isIntegralMall==1}}'>

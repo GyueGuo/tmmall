@@ -101,6 +101,7 @@
 .coupon .coupon-right {
   float: left;
   margin-left: 24rpx;
+  width: 400rpx;
 }
 
 .coupon .coupon-right .coupon-title {
