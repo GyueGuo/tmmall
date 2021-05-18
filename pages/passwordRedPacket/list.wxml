@@ -10,7 +10,7 @@
 <view class='coupon-list' hidden='{{list.length == 0}}'>
   <view class='coupon' wx:for="{{list}}">
     <view class='wsy' wx:if="{{currentStatus==0}}" style='{{util.diyImgbox(231)}}'>
-      <image src='{{util.HTTP}}mobile/small/image/wd-yhq-wsy.png' style='{{util.diyImgcolor(diyColor.zColor,231)}}'></image>
+      <image src='{{util.HTTP}}mobile/small/image/wd-yhq-wsy.png'></image>
     </view>
     <image wx:elif="{{currentStatus==1}}" src='{{util.HTTP}}mobile/small/image/wd-yhq-ysy.png'></image>
     <image wx:else src='{{util.HTTP}}mobile/small/image/wd-yhq-ygq.png'></image>
