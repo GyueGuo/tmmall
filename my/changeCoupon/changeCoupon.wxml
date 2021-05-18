@@ -1,7 +1,7 @@
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='coupon-list'>
-  <view hover-class='hover-class' hover-stay-time='400' bindtap='onExchange' wx:for="{{list}}" data-item='{{item}}'>
-    <image src='{{util.HTTP}}mobile/small/image/sy-hqzx-yhq2.png'></image>
+  <view hover-class='hover-class' hover-stay-time='400' bindtap='onExchange' wx:for="{{list}}" data-item='{{item}}' style="background-image: url({{util.HTTP}}mobile/small/image/sy-hqzx-yhq2.png); background-size: 100% 100%;">
+    <!-- <image src=''></image> -->
     <view class='coupon-item'>
       <view class='left'>
         <view>
@@ -50,7 +50,6 @@
   <view class='exchange-detail' catchtap='none'>
     <image src='{{util.HTTP}}mobile/small/image/shanchu.png' hover-class='hover-class' hover-stay-time='400' bindtap='onCloseExchange'></image>
     <view class='exchange-bg'>
-      <!-- <image src='/image/sy-hqzx-dhjf.png'></image> -->
       <view class='exchange-con' style='background:url({{util.HTTP}}mobile/small/image/coupon5.png) no-repeat;background-size:100% 100%;'>
 
         <view class='exchange-info'>
@@ -81,9 +80,7 @@
     <view>领券</view>
   </view>
   <view>
-    <view style='{{util.diyImgbox(96)}}'>
-      <image src='{{util.HTTP}}mobile/small/image/sy-hqzx-da2-2.png' style='{{util.diyImgcolor(diyColor.zColor,96,96)}}transform:translateX(-60px);'></image>
-    </view>
+    <image src='{{util.HTTP}}mobile/small/image/sy-hqzx-da2-2.png'></image>
     <view class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>换券</view>
   </view>
 </view>

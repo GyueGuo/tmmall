@@ -4,8 +4,7 @@
   <view class='coupon-list' hidden='{{list.length == 0}}'>
     <view wx:for="{{list}}" class='coupon' wx:key='{{index}}'>
       <!-- 未开抢 -->
-      <view wx:if="{{item.distanceStartTime > 0}}">
-        <image src='{{util.HTTP}}mobile/small/image/sy-lqzx-yhq.png'></image>
+      <view wx:if="{{item.distanceStartTime > 0}}" style="background-image: url({{util.HTTP}}mobile/small/image/sy-lqzx-yhq.png); background-size: 100% 100%;">
         <view class='coupon-item'>
           <view class='left'>
             <view>
@@ -42,8 +41,7 @@
       </view>
 
       <!-- 已领取 -->
-      <view wx:elif="{{item.memberState != 0}}">
-        <image src='{{util.HTTP}}mobile/small/image/sy-lqzx-yhqylq.png'></image>
+      <view wx:elif="{{item.memberState != 0}}" style="background-image: url({{util.HTTP}}mobile/small/image/sy-lqzx-yhqylq.png); background-size: 100% 100%;">
         <view class='coupon-item'>
           <view class='coupon-good'>
             <view class='coupon-usable'>
@@ -66,8 +64,7 @@
       </view>
 
       <!-- 已售完 -->
-      <view wx:elif="{{item.exchangeNum == 0}}">
-        <image src='{{util.HTTP}}mobile/small/image/sy-lqzx-yhqyqw.png'></image>
+      <view wx:elif="{{item.exchangeNum == 0}}" style="background-image: url({{util.HTTP}}mobile/small/image/sy-lqzx-yhqyqw.png); background-size: 100% 100%;">
         <view class='coupon-item'>
           <view class='left'>
             <view>
@@ -93,8 +90,7 @@
       </view>
 
       <!-- 未领取的 -->
-      <view wx:else hover-class='hover-class' hover-stay-time='400' bindtap='onGetCoupon' data-item='{{item}}' data-index='{{index}}'>
-        <image src='{{util.HTTP}}mobile/small/image/sy-lqzx-yhq.png'></image>
+      <view wx:else hover-class='hover-class' hover-stay-time='400' bindtap='onGetCoupon' data-item='{{item}}' data-index='{{index}}' style="background-image: url({{util.HTTP}}mobile/small/image/sy-lqzx-yhq.png); background-size: 100% 100%;">
         <view class='coupon-item'>
           <view class='left'>
             <view>
@@ -133,9 +129,7 @@
 
   <view class='footer'>
     <view>
-      <view style='{{util.diyImgbox(96)}}'>
-        <image src='{{util.HTTP}}mobile/small/image/sy-hqzx-da1-2.png' style='{{util.diyImgcolor(diyColor.zColor,96,96)}}transform:translateX(-58px);'></image>
-      </view>
+      <image src='{{util.HTTP}}mobile/small/image/sy-hqzx-da1-2.png'></image>
       <view style='{{util.diyColor(diyColor.zColor,"","")}}'>领券</view>
     </view>
     <view hover-class='hover-class' hover-stay-time='400' bindtap='onChangeCoupon'>
