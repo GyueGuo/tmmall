@@ -154,7 +154,7 @@ Component({
      */
     _getGoodPrice() {
       http.post(app.globalData.attrFind, {
-        goodsAttr: this.data.attr,
+        goodsAttr: this.data.attrArray.length ? this.data.attrArray.map(({ id }) => (id)).join(',') : '',
         goodsId: this.data.info.goodsId,
         type: 1
       }).then(res => {

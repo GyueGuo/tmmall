@@ -17,10 +17,11 @@ Component({
           this.setData({
             goodImage: this.data.info.file,
             goodFileImage: this.data.info.cartFile
+          }, () => {
+            if (this.data.attrArray.length) {
+              this._getGoodPrice()
+            }
           })
-          if (this.data.attrArray.length != 0) {
-            this._getGoodPrice()
-          }
         }
       }
     },
@@ -74,6 +75,7 @@ Component({
         diyColor: app.globalData.diyColor
       })
     }
+    this.attrId = '';
   },
 
   /**
@@ -210,11 +212,11 @@ Component({
         attrArray: this.data.attrArray,
         attr: this.data.attr.substr(0, this.data.attr.length - 1),
         attrDetail: attrDetail
+      }, () => {
+        if (this.data.attr.split(',').length === this.data.info.attr.length) {
+          this._getGoodPrice()
+        }
       })
-      if (this.data.attr.split(',').length == this.data.info.attr.length) {
-        this._getGoodPrice()
-      }
-
     },
 
     /**
@@ -227,7 +229,7 @@ Component({
       })
       http.post(app.globalData.attrFind, {
         type: this.data.orderType,
-        goodsAttr: this.data.info.attr.length != 0 ? this.data.attr : '',
+        goodsAttr: this.data.attrArray.length ? this.data.attrArray.map(({ id }) => (id)).join(',') : '',
         goodsId: this.data.info.goodsId
       }).then(res => {
         this.setData({
