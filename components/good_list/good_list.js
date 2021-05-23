@@ -86,7 +86,7 @@ Component({
           productsId: '',
           attr: '',
           goodsAttr: '',
-        }).then(res=> {
+        }).then(()=> {
           event.emit('refreshCart')
           event.emit('refreshCartNumber')
           app.showSuccessToast('添加购物车成功')

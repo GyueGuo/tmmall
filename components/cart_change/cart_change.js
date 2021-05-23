@@ -154,8 +154,8 @@ Component({
      */
     _getGoodPrice() {
       http.post(app.globalData.attrFind, {
-        goodsAttr: this.data.attrArray.length ? this.data.attrArray.map(({ id }) => (id)).join(',') : '',
-        goodsId: this.data.info.goodsId,
+        goodsAttr: this.data.info.attrs ? this.data.info.attrs[0].goodsAttr.find(({ attrValue }) => (attrValue === this.data.attr)).goodsAttrId : '',
+        goodsId: this.data.info.goodsId + '',
         type: 1
       }).then(res => {
         //图片
@@ -236,7 +236,7 @@ Component({
         price: this.data.price,
         number: this.data.num,
         productsId: this.data.productsId,
-        goodsAttr: this.data.attr,
+        goodsAttr: this.data.info.attrs ? this.data.info.attrs[0].goodsAttr.find(({ attrValue }) => (attrValue === this.data.attr)).goodsAttrId : '',
         attr: attrDetail,
         cartId: this.data.info.cartId
       }).then(res => {

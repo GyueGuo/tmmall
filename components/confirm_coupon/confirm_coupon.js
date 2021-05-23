@@ -113,10 +113,19 @@ Component({
      * 选择
      */
     chooseCoupon(e) {
-      this.data.coupon[e.currentTarget.dataset.index].select = !this.data.coupon[e.currentTarget.dataset.index].select
+      const { coupon } = this.data;
+      const curIndex = e.currentTarget.dataset.index | 0;
+      const cur = coupon[curIndex];
+      if (cur.select) {
+        cur.select = false;
+      } else {
+        coupon.forEach((item, index) => {
+          item.select = (curIndex === index)
+        });
+      }
       this.setData({
-        coupon: this.data.coupon
-      })
+        coupon,
+      });
     }
   }
 })

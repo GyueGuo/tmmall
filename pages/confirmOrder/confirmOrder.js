@@ -498,21 +498,22 @@ Page({
       app.showToast(this.data.freight.cityFreightMsg)
       return
     }
-    for (let i = 0, len = this.data.coupon.length; i < len; i++) {
-      if (this.data.coupon[i].select && this.data.coupon[i].state == "store") {
-        memberShopCouponId = this.data.coupon[i].memberCouponId
-      }
-      if (this.data.coupon[i].state == "platform" && this.data.coupon[i].select) {
-        this.data.memberPlatformCouponId = this.data.coupon[i].memberCouponId
-      } else {
-        this.data.memberPlatformCouponId = ''
-      }
-    }
+    // for (let i = 0, len = this.data.coupon.length; i < len; i++) {
+      // if (this.data.coupon[i].select && this.data.coupon[i].state == "store") {
+      //   memberShopCouponId = this.data.coupon[i].memberCouponId
+      // }
+      // if (this.data.coupon[i].state == "platform" && this.data.coupon[i].select) {
+      //   this.data.memberPlatformCouponId = this.data.coupon[i].memberCouponId
+      // } else {
+      //   this.data.memberPlatformCouponId = ''
+      // }
+    // }
     let store = {
       storeId: this.data.info.storeId,
       payType: this.data.payWay,
       productsId: this.data.info.productsId,
-      goodsAttr: this.data.info.attr == '请选择尺寸' ? '' : this.data.info.attr,
+      goodsAttr: this.data.info.goodsAttr,
+      goodsId: this.data.info.goodsId,
       quantity: this.data.info.num,
       memberShopCouponId: this.data.info.goodType == 1 ? memberShopCouponId : '',
       message: this.data.message,
@@ -548,8 +549,8 @@ Page({
       cutActivityId: this.data.info.cutActivityId,
       groupActivityId: this.data.info.groupActivityId,
       usedIntegral: 0,
-      memberPacketId: this.data.info.goodType == 1 ? this.data.memberPacketId : '',
-      memberPlatformCouponId: this.data.info.goodType == 1 ? this.data.memberPlatformCouponId : '',
+      memberPacketId: this.data.memberPacketId || '',
+      memberPlatformCouponId: this.data.memberPlatformCouponId || '',
       idSet: this.data.info.goodsId,
       storeSet: storeSet,
       originType: 2,
@@ -628,17 +629,12 @@ Page({
     if (e.detail.length == 0) {
       return
     }
-    let price = 0
     this.data.coupon = e.detail
-    for (let i = 0, len = e.detail.length; i < len; i++) {
-      if (e.detail[i].select) {
-        price += parseFloat(e.detail[i].actualPrice)
-      }
-    }
+    const target = e.detail.find(({ select }) => (!!select)); 
     this.setData({
-      couponPrice: price
-    })
-    this.calcTotal()
+      couponPrice: target.actualPrice,
+      memberPlatformCouponId: target.memberCouponId,
+    }, this.calcTotal);
   },
 
   /**

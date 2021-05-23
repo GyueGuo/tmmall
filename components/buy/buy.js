@@ -226,11 +226,12 @@ Component({
       wx.showLoading({
         title: '加载中',
         mask: true
-      })
+      });
+      console.log(this)
       http.post(app.globalData.attrFind, {
         type: this.data.orderType,
         goodsAttr: this.data.attrArray.length ? this.data.attrArray.map(({ id }) => (id)).join(',') : '',
-        goodsId: this.data.info.goodsId
+        goodsId: this.data.info.goodsId + ''
       }).then(res => {
         this.setData({
           goodImage: res.result.attrFileImg,
