@@ -120,7 +120,7 @@ Component({
         cur.select = false;
       } else {
         coupon.forEach((item, index) => {
-          item.select = (curIndex === index)
+          item.select = (curIndex === index);
         });
       }
       this.setData({

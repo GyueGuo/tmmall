@@ -112,20 +112,34 @@ Component({
      * 选择
      */
     choosepacket(e) {
-      if (this.data.packet[e.currentTarget.dataset.index].select) {
-        this.data.packet[e.currentTarget.dataset.index].select = false
-        this.setData({
-          packet: this.data.packet
-        })
-        return
+      const { packet } = this.data;
+      const curIndex = e.currentTarget.dataset.index | 0;
+      const cur = packet[curIndex];
+      if (cur.select) {
+        cur.select = false;
+      } else {
+        packet.forEach((item, index) => {
+          item.select = (curIndex === index);
+        });
       }
-      for (let i = 0, len = this.data.packet.length; i < len; i++) {
-        this.data.packet[i].select = false
-      }
-      this.data.packet[e.currentTarget.dataset.index].select = !this.data.packet[e.currentTarget.dataset.index].select
       this.setData({
-        packet: this.data.packet
-      })
+        packet,
+      });
+
+      // if (this.data.packet[e.currentTarget.dataset.index].select) {
+      //   this.data.packet[e.currentTarget.dataset.index].select = false
+      //   this.setData({
+      //     packet: this.data.packet
+      //   })
+      //   return
+      // }
+      // for (let i = 0, len = this.data.packet.length; i < len; i++) {
+      //   this.data.packet[i].select = false
+      // }
+      // this.data.packet[e.currentTarget.dataset.index].select = !this.data.packet[e.currentTarget.dataset.index].select
+      // this.setData({
+      //   packet: this.data.packet
+      // })
     }
 
   }

@@ -657,25 +657,19 @@ Page({
    * 确认红包
    */
   choosepacket(e) {
-    if (e.detail.length == 0) {
-      return
-    }
-    let price = 0,
-      memberPacketId
-    this.data.redpacket = e.detail
-    for (let i = 0, len = e.detail.length; i < len; i++) {
-      if (e.detail[i].select) {
-        price = parseFloat(e.detail[i].actualPrice)
-        memberPacketId = e.detail[i].memberPacketId
-
-        memberPacketId = ''
+    if (e.detail.length) {
+      let packet = 0;
+      let memberPacketId = '';
+      const target = e.detail.find(({ select }) => (!!select)); 
+      if (target) {
+        packet = parseFloat(target.actualPrice);
+        memberPacketId = target.memberPacketId;
       }
+      this.setData({
+        packet,
+        memberPacketId,
+      }, this.calcTotal)
     }
-    this.setData({
-      packet: price,
-      memberPacketId: memberPacketId
-    })
-    this.calcTotal()
   },
 
   /**
