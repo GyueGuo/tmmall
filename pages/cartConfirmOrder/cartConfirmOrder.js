@@ -579,7 +579,7 @@ Page({
           addressArea: this.data.list[i].invoice.addressArea,
           addressStreet: this.data.list[i].invoice.addressStreet,
           addressDetails: this.data.list[i].invoice.addressDetails
-        } : '',
+        } : null,
       }
       if (this.data.list[i].way == 1) {
         totalOrder += Number(this.data.list[i].totalPrice)
