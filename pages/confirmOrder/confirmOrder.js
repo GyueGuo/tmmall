@@ -224,6 +224,7 @@ Page({
         takeItem: this.data.takeItem,
         freightPrice: this.data.freightPrice,
         info: this.data.info,
+        goodsAttr: res.result.goodsAttr || '',
         redpacket: res.packet,
         payWay: this.data.payWay,
         discountPrice: res.discountPrice,
@@ -512,7 +513,7 @@ Page({
       storeId: this.data.info.storeId,
       payType: this.data.payWay,
       productsId: this.data.info.productsId,
-      goodsAttr: this.data.info.goodsAttr,
+      goodsAttr: this.data.goodsAttr,
       goodsId: this.data.info.goodsId,
       quantity: this.data.info.num,
       memberShopCouponId: this.data.info.goodType == 1 ? memberShopCouponId : '',
@@ -626,15 +627,20 @@ Page({
    * 确认优惠券
    */
   confirmCoupon(e) {
-    if (e.detail.length == 0) {
-      return
+    if (e.detail.length) {
+      this.data.coupon = e.detail;
+      let couponPrice = 0;
+      let memberPlatformCouponId = '';
+      const target = e.detail.find(({ select }) => (!!select)); 
+      if (target) {
+        couponPrice = target.actualPrice;
+        memberPlatformCouponId = target.memberCouponId;
+      }
+      this.setData({
+        couponPrice,
+        memberPlatformCouponId,
+      }, this.calcTotal);
     }
-    this.data.coupon = e.detail
-    const target = e.detail.find(({ select }) => (!!select)); 
-    this.setData({
-      couponPrice: target.actualPrice,
-      memberPlatformCouponId: target.memberCouponId,
-    }, this.calcTotal);
   },
 
   /**
