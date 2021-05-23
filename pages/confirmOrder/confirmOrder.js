@@ -540,7 +540,7 @@ Page({
         addressArea: this.data.invoice.addressArea,
         addressStreet: this.data.invoice.addressStreet,
         addressDetails: this.data.invoice.addressDetails
-      } : ''
+      } : null,
     }
     storeSet.push(store);
     const dataJson = {
