@@ -48,7 +48,7 @@
           <view class='icon_cart font_family icon-pt' style='{{util.diyColor(diyColor.zColor,"","")}}' wx:if="{{item.isGroup==1}}"></view>
           <view class='icon_cart font_family icon-kj' style='{{util.diyColor(diyColor.zColor,"","")}}' wx:elif="{{item.isBargain==1}}"></view>
           <view class='icon_cart font_family icon-xs' style='{{util.diyColor(diyColor.zColor,"","")}}' wx:elif="{{item.isLimit==1}}"></view>
-          <view class='icon_cart font_family icon-guc' style='{{util.diyColor(diyColor.zColor,"","")}}' data-item='{{item}}' wx:else catchtap='addCart'></view>
+          <!-- <view class='icon_cart font_family icon-guc' style='{{util.diyColor(diyColor.zColor,"","")}}' data-item='{{item}}' wx:else catchtap='addCart'></view> -->
         </block>
       </view>
     </view>
