@@ -372,8 +372,12 @@ Component({
         app.showToast('请输入收票人姓名', res => {})
         return
       }
-      if (!app.isPoneAvailable(this.data.consigneePhone)) {
+      if (!this.data.consigneePhone) {
         app.showToast('请输入收票人手机', res => {})
+        return
+      }
+      if (!app.isPoneAvailable(this.data.consigneePhone)) {
+        app.showToast('请输入正确的收票人手机', res => {})
         return
       }
       if (this.data.addressArea == '' || this.data.addressArea == undefined) {

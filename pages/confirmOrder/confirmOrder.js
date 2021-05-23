@@ -542,8 +542,8 @@ Page({
         addressDetails: this.data.invoice.addressDetails
       } : ''
     }
-    storeSet.push(store)
-    http.post(app.globalData.orderConfirm, {
+    storeSet.push(store);
+    const dataJson = {
       memberAddressId: this.data.info.deliveryMethod != 2 ? this.data.address.memberAddressId : '',
       payChannel: 1,
       orderType: this.data.info.goodType,
@@ -555,7 +555,11 @@ Page({
       idSet: this.data.info.goodsId,
       storeSet: storeSet,
       originType: 2,
-    }).then(res => {
+    };
+    if (this.data.invoice.isInvoice) {
+      dataJson.invoiceAttr = 1;
+    }
+    http.post(app.globalData.orderConfirm, dataJson).then(res => {
       event.emit('refreshBargain', this.data.info.cutActivityId)
       event.emit('refreshBargainDetail')
       if (this.data.info['total'] == 0) {
