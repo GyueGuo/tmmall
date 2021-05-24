@@ -20,7 +20,7 @@ Component({
    */
   data: {
     opacity: 0,
-    isLoading: false,
+    isLoading: true,
   },
 
   /**
@@ -96,13 +96,20 @@ Component({
     },
 
     getDistributionInfo() {
+      this.getAddressInfo();
       app.openLocation(res => {
         this.getAddressInfo()
-        // this.showAnimation()
       }, () => {
         app.showToast('请开启定位权限', () => {
           wx.openSetting()
-        })
+        });
+        this.setData({
+          result,
+          data,
+          address,
+          expressFreightPrice: data.expressFreightPrice,
+          isLoading: false,
+        });
       })
     },
 
@@ -117,16 +124,16 @@ Component({
         area: app.globalData.address.area,
         lat: app.globalData.lat,
         lng: app.globalData.lng
-      }).then(res => {
-        // that.showAnimation()
+      }).then(({ result, freightService, address }) => {
+        const [data] = freightService;
         this.setData({
-          result: res.result,
-          data: res.freightService[0],
-          address: res.address,
-          expressFreightPrice: res.freightService[0].expressFreightPrice,
-          isLoading: true
-        })
-      })
+          result,
+          data,
+          address,
+          expressFreightPrice: data.expressFreightPrice,
+          isLoading: false,
+        });
+      });
     },
 
     /**

@@ -40,8 +40,8 @@
           <view class='deliver'>
             <text class='title'>送至</text>
             <view class='font_family icon-gwc-sl-dw' style='{{util.diyColor(diyColor.zColor,"","")}}margin:0 10rpx 0 30rpx;'></view>
-            <image class='loading' src='{{util.HTTP}}mobile/small/image/xcx-jz.png' hidden='{{isLoading}}'></image>
-            <view hidden='{{!isLoading}}'>
+            <image class='loading' src='{{util.HTTP}}mobile/small/image/xcx-jz.png' hidden='{{!isLoading}}'></image>
+            <view hidden='{{isLoading}}'>
               <text>{{address.province}}</text>
               <text>>{{address.city}}</text>
               <text>>{{address.area}}</text>

@@ -355,7 +355,7 @@
             </view>
             <image src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
           </view>
-          <view hover-class='hover-class' hover-stay-time='400'>
+          <view hover-class='hover-class' hover-stay-time='400' bindtap='onDelivery'>
             <view class='title'>配送</view>
             <view class='post-list'>
               <view wx:if="{{info.isCity == 1}}">
@@ -371,7 +371,7 @@
                 <text>全国邮寄</text>
               </view>
             </view>
-            <!-- <image src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image> -->
+            <image src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
           </view>
         </view>
         <!-- 选择属性 -->
