@@ -32,9 +32,7 @@
         <image src='{{util.HTTP}}mobile/small/image/xq-gd.png' class='next'></image>
       </view>
       <view wx:if='{{info.isDelivery == 1}}'>
-        <view style='{{util.diyImgbox(42)}}'>
-          <image src='{{util.HTTP}}mobile/small/image/xq-ps-qg.png' style='{{util.diyImgcolor(diyColor.zColor,42,42)}}' class='delivery-content-logo'></image>
-        </view>
+        <image src='{{util.HTTP}}mobile/small/image/xq-ps-qg.png' class='delivery-content-logo'></image>
         <view class='delivery-content-detail'>
           <view class='delivery-content-title'>全国邮寄</view>
           <view class='deliver'>
@@ -42,14 +40,12 @@
             <view class='font_family icon-gwc-sl-dw' style='{{util.diyColor(diyColor.zColor,"","")}}margin:0 10rpx 0 30rpx;'></view>
             <image class='loading' src='{{util.HTTP}}mobile/small/image/xcx-jz.png' hidden='{{!isLoading}}'></image>
             <view hidden='{{isLoading}}'>
-              <text>{{address.province}}</text>
-              <text>>{{address.city}}</text>
-              <text>>{{address.area}}</text>
+              <text>{{addressShow}}</text>
             </view>
           </view>
           <view class='deliver'>
             <text class='title'>运费</text>
-            <text class='freight'>{{expressFreightPrice}}元</text>
+            <text class='freight'>{{expressFreightPriceShow}}</text>
             <text class='freight_tip' wx:if='{{data.expressPostList[0].discountPostageRules==1}}'>满{{data.expressPostList[0].discount}}元{{data.expressPostList[0].postage=='0.00'?'包邮':'邮费'+data.expressPostList[0].postage+'元'}}</text>
             <text class='freight_tip' wx:elif='{{data.expressPostList[0].discountPostageRules==2}}'>满{{util.integer(data.expressPostList[0].discount)}}件{{data.expressPostList[0].postage=='0.00'?'包邮':'邮费'+data.expressPostList[0].postage+'元'}}</text>
             <text class='freight_tip' wx:elif='{{data.expressPostList[0].discountPostageRules==3}}'>满{{data.expressPostList[0].discount}}公斤{{data.expressPostList[0].postage=='0.00'?'包邮':'邮费'+data.expressPostList[0].postage+'元'}}</text>

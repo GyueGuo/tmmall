@@ -21,6 +21,8 @@ Component({
   data: {
     opacity: 0,
     isLoading: true,
+    expressFreightPriceShow: '',
+    addressShow: '',
   },
 
   /**
@@ -30,7 +32,7 @@ Component({
     /**
      * 弹出动画
      */
-    showAnimation(anim) {
+    showAnimation() {
       let animation = wx.createAnimation({
         duration: 500,
         timingFunction: 'ease',
@@ -96,23 +98,19 @@ Component({
     },
 
     getDistributionInfo() {
-      this.getAddressInfo();
-      app.openLocation(res => {
+      app.openLocation(() => {
         this.getAddressInfo()
       }, () => {
-        app.showToast('请开启定位权限', () => {
-          wx.openSetting()
-        });
+        // app.showToast('请开启定位权限', () => {
+        //   wx.openSetting()
+        // });
         this.setData({
-          result,
-          data,
-          address,
-          expressFreightPrice: data.expressFreightPrice,
+          addressShow: '无法定位',
+          expressFreightPriceShow: '-',
           isLoading: false,
         });
       })
     },
-
     getAddressInfo() {
       http.post(app.globalData.shippingInstructions, {
         storeId: this.data.info.storeId,
@@ -129,8 +127,8 @@ Component({
         this.setData({
           result,
           data,
-          address,
-          expressFreightPrice: data.expressFreightPrice,
+          addressShow: `${address.province}>${address.city}>${address.area}`,
+          expressFreightPriceShow: `${data.expressFreightPrice}元`,
           isLoading: false,
         });
       });

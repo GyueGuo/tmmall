@@ -8,7 +8,7 @@
     <scroll-view scroll-y class='coupon-scroll'>
       <view class='coupon' wx:for="{{coupon}}" hover-class='hover-class' hover-stay-time='400' bindtap='chooseCoupon' data-index='{{index}}'>
         <view style='{{util.diyImgbox(231)}}height:100%'>
-          <image src='{{util.HTTP}}mobile/small/image/wd-yhq-wsy.png' style='{{util.diyImgcolor(diyColor.zColor,231,230)}}height:100%'></image>
+          <image src='{{util.HTTP}}mobile/small/image/wd-yhq-wsy.png' style='width: 100%; height:100%'></image>
         </view>
         <view class='coupon-con'>
           <view class='coupon-left'>
