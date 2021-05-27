@@ -1,5 +1,4 @@
 const app = getApp();
-import http from '../../utils/http';
 Component({
   /**
    * 组件的属性列表
@@ -36,7 +35,7 @@ Component({
         title: '生成中...',
       })
       poster.file = decodeURIComponent(poster.file)
-      poster.shopLogo = decodeURIComponent(poster.shopLogo)
+      // poster.shopLogo = decodeURIComponent(poster.shopLogo)
       wx.getImageInfo({
         src: poster.file,
         success: res => {
@@ -45,13 +44,13 @@ Component({
             src: poster.qrCode,
             success: res => {
               this.data.qrCode = res.path
-              wx.getImageInfo({
-                src: poster.shopLogo,
-                success: res => {
-                  this.data.shopLogo = res.path
+              // wx.getImageInfo({
+              //   src: poster.shopLogo,
+              //   success: res => {
+              //     this.data.shopLogo = res.path
                   this.draw(poster)
-                }
-              })
+                // }
+              // })
             }
           })
         }
@@ -246,7 +245,7 @@ Component({
                       this.ctx.beginPath()
                       this.ctx.arc(91, 553, 26.5, 0, 2 * Math.PI)
                       this.ctx.clip()
-                      this.ctx.drawImage(this.data.shopLogo, 64.5, 526.5, 53, 53)
+                      // this.ctx.drawImage(this.data.shopLogo, 70.5, 532.5, 40, 40)
                       this.ctx.restore()
                       let codeText = {
                         x: 170,
@@ -415,7 +414,7 @@ Component({
                   this.ctx.beginPath()
                   this.ctx.arc(91, 553, 26.5, 0, 2 * Math.PI)
                   this.ctx.clip()
-                  this.ctx.drawImage(this.data.shopLogo, 64.5, 526.5, 53, 53)
+                  // this.ctx.drawImage(this.data.shopLogo, 64.5, 526.5, 53, 53)
                   this.ctx.restore()
                   let codeText = {
                     x: 170,
