@@ -1032,6 +1032,7 @@ App({
     // 已领取红包列表
     getRedPacketList: HTTP + 'v2.0/memberPacket/index',
     // 
-    deleteEvaluate: HTTP+ 'v2.0/evaluate/deleteEvaluate'
+    deleteEvaluate: HTTP + 'v2.0/evaluate/deleteEvaluate',
+    shareGoods: HTTP + '/v2.0/integral/shareGoods',
   }
 })

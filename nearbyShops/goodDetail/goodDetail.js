@@ -175,9 +175,9 @@ Page({
     } else {
       supId = ''
     }
-    // if (res.from === 'button') {
-    //   http.post(app.globalData.notify, {}).then(res => {})
-    // }
+    if (res.from === 'button') {
+      http.post(app.globalData.shareGoods, {})
+    }
     return {
       title: this.data.info.goodsName,
       path: '/nearbyShops/goodDetail/goodDetail?goodsId=' + this.data.goodsId + supId
