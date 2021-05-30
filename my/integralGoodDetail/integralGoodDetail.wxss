@@ -133,3 +133,7 @@ page {
 .wrap {
   padding-bottom: 100rpx;
 }
+.wxParse {
+  padding: 30rpx;
+  background: white;
+}

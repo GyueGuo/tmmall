@@ -118,7 +118,7 @@ Page({
    */
   onDetail(e) {
     wx.navigateTo({
-      url: '../integralOrder/integralOrder?id=' + e.currentTarget.dataset.id + '&index=' + e.currentTarget.dataset.index,
+      url: '../integralGoodDetail/integralGoodDetail?id=' + e.currentTarget.dataset.iid + '&index=' + e.currentTarget.dataset.index,
     })
   },
 

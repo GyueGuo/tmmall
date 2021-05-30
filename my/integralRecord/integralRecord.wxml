@@ -1,6 +1,6 @@
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='record' wx:for="{{list}}">
-  <view class='good-info' hover-class='hover-class' hover-stay-time='400' bindtap='onDetail' data-id='{{item.integralOrderId}}' data-index='{{index}}'>
+  <view class='good-info' hover-class='hover-class' hover-stay-time='400' bindtap='onDetail' data-id='{{item.integralOrderId}}' data-iid="{{item.integralId}}" data-index='{{index}}'>
     <image src='{{item.file}}'></image>
     <view class='good-detail'>
       <view class='good-name'>{{item.integralName}}</view>
@@ -18,7 +18,7 @@
     <view class='shipping-state cur' hidden='{{item.status != 2}}' style='{{item.status == 2?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>已收货</view>
   </view>
   <view class='operation' hidden='{{item.status == 0}}'>
-    <view hover-class='hover-class' hover-stay-time='400' bindtap='onLogistics' data-item='{{item}}'>查看物流</view>
+    <!-- <view hover-class='hover-class' hover-stay-time='400' bindtap='onLogistics' data-item='{{item}}'>查看物流</view> -->
     <view hover-class='hover-class' hover-stay-time='400' bindtap='onDelete' data-index='{{index}}' data-item='{{item}}' hidden='{{item.status != 2}}'>删除订单</view>
     <view class='border-cur' hidden='{{item.status != 1}}' hover-class='hover-class' hover-stay-time='400' bindtap='confirmReceipt' data-index='{{index}}' data-item='{{item}}' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>确认收货</view>
   </view>

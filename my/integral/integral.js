@@ -100,7 +100,7 @@ Page({
   getData() {
     http.post(app.globalData.integralClassify, {}).then(res => {
       let classify = [{
-        integralClassify: '',
+        integralClassifyId: 'ALL',
         title: '全部'
       }]
       this.setData({
@@ -113,12 +113,20 @@ Page({
    *  获取列表
    */
   getGoods() {
-    http.post(app.globalData.integralGoods, {
-      type: this.data.exchangeTab == 1 ? 0 : 1,
-      integralClassifyId: this.data.classifyId,
-      page: this.data.page
-    }).then(res => {
-      if (this.data.page == 1) {
+    const {
+      exchangeTab,
+      classifyId,
+      page
+    } = this.data;
+    const params = {
+      type: exchangeTab == 1 ? 0 : 1,
+      page,
+    };
+    if (classifyId && classifyId !== 'ALL') {
+      params.integralClassifyId = classifyId;
+    }
+    http.post(app.globalData.integralGoods, params).then((res) => {
+      if (page === 1) {
         this.setData({
           result: res.result.data,
           total: res.result.total,
@@ -208,11 +216,10 @@ Page({
   creditsExchange() {
     this.setData({
       exchangeTab: 1,
-      classifyId: 0,
+      classifyId: '',
       page: 1,
       result: []
-    })
-    this.getGoods()
+    }, this.getGoods)
   },
 
   /**
@@ -221,11 +228,10 @@ Page({
   pointRedemption() {
     this.setData({
       exchangeTab: 2,
-      classifyId: 0,
+      classifyId: '',
       page: 1,
       result: []
-    })
-    this.getGoods()
+    }, this.getGoods)
   },
 
   /**
@@ -244,8 +250,7 @@ Page({
     this.setData({
       classifyId: e.currentTarget.dataset.id,
       page: 1
-    })
-    this.getGoods()
+    }, this.getGoods)
   },
 
   /**
