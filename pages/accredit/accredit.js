@@ -106,9 +106,11 @@ Page({
    * 登录
    */
   Login(code, infoRes) {
-    wx.getSetting({
-      success: setRes => {
-        if (setRes.authSetting['scope.userInfo']) {
+    // wx.getSetting({
+    //   success: setRes => {
+    //     debugger
+        // if (setRes.authSetting['scope.userInfo']) {
+          if (infoRes.userInfo) {
           let supId = app.globalData.supId
           http.post(app.globalData.login, {
             code,
@@ -179,8 +181,8 @@ Page({
             disabled: false
           })
         }
-      }
-    })
+      // }
+    // })
   },
 
   //获取代言信息
