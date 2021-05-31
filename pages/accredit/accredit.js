@@ -10,7 +10,7 @@ Page({
     isSubmit: true,
     disabled: false,
     loading: false,
-    canIUseGetUserProfile: !!wx.getUserProfile,
+    canIUseGetUserProfile: true, //!!wx.getUserProfile,
   },
 
   /**
