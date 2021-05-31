@@ -16,53 +16,34 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad() {
     this.setData({
       diyColor: app.globalData.diyColor,
       configSwitch: app.globalData.configSwitch
     })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
+  getLoginCode() {
+    return new Promise((resolve) => {
+      wx.login({
+        success: ({ code }) => {
+          wx.checkSession({
+            success() {
+              resolve(code);
+            },
+            fail() {
+              wx.login({
+                success: ({ code }) => {
+                  resolve(code);
+                },
+                fail: () => {
+                  resolve('');
+                }
+              });
+            }
+          })
+        },
+      });
+    })
   },
   handleAuthFail(title = '获取授权失败') {
     this.setData({
@@ -80,49 +61,55 @@ Page({
       disabled: true
     });
     if (e.detail.encryptedData) {
-      wx.login({
-        success: loginRes => {
-          if (loginRes.code) {
+      this
+        .getLoginCode()
+        .then((code) => {
+          if (code) {
             wx.getUserInfo({
               success: (infoRes) => {
                 if (infoRes.userInfo) {
-                  this.Login(loginRes.code, infoRes)
+                  this.Login(code, infoRes)
                 } else {
                   this.handleAuthFail();
                 }
               }
             })
-          } else {
-            this.handleAuthFail();
+            return;
           }
-        }
-      })
-    } else {
-      this.handleAuthFail();
+          this.handleAuthFail();
+        });
+      return;
     }
+    this.handleAuthFail();
   },
   /**
    * 获取用户信息,授权
    */
    handleGetUserProfile() {
+    if (!this.data.canIUseGetUserProfile) {
+      wx.showToast({
+        icon: 'none',
+        title: '请升级微信到最新版本后使用'
+      });
+      return;
+    }
     this.setData({
       loading: true,
       disabled: true,
     });
-    var code = '';
-    wx.login({
-      success: (loginRes) => {
-        code = loginRes.code;
-      },
-    });
     wx.getUserProfile({
+      lang: 'zh_CN',
       desc: "用于登录天牧神羊小程序",
       success: (infoRes) => {
-        if (code && infoRes.userInfo) {
-          this.Login(code, infoRes)
-        } else {
-          this.handleAuthFail();
-        }
+        this
+          .getLoginCode()
+          .then((code) => {
+            if (code && infoRes.userInfo) {
+              this.Login(code, infoRes)
+            } else {
+              this.handleAuthFail();
+            }
+          })
       },
       fail: () => {
         this.handleAuthFail();
