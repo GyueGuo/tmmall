@@ -171,8 +171,8 @@ Page({
       unionId: app.globalData.unionId
     }).then(res => {
       app.showSuccessToast(res.message, () => {
-        wx.setStorageSync('memberId', res.memberId)
-        app.globalData.memberId = res.memberId
+        wx.setStorageSync('memberId', res.member_id)
+        app.globalData.memberId = res.member_id
         wx.setStorageSync('phone', this.data.phone)
         app.globalData.phone = this.data.phone
 

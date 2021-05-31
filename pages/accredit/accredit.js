@@ -7,7 +7,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isSubmit: true
+    isSubmit: true,
+    disabled: false,
+    loading: false,
+    canIUseGetUserProfile: !!wx.getUserProfile,
   },
 
   /**
@@ -61,128 +64,135 @@ Page({
   onReachBottom: function() {
 
   },
-
-  /**
-   * 获取用户信息,授权
-   */
-  getUserInfo(e) {
+  handleAuthFail(title = '获取授权失败') {
+    this.setData({
+      loading: false,
+      disabled: false,
+    })
+    wx.showToast({
+      title,
+      icon: 'none'
+    })
+  },
+  handleGetUserInfo (e) {
     this.setData({
       loading: true,
       disabled: true
-    })
+    });
     if (e.detail.encryptedData) {
       wx.login({
         success: loginRes => {
           if (loginRes.code) {
             wx.getUserInfo({
               success: (infoRes) => {
-                this.Login(loginRes.code, infoRes)
+                if (infoRes.userInfo) {
+                  this.Login(loginRes.code, infoRes)
+                } else {
+                  this.handleAuthFail();
+                }
               }
             })
           } else {
-            this.setData({
-              loading: false,
-              disabled: false
-            })
-            wx.showToast({
-              title: '登录失败',
-              icon: 'none'
-            })
+            this.handleAuthFail();
           }
         }
       })
     } else {
-      wx.showToast({
-        title: '授权失败',
-        icon: 'none'
-      })
-      this.setData({
-        loading: false,
-        disabled: false
-      })
+      this.handleAuthFail();
     }
+  },
+  /**
+   * 获取用户信息,授权
+   */
+   handleGetUserProfile() {
+    this.setData({
+      loading: true,
+      disabled: true,
+    });
+    var code = '';
+    wx.login({
+      success: (loginRes) => {
+        code = loginRes.code;
+      },
+    });
+    wx.getUserProfile({
+      desc: "用于登录天牧神羊小程序",
+      success: (infoRes) => {
+        if (code && infoRes.userInfo) {
+          this.Login(code, infoRes)
+        } else {
+          this.handleAuthFail();
+        }
+      },
+      fail: () => {
+        this.handleAuthFail();
+      }
+    })
   },
   /**
    * 登录
    */
   Login(code, infoRes) {
-    // wx.getSetting({
-    //   success: setRes => {
-    //     debugger
-        // if (setRes.authSetting['scope.userInfo']) {
-          if (infoRes.userInfo) {
-          let supId = app.globalData.supId
-          http.post(app.globalData.login, {
-            code,
-            nickName: infoRes.userInfo.nickName,
-            avatarUrl: infoRes.userInfo.avatarUrl,
-            encryptedData: infoRes.encryptedData,
-            iv: infoRes.iv,
-            memberId: '',
-            supId,
-            devType: 3
-          }).then(res => {
-            wx.hideLoading()
-            //绑定代言关系
-            if (supId != '') {
-              this.getDistributionData(supId)
-            }
-            wx.setStorageSync('memberId', res.member.memberId)
-            wx.setStorageSync('phone', res.member.phone == null ? '' : res.member.phone)
-            wx.setStorageSync('openid', res.openid)
-            wx.setStorageSync('unionId', res.unionId)
-            app.globalData.memberId = res.member.memberId
-            app.globalData.phone = res.member.phone == null ? '' : res.member.phone
-            app.globalData.openid = res.openid
-            app.globalData.unionId = res.unionId
-            app.globalData.PASTLOGIN = false
-            wx.setStorageSync('memberInfo', res.member)
-            app.showSuccessToast('登录成功', () => {
-              if (app.globalData.phone == '') {
-                wx.redirectTo({
-                  url: '../bindPhone/bindPhone',
-                })
-              } else {
-                let page = getCurrentPages()
-                let route = page[page.length - 2].route //上一页地址
-                switch (route) {
-                  case 'nearbyShops/goodDetail/goodDetail': //是否是商品详情
-                    page[page.length - 2].getData()
-                    break;
-                  case 'my/integralGoodDetail/integralGoodDetail':
-                    page[page.length - 2].getData()
-                    break;
-                }
-
-                wx.navigateBack()
-                wx.nextTick(() => {
-                  event.emit('refreshCart')
-                  event.emit('refreshHome')
-                })
-              }
-            })
-            this.setData({
-              loading: false,
-              disabled: false
-            })
-          }).catch(() => {
-            this.setData({
-              loading: false,
-              disabled: false
-            })
+    const { supId, login } = app.globalData;
+    http.post(login, {
+      code,
+      nickName: infoRes.userInfo.nickName,
+      avatarUrl: infoRes.userInfo.avatarUrl,
+      encryptedData: infoRes.encryptedData,
+      iv: infoRes.iv,
+      memberId: '',
+      supId,
+      devType: 3
+    }).then((res) => {
+      wx.hideLoading();
+      //绑定代言关系
+      if (supId) {
+        this.getDistributionData(supId)
+      }
+      wx.setStorageSync('memberId', res.member.memberId)
+      wx.setStorageSync('phone', res.member.phone == null ? '' : res.member.phone)
+      wx.setStorageSync('openid', res.openid)
+      wx.setStorageSync('unionId', res.unionId)
+      app.globalData.memberId = res.member.memberId
+      app.globalData.phone = res.member.phone == null ? '' : res.member.phone
+      app.globalData.openid = res.openid
+      app.globalData.unionId = res.unionId
+      app.globalData.PASTLOGIN = false
+      wx.setStorageSync('memberInfo', res.member)
+      app.showSuccessToast('登录成功', () => {
+        if (app.globalData.phone == '') {
+          wx.redirectTo({
+            url: '../bindPhone/bindPhone',
           })
         } else {
-          wx.showToast({
-            title: '授权失败',
-            icon: 'none'
-          })
-          this.setData({
-            loading: false,
-            disabled: false
+          let page = getCurrentPages()
+          let route = page[page.length - 2].route //上一页地址
+          switch (route) {
+            case 'nearbyShops/goodDetail/goodDetail': //是否是商品详情
+              page[page.length - 2].getData()
+              break;
+            case 'my/integralGoodDetail/integralGoodDetail':
+              page[page.length - 2].getData()
+              break;
+          }
+
+          wx.navigateBack()
+          wx.nextTick(() => {
+            event.emit('refreshCart')
+            event.emit('refreshHome')
           })
         }
-      // }
-    // })
+      })
+      this.setData({
+        loading: false,
+        disabled: false,
+      })
+    }).catch(() => {
+      this.setData({
+        loading: false,
+        disabled: false,
+      })
+    })
   },
 
   //获取代言信息
