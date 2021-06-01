@@ -28,7 +28,7 @@
   </view>
   <view class='message_con' hover-class='hover-class' hover-stay-time='400' bindtap='viewReset'>
     <scroll-view scroll-y scroll-with-animation='{{scrollAnimation}}' scroll-into-view='{{msglistIndex}}' scroll-top='{{scrollTop}}' bindscrolltoupper='history' bindscrolltolower='bindscrolltolower' bindscroll='bindscroll'>
-      <view id='id{{item.MESSAGEID}}' class='msg {{item.FROMID==mid?"me":"other"}}' wx:for='{{msglist}}' wx:key='{{index}}'>
+      <view id='id{{item.MESSAGEID}}' class='msg {{item.FROMID==mid?"me":"other"}}' wx:for='{{msglist}}' wx:key="index">
         <view class='msgtime' hidden='{{util.serviceTime(msglist[index-1].MESSAGEID)==util.serviceTime(msglist[index].MESSAGEID)}}'>
           <text>{{util.serviceTime(item.MESSAGEID)}}</text>
         </view>
@@ -37,7 +37,7 @@
           <view class='msg-con' style='{{item.MESSAGETYPE=="IMAGE"?"padding:0;":""}}'>
             <!-- 文字 -->
             <view class='msg_text' wx:if='{{item.MESSAGETYPE=="TEXT"}}'>
-              <block wx:for='{{item.MESSAGEDATA}}' wx:for-index="idx" wx:for-item="itemName" wx:key='{{index}}'>
+              <block wx:for='{{item.MESSAGEDATA}}' wx:for-index="idx" wx:for-item="itemName" wx:key="index">
                 <text wx:if='{{itemName.type=="text"}}'>{{itemName.data}}</text>
                 <image wx:elif='{{itemName.type=="emoji"}}' src='{{util.HTTP}}{{itemName.data}}'></image>
               </block>
@@ -91,15 +91,15 @@
       </view>
     </view>
     <view class='funbtn_con' hidden='{{!serviceFun}}'>
-      <view class='btn_con' wx:for='{{funbtnList}}' wx:key='{{index}}' data-item='{{item}}' hover-class='hover-class' hover-stay-time='400' bindtap='serviceFunbtn'>
+      <view class='btn_con' wx:for='{{funbtnList}}' wx:key="index" data-item='{{item}}' hover-class='hover-class' hover-stay-time='400' bindtap='serviceFunbtn'>
         <image src='{{util.HTTP}}{{item.img}}'></image>
         <text>{{item.name}}</text>
       </view>
     </view>
     <view class='emoji_con' hidden='{{!isEmoji}}'>
       <swiper>
-        <swiper-item wx:for='{{emojiList}}' wx:key='{{index}}'>
-          <view class='emoji' wx:for='{{item}}' wx:key='{{index}}' wx:for-index="idx" wx:for-item="itemName" data-item='{{itemName}}' hover-class='hover-class' hover-stay-time='400' bindtap='emojiBtn'>
+        <swiper-item wx:for='{{emojiList}}' wx:key="index">
+          <view class='emoji' wx:for='{{item}}' wx:key="index" wx:for-index="idx" wx:for-item="itemName" data-item='{{itemName}}' hover-class='hover-class' hover-stay-time='400' bindtap='emojiBtn'>
             <image class='emoji_img' src='{{util.HTTP}}{{itemName.url}}'></image>
           </view>
         </swiper-item>

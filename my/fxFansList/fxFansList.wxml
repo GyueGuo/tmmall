@@ -1,7 +1,7 @@
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='container'>
   <view class='navTab'>
-    <view wx:for='{{navTab}}' wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='navTab' data-index='{{index}}'>
+    <view wx:for='{{navTab}}' wx:key="index" hover-class='hover-class' hover-stay-time='400' bindtap='navTab' data-index='{{index}}'>
       <text style='{{navIndex == index?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>
         {{item}}
       </text>
@@ -35,7 +35,7 @@
   </view>
   <view class='list'>
     <scroll-view scroll-y style='height:100%;' bindscrolltolower="loadmore" hidden='{{goodList.length == 0 && !loading}}' scroll-with-animation>
-      <view class='list-item' wx:for='{{list}}' wx:key='{{index}}' data-item='{{item}}' hover-class='hover-class' hover-stay-time='400' bindtap='goDetails'>
+      <view class='list-item' wx:for='{{list}}' wx:key="index" data-item='{{item}}' hover-class='hover-class' hover-stay-time='400' bindtap='goDetails'>
         <view class='left'>
           <view class='user_img'>
             <image src='{{item.avatar}}'></image>

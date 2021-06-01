@@ -129,7 +129,7 @@
 }
 
 .coupon-item .left .coupon-title {
-  font-size: 26rpx;
+  font-size: 32rpx;
 }
 
 .coupon-item .left .coupon-info {
@@ -144,6 +144,7 @@
   display: flex;
   align-items: center;
   margin-top: 34rpx;
+  font-size: 24rpx;
 }
 
 .coupon-item .left .gray {

@@ -7,7 +7,7 @@
     <view class='sale-info'>
       <view class='left'>满减</view>
       <view class='right'>
-        <block wx:for="{{info}}" wx:key='{{index}}'>
+        <block wx:for="{{info}}" wx:key="index">
           <text>满{{item.full}}元减{{item.sub}}元</text>
           <text style="{{index == info.length -1?'display:none':''}}">,</text>
         </block>

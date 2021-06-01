@@ -84,7 +84,7 @@
         </view>
         <view class='info-member'>
           <scroll-view class='scroll-view' scroll-x>
-            <view class='item' wx:for="{{info.participant}}" wx:key='{{index}}'>
+            <view class='item' wx:for="{{info.participant}}" wx:key="index">
               <view class='avatar' style='background:url({{util.HTTP}}mobile/small/image/placeholder_member.png) no-repeat center;background-size:100% 100%;'>
                 <image src='{{item.avatar}}'></image>
               </view>

@@ -13,7 +13,7 @@
   <view class='history-title'>历史搜索</view>
   <image src='{{util.HTTP}}{{"mobile/small/image/sc.png"}}' class='delete' hover-class='hover-class' hover-stay-time='400' bindtap='onClearHistory'></image>
   <view class='history-list'>
-    <view class='title' wx:for="{{historyList}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onSearch' data-item='{{item}}'>
+    <view class='title' wx:for="{{historyList}}" wx:key="index" hover-class='hover-class' hover-stay-time='400' bindtap='onSearch' data-item='{{item}}'>
       {{item}}
     </view>
   </view>

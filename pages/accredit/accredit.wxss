@@ -42,3 +42,14 @@ button[disabled] {
   border-radius: 10rpx;
   color: white;
 }
+.back {
+  width:612rpx;
+  height: 76rpx;
+  font-size: 32rpx;
+  line-height: 76rpx;
+  text-align: center;
+  margin-top: 40rpx;
+  border-radius: 10rpx;
+  color: white;
+  background-color: #039bfb;
+}

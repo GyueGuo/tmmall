@@ -56,7 +56,7 @@
           </view>
         </view>
       </view>
-      <view class='logistics-info' wx:for="{{list}}" wx:key='{{index}}'>
+      <view class='logistics-info' wx:for="{{list}}" wx:key="index">
         <view class='date-left'>
           <view class='date-day'>{{item.date}}</view>
           <view class='date-time'>{{item.timer}}</view>

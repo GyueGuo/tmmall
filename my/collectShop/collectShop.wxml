@@ -1,7 +1,7 @@
 <wxs module="util" src="../../utils/util.wxs" />
 
 <view class='list'>
-  <view class='{{item.isInvalid!=0?"invalid_type":""}}' wx:for="{{list}}" wx:key='{{index}}' bindlongtap='deleteShop' hover-class='hover-class' hover-stay-time='400' bindtap='{{item.isInvalid==0?"onShop":""}}' data-item='{{item}}' data-index='{{index}}'>
+  <view class='{{item.isInvalid!=0?"invalid_type":""}}' wx:for="{{list}}" wx:key="index" bindlongtap='deleteShop' hover-class='hover-class' hover-stay-time='400' bindtap='{{item.isInvalid==0?"onShop":""}}' data-item='{{item}}' data-index='{{index}}'>
     <image class='shop-img' src='{{item.logo}}' style='{{item.isInvalid!=0?"filter: grayscale(80%);":""}}'></image>
     <view class='shop-con'>
       <view class='shop-name'>{{item.storeName}}</view>

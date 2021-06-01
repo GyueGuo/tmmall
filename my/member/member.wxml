@@ -39,7 +39,7 @@
   </view>
 </view>
 <image src='{{util.HTTP}}mobile/small/image/pic39.png' class='rule-img'></image>
-<view class='level-one' wx:for="{{info.rankList}}" wx:key='{{index}}'>
+<view class='level-one' wx:for="{{info.rankList}}" wx:key="index">
   <image src='{{util.HTTP}}mobile/small/image/hy-ctbj.png'></image>
   <view>
     <image src='{{item.file2}}'></image>

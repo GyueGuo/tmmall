@@ -171,7 +171,7 @@
     <view class="coupon-con" wx:if='{{dataInfo.couponList.length!=0}}'>
       <scroll-view class='p-scroll' scroll-x>
         <view class="con">
-          <view class='item' wx:for='{{dataInfo.couponList}}' wx:key='{{index}}' data-item='{{item}}' data-index='{{index}}'  hover-class='hover-class' hover-stay-time='300'>
+          <view class='item' wx:for='{{dataInfo.couponList}}' wx:key="index" data-item='{{item}}' data-index='{{index}}'  hover-class='hover-class' hover-stay-time='300'>
             <image class='men' src='{{util.HTTP}}mobile/small/image/couponbg.png'></image>
             <view class="coupon-price">
               <text>￥</text>

@@ -3,14 +3,14 @@
   <view class='evaluate-wrap' hidden="{{evaluateTotal == -1}}">
     <!-- 评价选择 -->
     <view class="evaluate-head">
-      <view wx:for='{{evaluateArr}}' wx:key='{{index}}' data-type='{{item.type}}' data-index='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onEvaluateType' style='{{evaluateCurrentTab==index?util.diyColor(diyColor.zColor,diyColor.fColor2,diyColor.zColor):util.diyColor("",diyColor.fColor2,"")}}'>
+      <view wx:for='{{evaluateArr}}' wx:key="index" data-type='{{item.type}}' data-index='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onEvaluateType' style='{{evaluateCurrentTab==index?util.diyColor(diyColor.zColor,diyColor.fColor2,diyColor.zColor):util.diyColor("",diyColor.fColor2,"")}}'>
         <view class='font_family icon-xq-pj-g icon' wx:if='{{evaluateCurrentTab==index}}'></view>
         <text>{{item.title}}</text>
       </view>
     </view>
     <!-- 评价列表 -->
     <view class='evaluate-list'>
-      <view class='evaluate-detail' wx:for="{{evaluateList}}" wx:key='{{index}}'>
+      <view class='evaluate-detail' wx:for="{{evaluateList}}" wx:key="index">
         <view class='detail-head'>
           <view class='head1'>
             <image src='{{item.avatar!=""&&item.isAnonymous == 0?item.avatar:util.HTTP+"mobile/small/image/placeholder_member.png"}}' class='avatar'></image>
@@ -33,7 +33,7 @@
               <image class='pic' src='{{item.videoSnapshot}}'></image>
               <image src='{{util.HTTP}}mobile/small/image/pj-bf.png' class='play-pic'></image>
             </view>
-            <view class="{{item.video == ''?'pic-item':'video-item'}}" wx:for="{{item.multipleFile}}" wx:key='{{idx}}' wx:for-index="idx">
+            <view class="{{item.video == ''?'pic-item':'video-item'}}" wx:for="{{item.multipleFile}}" wx:key="idx" wx:for-index="idx">
               <image class='pic' src='{{item}}' hover-class='hover-class' hover-stay-time='400' bindtap='onPreview' data-index='{{index}}' data-idx='{{idx}}'></image>
             </view>
           </view>

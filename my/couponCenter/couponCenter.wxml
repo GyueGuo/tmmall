@@ -2,7 +2,7 @@
 <view hidden='{{!classify}}'>
 
   <view class='coupon-list' hidden='{{list.length == 0}}'>
-    <view wx:for="{{list}}" class='coupon' wx:key='{{index}}'>
+    <view wx:for="{{list}}" class='coupon' wx:key="index">
       <!-- 未开抢 -->
       <view wx:if="{{item.distanceStartTime > 0}}" style="background-image: url({{util.HTTP}}mobile/small/image/sy-lqzx-yhq.png); background-size: 100% 100%;">
         <view class='coupon-item'>
@@ -42,11 +42,10 @@
 
       <!-- 已领取 -->
       <view wx:elif="{{item.memberState != 0}}" style="background-image: url({{util.HTTP}}mobile/small/image/sy-lqzx-yhqylq.png); background-size: 100% 100%;">
-        <view class='coupon-item'>
+        <!-- <view class='coupon-item'>
           <view class='coupon-good'>
-            <view class='coupon-usable'>
-              <image wx:for="{{item.goodsList}}" wx:key='{{index}}' src='{{item.file!=""?item.file:util.HTTP+"mobile/small/image/coupon_01.png"}}'></image>
-            </view>
+              <image class='coupon-img' src='{{item.file || (util.HTTP +"mobile/small/image/coupon_01.png")}}'></image>
+              <image wx:for="{{item.goodsList}}" wx:key="index" src='{{item.file!=""?item.file:util.HTTP+"mobile/small/image/coupon_01.png"}}'></image>
             <view class='tips'>
               <block wx:if='{{item.fullSubtractionPrice!=0}}'>
                 <text style='{{util.diyColor(diyColor.zColor,"","")}}'>满{{item.fullSubtractionPrice}}元减{{item.actualPrice}}元 </text>
@@ -60,6 +59,28 @@
           <view class='received'>
             <view class='opertation' hover-class='hover-class' hover-stay-time='400' bindtap='goUse' data-item='{{item}}' style='{{util.diyColor("",diyColor.zColor,"")}}box-shadow: 0 5rpx 10rpx 0 {{diyColor.fColor}};'>去使用</view>
           </view>
+        </view> -->
+
+        <view class='coupon-item'>
+          <view class='left'>
+            <view>
+              <image class='coupon-img' src='{{item.file || (util.HTTP +"mobile/small/image/coupon_01.png")}}'></image>
+              <view class='coupon-info'>
+                <view class='coupon-title'>{{item.title}}</view>
+                <view class='coupon-price gray'>
+                  <block wx:if='{{item.fullSubtractionPrice!=0}}'>
+                    <text style='{{util.diyColor(diyColor.zColor,"","")}}'>满{{item.fullSubtractionPrice}}元减{{item.actualPrice}}元 </text>
+                  </block>
+                  <block wx:elif='{{item.fullSubtractionPrice==0}}'>
+                    <text style='{{util.diyColor(diyColor.zColor,"","")}}'>无门槛</text>
+                  </block>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class='received'>
+            <view class='opertation' hover-class='hover-class' hover-stay-time='400' bindtap='goUse' data-item='{{item}}' style='{{util.diyColor("",diyColor.zColor,"")}}box-shadow: 0 5rpx 10rpx 0 {{diyColor.fColor}};'>去使用</view>
+          </view>
         </view>
       </view>
 
@@ -68,7 +89,7 @@
         <view class='coupon-item'>
           <view class='left'>
             <view>
-              <image class='coupon-img' src='{{item.file!=""?item.file:util.HTTP+"mobile/small/image/coupon_01.png"}}'></image>
+              <image class='coupon-img' src='{{item.file || (util.HTTP +"mobile/small/image/coupon_01.png")}}'></image>
               <view class='coupon-info'>
                 <view class='coupon-title'>{{item.title}}</view>
                 <view class='coupon-price gray'>
@@ -145,7 +166,7 @@
         <image src='{{util.HTTP}}mobile/small/image/tsczz-sl.png' hover-class='hover-class' hover-stay-time='400' bindtap='closeBoard'></image>
       </view>
       <view class='tab-more-wrap'>
-        <view wx:for="{{classify}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onTabMoreItem' data-index='{{index}}' data-id='{{item.goodsClassifyId}}' style='{{item.goodsClassifyId == currentTab?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>{{item.title}}</view>
+        <view wx:for="{{classify}}" wx:key="index" hover-class='hover-class' hover-stay-time='400' bindtap='onTabMoreItem' data-index='{{index}}' data-id='{{item.goodsClassifyId}}' style='{{item.goodsClassifyId == currentTab?util.diyColor(diyColor.zColor,"",diyColor.zColor):""}}'>{{item.title}}</view>
       </view>
     </view>
   </view>

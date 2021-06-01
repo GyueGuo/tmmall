@@ -20,30 +20,33 @@ Page({
     this.setData({
       diyColor: app.globalData.diyColor,
       configSwitch: app.globalData.configSwitch
-    })
+    });
+    wx.login({
+      success: ({ code }) => {
+        this.loginCode = code;
+      },
+    });
   },
   getLoginCode() {
     return new Promise((resolve) => {
-      wx.login({
-        success: ({ code }) => {
-          wx.checkSession({
-            success() {
-              resolve(code);
-            },
-            fail() {
-              wx.login({
-                success: ({ code }) => {
-                  resolve(code);
-                },
-                fail: () => {
-                  resolve('');
-                }
-              });
-            }
-          })
+      wx.checkSession({
+        success: () => {
+          resolve(this.loginCode);
         },
+        fail: ()=> {
+          wx.login({
+            success: ({ code }) => {
+              this.loginCode = code;
+              resolve(this.loginCode);
+            },
+            fail: () => {
+              this.loginCode = '';
+              resolve(this.loginCode);
+            }
+          });
+        }
       });
-    })
+    });
   },
   handleAuthFail(title = '获取授权失败') {
     this.setData({
@@ -112,7 +115,10 @@ Page({
           })
       },
       fail: () => {
-        this.handleAuthFail();
+        this.setData({
+          loading: false,
+          disabled: false,
+        })
       }
     })
   },
@@ -137,13 +143,13 @@ Page({
         this.getDistributionData(supId)
       }
       wx.setStorageSync('memberId', res.member.memberId)
-      wx.setStorageSync('phone', res.member.phone == null ? '' : res.member.phone)
+      wx.setStorageSync('phone', res.member.phone || '')
       wx.setStorageSync('openid', res.openid)
-      wx.setStorageSync('unionId', res.unionId)
+      wx.setStorageSync('unionId', res.unionid)
       app.globalData.memberId = res.member.memberId
-      app.globalData.phone = res.member.phone == null ? '' : res.member.phone
+      app.globalData.phone = res.member.phone || ''
       app.globalData.openid = res.openid
-      app.globalData.unionId = res.unionId
+      app.globalData.unionId = res.unionid
       app.globalData.PASTLOGIN = false
       wx.setStorageSync('memberInfo', res.member)
       app.showSuccessToast('登录成功', () => {
@@ -174,7 +180,8 @@ Page({
         loading: false,
         disabled: false,
       })
-    }).catch(() => {
+    }).catch((e) => {
+      app.showToast(e.message || e.msg);
       this.setData({
         loading: false,
         disabled: false,
@@ -214,5 +221,10 @@ Page({
     http.post(app.globalData.distributionBindDistribution, {
       superior,
     })
+  },
+  handleBack () {
+    wx.navigateBack({
+      delta: 1,
+    });
   }
 })

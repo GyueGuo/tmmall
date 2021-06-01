@@ -14,7 +14,7 @@
       <image class='bg{{index}}' style='left:{{5.5}}%;top:{{5.5+index*11.5}}%' wx:for='{{7}}' src='{{util.HTTP}}{{(light+index)%2==0?"mobile/small/image/game-jggzp/d1.png":"mobile/small/image/game-jggzp/d2.png"}}'></image>
     </view>
     <view class='box-con'>
-      <view class='box{{index}}' wx:for='{{list}}' wx:key='{{index}}'>
+      <view class='box{{index}}' wx:for='{{list}}' wx:key='index'>
         <image class='box_bg' src='{{util.HTTP}}mobile/small/image/game-jggzp/box.png' mode='widthFix'></image>
         <view class='prize-con {{activeIndex==index?"active":""}}'>
           <block wx:if='{{item.isOpen==1}}'>

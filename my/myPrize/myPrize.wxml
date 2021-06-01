@@ -8,7 +8,7 @@
     </view>
   </view>
   <view class='con-list'>
-    <view class='li' wx:for='{{list}}' wx:key='{{index}}' data-item='{{item}}' data-index='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onOrder'>
+    <view class='li' wx:for='{{list}}' wx:key="index" data-item='{{item}}' data-index='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onOrder'>
       <view class='li_top'>
         <image class='goods_img' src='{{item.file}}'></image>
         <view class='li_info'>

@@ -1,6 +1,6 @@
 <wxs module="util" src="../../utils/util.wxs" />
 <view class='warp'>
-  <view class='list' wx:for='{{list}}' wx:key='{{index}}'>
+  <view class='list' wx:for='{{list}}' wx:key="index">
     <view class='time'>{{item.changeTime}}</view>
     <view class='detils'>
       <view class='type' hidden='{{item.changeType!=1}}'>您成功升级</view>

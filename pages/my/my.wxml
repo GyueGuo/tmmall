@@ -9,18 +9,38 @@
         </view>
         <view class='set-btn' hover-class='hover-class' hover-stay-time='400' bindtap='onMessage'>
           <image src='{{util.HTTP}}mobile/small/image/wd-xx.png'></image>
-          <view wx:if='{{information!=0}}' style='{{util.diyColor(diyColor.zColor,"","")}}'>{{information
-            < 99?information: "..."}}</view>
+          <view
+            wx:if='{{information}}'
+            style='{{util.diyColor(diyColor.zColor,"","")}}'
+          >
+            {{information  < 99 ? information : "..."}}</view>
           </view>
         </view>
       </view>
       <view class='user-con'>
         <view class='user-info'>
-          <view class='user-img'  class='user-img' hover-class='hover-class' hover-stay-time='400' bindtap='onInfo' style='background:url({{util.HTTP}}mobile/small/image/placeholder_member.png) no-repeat center;background-size:100% 100%;'>
-            <image src="{{info.userInfo.avatar}}" wx:if='{{info.userInfo.avatar}}'></image>
+          <view
+            wx:if='{{loginStatus}}'
+            class='user-img'
+            class='user-img'
+            hover-class='hover-class'
+            hover-stay-time='400'
+            bindtap='onInfo'
+          >
+            <image src="{{info.userInfo.avatar}}"></image>
+          </view>
+          <view
+            wx:else
+            class='user-img'
+            class='user-img'
+            hover-class='hover-class'
+            hover-stay-time='400'
+            bindtap='handleLogin'
+          >
+            <image src="{{util.HTTP}}mobile/small/image/placeholder_member.png"></image>
           </view>
           <view class='user-details'>
-            <view class='user-nickname {{!loginStatus?"no-login":""}}' hover-class='hover-class' hover-stay-time='400' bindtap='loginStatus'>{{loginStatus?info.userInfo.nickname:'登录/注册'}}</view>
+            <view class='user-nickname {{!loginStatus?"no-login":""}}' hover-class='hover-class' hover-stay-time='400' bindtap='handleLogin'>{{loginStatus?info.userInfo.nickname:'登录/注册'}}</view>
             <image class='rank' hover-class='hover-class' hover-stay-time='400' bindtap='onMember' src='{{info.userInfo.rankImg}}' wx:if='{{loginStatus}}'></image>
           </view>
           <view class='user-card' hover-class='hover-class' hover-stay-time='400' bindtap='onVipCard' hover-class='hover-class'>
@@ -50,7 +70,7 @@
           </view>
         </view>
         <view class='section-con'>
-          <view class='li' wx:for='{{info.orderStat}}' wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='order' data-item='{{item.key}}'>
+          <view class='li' wx:for='{{info.orderStat}}' wx:key='index' hover-class='hover-class' hover-stay-time='400' bindtap='order' data-item='{{item.key}}'>
             <image class='section-icon' src='{{util.HTTP+item.img}}'></image>
             <view class='section-name'>{{item.title}}</view>
             <view class='section-num' wx:if='{{item.count!=0}}' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>{{item.count
@@ -65,7 +85,7 @@
             <view class='dy_vicon' hover-class='hover-class' hover-stay-time='400' bindtap='goVicon' wx:if='{{loginStatus&&info.distribution.distributionId!=0}}'>V{{info.distribution.levelPos}}{{info.distribution.levelTitle}}</view>
           </view>
           <view class='section-con'>
-            <view class='li' wx:for='{{aDistribution}}' wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='distribution' data-item='{{item.key}}'>
+            <view class='li' wx:for='{{aDistribution}}' wx:key='index' hover-class='hover-class' hover-stay-time='400' bindtap='distribution' data-item='{{item.key}}'>
               <image class='section-icon' src='{{util.HTTP+item.img}}'></image>
               <view class='section-name'>{{item.title}}</view>
             </view>
@@ -77,7 +97,7 @@
             <view class='h1'>小助手</view>
           </view>
           <view class='section-con' style='margin-top:20rpx;'>
-            <view class='li' wx:for='{{info.assistant}}' wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='tool' data-item='{{item.key}}'>
+            <view class='li' wx:for='{{info.assistant}}' wx:key='index' hover-class='hover-class' hover-stay-time='400' bindtap='tool' data-item='{{item.key}}'>
               <image class='section-icon' wx:if='{{item.img!=""}}' src='{{util.HTTP+item.img}}'></image>
               <view class='count' wx:else>{{item.count}}</view>
               <view class='section-name'>{{item.title}}</view>

@@ -44,10 +44,10 @@
 		<view class='good-size' wx:if='{{info.attr.length != 0}}'>{{attr}}</view>
 		<scroll-view scroll-y class='good-property'>
 			<view>
-				<view wx:for="{{info.attr}}" wx:key='{{idx}}' wx:for-index="idx" class='property-list'>
+				<view wx:for="{{info.attr}}" wx:key="idx" wx:for-index="idx" class='property-list'>
 					<view class='property-title'>{{item.attrName}}</view>
 					<view class='property-option'>
-						<view wx:for="{{item.goodsAttr}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='_onAttr' data-idx='{{idx}}' data-item='{{item}}' style='{{attrArray[idx].id == item.goodsAttrId?util.diyColor("#fff",diyColor.zColor,""):""}}'>{{item.attrValue}}</view>
+						<view wx:for="{{item.goodsAttr}}" wx:key="index" hover-class='hover-class' hover-stay-time='400' bindtap='_onAttr' data-idx='{{idx}}' data-item='{{item}}' style='{{attrArray[idx].id == item.goodsAttrId?util.diyColor("#fff",diyColor.zColor,""):""}}'>{{item.attrValue}}</view>
 					</view>
 				</view>
 			</view>

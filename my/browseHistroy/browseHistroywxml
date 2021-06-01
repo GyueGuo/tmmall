@@ -1,8 +1,8 @@
 <wxs module="util" src="../../utils/util.wxs" />
-<view class='history-list' wx:for="{{list}}" wx:key='{{index}}' hidden='{{item.list.length==0}}'>
+<view class='history-list' wx:for="{{list}}" wx:key="index" hidden='{{item.list.length==0}}'>
   <view class='history-head'>{{item.date}}</view>
   <view class="good-list good-list-one">
-    <view wx:for="{{item.list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' wx:key='{{index}}' data-id='{{item.goodsId}}' data-item='{{item}}' bindlongtap='onDelectRecord'>
+    <view wx:for="{{item.list}}" hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' wx:key="index" data-id='{{item.goodsId}}' data-item='{{item}}' bindlongtap='onDelectRecord'>
       <view class='pic-wrap' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
         <image class='pic' lazy-load src='{{item.file}}'></image>
       </view>

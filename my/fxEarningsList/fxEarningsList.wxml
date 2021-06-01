@@ -2,12 +2,12 @@
 <view class='container'>
   <view class='con_top'>
     <view class='navTab' style='{{util.diyColor("","",diyColor.zColor)}}'>
-      <view style='{{navIndex==index?util.diyColor("#fff",diyColor.zColor,""):util.diyColor(diyColor.zColor,"","")}}' wx:for='{{navTab}}' wx:key='{{index}}' data-index='{{index}}' data-type='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='navTab'>{{item.name}}</view>
+      <view style='{{navIndex==index?util.diyColor("#fff",diyColor.zColor,""):util.diyColor(diyColor.zColor,"","")}}' wx:for='{{navTab}}' wx:key="index" data-index='{{index}}' data-type='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='navTab'>{{item.name}}</view>
     </view>
   </view>
   <view class='con_bottom'>
     <scroll-view scroll-y style='height:100%;' bindscrolltolower="loadMore" bindscroll="scroll" scroll-top="{{scrollTop}}" hidden='{{goodList.length == 0 && !loading}}' scroll-with-animation>
-      <view class='list-item' wx:for='{{list}}' wx:key='{{index}}'>
+      <view class='list-item' wx:for='{{list}}' wx:key="index">
         <view class='info'>
           <view class='month' wx:if='{{title!="today"}}'>{{item.date}}月</view>
           <block wx:if='{{title=="total"}}'>
@@ -29,7 +29,7 @@
         </view>
 
         <view class='list'>
-          <view class='item' wx:for='{{item.list}}' wx:key='{{index}}' wx:for-index="idx" wx:for-item="itemName">
+          <view class='item' wx:for='{{item.list}}' wx:key="index" wx:for-index="idx" wx:for-item="itemName">
             <view class='top'>
               <view class='userinfo'>
                 <image class='userimg' src='{{itemName.avatar}}'></image>

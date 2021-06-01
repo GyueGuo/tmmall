@@ -118,9 +118,13 @@ Page({
       couponId: this.data.info.couponId,
       goodsClassifyId: this.data.info.type == 1 ? this.data.info.classifyStr : '',
       storeId: this.data.info.type == 0 ? this.data.info.classifyStr : '',
-    }).then(res => {
-      this.onCloseExchange()
-      app.showSuccessToast('换取成功')
+    }).then((res) => {
+      this.onCloseExchange();
+      if (res.code === 0) {
+        app.showSuccessToast('换取成功')
+      } else {
+        app.showToast(res.message);
+      }
     })
   },
 

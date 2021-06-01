@@ -193,12 +193,16 @@ Page({
       couponId: item.couponId,
       goodsClassifyId: item.type == 1 ? item.classifyStr : '',
       storeId: item.type == 0 ? item.classifyStr : '',
-    }).then(res => {
-      this.data.list[index].memberState = 1
-      this.setData({
-        list: this.data.list
-      })
-      app.showSuccessToast('领取成功')
+    }).then((res) => {
+      if (res.code === 0) {
+        this.data.list[index].memberState = 1
+        this.setData({
+          list: this.data.list
+        })
+        app.showSuccessToast('领取成功')
+      } else {
+        app.showToast(res.message);
+      }
     })
   },
 

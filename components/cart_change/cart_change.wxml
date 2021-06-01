@@ -19,10 +19,10 @@
     <view class='good-size'>{{attr}}</view>
     <view class='good-property'>
       <view>
-        <view wx:for="{{info.attrs}}" wx:for-index="idx" wx:key='{{idx}}'>
+        <view wx:for="{{info.attrs}}" wx:for-index="idx" wx:key="idx">
           <view class='property-title'>{{item.attrName}}</view>
           <view class='property-option'>
-            <view wx:for="{{item.goodsAttr}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='_onAttr' data-idx='{{idx}}' data-item='{{item}}' class="{{attrArray[idx] == item.attrValue?'cur-option':''}}" style='{{attrArray[idx] == item.attrValue?util.diyColor("",diyColor.zColor,""):""}}'>
+            <view wx:for="{{item.goodsAttr}}" wx:key="index" hover-class='hover-class' hover-stay-time='400' bindtap='_onAttr' data-idx='{{idx}}' data-item='{{item}}' class="{{attrArray[idx] == item.attrValue?'cur-option':''}}" style='{{attrArray[idx] == item.attrValue?util.diyColor("",diyColor.zColor,""):""}}'>
               {{item.attrValue}}
             </view>
           </view>

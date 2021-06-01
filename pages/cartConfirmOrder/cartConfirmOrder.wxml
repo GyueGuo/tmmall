@@ -24,12 +24,12 @@
         <view>{{payWay}}</view>
         <image src='{{util.HTTP}}mobile/small/image/xq-gd.png'></image>
       </view>
-      <view class='order-detail' wx:for="{{list}}" wx:key='{{index}}'>
+      <view class='order-detail' wx:for="{{list}}" wx:key="index">
         <view class='shop' wx:if='{{util.isShops==0}}'>
           <image src='{{item.logo}}'></image>
           <text>{{item.storeName}}</text>
         </view>
-        <view class='good-detail' wx:for="{{item.list}}" wx:key='{{index}}'>
+        <view class='good-detail' wx:for="{{item.list}}" wx:key="index">
           <view class='good-info'>
             <image src='{{item.file}}'></image>
             <view>
@@ -52,7 +52,7 @@
               <view class='no-bottom'>
                 <view class='left'>配送方式</view>
                 <view class='method'>
-                  <view class="item" wx:for="{{item.deliveryMethod}}" wx:key="{{index}}" wx:for-item="deliveryItem" wx:for-index="idx" style="{{item.deliveryMethodType==deliveryItem.type?util.diyColor(diyColor.zColor,'',diyColor.zColor):''}}{{item.way!=1&&item.deliveryMethodType == 1&&deliveryItem.type!=1?util.diyColor('','#ccc',''):''}}" data-index='{{index}}' data-idx='{{idx}}' data-item="{{deliveryItem}}" hover-class='hover-class' hover-stay-time='400' bindtap='onDeliveryWay'>
+                  <view class="item" wx:for="{{item.deliveryMethod}}" wx:key="index" wx:for-item="deliveryItem" wx:for-index="idx" style="{{item.deliveryMethodType==deliveryItem.type?util.diyColor(diyColor.zColor,'',diyColor.zColor):''}}{{item.way!=1&&item.deliveryMethodType == 1&&deliveryItem.type!=1?util.diyColor('','#ccc',''):''}}" data-index='{{index}}' data-idx='{{idx}}' data-item="{{deliveryItem}}" hover-class='hover-class' hover-stay-time='400' bindtap='onDeliveryWay'>
                     {{deliveryItem.title}}
                   </view>
                 </view>

@@ -17,7 +17,7 @@
   <view class='classify' wx:if='{{level != 0}}'>
     <!-- 左侧分类 -->
     <view class='left-classify'>
-      <view wx:for='{{firstClassify}}' wx:key='{{index}}' class="{{parentId==item.goodsClassifyId?'':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onFiristClassify' data-item='{{item}}' style='{{parentId==item.goodsClassifyId?util.diyColor(diyColor.zColor,"#fff",diyColor.zColor):""}}'>
+      <view wx:for='{{firstClassify}}' wx:key="index" class="{{parentId==item.goodsClassifyId?'':''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onFiristClassify' data-item='{{item}}' style='{{parentId==item.goodsClassifyId?util.diyColor(diyColor.zColor,"#fff",diyColor.zColor):""}}'>
         {{item.title}}
       </view>
     </view>
@@ -30,7 +30,7 @@
       <view class='ad-title bg' hover-class='hover-class' hover-stay-time='400' bindtap='onClassify' data-id='{{parentId}}' style='{{util.diyColor("",diyColor.zColor,"")}}'>
         进入{{classifyTitle}}频道>
       </view>
-      <view class='classify-specific' wx:for="{{subClassify}}" wx:key='{{index}}'>
+      <view class='classify-specific' wx:for="{{subClassify}}" wx:key="index">
         <view class='classify-second' hover-class='hover-class' hover-stay-time='400' bindtap='onClassify' data-id='{{item.goodsClassifyId}}'>
           <view class='line' />
           <text class='title'>{{item.title}}</text>
@@ -38,7 +38,7 @@
           <view class='font_family next icon-gd-'></view>
         </view>
         <view class='classify-detail'>
-          <view wx:for="{{item.subset}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onClassify' data-id='{{item.goodsClassifyId}}'>
+          <view wx:for="{{item.subset}}" wx:key="index" hover-class='hover-class' hover-stay-time='400' bindtap='onClassify' data-id='{{item.goodsClassifyId}}'>
             <view class='classify-icon' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:100% 100%;'>
               <image src='{{item.webFile}}'></image>
             </view>
@@ -53,7 +53,7 @@
           <view class='line' />
         </view>
         <view class='classify-detail'>
-          <view wx:for="{{brandList}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onBandClassify' data-id='{{item.brandId}}'>
+          <view wx:for="{{brandList}}" wx:key="index" hover-class='hover-class' hover-stay-time='400' bindtap='onBandClassify' data-id='{{item.brandId}}'>
             <view class='classify-icon'>
               <image src='{{item.brandLogo}}'></image>
             </view>
@@ -71,7 +71,7 @@
       </view>
       <view class='classify-specific second-classify'>
         <view class='classify-detail'>
-          <view wx:for="{{subClassify}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onClassify' data-id='{{item.goodsClassifyId}}'>
+          <view wx:for="{{subClassify}}" wx:key="index" hover-class='hover-class' hover-stay-time='400' bindtap='onClassify' data-id='{{item.goodsClassifyId}}'>
             <view class='classify-icon' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:100% 100%;'>
               <image src='{{item.webFile}}'></image>
             </view>
@@ -86,7 +86,7 @@
           <view class='line' />
         </view>
         <view class='classify-detail'>
-          <view wx:for="{{brandList}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onBandClassify' data-id='{{item.brandId}}'>
+          <view wx:for="{{brandList}}" wx:key="index" hover-class='hover-class' hover-stay-time='400' bindtap='onBandClassify' data-id='{{item.brandId}}'>
             <view class='classify-icon'>
               <image src='{{item.brandLogo}}'></image>
             </view>
@@ -98,7 +98,7 @@
   <!-- 一级分类 -->
   <view class='one-level' wx:elif='{{level == 0}}'>
     <scroll-view class='scroll-view' scroll-y>
-      <view class='view' wx:for="{{firstClassify}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onClassify' data-id='{{item.goodsClassifyId}}'>
+      <view class='view' wx:for="{{firstClassify}}" wx:key="index" hover-class='hover-class' hover-stay-time='400' bindtap='onClassify' data-id='{{item.goodsClassifyId}}'>
         <text>{{item.title}}</text>
         <view style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:100% 100%;'>
           <!-- <image src='{{item.brandLogo}}'></image> -->

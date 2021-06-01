@@ -13,7 +13,7 @@
           <view class='row'>
             <view class='title'>发票类型</view>
             <view class='btn-con'>
-              <text style='{{item.type==invoiceType?util.diyColor(diyColor.zColor,diyColor.fColor2,diyColor.zColor):""}}' wx:for='{{invoiceCon}}' wx:key='{{index}}' wx:if='{{(isAddedValueTax==1&&item.type==1)||item.type==0}}' data-type='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='invoiceClick'>
+              <text style='{{item.type==invoiceType?util.diyColor(diyColor.zColor,diyColor.fColor2,diyColor.zColor):""}}' wx:for='{{invoiceCon}}' wx:key="index" wx:if='{{(isAddedValueTax==1&&item.type==1)||item.type==0}}' data-type='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='invoiceClick'>
                 {{item.name}}
               </text>
             </view>
@@ -21,7 +21,7 @@
           <view class='row'>
             <view class='title'>发票抬头</view>
             <view class='btn-con'>
-              <text style='{{item.type==rise?util.diyColor(diyColor.zColor,diyColor.fColor2,diyColor.zColor):""}}' wx:for='{{riseCon}}' wx:key='{{index}}' data-type='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='riseClick'>
+              <text style='{{item.type==rise?util.diyColor(diyColor.zColor,diyColor.fColor2,diyColor.zColor):""}}' wx:for='{{riseCon}}' wx:key="index" data-type='{{item.type}}' hover-class='hover-class' hover-stay-time='400' bindtap='riseClick'>
                 {{item.name}}
               </text>
             </view>
@@ -32,7 +32,7 @@
               <input bindinput='riseName' cursor-spacing='200' value='{{riseName}}' placeholder='请填写抬头名称' placeholder-style='color:#b2b8bf' catchtap='historyShow'></input>
               <view class='rise-history-con' hidden='{{isHistory||riseHistory.personal.length==0}}'>
                 <scroll-view scroll-y>
-                  <view wx:for='{{riseHistory.personal}}' wx:key='{{index}}' bindtap='onHistory' data-type='personal' data-item='{{item}}'>
+                  <view wx:for='{{riseHistory.personal}}' wx:key="index" bindtap='onHistory' data-type='personal' data-item='{{item}}'>
                     {{item.riseName}}
                   </view>
                 </scroll-view>
@@ -50,7 +50,7 @@
               <input bindinput='account' value='{{account}}' type='number' placeholder='请填写银行账号' placeholder-style='color:#b2b8bf'></input>
               <view class='rise-history-con' hidden='{{isHistory||riseHistory.tax.length==0}}'>
                 <scroll-view scroll-y>
-                  <view wx:for='{{riseHistory.tax}}' wx:key='{{index}}' bindtap='onHistory' data-type='tax' data-item='{{item}}'>
+                  <view wx:for='{{riseHistory.tax}}' wx:key="index" bindtap='onHistory' data-type='tax' data-item='{{item}}'>
                     {{item.riseName}}
                   </view>
                 </scroll-view>
@@ -63,7 +63,7 @@
               <input bindinput='taxerNumber' value='{{taxerNumber}}' placeholder='请填写纳税人识别码' placeholder-style='color:#b2b8bf'></input>
               <view class='rise-history-con' hidden='{{isHistory||riseHistory.company.length==0}}'>
                 <scroll-view scroll-y>
-                  <view wx:for='{{riseHistory.company}}' wx:key='{{index}}' bindtap='onHistory' data-type='company' data-item='{{item}}'>
+                  <view wx:for='{{riseHistory.company}}' wx:key="index" bindtap='onHistory' data-type='company' data-item='{{item}}'>
                     {{item.riseName}}
                   </view>
                 </scroll-view>

@@ -1,7 +1,7 @@
 <wxs module="util" src="../../utils/util.wxs" />
 <!-- 列表 -->
 <view class="good-list {{columns == 2?'good-list-one':''}}">
-  <view wx:for="{{list}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' data-id='{{item.goodsId}}'>
+  <view wx:for="{{list}}" wx:key="index" hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' data-id='{{item.goodsId}}'>
     <view class='pic-wrap' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
       <image class='pic' lazy-load src='{{item.file}}'></image>
       <image class='dy' wx:if='{{item.isDistributor==1}}' src='{{util.HTTP}}mobile/small/image/fx/fx_dybq.png'></image>
@@ -21,7 +21,7 @@
             自营
           </text>
           <view class='label'>
-            <view wx:for='{{item.relevaTagList}}' wx:for-item='label' wx:key='{{index}}' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}' data-id='{{label.tagBindGoodsId}}' hover-class='hover-class' hover-stay-time='400' data-goodsId='{{item.goodsId}}' catchtap='onLabel'>
+            <view wx:for='{{item.relevaTagList}}' wx:for-item='label' wx:key="index" style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}' data-id='{{label.tagBindGoodsId}}' hover-class='hover-class' hover-stay-time='400' data-goodsId='{{item.goodsId}}' catchtap='onLabel'>
               {{label.name}}
             </view>
           </view>
@@ -48,7 +48,7 @@
             自营
           </text>
           <view class='label'>
-            <view wx:for='{{item.relevaTagList}}' wx:for-item='label' wx:key='{{index}}' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}' data-id='{{label.tagBindGoodsId}}' hover-class='hover-class' hover-stay-time='400' data-goodsId='{{item.goodsId}}' catchtap='onLabel'>
+            <view wx:for='{{item.relevaTagList}}' wx:for-item='label' wx:key="index" style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}' data-id='{{label.tagBindGoodsId}}' hover-class='hover-class' hover-stay-time='400' data-goodsId='{{item.goodsId}}' catchtap='onLabel'>
               {{label.name}}
             </view>
           </view>
@@ -71,7 +71,7 @@
             自营
           </text>
           <view class='label'>
-            <view wx:for='{{item.relevaTagList}}' wx:for-item='label' wx:key='{{index}}' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}' data-id='{{label.tagBindGoodsId}}' hover-class='hover-class' hover-stay-time='400' data-goodsId='{{item.goodsId}}' catchtap='onLabel'>
+            <view wx:for='{{item.relevaTagList}}' wx:for-item='label' wx:key="index" style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}' data-id='{{label.tagBindGoodsId}}' hover-class='hover-class' hover-stay-time='400' data-goodsId='{{item.goodsId}}' catchtap='onLabel'>
               {{label.name}}
             </view>
           </view>
@@ -93,7 +93,7 @@
             自营
           </text>
           <view class='label'>
-            <view wx:for='{{item.relevaTagList}}' wx:for-item='label' wx:key='{{index}}' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}' data-id='{{label.tagBindGoodsId}}' hover-class='hover-class' hover-stay-time='400' data-goodsId='{{item.goodsId}}' catchtap='onLabel'>
+            <view wx:for='{{item.relevaTagList}}' wx:for-item='label' wx:key="index" style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}' data-id='{{label.tagBindGoodsId}}' hover-class='hover-class' hover-stay-time='400' data-goodsId='{{item.goodsId}}' catchtap='onLabel'>
               {{label.name}}
             </view>
           </view>

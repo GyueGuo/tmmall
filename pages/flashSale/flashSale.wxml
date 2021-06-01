@@ -4,7 +4,7 @@
     <view class='tab'>
       <scroll-view class='tab-scroll' scroll-x>
         <view class='tab-con' style='{{util.diyColor("",diyColor.cColor,"")}}'>
-          <view wx:for="{{tab}}" wx:key='{{index}}' class='tab-item' hover-class='hover-class' hover-stay-time='400' bindtap='onTab' data-id='{{item.limitIntervalId}}' style='{{tab.length<2?"width:80%;":""}}'>
+          <view wx:for="{{tab}}" wx:key="index" class='tab-item' hover-class='hover-class' hover-stay-time='400' bindtap='onTab' data-id='{{item.limitIntervalId}}' style='{{tab.length<2?"width:80%;":""}}'>
             <view class="{{intervalId == item.limitIntervalId?'bg':''}}" style='{{intervalId == item.limitIntervalId?util.diyColor("",diyColor.zColor,""):""}}'>
               <view class='title'>{{item.intervalName}}</view>
               <view class='status' wx:if="{{index == 0}}">抢购中</view>

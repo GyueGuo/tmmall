@@ -36,7 +36,7 @@
     <view class='content' style='background: url({{util.HTTP}}mobile/small/image/fx/dy_image02.png) repeat-y;background-size:100%;'>
       <scroll-view class='good-scroll' scroll-y bindscrolltolower="loadMore" bindscroll="scroll" scroll-top="{{scrollTop}}" scroll-with-animation>
         <view class='goods-con' wx:if="{{goodList.length != 0}}">
-          <view class='item' wx:for='{{goodList}}' wx:key='{{index}}' bindtap='onGoods' hover-class='hover-class' hover-stay-time='400' data-id='{{item.goodsId}}'>
+          <view class='item' wx:for='{{goodList}}' wx:key="index" bindtap='onGoods' hover-class='hover-class' hover-stay-time='400' data-id='{{item.goodsId}}'>
             <view class='goods-file'>
               <image src='{{item.file}}'></image>
             </view>

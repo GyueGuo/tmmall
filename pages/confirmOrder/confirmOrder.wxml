@@ -68,7 +68,7 @@
           <view class='no-bottom'>
             <view class='left'>配送方式</view>
             <view class='method'>
-              <view class="item" wx:for="{{deliveryMethod}}" wx:key="{{index}}" wx:for-item="deliveryItem" wx:for-index="idx" style="{{deliveryMethodType==deliveryItem.type?util.diyColor(diyColor.zColor,'',diyColor.zColor):''}}{{payWay!=1&&deliveryMethodType == 1&&deliveryItem.type!=1?util.diyColor('','#ccc',''):''}}" data-index='{{index}}' data-idx='{{idx}}' data-item="{{deliveryItem}}" hover-class='hover-class' hover-stay-time='400' bindtap='onDeliveryWay'>
+              <view class="item" wx:for="{{deliveryMethod}}" wx:key="index" wx:for-item="deliveryItem" wx:for-index="idx" style="{{deliveryMethodType==deliveryItem.type?util.diyColor(diyColor.zColor,'',diyColor.zColor):''}}{{payWay!=1&&deliveryMethodType == 1&&deliveryItem.type!=1?util.diyColor('','#ccc',''):''}}" data-index='{{index}}' data-idx='{{idx}}' data-item="{{deliveryItem}}" hover-class='hover-class' hover-stay-time='400' bindtap='onDeliveryWay'>
                 {{deliveryItem.title}}
               </view>
             </view>

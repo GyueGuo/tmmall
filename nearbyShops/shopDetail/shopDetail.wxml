@@ -37,7 +37,7 @@
   <!--热门分类  -->
   <view class='board' hidden='{{!classifyBoard}}' hover-class='hover-class' hover-stay-time='400' bindtap='closeClassify'>
     <view class='hot-classify-list'>
-      <view catchtap='onSearch' wx:for="{{hotClassify}}" wx:key='{{index}}' data-id='{{item.storeGoodsClassifyId}}'>{{item.title}}</view>
+      <view catchtap='onSearch' wx:for="{{hotClassify}}" wx:key="index" data-id='{{item.storeGoodsClassifyId}}'>{{item.title}}</view>
     </view>
   </view>
 
@@ -95,7 +95,7 @@
     <view class='coupon-center' wx:if='{{storeIndex.coupon.length != 0&&configSwitch.showSwitch.isCoupon==1}}'>
       <image src='{{util.HTTP}}mobile/small/image/dp-yhqbj.png'></image>
       <view class='coupon-list'>
-        <view wx:for="{{storeIndex.coupon}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='receiveCoupon' data-id='{{item.couponId}}'>
+        <view wx:for="{{storeIndex.coupon}}" wx:key="index" hover-class='hover-class' hover-stay-time='400' bindtap='receiveCoupon' data-id='{{item.couponId}}'>
           <image src='{{util.HTTP}}mobile/small/image/dp-yhq.png'></image>
           <view class='price'>{{util.integer(item.actualPrice)}}</view>
           <block wx:if='{{item.fullSubtractionPrice!=0}}'>
@@ -111,12 +111,12 @@
     <!--掌柜推荐  -->
     <image class='hot-sale' src='{{util.HTTP}}mobile/small/image/dp-bt2.png'></image>
     <view hidden='{{storeIndex.particularlyRecommend.length == 0}}'>
-      <view class='recommend' wx:for="{{storeIndex.particularlyRecommend}}" wx:key='{{index}}' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:130rpx 130rpx;'>
+      <view class='recommend' wx:for="{{storeIndex.particularlyRecommend}}" wx:key="index" style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:130rpx 130rpx;'>
         <image src='{{item.recommeFile}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' data-id='{{item.goodsId}}'></image>
       </view>
     </view>
     <view class='recommand-list'>
-      <view wx:for="{{recommandList}}" wx:key='{{index}}' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
+      <view wx:for="{{recommandList}}" wx:key="index" style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
         <image src='{{item.file}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' data-id='{{item.goodsId}}'></image>
       </view>
     </view>
@@ -155,14 +155,14 @@
 
     <view class='plan-b' style="{{fixed?'margin-top:120rpx;':''}}" wx:elif="{{storeHead.goodsStyle == 1}}">
       <scroll-view bindscroll="bLeftScroll" scroll-y="{{fixed || bLeftScroll}}" class="plan-b-left">
-        <view class='classify-con' wx:for="{{classify}}" wx:key='{{index}}' style='{{item.select?util.diyColor("","#fff",""):""}}'>
+        <view class='classify-con' wx:for="{{classify}}" wx:key="index" style='{{item.select?util.diyColor("","#fff",""):""}}'>
           <view class="plan-b-title" data-item='{{item}}' hover-class='hover-class' hover-stay-time='400' bindtap='onStoreClassify' style='{{item.select?util.diyColor(diyColor.zColor,"",""):""}}'>
             <view class='f-title'>
               <text style='{{item.select?util.diyColor("","",diyColor.zColor):""}}'>{{item.title}}</text>
             </view>
             <view class='{{item.subset.length!=0?"font_family icon-sy-xl":""}} btn' style='{{item.select?"transform:rotate(180deg);":""}}'></view>
           </view>
-          <view class="plan-b-second-title" hidden='{{!item.select}}' wx:for="{{item.subset}}" wx:key='{{index}}' wx:for-item="second" hover-class='hover-class' hover-stay-time='400' bindtap='onSecondClassify' data-id='{{second.storeGoodsClassifyId}}'>
+          <view class="plan-b-second-title" hidden='{{!item.select}}' wx:for="{{item.subset}}" wx:key="index" wx:for-item="second" hover-class='hover-class' hover-stay-time='400' bindtap='onSecondClassify' data-id='{{second.storeGoodsClassifyId}}'>
             <view style='{{secondClassify == second.storeGoodsClassifyId?util.diyColor(diyColor.zColor,"",""):""}}'>{{second.title}}</view>
           </view>
         </view>
@@ -179,7 +179,7 @@
           </view>
         </view>
         <scroll-view bindscroll="bRightScroll" scroll-y="{{fixed || bRightScroll}}" class='plan-b-Scroll' bindscrolltolower="loadMore">
-          <view class='plan-b-good' wx:for="{{allList}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' data-id='{{item.goodsId}}'>
+          <view class='plan-b-good' wx:for="{{allList}}" wx:key="index" hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' data-id='{{item.goodsId}}'>
             <view class='good-image' style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
               <image src='{{item.file}}'></image>
             </view>
@@ -187,7 +187,7 @@
               <view class='good-name'>{{item.goodsName}}</view>
               <view class='goods-tip'>
                 <view class='label'>
-                  <view wx:for='{{item.relevaTagList}}' wx:for-item='label' wx:key='{{index}}' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}' data-id='{{label.tagBindGoodsId}}' hover-class='hover-class' hover-stay-time='400' data-goodsId='{{item.goodsId}}'
+                  <view wx:for='{{item.relevaTagList}}' wx:for-item='label' wx:key="index" style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}' data-id='{{label.tagBindGoodsId}}' hover-class='hover-class' hover-stay-time='400' data-goodsId='{{item.goodsId}}'
                     catchtap='onLabel'>{{label.name}}</view>
                 </view>
               </view>
@@ -242,7 +242,7 @@
 
   <!--新品  -->
   <view class='new-good' style="{{fixed?'margin-top:100rpx;':''}}" hidden='{{!newView}}'>
-    <view wx:for="{{newList}}" wx:key='{{index}}'>
+    <view wx:for="{{newList}}" wx:key="index">
       <view class='new-good-head'>
         <image src='{{util.HTTP}}mobile/small/image/dp-sysx.png'></image>
         <text>{{item.date}}本店上新</text>
@@ -267,13 +267,13 @@
       </view>
     </view>
     <view class='dynamic-list' hidden="{{articleList.length == 0}}">
-      <view wx:for="{{articleList}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onArticleDetail' data-id='{{item.articleId}}'>
+      <view wx:for="{{articleList}}" wx:key="index" hover-class='hover-class' hover-stay-time='400' bindtap='onArticleDetail' data-id='{{item.articleId}}'>
         <view class='dynamic-date'>{{item.dateTime}}</view>
         <view class='dynamic-label'>#{{item.title}}#</view>
         <image class='dynamic-pic' src='{{item.file}}' wx:if="{{item.multipleFile.length == 0}}"></image>
         <image class='dynamic-pic' src='{{item.multipleFile[0]}}' wx:elif="{{item.multipleFile.length == 1}}"></image>
         <view class='dynamic-pic-list' wx:else>
-          <image wx:for="{{item.multipleFile}}" wx:key='{{index}}' src='{{item}}'></image>
+          <image wx:for="{{item.multipleFile}}" wx:key="index" src='{{item}}'></image>
         </view>
       </view>
     </view>

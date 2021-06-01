@@ -5,6 +5,9 @@
 <button class='submit' loading='{{loading}}' disabled='{{disabled}}' bindtap="handleGetUserProfile" style='{{util.diyColor("",diyColor.zColor,"")}}'>
   确认授权
 </button>
+<button class="back" bindtap="handleBack">
+  返回
+</button>
 <!-- <button wx:if="{{ canIUseGetUserProfile }}" class='submit' loading='{{loading}}' disabled='{{disabled}}' bindtap="handleGetUserProfile" style='{{util.diyColor("",diyColor.zColor,"")}}'>
   确认授权
 </button> -->

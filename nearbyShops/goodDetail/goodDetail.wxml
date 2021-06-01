@@ -9,12 +9,12 @@
       <image class='v-play' src='{{util.HTTP}}mobile/small/image/pj-bf.png' catchtap='videoPlay'></image>
     </view>
     <swiper class='banner-swiper' bindchange="bannerChange" current='{{current}}'>
-      <swiper-item wx:for='{{info.multipleFile}}' wx:key='{{index}}'>
+      <swiper-item wx:for='{{info.multipleFile}}' wx:key="index">
         <image src='{{item}}' data-path='{{item}}' bindtap='onPreviewSwiper'></image>
       </swiper-item>
     </swiper>
     <view class='swiper-btn' wx:if='{{videoFile.content!=""&&videoFile.content!=undefined}}'>
-      <view class='item' style='{{bannerType==index?"background: linear-gradient(to left, "+diyColor.zColor+", "+diyColor.fColor8+") #fff;color:#fff;":"background-color: rgba(255, 255, 255, 0.5);"}}' wx:for='{{bannerContner}}' wx:key='{{index}}' data-id='{{item.id}}' bindtap='onBannerType'>
+      <view class='item' style='{{bannerType==index?"background: linear-gradient(to left, "+diyColor.zColor+", "+diyColor.fColor8+") #fff;color:#fff;":"background-color: rgba(255, 255, 255, 0.5);"}}' wx:for='{{bannerContner}}' wx:key="index" data-id='{{item.id}}' bindtap='onBannerType'>
         {{item.title}}
       </view>
     </view>
@@ -324,7 +324,7 @@
           <view hover-class='hover-class' hover-stay-time='400' bindtap='onCoupon' wx:if='{{info.coupon.length != 0&&configSwitch.showWwitch.isCoupon==1}}'>
             <view class='title'>领券</view>
             <view class='ticket-list'>
-              <view class='ticket' wx:for="{{info.coupon}}" wx:key='{{index}}'>
+              <view class='ticket' wx:for="{{info.coupon}}" wx:key="index">
                 <view class='left_b' style='{{util.diyColor("",diyColor.zColor,"")}}'>
                   <view class='circle'></view>
                 </view>
@@ -394,7 +394,7 @@
             </view>
             <view class='line'></view>
             <swiper class='collage-swiper' autoplay circular vertical>
-              <swiper-item wx:for="{{collageInfo}}" wx:key='{{index}}'>
+              <swiper-item wx:for="{{collageInfo}}" wx:key="index">
                 <view class='collage-info' data-item='{{item}}'>
                   <text>{{item.user}}</text>
                   <text wx:if='{{item.status==0}}'>已开团</text>
@@ -405,7 +405,7 @@
             </swiper>
           </view>
           <swiper class='go-collage' display-multiple-items="{{collageNum}}" style='{{collageNum==1?"height:150rpx":""}}' autoplay circular vertical hidden='{{info.groupList.length == 0}}'>
-            <block wx:for="{{groupCount}}" wx:key='{{index}}'>
+            <block wx:for="{{groupCount}}" wx:key="index">
               <swiper-item>
                 <view class='collage-item'>
                   <image src='{{item.avatar}}'></image>
@@ -527,7 +527,7 @@
           </view>
           <!-- 多店铺推荐 -->
           <view class='recommend-goods' hidden='{{shopTab !=1}}'>
-            <view wx:for='{{info.recommend}}' wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goodsId}}'>
+            <view wx:for='{{info.recommend}}' wx:key="index" hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goodsId}}'>
               <image src='{{item.file}}'></image>
               <view class='recommend-name'>{{item.goodsName}}</view>
               <block wx:if='{{item.isBargain==1}}'>
@@ -555,7 +555,7 @@
           </view>
           <!-- 多店排行榜 -->
           <view class='recommend-goods' hidden='{{shopTab !=2}}'>
-            <view wx:for='{{info.ranking}}' wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goodsId}}'>
+            <view wx:for='{{info.ranking}}' wx:key="index" hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goodsId}}'>
               <image src='{{item.file}}'></image>
               <view class='recommend-name'>{{item.goodsName}}</view>
               <block wx:if='{{item.isBargain==1}}'>
@@ -600,7 +600,7 @@
           </view>
           <!-- 排行榜 -->
           <view class='recommend-goods'>
-            <view wx:for="{{info.ranking}}" wx:key='{{index}}' hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goodsId}}'>
+            <view wx:for="{{info.ranking}}" wx:key="index" hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{item.goodsId}}'>
               <image src='{{item.file}}'></image>
               <view class='recommend-name'>{{item.goodsName}}</view>
               <block wx:if='{{item.isBargain==1}}'>

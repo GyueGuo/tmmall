@@ -34,7 +34,7 @@
     </block>
     <block wx:if='{{isLogin&&cartList.length != 0}}'>
       <view class="cart-list">
-        <view class="cart-item" wx:for="{{cartList}}" wx:key="{{index}}">
+        <view class="cart-item" wx:for="{{cartList}}" wx:key="index">
           <view class="shop-con" wx:if='{{util.isShops==0&&configSwitch.versionInfo.oneMore==1}}'>
             <view class='select' data-index='{{index}}' bindtap='onSelectShop' hover-class='hover-class' hover-stay-time='400'>
               <view class='font_family icon {{item.select?"icon-syt-gx1":"icon-syt-gx"}}' style='{{item.select?util.diyColor(diyColor.zColor,"",""):""}}'></view>
@@ -49,7 +49,7 @@
             </view>
           </view>
           <view class="goods-list">
-            <view class="goods-item" wx:for="{{item.list}}" wx:key="{{idx}}" wx:for-index="idx" wx:for-item="itemGoods" hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{itemGoods.goodsId}}'>
+            <view class="goods-item" wx:for="{{item.list}}" wx:key="idx" wx:for-index="idx" wx:for-item="itemGoods" hover-class='hover-class' hover-stay-time='400' bindtap='onGood' data-id='{{itemGoods.goodsId}}'>
               <view class='select' data-shopdex='{{index}}' data-gooddex='{{idx}}' catchtap='onSelectGood' hover-class='hover-class' hover-stay-time='400'>
                 <view class='font_family icon {{itemGoods.select?"icon-syt-gx1":"icon-syt-gx"}}' style='{{itemGoods.select?util.diyColor(diyColor.zColor,"",""):""}}'></view>
               </view>
@@ -100,7 +100,7 @@
         </view>
       </view>
       <view class="goods-list">
-        <view class="goods-item" wx:for="{{lostList}}" wx:key="{{idx}}" wx:for-index="idx" wx:for-item="itemGoods">
+        <view class="goods-item" wx:for="{{lostList}}" wx:key="idx" wx:for-index="idx" wx:for-item="itemGoods">
           <view class="icon">失效</view>
           <view class="goods-file" style='background:url({{util.HTTP}}mobile/small/image/placeholder_goods_img_0.png) no-repeat center;background-size:70% 70%;'>
             <image src="{{itemGoods.file}}"></image>
