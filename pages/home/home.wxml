@@ -168,23 +168,19 @@
       </block>
     </view>
     
-    <view class="coupon-con" wx:if='{{dataInfo.couponList.length!=0}}'>
-      <scroll-view class='p-scroll' scroll-x>
-        <view class="con">
-          <view class='item' wx:for='{{dataInfo.couponList}}' wx:key="index" data-item='{{item}}' data-index='{{index}}'  hover-class='hover-class' hover-stay-time='300'>
-            <image class='men' src='{{util.HTTP}}mobile/small/image/couponbg.png'></image>
-            <view class="coupon-price">
-              <text>￥</text>
-              {{item.actualPrice}}元
-            </view>
-            <view class="coupon-title">
-              <view class="coupon-tit">{{item.title}}</view>
-              <view class="coupon-full">满{{item.fullSubtractionPrice}}元可用</view>
-            </view>
-          </view>
+    <scroll-view class="coupon-con" scroll-x wx:if='{{dataInfo.couponList.length}}'>
+      <view class='item' wx:for='{{dataInfo.couponList}}' wx:key="index" data-item='{{item}}' data-index='{{index}}'  hover-class='hover-class' hover-stay-time='300'>
+        <image class='men' src='{{util.HTTP}}mobile/small/image/couponbg.png'></image>
+        <view class="coupon-price">
+          <text>￥</text>
+          {{item.actualPrice}}元
         </view>
-      </scroll-view>
-    </view>
+        <view class="coupon-title">
+          <view class="coupon-tit">{{item.title}}</view>
+          <view class="coupon-full">满{{item.fullSubtractionPrice}}元可用</view>
+        </view>
+      </view>
+    </scroll-view>
     <view class='popularity-con' wx:if='{{dataInfo.popularity.length!=0}}'>
       <view class='section-title' style="background:url({{util.HTTP}}mobile/small/image/titlebg.png) no-repeat left top;background-size:  100%">
         <view class='tit'>主推爆款</view>
