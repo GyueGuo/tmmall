@@ -19,7 +19,8 @@ Page({
   onLoad: function(options) {
     this.setData({
       diyColor: app.globalData.diyColor,
-      articleId: options.articleId
+      articleId: options.articleId,
+      source: options.source,
     })
   },
 
@@ -72,6 +73,9 @@ Page({
     http.post(app.globalData.hotView, {
       articleId: this.data.articleId,
     }).then(res => {
+      wx.setNavigationBarTitle({
+        title: res.result.title,
+      });
       this.setData({
         info: res.result,
         attentionState: res.result.attentionState

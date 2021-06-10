@@ -69,7 +69,11 @@ Page({
   onItem(e) {
     let item = e.currentTarget.dataset.item
     wx.navigateTo({
-      url: '/my/helpWeb/helpWeb?item=' + JSON.stringify(item),
+      url: `/pages/infoDetail/infoDetail?articleId=${item.articleId}&source=helpCenter`,
+      // url: '/my/helpWeb/helpWeb?item=' + encodeURIComponent(JSON.stringify({
+      //   title: item.title,
+      //   content: item.content,
+      // })),
     })
   }
 })

@@ -2,7 +2,7 @@
 <view hidden='{{!info.title}}'>
   <scroll-view class='wrap' scroll-y>
     <view class='title'>{{info.title}}</view>
-    <view class='collect'>
+    <view class='collect' wx:if="{{ source !== 'helpCenter' }}">
       <view class='border-cur' wx:if="{{attentionState == null||attentionState==''}}" hover-class='hover-class' hover-stay-time='400' bindtap='onCollect' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>
         收藏
       </view>
@@ -14,8 +14,17 @@
       <Parser html='{{info.webContent}}' bindparse='parse' />
     </view>
   </scroll-view>
-  <view class='good-nums bg' hover-class='hover-class' hover-stay-time='400' bindtap='onGoods' hidden='{{info.goods.length == 0 || loading}}' style='{{util.diyColor("",diyColor.zColor,"")}}'>
+  <view
+    wx:if="{{ source !== 'helpCenter' && info.goods && info.goods.length && !loading }}"
+    class='good-nums bg'
+    hover-class='hover-class'
+    hover-stay-time='400'
+    bindtap='onGoods'
+    style='{{util.diyColor("",diyColor.zColor,"")}}'
+  >
     商品({{info.goods.length}})
   </view>
 </view>
-<article_goods isShow="{{isShow}}" goodList="{{info.goods}}" />
+<block wx:if="{{ source !== 'helpCenter' && info.goods && info.goods.length}}">
+  <article_goods isShow="{{isShow}}" goodList="{{info.goods}}" />
+</block>
