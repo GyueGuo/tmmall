@@ -60,11 +60,11 @@
         <view class='exchange-fit'>{{info.title}}</view>
 
       </view>
-      <view class='exchange-goods'>
+      <view class='exchange-goods' wx:if="{{ info.goodsList && info.goodsList.length }}">
         <view class='used-good' hover-class='hover-class' hover-stay-time='400' bindtap='goUse' data-item='{{info}}'>
           <image wx:for="{{info.goodsList}}" src='{{item.file}}'></image>
         </view>
-        <view class='used-tips' hover-class='hover-class' hover-stay-time='400' bindtap='onChangeCouponList' data-data='{{info}}' wx:if='{{info.goodsList.length!=0}}'>查看全部适用商品></view>
+        <view class='used-tips' hover-class='hover-class' hover-stay-time='400' bindtap='onChangeCouponList' data-data='{{info}}'>查看全部适用商品></view>
       </view>
     </view>
     <view class='integral-balance'>
