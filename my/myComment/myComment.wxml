@@ -15,7 +15,7 @@
 
 <scroll-view class='scroll' hidden='{{list.length == 0}}' scroll-y bindscrolltolower="loadmore">
   <view class='comment' wx:for="{{list}}" hidden='{{item.orderGoodsMyEvaluate==null}}'>
-    <view class='comment-time'>{{item.formatCreateTime}} {{item.orderGoodsMyEvaluate.attr}}</view>
+    <view class='comment-time'>{{item.formatCreateTime}} <!--{{item.orderGoodsMyEvaluate.attr}}--></view>
     <view class='comment-content'>{{item.content}}</view>
     <view class='comment-img' wx:if="{{item.multipleFile.length == 1 && item.video == ''}}">
       <image class='single-img' src='{{item.multipleFile[0]}}' hover-class='hover-class' hover-stay-time='400' bindtap='onPreview' data-index='{{index}}' data-idx='0'></image>

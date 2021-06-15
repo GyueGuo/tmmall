@@ -25,7 +25,7 @@ Page({
     if (options.write) {
       wx.setNavigationBarTitle({
         title: '写评价',
-      })
+      });
       this.setData({
         write: options.write
       })

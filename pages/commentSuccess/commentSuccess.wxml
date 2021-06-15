@@ -13,7 +13,7 @@
   </view>
   <view class='then-comment'>
     <view class='line'></view>
-    <view class='title' wx:if="{{total != 0}}">接着评下去吧</view>
+    <view class='title' wx:if="{{total}}">接着评下去吧</view>
     <view class='title' wx:else>暂无可评价订单</view>
     <view class='line'></view>
   </view>

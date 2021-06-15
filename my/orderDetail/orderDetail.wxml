@@ -244,9 +244,7 @@
         </view>
         <view style="flex: 1; width: 0;">
           <text>返积分</text>
-          <text class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
-            {{info.subtotalBackIntegral}}
-          </text>
+          <text class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>{{info.subtotalBackIntegral}}</text>
           <text>点</text>
         </view>
       </view>
