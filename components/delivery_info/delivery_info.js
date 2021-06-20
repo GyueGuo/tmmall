@@ -98,18 +98,20 @@ Component({
     },
 
     getDistributionInfo() {
-      app.openLocation(() => {
-        this.getAddressInfo()
-      }, () => {
-        // app.showToast('请开启定位权限', () => {
-        //   wx.openSetting()
-        // });
+      const fn = () => {
         this.setData({
-          addressShow: '无法定位',
+          addressShow: '-',
           expressFreightPriceShow: '-',
           isLoading: false,
         });
-      })
+      }
+      if (app.globalData.memberId && app.globalData.phone) {
+        app.openLocation(() => {
+          this.getAddressInfo()
+        }, fn);
+        return;
+      }
+      fn();
     },
     getAddressInfo() {
       http.post(app.globalData.shippingInstructions, {
@@ -127,7 +129,7 @@ Component({
         this.setData({
           result,
           data,
-          addressShow: `${address.province}>${address.city}>${address.area}`,
+          addressShow: address.province ? `${address.province}>${address.city}>${address.area}` : '-',
           expressFreightPriceShow: `${data.expressFreightPrice}元`,
           isLoading: false,
         });

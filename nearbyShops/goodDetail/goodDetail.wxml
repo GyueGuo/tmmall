@@ -175,10 +175,10 @@
         <view wx:if='{{info.city != null}}'>{{info.province}}{{info.city}}</view>
       </view>
       <view class='goods-btn'>
-        <view class='item inform' wx:if='{{orderType==1}}' hover-class='hover-class' hover-stay-time='400' bindtap='onNotification'>
+        <!-- <view class='item inform' wx:if='{{orderType==1}}' hover-class='hover-class' hover-stay-time='400' bindtap='onNotification'>
           <image src='{{util.HTTP}}mobile/small/image/xq-jj.png'></image>
           <view>降价通知</view>
-        </view>
+        </view> -->
         <view class='item' hover-class='hover-class' hover-stay-time='400' bindtap='share'>
           <image src='{{util.HTTP}}mobile/small/image/xqfx.png'></image>
           <view>分享</view>
