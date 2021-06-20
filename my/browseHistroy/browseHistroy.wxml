@@ -8,15 +8,15 @@
         <image class='pic' lazy-load src='{{item.file}}'></image>
       </view>
       <view class='good-detail {{item.isInvalid==1?"invalid_type":""}}'>
-        <view class='good-name'>{{item.goods_name}}</view>
+        <view class='good-name'>{{item.goodsName}}</view>
         <!-- 拼团 -->
-        <view wx:if='{{item.is_group == 1}}'>
+        <view wx:if='{{item.isGroup == 1}}'>
           <view class='good-tips-list'>
             <text class='good-tips cur' wx:if='{{item.shop==0}}' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>自营</text>
           </view>
           <view class='good-tips-list' style='top:150rpx;'>
             <view class='good-group-info'>
-              <view class='bg' style='{{item.isInvalid==0?util.diyColor("",diyColor.zColor,""):"background-color:#999fa5;"}}'>{{item.group_num}}人拼</view>
+              <view class='bg' style='{{item.isInvalid==0?util.diyColor("",diyColor.zColor,""):"background-color:#999fa5;"}}'>{{item.groupNum}}人拼</view>
               <view class='price-con' style='{{item.isInvalid==0?util.diyColor(diyColor.zColor,"",""):"color:#999fa5;"}}'>
                 <text class='unit'>￥</text>
                 <text class='integer'>{{util.integer(item.groupPrice)}}</text>
@@ -32,7 +32,7 @@
           <view class='good-tips-list'>
             <text class='good-tips' wx:if='{{item.shop==0}}' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>自营</text>
           </view>
-          <view class='price' style="{{!item.store_name?'top:190rpx;':''}}{{item.isInvalid==0?util.diyColor(diyColor.zColor,'',''):'color:#999fa5;'}}">
+          <view class='price' style="{{!item.storeName?'top:190rpx;':''}}{{item.isInvalid==0?util.diyColor(diyColor.zColor,'',''):'color:#999fa5;'}}">
             <text class='unit'>￥</text>
             <text class='integer'>{{util.integer(item.timeLimitPrice)}}</text>
             <text class='decimals'>.{{util.decimals(item.timeLimitPrice)}}元</text>
@@ -44,7 +44,7 @@
           </view>
         </view>
         <!-- 砍价 -->
-        <view wx:elif='{{item.is_bargain == 1}}'>
+        <view wx:elif='{{item.isBargain === 1}}'>
           <view class='good-tips-list'>
             <text class='good-tips cur' wx:if='{{item.shop==0}}' style='{{util.diyColor(diyColor.zColor,"",diyColor.zColor)}}'>自营</text>
           </view>
@@ -72,10 +72,9 @@
         </view>
 
         <block wx:if='{{item.isInvalid==0}}'>
-          <view class='add-cart font_family icon-pt' style='{{util.diyColor(diyColor.zColor,"","")}}' wx:if="{{item.isGroup==1}}"></view>
-          <view class='add-cart font_family icon-kj' style='{{util.diyColor(diyColor.zColor,"","")}}' wx:elif="{{item.isBargain==1}}"></view>
-          <view class='add-cart font_family icon-xs' style='{{util.diyColor(diyColor.zColor,"","")}}' wx:elif="{{item.isLimit==1}}"></view>
-          <!-- <view class='add-cart font_family icon-guc' style='{{util.diyColor(diyColor.zColor,"","")}}' data-item='{{item}}' wx:else catchtap='addCart'></view> -->
+          <view class='add-cart font_family icon-pt' style='{{util.diyColor(diyColor.zColor,"","")}}' wx:if="{{item.isGroup===1}}"></view>
+          <view class='add-cart font_family icon-kj' style='{{util.diyColor(diyColor.zColor,"","")}}' wx:elif="{{item.isBargain===1}}"></view>
+          <view class='add-cart font_family icon-xs' style='{{util.diyColor(diyColor.zColor,"","")}}' wx:elif="{{item.isLimit===1}}"></view>
         </block>
         <block wx:elif='{{item.isInvalid==1}}'>
         <view class='depreciate-info'>
@@ -109,4 +108,4 @@
 <!--  -->
 <modal id="modal" title="提示" content="您确定删除记录吗?" bind:confirm="confirmDelete" />
 
-<buy catchtap="none" id="buy_board" bind:closeBuy="closeBuy" type="{{buy_type}}" info="{{info}}" discount="{{discount}}" groupBuy="{{false}}" diyColor='{{diyColor}}'/>
+<buy catchtap="none" id="buy_board" bind:closeBuy="closeBuy" type="{{buyType}}" info="{{info}}" discount="{{discount}}" groupBuy="{{false}}" diyColor='{{diyColor}}'/>
