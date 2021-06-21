@@ -224,7 +224,7 @@ Component({
                       let integer = this.ctx.measureText(price.split('.')[0] + '.').width
                       let left = parseFloat(30 + unitWidth + integer + kjWidth)
                       this.ctx.font = 'normal normal 19px sans-serif';
-                      this.ctx.fillText(price.split('.')[1], left, 466)
+                      this.ctx.fillText(price.split('.')[1] || '00', left, 466)
                       let saleWidth = this.ctx.measureText(sale).width
                       let goodsText = {
                         x: 336 - saleWidth,
@@ -393,7 +393,7 @@ Component({
                   let integer = this.ctx.measureText(price.split('.')[0] + '.').width
                   let left = parseFloat(30 + unitWidth + integer + kjWidth)
                   this.ctx.font = 'normal normal 19px sans-serif';
-                  this.ctx.fillText(price.split('.')[1], left, 466)
+                  this.ctx.fillText(price.split('.')[1] || '00', left, 466)
                   let saleWidth = this.ctx.measureText(sale).width
                   let goodsText = {
                     x: 336 - saleWidth,

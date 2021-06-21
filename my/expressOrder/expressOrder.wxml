@@ -137,9 +137,9 @@
       </block>
     </view>
     <view class='order-item-operation'>
-      <view wx:if="{{item.isInvoice==1}}" hover-class='hover-class' hover-stay-time='400' bindtap='invoiceAnew' data-item='{{item}}' data-index='{{index}}'>
+      <!-- <view wx:if="{{item.isInvoice==1}}" hover-class='hover-class' hover-stay-time='400' bindtap='invoiceAnew' data-item='{{item}}' data-index='{{index}}'>
         查看发票
-      </view>
+      </view> -->
       <view wx:if="{{item.status == 0 }}" hover-class='hover-class' hover-stay-time='400' bindtap='cancelOrder' data-id='{{item.orderAttachId}}' data-index='{{index}}'>
         取消订单
       </view>
