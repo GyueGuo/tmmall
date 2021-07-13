@@ -295,9 +295,7 @@
       <view class='actually-pay'>
         <view>
           实付款:
-          <text class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>
-            ￥{{info.subtotalPrice}}元
-          </text>
+          <text class='cur' style='{{util.diyColor(diyColor.zColor,"","")}}'>￥{{info.subtotalPrice}}元</text>
         </view>
       </view>
     </view>
@@ -305,9 +303,7 @@
       <view>订单备注:{{info.message}}</view>
       <view class='order-time'>
         <text>订单编号:{{info.orderAttachNumber}}</text>
-        <text class='copy' hover-class='hover-class' hover-stay-time='400' bindtap='copyOrderNumber'>
-          复制
-        </text>
+        <text class='copy' hover-class='hover-class' hover-stay-time='400' bindtap='copyOrderNumber'>复制</text>
       </view>
       <view class='order-time'>下单时间:{{info.createTime}}</view>
     </view>
@@ -316,9 +312,6 @@
     <view wx:if="{{info.distributionType==2&&info.status == 2}}" hover-class='hover-class' hover-stay-time='400' bindtap='onNavigation'>
       导航
     </view>
-    <!-- <view wx:if="{{info.isInvoice == 1}}" data-item='{{info}}' hover-class='hover-class' hover-stay-time='400' bindtap='invoiceAnew'>
-      查看发票
-    </view> -->
     <view wx:if="{{info.status == 0}}" hover-class='hover-class' hover-stay-time='400' bindtap='cancelOrder'>
       取消订单
     </view>

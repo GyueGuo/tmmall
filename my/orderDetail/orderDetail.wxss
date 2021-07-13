@@ -8,6 +8,7 @@
 .order-wrap scroll-view{
   display: flex;
   flex: 1;
+  height: 0;
 }
 .order-head > .imagebg {
   position: relative;
@@ -448,6 +449,7 @@
 }
 
 .logistics {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: flex-end;
