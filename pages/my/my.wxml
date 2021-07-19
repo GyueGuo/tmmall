@@ -60,7 +60,7 @@
         <view class='circle circle2'></view>
       </view>
     </view>
-    <view class='section'>
+    <view class='section' wx:if="{{ loginStatus }}">
       <view class='row order'>
         <view class='title'>
           <view class='h1'>我的订单</view>

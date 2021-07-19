@@ -11,6 +11,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    enableBackToTop: false,
     currentIndex: 0, //商品详情 0商品 1详情 2评价
     goodsId: '', //商品id
     shopTab: 1, //店铺推荐 排行榜
@@ -151,20 +152,18 @@ Page({
     clearInterval(this.data.limitInterval)
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    this.evaluateLoadMore()
   },
-
+  onPageScroll({ scrollTop }) {
+    this.setData({
+      enableBackToTop: scrollTop > 200
+    })
+  },
   /**
    * 用户点击右上角分享
    */
@@ -184,27 +183,6 @@ Page({
     }
   },
 
-  /**
-   * 商品详情屏幕切换 0商品 1详情 2评价
-   */
-  wrapSwiper(e) {
-    this.setData({
-      currentIndex: e.detail.current
-    })
-    let title = null
-    wx.nextTick(() => {
-      if (e.detail.current == 0) {
-        title = '商品'
-      } else if (e.detail.current == 1) {
-        title = '详情'
-      } else if (e.detail.current == 2) {
-        title = '评价'
-      }
-      wx.setNavigationBarTitle({
-        title: title,
-      })
-    })
-  },
 
   /**
    * 获取数据
@@ -439,11 +417,6 @@ Page({
     }
   },
 
-
-
-
-
-
   share(e) {
     this.setData({
       shareType: e.currentTarget.dataset.type == 'distribution' ? e.currentTarget.dataset.type : null
@@ -512,36 +485,6 @@ Page({
     this.selectComponent("#poster").download(poster)
   },
 
-
-  /**
-   * 返回顶部上升动画
-   */
-  riseAnimation() {
-    let animation = wx.createAnimation({
-      duration: 500,
-      timingFunction: 'ease',
-    })
-    animation.translateY('-180px').step()
-    this.setData({
-      animationTop: animation.export()
-    })
-  },
-
-  /**
-   * 返回顶部下降动画
-   */
-  declineAnimation() {
-    let animation = wx.createAnimation({
-      duration: 500,
-      timingFunction: 'ease',
-    })
-    animation.translateY(200 / 1334 * wx.getSystemInfoSync().screenHeight).step()
-    this.setData({
-      animationTop: animation.export()
-    })
-  },
-
-
   /**
    * 
    */
@@ -569,37 +512,14 @@ Page({
       distributionAnimation: animation.export()
     })
   },
-
-  /**
-   * 页面滑动
-   */
-  scroll(e) {
-    if (e.detail.scrollTop > 100) {
-      this.riseAnimation()
-      this.distributionAnimationUp()
-    } else {
-      this.declineAnimation()
-      this.distributionAnimationDown()
-    }
-  },
-
   /**
    * 回到顶部
    */
   onBackTop() {
-    if (this.data.currentIndex == 0) {
-      this.setData({
-        currentScrollTop0: 0
-      })
-    } else if (this.data.currentIndex == 1) {
-      this.setData({
-        currentScrollTop1: 0
-      })
-    } else if (this.data.currentIndex == 2) {
-      this.setData({
-        currentScrollTop2: 0
-      })
-    }
+    wx.pageScrollTo({
+      scrollTop: 0,
+      duration: 200
+    })
   },
   /**
    * 商品参数

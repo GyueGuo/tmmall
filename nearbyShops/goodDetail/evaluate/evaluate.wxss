@@ -89,19 +89,9 @@
   border-right: 20rpx solid transparent;
   border-bottom: 20rpx solid #f8f8f8;
 }
-.evaluate-wrap .no-order {
-  height: calc(100vh - 250rpx);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.evaluate-wrap .no-order > view {
-  width: 100%;
-}
 
 .evaluate-wrap .no-order image {
-  width: 100%;
+  width: 750rpx;
   height: 260rpx;
 }
 
