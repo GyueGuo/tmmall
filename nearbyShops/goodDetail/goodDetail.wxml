@@ -634,13 +634,13 @@
         <view class='recommend-more' wx:if='{{util.isShops==1}}' hover-class='hover-class' hover-stay-time='400' bindtap='goRanking'>
           查看完整优品推荐榜单
         </view>
-        <template wx:if="{{ info.webContent }}">
+        <block wx:if="{{ info.webContent }}">
           <!-- 商品详情 -->
           <view class='good-detail-head'>
             <image src='{{util.HTTP}}mobile/small/image/xcx1.png'></image>
           </view>
           <Parser html='{{info.webContent}}' bindparse='parse' />
-        </template>
+        </block>
       </scroll-view>
     </swiper-item>
     <!-- 第三屏 -->
