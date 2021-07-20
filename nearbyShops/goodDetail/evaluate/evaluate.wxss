@@ -6,7 +6,7 @@
   border-bottom: 2rpx solid #f5f5f5;
 }
 
-.evaluate-wrap .evaluate-head > view {
+.evaluate-wrap .evaluate-head>view {
   display: flex;
   font-size: 26rpx;
   line-height: 58rpx;
@@ -19,11 +19,12 @@
   border: 2rpx solid #fff;
 }
 
-.evaluate-wrap .detail-grade .star{
+.evaluate-wrap .detail-grade .star {
   margin-left: 10rpx;
   font-size: 26rpx;
 }
-.evaluate-wrap .evaluate-head > view image {
+
+.evaluate-wrap .evaluate-head>view image {
   width: 18rpx;
   height: 12rpx;
   margin-right: 6rpx;
@@ -90,8 +91,19 @@
   border-bottom: 20rpx solid #f8f8f8;
 }
 
+.evaluate-wrap .no-order {
+  height: calc(100vh - 250rpx);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.evaluate-wrap .no-order>view {
+  width: 100%;
+}
+
 .evaluate-wrap .no-order image {
-  width: 750rpx;
+  width: 100%;
   height: 260rpx;
 }
 

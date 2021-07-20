@@ -181,7 +181,7 @@
         </view>
       </view>
     </scroll-view>
-    <view class='popularity-con' wx:if='{{dataInfo.popularity.length!=0}}'>
+    <view class='popularity-con' wx:if='{{ dataInfo.popularity.length }}'>
       <view class='section-title' style="background:url({{util.HTTP}}mobile/small/image/titlebg.png) no-repeat left top;background-size:  100%">
         <view class='tit'>主推爆款</view>
         <view class='tip'>MAIN PRODUCTS</view>
@@ -195,7 +195,7 @@
               <image src='{{item.file}}'></image>
             </view>
             <view class='goods-name'>{{item.goodsName}}</view>
-            <view class='goods-jianjie'>{{item.goodsJianjie}}</view>
+            <view class='goods-jianjie'>{{item.goodsJianJie || ''}}</view>
             <view class='goods-bot'>
               <block wx:if='{{item.isLimit==1}}'>
                 <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
@@ -228,7 +228,7 @@
       </view>
     </view>
 
-    <view class='popularity-class-con' wx:if='{{dataInfo.classList.length>0}}'>
+    <!-- <view class='popularity-class-con' wx:if='{{dataInfo.classList.length>0}}'>
       <view class='section-title' style="background:url({{util.HTTP}}mobile/small/image/titlebg.png) no-repeat left top;background-size:  100%">
         <view class='tit'>优惠套餐</view>
         <view class='tip'>DISCOURT PACKAGE</view>
@@ -246,7 +246,7 @@
                 <view class='goods-name'>{{goodsItem.goodsName}}</view>
                 <view class='goods-keywords'>{{goodsItem.keyword}}|{{util.integer(goodsItem.goodsWeight)}}kg</view>
                 <view class='goods-keywords'>支持批发</view>
-                <view class='goods-jianjie'>{{goodsItem.goodsJianjie}}</view>
+                <view class='goods-jianjie'>{{goodsItem.goodsJianJie}}</view>
                 <view class='goods-bottom'>
                   <block wx:if='{{goodsItem.isLimit==1}}'>
                     <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>
@@ -284,9 +284,8 @@
           </view>
         </view>
       </view>
-
-    </view>
-    <view class='recommend-con'>
+    </view> -->
+    <view class='recommend-con' wx:if='{{ dataInfo.recommendList.length }}'>
       <view class='section-title' style="background:url({{util.HTTP}}mobile/small/image/titlebg.png) no-repeat left top;background-size:  100%">
         <view class='tit'>热销单品</view>
         <view class='tip'>HOT SELLING ITEMS</view>
@@ -299,7 +298,7 @@
             <image src='{{util.HTTP}}mobile/small/image/men.png' class="men"></image>
           </view>
           <view class='goods-name'>{{item.goodsName}}</view>
-          <view class='goods-tip'>{{item.goodsJianjie}}</view>
+          <view class='goods-tip'>{{item.goodsJianJie || ''}}</view>
           <view class='goods-bot'>
             <block wx:if='{{item.isLimit}}'>
               <view class='goods-price' style='{{util.diyColor(diyColor.zColor,"","")}}'>

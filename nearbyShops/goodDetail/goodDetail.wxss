@@ -1,13 +1,19 @@
 @import "./evaluate/evaluate.wxss";
 
-.goods-page-wrap {
-  padding-bottom: 150rpx;
+.wrap {
+  width: 100vw;
+  height: 100vh;
 }
 
-.back-top {
-  bottom: 100px;
+.wrap-swiper {
+  height: 100vh;
+  padding-bottom: 100rpx;
+  box-sizing: border-box;
 }
 
+.wrap-swiper swiper-item>scroll-view {
+  height: 100%;
+}
 .fake-haoping {
   padding: 0 26rpx;
   line-height: 96rpx;
@@ -16,7 +22,6 @@
   font-weight: bold;
   background-color: #FFF4F4;
 }
-
 .wrap-footer {
   position: fixed;
   left: 0;
@@ -48,7 +53,6 @@
   font-size: 22rpx;
   line-height: normal;
 }
-
 .f-left-con .item .item-btn {
   margin-top: 6rpx;
 }
@@ -57,7 +61,7 @@
   font-size: 38rpx;
 }
 
-.f-left-con .item>image {
+.f-left-con .item >image {
   width: 42rpx;
   height: 42rpx;
 }
@@ -137,10 +141,8 @@
   height: 750rpx;
   background-color: #000;
 }
-
-.video-con .video-snapshot {}
-
-.video-con .v-play {
+.video-con .video-snapshot{}
+.video-con .v-play{
   position: absolute;
   left: 50%;
   top: 50%;
@@ -339,7 +341,8 @@
   background-color: #fff;
 }
 
-.detail-wrap .con {}
+.detail-wrap .con {
+}
 
 .detail-wrap .good-tips {
   display: flex;
@@ -348,7 +351,7 @@
   color: #909090;
 }
 
-.detail-wrap .good-tips view:first-child {
+.detail-wrap .good-tips view:first-child{
   margin-right: 50rpx;
   flex-shrink: 0;
 }
@@ -376,11 +379,14 @@
   color: #222;
 }
 
-.detail-wrap .con .price-con {}
+.detail-wrap .con .price-con {
+}
 
-.detail-wrap .price-con .unit {}
+.detail-wrap .price-con .unit {
+}
 
-.detail-wrap .price-con .good-price {}
+.detail-wrap .price-con .good-price {
+}
 
 .detail-wrap .good-price .unit {
   font-size: 28rpx;
@@ -497,7 +503,7 @@
   background: white;
 }
 
-.shop-favor>view {
+.shop-favor > view {
   position: relative;
   display: flex;
   align-items: center;
@@ -559,7 +565,7 @@
   color: white;
 }
 
-.shop-favor>view .title {
+.shop-favor > view .title {
   display: inline-flex;
   flex-shrink: 0;
   font-size: 24rpx;
@@ -567,7 +573,7 @@
   color: #909090;
 }
 
-.shop-favor>view>image {
+.shop-favor > view > image {
   flex-shrink: 0;
   /* position: absolute;
   right: 4%;
@@ -577,20 +583,16 @@
   margin-left: auto;
   /* margin-top: -11rpx; */
 }
-
-.shop-favor .label-con {
+.shop-favor .label-con{
   align-items: unset;
   height: auto;
 }
-
-.shop-favor .label-con .post-list>view {
+.shop-favor .label-con .post-list>view{
   margin-bottom: 10rpx;
 }
-
-.shop-favor .label-con image {
+.shop-favor .label-con image{
   margin-top: 10rpx;
 }
-
 .shop-favor .promotion {
   display: flex;
   align-content: center;
@@ -616,20 +618,20 @@
   overflow: hidden;
 }
 
-.shop-favor .post-list>view {
+.shop-favor .post-list > view {
   display: flex;
   align-items: center;
   margin-right: 20rpx;
 }
 
-.shop-favor .post-list>view view {
+.shop-favor .post-list > view view {
   height: 38rpx;
   line-height: 38rpx;
   font-size: 24rpx;
   margin-right: 14rpx;
 }
 
-.shop-favor .post-list>view text {
+.shop-favor .post-list > view text {
   display: block;
   /* width:  */
   font-size: 24rpx;
@@ -641,7 +643,7 @@
   background: white;
 }
 
-.attribute>view {
+.attribute > view {
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -652,13 +654,13 @@
   box-sizing: border-box;
 }
 
-.attribute>view>view {
+.attribute > view > view {
   font-size: 24rpx;
   line-height: 90rpx;
   color: #909090;
 }
 
-.attribute>view>image {
+.attribute > view > image {
   flex-shrink: 0;
   width: 12rpx;
   height: 22rpx;
@@ -800,7 +802,7 @@
   margin-top: 42rpx;
 }
 
-.collage-rule .rule-content>view {
+.collage-rule .rule-content > view {
   font-size: 28rpx;
   line-height: 28rpx;
 }
@@ -834,13 +836,13 @@
   box-sizing: border-box;
 }
 
-.evaluate-head>view {
+.evaluate-head > view {
   font-size: 28rpx;
   line-height: 90rpx;
   margin-right: auto;
 }
 
-.evaluate-head>image {
+.evaluate-head  > image {
   width: 12rpx;
   height: 22rpx;
   flex-shrink: 0;
@@ -881,7 +883,7 @@
   height: 98rpx;
 }
 
-.shop-info .shop-intro>view {
+.shop-info .shop-intro > view {
   margin-left: 20rpx;
 }
 
@@ -901,7 +903,7 @@
   overflow: hidden;
 }
 
-.shop-operation>view {
+.shop-operation > view {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -912,11 +914,11 @@
   color: #888;
 }
 
-.shop-operation>view:last-child {
+.shop-operation > view:last-child {
   margin-left: 4%;
 }
 
-.shop-operation>view>view {
+.shop-operation > view >view {
   display: inline-block;
 }
 
@@ -925,7 +927,7 @@
   height: 32rpx;
 } */
 
-.shop-operation>view text {
+.shop-operation > view text {
   font-size: 28rpx;
   margin-left: 10rpx;
   margin-top: 2rpx;
@@ -949,7 +951,7 @@
   line-height: 70rpx;
 }
 
-.shop-recommend .recommend-head>view {
+.shop-recommend .recommend-head > view {
   width: 50%;
   text-align: center;
 }
@@ -979,18 +981,18 @@
   height: 390rpx;
 }
 
-.shop-recommend .recommend-goods>view {
+.shop-recommend .recommend-goods > view {
   position: relative;
   width: 32%;
   margin-left: 2%;
   float: left;
 }
 
-.shop-recommend .recommend-goods>view:first-child {
+.shop-recommend .recommend-goods > view:first-child {
   margin-left: 0;
 }
 
-.shop-recommend .recommend-goods>view>image {
+.shop-recommend .recommend-goods > view > image {
   width: 100%;
   height: 222rpx;
 }
@@ -1148,11 +1150,10 @@
   background-color: #fde66e;
 }
 
-.d-recommend-head {
+.d-recommend-head{
   padding: 20rpx 0;
 }
-
-.d-recommend-head text {
+.d-recommend-head text{
   font-size: 30rpx;
   color: #909090;
   border-left: 6rpx solid transparent;
